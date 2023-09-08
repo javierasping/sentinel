@@ -1,6 +1,6 @@
 baseURL: https://hugo-toha.github.io
 
-languageCode: en-us
+languageCode: es
 title: "John's Blog"
 
 # Use Hugo modules to add theme
@@ -19,16 +19,15 @@ module:
 
 # Manage languages
 # For any more details, you can check the official documentation: https://gohugo.io/content-management/multilingual/
+# Administrar idiomas
 languages:
-  en:
-    languageName: English
+  es:
+    languageName: Español
     weight: 1
-  bn:
-    languageName: বাংলা
-    weight: 3
+
 
 # Force a locale to be use, really useful to develop the application ! Should be commented in production, the "weight" should rocks.
-# DefaultContentLanguage: bn
+DefaultContentLanguage: es
 
 # Allow raw html in markdown file
 markup:
@@ -64,7 +63,7 @@ params:
     favicon: /images/site/favicon.png
 
   # GitHub repo of your site
-  gitRepo: https://github.com/hugo-toha/hugo-toha.github.io
+  gitRepo: https://github.com/javierasping/sentinel
   # Default branch of your Git repo
   gitBranch: main
 
@@ -152,7 +151,7 @@ params:
       services:
         # Google Analytics
         google:
-          id: G-H4LBG7NDFZ
+          id: G-GVDYVWJLRH
         # # CounterDev
         # counterDev:
         #   id: <your counterdev id>
