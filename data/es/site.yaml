@@ -23,9 +23,9 @@ customMenus:
 
 # Specify OpenGraph Headers
 openGraph:
-  title: John's Blog
+  title: Atlas
   type: website
   description: Portafolio y blog personal de Javier Cruces Doval.
 
   image: images/author/john.png
-  url: https://hugo-toha.github.io
+  url: https://www.javiercd.es

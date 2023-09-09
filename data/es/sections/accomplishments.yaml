@@ -1,6 +1,6 @@
-# section information
+# section information Certificaciones
 section:
-  name: Accomplishments
+  name: Certificaciones
   id: accomplishments
   enable: true
   weight: 8
