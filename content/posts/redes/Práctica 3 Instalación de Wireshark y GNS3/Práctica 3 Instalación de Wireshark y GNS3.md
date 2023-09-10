@@ -8,38 +8,44 @@ INSTALACIÓN DE WIRESHARK Y GNS3
 
 **Índice**
 
-[1.Instalación de wireshark en Debian 11..............................................................................................3](#_page2_x56.70_y56.70)
+[1.Instalación de wireshark en Debian 11](#_page2_x56.70_y56.70)
 
-1. [Introducción...............................................................................................................................3](#_page2_x56.70_y88.80)
-1. [Descarga del paquete en debían.................................................................................................3](#_page2_x56.70_y506.75)
-1. [Comprobación de funcionamiento.............................................................................................6](#_page5_x56.70_y56.70)
-1. [Componentes de wireshark generales........................................................................................7](#_page6_x56.70_y56.70)
+1. [Introducción](#_page2_x56.70_y88.80)
+1. [Descarga del paquete en debían](#_page2_x56.70_y506.75)
+1. [Comprobación de funcionamiento](#_page5_x56.70_y56.70)
+1. [Componentes de wireshark generales](#_page6_x56.70_y56.70)
 
-[2.Instalación de GNS3 en Debian 11....................................................................................................8](#_page7_x56.70_y68.70)
+[2.Instalación de GNS3 en Debian 11](#_page7_x56.70_y68.70)
 
-1. [Introducción...............................................................................................................................8](#_page7_x56.70_y100.80)
-1. [Instalación en debian.................................................................................................................9](#_page8_x56.70_y66.70)
-1. [Nuestra primera topología en GNS3........................................................................................12](#_page11_x56.70_y56.70)
-1. [Acceso a internet a través de NAT en GNS3...........................................................................19](#_page18_x56.70_y66.70)
+1. [Introducción](#_page7_x56.70_y100.80)
+1. [Instalación en debian](#_page8_x56.70_y66.70)
+1. [Nuestra primera topología en GNS3](#_page11_x56.70_y56.70)
+1. [Acceso a internet a través de NAT en GNS3](#_page18_x56.70_y66.70)
 
-[3.Problemas comunes en la instalación..............................................................................................20](#_page19_x56.70_y68.70)
+[3.Problemas comunes en la instalación](#_page19_x56.70_y68.70)
 
-1. [Error VPCS executable version must be >=0.6.1 but not 0.8..................................................20](#_page19_x56.70_y100.80)
-1. [Xterm no instalado...................................................................................................................22](#_page21_x56.70_y56.70)
+1. [Error VPCS executable version must be >=0.6.1 but not 0.8](#_page19_x56.70_y100.80)
+1. [Xterm no instalado](#_page21_x56.70_y56.70)
 
-[4 Instalar imágenes IOS......................................................................................................................22 ](#_page21_x56.70_y279.65)[5.Instalación en Windows de GNS3...................................................................................................27](#_page26_x56.70_y68.70)
+[4 Instalar imágenes IOS](#_page21_x56.70_y279.65)
 
-1. [Paquetes necesarios para Windows.....................................................................................27](#_page26_x56.70_y97.80)
-1. [Requisitos mínimos.............................................................................................................28](#_page27_x56.70_y63.70)
-1. [Instalación GNS3................................................................................................................28](#_page27_x56.70_y262.95)
-1. [Prueba de funcionamiento...................................................................................................41](#_page40_x56.70_y56.70)
+[5.Instalación en Windows de GNS3](#_page26_x56.70_y68.70)
 
-[6.Instalación Wireshark en Windows.................................................................................................42](#_page41_x56.70_y56.70)
+1. [Paquetes necesarios para Windows](#_page26_x56.70_y97.80)
+1. [Requisitos mínimos](#_page27_x56.70_y63.70)
+1. [Instalación GNS3](#_page27_x56.70_y262.95)
+1. [Prueba de funcionamiento](#_page40_x56.70_y56.70)
 
-1. [Instalación...........................................................................................................................42](#_page41_x56.70_y85.80)
-1. [Prueba de funcionamiento...................................................................................................47](#_page46_x56.70_y374.55)
+[6.Instalación Wireshark en Windows](#_page41_x56.70_y56.70)
 
-[7.GNS VM..........................................................................................................................................48 ](#_page47_x56.70_y68.70)[Conclusión..........................................................................................................................................52 ](#_page51_x56.70_y68.70)[Bibliografía.........................................................................................................................................53](#_page52_x56.70_y68.70)
+1. [Instalación](#_page41_x56.70_y85.80)
+1. [Prueba de funcionamiento](#_page46_x56.70_y374.55)
+
+[7.GNS VM](#_page47_x56.70_y68.70)
+
+[Conclusión](#_page51_x56.70_y68.70)
+
+[Bibliografía](#_page52_x56.70_y68.70)
 
 <a name="_page2_x56.70_y56.70"></a>**1.Instalación de wireshark en Debian 11**
 
@@ -88,7 +94,13 @@ A continuación para hacer capturas de red  en el equipo necesitaremos permisos 
 
 Ahora abriremos el programa para comprobar que todo funciona correctamente :
 
-Ahora iniciaremos una captura de paquetes para ello si queremos hacerla sobre un interfaz en concreta pulsamos sobre ella , en mi caso usare la tarjeta de red inalámbrica wlo1  y haré una petición web  a ![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.007.jpeg)![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.008.jpeg)la pagina  jagger.es . 
+Ahora iniciaremos una captura de paquetes para ello si queremos hacerla sobre un interfaz en concreta pulsamos sobre ella , en mi caso usare la tarjeta de red inalámbrica wlo1  y haré una petición web  a 
+
+![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.007.jpeg)
+
+![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.008.jpeg)
+
+la pagina  jagger.es . 
 
 Aquí te muestro la petición DNS que ha viajado desde  mi portátil hasta el router .
 
@@ -220,7 +232,9 @@ También podemos eliminar la clave GPG de estos repositorios si lo deseamos :
 
 Añadiremos a los usuarios que vayan a utilizar la herramienta a los siguientes grupos :
 
-Reinicie su sesión de usuario cerrando sesión y volviendo a iniciarla, o reiniciando el sistema para que se apliquen estos cambios .![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.022.png)
+Reinicie su sesión de usuario cerrando sesión y volviendo a iniciarla, o reiniciando el sistema para que se apliquen estos cambios .
+
+![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.022.png)
 
 3. **Nuestra<a name="_page11_x56.70_y56.70"></a> primera topología en GNS3**
 
@@ -266,7 +280,9 @@ Nos saldrá una advertencia , para que confirmemos si queremos añadir todos los
 
 Veremos que tanto a la izquierda en el resumen de dispositivos como en las conexiones salientes de los dispositivos su “luz” de estado a cambiado de rojo a verde , puestos que estos ahora están encendidos :
 
-` `![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.034.png)![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.035.png)
+![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.034.png)
+
+![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.035.png)
 
 Ahora abriremos una terminal en todos nuestros VPCS , con el siguiente botón :
 
@@ -274,7 +290,9 @@ Ahora abriremos una terminal en todos nuestros VPCS , con el siguiente botón :
 
 A través de estas terminales le asignaremos direcciones ips a nuestros dispositivos con el siguiente comando :
 
-![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.037.png) ![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.038.png)
+![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.037.png) 
+
+![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.038.png)
 
 Una vez configurada las tarjetas de red , comprobaremos si hay conectividad entre ellos haciendo un ping :
 
@@ -366,7 +384,9 @@ Volveremos a abrir el programa y podremos acceder a las consolas de nuestras maq
 
 <a name="_page21_x56.70_y279.65"></a>**4 Instalar imágenes IOS**
 
-Si queremos añadir a nuestro sistema hardware real como puede ser un router cisco por ejemplo deberemos de acceder a la pagina oficial de GNS3 y descargar concretamente el que deseemos añadir en mi caso añadiré un cisco 3725 .![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.060.jpeg)
+Si queremos añadir a nuestro sistema hardware real como puede ser un router cisco por ejemplo deberemos de acceder a la pagina oficial de GNS3 y descargar concretamente el que deseemos añadir en mi caso añadiré un cisco 3725 .
+
+![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.060.jpeg)
 
 Si pulsamos sobre el botón de descarga  nos descargara un archivo con extensión , el cual es una plantilla .
 
@@ -625,7 +645,9 @@ Nos informara de que la instalación ha sido realizada correctamente :
 
 ![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.112.png)
 
-2. **Prueba<a name="_page46_x56.70_y374.55"></a> de funcionamiento ![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.113.jpeg)**
+2. **Prueba<a name="_page46_x56.70_y374.55"></a> de funcionamiento**
+
+![](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.113.jpeg)
 
 He realizado una petición DNS a [www.sevillafc.es](http://www.sevillafc.es/) y aquí podemos ver la consulta DNS :
 
