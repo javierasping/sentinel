@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Atlas</title>
+    <link>https://hugo-toha.github.io/</link>
+    <description>Recent content on Atlas</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es</language>
+    <lastBuildDate>Fri, 08 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://hugo-toha.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+      <title>Configuración de VLAN en Redes</title>
+      <link>https://hugo-toha.github.io/posts/redes/vlan/</link>
+      <pubDate>Fri, 08 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/posts/redes/vlan/</guid>
+      <description>Aquí comienza el contenido de tu publicación sobre configuración de VLAN en redes&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Configuración de VLAN en Redes</title>
+      <link>https://hugo-toha.github.io/posts/sistemas/sistemas/</link>
+      <pubDate>Fri, 08 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/posts/sistemas/sistemas/</guid>
+      <description>Aquí comienza el contenido de tu publicación sobre configuración de VLAN en redes&amp;hellip;</description>
+    </item>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <item>
+      <title>নোট সমূহ</title>
+      <link>https://hugo-toha.github.io/notes/</link>
+      <pubDate>Tue, 08 Jun 2010 08:06:25 +0600</pubDate>
+      
+      <guid>https://hugo-toha.github.io/notes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go পরিচিতি</title>
+      <link>https://hugo-toha.github.io/notes/go/basic/introduction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/notes/go/basic/introduction/</guid>
+      <description> Hello World A sample go program is show here.
+package main import &amp;#34;fmt&amp;#34; func main() { message := greetMe(&amp;#34;world&amp;#34;) fmt.Println(message) } func greetMe(name string) string { return &amp;#34;Hello, &amp;#34; + name + &amp;#34;!&amp;#34; } Run the program as below:
+$ go run hello.go Variables Normal Declaration:
+var msg string msg = &amp;#34;Hello&amp;#34; Shortcut:
+msg := &amp;#34;Hello&amp;#34; Constants const Phi = 1.618 </description>
+    </item>
+    
+    <item>
+      <title>Go বেসিক</title>
+      <link>https://hugo-toha.github.io/notes/go/basic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/notes/go/basic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>অ্যাডভান্সড</title>
+      <link>https://hugo-toha.github.io/notes/go/advanced/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/notes/go/advanced/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>বেসিক টাইপ সমূহ</title>
+      <link>https://hugo-toha.github.io/notes/go/basic/types/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/notes/go/basic/types/</guid>
+      <description>Strings str := &amp;#34;Hello&amp;#34; Multiline string
+str := `Multiline string` Numbers Typical types
+num := 3 // int num := 3. // float64 num := 3 + 4i // complex128 num := byte(&amp;#39;a&amp;#39;) // byte (alias for uint8) Other Types
+var u uint = 7 // uint (unsigned) var p float32 = 22.7 // 32-bit float Arrays // var numbers [5]int numbers := [...]int{0, 0, 0, 0, 0} Pointers func main () { b := *getPointer() fmt.</description>
+    </item>
+    
+    <item>
+      <title>Flow Control</title>
+      <link>https://hugo-toha.github.io/notes/go/basic/flow-control/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/notes/go/basic/flow-control/</guid>
+      <description>Condition if day == &amp;#34;sunday&amp;#34; || day == &amp;#34;saturday&amp;#34; { rest() } else if day == &amp;#34;monday&amp;#34; &amp;amp;&amp;amp; isTired() { groan() } else { work() } if _, err := doThing(); err != nil { fmt.Println(&amp;#34;Uh oh&amp;#34;) Switch switch day { case &amp;#34;sunday&amp;#34;: // cases don&amp;#39;t &amp;#34;fall through&amp;#34; by default! fallthrough case &amp;#34;saturday&amp;#34;: rest() default: work() } Loop for count := 0; count &amp;lt;= 10; count++ { fmt.Println(&amp;#34;My counter is at&amp;#34;, count) } entry := []string{&amp;#34;Jack&amp;#34;,&amp;#34;John&amp;#34;,&amp;#34;Jones&amp;#34;} for i, val := range entry { fmt.</description>
+    </item>
+    
+    <item>
+      <title>ফাইল ম্যানিপুলেশন</title>
+      <link>https://hugo-toha.github.io/notes/go/advanced/files/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/notes/go/advanced/files/</guid>
+      <description> Condition if day == &amp;#34;sunday&amp;#34; || day == &amp;#34;saturday&amp;#34; { rest() } else if day == &amp;#34;monday&amp;#34; &amp;amp;&amp;amp; isTired() { groan() } else { work() } if _, err := doThing(); err != nil { fmt.Println(&amp;#34;Uh oh&amp;#34;) </description>
+    </item>
+    
+    <item>
+      <title>ব্যাশ ভেরিয়েবল</title>
+      <link>https://hugo-toha.github.io/notes/bash/basic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/notes/bash/basic/</guid>
+      <description> Variable NAME=&amp;#34;John&amp;#34; echo $NAME echo &amp;#34;$NAME&amp;#34; echo &amp;#34;${NAME} Condition if [[ -z &amp;#34;$string&amp;#34; ]]; then echo &amp;#34;String is empty&amp;#34; elif [[ -n &amp;#34;$string&amp;#34; ]]; then echo &amp;#34;String is not empty&amp;#34; fi </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hugo-toha.github.io/posts/redes/pr%C3%A1ctica-3-instalaci%C3%B3n-de-wireshark-y-gns3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/posts/redes/pr%C3%A1ctica-3-instalaci%C3%B3n-de-wireshark-y-gns3/</guid>
+      <description>FRANCISCO JAVIER CRUCES DOVAL PLANIFICACIÓN Y ADMINISTRACIÓN DE REDES
+INSTALACIÓN DE WIRESHARK Y GNS3
+Índice
+1.Instalación de wireshark en Debian 11&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.3
+Introducción&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.3 Descarga del paquete en debían&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.3 Comprobación de funcionamiento&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;6 Componentes de wireshark generales&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.7 2.Instalación de GNS3 en Debian 11&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.8
+Introducción&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.8 Instalación en debian&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..9 Nuestra primera topología en GNS3&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.12 Acceso a internet a través de NAT en GNS3&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;19 3.Problemas comunes en la instalación&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.20
+Error VPCS executable version must be &amp;gt;=0.6.1 but not 0.</description>
+    </item>
+    
+    <item>
+      <title>Go এর নোট সমূহ</title>
+      <link>https://hugo-toha.github.io/notes/go/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/notes/go/</guid>
+      <description>Go Notes </description>
+    </item>
+    
+    <item>
+      <title>ব্যাশের নোট সমূহ</title>
+      <link>https://hugo-toha.github.io/notes/bash/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hugo-toha.github.io/notes/bash/</guid>
+      <description>Bash Notes </description>
+    </item>
+    
+    
+  </channel>
+</rss>
