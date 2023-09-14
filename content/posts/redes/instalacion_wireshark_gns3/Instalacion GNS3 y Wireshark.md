@@ -6,56 +6,9 @@ tags: [Redes, Wireshark, GNS3]
 hero: images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.jpeg
 ---
 
-
 <!-- ![2](/images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.jpeg)
 
 ![](/images/redes/instalacion_wireshark_gns3/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.003.jpeg) -->
-
-
-
-
-
-<!-- 
-## Índice
-
-[1.Instalación de wireshark en Debian 11](#_page2_x56.70_y56.70)
-
-1. [Introducción](#_page2_x56.70_y88.80)
-1. [Descarga del paquete en debían](#_page2_x56.70_y506.75)
-1. [Comprobación de funcionamiento](#_page5_x56.70_y56.70)
-1. [Componentes de wireshark generales](#_page6_x56.70_y56.70)
-
-[2.Instalación de GNS3 en Debian 11](#_page7_x56.70_y68.70)
-
-1. [Introducción](#_page7_x56.70_y100.80)
-1. [Instalación en debian](#_page8_x56.70_y66.70)
-1. [Nuestra primera topología en GNS3](#_page11_x56.70_y56.70)
-1. [Acceso a internet a través de NAT en GNS3](#_page18_x56.70_y66.70)
-
-[3.Problemas comunes en la instalación](#_page19_x56.70_y68.70)
-
-1. [Error VPCS executable version must be >=0.6.1 but not 0.8](#_page19_x56.70_y100.80)
-1. [Xterm no instalado](#_page21_x56.70_y56.70)
-
-[4 Instalar imágenes IOS](#_page21_x56.70_y279.65)
-
-[5.Instalación en Windows de GNS3](#_page26_x56.70_y68.70)
-
-1. [Paquetes necesarios para Windows](#_page26_x56.70_y97.80)
-1. [Requisitos mínimos](#_page27_x56.70_y63.70)
-1. [Instalación GNS3](#_page27_x56.70_y262.95)
-1. [Prueba de funcionamiento](#_page40_x56.70_y56.70)
-
-[6.Instalación Wireshark en Windows](#_page41_x56.70_y56.70)
-
-1. [Instalación](#_page41_x56.70_y85.80)
-1. [Prueba de funcionamiento](#_page46_x56.70_y374.55)
-
-[7.GNS VM](#_page47_x56.70_y68.70)
-
-[Conclusión](#_page51_x56.70_y68.70)
-
-[Bibliografía](#_page52_x56.70_y68.70) -->
 
 
 ## 1. **Introducción**
