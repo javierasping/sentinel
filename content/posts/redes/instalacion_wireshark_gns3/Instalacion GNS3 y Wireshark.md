@@ -3,13 +3,31 @@ title: "Instalacion GNS3 y Wireshark"
 date: 2023-09-08T10:00:00+00:00
 description: Descripción de tu publicación.
 tags: [Redes, Wireshark, GNS3]
-hero: images/gato.jpg
+hero: images/welcome.jpg
 ---
 
+![1](Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.001.jpeg)
 
-![](../Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.001.jpeg)
-![a](../../../../static/images/gato.png)
-![a](images/gato.png)
+![2](../Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.001.jpeg)
+
+![3](./images/gato.jpg)
+
+![4](images/gato.jpg)
+
+![5](../../../../assets/images/redes/instalacion_wireshark_gns3/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.001.jpeg)
+
+![6](/assets/images/redes/instalacion_wireshark_gns3/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.123.png)
+
+![7](../instalacion_wireshark_gns3/images/gato.jpg)
+
+
+
+
+
+
+
+
+
 
 <!-- 
 ## Índice
