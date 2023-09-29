@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Notes on Atlas</title>
-    <link>http://prueba.javiercd.es/notes/</link>
+    <link>http://www.javiercd.es/notes/</link>
     <description>Recent content in Notes on Atlas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es</language>
-    <lastBuildDate>Tue, 08 Jun 2010 08:06:25 +0600</lastBuildDate><atom:link href="http://prueba.javiercd.es/notes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Jun 2010 08:06:25 +0600</lastBuildDate><atom:link href="http://www.javiercd.es/notes/index.xml" rel="self" type="application/rss+xml" />
     
     
     
