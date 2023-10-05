@@ -16,7 +16,7 @@ Tenemos que tener en cuenta que cada configuración que hagamos es independiente
 
 Para acceder a configurar estos parámetros seguiremos la siguiente ruta en nuestro sistema  :
 
-Panel de control >Redes e Internet > Centro de redes y recursos compartidos > Cambiar configuración del adaptador 
+Panel de control >Redes e Internet > Centro de redes y recursos compartidos > Cambiar configuración del adaptador :
 
 
 ![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.001.png)
