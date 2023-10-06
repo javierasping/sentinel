@@ -1,4 +1,14 @@
-﻿# Introducción
+﻿---
+title: "Underworld"
+date: 2023-09-08T10:00:00+00:00
+description: Escenario de enrutamiento y acls en cisco
+tags: [Redes, Wireshark, GNS3,Cisco,Enroutamiento,ACLS]
+hero: /images/redes/underworld/portada_underwolrd.webp
+---
+Practica basica de enroutamiento en cisco y configuracion de ACLS en routers cusco , tenemos 4 reinos en los cuales en primer lugar queremos lograr que se comuniquen , posteriormente iremos poniendo una serie de reglas para restringir esto.
+
+
+# Introducción
 Vives en UNDERWORLD. En tu mundo, se presentan diferentes tipos de especies con un único fin, “cruzarse” entre sí. Estas criaturas son:
 
 - VAMPIROS 

@@ -1,12 +1,11 @@
 ﻿---
 title: "Comandos de supervisión de redes"
 date: 2023-09-08T10:00:00+00:00
-description: Descripción de tu publicación.
+description: Documento en el cual se detallan los principales comandos a la hora de detectar incidencias en redes y lograr solucionarlos .
 tags: [Redes, comandos]
 hero: images/redes/comando_de_supervision_de_redes/comando_de_supervision_de_redes.webp
 ---
-
-assets/images/redes/comando_de_supervision_de_redes/Comandos de supervisión de redes.webp
+Documento en el cual se detallan los principales comandos a la hora de detectar incidencias en redes y lograr solucionarlos .
 
 ## Comandos en Windows
 
