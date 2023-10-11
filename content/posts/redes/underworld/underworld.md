@@ -5,7 +5,7 @@ description: Escenario de enrutamiento y acls en cisco
 tags: [Redes, Wireshark, GNS3,Cisco,Enroutamiento,ACLS]
 hero: /images/redes/underworld/portada_underwolrd.webp
 ---
-Practica basica de enroutamiento en cisco y configuracion de ACLS en routers cusco , tenemos 4 reinos en los cuales en primer lugar queremos lograr que se comuniquen , posteriormente iremos poniendo una serie de reglas para restringir esto.
+Practica basica de enroutamiento en cisco y configuracion de ACLS , tenemos 4 reinos en los cuales en primer lugar queremos lograr que se comuniquen , posteriormente iremos poniendo una serie de reglas para restringir esto.
 
 
 # Introducción
