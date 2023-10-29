@@ -1,14 +1,13 @@
 ---
-title: "FTP bajo debian 10"
+title: "FTP bajo debian "
 date: 2023-09-08T10:00:00+00:00
-description: Configuracion del servicio FTP 
+description: Configuración del servicio FTP 
 tags: [Servicios,NAT,SMR,IPTABLES,SNAT,SSH,FORWARDING,APACHE,FTP]
 hero: images/servicios/ftp/portada-ftp.png
 ---
-# FTP
+# FTP bajo debian
 ##  Instalación y configuración del servidor proFTPd autentificado
 1.Primero nos crearemos un grupo que se llame ftpgroup :
-
 ![](../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.160.png)
 
 2.Crea dos usuarios locales que pertenezcan al grupo ftp que hemos creado: Jose y Maria
@@ -25,7 +24,7 @@ Todos los usuarios accedan  solo a su directorio :
 
 ![](../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.163.png)
 
-Ahora podemos acceder desde el navegador con los usuarios jose y maria  :
+Ahora podemos acceder desde el navegador con los usuarios Jose y Maria  :
 
 ![](../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.164.png)
 
@@ -63,11 +62,11 @@ Pero no con los usuarios que hemos creado anteriormente :
 
 ![](../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.172.png)
 
-Para permitir que nuestros usuarios se puedan conectar  ademas de los anonimos:
+Para permitir que nuestros usuarios se puedan conectar  ademas de los anónimos:
 
 ![](../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.173.png)
 
-Ahora aplicamos estos cambios y probamos a conectarnos . Vemos que con anonimos no podemos copiar nada al servidor pero si podemos descargar.
+Ahora aplicamos estos cambios y probamos a conectarnos . Vemos que con anónimos no podemos copiar nada al servidor pero si podemos descargar.
 
 ![](../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.174.png)
 

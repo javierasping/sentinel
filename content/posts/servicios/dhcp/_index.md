@@ -1,8 +1,8 @@
 ---
-title:  DHCP bajo debian 10
+title:  Configuración servicio DHCP bajo debian
 menu:
   sidebar:
-    name: DHCP bajo debian 10
+    name: DHCP
     identifier: DHCP_bajo_debian_10
     parent: servicios
     weight: 0

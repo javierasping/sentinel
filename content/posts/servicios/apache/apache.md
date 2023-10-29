@@ -1,11 +1,11 @@
 ---
-title: "Apache bajo debian 10"
+title: "Configuración Apache bajo debian"
 date: 2023-09-08T10:00:00+00:00
-description: Configuracion del servicio Apache 
+description: Configuración del servicio Apache 
 tags: [Servicios,NAT,SMR,IPTABLES,SNAT,SSH,FORWARDING,APACHE]
 hero: images/servicios/apache/portada-apache.jpg
 ---
-# APACHE
+# Configuración Apache bajo debian
 ## Instalar un servidor web Apache para el uso en una Intranet
 
 Para instalar el servidor debemos ejecutar como root el siguiente comando:
