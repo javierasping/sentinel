@@ -1,11 +1,11 @@
 ---
-title: "SSH bajo debian 10"
+title: "SSH bajo debian "
 date: 2023-09-08T10:00:00+00:00
-description: Configuracion del servicio ssh 
+description: Configuración del servicio ssh 
 tags: [Servicios,NAT,SMR,IPTABLES,SNAT,SSH,FORWARDING]
 hero: images/servicios/ssh/portada-ssh.png
 ---
-# SSH
+# servidor SSH bajo debian 
 ## Gestión remota usando SSH
 Lo primeros que deberemos de hacer sera instalarnos el paquete  en el servidor y el cliente :
 

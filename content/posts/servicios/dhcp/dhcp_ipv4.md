@@ -1,11 +1,11 @@
 ---
-title: "Configuración servicio DHCP bajo debian"
+title: "Configuración servidor DHCP bajo debian"
 date: 2023-09-08T10:00:00+00:00
 description: Configuración del servidor DHCP en nuestro escenario básico bajo debian 10
 tags: [Servicios,NAT,SMR,DHCP,SNAT]
 hero: images/servicios/dhcp_v4/isc-dhcp.webp
 ---
-# Configuración servicio DHCP bajo debian
+# Configuración servidor DHCP bajo debian
 En este artículo aprenderás cómo configurar el servidor DHCP isc-dhcp-server. Además, configurarás una reserva y lo configuraras para que funcione en dos ámbitos.
 ## Instalación del servidor isc-dhcp-server
 Para instalar nuestro servidor dhcp ejecutamos:

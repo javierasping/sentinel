@@ -1,11 +1,14 @@
 ---
-title: "Instalación WordPress"
+title: "Instalación WordPress en Debian 12 con php 8"
 date: 2023-10-28T10:00:00+00:00
-description: Instalación WordPress
+description: Instalación WordPress en Debian 12 con php 8
 tags: [WordPress,CMS,IWEB,AW,debian]
 hero: /images/iweb/wordpress/portada_wordpress.png
 ---
-# Instalación WordPress
+# Instalación WordPress en Debian 12 con php 8
+
+WordPress es un sistema de gestión de contenidos (CMS, por sus siglas en inglés) de código abierto muy popular que se utiliza para crear y administrar sitios web y blogs. Fue lanzado por primera vez en 2003 y desde entonces ha ganado una amplia base de usuarios y una comunidad activa de desarrolladores y diseñadores.
+
 
 ## Preparación
 

@@ -1,11 +1,11 @@
 ---
 title: "FTP bajo debian "
 date: 2023-09-08T10:00:00+00:00
-description: Configuración del servicio FTP 
+description: Configuración del servidor FTP 
 tags: [Servicios,NAT,SMR,IPTABLES,SNAT,SSH,FORWARDING,APACHE,FTP]
 hero: images/servicios/ftp/portada-ftp.png
 ---
-# FTP bajo debian
+# Servidor FTP bajo debian
 ##  Instalación y configuración del servidor proFTPd autentificado
 1.Primero nos crearemos un grupo que se llame ftpgroup :
 ![](../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.160.png)
