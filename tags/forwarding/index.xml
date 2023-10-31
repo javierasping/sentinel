@@ -2,12 +2,12 @@
 Crea dentro del directorio /var/www/html un fichero llamado entrada.html en el que pongáis un mensaje de bienvenida
 Ahora lo meteré dentro de la ruta :
 A continuación vamos a publicar una página más completa en nuestro servidor, para ello
-utiliza tu sitio web de aplicaciones web.</description></item><item><title>FTP bajo debian</title><link>http://www.javiercd.es/posts/servicios/ftp/ftp/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>http://www.javiercd.es/posts/servicios/ftp/ftp/</guid><description>FTP bajo debian Instalación y configuración del servidor proFTPd autentificado 1.Primero nos crearemos un grupo que se llame ftpgroup : 2.Crea dos usuarios locales que pertenezcan al grupo ftp que hemos creado: Jose y Maria
+utiliza tu sitio web de aplicaciones web.</description></item><item><title>FTP bajo debian</title><link>http://www.javiercd.es/posts/servicios/ftp/ftp/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>http://www.javiercd.es/posts/servicios/ftp/ftp/</guid><description>Servidor FTP bajo debian Instalación y configuración del servidor proFTPd autentificado 1.Primero nos crearemos un grupo que se llame ftpgroup : 2.Crea dos usuarios locales que pertenezcan al grupo ftp que hemos creado: Jose y Maria
 3.Nos instalamos el servicio ftp :
 4.Configuración básica del fichero proftpd.conf:
 Todos los usuarios accedan solo a su directorio :
 Ahora podemos acceder desde el navegador con los usuarios Jose y Maria :
-Cada uno de estos he creado una carpeta con su nombre dentro de sus directorios personales para poder identificarlos .</description></item><item><title>SSH bajo debian 10</title><link>http://www.javiercd.es/posts/servicios/ssh/ssh/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>http://www.javiercd.es/posts/servicios/ssh/ssh/</guid><description>SSH Gestión remota usando SSH Lo primeros que deberemos de hacer sera instalarnos el paquete en el servidor y el cliente :
+Cada uno de estos he creado una carpeta con su nombre dentro de sus directorios personales para poder identificarlos .</description></item><item><title>SSH bajo debian</title><link>http://www.javiercd.es/posts/servicios/ssh/ssh/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>http://www.javiercd.es/posts/servicios/ssh/ssh/</guid><description>servidor SSH bajo debian Gestión remota usando SSH Lo primeros que deberemos de hacer sera instalarnos el paquete en el servidor y el cliente :
 Por seguridad se suele no permitir la conexión del root al servidor; para ello, se debe modificar el archivo /etc/ssh/sshd_config, y se pone la siguiente opción:
 Y reiniciamos el servicio para que se apliquen los cambios :
 Conectarse al servidor ssh Vamos a instalarnos el cliente ssh, para ello:</description></item></channel></rss>
