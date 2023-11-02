@@ -1,9 +1,9 @@
 ---
-title: wordpress
+title: Wordpress LAMP
 menu:
   sidebar:
-    name: Wordpress
-    identifier: wordpress
+    name: Wordpress LAMP
+    identifier: wordpress_lamp
     parent: IAW
     weight: 300
 ---
