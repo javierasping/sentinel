@@ -18,7 +18,7 @@ Antes de empezar con la instalación de WordPress vamos a dejar claro en una lis
 - Configurado un Virtualhost para nuestro dominio.
 - Creación de base de datos con usuario.
 
-Si no tienes instalado la pila LAMP sigue puedes hacerlo en [este enlace.](https://www.javiercd.es)
+Si no tienes instalado la pila LAMP sigue puedes hacerlo en [este enlace.](https://www.javiercd.es/posts/iaw/lamp/lamp/)
 
 ## Creación del virtualhost
 
@@ -83,7 +83,7 @@ Para acceder a este virtualhost , en la maquina donde vayas a acceder al wordpre
 ```bash
 javiercruces@HPOMEN15:~$ cat /etc/hosts 
 #Añade la IP de tu servidor y el ServerName correspondiente (wordpress.fjcd.es)
-#Ponlo al final del fichero y no modifques las lineas existentes en tu fichero
+#Ponlo al final del fichero y no modifiques las lineas existentes en tu fichero
 192.168.125.27 wordpress.fjcd.es
 ```
 

@@ -19,7 +19,7 @@ WordPress es un sistema de gestión de contenidos (CMS, por sus siglas en inglé
 
 Asegúrate de cumplir con todos estos requisitos antes de comenzar con la instalación de WordPress en tu servidor .
 
-Si no tienes instalado la pila LEMP sigue puedes hacerlo en [este enlace.](https://www.javiercd.es)
+Si no tienes instalado la pila LEMP sigue puedes hacerlo en [este enlace.](https://www.javiercd.es/posts/iaw/lemp/lemp/)
 
 
 ## Creación de un VirtualHost en Nginx
