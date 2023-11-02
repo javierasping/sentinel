@@ -79,6 +79,18 @@ server {
 
 ```
 
+Para hacer esta configuración activa vamos a crear un enlace simbólico 
+
+```bash
+javiercruces@IWEB:~$ sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
+```
+Ahora vamos a reiniciar nginx , para que se apliquen los cambios :
+
+```bash
+javiercruces@IWEB:~$ sudo systemctl reload nginx
+```
+
+
 
 Para acceder a este virtualhost , en la maquina donde vayas a acceder al wordpress , al no tener servidor dns recuerda poner en el fichero host la ip de tu servidor con el ServerName :
 
