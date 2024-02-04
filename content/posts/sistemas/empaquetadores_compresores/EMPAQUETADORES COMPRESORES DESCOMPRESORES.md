@@ -3,7 +3,7 @@ title: "Empaquetadores y compresores en Linux"
 date: 2023-09-08T10:00:00+00:00
 description: Aprende cómo tratar ficheros comprimidos y empaquetados
 tags: [Linux,sistemas,ISO,ASO]
-hero: images/sistemas/compartir_directorios_win/portada.jpg
+hero: images/sistemas/empaquetadores/portada.jpg
 ---
 # Empaquetadores y compresores en Linux
 
