@@ -101,7 +101,7 @@ Además podemos implementar en nuestra red las siguientes estrategias :
 
 **Entradas estáticas en tabla ARP**
 
-La primera solución que existe corresponde a trabajar con rutas estáticas en los equipos de red. Esto permite invalidar los mensajes ARP, debido a que las IP se asocian una dirección MAC y esta no cambia en el tiempo. Es una solución simple y en general se aplica para asegurar que la puerta de enlace predetermina sea realmente la de la red y no un atacante. Sin embargo, es una estrategia díficil de aplicar si se posee una red con una gran cantidad de terminales.
+La primera solución que existe corresponde a trabajar con rutas estáticas en los equipos de red. Esto permite invalidar los mensajes ARP, debido a que las IP se asocian una dirección MAC y esta no cambia en el tiempo. Es una solución simple y en general se aplica para asegurar que la puerta de enlace predetermina sea realmente la de la red y no un atacante. Sin embargo, es una estrategia difícil de aplicar si se posee una red con una gran cantidad de terminales.
 
 **DHCP snooping**
 
