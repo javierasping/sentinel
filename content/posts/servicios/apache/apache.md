@@ -5,7 +5,6 @@ description: Configuración del servicio Apache
 tags: [Servicios,NAT,SMR,IPTABLES,SNAT,SSH,FORWARDING,APACHE]
 hero: images/servicios/apache/portada-apache.jpg
 ---
-# Configuración Apache bajo debian
 ## Instalar un servidor web Apache para el uso en una Intranet
 
 Para instalar el servidor debemos ejecutar como root el siguiente comando:
