@@ -2,10 +2,9 @@
 title: "Migración de un sistema de ficheros"
 date: 2023-09-08T10:00:00+00:00
 description: Aprende cómo migrar de un sistemas de ficheros tu debian a otro mas grande
-tags: [Debian 12,sistemas,ISO,ASO]
+tags: [Debian 12,Sistemas,ISO,ASO]
 hero: images/sistemas/migracion_de_sistema_de_ficheros/portada.jpg
 ---
-# Migración de un sistema de ficheros
 
 En ocasiones, es necesario actualizar el almacenamiento de nuestro sistema Debian para satisfacer las crecientes necesidades de espacio y mejorar la organización del disco. En esta guía, exploraremos el proceso de migración desde un disco con una única partición hacia uno con mayor capacidad, además de dividirlo en particiones separadas para una gestión más eficiente.
 

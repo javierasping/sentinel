@@ -1,12 +1,10 @@
 ﻿---
 title: "Underworld evolution"
 date: 2023-09-08T10:00:00+00:00
-description: Escenario en el cual configuraremos el enroutamiento , SNAT , DNAT y cortafuegos con dispositivos Linux y Windows .
-tags: [Redes, comandos]
+description: Escenario en el cual configuraremos el enrutamiento , SNAT , DNAT y cortafuegos con dispositivos Linux y Windows .
+tags: [Redes, SNAT ,DNAT , Cisco , Linux]
 hero: images/redes/underworld_evolution/portada.jpeg
 ---
-
-# Underworld evolution
 
 El mundo de UNDERWORLD ha evolucionado mucho en los últimos meses, así que debes realizar tareas de administración de la red para afrontar la nueva situación.
 
@@ -23,7 +21,7 @@ Tu tarea consistirá entonces en:
 
 1. Sustituir en la infraestructura de red los routers CISCO por máquinas Linux siguiendo el esquema de la figura.
 2. Configurar adecuadamente las máquinas Linux para que funcionen como routers.
-3. Crear las tablas de enrutamiento necesarias para que todas las máquinas se comuniquen con todas en principio, teniendo en cuenta que las redes internas tendrán direcciónes privadas y en Internet tendremos direcciónes públicas.
+3. Crear las tablas de enrutamiento necesarias para que todas las máquinas se comuniquen con todas en principio, teniendo en cuenta que las redes internas tendrán direcciones privadas y en Internet tendremos direcciones públicas.
 4. Configurar los cortafuegos necesarios en los routers para que:
 - Los VAMPIROS no puedan comunicarse con el resto de especies. 
 - Los HOMBRES LOBO y los LICÁNTROPOS, dado que no son tan repulsivos cuando se cruzan, podrán comunicarse entre sí. Con el resto de especies no tendrán comunicación.
@@ -116,7 +114,7 @@ Ahora todas nuestras maquinas están configuradas para actuar como routers y enc
 
 #### Configuración de rutas
 
-Aquí te mostrare si he añadido alguna ruta manualmente y las tablas de enroutamiento de los dispositivos .
+Aquí te mostrare si he añadido alguna ruta manualmente y las tablas de enrutamiento de los dispositivos .
 
 **Router MARCUS:**
 
@@ -150,7 +148,7 @@ Podría haberme ahorrado escribirlas si les hubiese colocado en las interfaz que
 
 #### Prueba de conectividad
 
-Vamos a comprobar que hemos realizado el enroutamiento correctamente así que voy a lanzar un ping desde cada router a cada uno de los extremos del escenario . 
+Vamos a comprobar que hemos realizado el enrutamiento correctamente así que voy a lanzar un ping desde cada router a cada uno de los extremos del escenario . 
 
 **Router 1 :**
 
@@ -607,7 +605,7 @@ Por ultimo vemos los hits en el Router 2 (HUMANOS) de la regla DNAT
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.119.png)
 
-#### Tablas de enroutamiento
+#### Tablas de enrutamiento
 
 **R1**
 
@@ -615,7 +613,7 @@ Añadimos la ruta por defecto :
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.120.png)
 
-Así quedaría la tabla de enroutamiento de R1:
+Así quedaría la tabla de enrutamiento de R1:
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.121.png)
 
@@ -625,7 +623,7 @@ Añadimos la ruta por defecto :
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.122.png)
 
-Así quedaría la tabla de enroutamiento de R2:
+Así quedaría la tabla de enrutamiento de R2:
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.123.png)
 
@@ -635,7 +633,7 @@ Añadimos la ruta por defecto :
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.124.png)
 
-Así quedaría la tabla de enroutamiento de R3:
+Así quedaría la tabla de enrutamiento de R3:
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.125.png)
 
@@ -645,7 +643,7 @@ Añadimos la ruta por defecto :
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.126.png)
 
-Así quedaría la tabla de enroutamiento de R4:
+Así quedaría la tabla de enrutamiento de R4:
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.127.png)
 
@@ -655,7 +653,7 @@ Añadimos la ruta por defecto :
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.128.png)
 
-Así quedaría la tabla de enroutamiento de MARCUS:
+Así quedaría la tabla de enrutamiento de MARCUS:
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.129.png)
 
@@ -665,7 +663,7 @@ Añadimos la ruta por defecto :
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.130.png)
 
-Así quedaría la tabla de enroutamiento de ALEXANDER:
+Así quedaría la tabla de enrutamiento de ALEXANDER:
 
 ![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.131.png)
 
@@ -673,7 +671,7 @@ Así quedaría la tabla de enroutamiento de ALEXANDER:
 
 #### Prueba de conectividad
 
-Vamos a comprobar que hemos realizado el enroutamiento correctamente así que voy a lanzar un ping desde cada router a cada uno de los extremos del escenario . 
+Vamos a comprobar que hemos realizado el enrutamiento correctamente así que voy a lanzar un ping desde cada router a cada uno de los extremos del escenario . 
 
 R1 → A los extremos :
 

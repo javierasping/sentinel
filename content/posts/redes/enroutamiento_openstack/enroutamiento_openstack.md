@@ -2,11 +2,9 @@
 title: "Enrutamiento en OpenStack"
 date: 2023-09-08T10:00:00+00:00
 description: Enrutamos un escenario desplegado usando la orquestación de OpenStack
-tags: [Redes, Enroutamiento]
+tags: [Redes, Enrutamiento]
 hero: images/redes/enrutamiento_os/portada.png
 ---
-# Enrutamiento en OpenStack
-
 En esta práctica, exploraremos la creación de un escenario mediante la orquestación de OpenStack y, posteriormente, llevaremos a cabo el enrutamiento para asegurar la conectividad entre las distintas máquinas virtuales. Este ejercicio nos permitirá comprender y aplicar el uso de OpenStack para gestionar entornos virtuales, además de configurar la red de manera eficiente para facilitar la comunicación entre los diferentes dispositivos en el escenario.
 
 ## Escenario a montar en OpenStack
@@ -62,7 +60,7 @@ Teniendo la siguiente relación de IPS :
 
 
 
-<a name="_page5_x56.70_y68.70"></a>**Tablas de enroutamiento**
+<a name="_page5_x56.70_y68.70"></a>**Tablas de enrutamiento**
 
 
 
@@ -129,7 +127,7 @@ ip route add default via 10.0.110.30 dev ens4
 
 ![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.010.png)
 
-Nos quedaría así la tabla de enroutamiento :
+Nos quedaría así la tabla de enrutamiento :
 
 ![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.011.png)
 
@@ -154,7 +152,7 @@ echo 1 > /proc/sys/net/ipv4/ip\_forward
 
 ![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.014.png)
 
-Crearemos la tabla de enroutamiento :
+Crearemos la tabla de enrutamiento :
 
 ![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.015.png)
 
@@ -174,11 +172,11 @@ echo 1 > /proc/sys/net/ipv4/ip\_forward
 
 ![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.019.png)
 
-Crearemos la tabla de enroutamiento para nuestro escenario :
+Crearemos la tabla de enrutamiento para nuestro escenario :
 
 ![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.020.png)
 
-La tabla de enroutamiento quedaría así :
+La tabla de enrutamiento quedaría así :
 
 ![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.021.png)
 
@@ -195,7 +193,7 @@ Al igual que con los demás deberemos de cambiar la ruta por defecto por la ip d
 ### Para los routers 
 
 1. Activar el bit de forwarding 
-2. Crear las tablas de enroutamiento
+2. Crear las tablas de enrutamiento
 3. Modificar la ruta por defecto
 
 ### Para los PCs 
@@ -214,7 +212,7 @@ Si queremos hacer que el bit del forwarding se guarde permanentemente para que c
 
 ![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.023.png)
 
-Si queremos volcar en un archivo la configuración de las tablas de enroutamiento para tener una copia de seguridad de las mismas usamos :
+Si queremos volcar en un archivo la configuración de las tablas de enrutamiento para tener una copia de seguridad de las mismas usamos :
 
 ![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.024.png)
 
@@ -277,5 +275,5 @@ Además he capturado una petición y respuesta arp de PC3:
 
 ## Bibliografía
 
-- [Como hacer tablas de enroutamiento](https://docs.aws.amazon.com/es_es/vpc/latest/userguide/VPC_Route_Tables.html)
+- [Como hacer tablas de enrutamiento](https://docs.aws.amazon.com/es_es/vpc/latest/userguide/VPC_Route_Tables.html)
 

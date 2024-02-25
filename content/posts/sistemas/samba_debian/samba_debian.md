@@ -2,10 +2,9 @@
 title: "Instalar y configurar samba en Debian"
 date: 2023-09-20T10:00:00+00:00
 description: Instalar y configurar samba en Debian
-tags: [Debian 12,sistemas,ISO,ASO]
+tags: [Debian 12,Sistemas,ISO,ASO]
 hero: images/sistemas/samba_debian/portada.png
 ---
-# Instalar y configurar samba en Debian
 
 Samba es una implementación libre y de código abierto del protocolo Server Message Block (SMB), que se utiliza para compartir archivos e impresoras en redes de computadoras. El protocolo SMB es un protocolo de red que permite que los sistemas operativos Windows se comuniquen con otros dispositivos de red, como servidores de archivos, impresoras y otros recursos compartidos.
 

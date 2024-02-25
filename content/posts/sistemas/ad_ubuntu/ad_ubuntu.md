@@ -2,12 +2,11 @@
 title: "Active Directory en Ubuntu"
 date: 2023-09-20T10:00:00+00:00
 description: Instalar y configurar samba en Debian
-tags: [Debian 12,sistemas,ISO,ASO]
+tags: [Debian 12,Sistemas,ISO,ASO]
 hero: images/sistemas/ad_ubuntu/portada.jpeg
 ---
-# Active Directory en Ubuntu
 
-En el siguiente post voy a montar un escenario de Active Directory sobre un ubuntu , ademas uniremos varios clientes Windows y linux al mismo .
+En este post, exploraremos cómo configurar un entorno de Active Directory en un servidor Ubuntu utilizando herramientas como Kerberos y Samba. Active Directory es una solución integral de Microsoft para la gestión de identidades y el control de acceso en redes empresariales. A través de esta guía, aprenderemos paso a paso cómo implementar un servidor Ubuntu como controlador de dominio, establecer la autenticación basada en Kerberos y configurar servicios de directorio mediante Samba.
 
 ## Introducción
 

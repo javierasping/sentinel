@@ -2,13 +2,9 @@
 title: "Underworld"
 date: 2023-09-08T10:00:00+00:00
 description: Escenario de enrutamiento y acls en cisco
-tags: [Redes, Wireshark, GNS3,Cisco,Enroutamiento,ACLS]
+tags: [Redes, Wireshark, GNS3,Cisco,Enrutamiento,ACLS]
 hero: /images/redes/underworld/portada_underwolrd.webp
 ---
-# Underworld enroutamiento básico en cisco y ACLS
-
-Practica basica de enroutamiento en cisco y configuracion de ACLS , tenemos 4 reinos en los cuales en primer lugar queremos lograr que se comuniquen , posteriormente iremos poniendo una serie de reglas para restringir esto.
-
 
 ## Introducción
 Vives en UNDERWORLD. En tu mundo, se presentan diferentes tipos de especies con un único fin, “cruzarse” entre sí. Estas criaturas son:
@@ -26,7 +22,7 @@ El aspecto de UNDERWORLD es el siguiente:
 
 ## 1.Enturar el escenario
 
-### Tablas de enroutamiento a “papel”
+### Tablas de enrutamiento a “papel”
 
 
 
@@ -127,7 +123,7 @@ Guardamos la configuración :
 
 
 
-## 3. Añadiendo la tabla de enroutamiento a los routers
+## 3. Añadiendo la tabla de enrutamiento a los routers
 
 ### Router humanos
 
@@ -135,7 +131,7 @@ Nos creara por defecto las rutas a las redes que estamos conectados solo necesit
 
 ![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.014.png)
 
-Nos quedaría la tabla de enroutamiento :
+Nos quedaría la tabla de enrutamiento :
 
 ![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.015.png)
 
@@ -149,7 +145,7 @@ Añadiremos las siguientes rutas :
 
 ![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.018.png)
 
-Así quedaría la tabla de enroutamiento :
+Así quedaría la tabla de enrutamiento :
 
 ![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.017.png)
 
@@ -164,7 +160,7 @@ Añadimos las siguientes rutas :
 
 ![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.020.png)
 
-Así quedaría nuestra tabla de enroutamiento :
+Así quedaría nuestra tabla de enrutamiento :
 
 ![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.021.png)
 
@@ -178,7 +174,7 @@ Añadimos las siguientes rutas :
 
 ![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.023.png)
 
-Así quedaría nuestra tabla de enroutamiento :
+Así quedaría nuestra tabla de enrutamiento :
 
 ![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.024.png)
 
@@ -188,7 +184,7 @@ Guardamos la configuración :
 
 
 
-## 4.Prueba de enroutamiento
+## 4.Prueba de enrutamiento
 
 Para no hacer muy extenso este apartado comprobare que desde PC1 llego a todos los PCs:
 
@@ -372,7 +368,7 @@ Lo siguiente sera configurar para nuestro esquema actual en el router de VAMPIRO
 
 ![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.059.png)
 
-Ya por ultimo configuraremos la ip de nuestro debian de forma estática con la direccion 192.168.8.2:
+Ya por ultimo configuraremos la ip de nuestro debian de forma estática con la dirección 192.168.8.2:
 
 ![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.060.png)
 
@@ -428,5 +424,5 @@ Vamos a comprobar que podemos acceder al servidor web desde las redes : –>HUMA
 ![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.073.jpeg)
 
 
-[ref1]: Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.033.png
-[ref2]: Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.034.png
+[ref1]: ../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.033.png
+[ref2]: ../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.034.png

@@ -2,7 +2,7 @@
 title: "Configuración servicio ssh en Windows"
 date: 2023-09-08T10:00:00+00:00
 description: Aprende cómo configuración servicio ssh en Windows
-tags: [Windows,sistemas,ISO,ASO]
+tags: [Windows,Sistemas,ISO,ASO]
 hero: images/sistemas/ssh_win/windows-ssh.jpg
 ---
 ## 1.Instalación de la característica

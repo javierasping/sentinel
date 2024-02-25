@@ -2,10 +2,9 @@
 title: "Compartir directorios con NFS en debian"
 date: 2023-09-08T10:00:00+00:00
 description: Aprende cómo compartir directorios con NFS en debian
-tags: [Linux,sistemas,ISO,ASO]
+tags: [Linux,Sistemas,ISO,ASO]
 hero: images/sistemas/nfs/portada.png
 ---
-# Compartir directorios con NFS en debian
 
 La tecnología NFS (Network File System) ha sido una pieza fundamental en la compartición de archivos en entornos de red. Desarrollada por Sun Microsystems, NFS permite a sistemas operativos Unix y Linux compartir recursos de archivos de manera transparente, brindando acceso a archivos y directorios remotos como si estuvieran almacenados localmente.
 

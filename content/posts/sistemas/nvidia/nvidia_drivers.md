@@ -2,11 +2,10 @@
 title: "Instalación de Controladores NVIDIA en Debian 12"
 date: 2023-09-08T10:00:00+00:00
 description: Aprende cómo instalar los controladores NVIDIA en Debian 12 para optimizar el rendimiento gráfico de tu sistema.
-tags: [Debian 12, Controladores NVIDIA,sistemas,ISO,ASO]
+tags: [Debian 12, Controladores NVIDIA,Sistemas,ISO,ASO]
 hero: images/sistemas/nvidia/nvidia.png
 
 ---
-# Instalación drivers NVIDIA en Debian 12
 
 La instalación de los controladores de NVIDIA en el universo de Linux ha sido tradicionalmente un desafío, especialmente en distribuciones como Debian, donde las políticas del software libre a menudo complican el proceso.
 

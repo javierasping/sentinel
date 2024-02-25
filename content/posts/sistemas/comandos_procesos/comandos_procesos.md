@@ -2,10 +2,9 @@
 title: "Gestión de Procesos en Linux"
 date: 2023-09-08T10:00:00+00:00
 description: En el ecosistema de Linux, un proceso es la ejecución de un programa específico que realiza una tarea particular. Cada proceso tiene su propio identificador único (PID) y está compuesto por un conjunto de recursos, como memoria y CPU, que le permiten funcionar de manera independiente.
-tags: [Debian 12,sistemas,ISO,ASO]
+tags: [Debian 12,Sistemas,ISO,ASO]
 hero: images/sistemas/comandos_procesos/portata_procesos.jpg
 ---
-# Gestión de Procesos en Linux
 
 En el ecosistema de Linux, un proceso es la ejecución de un programa específico que realiza una tarea particular. Cada proceso tiene su propio identificador único (PID) y está compuesto por un conjunto de recursos, como memoria y CPU, que le permiten funcionar de manera independiente.
 

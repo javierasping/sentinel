@@ -5,7 +5,6 @@ description: Aprenderás a configurar los switches de GNS3 como los cisco 7200 c
 tags: [Redes, Wireshark, GNS3,Cisco,Switches]
 hero: /images/redes/switches_gns3/portada.jpg
 ---
-# Configuración de switches en GNS3
 
 Aprenderás a configurar switches en GNS3, tanto dispositivos genéricos como switches Cisco, utilizando el concepto de VLANs para segmentar la red y explorar las complejidades de la gestión de redes.
 
