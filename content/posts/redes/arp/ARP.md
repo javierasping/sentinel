@@ -12,7 +12,7 @@ El Protocolo de Resolución de Direcciones (ARP) es fundamental en redes inform�
 
 Si , es un mensaje de difusión ya que en la cabecera podemos ver que el destino tiene una dirección de broadcast . Esta dirección es la que tiene todos sus bits a 1 que en las direcciones mac se traduce en FF:FF:FF:FF:FF:FF .
 
-Cuando esta le llegue , en este caso al que tiene la dirección ip 192.168.1.1 nos devolverá la petición y en el origen obtendremos su dirección MAC.
+Cuando esta le llegue , en este caso al que tiene la dirección IP 192.168.1.1 nos devolverá la petición y en el origen obtendremos su dirección MAC.
 
 ![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.001.jpeg)
 
