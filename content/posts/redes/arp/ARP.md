@@ -25,7 +25,7 @@ Podemos ver en la respuesta que en la dirección de destino viene la del pc que 
 
 ## Los ordenadores de una red almacenan en memoria una caché con las correspondencias IP-MAC que van conociendo. Explica el proceso de actualización de la caché ARP después de observar como se va rellenando en  las máquinas de un pequeño escenario en GNS3 con una red local con cuatro ordenadores conectados a un switch. Ve comprobando como cambia la caché ARP de todos los ordenadores cuando vas haciendo ping entre un ordenador y otro.
 
-Cuando hacemos un ping el emisor y el receptor “se añaden mutuamente a la tabla arp” , si las consultamos en ambas veremos que están incluidos :
+Cuando hacemos un ping el emisor y el receptor “se añaden mutuamente a la tabla ARP” , si las consultamos en ambas veremos que están incluidos :
 
 ![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.003.png)
 
