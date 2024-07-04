@@ -156,7 +156,10 @@ params:
         # matomo:
         #   instance: matomo.example.com
         #   siteId: 1 # Or any other number
-
+        # umami:
+        #   scheme: https
+        #   instance: analytics.eu.umami.is
+        #   id: ff424fa1-eb3e-4c8b-8f25-70811ca40d27
     # Enable Support
     support:
       enable: false
