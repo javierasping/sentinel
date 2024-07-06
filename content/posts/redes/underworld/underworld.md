@@ -6,6 +6,16 @@ tags: [Redes, Wireshark, GNS3,Cisco,Enrutamiento,ACLS]
 hero: /images/redes/underworld/portada_underwolrd.webp
 ---
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
+
 ## Introducción
 Vives en UNDERWORLD. En tu mundo, se presentan diferentes tipos de especies con un único fin, “cruzarse” entre sí. Estas criaturas son:
 

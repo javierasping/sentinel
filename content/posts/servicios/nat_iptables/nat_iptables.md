@@ -5,6 +5,16 @@ description: Instalacion de un escenario basico y configuracion de SNAT
 tags: [Servicios,NAT,SMR,IPTABLES,SNAT]
 hero: images/servicios/nat_iptables/portada_iptables.jpeg
 ---
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
+
 # NAT con iptables
 En este artículo aprenderás a configurar un pequeño escenario en el cual podrás configurar una serie de servicios. Crearás el escenario descrito a continuacion , además, harás que a través de una red interna, usando un servidor Linux, tengas acceso a Internet configurando SNAT en el mismo haciendo uso de iptables.
 ## Instalación del entorno de pruebas

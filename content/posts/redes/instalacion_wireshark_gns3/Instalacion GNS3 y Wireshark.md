@@ -6,12 +6,19 @@ tags: [Redes, Wireshark, GNS3]
 hero: images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.jpeg
 ---
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
 
 <!-- ![2](/images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.jpeg)
 
 ![](/images/redes/instalacion_wireshark_gns3/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.003.jpeg) -->
-
-
 
 ## 1. **Introducción**
 

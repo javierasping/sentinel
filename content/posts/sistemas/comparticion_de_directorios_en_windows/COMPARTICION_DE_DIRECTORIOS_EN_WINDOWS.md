@@ -5,6 +5,15 @@ description: Aprende cómo compartir recursos en red en Windows Server
 tags: [Windows,Sistemas,ISO,ASO]
 hero: images/sistemas/compartir_directorios_win/portada.jpg
 ---
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
 
 En el entorno empresarial, la capacidad de compartir recursos en red es esencial para la colaboración y la eficiencia operativa. En este artículo, exploraremos cómo compartir directorios en un entorno Windows Server, abordando los métodos tanto a través de la interfaz gráfica como mediante cmd y PowerShell.
 

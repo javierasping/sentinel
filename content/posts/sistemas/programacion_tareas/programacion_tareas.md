@@ -5,6 +5,15 @@ description: En el ecosistema de Linux, un proceso es la ejecución de un progra
 tags: [Debian 12,Sistemas,ISO,ASO]
 hero: images/sistemas/programacion_tareas/portada.png
 ---
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
 
 La gestión eficiente de tareas programadas es esencial para los administradores de sistemas, ya que facilita la ejecución automática de procesos rutinarios. En este contexto, contar con un conjunto sólido de comandos en Linux para programar y controlar tareas se convierte en una herramienta fundamental. 
 

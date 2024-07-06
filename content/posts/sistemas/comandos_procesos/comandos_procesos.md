@@ -5,6 +5,15 @@ description: En el ecosistema de Linux, un proceso es la ejecución de un progra
 tags: [Debian 12,Sistemas,ISO,ASO]
 hero: images/sistemas/comandos_procesos/portata_procesos.jpg
 ---
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
 
 En el ecosistema de Linux, un proceso es la ejecución de un programa específico que realiza una tarea particular. Cada proceso tiene su propio identificador único (PID) y está compuesto por un conjunto de recursos, como memoria y CPU, que le permiten funcionar de manera independiente.
 

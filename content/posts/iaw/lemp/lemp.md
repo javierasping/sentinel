@@ -5,6 +5,17 @@ description: Instalación pila LEMP en debian 12 con PHP-8
 tags: [WordPress,CMS,IWEB,AW,debian,LEMP]
 hero: /images/iweb/lamp/portada_lemp.png
 ---
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
+
 # Instalación pila LEMP en debian 12 con PHP-8
 
 En esta guía, te explicare los pasos necesarios para instalar una pila LEMP (Linux, Nginx, MariaDB y PHP) en un servidor con Debian 12. La configuración incluirá PHP 8.2 como versión principal. La pila LEMP es esencial para alojar sitios web y aplicaciones web basadas en PHP, como WordPress u otras aplicaciones dinámicas. Sigue los pasos detallados a continuación para configurar tu servidor LEMP con PHP 8.2.

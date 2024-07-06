@@ -6,6 +6,16 @@ tags: [Redes, ARP]
 hero: images/redes/arp/portada.png
 ---
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
+
 El Protocolo de Resolución de Direcciones (ARP) es fundamental en redes informáticas para mapear direcciones IP a direcciones físicas de capa de enlace (MAC). Su función principal es encontrar la dirección MAC asociada a una dirección IP específica en una red local. Cuando un dispositivo necesita comunicarse con otro en la misma red, utiliza ARP para determinar la dirección MAC del destino antes de enviar datos.
 
 ## ¿Crees que la pregunta ARP es un mensaje de difusión? Realiza una captura en Wireshark de una petición ARP y analízala para justificar tu respuesta.

@@ -5,6 +5,15 @@ description: Aprende cómo tratar ficheros comprimidos y empaquetados
 tags: [Linux,Sistemas,ISO,ASO]
 hero: images/sistemas/empaquetadores/portada.jpg
 ---
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
 
 Los empaquetadores y compresores son elementos fundamentales en la gestión de archivos y datos en el ámbito informático. Los empaquetadores permiten agrupar varios archivos en un solo contenedor, facilitando su manipulación y transporte. Por otro lado, los compresores aplican técnicas para reducir el tamaño de los archivos, contribuyendo al ahorro de espacio de almacenamiento y agilizando la transferencia de datos. Estas herramientas desempeñan un papel crucial en la optimización de recursos y la eficiencia operativa al organizar, distribuir y respaldar información de manera más eficaz.
 

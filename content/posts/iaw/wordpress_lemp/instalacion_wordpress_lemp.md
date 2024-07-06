@@ -5,6 +5,16 @@ description: Instalación WordPress en Debian 12 con pila LEMP PHP-8
 tags: [WordPress,CMS,IWEB,AW,debian]
 hero: /images/iweb/wordpress/portada_wordpress.png
 ---
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
+
 # Instalación WordPress en Debian 12 con pila LEMP PHP-8
 
 WordPress es un sistema de gestión de contenidos (CMS, por sus siglas en inglés) de código abierto muy popular que se utiliza para crear y administrar sitios web y blogs. Fue lanzado por primera vez en 2003 y desde entonces ha ganado una amplia base de usuarios y una comunidad activa de desarrolladores y diseñadores.

@@ -5,6 +5,17 @@ description: Enrutamiento de un escenario con direcciones publicas , configuramo
 tags: [Redes, Enrutamiento,NAT,SNAT,DNAT,Cisco,Linux]
 hero: images/redes/configuracion_nat/portada.jpg
 ---
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
+
 En este artículo, exploraremos la configuración de SNAT (Source Network Address Translation) y DNAT (Destination Network Address Translation) en escenarios con direcciones públicas, haciendo uso de routers en entornos Linux y dispositivos Cisco.
 
 ## Escenario con maquinas debian

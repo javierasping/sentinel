@@ -5,6 +5,17 @@ description: Enrutamos un escenario desplegado usando la orquestación de OpenSt
 tags: [Redes, Enrutamiento]
 hero: images/redes/enrutamiento_os/portada.png
 ---
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
+
 En esta práctica, exploraremos la creación de un escenario mediante la orquestación de OpenStack y, posteriormente, llevaremos a cabo el enrutamiento para asegurar la conectividad entre las distintas máquinas virtuales. Este ejercicio nos permitirá comprender y aplicar el uso de OpenStack para gestionar entornos virtuales, además de configurar la red de manera eficiente para facilitar la comunicación entre los diferentes dispositivos en el escenario.
 
 ## Escenario a montar en OpenStack

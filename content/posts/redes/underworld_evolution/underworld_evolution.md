@@ -6,6 +6,16 @@ tags: [Redes, SNAT ,DNAT , Cisco , Linux]
 hero: images/redes/underworld_evolution/portada.jpeg
 ---
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVDYVWJLRH');
+</script>
+
 El mundo de UNDERWORLD ha evolucionado mucho en los últimos meses, así que debes realizar tareas de administración de la red para afrontar la nueva situación.
 
 Por un lado, se ha descubierto Internet en el Inframundo, de forma que cada uno de los submundos (recuerda: vampiros, licántropos, hombres lobo y humanos) se conecta a un router que, a su vez, les conecta a uno de los dos grandes routers que forman la Internet de Underworld, llamados Marcus (para humanos y vampiros) y Alexander (para hombres lobo y licántropos). Marcus y Alexander están conectados entre sí.
