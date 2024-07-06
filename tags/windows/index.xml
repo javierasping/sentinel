@@ -2,5 +2,4 @@
 Desde la interfaz gráfica Podemos compartir un directorio de nuestro servidor , accediendo a las propiedades del mismo . Una vez aquí pulsamos sobre el menú compartir :</description></item><item><title>Configuración servicio ssh en Windows</title><link>https://www.javiercd.es/posts/sistemas/ssh_windows/ssh_windows/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/sistemas/ssh_windows/ssh_windows/</guid><description>1.Instalación de la característica Lo primero que comprobaremos es comprobar si el servidor ssh esta instalado en la maquina a la cual queremos conectarnos .
 Get-WindowsCapability -Online | Where-Object Name -like &amp;#39;OpenSSH\*&amp;#39; En el caso de que tengamos la característica la instalaremos :
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0 Por defecto el servicio estará parado así que lo arrancamos :
-Podemos configurarlo para que arranque automáticamente al reiniciar el equipo :
-2.Conectarnos usando par de claves Lo primero que haremos sera generar un par de claves en el cliente , con ssh-keygen :</description></item></channel></rss>
+Podemos configurarlo para que arranque automáticamente al reiniciar el equipo :</description></item></channel></rss>
