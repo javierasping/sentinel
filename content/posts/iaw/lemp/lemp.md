@@ -160,7 +160,7 @@ server {
 }
 ```
 
-Ahora vamos a reiniciar los servicios tanto de php como de Nginx para asegurar de que sea aplicado la configuración , pero primero vamos a comprobar si tienes errores de sintais en ambos ficheros .
+Ahora vamos a reiniciar los servicios tanto de php como de Nginx para asegurar de que sea aplicado la configuración , pero primero vamos a comprobar si tienes errores de sintaxis en ambos ficheros .
 
 Para comprobar errores de sintaxis en Nginx :
 

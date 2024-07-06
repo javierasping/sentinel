@@ -102,7 +102,7 @@ javiercruces@IWEB:~$ sudo systemctl reload nginx
 
 
 
-Para acceder a este virtualhost , en la maquina donde vayas a acceder al wordpress , al no tener servidor dns recuerda poner en el fichero host la ip de tu servidor con el ServerName :
+Para acceder a este VirtualHost , en la maquina donde vayas a acceder al wordpress , al no tener servidor dns recuerda poner en el fichero host la ip de tu servidor con el ServerName :
 
 ```bash
 javiercruces@HPOMEN15:~$ cat /etc/hosts 

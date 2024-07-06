@@ -33,7 +33,7 @@ Con estos comandos, habrás instalado y activado el servidor web Apache. Puedes 
 
 ## Instalación de PHP 
 
-Por lo general, necesitarás instalar algunos paquetes específicos para PHP, llamados modulos en funcion de la base de datos que utilices. Puedes instalarlos con el siguiente comando:
+Por lo general, necesitarás instalar algunos paquetes específicos para PHP, llamados módulos en función de la base de datos que utilices. Puedes instalarlos con el siguiente comando:
 
 ```bash
 javiercruces@IWEB:~$ sudo apt install php8.2 libapache2-mod-php8.2 php8.2-mysql
