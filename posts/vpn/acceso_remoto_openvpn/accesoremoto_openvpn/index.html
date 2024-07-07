@@ -1,0 +1,574 @@
+<!doctype html><html lang=es><head><title>VPN de acceso remoto con OpenVPN y certificados x509</title>
+<meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><link rel=stylesheet href=/application.1698886a838dfee495f04d90aa622b3bfb038a698a055c2901b496847387004f.css integrity="sha256-FpiIaoON/uSV8E2QqmIrO/sDimmKBVwpAbSWhHOHAE8="><link rel=icon type=image/png href=/images/site/avatar_hud72a20250efce9adf5aa46631dba75d3_2990_42x0_resize_q75_box.jpg><meta property="og:url" content="https://www.javiercd.es/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/"><meta property="og:site_name" content="Atlas"><meta property="og:title" content="VPN de acceso remoto con OpenVPN y certificados x509"><meta property="og:description" content="VPN de acceso remoto con OpenVPN y certificados x509"><meta property="og:locale" content="es"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-03-28T10:00:00+00:00"><meta property="article:modified_time" content="2024-03-28T10:00:00+00:00"><meta property="article:tag" content="VPN"><meta property="article:tag" content="CISCO"><meta property="article:tag" content="LINUX"><meta property="article:tag" content="DEBIAN"><meta property="article:tag" content="OPENVPN"><meta name=twitter:card content="summary"><meta name=twitter:title content="VPN de acceso remoto con OpenVPN y certificados x509"><meta name=twitter:description content="VPN de acceso remoto con OpenVPN y certificados x509"><meta name=description content="VPN de acceso remoto con OpenVPN y certificados x509"><script>theme=localStorage.getItem("darkmode:color-scheme")||"system",theme=="system"&&(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?theme="dark":theme="light"),document.documentElement.setAttribute("data-theme",theme)</script></head><body class="type-posts kind-page" data-bs-spy=scroll data-bs-target=#TableOfContents data-bs-offset=80><div class="container-fluid bg-secondary wrapper"><nav class="navbar navbar-expand-xl top-navbar shadow" id=top-navbar><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button>
+<i data-feather=sidebar></i>
+</button>
+<a class=navbar-brand href=/><img src=/images/site/masthead_hud72a20250efce9adf5aa46631dba75d3_2990_42x0_resize_box_3.png id=logo alt=Logo>
+Atlas</a>
+<button class="navbar-toggler navbar-light" id=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#top-nav-items aria-label=menu>
+<i data-feather=menu></i></button><div class="collapse navbar-collapse dynamic-navbar" id=top-nav-items><ul class="nav navbar-nav ms-auto"><li class=nav-item><a class=nav-link href=/#home>Inicio</a></li><li class=nav-item><a class=nav-link href=/#about>Sobre mi</a></li><li class=nav-item><a class=nav-link href=/#skills>Competencias</a></li><li class=nav-item><a class=nav-link href=/#education>Educación</a></li><li class=nav-item><a class=nav-link href=/#recent-posts>Últimas publicaciones</a></li><li class=nav-item><a class=nav-link href=/#accomplishments>Certificaciones</a></li><div id=top-navbar-divider></div><li class=nav-item><a class=nav-link id=blog-link href=/posts>Posts</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=themeSelector role=button data-bs-toggle=dropdown aria-haspopup=true aria-expanded=false><img id=navbar-theme-icon-svg class=theme-icon src=/icons/moon-svgrepo-com.svg width=20 alt="Dark Theme"></a><div id=themeMenu class="dropdown-menu dropdown-menu-icons-only" aria-labelledby=themeSelector><a class="dropdown-item nav-link" href=# data-scheme=light><img class=theme-icon src=/icons/sun-svgrepo-com.svg width=20 alt="Light Theme">
+</a><a class="dropdown-item nav-link" href=# data-scheme=dark><img class=theme-icon src=/icons/moon-svgrepo-com.svg width=20 alt="Dark Theme">
+</a><a class="dropdown-item nav-link" href=# data-scheme=system><img class=theme-icon src=/icons/computer-svgrepo-com.svg width=20 alt="System Theme"></a></div></li></ul></div></div><img src=/images/site/masthead_hud72a20250efce9adf5aa46631dba75d3_2990_42x0_resize_box_3.png class=d-none id=main-logo alt=Logo>
+<img src=/images/site/masthead_hud72a20250efce9adf5aa46631dba75d3_2990_42x0_resize_box_3.png class=d-none id=inverted-logo alt="Inverted Logo"></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><form class=mx-auto method=get action=/search><input type=text name=keyword placeholder=Búsqueda data-search id=search-box></form><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts/ data-filter=all>Posts</a></li><div class=subtree><li><i data-feather=plus-circle></i><a class=list-link href=/posts/iaw/> Aplicaciones webs</a><ul><li><a class=list-link href=/posts/iaw/lamp/ title="Instalación pila LAMP">Instalación pila LAMP</a></li><li><a class=list-link href=/posts/iaw/lemp/ title="Instalación pila LEMP">Instalación pila LEMP</a></li><li><a class=list-link href=/posts/iaw/wordpress/ title="Wordpress LAMP">Wordpress LAMP</a></li><li><a class=list-link href=/posts/iaw/wordpress_lemp/ title="Wordpress LEMP">Wordpress LEMP</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/posts/redes/> Redes</a><ul><li><a class=list-link href=/posts/redes/android_gns3/ title="Android GNS3-KVM">Android GNS3-KVM</a></li><li><a class=list-link href=/posts/redes/comandos_de_supervision_de_redes/ title="Comandos de supervisión de redes">Comandos de supervisión de redes</a></li><li><a class=list-link href=/posts/redes/switches_gns3/ title="Configuración de switches en GNS3">Configuración de switches en GNS3</a></li><li><a class=list-link href=/posts/redes/enroutamiento_openstack/ title="Enrutamiento en OpenStack">Enrutamiento en OpenStack</a></li><li><a class=list-link href=/posts/redes/escenario_ipv6_basico/ title="Escenario IPv6 Básico">Escenario IPv6 Básico</a></li><li><a class=list-link href=/posts/redes/instalacion_wireshark_gns3/ title="Instalacion GNS y Wireshark">Instalacion GNS y Wireshark</a></li><li><a class=list-link href=/posts/redes/configuracion_de_nat/ title="NAT en Cisco y Linux">NAT en Cisco y Linux</a></li><li><a class=list-link href=/posts/redes/arp/ title="Protocolo ARP">Protocolo ARP</a></li><li><a class=list-link href=/posts/redes/tuneles_ipv6/ title="Túneles IPV6">Túneles IPV6</a></li><li><a class=list-link href=/posts/redes/underworld/ title=Underworld>Underworld</a></li><li><a class=list-link href=/posts/redes/underworld_evolution/ title="Underworld evolution">Underworld evolution</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/posts/servicios/> Servicios</a><ul><li><a class=list-link href=/posts/servicios/apache/ title=Apache>Apache</a></li><li><a class=list-link href=/posts/servicios/dhcp/ title=DHCP>DHCP</a></li><li><a class=list-link href=/posts/servicios/dns/ title=DNS>DNS</a></li><li><a class=list-link href=/posts/servicios/ftp/ title=FTP>FTP</a></li><li><a class=list-link href=/posts/servicios/nat_iptables/ title="NAT con iptables">NAT con iptables</a></li><li><a class=list-link href=/posts/servicios/ssh/ title=SSH>SSH</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/posts/sistemas/> Sistemas</a><ul><li><a class=list-link href=/posts/sistemas/ad_ubuntu/ title="Active Directory en Ubuntu">Active Directory en Ubuntu</a></li><li><a class=list-link href=/posts/sistemas/comparticion_de_directorios_en_windows/ title="Compartir recursos en Windows">Compartir recursos en Windows</a></li><li><a class=list-link href=/posts/sistemas/nvidia/ title="Drivers Nvidia">Drivers Nvidia</a></li><li><a class=list-link href=/posts/sistemas/empaquetadores_compresores/ title="Empaquetadores y compresores">Empaquetadores y compresores</a></li><li><a class=list-link href=/posts/sistemas/samba_debian/ title="Instalar y configurar samba en Debian">Instalar y configurar samba en Debian</a></li><li><a class=list-link href=/posts/sistemas/nfs_debian/ title="NFS en Debian">NFS en Debian</a></li><li><a class=list-link href=/posts/sistemas/comandos_procesos/ title="Procesos en Linux">Procesos en Linux</a></li><li><a class=list-link href=/posts/sistemas/programacion_tareas/ title="Programación de tareas">Programación de tareas</a></li><li><a class=list-link href=/posts/sistemas/ssh_windows/ title="Servicio ssh en Windows">Servicio ssh en Windows</a></li><li><a class=list-link href=/posts/sistemas/migracion_sistema_de_ficheros/ title="Sistema de ficheros">Sistema de ficheros</a></li><li><a class=list-link href=/posts/sistemas/almacenamiento_servidor_independiente/ title="Storage Spaces en Windows Server">Storage Spaces en Windows Server</a></li></ul></li><li><i data-feather=minus-circle></i><a class="active list-link" href=/posts/vpn/> VPN</a><ul class=active><li><a class=list-link href=/posts/vpn/acceso_remoto_strongswang/ title="Acceso remoto Ipsec StrongSwan">Acceso remoto Ipsec StrongSwan</a></li><li><a class="active list-link" href=/posts/vpn/acceso_remoto_openvpn/ title="Acceso remoto OpenVPN">Acceso remoto OpenVPN</a></li><li><a class=list-link href=/posts/vpn/acceso_remoto_wireguard/ title="Acceso remoto Wireguard">Acceso remoto Wireguard</a></li><li><a class=list-link href=/posts/vpn/comparativa_ovpn_wire/ title="Comparativa OpenVPN y Wireguard">Comparativa OpenVPN y Wireguard</a></li><li><a class=list-link href=/posts/vpn/ipsec_cisco/ title="Site-to-Site IPsec Cisco">Site-to-Site IPsec Cisco</a></li><li><a class=list-link href=/posts/vpn/site_to_site_openvpn/ title="Site-to-Site OpenVPN">Site-to-Site OpenVPN</a></li><li><a class=list-link href=/posts/vpn/site_to_site_wireguard/ title="Site-to-Site Wireguard">Site-to-Site Wireguard</a></li></ul></li></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(/images/vpn/remoteaccess.png)></div><div class=page-content><div class="author-profile ms-auto align-self-lg-center"><img class=rounded-circle src=/images/author/john_hud72a20250efce9adf5aa46631dba75d3_2990_120x120_fit_box_3.png alt="Author Image"><h5 class=author-name>Francisco Javier Cruces Doval</h5><p class=text-muted>jueves, 28 de marzo de 2024 | 17 minutos</p></div><div class=title><h1>VPN de acceso remoto con OpenVPN y certificados x509</h1></div><div class=tags><ul style=padding-left:0><li class=rounded><a href=/tags/vpn/ class="btn btn-sm btn-info">VPN</a></li><li class=rounded><a href=/tags/cisco/ class="btn btn-sm btn-info">CISCO</a></li><li class=rounded><a href=/tags/linux/ class="btn btn-sm btn-info">LINUX</a></li><li class=rounded><a href=/tags/debian/ class="btn btn-sm btn-info">DEBIAN</a></li><li class=rounded><a href=/tags/openvpn/ class="btn btn-sm btn-info">OPENVPN</a></li></ul></div><div class=post-content id=post-content><script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-GVDYVWJLRH")</script><ul><li>Uno de los dos equipos (el que actuará como servidor) estará conectado a dos redes<ul><li>Para la autenticación de los extremos se usarán obligatoriamente certificados digitales, que se generarán utilizando openssl y se almacenarán en el directorio /etc/openvpn, junto con los parámetros Diffie-Helman y el certificado de la propia Autoridad de Certificación.</li><li>Se utilizarán direcciones de la red 10.99.99.0/24 para las direcciones virtuales de la VPN. La dirección 10.99.99.1 se asignará al servidor VPN.</li><li>Los ficheros de configuración del servidor y del cliente se crearán en el directorio /etc/openvpn de cada máquina, y se llamarán servidor.conf y cliente.conf respectivamente.</li><li>Tras el establecimiento de la VPN, la máquina cliente debe ser capaz de acceder a una máquina que esté en la otra red a la que está conectado el servidor.</li></ul></li></ul><h2 id=montando-el-escenario>Montando el escenario</h2><p>Para realizar este ejercicio he montado el siguiente escenario en GNS3 :</p><p><img src=../img/Pastedimage20240114150833.png></p><h3 id=configuración-del-router-cisco>Configuración del router cisco</h3><p>Vamos a darle a cada interfaz la configuración de red correspondiente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Interfaz que nos dará internet </span>
+</span></span><span style=display:flex><span>R1#configure terminal 
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config<span style=color:#f92672>)</span><span style=color:#75715e>#interface fastEthernet 0/0</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#ip add dhcp</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#no shut</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#exit</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Interfaz red Servidor 1 </span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config<span style=color:#f92672>)</span><span style=color:#75715e>#interface fastEthernet 1/0</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#ip add 90.0.0.1 255.255.255.0</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#no shut</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#exit</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Interfaz red Servidor 2 </span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config<span style=color:#f92672>)</span><span style=color:#75715e>#interface fastEthernet 1/1</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#ip add 100.0.0.1 255.255.255.0</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#no shut</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#exit</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Ruta por defecto para internet</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config<span style=color:#f92672>)</span><span style=color:#75715e>#ip route 0.0.0.0 0.0.0.0 192.168.122.1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Guarda la configuración</span>
+</span></span><span style=display:flex><span>R1#write
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Configuración de SNAT</span>
+</span></span><span style=display:flex><span>R1#conf term
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config<span style=color:#f92672>)</span><span style=color:#75715e>#access-list 1 permit 90.0.0.0 0.0.0.255</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config<span style=color:#f92672>)</span><span style=color:#75715e>#access-list 1 permit 100.0.0.0 0.0.0.255</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config<span style=color:#f92672>)</span><span style=color:#75715e># ip nat pool NAT-Pool 192.168.122.127 192.168.122.127 prefix-length 24</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config<span style=color:#f92672>)</span><span style=color:#75715e>#ip nat inside source list 1 pool NAT-Pool overload</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config<span style=color:#f92672>)</span><span style=color:#75715e>#interface FastEthernet0/0</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#ip nat outside</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config<span style=color:#f92672>)</span><span style=color:#75715e>#interface FastEthernet1/0</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#ip nat inside</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config<span style=color:#f92672>)</span><span style=color:#75715e>#interface FastEthernet1/1</span>
+</span></span><span style=display:flex><span>R1<span style=color:#f92672>(</span>config-if<span style=color:#f92672>)</span><span style=color:#75715e>#ip nat inside</span>
+</span></span></code></pre></div><h4 id=configuración-del-servidor-1>Configuración del Servidor 1</h4><p>Configuración de red servidor 1 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ cat /etc/network/interfaces
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>auto lo
+</span></span><span style=display:flex><span>iface lo inet loopback
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>auto ens3
+</span></span><span style=display:flex><span>iface ens3 inet static
+</span></span><span style=display:flex><span>        address 90.0.0.2
+</span></span><span style=display:flex><span>        netmask 255.255.255.0
+</span></span><span style=display:flex><span>        gateway 90.0.0.1
+</span></span><span style=display:flex><span>        dns-nameservers 8.8.8.8
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>auto ens4
+</span></span><span style=display:flex><span>iface ens4 inet static
+</span></span><span style=display:flex><span>        address 192.168.0.1
+</span></span><span style=display:flex><span>        netmask 255.255.255.0
+</span></span></code></pre></div><p>Ademas configuraremos el SNAT :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#Activa el bit de forwarding </span>
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo nano /etc/sysctl.conf 
+</span></span><span style=display:flex><span>net.ipv4.ip_forward<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Regla SNAT</span>
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo iptables -t nat -A POSTROUTING -o ens3 -s 192.168.0.0/24 -j MASQUERADE
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Te recomiendo que lo hagas permanente , configura iptables-persistent</span>
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo apt install iptables-persistent 
+</span></span></code></pre></div><h4 id=configuración-del-servidor-2>Configuración del Servidor 2</h4><p>Configuración de red servidor 2 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor2:~$ cat /etc/network/interfaces
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>auto lo
+</span></span><span style=display:flex><span>iface lo inet loopback
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>auto ens3
+</span></span><span style=display:flex><span>iface ens3 inet static
+</span></span><span style=display:flex><span>        address 100.0.0.2
+</span></span><span style=display:flex><span>        netmask 255.255.255.0
+</span></span><span style=display:flex><span>        gateway 100.0.0.1
+</span></span><span style=display:flex><span>        dns-nameservers 8.8.8.8
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>auto ens4
+</span></span><span style=display:flex><span>iface ens4 inet static
+</span></span><span style=display:flex><span>        address 192.168.1.1
+</span></span><span style=display:flex><span>        netmask 255.255.255.0
+</span></span></code></pre></div><p>Ademas configuraremos el SNAT :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#Activa el bit de forwarding </span>
+</span></span><span style=display:flex><span>debian@servidor2:~$ sudo nano /etc/sysctl.conf 
+</span></span><span style=display:flex><span>net.ipv4.ip_forward<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Regla SNAT</span>
+</span></span><span style=display:flex><span>debian@servidor2:~$ sudo iptables -t nat -A POSTROUTING -o ens3 -s 192.168.1.0/24 -j MASQUERADE
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Te recomiendo que lo hagas permanente , configura iptables-persistent</span>
+</span></span><span style=display:flex><span>debian@servidor2:~$ sudo apt install iptables-persistent 
+</span></span></code></pre></div><h4 id=comprobación-enroutamiento>Comprobación enroutamiento</h4><p>Vamos a comprobar que hemos enroutado bien nuestro escenario , para ello desde los servidores haremos un ping al contrario y ha Internet .</p><p>Desde servidor 1 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ ping 8.8.8.8  -c <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>PING 8.8.8.8 <span style=color:#f92672>(</span>8.8.8.8<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 8.8.8.8: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>112</span> time<span style=color:#f92672>=</span>37.4 ms
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>--- 8.8.8.8 ping statistics ---
+</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> packets transmitted, <span style=color:#ae81ff>1</span> received, 0% packet loss, time 0ms
+</span></span><span style=display:flex><span>rtt min/avg/max/mdev <span style=color:#f92672>=</span> 37.374/37.374/37.374/0.000 ms
+</span></span><span style=display:flex><span>debian@servidor1:~$ 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>debian@servidor1:~$ ping 100.0.0.2 -c <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>PING 100.0.0.2 <span style=color:#f92672>(</span>100.0.0.2<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 100.0.0.2: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>63</span> time<span style=color:#f92672>=</span>18.6 ms
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>--- 100.0.0.2 ping statistics ---
+</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> packets transmitted, <span style=color:#ae81ff>1</span> received, 0% packet loss, time 0ms
+</span></span><span style=display:flex><span>rtt min/avg/max/mdev <span style=color:#f92672>=</span> 18.567/18.567/18.567/0.000 ms
+</span></span><span style=display:flex><span>debian@servidor1:~$ 
+</span></span></code></pre></div><p>Desde el servidor 2 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor2:~$ ping 90.0.0.2 -c <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>PING 90.0.0.2 <span style=color:#f92672>(</span>90.0.0.2<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 90.0.0.2: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>63</span> time<span style=color:#f92672>=</span>19.1 ms
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>--- 90.0.0.2 ping statistics ---
+</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> packets transmitted, <span style=color:#ae81ff>1</span> received, 0% packet loss, time 0ms
+</span></span><span style=display:flex><span>rtt min/avg/max/mdev <span style=color:#f92672>=</span> 19.099/19.099/19.099/0.000 ms
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>debian@servidor2:~$ ping 8.8.8.8 -c <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>PING 8.8.8.8 <span style=color:#f92672>(</span>8.8.8.8<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 8.8.8.8: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>112</span> time<span style=color:#f92672>=</span><span style=color:#ae81ff>160</span> ms
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>--- 8.8.8.8 ping statistics ---
+</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> packets transmitted, <span style=color:#ae81ff>1</span> received, 0% packet loss, time 0ms
+</span></span><span style=display:flex><span>rtt min/avg/max/mdev <span style=color:#f92672>=</span> 160.147/160.147/160.147/0.000 ms
+</span></span><span style=display:flex><span>debian@servidor2:~$ 
+</span></span></code></pre></div><p>También comprobaremos desde los clientes ya que hay configurado un snat .</p><p>Desde el cliente 1 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@cliente1:~$ ping 100.0.0.2 -c <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>PING 100.0.0.2 <span style=color:#f92672>(</span>100.0.0.2<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 100.0.0.2: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>62</span> time<span style=color:#f92672>=</span>19.0 ms
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>--- 100.0.0.2 ping statistics ---
+</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> packets transmitted, <span style=color:#ae81ff>1</span> received, 0% packet loss, time 0ms
+</span></span><span style=display:flex><span>rtt min/avg/max/mdev <span style=color:#f92672>=</span> 18.968/18.968/18.968/0.000 ms
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>debian@cliente1:~$ ping 8.8.8.8 -c <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>PING 8.8.8.8 <span style=color:#f92672>(</span>8.8.8.8<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 8.8.8.8: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>111</span> time<span style=color:#f92672>=</span>61.6 ms
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>--- 8.8.8.8 ping statistics ---
+</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> packets transmitted, <span style=color:#ae81ff>1</span> received, 0% packet loss, time 0ms
+</span></span><span style=display:flex><span>rtt min/avg/max/mdev <span style=color:#f92672>=</span> 61.598/61.598/61.598/0.000 ms
+</span></span></code></pre></div><p>Desde el cliente 3 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@cliente3:~$ ping 90.0.0.2 -c <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>PING 90.0.0.2 <span style=color:#f92672>(</span>90.0.0.2<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 90.0.0.2: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>62</span> time<span style=color:#f92672>=</span>15.7 ms
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>--- 90.0.0.2 ping statistics ---
+</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> packets transmitted, <span style=color:#ae81ff>1</span> received, 0% packet loss, time 0ms
+</span></span><span style=display:flex><span>rtt min/avg/max/mdev <span style=color:#f92672>=</span> 15.656/15.656/15.656/0.000 ms
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>debian@cliente3:~$ ping 8.8.8.8 -c <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>PING 8.8.8.8 <span style=color:#f92672>(</span>8.8.8.8<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 8.8.8.8: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>111</span> time<span style=color:#f92672>=</span>45.8 ms
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>--- 8.8.8.8 ping statistics ---
+</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> packets transmitted, <span style=color:#ae81ff>1</span> received, 0% packet loss, time 0ms
+</span></span><span style=display:flex><span>rtt min/avg/max/mdev <span style=color:#f92672>=</span> 45.760/45.760/45.760/0.000 ms
+</span></span></code></pre></div><h2 id=instalación-de-openvpn>Instalación de OpenVPN</h2><p>Instalaremos en ambos servidores el paquete openvpn</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Servidor 1 </span>
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo apt install -y openvpn
+</span></span><span style=display:flex><span><span style=color:#75715e># Servidor 2</span>
+</span></span><span style=display:flex><span>debian@servidor2:~$ sudo apt install -y openvpn 
+</span></span></code></pre></div><h3 id=generación-de-claves-y-certificados>Generación de claves y certificados</h3><p>Podemos generar los certificados manualmente, pero existe una herramienta llamada Easy RSA que automatiza este proceso. Además, Easy RSA facilita la generación de los módulos Diffie-Hellman, que son esenciales para el funcionamiento del servidor OpenVPN.</p><p>No es necesario que nos la descarguemos ya que esta viene con el paquete openvpn .</p><p>Para OpenVPN necesitamos crear:</p><ul><li>Una clave privada y un certificado x509 para la autoridad certificante que firma (CA)</li><li>Una clave privada y un certificado x509 firmado para el servidor.</li><li>Una clave privada y un certificado x509 firmado para cada cliente.</li><li>Un grupo Diffie-Hellman para el servidor.</li></ul><p>En el servidor 1, copiaremos el archivo de ejemplo de variables para evitar la solicitud repetitiva de información como organización, país, provincia, etc., por parte de EasyRSA.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo cp vars.example vars
+</span></span></code></pre></div><p>Editaremos el mismo y cambiaremos los siguientes valores :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo nano vars
+</span></span><span style=display:flex><span>set_var EASYRSA_REQ_COUNTRY     <span style=color:#e6db74>&#34;ES&#34;</span>
+</span></span><span style=display:flex><span>set_var EASYRSA_REQ_PROVINCE    <span style=color:#e6db74>&#34;Sevilla&#34;</span>
+</span></span><span style=display:flex><span>set_var EASYRSA_REQ_CITY        <span style=color:#e6db74>&#34;Dos Hermanas&#34;</span>
+</span></span><span style=display:flex><span>set_var EASYRSA_REQ_ORG         <span style=color:#e6db74>&#34;iesgn&#34;</span>
+</span></span><span style=display:flex><span>set_var EASYRSA_REQ_EMAIL       <span style=color:#e6db74>&#34;contacto@javiercd.es&#34;</span>
+</span></span><span style=display:flex><span>set_var EASYRSA_REQ_OU          <span style=color:#e6db74>&#34;Informatica&#34;</span>
+</span></span></code></pre></div><p>Una vez cambiado los valores por defecto por los nuestros , vamos a iniciar la infraestructura de clave pública (PKI) utilizando el script EasyRSA. Al ejecutar este comando, se crea un nuevo directorio PKI con la estructura necesaria para gestionar las claves y certificados.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo ./easyrsa init-pki
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  init-pki complete; you may now create a CA or requests.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Your newly created PKI dir is:
+</span></span><span style=display:flex><span>  * /usr/share/easy-rsa/pki
+</span></span></code></pre></div><h3 id=generación-de-los-parámetros-diffie-hellman>Generación de los parámetros Diffie-Hellman</h3><p>La clave de intercambio de Diffie-Hellman, es un método criptográfico que permite a dos partes acordar de forma segura una clave de sesión compartida sobre un canal no seguro. Así que vamos a generarla haciedo uso del siguiente comando :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo  ./easyrsa gen-dh
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using Easy-RSA configuration from: /usr/share/easy-rsa/vars
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* WARNING:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Move your vars file to your PKI folder, where it is safe!
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using SSL: openssl OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep <span style=color:#ae81ff>2023</span> <span style=color:#f92672>(</span>Library: OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep 2023<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Generating DH parameters, <span style=color:#ae81ff>2048</span> bit long safe prime
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>.........
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>DH parameters of size <span style=color:#ae81ff>2048</span> created at /usr/share/easy-rsa/pki/dh.pem
+</span></span></code></pre></div><p>Se nos habrá generado la clave en /usr/share/easy-rsa/pki/dh.pem , tal y como indica la salida del comando .</p><h3 id=generación-del-certificado-de-la-ca>Generación del certificado de la CA</h3><p>Vamos a proceder a generar el certificado de nuestra CA :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo ./easyrsa build-ca nopass
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using Easy-RSA configuration from: /usr/share/easy-rsa/vars
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* WARNING:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Move your vars file to your PKI folder, where it is safe!
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using SSL: openssl OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep <span style=color:#ae81ff>2023</span> <span style=color:#f92672>(</span>Library: OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep 2023<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Using configuration from /usr/share/easy-rsa/pki/52a64968/temp.25a8f31d
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>You are about to be asked to enter information that will be incorporated
+</span></span><span style=display:flex><span>into your certificate request.
+</span></span><span style=display:flex><span>What you are about to enter is what is called a Distinguished Name or a DN.
+</span></span><span style=display:flex><span>There are quite a few fields but you can leave some blank
+</span></span><span style=display:flex><span>For some fields there will be a default value,
+</span></span><span style=display:flex><span>If you enter <span style=color:#e6db74>&#39;.&#39;</span>, the field will be left blank.
+</span></span><span style=display:flex><span>-----
+</span></span><span style=display:flex><span>Common Name <span style=color:#f92672>(</span>eg: your user, host, or server name<span style=color:#f92672>)</span> <span style=color:#f92672>[</span>Easy-RSA CA<span style=color:#f92672>]</span>:ca.javiercd.es
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>CA creation complete and you may now import and sign cert requests.
+</span></span><span style=display:flex><span>Your new CA certificate file <span style=color:#66d9ef>for</span> publishing is at:
+</span></span><span style=display:flex><span>/usr/share/easy-rsa/pki/ca.crt
+</span></span></code></pre></div><p>Se nos habrá generado en /usr/share/easy-rsa/pki/ca.crt</p><h3 id=generación-del-certificado-del-servidor-1>Generación del certificado del servidor 1</h3><p>Con el siguiente comando generaremos los certificados para el servidor 1 . Se generaran varios archivos :</p><ul><li>servidor1.req : Este archivo contiene la solicitud de certificado generada para el servidor</li><li>servidor1.key : Este archivo contiene la clave privada</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo ./easyrsa gen-req servidor1 nopass
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using Easy-RSA configuration from: /usr/share/easy-rsa/vars
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* WARNING:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Move your vars file to your PKI folder, where it is safe!
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using SSL: openssl OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep <span style=color:#ae81ff>2023</span> <span style=color:#f92672>(</span>Library: OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep 2023<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>....+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*..+........+...+.+......+..+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*.+............+...+....+...+.....+...+...+......+....+.....+......+...+.+..+...+....+..+...............+......+.........+......+.......+.....+......+.+........+.+.....+......+...............+.+.....+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+</span></span><span style=display:flex><span>....+............+..+.+...+...........+....+...........+......+...+.+...+..+.+........+....+...+.....+.......+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*.........+............+...+.....+....+..+...+.+...............+.....+......+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*......+........+..........+...+.................+.+..+....+.....+..........+...+......+.........+.....+.+............+..+..................+...+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+</span></span><span style=display:flex><span>-----
+</span></span><span style=display:flex><span>You are about to be asked to enter information that will be incorporated
+</span></span><span style=display:flex><span>into your certificate request.
+</span></span><span style=display:flex><span>What you are about to enter is what is called a Distinguished Name or a DN.
+</span></span><span style=display:flex><span>There are quite a few fields but you can leave some blank
+</span></span><span style=display:flex><span>For some fields there will be a default value,
+</span></span><span style=display:flex><span>If you enter <span style=color:#e6db74>&#39;.&#39;</span>, the field will be left blank.
+</span></span><span style=display:flex><span>-----
+</span></span><span style=display:flex><span>Common Name <span style=color:#f92672>(</span>eg: your user, host, or server name<span style=color:#f92672>)</span> <span style=color:#f92672>[</span>servidor1<span style=color:#f92672>]</span>:          
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Keypair and certificate request completed. Your files are:
+</span></span><span style=display:flex><span>req: /usr/share/easy-rsa/pki/reqs/servidor1.req
+</span></span><span style=display:flex><span>key: /usr/share/easy-rsa/pki/private/servidor1.key
+</span></span></code></pre></div><p>Ahora vamos a firmar el certificado del servidor1 con la clave privada de la CA .</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo ./easyrsa sign-req server servidor1
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using Easy-RSA configuration from: /usr/share/easy-rsa/vars
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* WARNING:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Move your vars file to your PKI folder, where it is safe!
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using SSL: openssl OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep <span style=color:#ae81ff>2023</span> <span style=color:#f92672>(</span>Library: OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep 2023<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>You are about to sign the following certificate.
+</span></span><span style=display:flex><span>Please check over the details shown below <span style=color:#66d9ef>for</span> accuracy. Note that this request
+</span></span><span style=display:flex><span>has not been cryptographically verified. Please be sure it came from a trusted
+</span></span><span style=display:flex><span>source or that you have verified the request checksum with the sender.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Request subject, to be signed as a server certificate <span style=color:#66d9ef>for</span> <span style=color:#ae81ff>825</span> days:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>subject<span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    commonName                <span style=color:#f92672>=</span> servidor1
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Type the word <span style=color:#e6db74>&#39;yes&#39;</span> to <span style=color:#66d9ef>continue</span>, or any other input to abort.
+</span></span><span style=display:flex><span>  Confirm request details: yes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Using configuration from /usr/share/easy-rsa/pki/e66a9d70/temp.40a6d9dd
+</span></span><span style=display:flex><span>Check that the request matches the signature
+</span></span><span style=display:flex><span>Signature ok
+</span></span><span style=display:flex><span>The Subject<span style=color:#e6db74>&#39;s Distinguished Name is as follows
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>commonName            :ASN.1 12:&#39;</span>servidor1<span style=color:#960050;background-color:#1e0010>&#39;</span>
+</span></span><span style=display:flex><span>Certificate is to be certified <span style=color:#66d9ef>until</span> Apr <span style=color:#ae81ff>18</span> 16:15:16 <span style=color:#ae81ff>2026</span> GMT <span style=color:#f92672>(</span><span style=color:#ae81ff>825</span> days<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Write out database with <span style=color:#ae81ff>1</span> new entries
+</span></span><span style=display:flex><span>Database updated
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Certificate created at: /usr/share/easy-rsa/pki/issued/servidor1.crt
+</span></span></code></pre></div><p>Como puedes ver tendremos los 3 ficheros referentes a nuestro servidor 1 generados :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Certificado firmado</span>
+</span></span><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo ls -la pki/issued | grep servidor1
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>4637</span> Jan <span style=color:#ae81ff>14</span> 16:15 servidor1.crt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Clave privada</span>
+</span></span><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo ls -la pki/private | grep servidor1
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>1704</span> Jan <span style=color:#ae81ff>14</span> 16:09 servidor1.key
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Solicitud de firma del certificado </span>
+</span></span><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo ls -la pki/reqs | grep servidor1
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> root root  <span style=color:#ae81ff>891</span> Jan <span style=color:#ae81ff>14</span> 16:09 servidor1.req
+</span></span></code></pre></div><h3 id=generación-del-certificado-del-servidor-2>Generación del certificado del servidor 2</h3><p>Repetiremos el mismo proceso que hemos realizado para el servidor 1 , pero ahora para nuestro servidor 2 .</p><p>Generaremos la clave y el certificado :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo ./easyrsa gen-req servidor2 nopass
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using Easy-RSA configuration from: /usr/share/easy-rsa/vars
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* WARNING:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Move your vars file to your PKI folder, where it is safe!
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using SSL: openssl OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep <span style=color:#ae81ff>2023</span> <span style=color:#f92672>(</span>Library: OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep 2023<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>.+.+.................+...+...+.......+..+.+...........+.+..+.+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*........+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*.+....+..+..........+....................+.......+.....+.......+...+..+................+..+.......+.........+...........+....+..+...+.+......+..+...+....+.....+.........+....+......+......+.........+..+...+............+...+.+...+..+....+............+...............+..+...+.............+............+.....+.......+.....+.+......+........+.....................+.+......+..+.+......+.....+.........+......+.........+.......+...+...............+.....+...............+.+....................+......+...+................+...+...+............+.....+...............+.......+......+........+......+....+......+........+.+.....+....+..+.+........+.+.....+.+.....+...........................+......+.+...+.....+......+....+..+....+......+........+.............+..+...+.........+....+..+...+....+...+...+...........+......+...................+.....+................+...+..+....+...+..+......+...+..........+..+.......+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+</span></span><span style=display:flex><span>..........+............+...+....+...+.....+...+......+.+.....+.......+..+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*.........+.+......+..+.+..+...+.........+............+..................+.......+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*.+...+...........+.+...+..+....+..............+......+...............+.+......+..............+....+......+..................+...+............+..+....+.....+.......+...+.........+..+......+...+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+</span></span><span style=display:flex><span>-----
+</span></span><span style=display:flex><span>You are about to be asked to enter information that will be incorporated
+</span></span><span style=display:flex><span>into your certificate request.
+</span></span><span style=display:flex><span>What you are about to enter is what is called a Distinguished Name or a DN.
+</span></span><span style=display:flex><span>There are quite a few fields but you can leave some blank
+</span></span><span style=display:flex><span>For some fields there will be a default value,
+</span></span><span style=display:flex><span>If you enter <span style=color:#e6db74>&#39;.&#39;</span>, the field will be left blank.
+</span></span><span style=display:flex><span>-----
+</span></span><span style=display:flex><span>Common Name <span style=color:#f92672>(</span>eg: your user, host, or server name<span style=color:#f92672>)</span> <span style=color:#f92672>[</span>servidor2<span style=color:#f92672>]</span>:
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Keypair and certificate request completed. Your files are:
+</span></span><span style=display:flex><span>req: /usr/share/easy-rsa/pki/reqs/servidor2.req
+</span></span><span style=display:flex><span>key: /usr/share/easy-rsa/pki/private/servidor2.key
+</span></span></code></pre></div><p>Fíjate que ahora a este certificado a la hora de firmarlo diremos que es de tipo cliente . Ya que el servidor 2 &ldquo;actuara como un cliente&rdquo;:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo ./easyrsa sign-req client servidor2
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using Easy-RSA configuration from: /usr/share/easy-rsa/vars
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* WARNING:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Move your vars file to your PKI folder, where it is safe!
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Using SSL: openssl OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep <span style=color:#ae81ff>2023</span> <span style=color:#f92672>(</span>Library: OpenSSL 3.0.11 <span style=color:#ae81ff>19</span> Sep 2023<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>You are about to sign the following certificate.
+</span></span><span style=display:flex><span>Please check over the details shown below <span style=color:#66d9ef>for</span> accuracy. Note that this request
+</span></span><span style=display:flex><span>has not been cryptographically verified. Please be sure it came from a trusted
+</span></span><span style=display:flex><span>source or that you have verified the request checksum with the sender.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Request subject, to be signed as a client certificate <span style=color:#66d9ef>for</span> <span style=color:#ae81ff>825</span> days:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>subject<span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    commonName                <span style=color:#f92672>=</span> servidor2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Type the word <span style=color:#e6db74>&#39;yes&#39;</span> to <span style=color:#66d9ef>continue</span>, or any other input to abort.
+</span></span><span style=display:flex><span>  Confirm request details: yes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Using configuration from /usr/share/easy-rsa/pki/8e1b2785/temp.504078d9
+</span></span><span style=display:flex><span>Check that the request matches the signature
+</span></span><span style=display:flex><span>Signature ok
+</span></span><span style=display:flex><span>The Subject<span style=color:#e6db74>&#39;s Distinguished Name is as follows
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>commonName            :ASN.1 12:&#39;</span>servidor2<span style=color:#960050;background-color:#1e0010>&#39;</span>
+</span></span><span style=display:flex><span>Certificate is to be certified <span style=color:#66d9ef>until</span> Apr <span style=color:#ae81ff>18</span> 16:57:49 <span style=color:#ae81ff>2026</span> GMT <span style=color:#f92672>(</span><span style=color:#ae81ff>825</span> days<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Write out database with <span style=color:#ae81ff>1</span> new entries
+</span></span><span style=display:flex><span>Database updated
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* Notice:
+</span></span><span style=display:flex><span>Certificate created at: /usr/share/easy-rsa/pki/issued/servidor2.crt
+</span></span></code></pre></div><h3 id=generación-de-la-clave-tls>Generación de la clave TLS</h3><p>Este paso es opcional , pero es recomendable generar una clave compartida (también conocida como clave de parámetro adicional o clave ta.key) en el contexto de OpenVPN.)</p><p>En el contexto de OpenVPN, esta clave compartida (ta.key) se utiliza para firmar y verificar todos los paquetes de datos transmitidos a través de la conexión VPN. Su propósito principal es proporcionar una capa adicional de seguridad y autenticación, ayudando a prevenir ataques como el de replay.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo openvpn --genkey --secret ta.key
+</span></span></code></pre></div><h3 id=distribuir-las-claves>Distribuir las claves</h3><p>Ahora tenemos que hacer llegar cada clave a su lugar correspondiente .</p><p>En el servidor 1 crearemos el directorio /etc/openvpn/keys y guardaremos los siguientes ficheros :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Creamos el directorio donde guardaremos las claves </span>
+</span></span><span style=display:flex><span>debian@servidor1:/usr/share/easy-rsa$ sudo mkdir /etc/openvpn/keys
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Nos la copiamos al directorio creado</span>
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo cp /usr/share/easy-rsa/pki/dh.pem /etc/openvpn/keys
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo cp /usr/share/easy-rsa/pki/ca.crt /etc/openvpn/keys
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo cp /usr/share/easy-rsa/pki/private/servidor1.key /etc/openvpn/keys
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo cp /usr/share/easy-rsa/pki/issued/servidor1.crt /etc/openvpn/keys
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo cp /usr/share/easy-rsa/ta.key /etc/openvpn/keys
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Comprobamos que tenemos todoos los ficheros necesarios</span>
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo ls -l /etc/openvpn/keys
+</span></span><span style=display:flex><span>total <span style=color:#ae81ff>24</span>
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>1216</span> Jan <span style=color:#ae81ff>14</span> 17:08 ca.crt
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> root root  <span style=color:#ae81ff>424</span> Jan <span style=color:#ae81ff>14</span> 17:08 dh.pem
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>4637</span> Jan <span style=color:#ae81ff>14</span> 17:08 servidor1.crt
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>1704</span> Jan <span style=color:#ae81ff>14</span> 17:08 servidor1.key
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> root root  <span style=color:#ae81ff>636</span> Jan <span style=color:#ae81ff>14</span> 17:08 ta.key
+</span></span></code></pre></div><p>Ahora haremos lo mismo para el servidor2 , pero tendremos que llevarnos las claves haciendo uso de SCP</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Creamos el directorio donde guardaremos las claves </span>
+</span></span><span style=display:flex><span>debian@servidor2:~$ sudo mkdir /etc/openvpn/keys
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Desde servidor1 pasare a servidor2 las claves </span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo scp /usr/share/easy-rsa/pki/ca.crt debian@100.0.0.2:/home/debian
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo scp /usr/share/easy-rsa/ta.key debian@100.0.0.2:/home/debian
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo scp /usr/share/easy-rsa/pki/private/servidor2.key debian@100.0.0.2:/home/debian
+</span></span><span style=display:flex><span>debian@servidor1:~$ sudo scp /usr/share/easy-rsa/pki/issued/servidor2.crt debian@100.0.0.2:/home/debian
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Las movemos a /etc/openvpn/keys</span>
+</span></span><span style=display:flex><span>debian@servidor2:~$ sudo mv * /etc/openvpn/keys
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Nos aseguramos de tener los 4 ficheros que hemos enviado :</span>
+</span></span><span style=display:flex><span>debian@servidor2:~$ sudo ls -l /etc/openvpn/keys
+</span></span><span style=display:flex><span>total <span style=color:#ae81ff>20</span>
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> debian debian <span style=color:#ae81ff>1216</span> Jan <span style=color:#ae81ff>14</span> 17:12 ca.crt
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> debian debian <span style=color:#ae81ff>4515</span> Jan <span style=color:#ae81ff>14</span> 17:14 servidor2.crt
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> debian debian <span style=color:#ae81ff>1704</span> Jan <span style=color:#ae81ff>14</span> 17:13 servidor2.key
+</span></span><span style=display:flex><span>-rw------- <span style=color:#ae81ff>1</span> debian debian  <span style=color:#ae81ff>636</span> Jan <span style=color:#ae81ff>14</span> 17:13 ta.key
+</span></span></code></pre></div><h2 id=configuración-de-openvpn>Configuración de OpenVPN</h2><h3 id=configuración-de-openvpn-en-el--servidor-1>Configuración de OpenVPN en el servidor 1</h3><p>Asegúrate de tener activado el bit de forwarding en tu servidor :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ sudo sysctl net.ipv4.ip_forward
+</span></span><span style=display:flex><span>net.ipv4.ip_forward <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span></code></pre></div><p>Vamos a editar el fichero /etc/default/openvpn y descomentaremos la siguiente linea para indicar que se inicien automaticamente todos los túneles vpn :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>AUTOSTART<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;all&#34;</span>
+</span></span></code></pre></div><p>Crearemos un fichero de configuración para nuestro servidor , en mi caso mi configuración es la siguiente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ sudo nano /etc/openvpn/servidor1.conf
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Use a dynamic TUN device</span>
+</span></span><span style=display:flex><span>dev tun
+</span></span><span style=display:flex><span><span style=color:#75715e># Use tcp for communicating with the client</span>
+</span></span><span style=display:flex><span>proto tcp
+</span></span><span style=display:flex><span><span style=color:#75715e># Virtual IP range for the VPN clients</span>
+</span></span><span style=display:flex><span>server 10.99.99.0 255.255.255.0
+</span></span><span style=display:flex><span><span style=color:#75715e># Push the route for the local subnet to the clients</span>
+</span></span><span style=display:flex><span>push <span style=color:#e6db74>&#34;route 192.168.0.0 255.255.255.0&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Enable TLS and assume the server role</span>
+</span></span><span style=display:flex><span>tls-server
+</span></span><span style=display:flex><span><span style=color:#75715e># Diffie-Hellman parameters</span>
+</span></span><span style=display:flex><span>dh /etc/openvpn/keys/dh.pem
+</span></span><span style=display:flex><span><span style=color:#75715e># Certificate Authority&#39;s certificate</span>
+</span></span><span style=display:flex><span>ca /etc/openvpn/keys/ca.crt
+</span></span><span style=display:flex><span><span style=color:#75715e># Server&#39;s certificate</span>
+</span></span><span style=display:flex><span>cert /etc/openvpn/keys/servidor1.crt
+</span></span><span style=display:flex><span><span style=color:#75715e># Server&#39;s private key</span>
+</span></span><span style=display:flex><span>key /etc/openvpn/keys/servidor1.key
+</span></span><span style=display:flex><span><span style=color:#75715e># Use fast LZO compression</span>
+</span></span><span style=display:flex><span>comp-lzo
+</span></span><span style=display:flex><span><span style=color:#75715e># Ping the remote every 10 seconds and restart after 60 seconds </span>
+</span></span><span style=display:flex><span>keepalive <span style=color:#ae81ff>10</span> <span style=color:#ae81ff>60</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Set output verbosity to normal usage range</span>
+</span></span><span style=display:flex><span>verb <span style=color:#ae81ff>3</span>
+</span></span></code></pre></div><p>Ahora reinicia el servicio para que se apliquen los cambios y se levante la interfaz . Es posible que necesites reiniciar la maquina :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ sudo systemctl restart openvpn.service 
+</span></span></code></pre></div><p>Y veremos que se ha levantado la interfaz tun0 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ ip a
+</span></span><span style=display:flex><span>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span style=color:#ae81ff>65536</span> qdisc noqueue state UNKNOWN group default qlen <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span style=display:flex><span>    inet 127.0.0.1/8 scope host lo
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>    inet6 ::1/128 scope host noprefixroute 
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>2: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span style=color:#ae81ff>1500</span> qdisc fq_codel state UP group default qlen <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>    link/ether 0c:21:18:28:00:00 brd ff:ff:ff:ff:ff:ff
+</span></span><span style=display:flex><span>    altname enp0s3
+</span></span><span style=display:flex><span>    inet 90.0.0.2/24 brd 90.0.0.255 scope global ens3
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>    inet6 fe80::e21:18ff:fe28:0/64 scope link 
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>3: ens4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span style=color:#ae81ff>1500</span> qdisc fq_codel state UP group default qlen <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>    link/ether 0c:21:18:28:00:01 brd ff:ff:ff:ff:ff:ff
+</span></span><span style=display:flex><span>    altname enp0s4
+</span></span><span style=display:flex><span>    inet 192.168.0.1/24 brd 192.168.0.255 scope global ens4
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>    inet6 fe80::e21:18ff:fe28:1/64 scope link 
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>4: tun0: &lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&gt; mtu <span style=color:#ae81ff>1500</span> qdisc fq_codel state UNKNOWN group default qlen <span style=color:#ae81ff>500</span>
+</span></span><span style=display:flex><span>    link/none 
+</span></span><span style=display:flex><span>    inet 10.99.99.1 peer 10.99.99.2/32 scope global tun0
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>    inet6 fe80::8491:9eb9:104e:6bf7/64 scope link stable-privacy 
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span></code></pre></div><h3 id=configuración-de-openvpn-en-el--servidor-2>Configuración de OpenVPN en el servidor 2</h3><p>Asegúrate de tener activado el bit de forwarding en tu servidor :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor2:~$ sudo sysctl net.ipv4.ip_forward
+</span></span><span style=display:flex><span>net.ipv4.ip_forward <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span></code></pre></div><p>Vamos a editar el fichero /etc/default/openvpn y descomentaremos la siguiente linea para indicar que se inicien automaticamente todos los túneles vpn :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>AUTOSTART<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;all&#34;</span>
+</span></span></code></pre></div><p>Crearemos un fichero de configuración para nuestro servidor , en mi caso mi configuración es la siguiente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor2:~$ sudo nano /etc/openvpn/servidor2.conf
+</span></span><span style=display:flex><span><span style=color:#75715e># Use a dynamic TUN device</span>
+</span></span><span style=display:flex><span>dev tun
+</span></span><span style=display:flex><span><span style=color:#75715e># Connect to server</span>
+</span></span><span style=display:flex><span>remote 90.0.0.2
+</span></span><span style=display:flex><span><span style=color:#75715e># Set virtual point-to-point IP addresses</span>
+</span></span><span style=display:flex><span>ifconfig 10.99.99.0 255.255.255.0
+</span></span><span style=display:flex><span>pull
+</span></span><span style=display:flex><span><span style=color:#75715e># Use TCP for communicating with server</span>
+</span></span><span style=display:flex><span>proto tcp-client
+</span></span><span style=display:flex><span><span style=color:#75715e># Enable TLS and assume client role during TLS handshake</span>
+</span></span><span style=display:flex><span>tls-client
+</span></span><span style=display:flex><span><span style=color:#75715e># Certificado de la CA</span>
+</span></span><span style=display:flex><span>ca /etc/openvpn/keys/ca.crt
+</span></span><span style=display:flex><span><span style=color:#75715e># Certificado del cliente</span>
+</span></span><span style=display:flex><span>cert /etc/openvpn/keys/servidor2.crt
+</span></span><span style=display:flex><span><span style=color:#75715e># Clave privada del cliente</span>
+</span></span><span style=display:flex><span>key /etc/openvpn/keys/servidor2.key
+</span></span><span style=display:flex><span><span style=color:#75715e># Use fast LZO compression</span>
+</span></span><span style=display:flex><span>comp-lzo
+</span></span><span style=display:flex><span><span style=color:#75715e># Ping remote every 10sg and restart after 60sg passed without sign of life from remote</span>
+</span></span><span style=display:flex><span>keepalive <span style=color:#ae81ff>10</span> <span style=color:#ae81ff>60</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Set output verbosity to normal usage range </span>
+</span></span><span style=display:flex><span>verb <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Output logging messages to openvpn.log file</span>
+</span></span><span style=display:flex><span>log /var/log/openvpn.log
+</span></span></code></pre></div><p>Ahora reinicia el servicio para que se apliquen los cambios y se levante la interfaz . Es posible que necesites reiniciar la maquina :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor2:~$ sudo systemctl restart openvpn.service 
+</span></span></code></pre></div><p>Y veremos que se ha levantado la interfaz tun0 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor2:~$ ip a
+</span></span><span style=display:flex><span>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span style=color:#ae81ff>65536</span> qdisc noqueue state UNKNOWN group default qlen <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span style=display:flex><span>    inet 127.0.0.1/8 scope host lo
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>    inet6 ::1/128 scope host noprefixroute 
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>2: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span style=color:#ae81ff>1500</span> qdisc fq_codel state UP group default qlen <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>    link/ether 0c:82:67:88:00:00 brd ff:ff:ff:ff:ff:ff
+</span></span><span style=display:flex><span>    altname enp0s3
+</span></span><span style=display:flex><span>    inet 100.0.0.2/24 brd 100.0.0.255 scope global ens3
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>    inet6 fe80::e82:67ff:fe88:0/64 scope link 
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>3: ens4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span style=color:#ae81ff>1500</span> qdisc fq_codel state UP group default qlen <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>    link/ether 0c:82:67:88:00:01 brd ff:ff:ff:ff:ff:ff
+</span></span><span style=display:flex><span>    altname enp0s4
+</span></span><span style=display:flex><span>    inet 192.168.1.1/24 brd 192.168.1.255 scope global ens4
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>    inet6 fe80::e82:67ff:fe88:1/64 scope link 
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>4: tun0: &lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&gt; mtu <span style=color:#ae81ff>1500</span> qdisc fq_codel state UNKNOWN group default qlen <span style=color:#ae81ff>500</span>
+</span></span><span style=display:flex><span>    link/none 
+</span></span><span style=display:flex><span>    inet 10.99.99.6 peer 10.99.99.5/32 scope global tun0
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>    inet6 fe80::67f5:fd86:d948:132a/64 scope link stable-privacy 
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span></code></pre></div><h3 id=comprobación-de-funcionamiento>Comprobación de funcionamiento</h3><p>Ahora vamos a comprobar que desde servidor2 podemos acceder a las maquinas clientes de la red 192.168.0.0/24 .</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor2:~$ ip r
+</span></span><span style=display:flex><span>default via 100.0.0.1 dev ens3 onlink 
+</span></span><span style=display:flex><span>10.99.99.1 via 10.99.99.5 dev tun0 
+</span></span><span style=display:flex><span>10.99.99.5 dev tun0 proto kernel scope link src 10.99.99.6 
+</span></span><span style=display:flex><span>100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2 
+</span></span><span style=display:flex><span>192.168.0.0/24 via 10.99.99.5 dev tun0 
+</span></span><span style=display:flex><span>192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1 
+</span></span></code></pre></div><p>Como puedes ver tendremos conectividad desde el servidor hacia los equipos de la otra red.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor2:~$ ping 192.168.0.2
+</span></span><span style=display:flex><span>PING 192.168.0.2 <span style=color:#f92672>(</span>192.168.0.2<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 192.168.0.2: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>63</span> time<span style=color:#f92672>=</span>16.4 ms
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 192.168.0.2: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>63</span> time<span style=color:#f92672>=</span>14.3 ms
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 192.168.0.2: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>63</span> time<span style=color:#f92672>=</span>19.1 ms
+</span></span><span style=display:flex><span>^C
+</span></span><span style=display:flex><span>--- 192.168.0.2 ping statistics ---
+</span></span><span style=display:flex><span><span style=color:#ae81ff>3</span> packets transmitted, <span style=color:#ae81ff>3</span> received, 0% packet loss, time 2004ms
+</span></span><span style=display:flex><span>rtt min/avg/max/mdev <span style=color:#f92672>=</span> 14.308/16.582/19.060/1.945 ms
+</span></span></code></pre></div><p>También podremos conectarnos por ssh , me conectare hacia el cliente 1 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor2:~$ ssh debian@192.168.0.2
+</span></span><span style=display:flex><span>The authenticity of host <span style=color:#e6db74>&#39;192.168.0.2 (192.168.0.2)&#39;</span> can<span style=color:#e6db74>&#39;t be established.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>ED25519 key fingerprint is SHA256:zn2i5rAyilMi1i+Kqb6ys8GhldKuHKYZCDKbD1aXqjQ.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>This key is not known by any other names.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>Warning: Permanently added &#39;</span>192.168.0.2<span style=color:#e6db74>&#39; (ED25519) to the list of known hosts.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>debian@192.168.0.2&#39;</span>s password: 
+</span></span><span style=display:flex><span>Linux cliente1 6.1.0-15-cloud-amd64 <span style=color:#75715e>#1 SMP PREEMPT_DYNAMIC Debian 6.1.66-1 (2023-12-09) x86_64</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>The programs included with the Debian GNU/Linux system are free software;
+</span></span><span style=display:flex><span>the exact distribution terms <span style=color:#66d9ef>for</span> each program are described in the
+</span></span><span style=display:flex><span>individual files in /usr/share/doc/*/copyright.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+</span></span><span style=display:flex><span>permitted by applicable law.
+</span></span><span style=display:flex><span>Last login: Sun Jan <span style=color:#ae81ff>14</span> 15:29:30 <span style=color:#ae81ff>2024</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>debian@cliente1:~$ ip -4 a
+</span></span><span style=display:flex><span>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span style=color:#ae81ff>65536</span> qdisc noqueue state UNKNOWN group default qlen <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>    inet 127.0.0.1/8 scope host lo
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span><span style=display:flex><span>2: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span style=color:#ae81ff>1500</span> qdisc fq_codel state UP group default qlen <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>    altname enp0s3
+</span></span><span style=display:flex><span>    inet 192.168.0.2/24 brd 192.168.0.255 scope global ens3
+</span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
+</span></span></code></pre></div></div><div class="row ps-3 pe-3"><div class="col-md-6 share-buttons"><strong>Compartir en:</strong>
+<a class="btn icon-button bg-facebook" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.javiercd.es%2fposts%2fvpn%2facceso_remoto_openvpn%2faccesoremoto_openvpn%2f" target=_blank><i class="fab fa-facebook"></i>
+</a><a class="btn icon-button bg-twitter" href="https://twitter.com/share?url=https%3a%2f%2fwww.javiercd.es%2fposts%2fvpn%2facceso_remoto_openvpn%2faccesoremoto_openvpn%2f&text=VPN%20de%20acceso%20remoto%20con%20OpenVPN%20y%20certificados%20x509&via=Atlas" target=_blank><i class="fab fa-twitter"></i>
+</a><a class="btn icon-button bg-reddit" href="https://reddit.com/submit?url=https%3a%2f%2fwww.javiercd.es%2fposts%2fvpn%2facceso_remoto_openvpn%2faccesoremoto_openvpn%2f&title=VPN%20de%20acceso%20remoto%20con%20OpenVPN%20y%20certificados%20x509" target=_blank><i class="fab fa-reddit"></i>
+</a><a class="btn icon-button bg-linkedin" href="https://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.javiercd.es%2fposts%2fvpn%2facceso_remoto_openvpn%2faccesoremoto_openvpn%2f&title=VPN%20de%20acceso%20remoto%20con%20OpenVPN%20y%20certificados%20x509" target=_blank><i class="fab fa-linkedin"></i>
+</a><a class="btn icon-button bg-whatsapp" href="https://api.whatsapp.com/send?text=VPN%20de%20acceso%20remoto%20con%20OpenVPN%20y%20certificados%20x509 https%3a%2f%2fwww.javiercd.es%2fposts%2fvpn%2facceso_remoto_openvpn%2faccesoremoto_openvpn%2f" target=_blank><i class="fab fa-whatsapp"></i>
+</a><a class="btn icon-button" href="mailto:?subject=VPN%20de%20acceso%20remoto%20con%20OpenVPN%20y%20certificados%20x509&body=https%3a%2f%2fwww.javiercd.es%2fposts%2fvpn%2facceso_remoto_openvpn%2faccesoremoto_openvpn%2f" target=_blank><i class="fas fa-envelope-open-text"></i></a></div><div class="col-md-6 btn-improve-page"><a href=https://github.com/javierasping/sentinel/edit/main/content/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn.md title="Mejorar esta página" target=_blank rel=noopener><i class="fas fa-code-branch"></i>
+Mejorar esta página</a></div></div><hr><div class="row next-prev-navigator"></div><hr></div></div></div><a id=scroll-to-top class=btn type=button data-bs-toggle=tooltip data-bs-placement=left title="Scroll to top"><i class="fas fa-chevron-circle-up"></i></a></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center ps-3">Contenido</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#montando-el-escenario>Montando el escenario</a><ul><li><a href=#configuración-del-router-cisco>Configuración del router cisco</a><ul><li><a href=#configuración-del-servidor-1>Configuración del Servidor 1</a></li><li><a href=#configuración-del-servidor-2>Configuración del Servidor 2</a></li><li><a href=#comprobación-enroutamiento>Comprobación enroutamiento</a></li></ul></li></ul></li><li><a href=#instalación-de-openvpn>Instalación de OpenVPN</a><ul><li><a href=#generación-de-claves-y-certificados>Generación de claves y certificados</a></li><li><a href=#generación-de-los-parámetros-diffie-hellman>Generación de los parámetros Diffie-Hellman</a></li><li><a href=#generación-del-certificado-de-la-ca>Generación del certificado de la CA</a></li><li><a href=#generación-del-certificado-del-servidor-1>Generación del certificado del servidor 1</a></li><li><a href=#generación-del-certificado-del-servidor-2>Generación del certificado del servidor 2</a></li><li><a href=#generación-de-la-clave-tls>Generación de la clave TLS</a></li><li><a href=#distribuir-las-claves>Distribuir las claves</a></li></ul></li><li><a href=#configuración-de-openvpn>Configuración de OpenVPN</a><ul><li><a href=#configuración-de-openvpn-en-el--servidor-1>Configuración de OpenVPN en el servidor 1</a></li><li><a href=#configuración-de-openvpn-en-el--servidor-2>Configuración de OpenVPN en el servidor 2</a></li><li><a href=#comprobación-de-funcionamiento>Comprobación de funcionamiento</a></li></ul></li></ul></nav></div></div></section></div><footer id=footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-start"><div class="col-md-4 col-sm-12"><h5>Navegación</h5><ul><li class=nav-item><a class=smooth-scroll href=https://www.javiercd.es/#about>Sobre mi</a></li><li class=nav-item><a class=smooth-scroll href=https://www.javiercd.es/#skills>Competencias</a></li><li class=nav-item><a class=smooth-scroll href=https://www.javiercd.es/#education>Educación</a></li><li class=nav-item><a class=smooth-scroll href=https://www.javiercd.es/#recent-posts>Últimas publicaciones</a></li><li class=nav-item><a class=smooth-scroll href=https://www.javiercd.es/#accomplishments>Certificaciones</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contacto</h5><ul><li><a href=mailto:contacto@javiercd.es target=_blank rel=noopener><span><i class="fas fa-envelope"></i></span> <span>contacto@javiercd.es</span></a></li><li><a href=https://github.com/javierasping target=_blank rel=noopener><span><i class="fab fa-github"></i></span> <span>javierasping</span></a></li><li><a href=https://www.linkedin.com/in/javiercd target=_blank rel=noopener><span><i class="fab fa-linkedin"></i></span> <span>Francisco Javier Cruces Doval</span></a></li></ul></div></div></div><hr><div class=container><p id=disclaimer><strong>Aviso de responsabilidad:</strong> This theme is under MIT license. So, you can use it for non-commercial, commercial, or private uses. You can modify or distribute the theme without requiring any permission from the theme author. However, the theme author does not provide any warranty or takes any liability for any issue with the theme.</p></div><hr><div class=container><div class="row text-start"><div class=col-md-4><a id=theme href=https://github.com/hugo-toha/toha target=_blank rel=noopener><img src=/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_3.png alt="Toha Theme Logo">
+Toha</a></div><div class="col-md-4 text-center">© 2023 Copyright.</div><div class="col-md-4 text-end"><a id=hugo href=https://gohugo.io/ target=_blank rel=noopener>Funcionando con
+<img src=/images/hugo-logo.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/application.56b3322973c3dd1822b04ec8721319a1bec1ace05069cda4c18909131b786c30.js integrity="sha256-VrMyKXPD3RgisE7IchMZob7BrOBQac2kwYkJExt4bDA=" defer></script></body></html>
