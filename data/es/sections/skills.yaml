@@ -8,49 +8,79 @@ section:
   # Can optionally hide the title in sections
   # hideTitle: true
 
-# Your Skills.
-# Give a summary of you each skill in the summary section.
 skills:
+  - name: Virtualización
+    logo: /images/sections/skills/kvm.png
+    summary: "Experiencia en la virtualización utilizando KVM para la creación y gestión de máquinas virtuales, así como en la administración de contenedores LXC."
+
+  - name: Docker
+    logo: /images/sections/skills/docker.svg
+    summary: "Experiencia en la construcción y gestión de contenedores Docker, incluyendo la creación de imágenes, redes y el uso de Docker Compose para definir y ejecutar aplicaciones multi-contenedor."
+    url: "https://www.docker.com/"
+
   - name: Kubernetes
     logo: /images/sections/skills/kubernetes.png
-    summary: "Capaz de implementar y gestionar aplicaciones en Kubernetes. Experiencia en la escritura de controladores de Kubernetes para CRDs."
+    summary: "Experiencia en la configuración y gestión de clústeres Kubernetes, incluyendo Pods, ReplicaSets y Deployments. Manejo de servicios así como almacenamiento."
     url: "https://kubernetes.io/"
 
-  - name: Desarrollo en Go
-    logo: /images/sections/skills/go.png
-    summary: "Uso de Go como lenguaje principal para el desarrollo profesional. Capaz de escribir programas escalables, probables y mantenibles."
-    url: "https://golang.org/"
+  - name: Infraestructura como código
+    logo: /images/sections/skills/iac.png
+    summary: "Uso de Ansible y Vagrant para la creación y gestión de infraestructuras como código."
 
   - name: Cloud
     logo: /images/sections/skills/cloud.png
     summary: "Trabajo con la mayoría de las principales nubes, como GCP, AWS, Azure, etc."
 
-  - name: Docker
-    logo: /images/sections/skills/docker.svg
-    summary: "Escribo la mayoría de los programas como contenedores Docker. Experiencia en procesos de construcción multietapa y multiarquitectura."
-    url: "https://www.docker.com/"
-
-  - name: Prometheus
-    logo: /images/sections/skills/prometheus.png
-    summary: "Capaz de configurar y gestionar métricas en Prometheus. Experiencia con PromQL, AlertManager. También, experiencia en la escritura de exportadores de métricas."
-    url: "https://prometheus.io/"
+  - name: OpenStack
+    logo: /images/sections/skills/openstack.png
+    summary: "Trabajo con instancias, almacenamiento y redes en OpenStack."
 
   - name: Linux
     logo: /images/sections/skills/linux.png
-    summary: "Uso Linux como sistema operativo principal. Capaz de escribir scripts bash/shell."
+    summary: "Experiencia con Debian, Ubuntu, RHEL, CentOS y Fedora. Administración de servidores, configuración y mantenimiento de servicios."
 
   - name: Git
     logo: /images/sections/skills/git.png
     summary: "Experiencia en desarrollo basado en Git. Principalmente, uso GitHub. También, tengo experiencia en trabajar con GitLab."
     url: "https://git-scm.com/"
 
-  - name: C++
-    logo: /images/sections/skills/c++.png
-    summary: "Conozco la programación básica en C/C++. Usado en programación de concursos y resolución de problemas."
+  - name: Servidores web
+    logo: /images/sections/skills/sweb.png
+    summary: "Experiencia en la administración de servidores web Apache y Nginx, incluyendo configuración y mantenimiento ."
+
+  - name: Proxy Inverso
+    logo: /images/sections/skills/reversep.png
+    summary: "Configuración y gestión de proxys inversos para redirigir solicitudes de usuarios a servidores backend, utilizando soluciones como Nginx y Apache."
+
+  - name: Balanceadores de Carga
+    logo: /images/sections/skills/loadbalancer.png
+    summary: "Experiencia en la implementación y configuración de balanceadores de carga como HAProxy para distribuir tráfico de red y mejorar la disponibilidad de servicios."
+    url: "https://www.haproxy.org/"
+
+  - name: DNS
+    logo: /images/sections/skills/dns.png
+    summary: "Experiencia en la configuración y administración de servidores DNS utilizando BIND9. Capaz de gestionar zonas, registros y resolver problemas de resolución de nombres en redes locales y dominios externos."
+
+  - name: Correo Electrónico
+    logo: /images/sections/skills/mail.png
+    summary: "Experiencia en la configuración y administración de servidores de correo electrónico utilizando Postfix. Implementación de filtros de spam con SpamAssassin y el uso de herramientas como Dovecot para la gestión de buzones de correo."
+
+  - name: VPN
+    logo: /images/sections/skills/vpn.png
+    summary: "Experiencia en la configuración y administración de VPNs como OpenVPN y WireGuard, así como IPSec con Cisco y StrongSwan."
+
+  - name: Cortafuegos
+    logo: /images/sections/skills/firewall.png
+    summary: "Experiencia en la configuración y gestión de cortafuegos utilizando Iptables y Nftables para la gestión de reglas de firewall en sistemas Linux, así como dispositivos de Fortinet."
 
   - name: Cisco
     logo: /images/sections/skills/logo-Cisco.png
-    summary: "Configuración y gestión de routers con IOS ,Switching (VLAN, QoS, Port Trunking) y Administración (Mantenimiento, Seguridad, VPN, VLAN, WiFi, IPv6)"
+    summary: "Configuración y gestión de routers con IOS, Switching (VLAN, QoS, Port Trunking) y Administración (Mantenimiento, Seguridad, VPN, VLAN, WiFi, IPv6)."
 
+  - name: Bases de Datos
+    logo: /images/sections/skills/database.png
+    summary: "Experiencia en la administración y gestión de diversas bases de datos como Oracle, MySQL, PostgreSQL y MongoDB, así como conocimientos en SQL y PL/SQL."
 
-
+  - name: CI/CD
+    logo: /images/sections/skills/jenkins.png
+    summary: "Experiencia en la implementación de pipelines de integración continua y despliegue continuo utilizando GitHub Actions y Jenkins. Pruebas automáticas, validación de contenido y despliegues de aplicaciones."
