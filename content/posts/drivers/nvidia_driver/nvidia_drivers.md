@@ -156,6 +156,6 @@ En el primer escenario, tus puertos funcionan a la perfección sin requerir inte
 
 Si por el contrario al igual que yo no eres uno de ellos , como acabas de comprobar los puertos no emiten video , en tu monitor veras que no tienes señal a pesar de que en el debian veas que te detecta el monitor. 
 
-Si te ocurre este problema puedes encontrar un post en esta misma pagina explicando una posible solución , para ello haremos uso de la herramienta nvidia optimus . Te dejo el enlace a continuación 
+Si te ocurre este problema puedes encontrar un post en esta misma pagina explicando una posible solución , para ello haremos uso de la herramienta nvidia optimus . Te dejo el enlace a continuación https://www.javiercd.es/posts/drivers/nvidia_optimus/nvidia_optimus/ 
 
 
