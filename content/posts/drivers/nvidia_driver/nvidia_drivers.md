@@ -1,8 +1,8 @@
 ---
-title: "Instalación de Controladores NVIDIA en Debian 12"
+title: "Instalación de Controladores NVIDIA en Linux"
 date: 2023-09-08T10:00:00+00:00
 description: Aprende cómo instalar los controladores NVIDIA en Debian 12 para optimizar el rendimiento gráfico de tu sistema.
-tags: [Debian 12, Controladores NVIDIA,Sistemas,ISO,ASO]
+tags: [Controladores NVIDIA,Linux]
 hero: images/sistemas/nvidia/nvidia.png
 
 ---
@@ -148,76 +148,14 @@ javiercruces@HPOMEN15:~$
 ```
 
 
-¡Felicidades, Maestro de los Drivers NVIDIA! Has desbloqueado un logro épico en el reino de la informática. No cualquiera es capaz de llegar hasta aquí, no quiero desilusionarte pero ¿has verificado que funcionen los puertos HDMI y DP de tu equipo?
+¡Felicidades, Maestro de los Drivers NVIDIA! Has desbloqueado un logro épico en el reino de la informática. No cualquiera es capaz de llegar hasta aquí, no quiero desilusionarte pero ¿has verificado que funcionen los puertos HDMI y DisplayPort de tu equipo?
 
 En este punto, se abren dos posibles caminos:
 
 En el primer escenario, tus puertos funcionan a la perfección sin requerir intervención adicional. Si este es tu caso, felicidades se ve que Dios tiene favoritos .
 
-Si por el contrario al igual que yo no eres uno de sus elegidos , como acabas de comprobar los puertos no emiten video , en tu monitor veras que no tienes señal a pesar de que en el debian veas que te detecta el monitor. 
+Si por el contrario al igual que yo no eres uno de ellos , como acabas de comprobar los puertos no emiten video , en tu monitor veras que no tienes señal a pesar de que en el debian veas que te detecta el monitor. 
 
-Aquí se habré un mundo de problemas y incompatibilidades . Puedes tener problema con el sistema de ventanas de tu equipo , te falte alguna librería ... 
-
-
-
-## Nvidia Optimus
-
-Después de una extensa investigación, he descubierto una herramienta que facilita, a través de la línea de comandos (CLI), la elección de la tarjeta gráfica que utiliza tu equipo.
-
-La herramienta en cuestión es EnvyControl, una utilidad de línea de comandos (CLI) que simplifica el cambio entre modos de GPU en sistemas Nvidia Optimus, como aquellos presentes en portátiles con configuraciones de gráficos híbridos Intel + Nvidia o AMD + Nvidia, en entornos Linux.
-
-EnvyControl es un software gratuito y de código abierto lanzado bajo la licencia MIT.
-
-Ten en cuenta que este software se proporciona "tal cual" sin ninguna garantía expresa o implícita. Además, cualquier configuración personalizada de X.org puede ser eliminada o sobrescrita al cambiar entre modos.
-
-El repositorio de la herramienta es el siguiente --> https://github.com/bayasdev/envycontrol
-
-Para la instalación, se proporciona un mini tutorial específico para cada distribución en el repositorio. A continuación, te guiaré a través de los pasos para instalarlo en Debian.
+Si te ocurre este problema puedes encontrar un post en esta misma pagina explicando una posible solución , para ello haremos uso de la herramienta nvidia optimus . Te dejo el enlace a continuación 
 
 
-### Instalación de EnvyControl
-
-Dado que ya no es posible instalar paquetes pip fuera de un entorno virtual tras la adopción de PEP668, en su lugar, utiliza el paquete .deb proporcionado por el repositorio . 
-
-1. Encuentra la versión más reciente en el siguiente enlace: [Releases - EnvyControl](https://github.com/bayasdev/envycontrol/releases/latest).
-2. En esa página, selecciona y descarga el paquete .deb correspondiente. También puedes utilizar la herramienta wget para descargarlo desde la terminal.
-
-   ![Descarga del paquete .deb](../img/github_deb.png)
-
-3. Instala el paquete descargado con el siguiente comando:
-
-```bash
-    sudo apt -y install ./python3-envycontrol_version.deb
-```
-
-----------
-
-Una vez que hayas instalado la herramienta, tendrás la capacidad de seleccionar la tarjeta gráfica que deseas utilizar en tu equipo. Es importante recordar que cualquier configuración aplicada no surtirá efecto hasta que reinicies el sistema.
-
-Supongamos que decides utilizar la gráfica integrada para ahorrar energía, por ejemplo. El comando correspondiente sería :
-
-```bash
-sudo envycontrol -s integrated
-```
-
-Si por el contrario quieres utilizar el modo hibrido (ambas) 
-
-```bash
-sudo envycontrol -s hybrid --rtd3
-```
-
-Si prefieres utilizar solo tu gráfica dedicada, ten en cuenta que esta es la única configuración que me ha funcionado para activar los puertos de video. Para dar el salto a este modo te pedira primero que pongas el modo anterior , el hibrido . Una vez estes en ese modo el comando para activar solo tu grafica dedicada: 
-
-```bash
- sudo envycontrol -s nvidia --force-comp --coolbits 24
-```
-
-Vuelvo a insistirse pero **RECUERDA REINICIAR PARA QUE SE APLIQUEN LOS CAMBIOS** . 
-
-En este punto, te he proporcionado los comandos que he utilizado, pero el programa cuenta con su propio manual. Además, en el repositorio del autor, puedes encontrar información útil adicional.
-
-Ademas en esté explica que hay una extension de gnome para que puedas realizar estos cambios desde la interfaz gráfica . Aunque personalmente siempre tengo un enchufe donde trabajo con el portátil , es posible que para ahorrar batería quieras cambiar al modo híbrido o al de la gráfica integrada .
-
------------------
-
-Hasta este punto, confío en que los controladores de NVIDIA estén funcionando correctamente y que puedas aprovechar los puertos de video de tu equipo.

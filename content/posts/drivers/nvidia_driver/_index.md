@@ -4,6 +4,6 @@ menu:
   sidebar:
     name: Drivers Nvidia
     identifier: drivers_nvidia
-    parent: sistemas
+    parent: drivers
     weight: 0
 ---
