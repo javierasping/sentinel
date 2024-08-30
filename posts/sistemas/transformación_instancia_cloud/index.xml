@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Transformación instancia cloud on Atlas</title><link>https://www.javiercd.es/posts/sistemas/transformaci%C3%B3n_instancia_cloud/</link><description>Recent content in Transformación instancia cloud on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Wed, 29 Nov 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/sistemas/transformaci%C3%B3n_instancia_cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Transformación instancia cloud</title><link>https://www.javiercd.es/posts/sistemas/transformaci%C3%B3n_instancia_cloud/transformacion_instancia_cloud/</link><pubDate>Wed, 29 Nov 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/sistemas/transformaci%C3%B3n_instancia_cloud/transformacion_instancia_cloud/</guid><description>Creación del esquema LVM Nos instalamos el paquete LVM2
+Ahora crearemos las particiones en el segundo disco :
+Creamos el grupo de volúmenes :
+Creamos los volúmenes raíz y home :
+La particiones tienes que tener el siguiente formato :
+-vdb2 etx4
+-FJCD-vg-home ext4
+-FJCD-vg-raiz ext4
+Nos quedara darle formato a la efi :
+Así quedaría nuestro esquema de particiones :
+Copiar el contenido de las particiones Ahora vamos a montar las particiones :</description></item></channel></rss>
