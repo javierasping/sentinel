@@ -3,7 +3,7 @@ title: "Taller 3: Creación de imágenes Docker"
 date: 2024-03-14T10:00:00+00:00
 description: Taller 3 Creación de imágenes Docker
 tags: [Docker,Kubernetes,Contenedores]
-hero: images/ci_cd/jenkins/jenkins.png
+hero: images/docker/docker/docker.png
 
 ---
 <!-- Google tag (gtag.js) -->
