@@ -1,5 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Instalar MariaDB en Debian on Atlas</title><link>https://www.javiercd.es/posts/base_de_datos/instalar_mariadb/</link><description>Recent content in Instalar MariaDB en Debian on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sun, 01 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/base_de_datos/instalar_mariadb/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación y Configuración de MariaDB en Debian 12</title><link>https://www.javiercd.es/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</guid><description>Instalación y Configuración de MariaDB en Debian 12 Para instalar MariaDB en Debian 12, sigue estos pasos:
-Actualiza los repositorios e instala el paquete de MariaDB:
-Primero, actualiza los repositorios de tu sistema e instala MariaDB:
-javiercruces@jcruces:~$ sudo apt update javiercruces@jcruces:~$ sudo apt install mariadb-server Habilita y arranca el servicio de MariaDB:
-Una vez instalada, configura MariaDB para que se inicie automáticamente al arranque y luego arranca el servicio:</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Instalar MariaDB en Debian on Atlas</title><link>https://www.javiercd.es/posts/base_de_datos/instalar_mariadb/</link><description>Recent content in Instalar MariaDB en Debian on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sun, 01 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/base_de_datos/instalar_mariadb/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación y Configuración de MariaDB en Debian 12</title><link>https://www.javiercd.es/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</guid><description>&lt;h2 id="instalación-y-configuración-de-mariadb-en-debian-12">Instalación y Configuración de MariaDB en Debian 12&lt;/h2>
+&lt;p>Para instalar MariaDB en Debian 12, sigue estos pasos:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Actualiza los repositorios e instala el paquete de MariaDB&lt;/strong>:&lt;/p>
+&lt;p>Primero, actualiza los repositorios de tu sistema e instala MariaDB:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@jcruces:~$ sudo apt update
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>javiercruces@jcruces:~$ sudo apt install mariadb-server
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Habilita y arranca el servicio de MariaDB&lt;/strong>:&lt;/p>
+&lt;p>Una vez instalada, configura MariaDB para que se inicie automáticamente al arranque y luego arranca el servicio:&lt;/p></description></item></channel></rss>

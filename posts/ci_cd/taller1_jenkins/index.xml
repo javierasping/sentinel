@@ -1,1 +1,49 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Taller 1 Corrector ortográfico de documentos markdown (test) on Atlas</title><link>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/</link><description>Recent content in Taller 1 Corrector ortográfico de documentos markdown (test) on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/ci_cd/taller1_jenkins/index.xml" rel="self" type="application/rss+xml"/><item><title>Taller 1: Corrector ortográfico de documentos markdown (test)</title><link>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/taller1/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/taller1/</guid><description>Taller 1: Corrector ortográfico de documentos markdown (test) ¿Qué tienes que entregar? La URL del tu repositorio GitHub. https://github.com/javierasping/taller1_jenkins_ic-diccionario El contenido de la tu fichero Jenkinfile. pipeline { agent { docker { image &amp;#39;debian&amp;#39; args &amp;#39;-u root:root&amp;#39; } } stages { stage(&amp;#39;Clone&amp;#39;) { steps { git branch:&amp;#39;master&amp;#39;, url:&amp;#39;https://github.com/javierasping/taller1_jenkins_ic-diccionario.git&amp;#39; } } stage(&amp;#39;Install&amp;#39;) { steps { sh &amp;#39;apt-get update &amp;amp;&amp;amp; apt-get install -y aspell-es &amp;#39; } } stage(&amp;#39;Test&amp;#39;) { steps { sh &amp;#39;&amp;#39;&amp;#39; export LC_ALL=C.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Taller 1 Corrector ortográfico de documentos markdown (test) on Atlas</title><link>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/</link><description>Recent content in Taller 1 Corrector ortográfico de documentos markdown (test) on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/ci_cd/taller1_jenkins/index.xml" rel="self" type="application/rss+xml"/><item><title>Taller 1: Corrector ortográfico de documentos markdown (test)</title><link>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/taller1/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/taller1/</guid><description>&lt;h1 id="taller-1-corrector-ortográfico-de-documentos-markdown-test">Taller 1: Corrector ortográfico de documentos markdown (test)&lt;/h1>
+&lt;h2 id="qué-tienes-que-entregarhttpsfpjosedomingoorgiaw5_ictaller1htmlquc3a9-tienes-que-entregar">&lt;a href="https://fp.josedomingo.org/iaw/5_ic/taller1.html#qu%C3%A9-tienes-que-entregar" target="_blank" rel="noopener">¿Qué tienes que entregar?&lt;/a>&lt;/h2>
+&lt;ol>
+&lt;li>La URL del tu repositorio GitHub.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>https://github.com/javierasping/taller1_jenkins_ic-diccionario
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>El contenido de la tu fichero &lt;code>Jenkinfile&lt;/code>.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>pipeline &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> agent &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> docker &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> image &lt;span style="color:#e6db74">&amp;#39;debian&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> args &lt;span style="color:#e6db74">&amp;#39;-u root:root&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> stages &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> stage&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#39;Clone&amp;#39;&lt;/span>&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> steps &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> git branch:&lt;span style="color:#e6db74">&amp;#39;master&amp;#39;&lt;/span>, url:&lt;span style="color:#e6db74">&amp;#39;https://github.com/javierasping/taller1_jenkins_ic-diccionario.git&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> stage&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#39;Install&amp;#39;&lt;/span>&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> steps &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sh &lt;span style="color:#e6db74">&amp;#39;apt-get update &amp;amp;&amp;amp; apt-get install -y aspell-es &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> stage&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#39;Test&amp;#39;&lt;/span>&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> steps &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sh &lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> export LC_ALL=C.UTF-8
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> OUTPUT=`cat doc/*.md | aspell list -d es -p ./.aspell.es.pws`
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> if [ -n &amp;#34;$OUTPUT&amp;#34; ]; then
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> echo $OUTPUT
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> exit 1
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> fi
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> &amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> post &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> always &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mail to: &lt;span style="color:#e6db74">&amp;#39;javierasping@gmail.com&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> subject: &lt;span style="color:#e6db74">&amp;#34;Status of pipeline: &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>currentBuild.fullDisplayName&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> body: &lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>env.BUILD_URL&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74"> has result &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>currentBuild.result&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pr</description></item></channel></rss>
