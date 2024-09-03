@@ -5,15 +5,7 @@ description: SELinux define los controles de acceso para las aplicaciones, los p
 tags: [ASO,REDHAT,ROCKY,CENTOS]
 hero: images/sistemas/selinux/selinux.jpg
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 Habilita SELinux en un servidor basado en Rocky y asegúrate que los servicios samba y nfs funcionan correctamente con una configuración estricta y segura de SELinux. Realiza las pruebas de acceso correspondientes.
 

@@ -6,15 +6,7 @@ tags: [Controladores NVIDIA, Linux]
 hero: images/sistemas/nvidia/nvidia.jpg
 
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 Si tienes un portátil con Linux y una gráfica Nvidia, es posible que, después de instalar los drivers de la gráfica, hayas notado que los puertos de video no funcionan correctamente. Si te suena familiar, no te preocupes, te tengo cubierto.
 

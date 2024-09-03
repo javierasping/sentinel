@@ -6,15 +6,7 @@ tags: [FIREWALL,LINUX,DEBIAN,NFTABLES]
 hero: /images/cortafuegos/nftables.png
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 En este post sobre un escenario con maquinas Debian , aplicaremos reglas con Nftables para conrtrolar el trafico que entra y sale en nuestra red , intentando imitar un escenario. 
 

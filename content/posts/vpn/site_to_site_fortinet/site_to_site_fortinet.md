@@ -6,15 +6,7 @@ tags: [VPN,LINUX,FORTINET]
 hero: /images/cortafuegos/fortinet.png
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 En este post voy a montar una VPN IPSEC usando cortafuegos Fortinet  , para ello los visualizaré en GNS3 .
 

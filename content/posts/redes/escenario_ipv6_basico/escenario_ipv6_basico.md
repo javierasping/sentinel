@@ -5,15 +5,7 @@ description: Escenario básico en el cual aprenderemos lo básico sobre el proto
 tags: [Redes, Enrutamiento, IPV6]
 hero: images/redes/escenario_ipv6_basico/portada.jpg
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 A lo largo de esta guía, exploraremos la configuración de un escenario básico utilizando redes IPv6 tanto en sistemas Linux como en dispositivos Cisco. Además, abordaremos la configuración de un servidor Apache aprovechando las capacidades de IPv6.
 

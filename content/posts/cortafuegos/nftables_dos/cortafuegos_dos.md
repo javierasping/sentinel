@@ -6,15 +6,7 @@ tags: [FIREWALL,LINUX,DEBIAN,NFTABLES]
 hero: /images/cortafuegos/nftables.png
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 
 Sobre el escenario creado en el módulo de servicios con las máquinas Odin (Router), Hela (DMZ), Loki y Thor (LAN) y empleando nftables, configura un cortafuegos perimetral en la máquina Odin de forma que el escenario siga funcionando completamente teniendo en cuenta los siguientes puntos:

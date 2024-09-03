@@ -6,15 +6,7 @@ tags: [Servicios,NAT,SMR,IPTABLES,SNAT,SSH,FORWARDING,APACHE]
 hero: images/servicios/apache/portada-apache.jpg
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 ## Instalar un servidor web Apache para el uso en una Intranet
 

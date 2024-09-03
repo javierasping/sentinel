@@ -5,15 +5,7 @@ description: Configuración del servidor DHCP en nuestro escenario básico bajo 
 tags: [Servicios,NAT,SMR,DHCP,SNAT]
 hero: images/servicios/dhcp_v4/isc-dhcp.webp
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 # Configuración servidor DHCP bajo debian
 En este artículo aprenderás cómo configurar el servidor DHCP isc-dhcp-server. Además, configurarás una reserva y lo configuraras para que funcione en dos ámbitos.

@@ -6,15 +6,7 @@ tags: [VPN,CISCO,LINUX,DEBIAN,OPENVPN]
 hero: /images/vpn/remoteaccess.png
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 
 - Uno de los dos equipos (el que actuará como servidor) estará conectado a dos redes 

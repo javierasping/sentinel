@@ -5,15 +5,7 @@ description: Gestion de paquetes
 tags: [Sistemas,ISO,ASO,Linux]
 hero: images/sistemas/gestion_de_paquetes/gestion_de_paquetes.jpg
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 
 ## Indica los pasos a seguir para modificar la configuración de red de DHCP a estática

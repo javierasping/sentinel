@@ -6,15 +6,7 @@ tags: [VPN,LINUX,DEBIAN,STRONGSWAN]
 hero: /images/vpn/strongswan.png
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 
 StrongSwan es una implementación de VPN (Red Privada Virtual) basada en IPsec, de código abierto, multiplataforma, completa y ampliamente utilizada. Funciona en sistemas operativos como Linux, FreeBSD, OS X, Windows, Android e iOS. Principalmente, es un demonio de intercambio de claves que admite los protocolos de Intercambio de Claves de Internet (IKEv1 e IKEv2) para establecer asociaciones de seguridad (SA) entre dos pares.

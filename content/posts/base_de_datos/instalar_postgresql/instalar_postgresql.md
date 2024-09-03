@@ -6,15 +6,7 @@ tags: [PostgreSQL,Debian]
 hero: images/base_de_datos/instalar_postgre/instalar_postgre.jpg
 
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 
 En este post, te guiaré a través del proceso de instalación de PostgreSQL en Debian 12, la creación de un usuario con permisos básicos, y cómo crear y consultar una base de datos.

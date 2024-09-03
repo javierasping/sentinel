@@ -6,15 +6,7 @@ tags: [MariaDB,Debian]
 hero: images/base_de_datos/instalar_mariadb/instalar_mariadb.png
 
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 Para permitir el acceso remoto a tu servidor MariaDB, sigue estos pasos:
 

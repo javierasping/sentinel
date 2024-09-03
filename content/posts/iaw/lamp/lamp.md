@@ -6,15 +6,7 @@ tags: [WordPress,CMS,IWEB,AW,debian,LAMP]
 hero: /images/iweb/lamp/portada_lamp.png
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 # Instalación pila LAMP en Debian 12
 

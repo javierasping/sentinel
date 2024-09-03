@@ -5,15 +5,7 @@ description: Documento en el cual se detallan los principales comandos a la hora
 tags: [Redes, comandos]
 hero: images/redes/comando_de_supervision_de_redes/comando_de_supervision_de_redes.webp
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 Documento en el cual se detallan los principales comandos a la hora de detectar incidencias en redes y lograr solucionarlos .
 

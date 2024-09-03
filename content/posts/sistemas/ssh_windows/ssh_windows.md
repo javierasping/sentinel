@@ -5,15 +5,7 @@ description: Aprende cómo configuración servicio ssh en Windows
 tags: [Windows,Sistemas,ISO,ASO]
 hero: images/sistemas/ssh_win/windows-ssh.jpg
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 ## 1.Instalación de la característica
 

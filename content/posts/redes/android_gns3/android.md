@@ -6,15 +6,7 @@ tags: [GNS3,ANDORID,LINUX,DEBIAN,KVM]
 hero: /images/redes/android_gns3/android.png
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 Para descargarnos la imagen de android puedes hacerlo desde esta pagina -->  https://www.fosshub.com/Android-x86.html :
 

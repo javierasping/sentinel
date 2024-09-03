@@ -6,15 +6,7 @@ tags: [VPN,LINUX,DEBIAN,WIREGUARD,OPENVPN]
 hero: /images/vpn/wire_ovpn.png
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 ![](../img/Pastedimage20240114150833.png)
 

@@ -5,15 +5,7 @@ description:
 tags: [ASO,DEBIAN]
 hero: images/sistemas/eliminar_systemd/eliminar_systemd.jpg
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 Systemd y System V (SysV) son dos sistemas de inicio utilizados en distribuciones de Linux para gestionar el arranque del sistema y los servicios. System V (SysV) es un sistema de inicio tradicional que utiliza scripts de shell almacenados en diferentes niveles de ejecución (runlevels) para iniciar y detener servicios de manera secuencial. Fue ampliamente utilizado en muchas distribuciones de Unix y Linux durante décadas. Por otro lado, systemd es un sistema de inicio más moderno y avanzado que reemplaza a SysV. Introducido para mejorar la velocidad y eficiencia del arranque del sistema, systemd utiliza un enfoque basado en unidades y depende de la paralelización para iniciar servicios simultáneamente. Además, incluye características adicionales como la gestión de servicios, sockets, temporizadores, y dependencias, lo que lo convierte en una opción más robusta y flexible en comparación con SysV.
 

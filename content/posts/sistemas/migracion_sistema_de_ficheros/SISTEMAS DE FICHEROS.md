@@ -5,15 +5,7 @@ description: Aprende cómo migrar de un sistemas de ficheros tu debian a otro ma
 tags: [Debian 12,Sistemas,ISO,ASO]
 hero: images/sistemas/migracion_de_sistema_de_ficheros/portada.jpg
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 En ocasiones, es necesario actualizar el almacenamiento de nuestro sistema Debian para satisfacer las crecientes necesidades de espacio y mejorar la organización del disco. En esta guía, exploraremos el proceso de migración desde un disco con una única partición hacia uno con mayor capacidad, además de dividirlo en particiones separadas para una gestión más eficiente.
 

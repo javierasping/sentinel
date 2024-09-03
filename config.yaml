@@ -52,6 +52,11 @@ outputs:
 # Enable global emoji support
 enableEmoji: true
 
+
+services:
+  googleAnalytics:
+    id: G-GVDYVWJLRH
+
 # Site parameters
 params:
   # Background image of the landing page
@@ -141,7 +146,7 @@ params:
 
     # Enable Analytics
     analytics:
-      enabled: true
+      enabled: false
       services:
         # Google Analytics
         google:
@@ -156,10 +161,7 @@ params:
         # matomo:
         #   instance: matomo.example.com
         #   siteId: 1 # Or any other number
-        # umami:
-        #   scheme: https
-        #   instance: analytics.eu.umami.is
-        #   id: ff424fa1-eb3e-4c8b-8f25-70811ca40d27
+
     # Enable Support
     support:
       enable: false

@@ -5,15 +5,7 @@ description: Configuración del servicio ssh
 tags: [Servicios,NAT,SMR,IPTABLES,SNAT,SSH,FORWARDING]
 hero: images/servicios/ssh/portada-ssh.png
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 # servidor SSH bajo debian 
 ## Gestión remota usando SSH

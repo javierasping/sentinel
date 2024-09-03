@@ -6,15 +6,7 @@ tags: [WordPress,CMS,IWEB,AW,debian,LEMP]
 hero: /images/iweb/lamp/portada_lemp.png
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 # Instalación pila LEMP en debian 12 con PHP-8
 

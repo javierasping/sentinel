@@ -6,16 +6,6 @@ tags: [Docker,Kubernetes,Contenedores]
 hero: images/docker/docker/docker.png
 
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
-
 ##  Taller 2: Escenarios multicontenedor en Docker
 ###  Despliegue de Nextcloud
 

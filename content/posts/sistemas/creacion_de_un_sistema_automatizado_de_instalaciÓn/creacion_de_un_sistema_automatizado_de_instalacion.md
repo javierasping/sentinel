@@ -5,15 +5,7 @@ description: Creación de un sistema automatizado de instalación
 tags: [Sistemas,ISO,ASO,Linux]
 hero: images/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/creacion_de_un_sistema_automatizado_de_instalacion.jpg
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 
 ## Instalación automática de una iso

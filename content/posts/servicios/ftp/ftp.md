@@ -5,15 +5,7 @@ description: Configuración del servidor FTP
 tags: [Servicios,NAT,SMR,IPTABLES,SNAT,SSH,FORWARDING,APACHE,FTP]
 hero: images/servicios/ftp/portada-ftp.png
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 # Servidor FTP bajo debian
 ##  Instalación y configuración del servidor proFTPd autentificado

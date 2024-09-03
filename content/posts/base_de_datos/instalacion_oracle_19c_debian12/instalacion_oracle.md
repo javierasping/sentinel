@@ -6,15 +6,7 @@ tags: [Oracle,Debian]
 hero: images/base_de_datos/instalar_oracle/oracle19.png
 
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 Instalar Oracle 19c en Debian 12 puede parecer complicado, pero no te preocupes, estoy aquí para guiarte en cada paso. En este post, te explicaré de manera sencilla cómo preparar tu sistema y realizar la instalación de Oracle 19c en Debian 12.
 

@@ -5,15 +5,7 @@ description: Aprende cómo usar Storage Spaces en Windows Server
 tags: [Linux,Sistemas,ISO,ASO]
 hero: images/sistemas/storage_spaces/portada.png
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 Storage Spaces es una característica de almacenamiento definido por software en el sistema operativo Windows Server que permite a los administradores de sistemas combinar varios discos físicos en un único espacio de almacenamiento lógico llamado "pool de almacenamiento". Este pool de almacenamiento se puede utilizar para crear espacios de almacenamiento virtuales llamados "espacios de almacenamiento" que ofrecen diversas funciones de redundancia y capacidades avanzadas de administración de almacenamiento.
 

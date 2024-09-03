@@ -5,15 +5,7 @@ description: Compilación de un kernel
 tags: [Sistemas,ISO,ASO,Linux]
 hero: images/sistemas/compilacion_de_un_kernel/compilacion_de_un_kernel.jpg
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 
 ## Introducción

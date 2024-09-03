@@ -5,15 +5,7 @@ description: Paso de CentOS stream 8 a CentOS stream 9
 tags: [Sistemas,ISO,ASO,Linux]
 hero: images/sistemas/paso_de_centos_stream_8_a_centos_stream_9/paso_de_centos_stream_8_a_centos_stream_9.png
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 
 ## Actualizar los paquetes

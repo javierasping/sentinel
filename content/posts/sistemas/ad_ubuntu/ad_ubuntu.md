@@ -5,15 +5,7 @@ description: Instalar y configurar samba en Debian
 tags: [Debian 12,Sistemas,ISO,ASO]
 hero: images/sistemas/ad_ubuntu/portada.jpeg
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 En este post, exploraremos cómo configurar un entorno de Active Directory en un servidor Ubuntu utilizando herramientas como Kerberos y Samba. Active Directory es una solución integral de Microsoft para la gestión de identidades y el control de acceso en redes empresariales. A través de esta guía, aprenderemos paso a paso cómo implementar un servidor Ubuntu como controlador de dominio, establecer la autenticación basada en Kerberos y configurar servicios de directorio mediante Samba.
 

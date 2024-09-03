@@ -6,15 +6,7 @@ tags: [Oracle,Debian]
 hero: images/base_de_datos/instalar_oracle/instalar_oracle.jpg
 
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 Para configurar el acceso remoto en Oracle, es fundamental ajustar correctamente los archivos de red ubicados en $ORACLE_HOME/network/admin. Estos archivos, como listener.ora y tnsnames.ora, permiten definir cómo se conectarán los clientes a la base de datos y qué equipos tendrán acceso.
 

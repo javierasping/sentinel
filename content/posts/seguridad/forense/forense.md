@@ -6,15 +6,7 @@ tags: [LINUX,DEBIAN,WINDOWS,FORENSE]
 hero: /images/seguridad/forense.png
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 La informática forense es el conjunto de técnicas que nos permite obtener la máxima información posible tras un incidente o delito informático.
 En esta práctica, realizarás la fase de toma de evidencias y análisis de las mismas sobre una máquina Linux y otra Windows. Supondremos que pillamos al delincuente 'in fraganti' y las máquinas se encontraban encendidas. Opcionalmente, podéis realizar el análisis de un dispositivo Android.

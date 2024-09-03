@@ -5,15 +5,7 @@ description: Configuración del servidor DNS en nuestro escenario básico bajo d
 tags: [Servicios,NAT,SMR,DHCP,SNAT,DNS,BIND9,DNSMASQ]
 hero: images/servicios/dns/portada-dns.jpg
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 # Configuración servidor DNS en Debian    
 ## Dnsmasq

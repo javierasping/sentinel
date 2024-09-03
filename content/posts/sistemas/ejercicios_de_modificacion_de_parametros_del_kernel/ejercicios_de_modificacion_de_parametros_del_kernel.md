@@ -5,15 +5,7 @@ description: Ejercicios de modificación de parámetros del kernel
 tags: [Sistemas,ISO,ASO,Linux]
 hero: images/sistemas/ejercicios_de_modificacion_de_parametros_del_kernel/ejercicios_de_modificacion_de_parametros_del_kernel.jpg
 ---
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 
 ## 1.Deshabilita apparmor en el arranque.

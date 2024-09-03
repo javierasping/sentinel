@@ -6,15 +6,7 @@ tags: [FIREWALL,LINUX,DEBIAN,FORTINET]
 hero: /images/cortafuegos/fortinet.png
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-GVDYVWJLRH');
-</script>
 
 
 Antes de comenzar la practica , el escenario que ves en la practica es lo mas parecido que puedo montar a la practica original . He utilizado la versión 7.0.9-1 de FortiGate , ya que las versiones superiores traen algunas restricciones .  Puedes descargarte la imagen desde este [link](https://drive.google.com/drive/folders/1VGmeLN5inkWoNNUsIvq9ewGUzJLTLkiM) .
