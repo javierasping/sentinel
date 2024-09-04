@@ -7,7 +7,6 @@ hero: images/base_de_datos/instalar_mariadb/instalar_mariadb.png
 
 ---
 
-
 Para permitir el acceso remoto a tu servidor MariaDB, sigue estos pasos:
 
 1. **Configura el archivo de configuración de MariaDB**
