@@ -6,7 +6,7 @@ tags: [Docker,Kubernetes,Contenedores]
 hero: images/docker/docker/docker.png
 
 ---
-##  Taller 1: Almacenamiento y redes en Docker
+##  Taller 1: Almacenamiento y redes en Docker 
 
 ###  Almacenamiento
 
