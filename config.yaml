@@ -52,10 +52,9 @@ outputs:
 # Enable global emoji support
 enableEmoji: true
 
-
 services:
   googleAnalytics:
-    id: G-GVDYVWJLRH
+    ID: G-MEASUREMENT_ID
 
 # Site parameters
 params:
