@@ -3,7 +3,7 @@ title: "VPN acceso remoto Wireguard"
 date: 2024-03-28T10:00:00+00:00
 description: VPN acceso remoto Wireguard
 tags: [VPN,CISCO,LINUX,DEBIAN,WIREGUARD]
-hero: /images/vpn/wireguard.png
+hero: /images/vpn/wireguard_acceso_remoto.png
 ---
 
 

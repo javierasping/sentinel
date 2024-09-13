@@ -3,7 +3,7 @@ title: "VPN sitio a sitio con IPsec Fortinet"
 date: 2024-03-28T10:00:00+00:00
 description: VPN sitio a sitio con IPsec Fortinet
 tags: [VPN,LINUX,FORTINET]
-hero: /images/cortafuegos/fortinet.png
+hero: /images/vpn/fortinet_site_to_site.png
 ---
 
 

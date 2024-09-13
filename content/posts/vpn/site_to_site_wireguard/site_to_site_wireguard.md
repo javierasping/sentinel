@@ -3,7 +3,7 @@ title: "VPN site to site Wireguard"
 date: 2024-03-28T10:00:00+00:00
 description: VPN site to site Wireguard
 tags: [VPN,CISCO,LINUX,DEBIAN,WIREGUARD]
-hero: /images/vpn/wireguard.png
+hero: /images/vpn/wireguard_site_to_site.png
 ---
 
 
