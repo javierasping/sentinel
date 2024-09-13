@@ -3,7 +3,7 @@ title: "Taller 1: Corrector ortográfico de documentos markdown (test)"
 date: 2024-03-14T10:00:00+00:00
 description: Taller 1 Corrector ortográfico de documentos markdown (test)
 tags: [Jenkis,CI/CD]
-hero: images/ci_cd/jenkins/jenkins.png
+hero: images/ci_cd/jenkins/taller1.png
 
 ---
 

@@ -3,7 +3,7 @@ title: "Práctica CI/CD con Jenkins"
 date: 2024-03-14T10:00:00+00:00
 description: Práctica CI/CD con Jenkins
 tags: [Jenkis,CI/CD]
-hero: images/ci_cd/jenkins/jenkins.png
+hero: images/ci_cd/jenkins/practica.png
 
 ---
 

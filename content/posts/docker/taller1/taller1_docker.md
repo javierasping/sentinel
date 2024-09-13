@@ -3,7 +3,7 @@ title: "Taller 1: Almacenamiento y redes en Docker"
 date: 2024-03-14T10:00:00+00:00
 description: Taller 1 Almacenamiento y redes en Docker
 tags: [Docker,Kubernetes,Contenedores]
-hero: images/docker/docker/docker.png
+hero: images/docker/taller1.png
 
 ---
 ##  Taller 1: Almacenamiento y redes en Docker 

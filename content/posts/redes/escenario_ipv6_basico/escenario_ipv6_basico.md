@@ -3,7 +3,7 @@ title: "Escenario IPv6 Básico"
 date: 2023-10-08T10:00:00+00:00
 description: Escenario básico en el cual aprenderemos lo básico sobre el protocolo IPV6
 tags: [Redes, Enrutamiento, IPV6]
-hero: images/redes/escenario_ipv6_basico/portada.jpg
+hero: images/redes/escenario_ipv6_basico/portada.png
 ---
 
 

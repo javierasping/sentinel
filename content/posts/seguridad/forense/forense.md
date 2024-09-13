@@ -3,7 +3,7 @@ title: "Informática Forense"
 date: 2024-03-28T10:00:00+00:00
 description: Informática Forense
 tags: [LINUX,DEBIAN,WINDOWS,FORENSE]
-hero: /images/seguridad/forense.png
+hero: /images/seguridad/informatica_forense.png
 ---
 
 

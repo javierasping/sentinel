@@ -3,7 +3,7 @@ title: "Taller 3: Integración continua de aplicación django (Test)"
 date: 2024-03-14T10:00:00+00:00
 description:  Taller 3 Integración continua de aplicación django (Test)
 tags: [Jenkis,CI/CD]
-hero: images/ci_cd/jenkins/jenkins.png
+hero: images/ci_cd/jenkins/taller3.png
 
 ---
 

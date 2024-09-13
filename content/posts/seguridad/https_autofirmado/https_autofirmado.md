@@ -3,7 +3,7 @@ title: "Crear autoridad certificadora (CA) y certificados autofirmados en Linux"
 date: 2024-03-28T10:00:00+00:00
 description: Crear autoridad certificadora (CA) y certificados autofirmados en Linux
 tags: [LINUX,DEBIAN,HTTPS]
-hero: /images/seguridad/https.png
+hero: /images/seguridad/certificados_ssl.png
 ---
 
 

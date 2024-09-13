@@ -3,7 +3,7 @@ title: "Configuración de acceso remoto en Oracle"
 date: 2024-09-01T10:00:00+00:00
 description: Configuración de acceso remoto en Oracle
 tags: [Oracle,Debian]
-hero: images/base_de_datos/instalar_oracle/instalar_oracle.jpg
+hero: images/base_de_datos/instalar_oracle/acceso_remoto_oracle.png
 
 ---
 

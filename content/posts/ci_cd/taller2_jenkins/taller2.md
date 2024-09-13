@@ -3,7 +3,7 @@ title: "Taller 2 Comprobación de HTML5 válido y despliegue en surge.sh (test y
 date: 2024-03-14T10:00:00+00:00
 description: Taller 2 Comprobación de HTML5 válido y despliegue en surge.sh (test y deploy)
 tags: [Jenkis,CI/CD]
-hero: images/ci_cd/jenkins/jenkins.png
+hero: images/ci_cd/jenkins/taller2.png
 
 ---
 

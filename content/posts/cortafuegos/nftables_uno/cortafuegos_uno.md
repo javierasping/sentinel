@@ -3,7 +3,7 @@ title: "Implementación de un cortafuegos perimetral con Nftables I"
 date: 2024-03-28T10:00:00+00:00
 description: Implementación de un cortafuegos perimetral con Nftables
 tags: [FIREWALL,LINUX,DEBIAN,NFTABLES]
-hero: /images/cortafuegos/nftables.png
+hero: /images/cortafuegos/nftables1.png
 ---
 
 

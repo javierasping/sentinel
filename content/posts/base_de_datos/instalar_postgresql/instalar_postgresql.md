@@ -3,7 +3,7 @@ title: "Instalación de PostgreSQL en Debian 12"
 date: 2024-09-01T10:00:00+00:00
 description: Instalación de PostgreSQL
 tags: [PostgreSQL,Debian]
-hero: images/base_de_datos/instalar_postgre/instalar_postgre.jpg
+hero: images/base_de_datos/instalar_postgre/instalacion_postgree.png
 
 ---
 

@@ -3,7 +3,7 @@ title: "Configuración de switches en GNS3"
 date: 2023-09-08T10:00:00+00:00
 description: Aprenderás a configurar los switches de GNS3 como los cisco 7200 como uno .
 tags: [Redes, Wireshark, GNS3,Cisco,Switches]
-hero: /images/redes/switches_gns3/portada.jpg
+hero: /images/redes/switches_gns3/portada.png
 ---
 
 

@@ -3,7 +3,7 @@ title: "Configuración de acceso remoto en MariaDB"
 date: 2024-09-01T10:00:00+00:00
 description: Configuración de acceso remoto en MariaDB
 tags: [MariaDB,Debian]
-hero: images/base_de_datos/instalar_mariadb/instalar_mariadb.png
+hero: images/base_de_datos/instalar_mariadb/acceso_remoto_mariadb.png
 
 ---
 Para permitir el acceso remoto a tu servidor MariaDB, sigue estos pasos:

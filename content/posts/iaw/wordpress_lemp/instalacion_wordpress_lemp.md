@@ -3,7 +3,7 @@ title: "Instalación WordPress en Debian 12 con pila LEMP PHP-8"
 date: 2023-10-28T10:00:00+00:00
 description: Instalación WordPress en Debian 12 con pila LEMP PHP-8
 tags: [WordPress,CMS,IWEB,AW,debian]
-hero: /images/iweb/wordpress/portada_wordpress.png
+hero: /images/iweb/wordpress/wordpress_lemp.png
 ---
 
 

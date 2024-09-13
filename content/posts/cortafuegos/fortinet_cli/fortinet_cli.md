@@ -3,7 +3,7 @@ title: "Fortinet CLI"
 date: 2024-03-28T10:00:00+00:00
 description: Fortinet CLI
 tags: [FIREWALL,FORTINET]
-hero: /images/cortafuegos/fortinet.png
+hero: /images/cortafuegos/fortinet_cli.png
 ---
 
 

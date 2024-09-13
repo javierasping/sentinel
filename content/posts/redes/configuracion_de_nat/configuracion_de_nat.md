@@ -3,7 +3,7 @@ title: "Configuración de NAT Cisco y Linux"
 date: 2023-09-08T10:00:00+00:00
 description: Enrutamiento de un escenario con direcciones publicas , configuramos SNAT y DNAT en maquinas Linux y cisco .
 tags: [Redes, Enrutamiento,NAT,SNAT,DNAT,Cisco,Linux]
-hero: images/redes/configuracion_nat/portada.jpg
+hero: images/redes/configuracion_nat/portada.png
 ---
 
 

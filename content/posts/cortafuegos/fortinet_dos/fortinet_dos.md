@@ -3,7 +3,7 @@ title: "Implementación de un cortafuegos perimetral con Fortinet II"
 date: 2024-03-28T10:00:00+00:00
 description: Implementación de un cortafuegos perimetral con Fortinet II
 tags: [FIREWALL,LINUX,DEBIAN,FORTINET]
-hero: /images/cortafuegos/fortinet.png
+hero: /images/cortafuegos/fortinet2.png
 ---
 
 

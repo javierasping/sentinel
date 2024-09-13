@@ -3,7 +3,7 @@ title: "Instalación GNS3 y Wireshark en Debian"
 date: 2023-09-08T10:00:00+00:00
 description: Instalación de simulador de redes GNS3 y el analizador de protocolos Wireshark
 tags: [Redes, Wireshark, GNS3]
-hero: images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.jpeg
+hero: images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.png
 ---
 
 

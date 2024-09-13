@@ -3,7 +3,7 @@ title: "Instalación de Oracle 19c bajo Debian 12"
 date: 2024-09-01T10:00:00+00:00
 description: Instalación de Oracle 19c bajo Debian 12
 tags: [Oracle,Debian]
-hero: images/base_de_datos/instalar_oracle/oracle19.png
+hero: images/base_de_datos/instalar_oracle/instalacion_oracle.png
 
 ---
 

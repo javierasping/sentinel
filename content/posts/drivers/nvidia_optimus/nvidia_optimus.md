@@ -3,7 +3,7 @@ title: "Como elegir que gráfica usar en mi portátil con Linux"
 date: 2024-09-01T10:00:00+00:00
 description: Aprende cómo instalar los controladores NVIDIA en Debian 12 para optimizar el rendimiento gráfico de tu sistema.
 tags: [Controladores NVIDIA, Linux]
-hero: images/sistemas/nvidia/nvidia.jpg
+hero: images/drivers/elegir_grafica.png
 
 ---
 

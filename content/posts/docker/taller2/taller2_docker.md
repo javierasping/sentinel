@@ -3,7 +3,7 @@ title: "Taller 2: Escenarios multicontenedor en Docker"
 date: 2024-03-14T10:00:00+00:00
 description: Taller 2 Escenarios multicontenedor en Docker
 tags: [Docker,Kubernetes,Contenedores]
-hero: images/docker/docker/docker.png
+hero: images/docker/taller2.png
 
 ---
 ##  Taller 2: Escenarios multicontenedor en Docker
