@@ -3,4 +3,6 @@
 &lt;p>&lt;img src="../img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.001.png">&lt;/p>
 &lt;p>Una vez descargada la imagen de debian, vamos a copiar su contenido en una carpeta para después hacer unas modificaciones. Para ello montaremos la iso como dispositivo loop :&lt;/p>
 &lt;p>&lt;img src="../img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.002.png">&lt;/p>
-&lt;p>Una vez montada podremos ver su contenido :&lt;/p></description></item></channel></rss>
+&lt;p>Una vez montada podremos ver su contenido :&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.003.jpeg">&lt;/p>
+&lt;p>Vamos a hacernos una copia de los ficheros que vamos a utilizar a un directorio nuestro para poder realizar cambios en los mismos , una vez hagamos esto podemos desmontar la imagen :&lt;/p></description></item></channel></rss>

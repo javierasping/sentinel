@@ -12,4 +12,4 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Policy deny_unknown status: allowed
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Memory protection checking: actual &lt;span style="color:#f92672">(&lt;/span>secure&lt;span style="color:#f92672">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Max kernel policy version: &lt;span style="color:#ae81ff">33&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pr</description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Comenzaremos actualizando los paquetes necesarios para configurar samba y nfs :&lt;/p></description></item></channel></rss>

@@ -7,4 +7,5 @@ Para desplegar el escenario para realizar estos ejercicios necesitaras desplegar
 • Se pueden usar las extensiones que creamos adecuadas, pero al menos debe implementarse seguimiento de la conexión cuando sea necesario.
 • Debemos implementar que el cortafuegos funcione después de un reinicio de la máquina.
 • Debes mostrar pruebas de funcionamiento de todas las reglas.
-&lt;/code>&lt;/pr</description></item></channel></rss>
+&lt;/code>&lt;/pre>
+&lt;p>Para no hacer demasiado larga la practica , voy a mostrarte los hits de las reglas al final , así como el script completo de las reglas . Ya que solo te pondré en cada ejercicio las reglas que intervienen y una comprobación del mismo .&lt;/p></description></item></channel></rss>

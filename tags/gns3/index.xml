@@ -9,7 +9,8 @@
 &lt;p>Lo primero que haré sera montar el escenario :&lt;/p>
 &lt;p>&lt;img src="../img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.001.jpeg">&lt;/p>
 &lt;h3 id="configuración-de-red-de-los-clientes">Configuración de red de los clientes&lt;/h3>
-&lt;p>A continuación configurare las tarjetas de red de los clientes , aprovechando que la nube NAT incluye un servidor DHCP.&lt;/p></description></item><item><title>Instalación GNS3 y Wireshark en Debian</title><link>https://www.javiercd.es/posts/redes/instalacion_wireshark_gns3/instalacion-gns3-y-wireshark/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/instalacion_wireshark_gns3/instalacion-gns3-y-wireshark/</guid><description>&lt;!-- ![2](/images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.jpeg)
+&lt;p>A continuación configurare las tarjetas de red de los clientes , aprovechando que la nube NAT incluye un servidor DHCP.&lt;/p>
+&lt;p>Para hacer esto escribimos en los VPCS el siguiente comando :&lt;/p></description></item><item><title>Instalación GNS3 y Wireshark en Debian</title><link>https://www.javiercd.es/posts/redes/instalacion_wireshark_gns3/instalacion-gns3-y-wireshark/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/instalacion_wireshark_gns3/instalacion-gns3-y-wireshark/</guid><description>&lt;!-- ![2](/images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.jpeg)
 ![](/images/redes/instalacion_wireshark_gns3/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.003.jpeg) -->
 &lt;h2 id="1-introducción">1. &lt;strong>Introducción&lt;/strong>&lt;/h2>
 &lt;p>Wireshark es un analizador de protocolos utilizado para realizar análisis y solucionar problemas en redes de comunicaciones, para análisis de datos y protocolos, y como una herramienta didáctica.&lt;/p>
@@ -26,4 +27,7 @@
 &lt;p>HOMBRES LOBO: hombres lobo que tras su primera conversión a lobo, no pudieron regresar a su estado humano.&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>HUMANOS: unos mierdecillas.&lt;/p></description></item></channel></rss>
+&lt;p>HUMANOS: unos mierdecillas.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>TÚ: un guerrero informático con superpoderes como darse la vuelta a un juego que todavía no ha salido al mercado o poseer la facultad de volverse invisible cuando sale de fiesta y trata de cortejar a una fémina diciéndole frases del tipo: ¿quieres que te compile el kernel nena?&lt;/p></description></item></channel></rss>

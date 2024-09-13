@@ -4,4 +4,7 @@
 &lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.079.png">&lt;/p>
 &lt;p>Por seguridad se suele no permitir la conexión del root al servidor; para ello, se debe modificar el archivo /etc/ssh/sshd_config, y se pone la siguiente opción:&lt;/p>
 &lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.080.png">&lt;/p>
-&lt;p>Y reiniciamos el servicio para que se apliquen los cambios :&lt;/p></description></item></channel></rss>
+&lt;p>Y reiniciamos el servicio para que se apliquen los cambios :&lt;/p>
+&lt;h3 id="conectarse-al-servidor-ssh">Conectarse al servidor ssh&lt;/h3>
+&lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.081.png">&lt;/p>
+&lt;p>Vamos a instalarnos el cliente ssh, para ello:&lt;/p></description></item></channel></rss>

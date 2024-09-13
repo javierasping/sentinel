@@ -41,4 +41,21 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_DATABASE&lt;span style="color:#f92672">=&lt;/span>nextcloud
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_USER&lt;span style="color:#f92672">=&lt;/span>nextcloud
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_HOST&lt;span style="color:#f92672">=&lt;/span>db
-&lt;/span>&lt;/span>&lt;/code>&lt;/pr</description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>Levanta el escenario con &lt;code>docker-compose&lt;/code>.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller2$ docker compose up -d
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>+&lt;span style="color:#f92672">]&lt;/span> Running 2/2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ✔ Container taller2-db-1 Started 0.0s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ✔ Container taller2-app-1 Started 0.0s
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>Muestra los contenedores con &lt;code>docker-compose&lt;/code>.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller2$ docker compose ps
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME IMAGE COMMAND SERVICE CREATED STATUS PORTS
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>taller2-app-1 nextcloud &lt;span style="color:#e6db74">&amp;#34;/entrypoint.sh apache2-foreground&amp;#34;&lt;/span> app &lt;span style="color:#ae81ff">7&lt;/span> minutes ago Up &lt;span style="color:#ae81ff">5&lt;/span> minutes 0.0.0.0:8081-&amp;gt;80/tcp, :::8081-&amp;gt;80/tcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>taller2-db-1 mariadb:10.6 &lt;span style="color:#e6db74">&amp;#34;docker-entrypoint.sh --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW&amp;#34;&lt;/span> db &lt;span style="color:#ae81ff">7&lt;/span> minutes ago Up &lt;span style="color:#ae81ff">5&lt;/span> minutes 3306/tcp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>Accede a la aplicación y comprueba que funciona.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="../img/Pasted_image_20240202091554.png">&lt;/p></description></item></channel></rss>

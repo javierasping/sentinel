@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gestión de paquetes on Atlas</title><link>https://www.javiercd.es/posts/sistemas/comandos_linux/gestion_de_paquetes/</link><description>Recent content in Gestión de paquetes on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Wed, 29 Nov 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/sistemas/comandos_linux/gestion_de_paquetes/index.xml" rel="self" type="application/rss+xml"/><item><title>Gestion de paquetes</title><link>https://www.javiercd.es/posts/sistemas/comandos_linux/gestion_de_paquetes/gestion_de_paquetes/</link><pubDate>Wed, 29 Nov 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/sistemas/comandos_linux/gestion_de_paquetes/gestion_de_paquetes/</guid><description>&lt;h2 id="indica-los-pasos-a-seguir-para-modificar-la-configuración-de-red-de-dhcp-a-estática">Indica los pasos a seguir para modificar la configuración de red de DHCP a estática&lt;/h2>
+&lt;p>Para configurar la interfaz ens1 con una dirección IP estática (por ejemplo, 192.168.122.10), debes modificar el archivo /etc/sysconfig/network-scripts/ifcfg-ens1 :&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.0f9af8ba-710a-47db-ba6b-edb2ea8012f0.001.jpeg">&lt;/p>
+&lt;p>Para aplicar la configuración reiniciamos el Network Manager :&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.0f9af8ba-710a-47db-ba6b-edb2ea8012f0.002.jpeg">&lt;/p>
+&lt;h2 id="actualiza-el-sistema-a-las-versiones-más-recientes-de-los-paquetes-instalados">Actualiza el sistema a las versiones más recientes de los paquetes instalados&lt;/h2>
+&lt;p>&lt;img src="../img/Aspose.Words.0f9af8ba-710a-47db-ba6b-edb2ea8012f0.003.png">&lt;/p>
+&lt;h2 id="instala-el-repositorio-adicional-epel">Instala el repositorio adicional EPEL.&lt;/h2>
+&lt;p>&lt;img src="../img/Aspose.Words.0f9af8ba-710a-47db-ba6b-edb2ea8012f0.004.jpeg">&lt;/p>
+&lt;h2 id="instala-el-paquete-bash-completion">Instala el paquete bash-completion.&lt;/h2>
+&lt;p>&lt;img src="../img/Aspose.Words.0f9af8ba-710a-47db-ba6b-edb2ea8012f0.005.png">&lt;/p>
+&lt;p>Instala el paquete que proporciona el programa dig, explicando los pasos que has dado para encontrarlo&lt;/p></description></item></channel></rss>
