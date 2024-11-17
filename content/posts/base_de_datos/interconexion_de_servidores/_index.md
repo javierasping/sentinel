@@ -1,9 +1,9 @@
 ---
-title: Configuración de acceso remoto en Oracle
+title: Interconexión de servidores de bases de datos
 menu:
   sidebar:
-    name: Configuración de acceso remoto en Oracle
-    identifier: acceso_remoto_oracle19c_debian12
+    name: Interconexión de servidores de bases de datos
+    identifier: interconexion_servidores_bbdd
     parent: base_de_datos
     weight: 0
 ---
