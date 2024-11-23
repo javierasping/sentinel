@@ -6,6 +6,7 @@ tags: [Redes, Wireshark, GNS3]
 hero: images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.png
 ---
 
+> **⚠️ Advertencia:** Este post fue desarrollado para Debian 11. Si tienes una versión más reciente, puedes revisar el post para Debian 12 que encontrarás en el apartado de redes de esta misma página. La única parte que no deberías seguir si cumples con esta condición es la instalación de GNS3. Todo el resto del contenido sigue siendo valido .
 
 
 <!-- ![2](/images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.jpeg)
