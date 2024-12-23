@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Transformación instancia cloud on Atlas</title><link>https://www.javiercd.es/posts/sistemas/migraciones/transformaci%C3%B3n_instancia_cloud/</link><description>Recent content in Transformación instancia cloud on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Wed, 29 Nov 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/sistemas/migraciones/transformaci%C3%B3n_instancia_cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Transformación instancia cloud</title><link>https://www.javiercd.es/posts/sistemas/migraciones/transformaci%C3%B3n_instancia_cloud/transformacion_instancia_cloud/</link><pubDate>Wed, 29 Nov 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/sistemas/migraciones/transformaci%C3%B3n_instancia_cloud/transformacion_instancia_cloud/</guid><description>&lt;h2 id="creación-del-esquema-lvm">Creación del esquema LVM&lt;/h2>
 &lt;p>Nos instalamos el paquete LVM2&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.001.png">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.001.png" alt="">&lt;/p>
 &lt;p>Ahora crearemos las particiones en el segundo disco :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.002.png">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.002.png" alt="">&lt;/p>
 &lt;p>Creamos el grupo de volúmenes :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.003.png">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.003.png" alt="">&lt;/p>
 &lt;p>Creamos los volúmenes raíz y home :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.004.png">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.004.png" alt="">&lt;/p>
 &lt;p>La particiones tienes que tener el siguiente formato :&lt;/p>
 &lt;p>-vdb2 etx4&lt;/p>
 &lt;p>-FJCD-vg-home ext4&lt;/p>
 &lt;p>-FJCD-vg-raiz ext4&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.005.jpeg">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.005.jpeg" alt="">&lt;/p>
 &lt;p>Nos quedara darle formato a la efi :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.006.png">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.006.png" alt="">&lt;/p>
 &lt;p>Así quedaría nuestro esquema de particiones :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.007.jpeg">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.007.jpeg" alt="">&lt;/p>
 &lt;h2 id="copiar-el-contenido-de-las-particiones">Copiar el contenido de las particiones&lt;/h2>
 &lt;p>Ahora vamos a montar las particiones :&lt;/p></description></item></channel></rss>

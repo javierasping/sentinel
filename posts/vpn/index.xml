@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VPN on Atlas</title><link>https://www.javiercd.es/posts/vpn/</link><description>Recent content in VPN on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 28 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/vpn/index.xml" rel="self" type="application/rss+xml"/><item><title>Comparativa entre OpenVPN y Wireguard</title><link>https://www.javiercd.es/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</guid><description>&lt;p>&lt;img src="../img/Pastedimage20240114150833.png">&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VPN on Atlas</title><link>https://www.javiercd.es/posts/vpn/</link><description>Recent content in VPN on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 28 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/vpn/index.xml" rel="self" type="application/rss+xml"/><item><title>Comparativa entre OpenVPN y Wireguard</title><link>https://www.javiercd.es/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</guid><description>&lt;p>&lt;img src="../img/Pastedimage20240114150833.png" alt="">&lt;/p>
 &lt;p>El objetivo de este post es comparar los distintos software de VPNs mas utilizados viendo cual es mas rápido , para ello nos apoyaremos en test de velocidad utilizando iperf3 .&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
 La comparativa parte de los post de esta sección en los que montamos cada tipo de VPN .&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="velocidad-sin-vpn">Velocidad sin VPN&lt;/h2>
-&lt;p>Voy a comenzar comparando las velocidades de estos 2 sistemas , utilizando iperf3 . Para ello he quitado el router cisco ya que lo tenia configurado con interfaces FastEthernet y lo he cambiado por un router Linux con interfaces GigabitEthernet .&lt;/p></description></item><item><title>VPN acceso remoto Wireguard</title><link>https://www.javiercd.es/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</guid><description>&lt;p>&lt;img src="../img/Pastedimage20240114150833.png">&lt;/p>
+&lt;p>Voy a comenzar comparando las velocidades de estos 2 sistemas , utilizando iperf3 . Para ello he quitado el router cisco ya que lo tenia configurado con interfaces FastEthernet y lo he cambiado por un router Linux con interfaces GigabitEthernet .&lt;/p></description></item><item><title>VPN acceso remoto Wireguard</title><link>https://www.javiercd.es/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</guid><description>&lt;p>&lt;img src="../img/Pastedimage20240114150833.png" alt="">&lt;/p>
 &lt;p>En primer lugar configurare la maquina servidor1 como servidor VPN de acceso remoto y servidor2 como cliente VPN . Posteriormente configurare un cliente Windows y Android .&lt;/p>
 &lt;p>Lo primero que haremos sera instalarnos tanto en ambas maquinas el paquete Wireguard :&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>root@servidor1:~# sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
@@ -26,7 +26,7 @@ Voy a partir del post de VPN acceso remoto con OpenVPN , asi que es posible que 
 &lt;h2 id="montando-el-escenario">Montando el escenario&lt;/h2>
 &lt;p>Para realizar este ejercicio he montado el siguiente escenario en GNS3 :&lt;/p></description></item><item><title>VPN site to site con OpenVPN y certificados x509</title><link>https://www.javiercd.es/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</guid><description>&lt;h2 id="montando-el-escenario">Montando el escenario&lt;/h2>
 &lt;p>Para realizar este ejercicio he montado el siguiente escenario en GNS3 :&lt;/p>
-&lt;p>&lt;img src="../img/Pastedimage20240114150833.png">&lt;/p>
+&lt;p>&lt;img src="../img/Pastedimage20240114150833.png" alt="">&lt;/p>
 &lt;h3 id="configuración-del-router-cisco">Configuración del router cisco&lt;/h3>
 &lt;p>Vamos a darle a cada interfaz la configuración de red correspondiente :&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Interfaz que nos dará internet &lt;/span>
@@ -72,7 +72,7 @@ Voy a partir del post de VPN acceso remoto con OpenVPN , asi que es posible que 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface FastEthernet1/1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat inside&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="configuración-del-servidor-1">Configuración del Servidor 1&lt;/h4>
-&lt;p>Configuración de red servidor 1 :&lt;/p></description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p>&lt;img src="../img/Pastedimage20240114150833.png">&lt;/p>
+&lt;p>Configuración de red servidor 1 :&lt;/p></description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p>&lt;img src="../img/Pastedimage20240114150833.png" alt="">&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
 Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible que haga referencia a este durante este articulo .&lt;/p>
@@ -82,14 +82,14 @@ Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible qu
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>root@servidor1:~# sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>debian@servidor2:~$ sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Vamos a generar los pares de claves que se utilizarán para cifrar la conexión. Necesitaremos una clave para el servidor y un par de claves adicionales por cada cliente.&lt;/p></description></item><item><title>VPN sitio a sitio con IPsec Cisco</title><link>https://www.javiercd.es/posts/vpn/ipsec_cisco/ipsec_cisco/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/ipsec_cisco/ipsec_cisco/</guid><description>&lt;p>En este post voy a montar una VPN IPSEC usando routers cisco .&lt;/p>
-&lt;p>&lt;img src="../img/Pastedimage20240128120659.png">&lt;/p>
+&lt;p>&lt;img src="../img/Pastedimage20240128120659.png" alt="">&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
 En este post se detalla la configuración de los routers R2 y R3 , sin embargo R1 esta explicado en el post de &amp;ldquo;VPN acceso remoto OpenVPN&amp;rdquo; . Si quieres ver la configuración de este ultimo mírate el apartado preparando el escenario .&lt;/p>
 &lt;/blockquote>
 &lt;h3 id="configuración-del-escenario">Configuración del escenario&lt;/h3>
 &lt;p>Como he cambiado de escenario , hay que configurar los 2 nuevos routers en la red R2 y R3 .&lt;/p></description></item><item><title>VPN sitio a sitio con IPsec Fortinet</title><link>https://www.javiercd.es/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</guid><description>&lt;p>En este post voy a montar una VPN IPSEC usando cortafuegos Fortinet , para ello los visualizaré en GNS3 .&lt;/p>
-&lt;p>&lt;img src="../img/Pastedimage20240330235321.png">&lt;/p>
+&lt;p>&lt;img src="../img/Pastedimage20240330235321.png" alt="">&lt;/p>
 &lt;h2 id="preparación-del-escenario">Preparación del escenario&lt;/h2>
 &lt;p>Para crear la VPN añadiré al escenario un nuevo Fortigate .&lt;/p>
 &lt;p>Así que vamos a proceder a configurarlo , lo primero sera conocer la IP que le ha dado el DHCP :&lt;/p>

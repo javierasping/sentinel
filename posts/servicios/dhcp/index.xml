@@ -2,8 +2,8 @@
 &lt;p>En este artículo aprenderás cómo configurar el servidor DHCP isc-dhcp-server. Además, configurarás una reserva y lo configuraras para que funcione en dos ámbitos.&lt;/p>
 &lt;h2 id="instalación-del-servidor-isc-dhcp-server">Instalación del servidor isc-dhcp-server&lt;/h2>
 &lt;p>Para instalar nuestro servidor dhcp ejecutamos:&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.015.png">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.015.png" alt="">&lt;/p>
 &lt;p>Nos dará el siguiente error ya que no esta configurado :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.016.png">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.016.png" alt="">&lt;/p>
 &lt;h2 id="configuración-del-servidor-isc-dhcp-server">Configuración del servidor isc-dhcp-server&lt;/h2>
 &lt;p>Lo primero que tenemos que hacer es configurar el interfaz de red por el que va a trabajar el servidor dhcp, para ello editamos el siguiente fichero:&lt;/p></description></item></channel></rss>

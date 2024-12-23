@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Configuración SSH bajo debian 10 on Atlas</title><link>https://www.javiercd.es/posts/servicios/ssh/</link><description>Recent content in Configuración SSH bajo debian 10 on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/servicios/ssh/index.xml" rel="self" type="application/rss+xml"/><item><title>SSH bajo debian</title><link>https://www.javiercd.es/posts/servicios/ssh/ssh/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/ssh/ssh/</guid><description>&lt;h1 id="servidor-ssh-bajo-debian">servidor SSH bajo debian&lt;/h1>
 &lt;h2 id="gestión-remota-usando-ssh">Gestión remota usando SSH&lt;/h2>
 &lt;p>Lo primeros que deberemos de hacer sera instalarnos el paquete en el servidor y el cliente :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.079.png">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.079.png" alt="">&lt;/p>
 &lt;p>Por seguridad se suele no permitir la conexión del root al servidor; para ello, se debe modificar el archivo /etc/ssh/sshd_config, y se pone la siguiente opción:&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.080.png">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.080.png" alt="">&lt;/p>
 &lt;p>Y reiniciamos el servicio para que se apliquen los cambios :&lt;/p>
 &lt;h3 id="conectarse-al-servidor-ssh">Conectarse al servidor ssh&lt;/h3>
-&lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.081.png">&lt;/p>
+&lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.081.png" alt="">&lt;/p>
 &lt;p>Vamos a instalarnos el cliente ssh, para ello:&lt;/p></description></item></channel></rss>
