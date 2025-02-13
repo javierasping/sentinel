@@ -52,8 +52,7 @@
 &lt;p>El objetivo de este post es comparar los distintos software de VPNs mas utilizados viendo cual es mas rápido , para ello nos apoyaremos en test de velocidad utilizando iperf3 .&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
-La comparativa parte de los post de esta sección en los que montamos cada tipo de VPN .&lt;/p>
-&lt;/blockquote>
+La comparativa parte de los post de esta sección en los que montamos cada tipo de VPN .&lt;/p>&lt;/blockquote>
 &lt;h2 id="velocidad-sin-vpn">Velocidad sin VPN&lt;/h2>
 &lt;p>Voy a comenzar comparando las velocidades de estos 2 sistemas , utilizando iperf3 . Para ello he quitado el router cisco ya que lo tenia configurado con interfaces FastEthernet y lo he cambiado por un router Linux con interfaces GigabitEthernet .&lt;/p></description></item><item><title>Crear autoridad certificadora (CA) y certificados autofirmados en Linux</title><link>https://www.javiercd.es/posts/seguridad/https_autofirmado/https_autofirmado/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/seguridad/https_autofirmado/https_autofirmado/</guid><description>&lt;p>En un primer momento un alumno creará una Autoridad Certficadora y firmará un certificado para la página del otro alumno. Posteriormente lo pondremos a prueba en los servidores web Apache y Nginx&lt;/p>
 &lt;h2 id="crear-la-autoridad-certificadora">Crear la Autoridad Certificadora&lt;/h2>
@@ -154,8 +153,7 @@ Voy a partir del post de VPN acceso remoto con OpenVPN , asi que es posible que 
 &lt;p>Configuración de red servidor 1 :&lt;/p></description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p>&lt;img src="../img/Pastedimage20240114150833.png" alt="">&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
-Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible que haga referencia a este durante este articulo .&lt;/p>
-&lt;/blockquote>
+Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible que haga referencia a este durante este articulo .&lt;/p>&lt;/blockquote>
 &lt;h2 id="generación-de-claves">Generación de claves&lt;/h2>
 &lt;p>Lo primero que haremos sera instalarnos tanto en ambas maquinas el paquete Wireguard :&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>root@servidor1:~# sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
@@ -164,8 +162,7 @@ Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible qu
 &lt;p>&lt;img src="../img/Pastedimage20240128120659.png" alt="">&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
-En este post se detalla la configuración de los routers R2 y R3 , sin embargo R1 esta explicado en el post de &amp;ldquo;VPN acceso remoto OpenVPN&amp;rdquo; . Si quieres ver la configuración de este ultimo mírate el apartado preparando el escenario .&lt;/p>
-&lt;/blockquote>
+En este post se detalla la configuración de los routers R2 y R3 , sin embargo R1 esta explicado en el post de &amp;ldquo;VPN acceso remoto OpenVPN&amp;rdquo; . Si quieres ver la configuración de este ultimo mírate el apartado preparando el escenario .&lt;/p>&lt;/blockquote>
 &lt;h3 id="configuración-del-escenario">Configuración del escenario&lt;/h3>
 &lt;p>Como he cambiado de escenario , hay que configurar los 2 nuevos routers en la red R2 y R3 .&lt;/p></description></item><item><title>VPN sitio a sitio con IPsec Fortinet</title><link>https://www.javiercd.es/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</guid><description>&lt;p>En este post voy a montar una VPN IPSEC usando cortafuegos Fortinet , para ello los visualizaré en GNS3 .&lt;/p>
 &lt;p>&lt;img src="../img/Pastedimage20240330235321.png" alt="">&lt;/p>
@@ -539,8 +536,7 @@ En este post se detalla la configuración de los routers R2 y R3 , sin embargo R
 &lt;p>Ahora podemos acceder desde el navegador con los usuarios Jose y Maria :&lt;/p>
 &lt;p>&lt;img src="../img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.164.png" alt="">&lt;/p></description></item><item><title>Gestión de Procesos en Linux</title><link>https://www.javiercd.es/posts/sistemas/comandos_linux/comandos_procesos/comandos_procesos/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/sistemas/comandos_linux/comandos_procesos/comandos_procesos/</guid><description>&lt;p>En el ecosistema de Linux, un proceso es la ejecución de un programa específico que realiza una tarea particular. Cada proceso tiene su propio identificador único (PID) y está compuesto por un conjunto de recursos, como memoria y CPU, que le permiten funcionar de manera independiente.&lt;/p>
 &lt;p>En el universo de Linux, la gestión efectiva de procesos es una habilidad crucial para optimizar el rendimiento y asegurar la estabilidad del sistema. Este post te sumergirá en los fundamentos esenciales de la gestión de procesos&lt;/p></description></item><item><title>Instalación GNS3 y Wireshark en Debian</title><link>https://www.javiercd.es/posts/redes/instalacion_wireshark_gns3/instalacion-gns3-y-wireshark/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/instalacion_wireshark_gns3/instalacion-gns3-y-wireshark/</guid><description>&lt;blockquote>
-&lt;p>&lt;strong>⚠️ Advertencia:&lt;/strong> Este post fue desarrollado para Debian 11. Si tienes una versión más reciente, puedes revisar el post para Debian 12 que encontrarás en el apartado de redes de esta misma página. La única parte que no deberías seguir si cumples con esta condición es la instalación de GNS3. Todo el resto del contenido sigue siendo valido .&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;strong>⚠️ Advertencia:&lt;/strong> Este post fue desarrollado para Debian 11. Si tienes una versión más reciente, puedes revisar el post para Debian 12 que encontrarás en el apartado de redes de esta misma página. La única parte que no deberías seguir si cumples con esta condición es la instalación de GNS3. Todo el resto del contenido sigue siendo valido .&lt;/p>&lt;/blockquote>
 &lt;!-- ![2](/images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.jpeg)
 ![](/images/redes/instalacion_wireshark_gns3/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.003.jpeg) -->
 &lt;h2 id="1-introducción">1. &lt;strong>Introducción&lt;/strong>&lt;/h2>

@@ -2,7 +2,6 @@
 &lt;p>&lt;img src="../img/Pastedimage20240128120659.png" alt="">&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
-En este post se detalla la configuración de los routers R2 y R3 , sin embargo R1 esta explicado en el post de &amp;ldquo;VPN acceso remoto OpenVPN&amp;rdquo; . Si quieres ver la configuración de este ultimo mírate el apartado preparando el escenario .&lt;/p>
-&lt;/blockquote>
+En este post se detalla la configuración de los routers R2 y R3 , sin embargo R1 esta explicado en el post de &amp;ldquo;VPN acceso remoto OpenVPN&amp;rdquo; . Si quieres ver la configuración de este ultimo mírate el apartado preparando el escenario .&lt;/p>&lt;/blockquote>
 &lt;h3 id="configuración-del-escenario">Configuración del escenario&lt;/h3>
 &lt;p>Como he cambiado de escenario , hay que configurar los 2 nuevos routers en la red R2 y R3 .&lt;/p></description></item></channel></rss>

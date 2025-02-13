@@ -65,8 +65,7 @@
 &lt;p>Configuración de red servidor 1 :&lt;/p></description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p>&lt;img src="../img/Pastedimage20240114150833.png" alt="">&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
-Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible que haga referencia a este durante este articulo .&lt;/p>
-&lt;/blockquote>
+Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible que haga referencia a este durante este articulo .&lt;/p>&lt;/blockquote>
 &lt;h2 id="generación-de-claves">Generación de claves&lt;/h2>
 &lt;p>Lo primero que haremos sera instalarnos tanto en ambas maquinas el paquete Wireguard :&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>root@servidor1:~# sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
@@ -75,8 +74,7 @@ Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible qu
 &lt;p>&lt;img src="../img/Pastedimage20240128120659.png" alt="">&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
-En este post se detalla la configuración de los routers R2 y R3 , sin embargo R1 esta explicado en el post de &amp;ldquo;VPN acceso remoto OpenVPN&amp;rdquo; . Si quieres ver la configuración de este ultimo mírate el apartado preparando el escenario .&lt;/p>
-&lt;/blockquote>
+En este post se detalla la configuración de los routers R2 y R3 , sin embargo R1 esta explicado en el post de &amp;ldquo;VPN acceso remoto OpenVPN&amp;rdquo; . Si quieres ver la configuración de este ultimo mírate el apartado preparando el escenario .&lt;/p>&lt;/blockquote>
 &lt;h3 id="configuración-del-escenario">Configuración del escenario&lt;/h3>
 &lt;p>Como he cambiado de escenario , hay que configurar los 2 nuevos routers en la red R2 y R3 .&lt;/p></description></item><item><title>Configuración de NAT Cisco y Linux</title><link>https://www.javiercd.es/posts/redes/configuracion_de_nat/configuracion_de_nat/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/configuracion_de_nat/configuracion_de_nat/</guid><description>&lt;p>En este artículo, exploraremos la configuración de SNAT (Source Network Address Translation) y DNAT (Destination Network Address Translation) en escenarios con direcciones públicas, haciendo uso de routers en entornos Linux y dispositivos Cisco.&lt;/p>
 &lt;h2 id="escenario-con-maquinas-debian">Escenario con maquinas debian&lt;/h2>

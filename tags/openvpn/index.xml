@@ -2,8 +2,7 @@
 &lt;p>El objetivo de este post es comparar los distintos software de VPNs mas utilizados viendo cual es mas rápido , para ello nos apoyaremos en test de velocidad utilizando iperf3 .&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
-La comparativa parte de los post de esta sección en los que montamos cada tipo de VPN .&lt;/p>
-&lt;/blockquote>
+La comparativa parte de los post de esta sección en los que montamos cada tipo de VPN .&lt;/p>&lt;/blockquote>
 &lt;h2 id="velocidad-sin-vpn">Velocidad sin VPN&lt;/h2>
 &lt;p>Voy a comenzar comparando las velocidades de estos 2 sistemas , utilizando iperf3 . Para ello he quitado el router cisco ya que lo tenia configurado con interfaces FastEthernet y lo he cambiado por un router Linux con interfaces GigabitEthernet .&lt;/p></description></item><item><title>VPN de acceso remoto con OpenVPN y certificados x509</title><link>https://www.javiercd.es/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</guid><description>&lt;ul>
 &lt;li>Uno de los dos equipos (el que actuará como servidor) estará conectado a dos redes

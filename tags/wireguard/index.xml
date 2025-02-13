@@ -2,8 +2,7 @@
 &lt;p>El objetivo de este post es comparar los distintos software de VPNs mas utilizados viendo cual es mas rápido , para ello nos apoyaremos en test de velocidad utilizando iperf3 .&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
-La comparativa parte de los post de esta sección en los que montamos cada tipo de VPN .&lt;/p>
-&lt;/blockquote>
+La comparativa parte de los post de esta sección en los que montamos cada tipo de VPN .&lt;/p>&lt;/blockquote>
 &lt;h2 id="velocidad-sin-vpn">Velocidad sin VPN&lt;/h2>
 &lt;p>Voy a comenzar comparando las velocidades de estos 2 sistemas , utilizando iperf3 . Para ello he quitado el router cisco ya que lo tenia configurado con interfaces FastEthernet y lo he cambiado por un router Linux con interfaces GigabitEthernet .&lt;/p></description></item><item><title>VPN acceso remoto Wireguard</title><link>https://www.javiercd.es/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</guid><description>&lt;p>&lt;img src="../img/Pastedimage20240114150833.png" alt="">&lt;/p>
 &lt;p>En primer lugar configurare la maquina servidor1 como servidor VPN de acceso remoto y servidor2 como cliente VPN . Posteriormente configurare un cliente Windows y Android .&lt;/p>
@@ -13,8 +12,7 @@ La comparativa parte de los post de esta sección en los que montamos cada tipo 
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Vamos a generar los pares de claves que se utilizarán para cifrar la conexión. Necesitaremos una clave para el servidor y un par de claves adicionales por cada cliente.&lt;/p></description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p>&lt;img src="../img/Pastedimage20240114150833.png" alt="">&lt;/p>
 &lt;blockquote>
 &lt;p>[!NOTE]&lt;br>
-Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible que haga referencia a este durante este articulo .&lt;/p>
-&lt;/blockquote>
+Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible que haga referencia a este durante este articulo .&lt;/p>&lt;/blockquote>
 &lt;h2 id="generación-de-claves">Generación de claves&lt;/h2>
 &lt;p>Lo primero que haremos sera instalarnos tanto en ambas maquinas el paquete Wireguard :&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>root@servidor1:~# sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
