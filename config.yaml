@@ -26,11 +26,14 @@ languages:
   es:
     languageName: Español
     weight: 1
+  en:
+    languageName: English
+    weight: 2
 
 
 # Force a locale to be use, really useful to develop the application ! Should be commented in production, the "weight" should rocks.
 DefaultContentLanguage: es
-
+DefaultContentLanguageInSubdir: false
 # Allow raw html in markdown file
 markup:
   goldmark:
