@@ -31,7 +31,7 @@ debian@jenkins:~$ surge token
        password: 
 ```
 
-![](../img/Pasted_image_20240229092356.png)
+![](/ci_cd/taller2_jenkins/img/Pasted_image_20240229092356.png)
 
 
 ```bash
@@ -82,23 +82,23 @@ Authtoken saved to configuration file: /home/debian/.config/ngrok/ngrok.yml
 
 Indicamos en jenkins que vamos a utilizar un WebHook :
 
-![](../img/Pasted_image_20240306121635.png)
+![](/ci_cd/taller2_jenkins/img/Pasted_image_20240306121635.png)
 
 Lanzo un ejemplo de HTML correcto y otro con errores :
 
-![](../img/Pasted_image_20240306121613.png)
+![](/ci_cd/taller2_jenkins/img/Pasted_image_20240306121613.png)
 
 
 
-![](../img/Pasted_image_20240306121701.png)
+![](/ci_cd/taller2_jenkins/img/Pasted_image_20240306121701.png)
 
 Comprobamos que los cambios en el repositorio son recibidos en el WebHook :
 
-![](../img/Pasted_image_20240306121550.png)
+![](/ci_cd/taller2_jenkins/img/Pasted_image_20240306121550.png)
 
 En GitHub comprobamos que le esta mandando la petición al  WebHook :
 
-![](../img/Pasted_image_20240306121714.png)
+![](/ci_cd/taller2_jenkins/img/Pasted_image_20240306121714.png)
 
-<!-- ![](../img/Pasted_image_20240306121825.png) -->
+<!-- ![](/ci_cd/taller2_jenkins/img/Pasted_image_20240306121825.png) -->
 

@@ -42,7 +42,7 @@ Otras consideraciones:
 
 ```
 
-![](../img/Pasted_image_20240307100704.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307100704.png)
 
 
 2. Una captura de pantalla de tu cuenta de Docker Hub donde se vea la imagen subida de último build.
@@ -51,7 +51,7 @@ Otras consideraciones:
 
 ```
 
-![](../img/Pasted_image_20240307100721.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307100721.png)
 
 3. Introduce un fallo en el `Dockerfile` y muestra la salida del build donde se produce el error.
 
@@ -59,7 +59,7 @@ Otras consideraciones:
 
 ```
 
-![](../img/Pasted_image_20240307100737.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307100737.png)
 
 4. Entrega la URL del repositorio para ver el `Jenkinsfile`.
 
@@ -74,7 +74,7 @@ https://github.com/javierasping/django_tutorial_docker.git
 
 ```
 
-![](../img/Pasted_image_20240307100824.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307100824.png)
 
 
 ## [Ejercicio 2: Despliegue de la aplicación](https://fp.josedomingo.org/iaw/5_ic/practica.html#ejercicio-2-despliegue-de-la-aplicaci%C3%B3n)
@@ -95,13 +95,13 @@ Otras consideraciones:
 1. El contenido del fichero `Jenkinsfile`.
 2. Las credenciales que has guardado en Jenkins.
 
-![](../img/Pasted_image_20240307151636.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307151636.png)
 
 3. Demuestra al profesor como se realiza la IC/DC completo.
 
 Ejecución normal del pipeline :
 
-![](../img/Pasted_image_20240307151713.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307151713.png)
 
 La configuración de nginx y los contenedores ejecutandose
 
@@ -137,7 +137,7 @@ bdf947a4bccc   mariadb                           "docker-entrypoint.s…"   33 m
 ```
 La aplicación funcionando en el VPS :
 
-![](../img/Pasted_image_20240307191739.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307191739.png)
 
 La configuración de Ngrok y el Webhook
 
@@ -153,14 +153,14 @@ debian@jenkins:~$ ngrok http http://localhost:8082
 
 ```
 
-![](../img/Pasted_image_20240307195316.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307195316.png)
 
-![](../img/Pasted_image_20240307192546.png)
-![](../img/Pasted_image_20240307194954.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307192546.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307194954.png)
 
-![](../img/Pasted_image_20240307195210.png)
-![](../img/Pasted_image_20240307195252.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307195210.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307195252.png)
 
 Si provocamos el fallo :
 
-![](../img/Pasted_image_20240307195917.png)
+![](/ci_cd/practica_jenkins/img/Pasted_image_20240307195917.png)

@@ -65,14 +65,14 @@ pipeline {
 
 3. Una captura de pantalla donde se vea la configuración del disparador del pipeline.
 
-![](../img/Pasted_image_20240229084423.png)
+![](/ci_cd/taller1_jenkins/img/Pasted_image_20240229084423.png)
 
-![](../img/Pasted_image_20240229084437.png)
+![](/ci_cd/taller1_jenkins/img/Pasted_image_20240229084437.png)
 
 4. Una captura de un correo electrónico recibido sin ningún error, y otro con algún error en al ejecución del pipeline.
 
-![](../img/Pasted_image_20240229084555.png)
+![](/ci_cd/taller1_jenkins/img/Pasted_image_20240229084555.png)
 
-![](../img/Pasted_image_20240229085404.png)
+![](/ci_cd/taller1_jenkins/img/Pasted_image_20240229085404.png)
 
 

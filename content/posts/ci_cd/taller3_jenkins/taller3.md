@@ -118,7 +118,7 @@ Prueba a cambiar el código para que un test falle y comprueba como el pipeline 
 
 1. Una captura de pantalla donde se vea la salida de un build que se ha ejecutado de manera correcta.
 
-![](../img/Pasted_image_20240305231003.png)
+![](/ci_cd/taller3_jenkins/img/Pasted_image_20240305231003.png)
 
 2. Modifica el código de la aplicación para que se produzca un fallo en el código. **Recuerda que para hacer fallar un test, no hay que tocar el fichero `test.py`. Los test no se pasan porque al modificar el código de la aplicación se dejan de cumplir las condiciones indicadas en los test. Recuerda no elegir en el que hemos visto en este taller:mensaje “No polls are available”.**
 
@@ -137,4 +137,4 @@ Prueba a cambiar el código para que un test falle y comprueba como el pipeline 
 
 ```
 
-![](../img/Pasted_image_20240306091906.png)
+![](/ci_cd/taller3_jenkins/img/Pasted_image_20240306091906.png)
