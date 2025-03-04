@@ -159,4 +159,4 @@ javiercruces@docker:~$ docker run -d --name nextcloud \
 
 ```
 
-![](../img/Pasted_image_20240119110827.png)
+![](/docker/taller1/img/Pasted_image_20240119110827.png)

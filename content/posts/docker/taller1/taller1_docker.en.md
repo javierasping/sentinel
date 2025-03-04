@@ -1,162 +1,169 @@
 ---
-title: "Workshop 1: Storage and networks in Docker"
+title: "Workshop 1: Storage and Networks in Docker"
 date: 2024-03-14T10:00:00+00:00
-Description: Workshop 1 Storage and networks in Docker
-tags: [Docker,Kubernetes,Contenedores]
+description: "Workshop 1: Storage and Networks in Docker"
+tags: [Docker, Kubernetes, Contenedores]
 hero: images/docker/taller1.png
-
 ---
-## Workshop 1: Storage and networks in Docker
+
+## Workshop 1: Storage and Networks in Docker
 
 ### Storage
 
-Let's work with docker volumes:
+Let's work with Docker volumes:
 
-1. It creates a docker volume called "miweb."
+1. Create a Docker volume called "miweb":
 
-```bash
-javiercruces@docker:~$ docker volume create miweb
-miweb
-```
+    ```bash
+    docker volume create miweb
+    ```
 
-2. Create a container from the image 'php: 7.4-apache' where you mount in the directory '/ var / www / html' (which we know is the _ DocumentRoot _ of the server that offers us that image) the docker volume you created.
+2. Create a container from the image `php:7.4-apache`, mounting the Docker volume in `/var/www/html` (the _DocumentRoot_ of the server):
 
-```bash
-javiercruces@docker:~$ docker run -d --name my-apache-app -v miweb:/var/www/html -p 8080:80 php:7.4-apache
-```
+    ```bash
+    docker run -d --name my-apache-app -v miweb:/var/www/html -p 8080:80 php:7.4-apache
+    ```
 
-3. Use the 'docker cp' command to copy a 'index.html' file (where your name appears) in the '/ var / www / html' directory.
+3. Use the `docker cp` command to copy an `index.html` file (with your name) into `/var/www/html`:
 
-```bash
-javiercruces@docker:~$ echo "<h1>Javier Cruces</h1>" > index.html
-javiercruces@docker:~$ docker cp index.html my-apache-app:/var/www/html/
-Successfully copied 2.05kB to my-apache-app:/var/www/html/
-```
+    ```bash
+    echo "<h1>Javier Cruces</h1>" > index.html
+    docker cp index.html my-apache-app:/var/www/html/
+    ```
 
-4. Access the container from the browser to see the information offered by the 'index.html' file.
+4. Access the container from the browser to check the `index.html` file:
 
-```bash
-javiercruces@docker:~$ curl http://localhost:8080
-<h1>Javier Cruces</h1>
-```
+    ```bash
+    curl http://localhost:8080
+    ```
 
-5. Delete the container
+    Output:
+    ```html
+    <h1>Javier Cruces</h1>
+    ```
 
-```bash
-javiercruces@docker:~$ docker rm -f my-apache-app
-my-apache-app
-```
+5. Delete the container:
 
-6. Create a new container and mount the same volume as in the previous exercise.
+    ```bash
+    docker rm -f my-apache-app
+    ```
 
-```bash
-javiercruces@docker:~$ docker run -d --name Taller1 -v miweb:/var/www/html -p 8080:80 php:7.4-apache
-9edd4b2dd2499f923090ce6a246e44db136f162528a51f84ddb33659503bafd7
-```
+6. Create a new container and mount the same volume:
 
-7. Access the container from the browser to see the information offered by the 'index.html' file. Was that file still in place?
+    ```bash
+    docker run -d --name Taller1 -v miweb:/var/www/html -p 8080:80 php:7.4-apache
+    ```
 
-```bash
-javiercruces@docker:~$ curl http://localhost:8080
-<h1>Javier Cruces</h1>
-```
+7. Access the container again to verify the file is still there:
 
-Let's work with bind mount:
+    ```bash
+    curl http://localhost:8080
+    ```
 
-1. Create a directory in your host and inside create a 'index.html' file (where your name appears).
+    Output:
+    ```html
+    <h1>Javier Cruces</h1>
+    ```
 
-```bash
-javiercruces@docker:~$ mkdir taller1
-javiercruces@docker:~$ cp index.html taller1/
-```
+### Bind Mount
 
-2. It creates a container from the image 'php: 7.4-apache' where you mount in the directory '/ var / www / html' the directory you created by means of 'bind mount'.
+1. Create a directory on your host and copy `index.html` into it:
 
-```bash
-javiercruces@docker:~$ docker run -d --name Taller1 -v /home/javiercruces/taller1/:/var/www/html -p 8080:80 php:7.4-apache
-```
+    ```bash
+    mkdir taller1
+    cp index.html taller1/
+    ```
 
-3. Access the container from the browser to see the information offered by the 'index.html' file.
+2. Create a container from `php:7.4-apache`, mounting the directory via bind mount:
 
-```bash
-javiercruces@docker:~$ curl http://localhost:8080
-<h1>Javier Cruces</h1>
-```
+    ```bash
+    docker run -d --name Taller1 -v $(pwd)/taller1:/var/www/html -p 8080:80 php:7.4-apache
+    ```
 
-4. Modify the content of the 'index.html' file in your host and check that when refreshing the page offered by the container, the content has changed.
+3. Access the container from the browser to verify the file:
 
-```bash
-javiercruces@docker:~$ echo "<h1>Javier Cruces Doval</h1>" > taller1/index.html
-javiercruces@docker:~$ curl http://localhost:8080
-<h1>Javier Cruces Doval</h1>
+    ```bash
+    curl http://localhost:8080
+    ```
 
-```
+    Output:
+    ```html
+    <h1>Javier Cruces</h1>
+    ```
 
-5. Delete the container
+4. Modify the `index.html` file on your host and check if the content updates in the container:
 
-```bash
-javiercruces@docker:~$ docker rm -f Taller1
-Taller1
-```
+    ```bash
+    echo "<h1>Javier Cruces Doval</h1>" > taller1/index.html
+    curl http://localhost:8080
+    ```
 
-6. Create a new container and set up the same directory as in the previous exercise.
+    Output:
+    ```html
+    <h1>Javier Cruces Doval</h1>
+    ```
 
-```bash
-javiercruces@docker:~$ docker run -d --name Taller1 -v /home/javiercruces/taller1/:/var/www/html -p 8080:80 php:7.4-apache
-```
+5. Delete the container:
 
-7. Access the container from the browser to see the information offered by the 'index.html' file. Do you still see the same content?
+    ```bash
+    docker rm -f Taller1
+    ```
 
-```bash
-javiercruces@docker:~$ curl http://localhost:8080
-<h1>Javier Cruces Doval</h1>
-```
+6. Create a new container and mount the same directory:
+
+    ```bash
+    docker run -d --name Taller1 -v $(pwd)/taller1:/var/www/html -p 8080:80 php:7.4-apache
+    ```
+
+7. Verify the content again:
+
+    ```bash
+    curl http://localhost:8080
+    ```
+
+    Output:
+    ```html
+    <h1>Javier Cruces Doval</h1>
+    ```
 
 ### Networks
 
-### Nextcloud + mariadb deployment
+#### Nextcloud + MariaDB Deployment
 
-We are going to deploy the Nextcloud application with a database (* * NOTE: To keep you from error use the image 'mariadb: 10.5' * *). It can serve you the exercise we have done to deploy [WordPress] (https: / / fp.josedomingo.org / iaw / 4 _ docker / wordpress.html). The following steps are taken:
+We are going to deploy the Nextcloud application with a database (**NOTE: Use the image `mariadb:10.5` to avoid issues**). You can use the [WordPress deployment guide](https://fp.josedomingo.org/iaw/4_docker/wordpress.html) as reference.
 
-1. It creates a bridge-type network.
+1. Create a bridge-type network:
 
-```bash
-javiercruces@docker:~$ docker network create taller1          
-a1f8faf5a100ad01013bc147e7c2a9577a5a4376d7e33c7d961c5aaca93000b0
+    ```bash
+    docker network create taller1
+    ```
 
-```
+2. Create the database container connected to the network. Configure it to create a database and a user, and ensure data persistence using volumes:
 
-2. Create the database container connected to the network you created. The database must be configured to create a database and a user. The container must also use storage (volumes or bind mount) to save the information. You can follow the documentation of [mariadb] (https: / / hub.docker.com / _ / mariadb) or [PostgreSQL] (https: / / hub.docker.com / _ / postgres).
+    ```bash
+    docker run -d --name wp_db \
+        --network taller1 \
+        -v db_vol:/var/lib/mysql \
+        -e MYSQL_ROOT_PASSWORD=wordpress \
+        -e MYSQL_DATABASE=wordpress \
+        -e MYSQL_USER=wordpress \
+        -e MYSQL_PASSWORD=wordpress \
+        mariadb:10.5
+    ```
 
-```bash
-javiercruces@docker:~$ docker run -d --name wp_db \
-    --network taller1 \
-    -v db_vol:/var/lib/mysql \
-    -e MYSQL_ROOT_PASSWORD=wordpress \
-    -e MYSQL_DATABASE=wordpress \
-    -e MYSQL_USER=wordpress \
-    -e MYSQL_PASSWORD=wordpress \
-    mariadb:10.5
-```
+3. Create a Nextcloud container connected to the same network, using appropriate environment variables for database connection and persistence:
 
-3. Then, following the image documentation [Nextcloud] (https: / / hub.docker.com / _ / nextcloud), create a container connected to the same network, and indicate the appropriate variables to be properly configured and connected to the database. The container must also be persistent using storage.
+    ```bash
+    docker run -d --name nextcloud \
+        --network taller1 \
+        -e MYSQL_DATABASE=wordpress \
+        -e MYSQL_USER=wordpress \
+        -e MYSQL_PASSWORD=wordpress \
+        -e MYSQL_HOST=wp_db \
+        -p 8080:80 \
+        nextcloud:latest
+    ```
 
-```bash
-javiercruces@docker:~$ docker run -d --name nextcloud \
-    --network taller1 \
-    -e MYSQL_DATABASE=wordpress \
-    -e MYSQL_USER=wordpress \
-    -e MYSQL_PASSWORD=wordpress \
-    -e MYSQL_HOST=wp_db \
-    -p 8080:80 \
-    nextcloud:latest
+4. Access the application using a web browser at `http://localhost:8080`.
 
-```
-
-4. Access the application using a web browser.
-
-```bash
-
-```
-
-![](../img/Pasted_image_20240119110827.png)
+    ![](/docker/taller1/img/Pasted_image_20240119110827.png)

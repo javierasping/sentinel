@@ -49,7 +49,7 @@ javiercruces@docker:~/taller3$ docker run -d -p 8081:80 javiersaping/mi_servidor
 
 ```
 
-![](../img/Pasted_image_20240208085015.png)
+![](/docker/taller3/img/Pasted_image_20240208085015.png)
 
 
 4.Conéctate a Docker Hub y sube la imagen que acabas de crear.
@@ -154,5 +154,5 @@ e632b46bb8cf8aac8019effdf5ac69cc20d8b9e76b17342638bc4858c63aef32
 ```
 
 
-![](../img/Pasted_image_20240208085341.png)
+![](/docker/taller3/img/Pasted_image_20240208085341.png)
 

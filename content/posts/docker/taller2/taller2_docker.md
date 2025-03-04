@@ -82,7 +82,7 @@ taller2-db-1    mariadb:10.6   "docker-entrypoint.sh --transaction-isolation=REA
 
 ```
 
-![](../img/Pasted_image_20240202091554.png)
+![](/docker/taller2/img/Pasted_image_20240202091554.png)
 
 6. Comprueba el almacenamiento que has definido y que se ha creado una nueva red de tipo bridge.
 

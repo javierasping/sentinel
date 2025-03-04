@@ -17,7 +17,7 @@ Creating an image from a Dockerfile
 
 ```
 
-2.Create a Dockerfile file to create an image with a web server by serving the page. You can use a debian or ubuntu base image, or an image that already has a web service, as we have seen in Example 1: Image construction with a static page.
+2. Create a Dockerfile file to create an image with a web server by serving the page. You can use a debian or ubuntu base image, or an image that already has a web service, as we have seen in Example 1: Image construction with a static page.
 
 ```bash
 javiercruces@docker:~/taller3$ cat Dockerfile 
@@ -28,7 +28,7 @@ EXPOSE 80
 
 ```
 
-3. Run the docker command that creates the new image. The image should be called / my _ server _ web: v1.
+3. Run the docker command that creates the new image. The image should be called my_server_web:v1.
 
 ```bash
 javiercruces@docker:~/taller3$ docker build -t javiersaping/mi_servidor_web:v1 .
@@ -49,7 +49,7 @@ javiercruces@docker:~/taller3$ docker run -d -p 8081:80 javiersaping/mi_servidor
 
 ```
 
-![](../img/Pasted_image_20240208085015.png)
+![](/docker/taller3/img/Pasted_image_20240208085015.png)
 
 
 4. Connect to Docker Hub and upload the image you just created.
@@ -103,13 +103,13 @@ docker.io/javiersaping/mi_servidor_web:v1
 
 ```
 
-6.Let's make a modification of the website: make a modification to the index.html file.
+6. Let's make a modification of the website: make a modification to the index.html file.
 
 ```bash
 javiercruces@docker:~/taller3/public_html$ echo "<h1>Taller3 FJCD V2</h1>" > index.html
 ```
 
-7.Re-create a new image, in this case put a v2 tag. Get her up to Docker Hub.
+7. Re-create a new image, in this case put a v2 tag. Get her up to Docker Hub.
 
 ```bash
 javiercruces@docker:~/taller3$ docker build -t javiersaping/mi_servidor_web:v2 .
@@ -154,5 +154,5 @@ e632b46bb8cf8aac8019effdf5ac69cc20d8b9e76b17342638bc4858c63aef32
 ```
 
 
-![](../img/Pasted_image_20240208085341.png)
+![](/docker/taller3/img/Pasted_image_20240208085341.png)
 

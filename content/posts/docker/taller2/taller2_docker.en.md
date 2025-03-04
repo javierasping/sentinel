@@ -82,7 +82,7 @@ taller2-db-1    mariadb:10.6   "docker-entrypoint.sh --transaction-isolation=REA
 
 ```
 
-![](../img/Pasted_image_20240202091554.png)
+![](/docker/taller2/img/Pasted_image_20240202091554.png)
 
 6. Check the storage you have defined and that a new bridge-type network has been created.
 
