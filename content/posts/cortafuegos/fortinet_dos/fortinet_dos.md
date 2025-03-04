@@ -6,10 +6,6 @@ tags: [FIREWALL,LINUX,DEBIAN,FORTINET]
 hero: /images/cortafuegos/fortinet2.png
 ---
 
-
-
-
-
 Ahora vamos a emular la práctica de cortafuegos II, pero en GNS3. Para ello, he transformado al cliente 1 en Odin, además he añadido a Thor y Loki como máquinas virtuales en lugar de contenedores en la red LAN. También he creado una nueva red llamada DMZ, en la cual estará la máquina Hela.
 
 Dado que he transformado el escenario anterior en este nuevo, contamos con algunas reglas creadas anteriormente. Por lo tanto, eliminaré del enunciado aquellas que ya estén creadas, como la de hacer SSH a Odin desde el puerto 2222, pero con el servicio escuchando en el 22.
@@ -20,7 +16,7 @@ Ademas como no cuento con los servicios montados en el antiguo escenario en Opse
 
 A lo largo de esta practica te explicare que por como esta montado la topologia de la red , todos de la red LAN pueden comunicarse entre sin necesidad de pasar por el cortafuegos . Así que en algunos ejercicios omitiré la parte de hacer que Loki y Thor se comuniquen con Odin.  Ademas no voy  a montar el servidor DNS ni LDAP ya que las reglas de DNAT son bastante sencillas y a lo largo de la practica aparecen varios ejercicios de hacer DNAT entre las distintas redes . En lugar de esto voy a añadir VPN al final de la misma ya que lo veo mas interesante que repetir las mismas reglas cambiando el servicio .   
 
-![](../img/Pastedimage20240329110607.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329110607.png)
 
 ## Preparación del escenario 
 
@@ -28,7 +24,7 @@ Lo primero que haré sera crear una nueva red en el puerto 3 , que corresponde a
 
 Como veras en la imagen a continuación he seleccionado que el rol sea LAN , para que me permita tener un servidor DHCP en esa red . Como es una red en la que albergara los servicios no quiero que desde esta se pueda acceder a configurar el cortafuegos así que dejare la administración desactivada .
 
-![](../img/Pastedimage20240329160410.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329160410.png)
 
 Ahora iré accediendo a los nuevos clientes y les cambiare el nombre de maquina y configurándolas por DHCP .
 
@@ -96,15 +92,15 @@ debian@hela:~$ ip -4 a
 
 Ahora vamos a hacer unas reservas en el servidor DHCP , accederemos a Dashborad > Networks > DHCP , una vez aquí le daremos clic derecho sobre cada cliente de los 4 que tenemos en el escenario y le crearemos una reserva : 
 
-![](../img/Pastedimage20240329162616.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329162616.png)
 
 Nos saldrá un menú similar a este para enlazar la dirección MAC a la IP :
 
-![](../img/Pastedimage20240329162730.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329162730.png)
 
 Una vez hagamos esto con nuestro clientes nos indicara que tenemos la reserva hecha :
 
-![](../img/Pastedimage20240329162855.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329162855.png)
 
 
 ## Reglas del cortafuegos
@@ -113,7 +109,7 @@ Vamos a comenzar a crear las reglas , como dije anteriormente partimos del escen
 
 Te dejo una captura de como se quedaron las reglas , para que veas del estado en el que partimos  :
 
-![](../img/Pastedimage20240329163530.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329163530.png)
 
 Algunas de las siguiente reglas ya esta configurada del ejercicio anterior , como la siguiente regla --> *La máquina Odin tiene un servidor ssh escuchando por el puerto 22, pero al acceder desde el exterior habrá que conectar al puerto 2222*
 
@@ -142,11 +138,11 @@ A continuación veras que hay algunas reglas que he eliminado o modificado , ya 
 
 Esta regla no la podemos realizar ya que al tener un switch de por medio interconectando los dispositivos , el trafico no pasara por el cortafuegos por lo que no podremos aplicar reglas en el cortafuego para impedir el trafico local . 
 
-![](../img/Pastedimage20240329170454.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329170454.png)
 
 Veras que aunque cree la regla , en el cortafuegos esta no se inmutara :
 
-![](../img/Pastedimage20240329170554.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329170554.png)
 
 Ves que por ejemplo si me conecto desde loki o desde thor puedo llegar a odin :
 
@@ -169,14 +165,14 @@ osboxes@odin:~$
 
 Pero no llego por la regla que he creado si no por la propia topologia de la red , la regla no tiene hits :
 
-![](../img/Pastedimage20240329170725.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329170725.png)
 
 Todo el trafico se encarga de redirigirlo el swicht .
 ### A la máquina Odin se le puede hacer ping desde la DMZ, pero desde la LAN se le debe rechazar la conexión (REJECT) y desde el exterior se rechazará de manera silenciosa. 
 
 Para permitir que desde la red DMZ podamos hacer ping hacia Odin crearemos la siguiente regla :
 
-![](../img/Pastedimage20240329171345.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329171345.png)
 
 Vamos a comprobar que desde la DMZ podemos hacer el ping a Odin :
 
@@ -192,13 +188,13 @@ rtt min/avg/max/mdev = 2.379/2.379/2.379/0.000 ms
 
 Como vemos la regla esta funcionando , así que vamos a comprobar los hits :
 
-![](../img/Pastedimage20240329171520.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329171520.png)
 
 Por el mismo motivo que en el ejercicio anterior , desde la red LAN no podemos limitar el ping hacia Odin ya que no pasa por el cortafuegos si no por el switch .
 
 Algo parecido nos pasara desde la WAN , al ser un ping dirigido a la IP de la interfaz este se desactiva desde la configuración de la misma , siempre se rechaza de manera silenciosa pero no da opción a elegirlo  :
 
-![](../img/Pastedimage20240329172526.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329172526.png)
 
 Una vez eliminado 
 
@@ -218,11 +214,11 @@ Para que pueda hacer ping hacia la  DMZ y a la WAN vamos a crear dos reglas :
 
 La regla para la WAN :
 
-![](../img/Pastedimage20240329172816.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329172816.png)
 
 La regla para la DMZ :
 
-![](../img/Pastedimage20240329172903.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329172903.png)
 
 ```bash
 # LAN --> WAN
@@ -255,12 +251,12 @@ rtt min/avg/max/mdev = 0.503/0.503/0.503/0.000 ms
 
 Vamos a comprobar los hits de las dos reglas que acabamos de crear :
 
-![](../img/Pastedimage20240329173231.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329173231.png)
 ### Desde la máquina Hela se puede hacer ping y conexión ssh a las máquinas de la LAN. 
 
 Para lograr esto creare la siguiente regla . Podríamos separarla en 2 reglas independientes para tener los contadores por separado , pero en este caso no es importante distinguir el trafico .
 
-![](../img/Pastedimage20240329173630.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329173630.png)
 
 Vamos a comprobar la regla , haciendo un ping a las distintas maquinas de la red LAN , ya que anteriormente había una regla para permitir todos los pings hacia Odin :
 
@@ -311,13 +307,13 @@ thor.javiercd.gonzalonazareno.org
 
 La regla funciona correctamente , vamos a comprobar que ha subido los hits :
 
-![](../img/Pastedimage20240329174824.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329174824.png)
 
 ### Desde cualquier máquina de la LAN se puede conectar por ssh a la máquina Hela. 
 
  Para ello vamos a crear la siguiente regla :
 
-![](../img/Pastedimage20240329175356.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329175356.png)
 
 Ahora vamos a comprobar la regla que acabamos de crear :
 
@@ -337,13 +333,13 @@ hela.javiercd.gonzalonazareno.org
 
 Vamos a comprobar que los hits de la regla han subido :
 
-![](../img/Pastedimage20240329175844.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329175844.png)
 
 ### Configura la máquina Odin para que las máquinas de LAN y DMZ puedan acceder al exterior. 
 
 El SNAT en este dispositivo podemos elegir activarlo por cada regla y no en general . Si te has fijado a lo largo de la practica en todas las reglas que implica dar un salto de interfaz he marcado la casilla NAT :
 
-![](../img/Pastedimage20240329180159.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329180159.png)
 
 Por lo que este apartado se va a ir realizando a lo largo de la practica conforme creemos las reglas . 
 ### Las máquinas de la LAN pueden hacer ping al exterior y navegar. 
@@ -355,11 +351,11 @@ Vamos a tener que crear 3 reglas :
 
 De estas tres reglas las dos primeras están creadas con anterioridad :
 
-![](../img/Pastedimage20240329184029.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184029.png)
 
 Por lo que solo nos queda añadir la regla del ping , que seria la siguiente :
 
-![](../img/Pastedimage20240329184222.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184222.png)
 
 Como tengo una versión de prueba puedo tener como máximo 10 entradas , así que voy a eliminar la que solo deja hacer ping al exterior a Odin .
 
@@ -429,13 +425,13 @@ content-length: 26744
 
 Así quedarían nuestras tres reglas , veremos que tenemos hits en las mismas  :
 
-![](../img/Pastedimage20240329184410.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184410.png)
 
 ### La máquina Hela puede navegar. Instala un servidor web, un servidor ftp y un servidor de correos si no los tienes aún. 
 
 Para realizar esto es necesario tener permitido el DNS y la navegación . Para ello he creado la siguiente regla :
 
-![](../img/Pastedimage20240329184830.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184830.png)
 
 La he creado en una sola regla para ahorrar en el numero de las mismas , he borrado las que permitía el ping desde DMZ a LAN de ejercicios anteriores . 
 
@@ -449,23 +445,23 @@ Para hacer el DNAT deberemos de crear 2 IPs virtuales , como hicimos en cortafue
 
 Una para cada servicio que queramos hacer un DNAT . Para el servidor web : 
 
-![](../img/Pastedimage20240329190416.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329190416.png)
 
 Y para el servidor FTP :
 
-![](../img/Pastedimage20240329190509.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329190509.png)
 
 Ahora vamos a crear la propia regla de DNAT para el servidor web , en la cual como destino indicamos la IP virtual que acabamos de crear :
 
-![](../img/Pastedimage20240329191130.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329191130.png)
 
 Veremos que si accedemos a la IP del cortafuegos de la WAN accederemos al apache de Hela :
 
-![](../img/Pastedimage20240329191232.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329191232.png)
 
 También crearemos la regla DNAT para el servidor FTP :
 
-![](../img/Pastedimage20240329191852.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329191852.png)
 
 Vamos a comprobar el acceso al servidor ftp :
 
@@ -483,7 +479,7 @@ ftp>
 
 Si comprobamos los hits de las reglas veremos que en ambas ha subido :
 
-![](../img/Pastedimage20240329192338.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329192338.png)
 
 
 ### El servidor web y el servidor ftp deben ser accesibles desde la LAN y desde el exterior. 
@@ -492,21 +488,21 @@ Para realizar este ejercicio deberemos de volver a generar las 2 IPs virtuales p
 
 Para el DNAT del servidor web :
 
-![](../img/Pastedimage20240329192709.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329192709.png)
 
 Repetiremos lo mismo para el servicio FTP , cambiando el servicio :
 
-![](../img/Pastedimage20240329192818.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329192818.png)
 
 Ahora crearemos las 2 reglas de DNAT para permitir el acceso desde la LAN .
 
 Para el servidor web :
 
-![](../img/Pastedimage20240329193041.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193041.png)
 
 Para el servidor FTP:
 
-![](../img/Pastedimage20240329193132.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193132.png)
 
 Vamos a comprobar que podemos acceder a ambos servicios :
 
@@ -534,17 +530,17 @@ Using binary mode to transfer files.
 
 Vamos a comprobar que han subido los hits en las reglas :
 
-![](../img/Pastedimage20240329193324.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193324.png)
 
 ### El servidor de correos sólo debe ser accesible desde la LAN. 
 
 Volvemos a repetir los mismos pasos , le crearemos una IP virtual para poder hacer la regla de DNAT :
 
-![](../img/Pastedimage20240329193427.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193427.png)
 
 Ahora vamos a crear la regla de DNAT :
 
-![](../img/Pastedimage20240329193724.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193724.png)
 
 Y comprobaremos que desde un PC de la LAN haciendo un telnet llegamos al servidor de correos :
 
@@ -561,17 +557,17 @@ Connection closed by foreign host.
 
 Veremos que el hit de la regla ha subido :
 
-![](../img/Pastedimage20240329193822.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193822.png)
 
 ### En la máquina Loki instala un servidor Postgres si no lo tiene aún. A este servidor se puede acceder desde la DMZ, pero no desde el exterior.
 
 Volveremos a repetir el proceso de crear una nueva IP virtual para este servicio . Ademas en este caso he tenido que crear el servicio ya que no existía . 
 
-![](../img/Pastedimage20240329195211.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329195211.png)
 
 Vamos a crear la regla de DNAT :
 
-![](../img/Pastedimage20240329200331.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329200331.png)
 
 Vamos a comprobar que tenemos acceso al servidor pgsql desde la red DMZ :
 
@@ -587,15 +583,15 @@ postgres=# \q
 
 Comprobaremos que la regla tiene hits :
 
-![](../img/Pastedimage20240329200721.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329200721.png)
 
 ### Evita ataques DoS por ICMP Flood, limitando a 4 el número de peticiones por segundo desde una misma IP.
 
 Dentro del apartado de políticas y objetos , encontramos un apartado para crear políticas para DoS . En mi caso he creado una con los valores recomendados que da el fabricante . Y he cambiado el limite de ICMP Flood a 4 paquetes por segundo . 
 
-![](../img/Pastedimage20240329203201.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329203201.png)
 
-![](../img/Pastedimage20240329203221.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329203221.png)
 
 Vamos a comprobar que nos bloquea el trafico si excedemos ese limite . Con este comando estamos enviando 3 paquetes por segundo que es inferior al limite establecido asi que no cortara ningún paquete :
 
@@ -617,7 +613,7 @@ round-trip min/avg/max = 4.6/5.5/6.5 ms
 
 El cortafuegos ha registrado como una anomalía el trafico que ha tirado :
 
-![](../img/Pastedimage20240329224119.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329224119.png)
 
 
 ### Evita ataques DoS por SYN Flood.
@@ -656,23 +652,23 @@ FTG (Block_xmas) #  end
 
 Una vez configurado nos aparecera la regla que hemos creado en IPs signatures :
 
-![](../img/Pastedimage20240330185917.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330185917.png)
 
 Ahora vamos a crear una regla IPS para asociarla con esta politica de firmas :
 
-![](../img/Pastedimage20240330190210.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330190210.png)
 
 Añadiremos en IPS signatures and filters , el nuevo filtro que hemos creado anteriormente :
 
-![](../img/Pastedimage20240330190138.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330190138.png)
 
 A continuación en las reglas de DNAT donde queramos controlar que no sepan que puertos tenemos abiertos , asignaremos la nueva política IPS :
 
-![](../img/Pastedimage20240330190438.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330190438.png)
 
 En mi caso vamos a probarlo para la regla DNAT de ssh :
 
-![](../img/Pastedimage20240330190507.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330190507.png)
 
 Si lanzo el NMAP desde mi host que esta en la red WAN , vemos que el puerto 2222 que es el que esta regla tiene abierto no lo detecta :
 
@@ -690,9 +686,9 @@ Nmap done: 1 IP address (1 host up) scanned in 21.28 seconds
 
 Y el propio cortafuegos nos avisara de que ha habido un escaneo de puertos que ha bloqueado , para ver esto dirígete a Log & Report > Intrusion prevention :
 
-![](../img/Pastedimage20240330191024.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330191024.png)
 
 Podemos seleccionarlo para ver mas detalles del mismo :
 
-![](../img/Pastedimage20240330191131.png)
-![](../img/Pastedimage20240330191146.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330191131.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330191146.png)

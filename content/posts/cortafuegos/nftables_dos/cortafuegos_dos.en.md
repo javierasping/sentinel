@@ -6,9 +6,6 @@ tags: [FIREWALL,LINUX,DEBIAN,NFTABLES]
 hero: /images/cortafuegos/nftables2.png
 ---
 
-
-
-
 On the stage created in the service module with the Odin (Router), Hela (DMZ), Loki and Thor (LAN) machines and using nftables, it sets up a perimeter firewall on the Odin machine so that the stage continues to function completely taking into account the following points:
 
  • The creation of different chains for each traffic flow (from LAN to the outside, from LAN to DMZ, etc.) will be valued.

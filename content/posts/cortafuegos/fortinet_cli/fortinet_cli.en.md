@@ -6,12 +6,9 @@ tags: [FIREWALL,FORTINET]
 hero: /images/cortafuegos/fortinet_cli.png
 ---
 
-
-
-Equivalence from GUI to CLI
+## Equivalence from GUI to CLI
 
 Initially, I started the practice using the command line (CLI), however, I found it more comfortable to do it from the graphic interface. Therefore, I decided to establish an equivalence between the different actions I have carried out during practice and to compare them with their counterpart in the terminal.
-
 
 > [NOTE]
 > In this post I do a small summary of the equivalencies between the GUI and the CLI of Fortinet that I have used in the 2 Fortinet firewall posts.
@@ -121,7 +118,7 @@ FTG # get system interface physical port4
 
 This is the basic thing we need to start setting up the interfaces. I leave you a [link] (https: / / docs.fortinet.com / document / fortigate / 7.0.0 / cli-reference / 10620 / config-system-interface) to the official documentation where it explains all the details.
 
-## # Policies
+### Policies
 
 The next thing we have done in practice is to create rules from the CLI, so I will start by listing the existing rules, remember that in the test version we have a limit of 10 simultaneous rules so I have removed some rules during the performance of it.
 
@@ -205,9 +202,9 @@ FTG (12) # next
 FTG (policy) # end
 ```
 
-There are many more options that I ignore that have not been necessary to use in practice, I leave you a [link] (https: / / docs.fortinet.com / document / fortigate / 7.0.0 / cli-reference / 323620 / config-firewall-policy) to the official documentation where details all the different options.
+There are many more options that I ignore that have not been necessary to use in practice, I leave you a [link](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/323620/config-firewall-policy) to the official documentation where details all the different options.
 
-Services
+### Services
 
 Services are objects that store a number or set of ports that you will later use when creating rules. Although these devices come with the most common manufacturing services, it is often necessary that we create a new one according to our needs.
 
@@ -269,7 +266,7 @@ FTG (custom) # end
 
 I leave you a [link] (https: / / docs.fortinet.com / document / fortigate / 7.0.0 / ngfw-deployment / 546227 / creating-service-objects) to the official documentation concerning the services where you explain in detail all the options of the services.
 
-Virtual PIs
+### Virtual PIs
 
 The VIPs are used to map external IP addresses to internal IP addresses. This is also called DNAT, where the destination of a package is being sent to a different address.
 

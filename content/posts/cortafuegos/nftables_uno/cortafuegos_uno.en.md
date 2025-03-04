@@ -6,16 +6,12 @@ tags: [FIREWALL,LINUX,DEBIAN,NFTABLES]
 hero: /images/cortafuegos/nftables1.png
 ---
 
-
-
 In this post on a Debian machine scenario, we will apply rules with Nfables to match the traffic that goes into and out of our network, trying to imitate a scenario.
-
-
 
 > [NOTE]
 > To deploy the stage to perform these exercises you will need to deploy the .yaml file you will find in the link to the next paragraph. This will be in charge of deploying 2 machines one that will make firewall and one that will simulate a client that will be connected to the first machine to simulate a local network.
 
-With NFTABLES it does the exercise of the https: / / fp.josedomingo.org / seguridad / u03 / perimetral _ iptables.html by documenting the operating tests performed.
+With NFTABLES it does the exercise of the https://fp.josedomingo.org/seguridad/u03/perimetral_iptables.html by documenting the operating tests performed.
 
 ### Stage preparation
 
@@ -87,7 +83,7 @@ javiercruces@router-fw:~$ sudo nft add rule inet filter input iif ens3 tcp dport
 javiercruces@router-fw:~$ sudo nft add rule inet filter output oif ens3 tcp sport 22 ct state established counter accept
 ```
 
-## # Default policy DROP
+### Default policy DROP
 
 Now let's put the default DROP policy:
 
@@ -251,7 +247,7 @@ PING 172.22.201.120 (172.22.201.120) 56(84) bytes of data.
 rtt min/avg/max/mdev = 85.403/85.403/85.403/0.000 ms
 ```
 
-## # Allow to do ping from the LAN
+### Allow to do ping from the LAN
 
 Let's let you do ping from the LAN:
 
@@ -452,7 +448,7 @@ Content-Type: text/html
 
 From a browser:
 
-![](../img/Pastedimage20240228112558.png)
+![](/cortafuegos/nftables_uno/img/Pastedimage20240228112558.png)
 
 Finally let's check that the rules involved have hits and I'll leave you the full list to see the rules up to this point:
 
@@ -780,7 +776,7 @@ iifname "ens4" oifname "ens3" ip saddr 192.168.100.0/24 tcp sport 2222 ct state 
 iifname "ens3" tcp dport 2222 counter packets 5 bytes 300 dnat to 192.168.100.10
 ```
 
-## # Modifies the above rule, so that when we access from the outside by ssh we have to connect to port 2222, although the ssh server is configured to access by port 22.
+### Modifies the above rule, so that when we access from the outside by ssh we have to connect to port 2222, although the ssh server is configured to access by port 22.
 
 For this we will remove the 3 above rules and add the following:
 

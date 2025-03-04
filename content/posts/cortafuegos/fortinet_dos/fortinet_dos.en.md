@@ -6,10 +6,6 @@ tags: [FIREWALL,LINUX,DEBIAN,FORTINET]
 hero: /images/cortafuegos/fortinet2.png
 ---
 
-
-
-
-
 Now let's emulate firewall practice II, but on GNS3. To this end, I have transformed client 1 into Odin, and added Thor and Loki as virtual machines instead of containers on the LAN network. I have also created a new network called DMZ, in which will be the Hela machine.
 
 Since I have transformed the previous scenario into this new one, we have some rules created earlier. Therefore, I will remove from the statement those that are already created, such as making SSH to Odin from port 2222, but with the service listening in the 22.
@@ -20,7 +16,7 @@ In addition to not counting on the services mounted on the old stage in Opsentac
 
 Throughout this practice I will explain to you that by how the topology of the network is mounted, all of the LAN network can communicate with each other without the need to pass through the firewall. So in some exercises I'll skip the part about making Loki and Thor communicate with Odin. In addition I will not mount the DNS or LDAP server as the rules of DNAT are quite simple and along the practice several exercises of doing DNAT between the different networks appear. Instead I will add VPN at the end of it as I see it more interesting than repeating the same rules by changing the service.
 
-![](../img/Pastedimage20240329110607.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329110607.png)
 
 ### Stage preparation
 
@@ -28,7 +24,7 @@ The first thing I will do is create a new network in port 3, which corresponds t
 
 As you will see in the image below I have selected the role to be LAN, to allow me to have a DHCP server on that network. As it is a network in which the services are housed, I don't want you to be able to access the firewall from this one, so I'll leave the administration off.
 
-![](../img/Pastedimage20240329160410.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329160410.png)
 
 Now I'll go access the new customers and change their machine name and set them up by DHCP.
 
@@ -96,15 +92,15 @@ debian@hela:~$ ip -4 a
 
 Now we will make a reservation on the DHCP server, we will access Dashborad > Networks > DHCP, once here we will right click on each client of the 4 we have on the stage and create a reservation:
 
-![](../img/Pastedimage20240329162616.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329162616.png)
 
 We will have a similar menu to this to link the MAC address to the IP:
 
-![](../img/Pastedimage20240329162730.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329162730.png)
 
 Once we do this with our customers will tell us that we have the reservation made:
 
-![](../img/Pastedimage20240329162855.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329162855.png)
 
 
 ### Firewall rules
@@ -113,7 +109,7 @@ We're going to start creating the rules, as I said earlier we started from the p
 
 I'll leave you a capture of how the rules stayed, so you can see the state we're going to:
 
-![](../img/Pastedimage20240329163530.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329163530.png)
 
 Some of the following rules are already set from the previous exercise, such as the following rule -- > * The Odin machine has a ssh server listening to port 22, but when you access from the outside you will have to connect to port 2222 *
 
@@ -142,11 +138,11 @@ Next you will see that there are some rules that I have removed or modified, as 
 
 This rule cannot be realized because by having a switch by interconnecting the devices, the traffic does not pass through the firewall so we cannot apply rules in the firewall to prevent local traffic.
 
-![](../img/Pastedimage20240329170454.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329170454.png)
 
 You see, even if he believes the rule, in the firewall, this one will not be immutated:
 
-![](../img/Pastedimage20240329170554.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329170554.png)
 
 You see that for example if I connect from loki or thor I can get to odin:
 
@@ -169,14 +165,14 @@ osboxes@odin:~$
 
 But I don't get it by the rule I've created if not by the topology of the network itself, the rule has no hits:
 
-![](../img/Pastedimage20240329170725.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329170725.png)
 
 The whole traffic is in charge of redirecting the swicht.
 ### The Odin machine can be ping from the DMZ, but from the LAN the connection (REJECT) must be rejected and from the outside will be rejected silently.
 
 To allow the DMZ network to do ping to Odin we will create the following rule:
 
-![](../img/Pastedimage20240329171345.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329171345.png)
 
 Let's check that from the DMZ we can do the ping to Odin:
 
@@ -192,13 +188,13 @@ rtt min/avg/max/mdev = 2.379/2.379/2.379/0.000 ms
 
 As we see the rule is working, so let's check the hits:
 
-![](../img/Pastedimage20240329171520.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329171520.png)
 
 For the same reason as in the previous exercise, from the LAN network we cannot limit the ping to Odin as it does not pass through the firewall but through the switch.
 
 Something similar happened to us from the WAN, as it is a ping directed to the IP of the interface this is disabled from the configuration of the interface, it is always rejected silently but does not give choice to choose it:
 
-![](../img/Pastedimage20240329172526.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329172526.png)
 
 Once removed
 
@@ -218,11 +214,11 @@ So that I can do ping to the DMZ and the WAN we'll create two rules:
 
 The rule for the WAN:
 
-![](../img/Pastedimage20240329172816.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329172816.png)
 
 The rule for DMZ:
 
-![](../img/Pastedimage20240329172903.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329172903.png)
 
 ```bash
 #LAN --> WAN
@@ -255,12 +251,12 @@ rtt min/avg/max/mdev = 0.503/0.503/0.503/0.000 ms
 
 Let's check the hits of the two rules we just created:
 
-![](../img/Pastedimage20240329173231.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329173231.png)
 ### From the Hela machine you can make ping and ssh connection to LAN machines.
 
 To achieve this I will create the following rule. We could separate it into 2 separate rules to have the counters separately, but in this case it is not important to distinguish traffic.
 
-![](../img/Pastedimage20240329173630.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329173630.png)
 
 We will check the rule, doing a ping to the different machines of the LAN network, since previously there was a rule to allow all pings to Odin:
 
@@ -311,13 +307,13 @@ thor.javiercd.gonzalonazareno.org
 
 The rule works properly, let's check that you've uploaded the hits:
 
-![](../img/Pastedimage20240329174824.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329174824.png)
 
 ### From any LAN machine you can connect ssh to the hela machine.
 
  For this we will create the following rule:
 
-![](../img/Pastedimage20240329175356.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329175356.png)
 
 Now let's check the rule we just created:
 
@@ -337,13 +333,13 @@ hela.javiercd.gonzalonazareno.org
 
 Let's check that the rule hits have gone up:
 
-![](../img/Pastedimage20240329175844.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329175844.png)
 
 ### Configure the Odin machine so that LAN and DMZ machines can access the outside.
 
 The SNAT on this device can choose to activate it for each rule and not in general. If you have noticed throughout the practice all the rules that involve taking an interface jump I have marked the NAT box:
 
-![](../img/Pastedimage20240329180159.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329180159.png)
 
 So this section is going to be done throughout practice as we create the rules.
 ### LAN machines can do ping outside and navigate.
@@ -355,11 +351,11 @@ We're gonna have to create 3 rules:
 
 Of these three rules the first two are previously created:
 
-![](../img/Pastedimage20240329184029.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184029.png)
 
 So we only have to add the ping rule, which would be the following:
 
-![](../img/Pastedimage20240329184222.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184222.png)
 
 Since I have a trial version I can have at most 10 entries, so I'm going to remove the one that just lets Odin go outside.
 
@@ -429,13 +425,13 @@ content-length: 26744
 
 So would our three rules, we'll see that we have hits on them:
 
-![](../img/Pastedimage20240329184410.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184410.png)
 
 ### The hela machine can sail. Install a web server, a ftp server and a post server if you don't have them yet.
 
 To do this it is necessary to have allowed DNS and navigation. To this end, I have created the following rule:
 
-![](../img/Pastedimage20240329184830.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184830.png)
 
 I have created it in a single rule to save on the number of them, I have deleted those that allowed ping from DMZ to LAN from previous exercises.
 
@@ -449,23 +445,23 @@ To do the DNAT we must create 2 virtual PIs, as we did in firewalls I.
 
 One for every service we want to do a DNAT. For the web server:
 
-![](../img/Pastedimage20240329190416.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329190416.png)
 
 And for the FTP server:
 
-![](../img/Pastedimage20240329190509.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329190509.png)
 
 Now we are going to create the very DNAT rule for the web server, in which as a destination we indicate the virtual IP that we just created:
 
-![](../img/Pastedimage20240329191130.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329191130.png)
 
 We will see that if we access the WAN firewall IP we will access the Hela Apache:
 
-![](../img/Pastedimage20240329191232.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329191232.png)
 
 We will also create the DNAT rule for the FTP server:
 
-![](../img/Pastedimage20240329191852.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329191852.png)
 
 Let's check access to the ftp server:
 
@@ -483,7 +479,7 @@ ftp>
 
 If we check the rules' hits, we'll see that both of them have gone up:
 
-![](../img/Pastedimage20240329192338.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329192338.png)
 
 
 ### The web server and the ftp server must be accessible from the LAN and from the outside.
@@ -492,21 +488,21 @@ To perform this exercise we will have to regenerate the 2 virtual IPs but now we
 
 For the DNAT of the web server:
 
-![](../img/Pastedimage20240329192709.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329192709.png)
 
 We will repeat the same for the FTP service, changing the service:
 
-![](../img/Pastedimage20240329192818.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329192818.png)
 
 We will now create the two DNAT rules to allow access from the LAN.
 
 For the web server:
 
-![](../img/Pastedimage20240329193041.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193041.png)
 
 For the FTP server:
 
-![](../img/Pastedimage20240329193132.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193132.png)
 
 Let's check that we can access both services:
 
@@ -534,17 +530,17 @@ Using binary mode to transfer files.
 
 Let's check that the hits are up in the rules:
 
-![](../img/Pastedimage20240329193324.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193324.png)
 
 ### The post server should only be accessible from the LAN.
 
 We repeat the same steps, we will create a virtual IP to make the DNAT rule:
 
-![](../img/Pastedimage20240329193427.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193427.png)
 
 Now let's create the DNAT rule:
 
-![](../img/Pastedimage20240329193724.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193724.png)
 
 And we'll check that from a LAN PC doing a telnet we get to the post server:
 
@@ -561,17 +557,17 @@ Connection closed by foreign host.
 
 We'll see that the hit of the rule has gone up:
 
-![](../img/Pastedimage20240329193822.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193822.png)
 
 ### In the Loki machine you install a Postgres server if you don't have it yet. This server can be accessed from the DMZ, but not from the outside.
 
 We will repeat the process of creating a new virtual IP for this service. In addition in this case I have had to create the service as it did not exist.
 
-![](../img/Pastedimage20240329195211.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329195211.png)
 
 Let's create the DNAT rule:
 
-![](../img/Pastedimage20240329200331.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329200331.png)
 
 Let's check that we have access to the pgsql server from the DMZ network:
 
@@ -587,15 +583,15 @@ postgres=# \q
 
 We'll check that the rule has hits:
 
-![](../img/Pastedimage20240329200721.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329200721.png)
 
 ## # Avoid DoS attacks by ICMP Flood, limiting the number of requests per second to 4 from the same IP.
 
 Within the policy and object section, we find a section to create policies for DoS. In my case I have created one with the recommended values given by the manufacturer. And I've changed the ICMP Flood limit to 4 packages per second.
 
-![](../img/Pastedimage20240329203201.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329203201.png)
 
-![](../img/Pastedimage20240329203221.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329203221.png)
 
 Let's check that traffic blocks us if we get over that limit. With this command we are sending 3 packages per second that is less than the established limit so do not cut any packages:
 
@@ -617,7 +613,7 @@ round-trip min/avg/max = 4.6/5.5/6.5 ms
 
 The firewall has recorded as an anomaly the traffic that has dropped:
 
-![](../img/Pastedimage20240329224119.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240329224119.png)
 
 
 Avoid DoS attacks by SYN Flood.
@@ -656,23 +652,23 @@ FTG (Block_xmas) #  end
 
 Once configured, we will see the rule that we have created in PIs signs:
 
-![](../img/Pastedimage20240330185917.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330185917.png)
 
 Now we're going to create an IPS rule to associate it with this signature policy:
 
-![](../img/Pastedimage20240330190210.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330190210.png)
 
 We will add in IPS signs and filters, the new filter we have created before:
 
-![](../img/Pastedimage20240330190138.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330190138.png)
 
 Next in the DNAT rules where we want to control that do not know which ports we have open, we will assign the new IPS policy:
 
-![](../img/Pastedimage20240330190438.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330190438.png)
 
 In my case we're going to try it for the DNAT rule of ssh:
 
-![](../img/Pastedimage20240330190507.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330190507.png)
 
 If I launch the NMAP from my host that is on the WAN network, we see that the 2222 port that this rule has open does not detect it:
 
@@ -690,9 +686,10 @@ Nmap done: 1 IP address (1 host up) scanned in 21.28 seconds
 
 And the firewall itself will warn us that there has been a port scan that has blocked, to see this go to Log & Report > Intrusion prevention:
 
-![](../img/Pastedimage20240330191024.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330191024.png)
 
 We can select it for more details:
 
-![](../img/Pastedimage20240330191131.png)
-![](../img/Pastedimage20240330191146.png)
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330191131.png)
+
+![](/cortafuegos/fortinet_dos/img/Pastedimage20240330191146.png)
