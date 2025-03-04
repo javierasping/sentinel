@@ -162,13 +162,13 @@ Cambiamos usuario y grupos:
 javiercruces@IWEB:/var/www$ sudo chown -R www-data:www-data wordpress/
 ```
 
-<!-- Y ponemos los permisos correctos a WordPress:
+Y ponemos los permisos correctos a WordPress:
 
 ```
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
 
-``` -->
+```
 
 Una vez hemos configurado todo esto, ahora ya podemos acceder con nuestro navegador a nuestro dominio para iniciar la instalación de **WordPress.**
 
@@ -178,32 +178,32 @@ Accedemos a la url que hemos puesto en el ServerName de nuestro sitio virtual y 
 
 Lo primero sera seleccionar el idioma :
 
-![Untitled](../img/Untitled.png)
+![Untitled](/iaw/wordpress/img/Untitled.png)
 
 A continuación nos dará una breve explicación de que es el CMS WordPress :
 
-![Untitled](../img/Untitled%201.png)
+![Untitled](/iaw/wordpress/img/Untitled%201.png)
 
 Ahora deberás de introducir los datos referente a los usuarios y el nombre de la base de datos que has creado con anterioridad 
 
-![Untitled](../img/Untitled%202.png)
+![Untitled](/iaw/wordpress/img/Untitled%202.png)
 
 Una vez introducidos los datos correctos continuaremos con la instalación :
 
-![Untitled](../img/Untitled%203.png)
+![Untitled](/iaw/wordpress/img/Untitled%203.png)
 
 Ahora deberás de introducir los datos para tu wordpress , como el nombre del sitio asi como la creación de un usuario administrador para que posteriormente puedas acceder a wp-admin:
 
-![Untitled](../img/Untitled%204.png)
+![Untitled](/iaw/wordpress/img/Untitled%204.png)
 
 Listo !! Ya has instalado wordpress
 
-![Untitled](../img/Untitled%205.png)
+![Untitled](/iaw/wordpress/img/Untitled%205.png)
 
 Ahora para acceder al panel de administración de wordpress deberás de introducir la siguiente url en tu navegador e inicia sesión con el usuario que has creado:
 
-![Untitled](../img/Untitled%206.png)
+![Untitled](/iaw/wordpress/img/Untitled%206.png)
 
 Listo !! Asi se ve el panel de administración de wordpress:
 
-![Untitled](../img/Untitled%207.png)
+![Untitled](/iaw/wordpress/img/Untitled%207.png)

@@ -14,14 +14,14 @@ WordPress is a very popular open source content management system (CMS) that is 
 
 ### Previous requirements
 
-1. * * Linux server: * * You must have a server that runs Linux, the guide is designed for Debian 12.
-2. * * User with superuser permissions: * * You must have access to a user with sudo privileges on the server in order to perform the installation and configuration tasks.
-3. * * Full Domain Name (FQDN): * * If you want to access your WordPress site through a custom domain, make sure you have a full domain name (FQDN) set up and pointed to the server.
-4. * * Internet access: * * You need Internet access to download packages and make updates during the installation process.
+1. **Linux server:** You must have a server that runs Linux, the guide is designed for Debian 12.
+2. **User with superuser permissions:** You must have access to a user with sudo privileges on the server in order to perform the installation and configuration tasks.
+3. **Full Domain Name (FQDN):** If you want to access your WordPress site through a custom domain, make sure you have a full domain name (FQDN) set up and pointed to the server.
+4. **Internet access:** You need Internet access to download packages and make updates during the installation process.
 
 Make sure you meet all these requirements before you start installing WordPress on your server.
 
-If you do not have the LEMP battery, you can follow it in [this link.] (https: / / www.javiercd.es / posts / iaw / lemp / lemp /)
+If you do not have the LEMP battery, you can follow it in [this link.](https://www.javiercd.es/posts/iaw/lemp/lemp/)
 
 
 ## Creating a VirtualHost in Nginx
@@ -105,7 +105,7 @@ javiercruces@HPOMEN15:~$ cat /etc/hosts
 
 ### Creating the database with a user.
 
-I recommend that you * * point * * the data entered below as you need them later.
+I recommend that you **point** the data entered below as you need them later.
 We connect to the database:
 ```bash
 javiercruces@IWEB:~$ sudo mysql -u root -p
@@ -139,9 +139,9 @@ Bye
 ```
 
 
-## * * WordPress installation * *
+## WordPress installation
 
-The first thing we will do is * * [download WordPress] (https: / / wordpress.org / download /? ref = voidnull.es) * *, we can do it using wget or if we have it downloaded to our host pass it by using SCP or FTP.
+The first thing we will do is **[download WordPress](https://wordpress.org/download/?ref=voidnull.es)**, we can do it using wget or if we have it downloaded to our host pass it by using SCP or FTP.
 
 ```bash
 javiercruces@IWEB:~$ wget https://wordpress.org/latest.tar.gz
@@ -157,7 +157,7 @@ latest.tar.gz             100%[=====================================>]  22,38M  
 2023-10-27 12:33:19 (14,8 MB/s) - «latest.tar.gz» guardado [23465047/23465047]
 ```
 
-And * * we'll uncompress the file * * and copy the files within the * 'DocumentRoot' * * of our * * 'VirtualHost': * *
+And **we'll uncompress the file** and copy the files within the **'DocumentRoot'** of our **'VirtualHost':**
 
 ```
 javiercruces@IWEB:~$ sudo mkdir   /var/www/wordpress/
@@ -176,15 +176,15 @@ We change user and groups:
 javiercruces@IWEB:/var/www$ sudo chown -R www-data:www-data wordpress/
 ```
 
-<! -- And we put the right permissions to WordPress:
+And we put the right permissions to WordPress:
 
 ```
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
 
-``` -->
+``` 
 
-Once we have set all this up, we can now access our browser to our domain to start installing * * WordPress. * *
+Once we have set all this up, we can now access our browser to our domain to start installing **WordPress.**
 
 ## Web installation
 
@@ -192,32 +192,32 @@ We access the url we have put in the ServerName of our virtual site and then set
 
 The first thing is to select the language:
 
-! [Untitled] (.. / img / Untitled.png)
+!! [Untitled](/iaw/wordpress_lemp/img/Untitled.png)
 
 Below is a brief explanation of what the CMS WordPress is:
 
-[Untitled] (.. / img / Untitled% 201.png)
+![Untitled](/iaw/wordpress_lemp/img/Untitled%201.png)
 
 You will now need to enter the user data and the name of the database you have created before.
 
-[Untitled] (.. / img / Untitled% 202.png)
+![Untitled](/iaw/wordpress_lemp/img/Untitled%202.png)
 
 Once the correct data is entered we will continue with the installation:
 
-[Untitled] (.. / img / Untitled% 203.png)
+![Untitled](/iaw/wordpress_lemp/img/Untitled%203.png)
 
 Now you must enter the data for your wordpress, such as the name of the site as well as the creation of an administrator user so that you can then access wp-admin:
 
-[Untitled] (.. / img / Untitled% 204.png)
+![Untitled](/iaw/wordpress_lemp/img/Untitled%204.png)
 
 Ready! You've already installed wordpress
 
-[Untitled] (.. / img / Untitled% 205.png)
+![Untitled](/iaw/wordpress_lemp/img/Untitled%205.png)
 
 Now to access the wordpress management panel you must enter the following url into your browser and log in with the user you have created:
 
-[Untitled] (.. / img / Untitled% 206.png)
+![Untitled](/iaw/wordpress_lemp/img/Untitled%206.png)
 
 Ready! This is how you see the wardpress management panel:
 
-[Untitled] (.. / img / Untitled% 207.png)
+![Untitled](/iaw/wordpress_lemp/img/Untitled%207.png)

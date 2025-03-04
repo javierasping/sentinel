@@ -194,6 +194,6 @@ Guarda y cierra el archivo
 
 Este archivo PHP mostrará información detallada sobre la configuración de PHP en tu servidor. Puedes acceder a él en tu navegador visitando http://tudominio.com/info.php (reemplaza tudominio.com con tu nombre de dominio real) o también puedes acceder al mismo poniendo en el navegador la IP de tu maquina.
 
-![](../img/info-php.png)
+![](/iaw/lemp/img/info-php.png)
 
 Una vez hecho esto , ya tienes instalado la pila LEMP para que la utilices en tus CMS.
