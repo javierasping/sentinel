@@ -148,6 +148,6 @@ In the first stage, your ports work perfectly without requiring additional inter
 
 If, on the contrary, like I'm not one of them, as the ports have just checked, they don't emit video, on your monitor you'll see that you have no signal even though on the debian you see the monitor detects you.
 
-If this problem occurs you can find a post on this same page explaining a possible solution, for this we will make use of the nvidia optimus tool. I leave the link below https: / / www.javiercd.es / posts / drivers / nvidia _ optimus / nvidia _ optimus /
+If this problem occurs you can find a post on this same page explaining a possible solution, for this we will make use of the nvidia optimus tool. I leave the link below https://www.javiercd.es/posts/drivers/nvidia_optimus/nvidia_optimus/
 
 
