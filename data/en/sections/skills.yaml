@@ -1,0 +1,86 @@
+# section information
+section:
+  name: Skills
+  id: skills
+  enable: true
+  weight: 2
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+skills:
+  - name: Virtualization
+    logo: /images/sections/skills/kvm.png
+    summary: "Experience in virtualization using KVM for creating and managing virtual machines, as well as managing LXC containers."
+
+  - name: Docker
+    logo: /images/sections/skills/docker.svg
+    summary: "Experience in building and managing Docker containers, including creating images, networks, and using Docker Compose to define and run multi-container applications."
+    url: "https://www.docker.com/"
+
+  - name: Kubernetes
+    logo: /images/sections/skills/kubernetes.png
+    summary: "Experience in configuring and managing Kubernetes clusters, including Pods, ReplicaSets, and Deployments. Management of services as well as storage."
+    url: "https://kubernetes.io/"
+
+  - name: Infrastructure as Code
+    logo: /images/sections/skills/iac.png
+    summary: "Use of Ansible and Vagrant for the creation and management of infrastructure as code."
+
+  - name: Cloud
+    logo: /images/sections/skills/cloud.png
+    summary: "Work with most major clouds, such as GCP, AWS, Azure, etc."
+
+  - name: OpenStack
+    logo: /images/sections/skills/openstack.png
+    summary: "Work with instances, storage, and networks in OpenStack."
+
+  - name: Linux
+    logo: /images/sections/skills/linux.png
+    summary: "Experience with Debian, Ubuntu, RHEL, CentOS, and Fedora. Server administration, service configuration, and maintenance."
+
+  - name: Git
+    logo: /images/sections/skills/git.png
+    summary: "Experience in Git-based development. Mainly, I use GitHub. I also have experience working with GitLab."
+    url: "https://git-scm.com/"
+
+  - name: Web Servers
+    logo: /images/sections/skills/sweb.png
+    summary: "Experience in managing Apache and Nginx web servers, including configuration and maintenance."
+
+  - name: Reverse Proxy
+    logo: /images/sections/skills/reversep.png
+    summary: "Configuring and managing reverse proxies to redirect user requests to backend servers, using solutions like Nginx and Apache."
+
+  - name: Load Balancers
+    logo: /images/sections/skills/loadbalancer.png
+    summary: "Experience in implementing and configuring load balancers like HAProxy to distribute network traffic and improve service availability."
+    url: "https://www.haproxy.org/"
+
+  - name: DNS
+    logo: /images/sections/skills/dns.png
+    summary: "Experience in configuring and managing DNS servers using BIND9. Able to manage zones, records, and resolve name resolution issues in local networks and external domains."
+
+  - name: Email
+    logo: /images/sections/skills/mail.png
+    summary: "Experience in configuring and managing email servers using Postfix. Implementing spam filters with SpamAssassin and using tools like Dovecot for mailbox management."
+
+  - name: VPN
+    logo: /images/sections/skills/vpn.png
+    summary: "Experience in configuring and managing VPNs like OpenVPN and WireGuard, as well as IPSec with Cisco and StrongSwan."
+
+  - name: Firewalls
+    logo: /images/sections/skills/firewall.png
+    summary: "Experience in configuring and managing firewalls using Iptables and Nftables to manage firewall rules on Linux systems, as well as Fortinet devices."
+
+  - name: Cisco
+    logo: /images/sections/skills/logo-Cisco.png
+    summary: "Configuration and management of routers with IOS, Switching (VLAN, QoS, Port Trunking), and Administration (Maintenance, Security, VPN, VLAN, WiFi, IPv6)."
+
+  - name: Databases
+    logo: /images/sections/skills/database.png
+    summary: "Experience in administering and managing various databases such as Oracle, MySQL, PostgreSQL, and MongoDB, as well as knowledge of SQL and PL/SQL."
+
+  - name: CI/CD
+    logo: /images/sections/skills/jenkins.png
+    summary: "Experience in implementing continuous integration and continuous deployment pipelines using GitHub Actions and Jenkins. Automated testing, content validation, and application deployments."

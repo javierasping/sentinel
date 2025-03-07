@@ -1,0 +1,46 @@
+# section information Certificaciones
+section:
+  name: Certifications
+  id: accomplishments
+  enable: true
+  weight: 8
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+
+# Your accomplishments
+accomplishments:
+- name: Junior Cybersecurity Analyst Career Path
+  timeline: "September, 2023"
+  organization:
+    name: Cisco
+    url: https://www.cisco.com/c/es_es/index.html
+  courseOverview: Cisco verifies the earner of this badge successfully completed the Junior Cybersecurity Analyst Career Path with Cisco Networking Academy. They understand techniques to monitor and protect the network, including firewalls, cloud security, and cryptography, they are familiar with security alerts and governance, and they have skills to perform network vulnerability assessment and create a risk management plan, including forensic investigations and incident response planning.
+  certificateURL: "https://www.credly.com/badges/273a51cf-3681-4c81-ac4b-7c9817b5455d"
+
+- name: Introduction to Cybersecurity
+  timeline: "September, 2023"
+  organization:
+    name: Cisco
+    url: https://www.cisco.com/c/es_es/index.html
+  courseOverview: "Cisco verifies the earner of this badge successfully completed the Introduction to Cybersecurity course. The holder of this student-level credential has introductory knowledge of cybersecurity, including the global implications of cyber threats on industries, and why cybersecurity is a growing profession. They understand vulnerabilities and threat detection and defense. They also have insight into opportunities available with pursuing cybersecurity certifications."
+  certificateURL: "https://www.credly.com/badges/be2b3e81-f34c-4ad3-84c5-6a155095f759"
+
+- name: Network Addressing and Basic Troubleshooting
+  timeline: "May 28, 2023"
+  organization:
+    name: Cisco
+    url: https://www.cisco.com/c/es_es/index.html
+  courseOverview: Cisco verifies the earner of this badge successfully completed the Network Addressing and Basic Troubleshooting course and achieved this student level credential. Earner has knowledge of physical, data link and network layers, how they work together to provide end-to-end connectivity, and also understands IPv6 addressing functions and how to obtain one and the neighbor discovery process. Practiced troubleshooting skills to keep a network up and running in up to 13 Cisco Packet Tracer activities.
+  certificateURL: "https://www.credly.com/badges/64994702-7713-409c-a147-ae9bb5cd4ca8/linked_in_profile"
+
+- name: NSE 3 Network Security Associate
+  timeline: "Jul 2023 - Jul 2025"
+  organization:
+    name: Fortinet
+    url: https://www.fortinet.com/
+  courseOverview: NSE 3 Network Security Associate is a certification offered by Fortinet, a leading cybersecurity company known for its network security solutions and products. This certification is part of the Fortinet Network Security Expert (NSE) program, which is designed to validate the skills and knowledge of IT professionals in deploying, managing, and troubleshooting Fortinet's network security solutions.
+  certificateURL: "https://training.fortinet.com/mod/customcert/verify_certificate.php?contextid=251441&code=ALhw6paiUw&qrcode=1"
+ 
+

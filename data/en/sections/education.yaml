@@ -1,0 +1,91 @@
+# Section Information
+section:
+  name: Education
+  id: education
+  template: sections/education.html # Use "sections/education-alt.html" for an alternative template.
+  enable: true
+  weight: 4
+  showOnNavbar: true
+  # Optionally, you can hide the title in the sections
+  # hideTitle: true
+
+degrees:
+
+#   - name: CFGM Microcomputer Systems and Networks
+#     timeframe: 2019-2022
+#     institution:
+#       name: IES Gonzalo Nazareno
+#       url: "https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/"
+#       icon: fa-university
+#     takenCourses:
+#       showGrades: false
+#       courses:
+#         - name: Basic Forensic Analysis Course for Windows Systems
+
+#   - name: CFGS Networked Computer Systems Administration
+#     timeframe: 2022-2024
+#     institution:
+#       name: IES Gonzalo Nazareno
+#       url: "https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/"
+#       icon: fa-university
+
+  - name: CFGM Microcomputer Systems and Networks
+    timeframe: 2019-2022
+    institution:
+      name: IES Gonzalo Nazareno
+      url: "https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/"
+      logo: /images/sections/education/gonzalo_nazareno.png
+      icon: fa-university
+      # darkLogo: /images/sections/education/gonzalo_nazareno_dark.png
+    takenCourses:
+      showGrades: false
+      courses:
+        - name: Basic Forensic Analysis Course for Windows Systems
+    # grade: #(optional)
+    #   scale: CGPA
+    #   achieved: 3.5
+    #   outOf: 4
+    # publications: #(optional)
+    #   - title: Research on Microinformatics and Network Systems
+    #     url: "#"
+    # extracurricularActivities: #(optional)
+    #   - Participated in local tech meetups
+    #   - Volunteered in school IT helpdesk
+
+  - name: CFGS Networked Computer Systems Administration
+    timeframe: 2022-2024
+    institution:
+      name: IES Gonzalo Nazareno
+      url: "https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/"
+      logo: /images/sections/education/gonzalo_nazareno.png
+      icon: fa-university
+      # darkLogo: /images/sections/education/gonzalo_nazareno_dark.png
+    # grade: #(optional)
+    #   scale: CGPA
+    #   achieved: 3.7
+    #   outOf: 4
+    takenCourses:
+      showGrades: false
+      collapseAfter: 3
+      courses:
+        - name: Learn Kubernetes with OpenShift v4
+          # achieved: 3.8
+          # outOf: 4
+        - name: Istio Course
+          # achieved: 3.9
+          # outOf: 4
+        - name: Openshift v4 as PaaS
+          # achieved: 3.7
+          # outOf: 4
+        - name: Amazon Web Services Course for SysAdmin
+          # achieved: 3.6
+          # outOf: 4
+    # publications: #(optional)
+    #   - title: Advances in Network Administration
+    #     url: "#"
+    # extracurricularActivities: #(optional)
+    #   - Member of the cybersecurity club
+    #   - Organized tech workshops
+    customSections: #(optional)
+      - name: Final Degree Project
+        content: MAAS "Metal as a Service"
