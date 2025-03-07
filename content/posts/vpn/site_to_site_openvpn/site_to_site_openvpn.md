@@ -12,7 +12,7 @@ hero: /images/vpn/sitetosite.png
 
 Para realizar este ejercicio he montado el siguiente escenario en GNS3 :
 
-![](/vpn/site_to_site_openvpn/img/Pastedimage20240114150833.png)
+![](/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png)
 
 ### Configuración del router cisco
 Vamos a darle a cada interfaz la configuración de red correspondiente :

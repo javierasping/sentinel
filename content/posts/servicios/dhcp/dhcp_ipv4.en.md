@@ -7,27 +7,27 @@ hero: images/servicios/dhcp_v4/isc-dhcp.webp
 ---
 
 
-♪ DHCP server configuration under debian
+# DHCP server configuration under debian
 In this article you will learn how to configure the DHCP is-dhcp-server. In addition, you will set up a reservation and configure it to work in two areas.
 ### Isc-dhcp-server installation
 To install our dhcp server we run:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.015.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.015.png)
 
 It will give us the following error as it is not configured:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.016.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.016.png)
 
 
 ### Configuration of is-dhcp-server
 
 The first thing we have to do is set up the network interface that the dhcp server will work for, for this we edit the following file:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.017.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.017.png)
 
 And we add our interface that will deliver addresses:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.018.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.018.png)
 
 Configure the dhcp server with the following features:
 
@@ -39,18 +39,18 @@ Configure the dhcp server with the following features:
 
 For this we edit the following file:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.019.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.019.png)
 
 
 We now add the following:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.020.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.020.png)
 
 Here we are configuring our scope according to the statement.
 
 We will now have to restart the service with the following command:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.021.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.021.png)
 
 ### Configuration of customers for dynamic steering
 
@@ -58,23 +58,23 @@ We will edit the network configuration to use the dhcp:
 
 In the debian we edit the network / interfaces:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.022.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.022.png)
 
 Now we reboot the network card:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.023.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.023.png)
 
 Now we'll check if we're assigned ip with ipconfig:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.024.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.024.png)
 
 We see that it has been assigned correctly. We will repeat the same with our client windows.
 
 We set up the network card to use the dhcp protocol, restart the card and check the ip you have assigned us:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.025.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.025.png)
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.026.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.026.png)
 
 
 
@@ -84,9 +84,9 @@ We set up the network card to use the dhcp protocol, restart the card and check 
 
 Now let's check the address concessions for it we'll have to see the following file. We'll open it with cat because it's important not to edit it, it can cause trouble.
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.027.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.027.png)
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.028.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.028.png)
 
 
 
@@ -97,7 +97,7 @@ Now let's check the address concessions for it we'll have to see the following f
 ### Book an IP address
 For this we will need to edit the configuration file of our dhcp server:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.029.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.029.png)
 
 Once here we will add the following lines:
 
@@ -107,31 +107,31 @@ Once here we will add the following lines:
 
 Our reservation would remain this way (we will put it out of the configuration of our field):
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.030.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.030.png)
 
 Now we'll start the service again.
 
 We will check that the concession has been made, for that we will go to windows. We may have to renew the concession or restart the network card.
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.031.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.031.png)
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.032.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.032.png)
 
 
 
 Let's check what happens to the client configuration in certain circumstances, for this we'll put a very low concession time. I'll give you a minute.
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.033.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.033.png)
 
 1. Customers take a configuration, and then we turn off the dhcp server. What about the window client? What about the Linux client?
 
 In windows we will be assigned an address of APIPA
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.034.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.034.png)
 
 While in Linux it does not assign me any ip address, though then I assign an APIPA address
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.035.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.035.png)
 
 
 
@@ -142,19 +142,19 @@ Customers take a configuration, and then we change the dhcp server settings (e.g
 
 We change the range:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.036.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.036.png)
 
 And we restart the service
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.037.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.037.png)
 
 With windows I keep the booking address:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.038.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.038.png)
 
 And with Linux we are assigned the direction of the new range:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.039.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.039.png)
 
 
 
@@ -166,30 +166,30 @@ Make the necessary modifications to the current configuration of our dhcp server
 
 The first thing we will do is add a fourth network card and set it up manually. If we don't know the name of the interface we can see it with ip to:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.040.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.040.png)
 
 We will now set it static, following the statement and add it to / etc / default / isch-dhcp-server.
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.041.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.041.png)
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.042.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.042.png)
 
 And we set our second range:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.043.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.043.png)
 
 We now restart the service:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.044.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.044.png)
 
 
 I will now add several network cards to my client to check the concessions and set up the cards:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.045.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.045.png)
 
 And we would have been given ip address in both ranges:
 
-![](/redes/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.046.png)
+![](/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.046.png)
 
 
 

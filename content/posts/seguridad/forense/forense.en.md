@@ -1,5 +1,5 @@
 ---
-title: "Informática Forense"
+title: "Forensic computer"
 date: 2024-03-28T10:00:00+00:00
 Description: Forensic informatics
 tags: [LINUX,DEBIAN,WINDOWS,FORENSE]

@@ -12,9 +12,9 @@ hero: /images/vpn/sitetosite.png
 
 To perform this exercise I have mounted the following scenario on GNS3:
 
-![](/vpn/site_to_site_openvpn/img/Pastedimage20240114150833.png)
+![](/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png)
 
-## # Swan router configuration
+### Swan router configuration
 Let's give each interface the corresponding network configuration:
 
 ```bash
@@ -230,7 +230,7 @@ debian@servidor1:~$ sudo apt install -y openvpn
 debian@servidor2:~$ sudo apt install -y openvpn 
 ```
 
-## # Key and certificate generation
+### Key and certificate generation
 We can generate the certificates manually, but there is a tool called Easy RSA that automates this process. In addition, Easy RSA facilitates the generation of Diffie-Hellman modules, which are essential for the operation of the OpenVPN server.
 
 We don't need to download it since it comes with the openvpn package.
@@ -271,7 +271,7 @@ debian@servidor1:/usr/share/easy-rsa$ sudo ./easyrsa init-pki
   * /usr/share/easy-rsa/pki
 ```
 
-## # Generation of the Diffie-Hellman parameters
+### Generation of the Diffie-Hellman parameters
 
 The Diffie-Hellman exchange key is a cryptographic method that allows two parties to safely agree on a shared session key on an unsafe channel. So let's generate it by using the following command:
 
@@ -298,7 +298,7 @@ DH parameters of size 2048 created at /usr/share/easy-rsa/pki/dh.pem
 
 We will have been generated the key in / usr / share / easy-rsa / pki / dh.pem, as indicated by the command output.
 
-## # Generation of CA certificate
+### Generation of CA certificate
 
 We will proceed to generate the certificate of our CA:
 
@@ -334,7 +334,7 @@ Your new CA certificate file for publishing is at:
 
 We will have been generated in / usr / share / easy-rsa / pki / ca.crt
 
-## # Server certificate generation 1
+### Server certificate generation 1
 With the following command we will generate the certificates for server 1. Several files will be generated:
 - servor1.req: This file contains the certificate application generated for the server
 - servor1.key: This file contains the private key
@@ -428,7 +428,7 @@ debian@servidor1:/usr/share/easy-rsa$ sudo ls -la pki/reqs | grep servidor1
 -rw------- 1 root root  891 Jan 14 16:09 servidor1.req
 ```
 
-## # Server certificate generation 2
+### Server certificate generation 2
 
 We will repeat the same process we have done for server 1, but now for our server 2.
 
@@ -507,7 +507,7 @@ Database updated
 Certificate created at: /usr/share/easy-rsa/pki/issued/servidor2.crt
 ```
 
-## # Generation of the TLS key
+### Generation of the TLS key
 
 This step is optional, but it is recommended to generate a shared key (also known as additional parameter key or ta.key key) in the OpenVPN context.)
 
@@ -570,7 +570,7 @@ total 20
 
 ## OpenVPN configuration
 
-## # Server configuration 1
+### Server configuration 1
 > [NOTE]
 > This section is comparing it to the remote access VPN post.
 
@@ -633,7 +633,7 @@ default via 90.0.0.1 dev ens3 onlink
 ```
 
 
-## # Server configuration 2
+### Server configuration 2
 
 ```bash
 debian@servidor2:~$ sudo nano /etc/openvpn/servidor2.conf
