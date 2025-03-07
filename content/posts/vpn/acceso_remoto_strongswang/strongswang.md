@@ -16,7 +16,7 @@ StrongSwan es una implementación de VPN (Red Privada Virtual) basada en IPsec, 
 
 Recuerda que para la configuración que vamos a hacer tienes que activar el bit de forwarding en las maquinas Servidor1 y Servidor2 . 
 
-![](../img/Pastedimage20240128105821.png)
+![](/vpn/acceso_remoto_strongswang/img/Pastedimage20240128105821.png)
 
 
 ## Instalación de StrongSwan
@@ -203,7 +203,7 @@ o), rekeying in 41 minutes
 
 Ademas puedes hacer una captura del trafico y asegurarte de que los mensajes van cifrados : 
 
-![](../img/Pastedimage20240128112552.png)
+![](/vpn/acceso_remoto_strongswang/img/Pastedimage20240128112552.png)
 
 ### Comprobación con traceroute
 

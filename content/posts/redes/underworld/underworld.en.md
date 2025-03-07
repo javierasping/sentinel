@@ -1,430 +1,427 @@
 ﻿---
 title: "Underworld"
 date: 2023-09-08T10:00:00+00:00
-description: Scenario de routación y acls en cisco
-tags: [Redes, Wireshark, GNS3,Cisco,Enrutamiento,ACLS]
+description: "Routing and ACLs scenario in Cisco."
+tags: [Networking, Wireshark, GNS3, Cisco, Routing, ACLs]
 hero: /images/redes/underworld/portada_underwolrd.webp
 ---
 
-
-
 ## Introduction
-You live in UNDERWORLD. In your world, different types of species are presented for a single purpose, "crossing" each other. These creatures are:
 
-- VAMPIROS
-- LICANTROPOS: werewolves with the ability to return to their human state.
-- LOBO MEN: werewolves who, after their first conversion to wolf, could not return to their human state.
+You live in UNDERWORLD. In your world, there are different types of species with one goal: to "crossbreed" with each other. These creatures are:
 
-- Human: some shit.
-- YOU: a computer warrior with superpowers like turning around a game that has not yet gone out on the market or having the power to become invisible when he comes out of the party and tries to court a female by telling her some kind of phrases: do you want me to compile the baby kernel?
+- **VAMPIRES**
+- **WEREWOLVES (LICÁNTROPOS):** Werewolves with the ability to return to their human form.
+- **WOLFMEN (HOMBRES LOBO):** Werewolves who, after their first transformation, cannot return to their human form.
+- **HUMANS:** Some annoying little creatures.
+- **YOU:** A tech-savvy warrior with superpowers like turning around a game that hasn't even been released yet or having the ability to become invisible when going out to party and trying to flirt with a girl by saying things like: "Do you want me to compile your kernel, babe?"
 
-The aspect of UNDERWORLD is as follows:
+The layout of UNDERWORLD is as follows:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.001.jpeg)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.001.jpeg)
 
-### 1. Engage the stage
+---
 
-### "paper" routing tables
+## 1. Routing the Scenario
 
+### Routing Tables on Paper
 
+| **ROUTER HUMANO**       |               |          |
+|-------------------------|---------------|----------|
+| 192.168.1.0/24          | 0.0.0.0       | F0/0     |
+| 192.168.2.0/24          | 0.0.0.0       | F1/0     |
+| 192.168.3.0/24          | 192.168.2.2   | F1/0     |
+| 192.168.4.0/24          | 192.168.2.2   | F1/0     |
+| 192.168.5.0/24          | 192.168.2.2   | F1/0     |
+| 192.168.6.0/24          | 192.168.2.2   | F1/0     |
+| 192.168.7.0/24          | 192.168.2.2   | F1/0     |
+| 0.0.0.0/0               | 192.168.2.2   | F1/0     |
 
-- 124; HUMAN ROUTER - 124; - 124; - 124;
-- - - - - - -
-- 124; 192\ .168.1.0 / 24 - 124; 0\ .0.0.0 - 124; F0 / 0 - 124;
-- 124; 192\ .168.2.0 / 24 - 124; 0\ .0.0.0 - 124; F1 / 0 - 124;
-- 124; 192\ .168.3.0 / 24 - 124; 192\ .168.2.2 - 124; F1 / 0 - 124;
-- 124; 192\ .168.4.0 / 24 - 124; 192\ .168.2.2 - 124; F1 / 0 - 124;
-- 124; 192\ .168.5.0 / 24 - 124; 192\ .168.2.2 - 124; F1 / 0 - 124;
-- 124; 192\ .168.6.0 / 24 - 124; 192\ .168.2.2 - 124; F1 / 0 - 124;
-- 124; 192\ .168.7.0 / 24 - 124; 192\ .168.2.2 - 124; F1 / 0 - 124;
-- 124; 0\ .0.0.0 / 0 - 124; 192\ .168.2.2 - 124; F1 / 0 - 124;
+------------------------------------------------
 
-----------------------------------------------------
+| **ROUTER VAMPIROS**     |               |          |
+|-------------------------|---------------|----------|
+| 192.168.1.0/24          | 192.168.2.1   | F1/0     |
+| 192.168.2.0/24          | 0.0.0.0       | F1/0     |
+| 192.168.3.0/24          | 0.0.0.0       | F0/0     |
+| 192.168.4.0/24          | 0.0.0.0       | F2/0     |
+| 192.168.5.0/24          | 192.168.4.2   | F2/0     |
+| 192.168.6.0/24          | 192.168.4.2   | F2/0     |
+| 192.168.7.0/24          | 192.168.4.2   | F2/0     |
+| 0.0.0.0/0               | 192.168.4.2   | F2/0     |
 
+------------------------------------------------
 
-- 124; ROUTER VAMPIROS - 124; - 124; - 124;
-- - - - - - -
-- 124; 192\ .168.1.0 / 24 - 124; 192\ .168.2.1 - 124; F1 / 0 - 124;
-- 124; 192\ .168.2.0 / 24 - 124; 0\ .0.0.0 - 124; F1 / 0 - 124;
-- 124; 192\ .168.3.0 / 24 - 124; 0\ .0.0.0 - 124; F0 / 0 - 124;
-- 124; 192\ .168.4.0 / 24 - 124; 0\ .0.0.0 - 124; F2 / 0 - 124;
-- 124; 192\ .168.5.0 / 24 - 124; 192\ .168.4.2 - 124; F2 / 0 - 124;
-- 124; 192\ .168.6.0 / 24 - 124; 192\ .168.4.2 - 124; F2 / 0 - 124;
-- 124; 192\ .168.7.0 / 24 - 124; 192\ .168.4.2 - 124; F2 / 0 - 124;
-- 124; 0\ .0.0.0 / 0 - 124; 192\ .168.4.2 - 124; F2 / 0 - 124;
+| **ROUTER LICÁNTROPOS**  |               |          |
+|-------------------------|---------------|----------|
+| 192.168.1.0/24          | 192.168.4.1   | F2/0     |
+| 192.168.2.0/24          | 192.168.4.1   | F2/0     |
+| 192.168.3.0/24          | 192.168.4.1   | F2/0     |
+| 192.168.4.0/24          | 0.0.0.0       | F2/0     |
+| 192.168.5.0/24          | 0.0.0.0       | F0/0     |
+| 192.168.6.0/24          | 0.0.0.0       | F1/0     |
+| 192.168.7.0/24          | 192.168.6.2   | F1/0     |
+| 0.0.0.0/0               | 192.168.4.1   | F1/0     |
 
-----------------------------------------------------
+------------------------------------------------
 
-- 124; - 124; - 124;
-- - - - - - -
-- 124; 192\ .168.1.0 / 24 - 124; 192\ .168.4.1 - 124; F2 / 0 - 124;
-- 124; 192\ .168.2.0 / 24 - 124; 192\ .168.4.1 - 124; F2 / 0 - 124;
-- 124; 192\ .168.3.0 / 24 - 124; 192\ .168.4.1 - 124; F2 / 0 - 124;
-- 124; 192\ .168.4.0 / 24 - 124; 0\ .0.0.0 - 124; F2 / 0 - 124;
-- 124; 192\ .168.5.0 / 24 - 124; 0\ .0.0.0 - 124; F0 / 0 - 124;
-- 124; 192\ .168.6.0 / 24 - 124; 0\ .0.0.0 - 124; F1 / 0 - 124;
-- 124; 192\ .168.7.0 / 24 - 124; 192\ .168.6.2 - 124; F1 / 0 - 124;
-- 124; 0\ .0.0.0 / 0 - 124; 192\ .168.4.1 - 124; F1 / 0 - 124;
+| **ROUTER HOMBRE LOBO**  |               |          |
+|-------------------------|---------------|----------|
+| 192.168.1.0/24          | 192.168.6.1   | F1/0     |
+| 192.168.2.0/24          | 192.168.6.1   | F1/0     |
+| 192.168.3.0/24          | 192.168.6.1   | F1/0     |
+| 192.168.4.0/24          | 192.168.6.1   | F1/0     |
+| 192.168.5.0/24          | 192.168.6.1   | F1/0     |
+| 192.168.6.0/24          | 0.0.0.0       | F1/0     |
+| 192.168.7.0/24          | 0.0.0.0       | F0/0     |
+| 0.0.0.0/0               | 192.168.6.1   | F1/0     |
 
-----------------------------------------------------
+---
 
-- 124;
-- - - - - - -
-- 124; 192\ .168.1.0 / 24 - 124; 192\ .168.6.1 - 124; F1 / 0 - 124;
-- 124; 192\ .168.2.0 / 24 - 124; 192\ .168.6.1 - 124; F1 / 0 - 124;
-- 124; 192\ .168.3.0 / 24 - 124; 192\ .168.6.1 - 124; F1 / 0 - 124;
-- 124; 192\ .168.4.0 / 24 - 124; 192\ .168.6.1 - 124; F1 / 0 - 124;
-- 124; 192\ .168.5.0 / 24 - 124; 192\ .168.6.1 - 124; F1 / 0 - 124;
-- 124; 192\ .168.6.0 / 24 - 124; 0\ .0.0.0 - 124; F1 / 0 - 124;
-- 124; 192\ .168.7.0 / 24 - 124; 0\ .0.0.0 - 124; F0 / 0 - 124;
-- 124; 0\ .0.0.0 / 0 - 124; 192\ .168.6.1 - 124; F1 / 0 - 124;
+## 2. Configuring IP Addresses on Interfaces
 
+### Human Router
 
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.002.png)
 
-#2 Configuring Ips interfaces addresses
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.003.png)
 
-### Human router
+Save the configuration:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.002.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.004.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.003.png)
+### Vampire Router
 
-We save the configuration:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.005.jpeg)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.004.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.006.png)
 
-### Router vampires
+Save the configuration:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.005.jpeg)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.007.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.006.png)
+### Werewolf Router
 
-We save the configuration:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.008.jpeg)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.007.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.009.png)
 
-### Router licanthrops
+Save the configuration:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.008.jpeg)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.010.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.009.png)
+### Wolfman Router
 
-We save the configuration:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.011.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.010.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.012.png)
 
-### Router vampires
+Save the configuration:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.011.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.013.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.012.png)
+---
 
-We save the configuration:
+## 3. Adding Routing Tables to the Routers
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.013.png)
+### Human Router
 
+By default, it will create routes to the networks we are connected to. We only need to add the default route:
 
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.014.png)
 
-#3. Adding the routing table to the routers
+The routing table will look like this:
 
-### Human router
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.015.png)
 
-We will create by default the routes to the networks we are connected we will only need to add the default route:
+Save the configuration:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.014.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.016.png)
 
-We'd have the routing table:
+### Vampire Router
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.015.png)
+Add the following routes:
 
-We save the configuration:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.018.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.016.png)
+The routing table will look like this:
 
-### Router vampires
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.017.png)
 
-We will add the following routes:
+Save the configuration:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.018.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.019.png)
 
-So the routing table would be:
+### Werewolf Router
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.017.png)
+Add the following routes:
 
-We save the configuration:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.020.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.019.png)
+The routing table will look like this:
 
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.021.png)
 
-### Router licanthrops
+Save the configuration:
 
-We add the following routes:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.022.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.020.png)
+### Wolfman Router
 
-So our routing table would be:
+Add the following routes:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.021.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.023.png)
 
-We save the configuration:
+The routing table will look like this:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.022.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.024.png)
 
-### Router werewolves
+Save the configuration:
 
-We add the following routes:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.025.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.023.png)
+---
 
-So our routing table would be:
+## 4. Routing Test
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.024.png)
+To keep this section concise, I will verify that PC1 can reach all PCs:
 
-We save the configuration:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.026.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.025.png)
+---
 
+## 5. Configuring ACLs
 
+Everyone uses the network to send messages and flirt (so you must configure the network to allow this initially, meaning all devices can communicate with each other). However, you are fed up with all the weird creatures resulting from crossbreeding (e.g., when a vampire mates with a werewolf, and their offspring mates with a wolfman, and so on). You decide to put an end to this by implementing ACLs on the routers:
 
-## 4.Rash test
+1. **VAMPIRES cannot communicate with the other species.**
 
-In order not to make this section very extensive, check that from PC1 it reaches all PCs:
+Create a rule to deny traffic from the 192.168.3.0 network:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.026.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.027.png)
 
+Apply it to the FastEthernet 0/0 interface (192.168.3.1) and apply it to the outgoing traffic:
 
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.028.png)
 
-## 5.ACLs configuration
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.029.png)
 
-Everyone uses the network to send out messages and hook up (so you will have to set up the network to make this possible at first, that is, that all the equipment has a connection with each other). You, who are already up to the\ * #%?! of so much freak as a result of the crosses that occur when a vampire intersects for example with a licanthrope and their son with a werewolf and so on, you decide to end the story by doing the following, putting a few ACLs into the routers that communicate them:
+Verify that PCs in the Vampire network cannot communicate with the others. The ACL blocks the traffic:
 
-1. * * VAMPIROS cannot communicate with other species * *
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.030.jpeg)
 
-We create the rule to deny network traffic 192.168.3.0:
+If any other realm tries to communicate with them, the messages will reach them, but the response will not, as the ACL blocks outgoing traffic from the Vampire network:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.027.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.031.png)
 
-We apply it to the FastEthernet 0 / 0 interface (192.168.3.1) and we apply it to the output of this:
+2. **WEREWOLVES and WOLFMEN, since they are not as repulsive when they crossbreed, can communicate with each other. They cannot communicate with the other species.**
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.028.png)
+For this section, we can implement different solutions. I opted to add an ACL on the F2/0 interface of the Werewolf router.
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.029.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.032.jpeg)
 
-We'll check that the Vampire Network PCs can't communicate with the rest, tells us there's an ACL cutting us off:
+Create the ACL:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.030.jpeg)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.033.png)
 
-If from any other kingdom we communicate with them the messages will be able to reach them however the answer will not come as the ACL prevents it, the answer is cut off as it comes out of the vampire network:
+Apply it to the outgoing traffic on the F2/0 interface:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.031.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.034.png)
 
-2. * * LOBO MEN and LICANTROPOS, since they are not so repulsive when they cross, can communicate with each other. The other species will have no communication. * *
+Verify that the ACL works by pinging between machines.
 
-This section can give you different solutions, I have chosen to put an ACL, in the F2 / 0 interface of the licanthropy router.
+From PC7, we see that we cannot leave the Werewolf router, as it blocks the communication, but we can reach other networks:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.032.jpeg)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.035.jpeg)
 
-We create the ACL:
+From PC5, we observe the same result:
 
-And we apply the output of the F2 / 0 output interface:! [ref1]! [ref2]
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.036.jpeg)
 
-We'll check that the ACL works, doing pings between the machines.
+From PC1, we see no response, as we are only blocking outgoing traffic, preventing internal machines from communicating with external ones:
 
-From PC7 we see that it does not allow us to leave the route of licanthropy, it cuts the communication but however we can reach the other networks:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.037.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.035.jpeg)
+3. **HUMANS cannot communicate with the other species.**
 
-From PC5 we can see the same result:
+With the current ACL setup, it is not necessary to implement a new rule, as communication with them is already impossible. Although messages from PC1 may reach their destination, they will not receive a response.
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.036.jpeg)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.038.png)
 
-From PC1 we see that we do not get an answer as we are only cutting off the output traffic by preventing the "inside" machines from communicating with those outside.
+However, if we still want to prevent humans from sending messages to others from their network, we will implement the following rule on their router:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.037.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.039.png)
 
-* * Human will not be able to communicate with the other species * *
+Now we are blocking messages from humans on Router 1:
 
-With the current ACLs scheme it would not be necessary to implement a new rule as with the current scheme it is not possible to communicate with them. Even if the messages PC1 makes reach its destination, it will receive no response.
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.040.jpeg)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.038.png)
+---
 
-But if we still want to prevent humans from sending messages to others from their network we will implement the following rule in their router:
+## 6. DHCP Server
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.039.png)
+Finally, you decide to do business with the weird creatures because they have no clue about IT. You are hired by these evil entities to perform the following tasks:
 
-Now we're cutting the human messages from Router 1:
+**Wolfmen**
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.040.jpeg)
+The Wolfmen, who are terrible at assigning IP addresses to their machines, ask you to configure the DHCP service so that all their machines automatically receive a free IP.
 
-## 6.DHCP Server
+We need to follow these steps:
 
-In the end you decide to do business with rare species because they have no idea of computer and you are hired by these evil entities to carry out the following tasks:
+1. Use the command `ip dhcp excluded-address 192.168.7.1` to specify the addresses we do not want to distribute via DHCP (exclusions).
+2. Use the command `ip dhcp pool WOLFMEN` to name the range of addresses we are distributing.
+3. Enter the configuration for the range and specify the network we want to distribute: `network 192.168.7.0 255.255.255.0`.
+4. Specify the default gateway: `default-router 192.168.7.1`.
+5. If we want to configure a DNS server, for example, Google's: `dns-server 8.8.8.8`.
 
-♪ Werewolves ♪
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.041.png)
 
-The werewolves who are quite donkeys by putting IP addresses into their machines, ask you to set them up the DHCP service so that all their machines automatically receive a free IP:
+We can verify that the DHCP server is working correctly with the parameters we specified earlier:
 
-We will have to take the following steps:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.042.png)
 
-1. The exclusive ip dhcp command - address 192.168.7.1 - > We point out the addresses that we do not want to be distributed by DHCP, that is the exclusions.
-1. The command ip dhcp pool HOMBRES\ _ LOBO we name the range of addresses that we are distributing
-1. It will get us into the range configuration, now we tell you the network that we want you to share the network addresses 192.168.7.0 255.255.255.0
-1. Now we'll tell you which gateway we want you to assign default-router 192.168.7.1
-1. If we wanted to set up a DNS server, for example the google server would be so dns-server 8.8.8.8
+**Werewolves**
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.041.png)
+The Werewolves also hire you to assign their IPs via DHCP, but they inform you that they cannot receive the first 10 addresses of their range (excluding the network and gateway addresses), as these are reserved for their clan leaders who are traveling and will return in a few days.
 
-We can see that the DHCP server is working properly with the parameters we have indicated above:
+Declare the IPs to exclude:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.042.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.043.png)
 
-* * Licanthropy * *
+Name the range of addresses we are distributing to configure it:
 
-The licanthrops, on their part, hire you to assign them also for DHCP their IPs, but they tell you that they cannot receive the first 10 addresses of their rank (not counting the network or the link door), as these are reserved for the heads of their clan who are on their way and will return in a few days.
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.044.png)
 
-We declare the ips we're going to exclude:
+Specify the network we want to distribute:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.043.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.045.png)
 
-We name the range of addresses that we are distributing in order to configure it:
+Specify the default gateway:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.044.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.046.png)
 
-We tell you the network that we want you to share the addresses:
+Verify that the DHCP server is working:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.045.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.047.png)
 
-Now we'll tell you which gateway we want you to assign:
+---
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.046.png)
 
-We'll check that the dhcp server is working:
+We will create the ACL for humans:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.047.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.048.png)
 
-## 7.ACLs modification
+We will also create the ACL for Vampires:
 
-♪ Let the vampires hook up ♪
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.049.png)
 
-From so much doing business with vampires, you look at a couple of vampires that are very good to see and you'd like to be able to send them little messages from the villa you just bought in HUMANLAND with the pasture you're taking out of the poor "criaturics." Your IP is 192.168.1.4 and that of SELENE and SONJA is 192.168.3.4 and 192.168.3.5 respectively. Add a machine to HUMANLAND for your equipment called IT KNIGHT and 2 machines called SELENE and SONJA with the above-mentioned PIs in TRANSILVANIA.
+We will apply it to the inbound interface on each network, both are FastEthernet 0/0:
 
-If we want to do this we must set up advanced ACLs to control the origin and destination of the packages.
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.050.png)
 
-The syntax is quite simple in this case:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.051.png)
 
-allow ip IP\ _ ORIGEN WILDCARD IP\ _ We will create the ACL for humans:
+**\***We must have previously removed the list assigned to the interface; otherwise, it will throw an error. To remove it, use the same command as to assign it, but add a `no` in front.
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.048.png)
+Now we will verify the effectiveness of these rules we have implemented:
 
-We will also create the ACL for vampires:
+**IT KNIGHT → SELENE and SONJA**
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.049.png)
+We can see that it only allows traffic to these two specific hosts, as we specified in our ACLs:
 
-We will apply it to the input interface in each network, both are the FastEthernet 0 / 0:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.052.jpeg)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.050.png)
+**SELENE → IT KNIGHT**
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.051.png)
+We can see that it only allows traffic to these two specific hosts, as we specified in our ACLs. If we try to communicate with another host, the ACL will block the traffic:
 
-* *\ * * * We must have previously removed the list assigned to the interface if it will not give an error, to remove it is the same command as to put it in a no in front.
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.053.png)
 
-We will now check the effectiveness of these rules that we have implemented:
+**SONJA → IT KNIGHT**
 
-* * IT KNIGHT - > SELENE and SONJA * *
+We can see that it only allows traffic to these two specific hosts, as we specified in our ACLs. If we try to communicate with another host, the ACL will block the traffic:
 
-We see that it only allows us to traffic to these two specific host as we have indicated in our ACLs
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.054.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.052.jpeg)
+We can also check the ACL statistics on the router by looking at the rule hits to see if they are working:
 
-♪ * SELENE - > IT KNIGHT * *
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.055.png)
 
-We see that it only allows us to traffic to these two specific host as we have indicated in our ACLs, if we try to communicate with another host will cut the traffic the ACL:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.056.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.053.png)
+Although we have not explicitly specified `deny any` in any of the lists, it is not necessary because it is implicit. By default, if no rule is matched, the traffic will be discarded.
 
-* * SONJA- > IT KNIGHT * *
+---
 
-We see that it only allows us to traffic to these two specific host as we have indicated in our ACLs, if we try to communicate with another host will cut the traffic the ACL:
+## 8. Web Server
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.054.png)
+Since flirting is no longer allowed in UNDERWORLD, everyone is bored out of their minds. So, you decide to set up an internal web server in UNDERWORLD. Add a server called FILES to the BRIDGE 1 router with the IP 192.168.8.2/24, creating the necessary ACLs so that the entire UNDERWORLD community can entertain themselves by browsing some cool websites.
 
-We can also see the ACL statistics on the router by looking at the rule hits to see if they are working:
+First, we will configure the new interface on the Human router:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.055.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.057.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.056.png)
+Next, we will configure the route to the new network on the Vampire router to ensure proper routing in the scenario:
 
-Although in none of the lists we have specified in deny any, it would not be necessary as it is implied, that is by default by not complying with any rule to discard the traffic.
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.058.png)
 
-#8. Web server
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.059.png)
 
-Since you can't hook up on UNDERWORLD, they're all more boring than a garlic, so you decide to put an internal WEB server on UNDERWORLD. Add to the PUENTE 1 router, a server called FICHEROS that will have IP 192.168.8.2 / 24, creating the necessary ACLs for the entire UNDERWORLD community to be entertained by seeing some cool websites.
+Finally, we will configure the IP of our Debian server statically with the address 192.168.8.2:
 
-The first will be to set up the new interface of the human router:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.060.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.057.png)
+We will also install Apache (you must do this while connected to the NAT cloud):
 
-The following will be to configure for our current scheme in the VAMPIROS router the route to the new network so that the scenario is routed correctly:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.061.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.058.png)
+Once the web server is ready and routed in our scenario, we will modify the different ACLs so that traffic can only reach the web server on port 80.
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.059.png)
+On the Human router, we add the following rule, which allows all traffic to the host 192.168.8.2 on port 80:
 
-Finally we will set up the ip of our debian in a static way with the address 192.168.8.2:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.062.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.060.png)
+To refresh the list and apply the changes, we must reassign it to the router:
 
-We will also install apache (we will have to do it previously connected to the NAT cloud):
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.063.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.061.png)
+Now we will do the same on the Vampire router, as it has extended ACLs configured like the Humans:
 
-Once we already have the web server prepared and routed in our stage, we will modify the different ACLs so that they can only reach the web server by port 80.
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.064.png)
 
-In the router of humans we add the following rule, which allows all traffic to host 192.168.8.2 that goes to port 80:
+Now we will configure an advanced ACL for the Werewolves and Wolfmen:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.062.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.065.png)
 
-In order to refresh the list and to have the changes applied, we must reassign it to the router:
+We will verify that we **cannot** ping the server from the VPCs:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.063.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.066.png)
 
-We will now do the same with the vampire router as it has extended ACLs as well as humans:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.067.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.064.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.068.png)
 
-Now we're going to set up an advanced ACL for the licanthrops and werewolves:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.069.png)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.065.png)
+In summary, we have maintained the previous rules but allowed traffic to the web server only if it comes through port 80. That’s why we cannot ping it.
 
-Let's check that we can NOT ping the server from the VPCs:
+Now we will verify that we can access the web server from the networks:
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.066.png)
+**→ HUMANS:**
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.067.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.070.jpeg)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.068.png)
+**→ VAMPIRES:**
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.069.png)
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.071.jpeg)
 
-In short we have maintained the above rules but we have allowed the traffic to the web server as long as it comes through port 80, so we cannot do it ping.
+**→ WEREWOLVES:**
 
-Let's check that we can access the web server from the networks: - > HUMAN:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.072.jpeg)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.070.jpeg)
+**→ WOLFMEN:**
 
-- > VAMPIROS:
+![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.073.jpeg)
 
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.071.jpeg)
-
-
-- > LICANTROPOS:
-
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.072.jpeg)
-
-- > LOBO MEN:
-
-![](../images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.073.jpeg)
-
-
-[ref1]:.. / images / Asposer.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.033.png
-[ref2]:.. / images / Asposer.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.034.png
+[ref1]: /redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.033.png
+[ref2]: /redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.034.png

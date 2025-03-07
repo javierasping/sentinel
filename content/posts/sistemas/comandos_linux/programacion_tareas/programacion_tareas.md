@@ -1,5 +1,5 @@
 ﻿---
-title: "Comandos programación de tareas en Linux"
+title: "Commands programación de tareas en Linux"
 date: 2023-09-20T10:00:00+00:00
 description: En el ecosistema de Linux, un proceso es la ejecución de un programa específico que realiza una tarea particular. Cada proceso tiene su propio identificador único (PID) y está compuesto por un conjunto de recursos, como memoria y CPU, que le permiten funcionar de manera independiente.
 tags: [Debian 12,Sistemas,ISO,ASO]
@@ -9,7 +9,7 @@ hero: images/sistemas/programacion_tareas/portada.png
 
 La gestión eficiente de tareas programadas es esencial para los administradores de sistemas, ya que facilita la ejecución automática de procesos rutinarios. En este contexto, contar con un conjunto sólido de comandos en Linux para programar y controlar tareas se convierte en una herramienta fundamental. 
 
-## Comando sleep
+## Command sleep
 
 El comando sleep pausa la ejecución en la terminal durante un intervalo de tiempo especificado antes de regresar a la línea de comandos. Puedes indicar el tiempo en segundos, minutos, horas o días. Este comando se encuentra en el paquete coreutils.
 
@@ -24,17 +24,17 @@ Por si solo no tiene ninguna utilidad , sin embargo es muy útil en Scripts .  A
 
 date +"%H:%M:%S";sleep 5;date +"%H:%M:%S"
 
-![](../img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.001.png)
+![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.001.png)
 
-## Comando watch
+## Command watch
 
 La utilidad watch es parte del paquete procps (o procps-ng) que está preinstalado en casi todas las distribuciones Gnu/Linux.
 
 Cuando se usa sin argumentos, esta utilidad ejecutará el comando especificado cada dos segundos:
 
-![](../img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.002.png)
+![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.002.png)
 
-![](../img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.003.png)
+![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.003.png)
 
 Podemos especificar el tiempo de repetición utilizando el parámetro -n , especificando el parámetro en segundos :
 
@@ -42,7 +42,7 @@ watch -n 5 date –> Cada 5 segundos
 
 Si queremos eliminar el encabezado , es decir que nos muestre cada cuanto tiempo se repite , utilizamos el parámetro -t :
 
-![](../img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.004.png)
+![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.004.png)
 
 Si queremos poner un mensaje de error en caso de que el comando no pueda ejecutarse utilizamos el parámetro -e seguido del mensaje de error :
 
@@ -54,9 +54,9 @@ watch -b
 
 Con el parámetro -d nos señala los cambios que han ocurrido en la ejecución del comando : watch -d
 
-![](../img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.005.png)
+![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.005.png)
 
-## Comando at
+## Command at
 
 Este comando se usa para ejecutar comandos a una determinada hora , principalmente se usa para programar tareas periódicas como puedes ser , copias de seguridad . 
 
@@ -97,7 +97,7 @@ Algunos ejemplos para programar tareas son :
 - Dentro de 30 min : at now + 30 minutes
 - 11AM del próximo 14 abril : at 11:00 AM April 14
 
-## Comando crontab
+## Command crontab
 
 El comando crontab se utiliza en sistemas UNIX para programar la ejecución de otros comandos, es decir, para automatizar tareas. Podemos ver los crontabs que se están programados y también editarlos, lógicamente.
 
@@ -146,5 +146,6 @@ Estos comandos nos dará la posibilidad de automatizar procesos , haciendo mas c
 
 ## Bibliografía
 
-- [Comando watch ](https://ubunlog.com/comando-watch-algunas-formas-de-uso/)[Comando crontab](https://geekytheory.com/programar-tareas-en-linux-usando-crontab/)
+- [Command watch ](https://ubunlog.com/comando-watch-algunas-formas-de-uso/)
+- [Command crontab](https://geekytheory.com/programar-tareas-en-linux-usando-crontab/)
 

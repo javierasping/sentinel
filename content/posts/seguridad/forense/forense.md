@@ -27,56 +27,56 @@ javiercruces@HPOMEN15:~/Descargas$ sudo cp AccessData_FTK_Imager_4.7.1.exe /mnt/
 
 Este lo pinchare en la maquina ya que le he instalado el FTK :
 
-![](../img/Pastedimage20240205202959.png)
+![](/seguridad/forense/img/Pastedimage20240205202959.png)
 
 #### Volcado de la memoria
 
 Así que vamos a proceder a sacar una imagen de la memoria :
 
-![](../img/Pastedimage20240205203403.png)
+![](/seguridad/forense/img/Pastedimage20240205203403.png)
 
 Seleccionamos donde la vamos a guardar :
 
-![](../img/Pastedimage20240205203443.png)
+![](/seguridad/forense/img/Pastedimage20240205203443.png)
 
 #### Volcado del registro
 
 Vamos a sacar el registro , para ello seleccionamos la opción de obtener ficheros protegidos  :
 
-![](../img/Pastedimage20240205203507.png)
+![](/seguridad/forense/img/Pastedimage20240205203507.png)
 
 Seleccionare los ficheros de contraseñas y todos los registros , ademas lo guardare en el disco externo  :
 
-![](../img/Pastedimage20240205203547.png)
+![](/seguridad/forense/img/Pastedimage20240205203547.png)
 #### Volcado de disco
 
 Para realizar el volcado de disco , seleccionaremos crear imagen de disco :
 
-![](../img/Pastedimage20240205203656.png)
+![](/seguridad/forense/img/Pastedimage20240205203656.png)
 
 Nuestro disco de origen es un dispositivo físico , así que seleccionare esa opción :
 
-![](../img/Pastedimage20240205203718.png)
+![](/seguridad/forense/img/Pastedimage20240205203718.png)
 
 Elegimos donde vamos a guardar la imagen , en mi caso en el disco externo :
 
-![](../img/Pastedimage20240205203819.png)
+![](/seguridad/forense/img/Pastedimage20240205203819.png)
 
 Una vez hecho , verificara la imagen creada :
 
-![](../img/Pastedimage20240205203942.png)
+![](/seguridad/forense/img/Pastedimage20240205203942.png)
 
 Aquí tenemos los hash de la imagen del disco :
 
-![](../img/Pastedimage20240205204017.png)
+![](/seguridad/forense/img/Pastedimage20240205204017.png)
 
 También le haremos el volcado al disco de datos que esta cifrado :
 
-![](../img/Pastedimage20240205204148.png)
+![](/seguridad/forense/img/Pastedimage20240205204148.png)
 
 Los hashes del segundo disco :
 
-![](../img/Pastedimage20240205204206.png)
+![](/seguridad/forense/img/Pastedimage20240205204206.png)
 
 
 Ahora voy a hacer llegar estos ficheros a mi maquina host , para ello montare el volumen de la mv en la cual he hecho los volcados de datos :
@@ -191,16 +191,16 @@ b419ec819114f21a10bc5146a0b28183165c8b2cf77b2fe160e3044b1b5e04a0  /mnt/vdb/vdb
 
 Lo primero que haré sera crear un caso en autopsy (Esta documentación esta hecha en debian , los ejercicios los he respondido en Windows ).
 
-![](../img/Pastedimage20240205205321.png)
+![](/seguridad/forense/img/Pastedimage20240205205321.png)
 
 Le añadimos metainformación  al caso , si lo consideramos necesario :
 
-![](../img/Pastedimage20240205205343.png)
+![](/seguridad/forense/img/Pastedimage20240205205343.png)
 
 
 Esperamos a que autopsy procese la imagen de disco :
 
-![](../img/Pastedimage20240205205353.png)
+![](/seguridad/forense/img/Pastedimage20240205205353.png)
 
 ### Instalación volatility 
 
@@ -720,7 +720,7 @@ S-1-5-80-1281037624-1782002805-990284447-3522102690-2853398433	xinputhid
 
 ### 3. Puertos abiertos
 
-![](../img/Pastedimage20240206211730.png)
+![](/seguridad/forense/img/Pastedimage20240206211730.png)
 
 Volatility parece ser que no tiene soporte para esta funcionalidad para Windows 10/11 , así que lo haré desde la propia powershell de la maquina : 
 
@@ -966,43 +966,43 @@ Para esto nos descargamos el Registry Viewer 2.0.0 https://www.exterro.com/ftk-p
 
 Abrimos el fichero system que es el registro de Windows :
 
-![](../img/Pastedimage20240206200558.png)
+![](/seguridad/forense/img/Pastedimage20240206200558.png)
 
 
 #### 9. Dispositivos USB conectados
 
-![](../img/Pastedimage20240206200915.png)
+![](/seguridad/forense/img/Pastedimage20240206200915.png)
 
-![](../img/Pastedimage20240206201401.png)
+![](/seguridad/forense/img/Pastedimage20240206201401.png)
 
-![](../img/Pastedimage20240206201441.png)
+![](/seguridad/forense/img/Pastedimage20240206201441.png)
 
 
 ### Autopsy:
 
-![](../img/Pastedimage20240206200947.png)
+![](/seguridad/forense/img/Pastedimage20240206200947.png)
 
 #### 10. Redes wifi utilizadas recientemente.
 
  Lo podemos encontrar en --> system/ControlSet001/Control/Network/Connections
 
-![](../img/Pastedimage20240206202518.png)
+![](/seguridad/forense/img/Pastedimage20240206202518.png)
 
 
 #### 11. Configuración del firewall de nodo.
 
 system\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy
 
-  ![](../img/Pastedimage20240206203007.png)
+  ![](/seguridad/forense/img/Pastedimage20240206203007.png)
 
-![](../img/Pastedimage20240206204447.png)
+![](/seguridad/forense/img/Pastedimage20240206204447.png)
 
 
 #### 12. Programas que se ejecutan en el Inicio.
 
   software\Microsoft\Windows\CurrentVersion\Run
 
-![](../img/Pastedimage20240206205755.png)
+![](/seguridad/forense/img/Pastedimage20240206205755.png)
 
 
 
@@ -1010,34 +1010,34 @@ system\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy
 
 Esta debajo de este directorio --> software\Classes 
 
-![](../img/Pastedimage20240206205941.png)
+![](/seguridad/forense/img/Pastedimage20240206205941.png)
 
-![](../img/Pastedimage20240206210015.png)
+![](/seguridad/forense/img/Pastedimage20240206210015.png)
 
 
 #### 14. Aplicaciones usadas recientemente.
 
-![](../img/Pastedimage20240206200026.png)
+![](/seguridad/forense/img/Pastedimage20240206200026.png)
 
 #### 15. Ficheros abiertos recientemente.
 
-![](../img/Pastedimage20240206195852.png)
+![](/seguridad/forense/img/Pastedimage20240206195852.png)
 
 #### 16. Software Instalado.
 
-![](../img/Pastedimage20240206195841.png)
+![](/seguridad/forense/img/Pastedimage20240206195841.png)
 
 #### 17. Contraseñas guardadas.
 
-![](../img/Pastedimage20240206195817.png)
+![](/seguridad/forense/img/Pastedimage20240206195817.png)
 
 #### 18. Cuentas de Usuario
 
-![](../img/Pastedimage20240206195617.png)
+![](/seguridad/forense/img/Pastedimage20240206195617.png)
 
 Podemos ver las respuestas a las preguntas de seguridad :
 
-![](../img/Pastedimage20240212131736.png)
+![](/seguridad/forense/img/Pastedimage20240212131736.png)
 
 ### Con Aplicaciones de terceros:
 
@@ -1045,15 +1045,15 @@ Podemos ver las respuestas a las preguntas de seguridad :
 #### 19. Historial de navegación y descargas. Cookies.
 
 Historial :
-![](../img/Pastedimage20240206195525.png)
+![](/seguridad/forense/img/Pastedimage20240206195525.png)
 
 Descargas :
 
-![](../img/Pastedimage20240206195425.png)
+![](/seguridad/forense/img/Pastedimage20240206195425.png)
 
 Cookies :
 
-![](../img/Pastedimage20240206195403.png)
+![](/seguridad/forense/img/Pastedimage20240206195403.png)
 
 
 
@@ -1061,7 +1061,7 @@ Cookies :
 
 Te muestra los FICHEROS cifrados :
 
-![](../img/Pastedimage20240206195321.png)
+![](/seguridad/forense/img/Pastedimage20240206195321.png)
 
   
 
@@ -1072,48 +1072,48 @@ Te muestra los FICHEROS cifrados :
 #### 21. Archivos con extensión cambiada
 
 Nos fijaremos en que el tipo MIME coincida con la extensión :
-  ![](../img/Pastedimage20240206192803.png)
+  ![](/seguridad/forense/img/Pastedimage20240206192803.png)
   
   También hay un artefacto que nos permite ver los ficheros que están con otra extensión  :
 
-![](../img/Pastedimage20240217191651.png)
+![](/seguridad/forense/img/Pastedimage20240217191651.png)
 
 
 #### 22. Archivos eliminados
 
 Tienes un apartado en especifico que te dice los ficheros borrados :
-  ![](../img/Pastedimage20240206185456.png)
+  ![](/seguridad/forense/img/Pastedimage20240206185456.png)
 
   Pero si navegas por los directorios , te informara si hay algún fichero borrado en el mismo :
   
-  ![](../img/Pastedimage20240206185709.png)
+  ![](/seguridad/forense/img/Pastedimage20240206185709.png)
   
 
 #### 23. Archivos Ocultos
 
-![](../img/Pastedimage20240206193134.png)
+![](/seguridad/forense/img/Pastedimage20240206193134.png)
   
 
 #### 24. Archivos que contienen una cadena determinada
 
-![](../img/Pastedimage20240206192629.png)
+![](/seguridad/forense/img/Pastedimage20240206192629.png)
 
-![](../img/Pastedimage20240206192646.png)
+![](/seguridad/forense/img/Pastedimage20240206192646.png)
 
 
 #### 25. Búsqueda de imágenes por ubicación.
 
 La ubicación de autopsy no me localiza la imagen , así que usare una herramienta externa .
 
-![](../img/Pastedimage20240206193627.png)
+![](/seguridad/forense/img/Pastedimage20240206193627.png)
 
-![](../img/Pastedimage20240206193638.png)
+![](/seguridad/forense/img/Pastedimage20240206193638.png)
 
-![](../img/Pastedimage20240206193726.png)
+![](/seguridad/forense/img/Pastedimage20240206193726.png)
 
 #### 26. Búsqueda de archivos por autor.
 
-![](../img/Pastedimage20240218193344.png)
+![](/seguridad/forense/img/Pastedimage20240218193344.png)
 
 ## Apartado B Máquina Linux.
 
@@ -1286,11 +1286,11 @@ user1
 
 Historial :
 
-![](../img/Pastedimage20240218191820.png)
+![](/seguridad/forense/img/Pastedimage20240218191820.png)
 
 Cookies :
 
-![](../img/Pastedimage20240218191853.png)
+![](/seguridad/forense/img/Pastedimage20240218191853.png)
 
 Descargas :
 
@@ -1309,11 +1309,11 @@ root@debian:~# lsblk -f | grep crypt
 
 *No me carga el artefacto de Mismatch Detector , pero podemos verlo fijandonos en los metadatos : 
 
-![](../img/Pastedimage20240218190705.png)
+![](/seguridad/forense/img/Pastedimage20240218190705.png)
 
 ### 22. Archivos eliminados
 
-![](../img/Pastedimage20240218192845.png)
+![](/seguridad/forense/img/Pastedimage20240218192845.png)
 
 
 ### 23. Archivos Ocultos
@@ -1333,7 +1333,7 @@ root@debian:~# grep -rnw / -e 'File' > /mnt/FicherosContienenFile
 
 ### 26. Búsqueda de archivos por autor
 
-![](../img/Pastedimage20240218193344.png)
+![](/seguridad/forense/img/Pastedimage20240218193344.png)
 
 
 He intentado ya que no he podido utilizar volatility para estos ejercicios , usar comandos para poder realizar lass comprobaciones manualmente . Para darle mas seriedad a los ejercicios voy a sacar los hashes de las salidas de los diferentes comandos para asegurarnos de que no se modifiquen :

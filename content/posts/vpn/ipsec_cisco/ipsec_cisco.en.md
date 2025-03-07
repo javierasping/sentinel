@@ -10,10 +10,10 @@ hero: /images/vpn/ipsec_cisco.png
 
 In this post I'm going to mount an IPSEC VPN using swan routers.
 
-![](../img/Pastedimage20240128120659.png)
+![](/vpn/ipsec_cisco/img/Pastedimage20240128120659.png)
 
 
-> [NOTE]
+> [!NOTE]
 > This post details the configuration of R2 and R3 routers, however R1 is explained in the post of "VPN OpenVPN remote access." If you want to see the configuration of the latter, look at the section preparing the stage.
 
 ## # Stage configuration

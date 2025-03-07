@@ -96,11 +96,13 @@ We assign execution permissions to the Ubridge binary file
 ```bash
 javiercruces@HPOMEN15:~/ubridge$ chmod +x ubridge
 ```
-We copy the binary file to "/ usr / local / bin," a standard command route available globally in the system.
+
+We copy the binary file to "/usr/local/bin," a standard command route available globally in the system.
 
 ```bash
 javiercruces@HPOMEN15:~/ubridge$ cp -p ubridge /usr/local/bin
 ```
+
 We set up special permissions for ubridge, allowing you access to network operations (cap _ net _ admin) and the sending of raw packages (cap _ net _ raw) necessary for its operation.
 
 ```bash
@@ -131,40 +133,8 @@ javiercruces@HPOMEN15:~/vpcs/src$ pwd
 /home/javiercruces/vpcs/src
 ```
 
-In preferences you have to add the route where you have saved the compiled file vpcs, in my case the serious route / home / javiercruises / vpcs / src / vpcs
+In preferences you have to add the route where you have saved the compiled file vpcs, in my case the serious route /home/javiercruces/vpcs/src/vpcs
 
 
-![](../img/vpc.png)
+![](/redes/instalar_gns3_debian12/img/vpc.png)
 
-
-♪ GNS3 VM
-
-In my case you can download it from this [link] (https: / / support.broadcom.com / group / ecx / productfiles? subFamily = VMware% 20Workstation% 20Pro & displayGroup = VMware% 20Workstation% 20Pro% 2017.0% 20for% 20Linux & release = 17.6.1 & os = & servicePk = 524584 & language = EN). For this you must be registered on the page.
-
-Once the files have been downloaded, the commands to install them are as follows.
-
-We give execution permission to the file.
-```bash 
-javiercruces@HPOMEN15:~/Descargas/VMware-Player-17.6.1-24319023.x86_64.bundle$ chmod + VMware-Player-17.6.1-24319023.x86_64.bundle 
-
-```
-
-We run the script with sh and wait for it to be installed.
-```bash
-javiercruces@HPOMEN15:~/Descargas/VMware-Player-17.6.1-24319023.x86_64.bundle$ sudo sh VMware-Player-17.6.1-24319023.x86_64.bundle
-Extracting VMware Installer...done.
-Installing VMware Player 17.6.1
-    Configuring...
-[######################################################################] 100%
-Installation was successful.
-
-``` -->
-
-
-<! -- Errors
-
-```bash
-Could not start Telnet console with command 'xterm -T "PC1" -e "telnet localhost 5001"': [Errno 2] No existe el fichero o el directorio: 'xterm'
-javiercruces@HPOMEN15:~$ sudo apt install xterm
-
-``` -->

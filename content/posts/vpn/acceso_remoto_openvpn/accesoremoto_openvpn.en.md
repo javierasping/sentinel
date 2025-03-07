@@ -19,7 +19,7 @@ hero: /images/vpn/remoteaccess.png
 
 To perform this exercise I have mounted the following scenario on GNS3:
 
-![](../img/Pastedimage20240114150833.png)
+![](/vpn/acceso_remoto_openvpn/img/Pastedimage20240114150833.png)
 
 ## # Swan router configuration
 Let's give each interface the corresponding network configuration:

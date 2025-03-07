@@ -19,7 +19,7 @@ The following example shows which physical disks are available in the primary gr
 Get-StoragePool -IsPrimordial $true | Get-PhysicalDisk -CanPool $True
 ```
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.001.png)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.001.png)
 
 The following example creates a new storage group called StoragePool1 that uses all available disks:
 
@@ -27,7 +27,7 @@ The following example creates a new storage group called StoragePool1 that uses 
 New-StoragePool –FriendlyName StoragePool1 –StorageSubsystemFriendlyName "Windows Storage\*" –PhysicalDisks (Get-PhysicalDisk –CanPool $True) 
 ```
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.002.png)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.002.png)
 
 By default the type of supply is mirror.
 
@@ -45,23 +45,23 @@ Let's create a virtual disk:
 New-VirtualDisk –StoragePoolFriendlyName StoragePool1 –FriendlyName VirtualDisk1 –Size (8GB)
 ```
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.003.jpeg)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.003.jpeg)
 
 It will automatically create a volume for us and mount it into a available letter:
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.004.jpeg)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.004.jpeg)
 
 We can interact with and save information:
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.005.png)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.005.png)
 
 We see that this is the "equivalent" to LVM on Windows. We see that there are similarities not only in the structure when creating it, but also that they refer in the official documentation to RAID 5 and RAID 6:
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.006.png)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.006.png)
 
 The way to store the data in either stripes or by saving the full space, as in Linux:
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.007.jpeg)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.007.jpeg)
 
 ## Bibliography
 

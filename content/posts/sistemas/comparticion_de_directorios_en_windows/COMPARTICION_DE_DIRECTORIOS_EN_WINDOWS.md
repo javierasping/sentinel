@@ -13,45 +13,45 @@ En el entorno empresarial, la capacidad de compartir recursos en red es esencial
 
 Podemos compartir un directorio de nuestro servidor , accediendo a las propiedades del mismo . Una vez aquí pulsamos sobre el menú compartir :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.001.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.001.png)
 
 Ahora le daremos permisos a los usuarios que deseemos que tengan acceso a este :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.002.jpeg)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.002.jpeg)
 
 Una vez compartido nos mostrara la ruta que tendremos que poner para acceder a este recurso , que podemos modificarla a nuestro gusto en uso compartido avanzado :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.003.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.003.png)
 
 Desde un cliente podemos ver los recursos que esta compartiendo nuestro servidor usando net view :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.004.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.004.png)
 
 Podemos mapear la unidad de red desde la linea de comandos usando net use  :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.005.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.005.png)
 
 Vamos a crear un directorio y comprobar que se ha creado :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.006.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.006.png)
 
 Vemos que en el servidor se ha creado :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.007.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.007.png)
 
 También podemos hacer esto desde la administración de usuarios y grupos de active directory :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.008.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.008.png)
 
 ## Compartir recursos desde cmd
 
 Ahora vamos a usar net share para compartir un recurso en red a traves de la linea de comandos :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.009.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.009.png)
 
 Si desde otro cliente vemos los recursos que comparte el server core , lo veremos :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.010.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.010.png)
 
 Si queremos cambiar los permisos de un recurso compartido podemos usar los comandos cacls y icacls . También tenemos la posibilidad de hacerlo usando la interfaz gráfica con las RSAT.
 
@@ -63,7 +63,7 @@ Crearemos el recurso compartido
 New-SmbShare -Name JCD\_comp -Path "C:\compartir\" -FullAccess "Administrador"
 ```
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.011.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.011.png)
 
 Si queremos añadir permisos específicos a un grupo a la hora de crear el recurso compartido seria : 
 
@@ -89,13 +89,13 @@ Para montar este directorio compartido en otro host Windows :
 New-PSDrive -Name J -PSProvider FileSystem -Root [\\172.22.9.143\JCD_comp](file://172.22.9.143/JCD_comp)
 ```
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.012.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.012.png)
 
 Además podemos listar para ver si se ha montado correctamente :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.013.jpeg)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.013.jpeg)
 
 Listaremos el contenido del mismo para ver si tenemos acceso a el :
 
-![](../img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.014.png)
+![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.014.png)
 

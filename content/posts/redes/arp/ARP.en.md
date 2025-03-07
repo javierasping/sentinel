@@ -12,34 +12,34 @@ The Address Resolution Protocol (ARP) is fundamental in computer networks to map
 
 ### Do you think the ARP question is a message of dissemination? Make a Wireshark capture of an ARP request and analyze it to justify your response.
 
-Yes, it is a message of dissemination as in the header we can see that the destination has a broadcast address. This address is the one that has all its bits at 1 which in the mac addresses is translated into FF: FF: FF: FF: FF: FF.
+Yes, it is a message of dissemination as in the header we can see that the destination has a broadcast address. This address is the one that has all its bits at 1 which in the mac addresses is translated into FF:FF:FF:FF:FF:FF.
 
 When it comes to you, in this case to whom it has IP address 192.168.1.1 will return the request and in the origin we will get its MAC address.
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.001.jpeg)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.001.jpeg)
 
 ### Do you think the ARP response is a message of dissemination? Make a Wireshark capture of an ARP response and analyze it to justify your response.
 
 We can see in the answer that in the destination direction comes that of the pc that I send the question, so the answer is not a broadcast message but a point-by-point communication.
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.002.jpeg)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.002.jpeg)
 
 
 ### The computers of a network store in memory a cache with the IP-MAC correspondences they know. It explains the process of updating the ARP cache after observing how it is being filled on the machines of a small GNS3 scenario with a local network with four computers connected to a switch. See how the ARP cache of all computers changes when you go ping between one computer and another.
 
-When we do a ping the issuer and the receiver "add each other to the ARP table," if we consult them in both we will see that they are included:
+When we do a ping the issuer and the receiver "add each other to the ARP table", if we consult them in both we will see that they are included:
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.003.png)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.003.png)
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.004.png)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.004.png)
 
 We can see that the time they are kept in cache is 120 seconds, when this time is over, the entrance is deleted.
 
 While in the pcs that have not intervened they will not store anything in the cache arp on the "transaction made":
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.005.png)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.005.png)
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.006.png)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.006.png)
 
 ### Analyze the ip neigh command to see the possibilities it offers and think about what the real use of each of them can be.
 
@@ -47,7 +47,7 @@ This command allows us to interact with the arp table where the IP-MAC address r
 
 For example, list the content:
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.007.png)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.007.png)
 
 We can summarize your functions:
 
@@ -76,7 +76,7 @@ The attack changes the flow of data sent from a Victim PC that passes through a 
 
 Thus the attacker intercepts the messages and is able to obtain all the traffic from the network by obtaining passwords and confidential or sensitive information.
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.008.jpeg)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.008.jpeg)
 
 The steps followed by an attacker in carrying out this attack are:
 
@@ -103,15 +103,15 @@ To mitigate this attack in the event that you supply a machine from my network a
 
 We can also implement the following strategies in our network:
 
-* * Static inputs to ARP table * *
+**Static inputs to ARP table**
 
 The first solution that exists is to work with static routes in network equipment. This allows to invalidate ARP messages, because the IP is associated with a MAC address and this does not change over time. It is a simple and generally applied solution to ensure that the predetermined link door is really that of the network and not an attacker. However, it is a difficult strategy to apply if you have a network with a lot of terminals.
 
-* * DHCP snooping * *
+**DHCP snooping**
 
 It is a strategy that keeps a record of the MAC that are connected in each port and immediately detects if there is a subplanting. Several network equipment manufacturers incorporate this solution into their equipment, such as CISCO.
 
-* * Dynamic ARP Inspection * *
+**Dynamic ARP Inspection**
 
 To prevent the supplanting of ARP (ARP spoofing) and the resulting ARP poisoning (ARP poisoning), a switch should ensure that only ARP Requests and ARP Replies are transmitted valid.
 
@@ -123,7 +123,7 @@ The Dynamic ARP / Dynamic ARP Inspection (DAI) Dynamic Inspection requires DHCP 
 - Discard and record invalid ARP responses to prevent ARP poisoning.
 - Error-disabling the interface if you exceed the number of ARP DAI packages configured.
 
-♪ RARP ♪
+## RARP 
 
 RARP is Reversal ARP, which means that you consult the corresponding IP from a MAC address. In case you return more than one IP address, then the MAC has been cloned.
 
@@ -131,8 +131,7 @@ RARP is Reversal ARP, which means that you consult the corresponding IP from a M
 
 ## Bibliography
 
-- [ip neigh] (https: / / rm-rf.es / control-de-tablas-arp-con-el-comando-ip /)
-- [arp spoofing] (https: / / www.incibe-cert.es / blog / arp-spoofing)
-- [Free ARP] (http: / / www.tranquilidadologica.com / 2006 / 05 / pagetes-arp-gratuitos.html)
-- [mitigation measures] (http: / / professes.elo.utfsm.cl / ~ agv / elo323 / 2s14 / projects / reports / MoraMorales / mitigation.html #: ~: text = is% 20a% 20strategy% 20which% 20maintains, is% 20a% 20case% 20of% 20CISCO.)
-
+- [ip neigh](https://rm-rf.es/control-de-tablas-arp-con-el-comando-ip/)
+- [arp spoofing](https://www.incibe-cert.es/blog/arp-spoofing)
+- [Free ARP](http://www.tranquilidadologica.com/2006/05/pagetes-arp-gratuitos.html)
+- [mitigation measures](http://profesores.elo.utfsm.cl/~agv/elo323/2s14/projects/reports/MoraMorales/mitigation.html#:~:text=is%20a%20strategy%20which%20maintains,is%20a%20case%20of%20CISCO.)

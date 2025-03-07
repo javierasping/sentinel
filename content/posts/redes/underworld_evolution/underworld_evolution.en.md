@@ -1,991 +1,972 @@
 ﻿---
 title: "Underworld evolution"
 date: 2023-09-08T10:00:00+00:00
-Description: Scenario in which we will configure the routing, SNAT, DNAT and firewall with Linux and Windows devices.
-tags: [Redes, SNAT ,DNAT , Cisco , Linux]
+description: A scenario in which we will configure routing, SNAT, DNAT, and firewalls with Linux and Windows devices.
+tags: [Networking, SNAT, DNAT, Cisco, Linux]
 hero: images/redes/underworld_evolution/portada.jpeg
 ---
 
+The world of UNDERWORLD has evolved greatly in recent months, so you must perform network management tasks to face the new situation.
 
-
-The world of UNDERWORLD has evolved a lot in recent months, so you have to do network management tasks to deal with the new situation.
-
-On the one hand, the Internet has been discovered in the Underworld, so that each of the subworlds (remember: vampires, licanthros, werewolves and humans) is connected to a router that, in turn, connects them to one of the two great routers that form the Underworld Internet, called Marcus (for humans and vampires) and Alexander (for werewolves and licanthrops). Marcus and Alexander are connected to each other.
+On one hand, the Internet has been discovered in the Underworld, allowing each of the sub-worlds (remember: vampires, werewolves, lycanthropes, and humans) to connect to a router that, in turn, connects them to one of the two large routers that form Underworld's Internet, called Marcus (for humans and vampires) and Alexander (for werewolves and lycanthropes). Marcus and Alexander are connected to each other.
 
 The scheme would be as follows:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.001.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.001.jpeg)
 
-On the other hand, the underworld beings have discovered a vulnerability in the CISCO routers that allows them to skip the access control lists, returning to the chaos you managed to prevent in their day with the ACL.
+On the other hand, the beings of the underworld have discovered a vulnerability in CISCO routers that allows them to bypass the access control lists, returning to the chaos you previously prevented with the ACLs.
 
+Your tasks will consist of:
 
-Your task will then be to:
+1. Replacing the CISCO routers in the network infrastructure with Linux machines following the scheme shown.
+2. Properly configure the Linux machines to function as routers.
+3. Create the necessary routing tables for all machines to communicate with each other, considering that internal networks will have private addresses and we will have public addresses on the Internet.
+4. Configure the necessary firewalls on the routers so that:
+   - VAMPIRES cannot communicate with the other species.
+   - WEREWOLVES and LYCANTHROPES, since they are not so repulsive when they meet, can communicate with each other. They will not have communication with the other species.
+   - HUMANS will also not be able to communicate with the other species.
+5. Configure the DHCP service that the werewolves and lycanthropes had under the same conditions they had when using CISCO routers.
+6. Configure the firewalls with the necessary rules so that, from HUMANLAND, IT KNIGHT can continue communicating with his two favorite vampires (SONJA and SELENE).
+7. Perform the necessary configurations to set up a web server in HUMANLAND accessible from anywhere in UNDERWORLD.
 
-1. Replace CISCO routers with Linux machines in the network infrastructure following the figure's scheme.
-2. Configure Linux machines properly to function as routers.
-3. Create the routing tables necessary for all machines to communicate with all in principle, taking into account that the internal networks will have private addresses and on the Internet we will have public addresses.
-4. Configure the necessary firewalls in the routers to:
-- VAMPIROS cannot communicate with the other species.
-- LOBO MEN and LICANTROPOS, since they are not so repulsive when they cross, can communicate with each other. The other species will have no communication.
-- Nor can they communicate with other species.
-5. Configure the DHCP service that werewolves and licanthrops had under the same conditions as they had when using CISCO routers.
-6. Configure in the firewalls the rules necessary for it to continue to communicate with its two favorite vampires (SONJA AND SELENE).
-7. It makes the settings necessary to mount a web server on HUMANLAND accessible from anywhere in UNDERWORLD.
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.002.jpeg)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.002.jpeg)
+## Preparation of the scenario in Linux
 
+### Configuration of the network interfaces
 
-### Stage preparation in Linux
+The first thing we will do is add the necessary network interfaces to each router. To do this, with the machine turned off, we right-click > settings > network and add the slots that are needed for each machine:
 
-### Network card configuration
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.003.png)
 
-The first thing we will do is to add the necessary network cards to each router, so with the machine off we do on the same right click > configuration > network and add the slots that are necessary for each machine:
+We will need the following number of network interfaces for each device:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.003.png)
+- Router 1, 2, 3, and 4: will need 2 network interfaces
+- MARCUS and ALEXANDER: will need 3 network interfaces
+- PCs: will need 1 network interface
 
-We will need the following number of network cards for each device:
+Once this is done, we will edit the file /etc/network/interfaces to perform our network configuration.
 
-- Router 1, 2, 3 and 4: You will need 2 network cards
-- MARCUS and ALEXANDER: You will need 3 network cards
-- PCs: You will need 1 network card
+Subsequently, we will restart the networking service with systemctl restart networking.service so that the network configuration we indicated is applied.
 
-Once this is done we will edit the / etc / network / interfaces file to perform our network configuration.
+Configuration of the network interface Router 1:
 
-We will then relaunch the network service with systemctl restart networking.service to apply the network configuration we have indicated.
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.004.png)
 
-Router 1 network card configuration:
+Configuration of the network interface Router 2:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.004.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.005.png)
 
-Router 2 network card configuration:
+Configuration of the network interface Router 3:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.005.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.006.png)
 
-Router 3 network card configuration:
+Configuration of the network interface Router 4:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.006.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.007.png)
 
-Router 4 network card configuration:
+Configuration of the network interface Router MARCUS:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.007.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.008.png)
 
-Router MARCUS network card configuration:
+Configuration of the network interface Router ALEXANDER:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.008.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.009.png)
 
-Network card configuration Router ALEXANDER:
+#### Enabling the forwarding bit
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.009.png)
+If we want to make a Linux machine act as a router, which means it routes packets that are not destined for it, we must enable the forwarding bit.
 
+Additionally, we will take this opportunity to permanently enable the forwarding bit on the routers of the scenario by editing the file /etc/sysctl.conf and uncommenting this line:
 
-### Activate the forward bit
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.010.png)
 
-If we want to make a Linux machine act as a router, that is to say to enroute the packages that do not have as their destination this will have to activate the forwarding bit.
+We will repeat this for the six routers we have in the scenario:
 
-We will also take advantage to activate the forwarding bit permanently on the stage routers for this purpose we edit the / etc / sysctl.conf file and discomment this line:
+**Router 1:**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.010.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.011.png)
 
-This will be repeated for the 6 routers we have on stage:
+**Router 2:**
 
-* * Router 1: * *
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.012.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.011.png)
+**Router 3:**
 
-* * Router 2: * *
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.013.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.012.png)
+**Router 4:**
 
-* * Router 3: * *
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.014.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.013.png)
+**Router MARCUS:**
 
-♪ Router 4: ♪
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.015.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.014.png)
+**Router ALEXANDER:**
 
-* * Router MARCUS: * *
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.016.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.015.png)
+Now all our machines are configured to act as routers and will route any packets that are sent to them that are not for them.
 
-* * Router ALEXANDER: * *
+#### Route configuration
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.016.png)
+Here I will show if I have added any routes manually and the routing tables of the devices.
 
-Now all of our machines are configured to act as routers and direct the packages that come to you and are not for this.
+**Router MARCUS:**
 
-## # # Route configuration
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.017.png)
 
-Here I will show you if I have added any route manually and the routing tables of the devices.
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.018.png)
 
-* * Router MARCUS: * *
+**Router ALEXANDER:**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.017.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.019.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.018.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.020.png)
 
-* * Router ALEXANDER: * *
+**Router 1:**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.019.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.021.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.020.png)
+**Router 2:**
 
-* * Router 1: * *
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.022.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.021.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.023.png)
 
-* * Router 2: * *
+**Router 4:**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.022.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.024.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.023.png)
+With the network configuration I have on the interfaces, I have only added 2 manual routes on the routers of MARCUS and ALEXANDER; in the rest it was not necessary since it is generated automatically with the gateway we placed when configuring the network interfaces.
 
-♪ Router 4: ♪
+I could have saved writing them if I had placed the IP of the other as the gateway on the interface configured in the network 100.X.X.X.
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.024.png)
+#### Connectivity test
 
-Having the network configuration I have on the cards I have only added 2 manual routes, in the routers of MARCUS and ALEXANDER in the rest it has not been necessary as it is generated automatically with the link door we have placed when setting the network interfaces.
+We are going to check if we have routed correctly, so I will ping from each router to each one of the edges of the scenario.
 
-I could have saved myself from writing them if I had placed them on the interface that is configured in the 100.X.X.X network the ip address of the other as a gateway.
+**Router 1:**
 
-## # Connectivity test
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.025.png)
 
-Let's check that we've done the routing correctly so I'm going to throw a ping from each router to each of the ends of the stage.
+**Router 2:**
 
-* * Router 1: * *
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.026.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.025.png)
+**Router 3:**
 
-* * Router 2: * *
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.027.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.026.png)
+**Router 4:**
 
-* * Router 3: * *
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.028.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.027.png)
+It is confirmed that we have connectivity between all routers; the PCs will not have “connectivity” until we configure the SNAT.
 
-♪ Router 4: ♪
+### DHCP Configuration
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.028.png)
+#### Lycanthropes
 
-It is proven that we have connectivity between all routers, PCS cannot have "connectivity" until we entrust the SNAT.
+The lycanthropes, on their part, hire you to assign their IPs via DHCP as well, but they indicate that they cannot receive the first 10 addresses of their range (not counting the network one or the gateway), as these are reserved for the leaders of their clan who are traveling and will return in a few days.
 
-DHCP configuration
+With the machine connected to the NAT cloud and the interface that is connected configured via DHCP, we will download the DHCP server; to do this, we must first run an apt update because the machine does not have the repositories loaded in memory:
 
-### 
-The licanthrops, on their part, hire you to assign them also for DHCP their IPs, but they tell you that they cannot receive the first 10 directions of their rank (not counting the network or the link door), as these are reserved for the heads of their clan who are on their way and will return in a few days.
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.029.png)
 
-With the NAT cloud-connected machine and the DHCP-configured card we will download the DHCP server, for this we will first have to make an apt update as the machine does not carry the repositories loaded in memory:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.030.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.029.png)
+When it finishes installing, it will give us an error; this is because the service is not configured and does not know which interface the server should assign addresses to:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.030.png)
+![ref1]
 
-When you have just installed it will give us an error, this is because the service is not configured and does not know why the interface has to distribute the server addresses:
+To do this, we will edit the file /etc/default/isc-dhcp-server and add the name of the interface in the IPV4 section:
 
-! [ref1]
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.032.png)
 
-To do this we will edit the / etc / default / isch-dhcp-server file and add the card name in the IPV4 section:
+Now we will configure the scope with the requirements requested by the lycanthropes by editing the file /etc/dhcp/dhcpd.conf:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.032.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.033.png)
 
-We will now set the scope with the requirements that the licanthrops ask us to do so we will edit the / etc / dhcp / dhcpd.conf file:
+We must keep in mind that the configuration we put here is consistent with the network configuration we have; we need to consider that we have a /28, so in this case, we can only have 14 assignable addresses.
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.033.png)
-
-We will have to keep in mind that the configuration we put here is consistent with the network configuration we have, we have to keep in mind that we have a / 28 so in this case we can only have 14 assigned directions.
-
-But if we follow the statement the first 10 do not want them so we can only assign 3 to our customers.
+But if we follow the statement, they do not want the first 10, so we can only assign 3 to our clients.
 
 Once this is done, we will restart the service:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.034.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.034.png)
 
-And we'll see if it's working, seeing the state:
+And we will see if it is working, checking the status:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.035.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.035.jpeg)
 
-We will assign ip to a PC to check that it works:
+We will assign an IP to a PC to check that it works:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.036.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.036.png)
 
-### Werewolves
+#### Werewolves
 
-The werewolves who are quite donkeys putting IP addresses into their machines, ask you to set up the DHCP service for all their machines to automatically receive a free IP.
+The werewolves, who are quite clumsy at entering IP addresses into their machines, ask you to configure the DHCP service for all their machines to receive an IP automatically.
 
-With the NAT cloud-connected machine and the DHCP-configured card we will download the DHCP server, for this we will first have to make an apt update as the machine does not carry the repositories loaded in memory:
+With the machine connected to the NAT cloud and the interface that is connected configured via DHCP, we will download the DHCP server; to do this, we must first run an apt update because the machine does not have the repositories loaded in memory:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.037.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.037.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.038.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.038.png)
 
-When you have just installed it will give us an error, this is because the service is not configured and does not know why the interface has to distribute the server addresses:
+When it finishes installing, it will give us an error; this is because the service is not configured and does not know which interface the server should assign addresses to:
 
-! [ref1]
+![ref1]
 
-To do this we will edit the / etc / default / isch-dhcp-server file and add the card name in the IPV4 section:
+To do this, we will edit the file /etc/default/isc-dhcp-server and add the name of the interface in the IPV4 section:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.039.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.039.png)
+
+Fortunately, the werewolves are less demanding, and they want the entire range of addresses distributed, so for this, we will edit the file /etc/dhcp/dhcpd.conf:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.040.png)
+
+Now we will restart the service:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.041.png)
+
+We will check the status to ensure that it is working correctly:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.042.jpeg)
+
+We will assign an address to a client to make sure everything works correctly:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.043.png)
+
+### SNAT Configuration
+
+To complete the preparation phase, we will need to configure SNAT so that the different races can communicate with each other.
+
+**Router 1:**
+
+I created a file called iptables to save all the rules from the practice:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.044.png)
+
+To demonstrate that the rule works, here is a capture between Router 1 and PC1:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.045.png)
+
+We see that once outside the network between R1 and MARCUS, SNAT has been applied:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.046.png)
 
 
-Luckily werewolves are less demanding and they want their full range of addresses to be shared so we will edit the / etc / dhcp / dhcpd.conf file:
+**Router 2:**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.040.png)
+I created a file called iptables to save all the rules from the practice:
 
-We will now restart the service:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.047.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.041.png)
+To demonstrate that the rule works, here is a capture between Router 2 and PC3. We see that the source is a private IP address:
 
-We'll check the state of it to check that it's working properly:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.048.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.042.jpeg)
+We see that once outside the network between R2 and MARCUS, SNAT has been applied, since the source is now a public IP address:
 
-We will assign an address to a client to make sure that everything works properly:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.049.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.043.png)
+**Router 3:**
 
-## # SNAT configuration
+I created a file called iptables to save all the rules from the practice:
 
-To complete the preparation phase we will need to configure SNAT so that different races can communicate with each other.
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.050.png)
 
-* * Router 1: * *
+To demonstrate that the rule works, here is a capture between Router 3 and PC5. We see that the source is a private IP address:
 
-I have created a file called iptables to save all the rules of practice:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.051.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.044.png)
+We see that once outside the network between R3 and ALEXANDER, SNAT has been applied, since the source is now a public IP address:
 
-To prove that the rule works, here is a capture between Router 1 and PC1:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.052.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.045.png)
+**Router 4:**
 
-We see that once out of the network between R1 and MARCUS has been applied SNAT:
+I created a file called iptables to save all the rules from the practice:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.046.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.053.png)
 
+To demonstrate that the rule works, here is a capture between Router 4 and PC7. We see that the source is a private IP address:
 
-* * Router 2: * *
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.054.png)
 
-I have created a file called iptables to save all the rules of practice:
+We see that once outside the network between R4 and ALEXANDER, SNAT has been applied since the source is now a public IP address:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.047.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.055.png)
 
-To prove that the rule works, here we see a capture between Router 2 and PC3. We see that the origin is a private ip address:
+With the current scenario, any PC is capable of reaching all public addresses in our network:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.048.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.056.png)
 
-We see that once off the network between R2 and MARCUS has been applied SNAT, as the origin is now an ip public address:
+### DNAT Configuration
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.049.png)
+For the machines to be able to communicate with each other, ssh has been installed on them, so we will need to configure DNAT.
 
-* * Router 3: * *
+**R1**
 
-I have created a file called iptables to save all the rules of practice:
+For this network, since we have two clients, I changed the port that ssh uses:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.050.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.057.png)
 
-To prove that the rule works, here we see a capture between Router 3 and PC5. We see that the origin is a private ip address:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.051.png)
-
-We see that once off the network between R3 and ALEXANDER has been applied SNAT, as the origin is now an ip public address:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.052.png)
-
-♪ Router 4: ♪
-
-I have created a file called iptables to save all the rules of practice:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.053.png)
-
-To prove that the rule works, here we see a capture between Router 4 and PC7. We see that the origin is a private ip address:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.054.png)
-
-We see that once off the network between R4 and ALEXANDER has been applied SNAT, as the origin is now an ip public address:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.055.png)
-
-With the current scenario any PC is able to reach all the public addresses of our network:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.056.png)
-
-## # DNAT configuration
-
-So the machines can communicate with each other if ssh has been installed, so we'll have to set up the DNAT.
-
-♪ R1 ♪
-
-For this network as we have two customers I have changed the port using the ssh:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.057.png)
-
-We check that I can connect to both host from another network, so we see that the DNAT works.
+We check that I can connect to both hosts from another network, thus confirming that DNAT works.
 
 Sonja:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.058.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.058.png)
 
 Selene:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.059.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.059.png)
 
-* * R2 * *
+**R2**
 
-In this network we only have one client that we want to be able to access from outside so we will only have one DNAT rule:
+In this network, we only have one client that we want to be accessible from the outside, so we will only have one DNAT rule:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.060.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.060.png)
 
-To check the rule, I'll get in from vampires to humans:
+To check the rule, I will connect from the vampires to the humans:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.061.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.061.png)
 
-* * R3 * *
+**R3**
 
-In this network there is a DHCP service running for the DNAT rule to work properly we must make a reservation to our host or set up the card in a static way.
+In this network, since there is a DHCP service running, for the DNAT rule to function correctly, we must reserve our host or configure the interface statically.
 
-I will do the first thing for comfort, for this we address the / etc / dhcp / dhcpd.conf file and write the following:
+I will do the former for convenience, for this we go to the file /etc/dhcp/dhcpd.conf and write the following:
 
 ```BASH
-host NombreDeLaReserva { hardware ethernet DIR_MAC_HOST; fixed-address IP_RESERVA;}
+host ReservationName { hardware ethernet HOST_MAC_ADDR; fixed-address RESERVED_IP;}
 ```
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.062.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.062.png)
 
-Once this has been done, we restart the service:
+Once this is done, we restart the service:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.063.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.063.png)
 
-And I'll put the following rule:
+And I will set the following rule:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.064.png)
-
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.064.png)
 
 Now let's check that I can connect to this host:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.065.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.065.jpeg)
 
-* * R4 * *
+**R4**
 
-In this network we will also set up a reservation on the server to keep our rules active, in this case I will assign you the address 192.168.4.5.
+In this network, we will also configure a reservation on the server to keep our rules active; in this case, I will assign the address 192.168.4.5.
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.066.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.066.png)
 
-We will restart the service and check that our host has assigned the booking ip, otherwise we will request another with dhclient:
+We will restart the service and check that our host has been assigned the reserved IP; if not, we will request another with dhclient:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.067.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.067.png)
 
-We will now add the DNAT rule so that you can reach the ssh server:
+Now we will add the DNAT rule so that the ssh server can be reached:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.068.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.068.png)
 
-We check that the rule is working and we can connect from another network:
+We check that the rule is functioning, and we can connect from another network:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.069.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.069.jpeg)
 
+### Firewall Configuration
 
-### Firewall configuration
+#### Vampires cannot communicate with the other species
 
-### Vampires cannot communicate with other species
+I will set a default DROP policy in the FORWARD table to block all traffic coming from the vampire network:
 
-I'll put a DROP default policy on the FORWARD table to pull all the traffic from the vampire network:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.070.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.070.png)
+We will verify that the vampires are unable to reach the other networks:
 
-We'll check that vampires are unable to reach the other networks:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.071.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.071.png)
+We can see the hits it has made to confirm that the rule is working:
 
-We can see the hits you've done to see that the rule is working:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.072.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.072.png)
+#### Allow communication between Werewolves and Lycanthropes
 
+WEREWOLVES and LYCANTHROPES, since they are not so repulsive when they cross paths, will be able to communicate with each other. They will not have communication with the other species.
 
-## # Allow communication between Lobo and Licanthropy Men
+I will set a default DROP policy in the FORWARD table, then allow traffic that comes in through interface ens4 and goes out through ens5, and vice versa to permit traffic between these two networks:
 
-LOBO MEN and LICANTROPOS, since they are not so repulsive when they cross, can communicate with each other. The other species will have no communication.
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.073.png)
 
-I will put a DROP default policy on the FORWARD table and then allow traffic to enter through the ens4 interface and exit through ens5, and the inverse to allow traffic between this two networks:
+We see that they can communicate with each other; however, they cannot access Humans or Vampires:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.073.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.074.jpeg)
 
-We see that they can communicate with each other, but they cannot access the Humans or the Vampires:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.075.jpeg)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.074.jpeg)
+We will check that the rules have hits:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.075.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.076.png)
 
-We'll check that the rules have hits:
+#### HUMANS will also not be able to communicate with the other species
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.076.png)
+With the rules we currently have, communication between Humans and other species is not possible; we can see that in R2 without any additional rules, we cannot connect:
 
-## # # Human will also not be able to communicate with the other species
-
-With the rules that we currently have communication with other species by humans is not possible, we can see that in R2 without any additional rule we cannot connect:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.077.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.077.png)
 
 We see that we cannot communicate:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.078.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.078.png)
 
-If we want to ban traffic in our router and not depend on external rules in case they change we will add a default DROP policy:
+If we want to prohibit human traffic on our router and not rely on external rules in case they change, we will add a default DROP policy:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.079.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.079.png)
 
-We'll see the hits in the default policy:
+We will see the hits in the default policy:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.080.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.080.png)
 
+#### Configure the necessary rules in the firewalls so that, from HUMANLAND, IT KNIGHT can continue communicating with his two favorite vampires (SONJA and SELENE).
 
-### Configure in the firewalls the rules necessary for it to continue to communicate with its two favorite vampires (SONJA AND SELENE).
+The IPs of these machines are:
 
-The ips of these machines are:
+- IT KNIGHT (SSH) –> 192.168.2.3:22
+- SONJA (SSH) –> 192.168.1.4:22    
+- SELENE (SSH) –> 192.168.1.5:2222 
 
-- IT KNIGHT (SSH) - > 192.168.2.3: 22
-- SONJA (SSH) - > 192.168.1.4: 22
-- SELENE (SSH) - > 192.168.1.5: 2222
+In router 1, the necessary rules to allow this communication are:
 
-In router 1 the rules necessary to allow this communication are:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.081.jpeg)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.081.jpeg)
+In router 2, the necessary rules to allow this communication are:
 
-In router 2 the rules necessary to allow this communication are:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.082.jpeg)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.082.jpeg)
+We will check action by action to ensure that these rules fulfill their purpose.
 
+**SELENE –> ITKNIGHT**
 
-We're gonna go check action to action to make sure these rules do their job.
-
-♪ * SELENE - > ITKNIGHT * *
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.083.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.083.png)
 
 In router 1:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.084.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.084.jpeg)
 
 In router 2:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.085.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.085.jpeg)
 
+**SONJA –> ITKNIGHT**
 
-* * SONJA - > ITKNIGHT * *
+We ssh:
 
-We do ssh:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.086.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.086.png)
+We see the hits from router 1:
 
-We see the hits of router 1:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.087.jpeg)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.087.jpeg)
+We see the hits from router 2 (same rule as the previous section):
 
-We see the hits of router 2 (Same rule as the previous paragraph):
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.088.jpeg)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.088.jpeg)
+**ITKNIGHT –> SONJA**
 
-* * ITKNIGHT - > SONJA * *
+We ssh:
 
-We do ssh:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.089.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.089.png)
+We see the hits from router 1:
 
-We see the hits of router 1:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.090.jpeg)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.090.jpeg)
+We see the hits from router 2:
 
-We see the hits of router 2:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.091.jpeg)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.091.jpeg)
+**ITKNIGHT –> SELENE**
 
-
-♪ * ITKNIGHT - > SELENE * *
- 
 We launch the ssh:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.092.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.092.png)
 
-We see the hits of router 1:
+We see the hits from router 1:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.093.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.093.jpeg)
 
-We see the hits of router 2:
+We see the hits from router 2:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.094.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.094.jpeg)
 
-## Humanand web server
+### HUMANLAND Web Server
 
-It makes the settings necessary to mount a web server on HUMANLAND accessible from anywhere in UNDERWORLD.
+Perform the necessary configurations to set up a web server in HUMANLAND accessible from anywhere in UNDERWORLD.
 
-I've given this one the ip 192.168.2.10.
+I have assigned it the IP 192.168.2.10.
 
-The first thing we have to set up is the DNAT in the R2 router (HUMALAND):
+The first thing we must configure is the DNAT on router R2 (HUMANLAND):
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.095.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.095.png)
 
-Now in router 2 we will allow requests to be received to the server and its answers:
+Now in router 2, we will allow requests to the server and their responses:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.096.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.096.png)
 
-In router 1 we allow you to make requests and your answers:
+In router 1, we allow requests and their responses:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.097.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.097.png)
 
-To end on ALEXANDER we allow you to cross web requests:
+Finally, in ALEXANDER, we allow web requests to pass through:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.098.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.098.png)
 
-Let's check that they can be accessed from all networks.
+Let's check that it can be accessed from all networks.
 
-### WOMAN: ♪
+**VAMPIRES:**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.099.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.099.png)
 
-We checked the hits in router 1:
+We check the hits in router 1:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.100.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.100.png)
 
-♪ * HOME LOBO AND LICANTROPOS * *
+**WEREWOLVES AND LYCANTHROPES**
 
 We make the web request from both networks:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.101.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.101.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.102.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.102.png)
 
-We checked the ALEXANDER router hits:
+We check the hits in router ALEXANDER:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.103.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.103.jpeg)
 
-Finally we see the hits in Router 2 (HUMAN) of the DNAT rule
+Finally, we see the hits in Router 2 (HUMANS) for the DNAT rule:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.104.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.104.png)
 
-### Scenario with Cisco routers
+## Scenario with Cisco routers
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.105.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.105.jpeg)
 
-### Configuration of interfaces
+### Configuration of the interfaces
 
-♪ R1 ♪
+**R1**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.106.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.106.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.107.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.107.png)
 
-* * R2 * *
+**R2**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.108.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.108.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.109.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.109.png)
 
-* * R3 * *
+**R3**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.110.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.110.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.111.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.111.png)
 
-* * R4 * *
+**R4**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.112.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.112.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.113.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.113.png)
 
-♪ MARCUS ♪
+**MARCUS**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.114.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.114.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.115.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.115.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.116.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.116.png)
 
-* * ALEXANDER * *
+**ALEXANDER**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.117.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.117.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.118.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.118.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.119.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.119.png)
 
-### Rupture tables
+#### Routing Tables
 
-♪ R1 ♪
-
-We add the default route:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.120.png)
-
-So would the R1 routing table:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.121.png)
-
-* * R2 * *
+**R1**
 
 We add the default route:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.122.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.120.png)
 
-So would the R2 routing table:
+Thus, R1's routing table will look like:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.123.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.121.png)
 
-* * R3 * *
-
-We add the default route:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.124.png)
-
-So would the R3 routing table:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.125.png)
-
-* * R4 * *
+**R2**
 
 We add the default route:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.126.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.122.png)
 
-So would the R4 routing table:
+Thus, R2's routing table will look like:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.127.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.123.png)
 
-♪ MARCUS ♪
-
-We add the default route:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.128.png)
-
-So there would be the MARCUS routing table:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.129.png)
-
-* * ALEXANDER * *
+**R3**
 
 We add the default route:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.130.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.124.png)
 
-This would include the ALEXANDER routing table:
+Thus, R3's routing table will look like:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.131.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.125.png)
+
+**R4**
+
+We add the default route:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.126.png)
+
+Thus, R4's routing table will look like:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.127.png)
+
+**MARCUS**
+
+We add the default route:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.128.png)
+
+Thus, MARCUS's routing table will look like:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.129.png)
+
+**ALEXANDER**
+
+We add the default route:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.130.png)
+
+Thus, ALEXANDER's routing table will look like:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.131.png)
+
+#### Connectivity Test 
+
+We will check that we have routed correctly, so I will ping from each router to each of the edges of the scenario.
+
+R1 → to the edges:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.132.png)
+
+R2 → to the edges:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.133.png)
+
+R3 → to the edges:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.134.jpeg)
+
+R4 → to the edges:
+
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.135.png)
 
 
+### DHCP Configuration Lycanthropes
 
-## # Connectivity test
+The lycanthropes, on their part, hire you to assign their IPs via DHCP as well, but they indicate that they cannot receive the first 10 addresses of their range (not counting the network one or the gateway), as these are reserved for the leaders of their clan who are traveling and will return in a few days.
 
-Let's check that we've done the routing correctly so I'm going to throw a ping from each router to each of the ends of the stage.
+The first thing we will do is establish the range of excluded IPs from the set (pool) of addresses that the service will assign by indicating the initial and final IP of the range, both included:
 
-R1 → To the ends:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.132.png)
-
-R2 → To the ends:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.133.png)
-
-R3 - > to the ends:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.134.jpeg)
-
-R4 - > to extremes
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.135.png)
-
-
-## # Licanthropic DHCP configuration
-
-The licanthrops, on their part, hire you to assign them also for DHCP their IPs, but they tell you that they cannot receive the first 10 directions of their rank (not counting the network or the link door), as these are reserved for the heads of their clan who are on their way and will return in a few days.
-
-The first thing we will do is to establish the range of IP's excluded from the set (pool) addresses that the service can assign indicating the initial and final ip of the range, both including:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.136.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.136.png)
 
 We name the DHCP service range:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.137.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.137.png)
 
-We define the network to which DHCP will serve:
+We define the network to which it will provide DHCP service:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.138.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.138.png)
 
-We include the link door that the service will offer:
+We include the gateway that will offer the service:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.139.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.139.png)
 
-With this we would already have mounted the DHCP server, with the following command we can see the service statistics to see if it is working:
+With this, we would have set up the DHCP server. With the following command, we can view the service statistics to see if it is running:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.140.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.140.png)
 
-We will check to others that the concession to our host has been made:
+We will also confirm that the lease has been granted to our host:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.141.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.141.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.142.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.142.jpeg)
 
-## # DHCP werewolves
+### DHCP Werewolves
 
-The werewolves who are quite donkeys putting IP addresses into their machines, ask you to set up the DHCP service for all their machines to automatically receive a free IP.
+The werewolves, who are quite clumsy at entering IP addresses into their machines, ask you to configure the DHCP service for all their machines to receive an available IP automatically.
 
-In the above section I detail each section of the configuration of a swan DHCP server, here I show you the configuration for the Lobo Man network:
+In the previous section, I detailed each part of the configuration of a DHCP server in Cisco; here I show you the configuration for the Werewolf network:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.143.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.143.png)
 
-We'll check that it's working:
+We will check that it is working:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.144.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.144.png)
 
-## # SNAT configuration
+### SNAT Configuration
 
-* * Router 1: * *
+**Router 1:**
 
-The first thing we will do is create an acl to allow the traffic we want to do SNAT:
+The first step is to create an ACL to allow the traffic we want to perform SNAT on:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.145.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.145.png)
 
-We will assign to the internal interface of our network this rule:
+We will assign this rule to the internal interface of our network:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.146.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.146.png)
 
-Now we will create a pool with public ips, the command would be this does not come full in the terminal:
+Now we will create a pool with the public IPs; the command would be this, but it does not show completely in the terminal:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.147.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.147.png)
 
-We activate the NAT:
+We enable NAT:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.148.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.148.png)
 
-We indicate that interface is "inside":
+We indicate which interface is for “inside”:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.149.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.149.png)
 
-We indicate the "out" interface:
+We specify the “outside” interface:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.150.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.150.png)
 
-The SNAT would be working, so let's check it out:
+The SNAT should be working, so let's verify it:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.151.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.151.png)
 
 We see that the rule has HITS:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.152.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.152.png)
 
 
-* * Router 2: * *
+**Router 2:**
 
-The first thing we will do is create an acl to allow the traffic we want to do SNAT:
+The first step is to create an ACL to allow the traffic we want to perform SNAT on:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.153.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.153.png)
 
-We will assign to the internal interface of our network this rule:
+We will assign this rule to the internal interface of our network:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.154.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.154.png)
 
-Now we will create a pool with public ips, the command would be this does not come full in the terminal:
+Now we will create a pool with the public IPs; the command would be this, but it does not show completely in the terminal:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.155.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.155.png)
 
-We activate the NAT:
+We enable NAT:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.156.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.156.png)
 
-We indicate that interface is "inside":
+We indicate which interface is for “inside”:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.157.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.157.png)
 
-We indicate the "out" interface:
+We specify the “outside” interface:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.158.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.158.png)
 
-The SNAT would be working, so let's check it out if the rule has HITS:
+The SNAT should be working, so let's verify it by checking if the rule has HITS:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.159.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.159.png)
 
 
-* * Router 3: * *
+**Router 3:**
 
-The first thing we will do is create an acl to allow the traffic we want to do SNAT:
+The first step is to create an ACL to allow the traffic we want to perform SNAT on:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.160.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.160.png)
 
-We will assign to the internal interface of our network this rule:
+We will assign this rule to the internal interface of our network:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.161.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.161.png)
 
-Now we will create a pool with public ips, the command would be this does not come full in the terminal:
+Now we will create a pool with the public IPs; the command would be this, but it does not show completely in the terminal:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.162.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.162.png)
 
-We activate the NAT:
+We enable NAT:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.163.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.163.png)
 
-We indicate that interface is "inside":
+We indicate which interface is for “inside”:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.164.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.164.png)
 
-We indicate the "out" interface:
+We specify the “outside” interface:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.165.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.165.png)
 
-The SNAT would be working, so let's check it out if the rule has HITS:
+The SNAT should be working, so let's verify it by checking if the rule has HITS:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.166.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.166.png)
 
 
-♪ Router 4: ♪
+**Router 4:**
 
-The first thing we will do is create an acl to allow the traffic we want to do SNAT:
+The first step is to create an ACL to allow the traffic we want to perform SNAT on:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.167.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.167.png)
 
-We will assign to the internal interface of our network this rule:
+We will assign this rule to the internal interface of our network:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.168.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.168.png)
 
-Now we will create a pool with public ips, the command would be this does not come full in the terminal:
+Now we will create a pool with the public IPs; the command would be this, but it does not show completely in the terminal:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.169.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.169.png)
 
-We activate the NAT:
+We enable NAT:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.170.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.170.png)
 
-We indicate that interface is "inside":
+We indicate which interface is for “inside”:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.171.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.171.png)
 
-We indicate the "out" interface:
+We specify the "outside" interface:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.172.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.172.png)
 
-The SNAT would be working, so let's check it out if the rule has HITS:
+The SNAT should be working, so let's verify it by checking if the rule has HITS:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.173.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.173.png)
 
+### DNAT Configuration
 
+**R1**
 
-## # DNAT configuration
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.174.png)
 
-♪ R1 ♪
+Checking:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.174.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.175.png)
 
-Check:
+**R2**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.175.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.176.png)
 
-* * R2 * *
+Checking:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.176.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.177.png)
 
-Check:
+**R3**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.177.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.178.png)
 
-* * R3 * *
+Checking:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.178.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.179.png)
 
-Check:
+**R4**
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.179.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.180.png)
 
-* * R4 * *
+Checking:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.180.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.181.png)
 
-Check:
+### Firewall Configuration
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.181.png)
+#### Vampires cannot communicate with the other species
 
+For this, we will delete the existing rule in the list:
 
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.182.png)
 
-### Firewall configuration
+Now we will deny outgoing traffic from the vampire network:
 
-### Vampires cannot communicate with other species
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.183.png)
 
-For this we will delete the existing rule in the list:
+We confirm they cannot communicate:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.182.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.184.png)
 
-We will now deny the outflow of the vampire network:
+We look at the hits from the rules:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.183.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.185.png)
 
-We check that they cannot communicate:
+#### Allow communication between Werewolves and Lycanthropes
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.184.png)
+WEREWOLVES and LYCANTHROPES, since they are not so repulsive when they cross paths, will be able to communicate with each other. They will not have communication with the other species.
 
-We look at the hits of the rules:
+With these two rules, we allow any host from our local networks to exit when the destination is werewolves or lycanthropes:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.185.png)
+- R3 → 180.0.0.1   
+- R4 → 190.0.0.1
 
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.186.png)
 
-## # Allow communication between Lobo and Licanthropy Men
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.187.png)
 
-LOBO MEN and LICANTROPOS, since they are not so repulsive when they cross, can communicate with each other. The other species will have no communication.
+We see that it blocks the packets that are not from HL to LC or from LC to HL:
 
-With these two rules we allow any host of our local networks to leave when the destination is the werewolves or the licanthrops:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.188.png)
 
-- R3- → 180.0.0.1
-- R4 - > 190.0.0.1
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.189.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.186.png)
+#### HUMANS will also not be able to communicate with the other species
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.187.png)
+With the rules we currently have, communication with other species by humans is not possible; we can see that in R2 without any additional rules, we cannot connect since our packets will reach the networks.
 
-We see that he throws us packages that don't go from HL to LC or from LC to HL:
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.190.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.188.png)
+To truly prevent humans from communicating without depending on the rules of the other kingdoms, we will prevent them from exiting the kingdom:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.189.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.191.png)
 
-## # # Human will also not be able to communicate with the other species
+If we check now, they will not be able to exit the kingdom:
 
-With the rules that we currently have communication with other species by humans is not possible, we can see that in R2 without any additional rule we cannot connect as our packages reached the networks.
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.190.png)
-
-So that humans cannot truly communicate without depending on the rules of the demos kingdoms, we will prevent them from leaving the kingdom:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.191.png)
-
-If we check now they will not be able to leave the kingdom:
-
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.192.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.192.png)
 
 We look at the hits:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.193.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.193.png)
 
-### Configure in the firewalls the rules necessary for it to continue to communicate with its two favorite vampires (SONJA AND SELENE).
+#### Configure the necessary rules in the firewalls so that, from HUMANLAND, IT KNIGHT can continue communicating with his two favorite vampires (SONJA and SELENE).
 
-The ips of these machines are:
+The IPs of these machines are:
 
-- IT KNIGHT (SSH) -- > 192.168.2.3: 22
-- SONJA (SSH) -- > 192.168.1.4: 22
-- SELENE (SSH) -- > 192.168.1.5: 2222
+- IT KNIGHT (SSH) –> 192.168.2.3:22
+- SONJA (SSH) –> 192.168.1.4:22    
+- SELENE (SSH) –> 192.168.1.5:2222 
 
-To allow vampires to go out and communicate with humans:
+To allow the vampires to communicate with humans:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.194.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.194.png)
 
-We allow the messages out to the public of vampires when the port is 22 and 2222:
+We allow outgoing messages to the public of the vampires when the port is 22 and 2222:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.195.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.195.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.196.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.196.png)
 
-Now let vampires be able to connect to humans using port 22:
+Now we will allow the vampires to connect to the humans using port 22:
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.197.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.197.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.198.png)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.198.png)
 
-![](../img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.199.jpeg)
+![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.199.jpeg)
 
-I don't know why it doesn't work.. it only goes if I don't place any rules even allowing ALL the ssh traffic either... I've also allowed all the ICMP but nothing is happening the same.
+I don’t know why it’s not working... it only goes through if I don’t place any rules; even allowing ALL SSH traffic doesn’t help... I have also allowed all ICMP, but it still occurs. 
 
-The nat and the SNAT are working well but when making the ssh rules the following happens on the local network when they are sent back the router cuts them even though the traffic is allowed
+The nat and SNAT are working fine, but when it comes to making the ssh rules, the following happens in the local network. Since the router drops them back despite the traffic being allowed.
 
-[ref1]:.. / img / Asposer.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.01.jpeg
+[ref1]: /redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.031.jpeg

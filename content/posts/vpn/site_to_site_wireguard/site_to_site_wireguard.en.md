@@ -8,9 +8,9 @@ hero: /images/vpn/wireguard_site_to_site.png
 
 
 
-![](../img/Pastedimage20240114150833.png)
+![](/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png)
 
-> [NOTE]
+> [!NOTE]
 > I will start from the VPN post remote access with Wireguard, so you may refer to this one during this article.
 
 ## Key generation

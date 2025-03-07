@@ -6,7 +6,6 @@ tags: [Redes, comandos]
 hero: images/redes/comando_de_supervision_de_redes/comando_de_supervision_de_redes.png
 ---
 
-
 Documento en el cual se detallan los principales comandos a la hora de detectar incidencias en redes y lograr solucionarlos .
 
 ## Comandos en Windows
@@ -20,17 +19,17 @@ Para acceder a configurar estos parámetros seguiremos la siguiente ruta en nues
 Panel de control >Redes e Internet > Centro de redes y recursos compartidos > Cambiar configuración del adaptador :
 
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.001.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.001.png)
 
 Una vez aquí le daremos Clic derecho > Propiedades > Protocolo de version 4 (TCP/IP)
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.002.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.002.png)
 
 Una vez aquí veremos dos pestañas a la cual podemos dirigirnos para configurar nuestra tarjeta , en la pestaña general  podemos observar los siguiente apartados :
 
 El primer apartado (General) relacionado con nuestra dirección ip :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.003.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.003.png)
 
 - **Obtener una dirección ip automáticamente :** Marcaremos esta opción cuando queramos que se use el servicio DHCP para asignar mediante el servicio dirección IP , mascara de subred y la puerta de enlace predeterminada .
 - **Usar  la  siguiente  dirección  IP  :** Aquí  introduciremos  nosotros  manualmente  la configuración de red deseada :
@@ -40,7 +39,7 @@ El primer apartado (General) relacionado con nuestra dirección ip :
 
 En el segundo apartado de esta pestaña realizaremos la configuración referente a los servidores DNS los cuales permitirán traducirnos nombres a direcciones IP para poder navegar .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.004.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.004.png)
 
 - **Obtener la dirección del servidor DNS automáticamente :**  Esta opción hará que la dirección se obtenga del servidor DHCP que tengamos configurado en nuestra red .
 - **Usar la siguientes direcciones del servidor DNS :** Esta opción nos sirve para manualmente seleccionar la dirección ip de nuestros servidores DNS: 
@@ -51,7 +50,7 @@ En la pestaña configuración alternativa , esta pensado para equipos que necesi
 
 - **Dirección ip privada automática :** Hará uso del servidor DHCP para configurarse .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.005.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.005.png)
 - **Configurada  por  el  usuario  :** Nos permitirá  introducirla  manualmente  la configuración  (omitiré  los  campos explicados anteriormente ) :
 - **WINS preferido :** es un servidor de nombres de Microsoft para NetBIOS, que  mantiene  una  tabla  con  la correspondencia entre direcciones IP y nombres NetBIOS de ordenadores . 
 - **WINS alternativo :**  Si el servidor primario fallase o estuviera caído en ese momento pasaríamos a utilizar el secundario .
@@ -75,7 +74,7 @@ Para hacer uso de este abriremos una cmd , pulsaremos WIN + R y escribiremos cmd
 
 La sintaxis mas simple de ping es la siguiente : ping  [Parámetros] [IP/Nombre]
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.006.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.006.png)
 
 Si nos fijamos en la salida del comando vemos que nos permite conoces :
 
@@ -89,7 +88,7 @@ Si nos fijamos en la salida del comando vemos que nos permite conoces :
 
 Este parámetro nos permitirá hacer un ping infinito es decir no finalizara hasta que matemos el proceso , si no lo pusiésemos por defecto solo se enviaran 4 trazas . Para finalizar este la ejecución de este comando pulsaremos CTRL + C .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.007.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.007.png)
 
 Cuando detengamos la ejecución nos mostrara las estadísticas que ha recopilado , paquetes enviados, paquetes recibidos y paquetes perdidos así como los tiempos medios de ida y vuelta .
 
@@ -97,7 +96,7 @@ Cuando detengamos la ejecución nos mostrara las estadísticas que ha recopilado
 
 Este parámetro sirve para que nos resuelva una ip en un nombre de host ,imprimiendo  una linea indicando el nombre de host al cual le estamos dirigiendo las trazas , lo que nos permite identificar mas fácilmente las maquinas :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.008.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.008.png)
 
 
 #### PING -N
@@ -106,7 +105,7 @@ Este parámetro sirve para especificar el numero de solicitudes echo  que deseem
 
 Por ejemplo si queremos enviar 10 trazas el comando seria el siguiente :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.009.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.009.png)
 
 Podemos comprobar en la parte inferior que ha enviado en numero que le hemos indicado . 
 
@@ -114,7 +113,7 @@ Podemos comprobar en la parte inferior que ha enviado en numero que le hemos ind
 
 Nos permite modificar el tamaño en bytes de los paquetes enviados , deberemos especificar un numero entre 0 y 65000 . 
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.010.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.010.png)
 
 
 #### PING -F
@@ -124,15 +123,15 @@ Este parámetro sirve para evitar que los paquetes se fragmenten , el tamaño m�
 Podemos ver que si superamos este numero , nos dará un error informándonos que es necesario fragmentar el paquete :
 
 #### PING -I 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.011.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.011.png)
 
 Este parámetro nos permite especificar el numero máximo que se pueden dar hasta alcanzar al destino , el valor máximo que podemos introducir 255 .
 
 Cuando especificamos un TTL esto fija el número máximo de saltos, al pasar por un nuevo dispositivo (un router) este descuenta 1 al TTL especificando hasta que llega a 0, en este caso el destino se mostrará como inalcanzable, de esta forma se evita que un paquete viaje por la red indefinidamente buscando un destino que puede que no exista.
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.012.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.012.png)
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.013.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.013.png)
 
 
 
@@ -146,34 +145,34 @@ Ping -6 : Fuerza la respuesta del host especificado con una dirección IPv6. Es 
 
 Vamos a efectuar una serie de pruebas para verificar el funcionamiento y encontrar errores . Lo primero sera hacernos ping a nosotros mismos para ello :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.014.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.014.png)
 
 Si la salida es correcta esto demuestra que nuestro adaptador de red funciona correctamente .
 
 Vamos a hacerle ping a una maquina de nuestra red local , así demostraremos que las conexiones físicas son correctas :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.015.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.015.png)
 
 Vamos a hacerle ping a la puerta de enlace , de tener éxito demuestra que existe conexión con el equipo que suministra internet :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.016.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.016.png)
 
 Haremos ping a un sitio de internet  usando ip , para comprobar que tenemos conexión a internet :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.017.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.017.png)
 
 
 
 Por ultimo hacer ping a un dominio en internet ,de tener éxito demuestra que existe conexión a internet y los servidores DNS configurados en la conexión funcionan correctamente:
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.018.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.018.png)
 
 
 ### Uso general  del comando ipconfig
 
 Este comando se usa para ver la configuración actual de los adaptadores de red de nuestro equipo , un ejemplo de uso general del comando es el siguiente :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.019.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.019.png)
 
 Este nos muestra la siguiente información :
 
@@ -189,13 +188,13 @@ A partir de estos parámetros podemos consultar la información del adaptador o 
 
 Nos devolverá toda la información disponible de los adaptadores de red , es una salida mas detallada que si omitimos este parámetro , con este podemos consultar los servidores DNS y las direcciones MAC . 
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.020.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.020.png)
 
 #### IPCONFIG /RELEASE
 
 Se utiliza para liberar una dirección ip en el servicio DHCP , no se nos volverá a asignar una hasta que ejecutemos ipconfig /renew
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.021.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.021.png)
 
 Podemos  especificar  el  adaptador  del  cual  queremos  que  se  libere  la  ip  escribiéndolo  a continuación, si omitimos el nombre los aplicara a todos . 
 
@@ -205,7 +204,7 @@ EJ: ipconfig /release Ethernet0 –> Solo liberara la ip del adaptador Ethernet0
 
 Una vez ejecutado el comando anterior deberemos de ejecutar este para solicitar al servidor DHCP una nueva concesión de dirección IP  .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.022.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.022.png)
 
 Podemos especificar el adaptador del cual queremos que se renueve la oferta DHCP  escribiéndolo a continuación. 
 
@@ -215,25 +214,25 @@ EJ: ipconfig /renew Ethernet0 –> Solo renovara la concesión del adaptador Eth
 
 Se utiliza para vaciar la cache de resolución DNS de nuestro equipo local , suele utilizarse cuando queremos comprobar el correcto funcionamiento del servidor DNS . 
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.023.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.023.png)
 
 #### IPCONFIG  /REGISTERDNS
 
 Actualiza todas las concesiones DHCP y vuelve a registrar los nombres DNS. Este comando esta orientado al trabajo en entornos de dominio y a la actualización de los registros dinámicos del servidor de DNS del sistema en el que se esta ejecutando, teniendo en cuenta que si esta bloqueada de alguna forma la actualización dinámica no se efectuará.
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.024.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.024.png)
 
 #### IPCONFIG /DISPLAYDNS
 
 Este comando simplemente nos muestra las consultas DNS que se están almacenados en la caché de nuestro sistema de la forma que se muestran en la imagen, muestran datos de registros del protocolo IPv4 como de IPv6.
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.025.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.025.png)
 
 #### IPCONFIG /SHOWCLASSID
 
 Este comando nos permite comprobar las clases de usuario configuradas en nuestro servidor DHCP y que estarán disponibles para los diferentes clientes.
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.026.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.026.png)
 
 \*Si queremos comprobarlo para IPV6 utilizaremos el parámetro /showclassid6 .
 
@@ -248,7 +247,7 @@ MAC que utiliza el protocolo de resolución de direcciones (ARP).
 
 Pide los datos de protocolo actuales y muestra las entradas ARP actuales. Si se especifica inet\_addr, solo se muestran las direcciones IP y física del equipo especificado. Si existe más de una interfaz de red que utilice ARP, se muestran las entradas de cada tabla ARP.
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.027.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.027.png)
 
 **\*** La opción -g hace la misma función :
 
@@ -256,24 +255,24 @@ Como se muestra en la captura de pantalla  el comando arp –a enumera todos los
 
 Si queremos borrar la cache arp utilizaremos la opción -d seguida del comodín \* para borrar todas las entradas en esta tabla , si solo quisiéramos eliminar  una consulta pondríamos la dirección IP . 
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.028.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.028.png)
 
 Podemos solicitar la MAC de una dirección usando arp + IP del dispositivo y posteriormente verla en nuestra tabla con arp -a .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.029.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.029.png)
 
 
 ### Uso general netstat
 
 El comando netstat genera visualizaciones que muestran el estado de la red y estadísticas de protocolo. El estado de los protocolos TCP, SCTP y los puntos finales de UDP puede visualizarse en formato de tabla. También puede visualizarse información sobre la tabla de enrutamiento e información de interfaces.
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.030.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.030.png)
 
 #### NETSTAT -A
 
 Muestra las todas conexiones y puertos de escucha de nuestro equipo , así como el estado del puerto y la dirección remota la cual esta usando el mismo :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.031.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.031.png)
 
 
 #### NETSTAT -B
@@ -281,45 +280,45 @@ Muestra las todas conexiones y puertos de escucha de nuestro equipo , así como 
 Muestra el archivo ejecutable implicado en la creación de cada conexión o puerto de escucha.
 
 #### NETSTAT -E
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.032.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.032.png)
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.033.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.033.png)
 
 Nos muestra estadísticas sobre las interfaces  de red , sirve para ver la actividad que ha tenido esta:
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.034.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.034.png)
 
 #### NETSTAT -R
 
 Nos muestra la tabla de enrutamiento , así podemos ver los sitios a los cual nuestro equipo es capaz de llegar a través de la red :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.035.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.035.png)
 
 
 #### NETSTAT -N
 
 Nos muestra las conexiones activas con un formato de tabla , similar al parámetro -a  solo que este nos indica el numero de puerto en lugar del nombre .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.036.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.036.png)
 
 #### NETSTAT -O
 
 Similar al parámetro anterior pero este nos añade el PID del proceso :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.037.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.037.png)
 
 #### NETSTAT -P
 
 Nos permite filtrar las conexiones según el protocolo (TCP, UDP, tcpv6 o tcpv4…)
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.038.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.038.png)
 
 
 #### NETSTAT -T
 
 Muestra el estado de descarga de la conexión actual :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.039.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.039.png)
 
 Netstat es muy interesante para ver datos estadísticos de la conexión, pero también va a ser muy útil para analizar los puertos abiertos en un momento determinado y  así identificar problemas. Es esencial para determinadas aplicaciones y poder lograr un rendimiento óptimo .
 
@@ -329,17 +328,17 @@ Es una aplicación incluida en todos los sistemas Windows, para consultar, obten
 
 Al  invocarlo  sin  especificar  ningún  parámetro,  devolverá  el  nombre  del  servidor  DNS predeterminado y su dirección IP :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.040.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.040.png)
 
 El comando dispone de dos modos de uso , el tradicional a través de linea de comandos y el interactivo . Podemos usarlo para resolver nombres de direcciones desde la terminal poniendo nslookup seguido del nombre que queramos resolver :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.041.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.041.png)
 
 
 
 También podemos hacer consultas inversas , es decir que a través de la ip nos diga el nombre :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.042.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.042.png)
 
 Por ejemplo podemos seleccionar el tipo de registros DNS para hacer peticiones los cuales son :
 
@@ -352,11 +351,11 @@ Por ejemplo podemos seleccionar el tipo de registros DNS para hacer peticiones l
 
 Para cambiar el tipo de registro utilizamos la orden set type=Nombre del registro , por ejemplo :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.043.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.043.png)
 
 También podemos elegir el servidor desde el cual realizamos las consultas de la siguiente manera :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.044.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.044.png)
 
 
 
@@ -364,7 +363,7 @@ También podemos elegir el servidor desde el cual realizamos las consultas de la
 
 Sirve para trazar la ruta que hace un paquete entrante que viene desde un host o punto de red hasta tu ordenador , así conocemos por donde viaja nuestro viaje .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.045.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.045.png)
 
 Diciendo uno a uno todos los nodos y routers por los que pasa el mensaje de prueba que has enviado, sus direcciones IP y la latencia de cada uno de ellos hasta llegar a su destino.
 
@@ -374,19 +373,19 @@ Tenemos algunos parámetros interesantes como :
 
 - -d : No convierte direcciones en nombres de host
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.046.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.046.png)
 
 - -h : Nos permite seleccionar el numero máximos de saltos 
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.047.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.047.png)
 
 - -4 o -6 : Fuerza usar IPV4 o IPV6 :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.048.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.048.png)
 
 - -w : Nos permite especificar el tiempo de espera en milisegundos :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.049.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.049.png)
 
 
 ### Uso general route print
@@ -399,40 +398,40 @@ La sintaxis es la siguiente : route [-f] [-p] [comando [destino]] [MASK máscara
 
 Comando route  print sin parámetros para mostrar todo el contenido de la tabla de enrutamiento :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.050.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.050.png)
 
 Si deseamos borrar la tabla de enrutamiento deberemos de utilizar el parámetro -f :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.051.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.051.png)
 
 Además podemos añadir , rutas manuales de la siguiente manera :
 
 → route add IP\_Destino Mascara\_Destino Puerta\_de\_enlace métrica interfaz
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.052.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.052.png)
 
 Si queremos cambiar una ruta , la sintaxis es la misma que el comando anterior cambiando la orden add por change :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.053.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.053.png)
 
 Cuando solo queramos eliminar una ruta , utilizaremos la orden delete seguida del destino :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.054.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.054.png)
 
 
 ### ¿Cómo puedes averiguar la IP pública de tu router?
 
 Hay muchas forma de saber esto desde Windows , podemos utilizar el  comando  curl para pedir la siguiente web y que nos devuelva la ip :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.055.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.055.png)
 
 Otra forma desde la linea de comandos es hacer una consulta dns con nslookup al servicio opendns  :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.056.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.056.png)
 
 Si tenemos un navegador podemos usar una de las muchas webs que nos dicen la dirección ip publica del router , yo uso  la siguiente <https://ipchicken.com/>  :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.057.jpeg)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.057.jpeg)
 
 
 ## Linux
@@ -443,29 +442,29 @@ Para configurar una tarjeta de red en Linux podemos hacerlo desde la interfaz gr
 
 Desde interfaz gráfica nos dirigimos a Configuración > Inalámbrica o Red . Una vez aquí encenderemos la tarjeta y le daremos al engranaje .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.058.jpeg)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.058.jpeg)
 
 Una vez aquí podemos configurar manualmente la configuración de red de nuestra tarjeta .
 
 Esto  mismo  podremos  hacerlo  desde  la  linea  de  comandos  editando  el  fichero /etc/network/interfaces con permisos de superusuario .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.059.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.059.png)
 
 Dentro de este podemos indicar la configuración de nuestros adaptadores de red , aquí te indico con lineas comentadas los parámetros básicos que podemos indicar en este archivo .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.060.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.060.png)
 
 Una vez hayamos configurado nuestras interfaces los cambios no se aplicaran automáticamente , para hacer esto tenemos varias formas , la mas cómodas es reiniciar el servicio :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.061.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.061.png)
 
 Otra forma de cambiar los servidores DNS que se utilizan es a través del fichero /etc/resolf.conf
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.062.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.062.png)
 
 Aquí seguido de nameserver pondremos la dirección ip o nombre de nuestro servidor DNS
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.063.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.063.png)
 
 ### Uso general ifconfig
 
@@ -475,29 +474,29 @@ Es similar a ifconfig y esta enfocado a las mismas funciones , este comando tamb
 
 Esta se instala con el paquete net-tools , para instalarlo:
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.064.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.064.png)
 
 Para utilizar esta herramienta necesitaremos hacerlo como superusuario , con su uso mas simple nos mostrara la configuración básica TCP/IP de  nuestra tarjeta de red así como unas estadísticas de la misma :
 
 Por ejemplo con ipconfig /all podemos ver los servidores DNS configurados cosa que con ifconfig no podremos ver .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.065.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.065.png)
 
 Así que tendremos que ver  el fichero /etc/resolf.conf
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.066.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.066.png)
 
 Un uso común de este comando es configurar rápidamente una interfaz de red , por ejemplo :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.067.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.067.png)
 
 Esto podemos ponerlo en una sola linea
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.068.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.068.png)
 
 Además también podremos levantar y bajar la tarjeta de red 
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.069.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.069.png)
 
 ### Uso general dhclient
 
@@ -505,11 +504,11 @@ Este utiliza el protocolo de configuración dinámica de host para configurar di
 
 El siguiente comando indicará a dhclient que libere la concesión actual que tiene del servidor DHCP ,es decir que queremos liberar la ip actual . Utilizaremos los parámetros -r y -v 
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.070.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.070.png)
 
 Si queremos volver a pedir una configuración de red al comando dhcp utilizaremos solamente el parámetro -v .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.071.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.071.png)
 
 Principalmente este comando se usa para esto , para solucionar problemas con la configuración del servicio DHCP .
 
@@ -525,11 +524,11 @@ netstat  muestra información sobre el subsistema de red en nuestro equipo al ig
 
 Si lanzamos el parámetro podemos ver a simple vista que nos muestra mas información sin indicar ningún parámetro , por lo demás estos son los mismo que en Windows .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.072.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.072.png)
 
 Mientras que el comando ping la diferencia es que es por defecto infinito , a diferencia de Windows este no acabara hasta que lo detengamos nosotros .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.073.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.073.png)
 
 En este los parámetros con respecto a Windows cambia su “letra ” , aquí serian :
 
@@ -550,17 +549,17 @@ Dig es un comando que permite realizar consultas a servidores DNS para obtener i
 
 Podemos hacer una consulta dns ,  por ejemplo al instituto para comprobar si somos capaces de obtener su dirección ip :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.074.jpeg)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.074.jpeg)
 
 Utilizando la opción +trace realiza consultas iterativas para resolver la búsqueda de nombres. Consultará los nombres de servidores a partir de la raíz y posteriormente atravesará el árbol del espacio de nombres mediante consultas iterativas siguiendo las referencias en el camino:
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.075.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.075.png)
 
 
 
 También podemos realizar consultas inversas con la opción -x :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.076.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.076.png)
 
 ### Diferencias del comando traceroute de Linux con el comando tracert de Windows
 
@@ -568,7 +567,7 @@ La herramienta traceroute es exactamente la misma que el tracert, pero se denomi
 
 Estas se usan para detectar donde esta el error a la hora de acceder a un determinado equipo y saber en que nodo se produce el “error” .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.077.jpeg)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.077.jpeg)
 
 
 Algunos parámetros que pueden interesarnos son :
@@ -591,13 +590,13 @@ Para instalarlo usamos el comando apt install wget .
 
 Un ejemplo es para descargar archivos , por ejemplo una iso . Pondríamos el comando seguido de la url :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.078.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.078.png)
 
 Este nos descargara el archivo en el directorio actual de trabajo .
 
 Podemos utilizar el comando -o para indicar un nombre diferente al descargar el archivo :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.079.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.079.png)
 
 Algunos parámetros interesantes son :
 
@@ -631,11 +630,11 @@ Los parámetros mas comunes son :
 
 Por ejemplo podemos hacer una captura de nuestra red de un máximo de 50 paquetes :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.080.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.080.png)
 
 Como ves la salida es indescifrable , para leerla usaremos el comando ngrep para buscar coincidencias sin tener en cuenta mayúsculas y minúsculas .
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.081.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.081.png)
 
 
 ### Uso general del comando arp
@@ -644,7 +643,7 @@ El comando arp nos permitirá  interactuar con la cache de resolución arp , mod
 
 También podemos averiguar la dirección MAC de un dispositivo , buscándolo en la tabla :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.082.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.082.png)
 
 Los parámetros son los  mismo que podemos encontrar en Windows :
 
@@ -655,7 +654,7 @@ Los parámetros son los  mismo que podemos encontrar en Windows :
 
 También podemos hacer esto mismo con el comando ip :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.083.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.083.png)
 
 Para este la sintaxis básica es  de la siguiente forma :
 
@@ -666,7 +665,7 @@ Para este la sintaxis básica es  de la siguiente forma :
 
 Por ejemplo para añadir una tabla :
 
-![](../images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.084.png)
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.084.png)
 
 ### Comando ip
 

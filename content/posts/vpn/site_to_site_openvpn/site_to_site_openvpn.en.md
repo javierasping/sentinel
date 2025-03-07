@@ -12,7 +12,7 @@ hero: /images/vpn/sitetosite.png
 
 To perform this exercise I have mounted the following scenario on GNS3:
 
-![](../img/Pastedimage20240114150833.png)
+![](/vpn/site_to_site_openvpn/img/Pastedimage20240114150833.png)
 
 ## # Swan router configuration
 Let's give each interface the corresponding network configuration:
@@ -781,7 +781,7 @@ Android client
 
 The network configuration of the network is done from the wifi:
 
-![](../img/Pastedimage20240117195853.png)
+![](/vpn/site_to_site_openvpn/img/Pastedimage20240117195853.png)
 
 Check that from the local network of it you have connectivity with the assigned ip:
 
@@ -797,4 +797,4 @@ rtt min/avg/max/mdev = 0.534/0.534/0.534/0.000 ms
 
 Besides this account in applications with a terminal emulator that will help us check that it has connectivity:
 
-![](../img/Pastedimage20240117200346.png)
+![](/vpn/site_to_site_openvpn/img/Pastedimage20240117200346.png)

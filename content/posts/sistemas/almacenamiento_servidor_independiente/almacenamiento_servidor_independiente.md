@@ -19,7 +19,7 @@ El siguiente ejemplo muestra qué discos físicos están disponibles en el grupo
 Get-StoragePool -IsPrimordial $true | Get-PhysicalDisk -CanPool $True
 ```
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.001.png)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.001.png)
 
 El siguiente ejemplo crea un nuevo grupo de almacenamiento denominado StoragePool1 que usa todos los discos disponibles:
 
@@ -27,7 +27,7 @@ El siguiente ejemplo crea un nuevo grupo de almacenamiento denominado StoragePoo
 New-StoragePool –FriendlyName StoragePool1 –StorageSubsystemFriendlyName "Windows Storage\*" –PhysicalDisks (Get-PhysicalDisk –CanPool $True) 
 ```
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.002.png)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.002.png)
 
 Por defecto el tipo de aprovisionamiento es mirror.
 
@@ -45,23 +45,23 @@ Vamos a crear un disco virtual :
 New-VirtualDisk –StoragePoolFriendlyName StoragePool1 –FriendlyName VirtualDisk1 –Size (8GB)
 ```
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.003.jpeg)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.003.jpeg)
 
 Automáticamente nos creara un volumen y nos lo montara en una letra disponible: :
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.004.jpeg)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.004.jpeg)
 
 Podemos interactuar con el y guardar información :
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.005.png)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.005.png)
 
 Vemos que este es el “equivalente” a LVM en Windows . Vemos que hay similitudes no solo en la estructura a la hora de crearlo si no que también podemos observar que hacen referencia en la documentación oficial a RAID 5 y RAID 6:
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.006.png)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.006.png)
 
 A la forma de almacenar los datos en ya sea en stripes o guardando el espacio completo , al igual que sucede en Linux :
 
-![](../img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.007.jpeg)
+![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.007.jpeg)
 
 ## Bibliografía
 

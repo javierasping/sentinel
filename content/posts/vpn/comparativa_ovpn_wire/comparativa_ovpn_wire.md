@@ -8,7 +8,7 @@ hero: /images/vpn/wire_ovpn.png
 
 
 
-![](../img/Pastedimage20240114150833.png)
+![](/vpn/comparativa_ovpn_wire/img/Pastedimage20240114150833.png)
 
 El objetivo de este post es comparar los distintos software de VPNs mas utilizados viendo cual es mas rápido , para ello nos apoyaremos en test de velocidad utilizando iperf3 .
 

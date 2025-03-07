@@ -15,51 +15,51 @@ Samba facilitates interoperability between Windows systems and Unix / Linux-base
 
 The first thing is to install the samba server:
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.001.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.001.png)
 
 In the / etc / samba / smb.conf file we will make the configuration of our folder:
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.002.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.002.png)
 
 We will create a samba user to access the resources:
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.003.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.003.png)
 
 We will restart the service to apply the configuration:
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.004.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.004.png)
 
 ## 2.Access from Windows
 
 Now we can access from a Windows client with the user we just created -- >\\ IP\ DIRECTORY\ PARTICIPING
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.005.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.005.png)
 
 He will ask us to become self-conscious:
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.006.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.006.png)
 
 We can see the content and create:
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.007.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.007.png)
 
 ## 3.Access from Linux
 
 We install the smbclient package to connect to shared units with samba:
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.008.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.008.png)
 
 List shared directories:
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.009.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.009.png)
 
 We connect to the shared resource
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.010.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.010.png)
 
 I will create a directory and check that it exists:
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.011.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.011.png)
 
 ## Bibliography
 

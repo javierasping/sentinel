@@ -8,7 +8,7 @@ hero: /images/vpn/wireguard_acceso_remoto.png
 
 
 
-![](../img/Pastedimage20240114150833.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240114150833.png)
 
 En primer lugar configurare la maquina servidor1  como servidor VPN de acceso remoto y servidor2 como cliente VPN . Posteriormente configurare un cliente Windows y Android . 
 
@@ -276,7 +276,7 @@ debian@servidor1:~$ sudo cp android.conf /var/www/html/
 ```
 
 Desde una terminal , ya que el navegador no funciona demasiado bien nos descargamos el fichero :
-![](../img/Pastedimage20240127122826.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127122826.png)
 
 Ahora vamos a añadir en el fichero de configuración del servidor este nuevo cliente :
 
@@ -298,11 +298,11 @@ debian@servidor1:~$ sudo wg-quick up wg0
 
 Ahora abre la aplicación de wireguard y dale a importar desde archivo y activa la conexión . Activa el túnel y asegúrate de que se produce el handshake : 
 
-![](../img/Pastedimage20240127123150.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127123150.png)
 
 Si abrimos una terminal podremos hacerle pings a los clientes :
 
-![](../img/Pastedimage20240127123551.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127123551.png)
 
 #### Configuración del cliente Windows
 
@@ -363,24 +363,24 @@ debian@servidor1:~$ sudo wg-quick up wg0
 
 Una vez tenemos todo configurado , accede a la maquina Windows y descargate el fichero de configuración : 
 
-![](../img/Pastedimage20240127124840.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127124840.png)
 
 Abre la aplicación de wireguard y selecciona importar desde archivo :
 
-![](../img/Pastedimage20240127124507.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127124507.png)
 
 Una vez añadido activa el túnel y comprueba que se ha producido el handshake :
 
-![](../img/Pastedimage20240127125205.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127125205.png)
 
 
 Si volvemos a nuestro Windows , se nos habrá creado una nueva interfaz :
 
-![](../img/Pastedimage20240127125336.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127125336.png)
 
 Y tendremos conectividad con las maquinas de la red 192.168.0.0/24 :
 
-![](../img/Pastedimage20240127125609.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127125609.png)
 
 A modo de curiosidad podemos ver en el servidor que clientes están conectados :
 

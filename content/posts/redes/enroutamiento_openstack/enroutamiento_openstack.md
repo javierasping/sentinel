@@ -18,33 +18,33 @@ Esta tendremos que crearla con el mismo flavour con las que generaremos el escen
 
 Cuanto tengamos  a punto nuestra instancia comprobaremos que puedes iniciar sesión desde horizon :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.001.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.001.png)
 
 Ahora crearemos una instantánea :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.002.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.002.png)
 
 Copiaremos el ID de las instantánea :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.003.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.003.png)
 
 Y lo añadiremos al fichero :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.004.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.004.png)
 
 Y lo desplegaremos :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.005.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.005.png)
 
 Vemos que se ha creado correctamente :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.006.jpeg)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.006.jpeg)
 
 ## Esquema gráfico de la configuración
 
 El esquema quedaría de la siguiente manera : 
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.007.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.007.png)
 
 Teniendo la siguiente relación de IPS :
 
@@ -110,7 +110,7 @@ Como es un router deberemos de activar el bit de forwarding para ello introducir
 echo 1 > /proc/sys/net/ipv4/ip\_forward
 ```
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.008.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.008.png)
 
 Crearemos la tabla de enrutamiento :
 
@@ -120,7 +120,7 @@ Las rutas estáticas :
 ip route add 10.0.100.0/24 via 0.0.0.0 dev ens3
 ```
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.009.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.009.png)
 
 La ruta por defecto:
 
@@ -128,21 +128,21 @@ La ruta por defecto:
 ip route add default via 10.0.110.30 dev ens4
 ```
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.010.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.010.png)
 
 Nos quedaría así la tabla de enrutamiento :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.011.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.011.png)
 
 ### PC1
 
 Borraremos la ruta por defecto que exista en el dispositivo 
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.012.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.012.png)
 
 Y añadiremos la nueva ruta 
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.013.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.013.png)
 
 
 ### Router 2
@@ -153,19 +153,23 @@ Como es un router deberemos de activar el bit de forwarding para ello introducir
 echo 1 > /proc/sys/net/ipv4/ip\_forward
 ```
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.014.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.014.png)
 
 Crearemos la tabla de enrutamiento :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.015.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.015.png)
 
 Quedaría así :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.016.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.016.png)
 
-### PC2**
+### PC2
 
-Al igual que hicimos anteriormente eliminaremos la ruta por defecto que trae y la añadiremos la nueva :![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.017.png)![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.018.png)
+Al igual que hicimos anteriormente eliminaremos la ruta por defecto que trae y la añadiremos la nueva :
+
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.017.png)
+
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.018.png)
 
 Activaremos el bit de forwarding con el siguiente comando :
 
@@ -173,21 +177,21 @@ Activaremos el bit de forwarding con el siguiente comando :
 echo 1 > /proc/sys/net/ipv4/ip\_forward
 ```
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.019.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.019.png)
 
 Crearemos la tabla de enrutamiento para nuestro escenario :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.020.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.020.png)
 
 La tabla de enrutamiento quedaría así :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.021.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.021.png)
 
 ### PC3
 
 Al igual que con los demás deberemos de cambiar la ruta por defecto por la ip del router a la que estamos conectado :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.022.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.022.png)
 
 
 
@@ -213,15 +217,15 @@ Si queremos hacer que el bit del forwarding se guarde permanentemente para que c
 
 –> Escribimos directamente  en el archivo /etc/sysctl.conf:
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.023.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.023.png)
 
 Si queremos volcar en un archivo la configuración de las tablas de enrutamiento para tener una copia de seguridad de las mismas usamos :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.024.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.024.png)
 
 Si queremos restaurar la copia :
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.025.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.025.png)
 
 
 
@@ -232,31 +236,31 @@ Si queremos restaurar la copia :
 
 PC1 – PC2
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.026.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.026.png)
 
 PC1-PC3
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.027.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.027.png)
 
 ### PC2
  
 PC2-PC1
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.028.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.028.png)
 
 PC2-PC3
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.029.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.029.png)
 
 ### PC3
 
 PC3-PC1
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.030.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.030.png)
 
 PC3-PC2
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.031.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.031.png)
 
 ## Captura de tráfico en el router r2 o r3 mostrando tráfico entre h1 y h3.
 
@@ -266,15 +270,15 @@ Para hacer una captura de una determinada interfaz y guardarla en un archivo uti
 tcpdump -i NOMBRE\_INTERFAZ -w NOMBRE\_ARCHIVO
 ```
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.032.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.032.png)
 
 Si queremos tener una salida al comando en lugar de guardar el archivo usaremos el parámetro -n: Aquí vemos como llegan los ICMP REQUEST de PC3 a PC1 y los ICMP REPLY DE PC1 a PC3
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.033.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.033.png)
 
 Además he capturado una petición y respuesta arp de PC3:
 
-![](../img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.034.png)
+![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.034.png)
 
 ## Bibliografía
 

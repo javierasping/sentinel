@@ -11,7 +11,7 @@ Systemd and System V (SysV) are two start-up systems used in Linux distributions
 
 ### Migration from systemd to systemV
 
-Modify / etc / apt / sources.list to point to Daedalus repositories that is the equivalent of Debian 12 in Devuan.
+Modify /etc/apt/sources.list to point to Daedalus repositories that is the equivalent of Debian 12 in Devuan.
 
 ```bash
 root@ASOjaviercruces:~# nano /etc/apt/sources.list

@@ -24,7 +24,7 @@ In case it is not of any use, however it is very useful in Scripts. Here is a sm
 
 date + "% H:% M:% S '; sleep 5; date +"% H:% M:% S'
 
-![](../img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.001.png)
+![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.001.png)
 
 ### Watch command
 
@@ -32,9 +32,9 @@ The watch utility is part of the procps (or procps-ng) package that is pre-insta
 
 When used without arguments, this utility will run the specified command every two seconds:
 
-![](../img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.002.png)
+![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.002.png)
 
-![](../img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.003.png)
+![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.003.png)
 
 We can specify the repetition time using the -n parameter, specifying the parameter in seconds:
 
@@ -42,7 +42,7 @@ watch -n 5 date - > Every 5 seconds
 
 If we want to remove the header, that is to say to show us every time it is repeated, we use the -t parameter:
 
-![](../img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.004.png)
+![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.004.png)
 
 If we want to put an error message in case the command cannot be executed we use the -and parameter followed by the error message:
 
@@ -54,7 +54,7 @@ watch -b
 
 With the parameter -d it points to the changes that have occurred in the execution of the command: watch -d
 
-![](../img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.005.png)
+![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.005.png)
 
 ### Command at
 
@@ -62,27 +62,27 @@ This command is used to run commands at a certain time, mainly used to program p
 
 The main parameters are:
 
-- * * V * *: print the version number on the standard error and come out successfully.
+- **V**: print the version number on the standard error and come out successfully.
 
-- * * m * *: Send mail to the user when the work has been completed even if there has been no output. -M: He never sends mail to the user.
+- **m**: Send mail to the user when the work has been completed even if there has been no output. -M: He never sends mail to the user.
 
-- * * f * *: Read the work file from a file instead of the standard input.
+- **f**: Read the work file from a file instead of the standard input.
 
-- * * t * *: time Executs work on time, given in the format [[CC] YY] MMDDhhmm [.ss]
+- **t**: time Executs work on time, given in the format [[CC] YY] MMDDhhmm [.ss]
 
-- * * l * *: It's an alias for atq.
+- **l**: It's an alias for atq.
 
-- * * r * *: It's an alias for atrm.
+- **r**: It's an alias for atrm.
 
-- * * d * *: It's an alias for atrm.
+- **d**: It's an alias for atrm.
 
-- * * b * *: It's an alias for batch.
+- **b**: It's an alias for batch.
 
-- * * v * *: It shows the time the work will run before reading it.
+- **v**: It shows the time the work will run before reading it.
 
-- * * The * * times shown will be in the format "Thu Feb 20 14: 50: 00 1997."
+- **The** times shown will be in the format "Thu Feb 20 14: 50: 00 1997."
 
-- * * c * * collects the works listed in the command line on the standard output.
+- **c** collects the works listed in the command line on the standard output.
 
 We can program tasks from the command line, with echo:
 
@@ -105,7 +105,7 @@ To see them, we use this command: sudo crontab -l To edit: sudo crontab -e
 
 The cron tasks follow a certain syntax. They have 5 asterisks followed by the command to run. Now I'll explain what it's all about.
 
-\ *\ *\ *\ * * / bin / run / script.sh
+\ *\ *\ *\ **/ bin / run / script.sh
 
 The 5 asterisks, from left to right, the asterisks represent:
 
@@ -119,7 +119,7 @@ If you leave an asterisk, you mean "every minute, time, day of month, month or d
 
 If we want a file to run at 5 in the morning every day: 0 5\ *\ *\ * path\ _ absolute\ _ from the\ _ script
 
-To run twice a day at 6 AM and 6 PM: 0 6,18\ *\ * * path\ _ absolute\ _ of the\ _ script
+To run twice a day at 6 AM and 6 PM: 0 6,18\ *\ **path\ _ absolute\ _ of the\ _ script
 
 We often have words reserved to facilitate the use of programming programs or languages. Cron couldn't be less, so we have some that are usually the most common. Now everyone who sets it up according to their needs. Here they go:
 
@@ -146,5 +146,6 @@ These commands will give us the possibility to automate processes, making the ma
 
 ## Bibliography
 
-- [Watch command] (https: / / ubunlog.com / comando -watch-some -formas-de-use /) [Crontab command] (https: / / geekytheory.com / programar-tareas-en-linux-using-crontab /)
+- [Watch command](https://ubunlog.com/comando-watch-some-formas-de-use/) 
+- [Crontab command](https://geekytheory.com/programar-tareas-en-linux-using-crontab/)
 

@@ -16,7 +16,7 @@ StrongSwan is a VPN (Virtual Private Network) implementation based on IPsec, ope
 
 Remember that for the configuration we are going to do you have to activate the forwardbit in the Servidor1 and Servidor2 machines.
 
-![](../img/Pastedimage20240128105821.png)
+![](/vpn/acceso_remoto_strongswang/img/Pastedimage20240128105821.png)
 
 
 ## StrongSwan installation
@@ -203,7 +203,7 @@ o), rekeying in 41 minutes
 
 You can also capture the traffic and make sure the messages are encrypted:
 
-![](../img/Pastedimage20240128112552.png)
+![](/vpn/acceso_remoto_strongswang/img/Pastedimage20240128112552.png)
 
 ### Traceroute check
 

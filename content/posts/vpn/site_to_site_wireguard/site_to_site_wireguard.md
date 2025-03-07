@@ -8,7 +8,7 @@ hero: /images/vpn/wireguard_site_to_site.png
 
 
 
-![](../img/Pastedimage20240114150833.png)
+![](/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png)
 
 > [!NOTE]  
 > Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible que haga referencia a este durante este articulo .

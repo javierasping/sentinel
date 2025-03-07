@@ -19,7 +19,7 @@ hero: /images/vpn/remoteaccess.png
 
 Para realizar este ejercicio he montado el siguiente escenario en GNS3 :
 
-![](../img/Pastedimage20240114150833.png)
+![](/vpn/acceso_remoto_openvpn/img/Pastedimage20240114150833.png)
 
 ### Configuración del router cisco
 Vamos a darle a cada interfaz la configuración de red correspondiente :

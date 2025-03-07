@@ -16,30 +16,30 @@ Si , es un mensaje de difusión ya que en la cabecera podemos ver que el destino
 
 Cuando esta le llegue , en este caso al que tiene la dirección IP 192.168.1.1 nos devolverá la petición y en el origen obtendremos su dirección MAC.
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.001.jpeg)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.001.jpeg)
 
 ## ¿Crees que la respuesta ARP es un mensaje de difusión? Realiza una captura en Wireshark de una respuesta ARP y analízala para justificar tu respuesta.
 
 Podemos ver en la respuesta que en la dirección de destino viene la del pc que mando la pregunta , por lo que la respuesta no es un mensaje de broadcast sino una comunicación punto a punto .
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.002.jpeg)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.002.jpeg)
 
 
 ## Los ordenadores de una red almacenan en memoria una caché con las correspondencias IP-MAC que van conociendo. Explica el proceso de actualización de la caché ARP después de observar como se va rellenando en  las máquinas de un pequeño escenario en GNS3 con una red local con cuatro ordenadores conectados a un switch. Ve comprobando como cambia la caché ARP de todos los ordenadores cuando vas haciendo ping entre un ordenador y otro.
 
 Cuando hacemos un ping el emisor y el receptor “se añaden mutuamente a la tabla ARP” , si las consultamos en ambas veremos que están incluidos :
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.003.png)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.003.png)
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.004.png)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.004.png)
 
 Podemos ver que el tiempo por el que se guardan en cache es de 120 segundos , cuando este tiempo se acaba, se borra la entrada.
 
 Mientras que en los pcs que no han intervenido no almacenaran nada en la cache arp sobre la “transacción realizada”:
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.005.png)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.005.png)
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.006.png)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.006.png)
 
 ## Analiza el comando ip neigh para ver las posibilidades que ofrece y piensa cual puede ser el uso real de cada una de ellas.
 
@@ -47,7 +47,7 @@ Este comando nos permite interactuar con la tabla arp donde se guardan la relaci
 
 Por ejemplo , listar el contenido :
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.007.png)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.007.png)
 
 Podemos resumir sus funciones : 
 
@@ -76,7 +76,7 @@ El ataque viene a modificar el flujo de los datos enviados desde un PC Víctima 
 
 Así el atacante intercepta los mensajes y es capaz de obtener todo el trafico de la red obteniendo contraseñas e información confidencial o sensible .
 
-![](../img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.008.jpeg)
+![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.008.jpeg)
 
 Los pasos que sigue un atacante al realizar este ataque son :
 

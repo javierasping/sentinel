@@ -6,17 +6,13 @@ tags: [LINUX,DEBIAN,WINDOWS,FORENSE]
 hero: /images/seguridad/informatica_forense.png
 ---
 
-
-
 Forensics is the set of techniques that allows us to obtain as much information as possible after a computer incident or crime.
 In this practice, you will perform the evidence-taking and analysis phase on one Linux machine and another Windows. We'll assume we caught the criminal 'in fraganti' and the machines were on. Optionally, you can perform an Android device analysis.
 On each of the machines you must do a memory and a hard drive, taking the necessary measures to certify the chain of custody.
 
-  
-
 ### Image and memory
 
-Windows
+## Windows
 
 I'm going to prepare the disk in which it contains the tools:
 
@@ -27,56 +23,56 @@ javiercruces@HPOMEN15:~/Descargas$ sudo cp AccessData_FTK_Imager_4.7.1.exe /mnt/
 
 This one I will pinch in the machine as I have installed the FTK:
 
-![](../img/Pastedimage20240205202959.png)
+![](/seguridad/forense/img/Pastedimage20240205202959.png)
 
 ### Memory Flow
 
 So let's proceed to get an image out of the memory:
 
-![](../img/Pastedimage20240205203403.png)
+![](/seguridad/forense/img/Pastedimage20240205203403.png)
 
 We select where we will save it:
 
-![](../img/Pastedimage20240205203443.png)
+![](/seguridad/forense/img/Pastedimage20240205203443.png)
 
 ### Record overturn
 
 We are going to get the record, for this we select the option to get protected files:
 
-![](../img/Pastedimage20240205203507.png)
+![](/seguridad/forense/img/Pastedimage20240205203507.png)
 
 I will select the password files and all the records, and I will save it on the external disk:
 
-![](../img/Pastedimage20240205203547.png)
+![](/seguridad/forense/img/Pastedimage20240205203547.png)
 ### Disk Flying
 
 To do the disk tilt, we will select to create disk image:
 
-![](../img/Pastedimage20240205203656.png)
+![](/seguridad/forense/img/Pastedimage20240205203656.png)
 
 Our source disk is a physical device, so I will select that option:
 
-![](../img/Pastedimage20240205203718.png)
+![](/seguridad/forense/img/Pastedimage20240205203718.png)
 
 We choose where we will save the image, in my case on the external disk:
 
-![](../img/Pastedimage20240205203819.png)
+![](/seguridad/forense/img/Pastedimage20240205203819.png)
 
 Once done, check the image created:
 
-![](../img/Pastedimage20240205203942.png)
+![](/seguridad/forense/img/Pastedimage20240205203942.png)
 
 Here are the hash of the disk image:
 
-![](../img/Pastedimage20240205204017.png)
+![](/seguridad/forense/img/Pastedimage20240205204017.png)
 
 We will also turn the data disk that is encrypted:
 
-![](../img/Pastedimage20240205204148.png)
+![](/seguridad/forense/img/Pastedimage20240205204148.png)
 
 The hashes of the second album:
 
-![](../img/Pastedimage20240205204206.png)
+![](/seguridad/forense/img/Pastedimage20240205204206.png)
 
 
 Now I'm going to get these files to my host machine, so I'll mount the volume of the mv in which I've done the data spins:
@@ -152,8 +148,6 @@ javiercruces@debian:~/LiME/src$ sudo dd if=/dev/vda2 of=/mnt/discoLinux.raw bs=6
 javiercruces@debian:~/LiME/src$ 
 
 ```
-
-
 ### Memory discharge
 
 ```bash
@@ -191,16 +185,16 @@ b419ec819114f21a10bc5146a0b28183165c8b2cf77b2fe160e3044b1b5e04a0  /mnt/vdb/vdb
 
 The first thing I will do is create a case in autopsy (This documentation is made in debian, the exercises I have responded to on Windows).
 
-![](../img/Pastedimage20240205205321.png)
+![](/seguridad/forense/img/Pastedimage20240205205321.png)
 
 We add meta-information to the case, if we consider it necessary:
 
-![](../img/Pastedimage20240205205343.png)
+![](/seguridad/forense/img/Pastedimage20240205205343.png)
 
 
 We wait for autopsy to process the disk image:
 
-![](../img/Pastedimage20240205205353.png)
+![](/seguridad/forense/img/Pastedimage20240205205353.png)
 
 ### Volatility installation
 
@@ -227,11 +221,11 @@ javiercruces@HPOMEN15:~/volatility3$ source volatility/bin/activate
 
 
 
-Windows machine
+## Windows machine
 
   
 
-## 1. Processes in progress
+### 1. Processes in progress
 
 ```bash
 (volatility) javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f "/mnt/vdb/memoria/memdump.mem" windows.pslist.PsList
@@ -333,7 +327,7 @@ PID	PPID	ImageFileName	Offset(V)	Threads	Handles	SessionId	Wow64	CreateTime	Exit
 2132	788	RuntimeBroker.	0xb088ead3d080	7	-	2	False	2024-02-05 19:33:43.000000 	N/A	Disabled
 ```
 
-#2. Services in progress
+### 2. Services in progress
 
 ```bash
 (volatility) javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f "/mnt/vdb/memoria/memdump.mem" windows.getservicesids.GetServiceSIDs 
@@ -718,9 +712,9 @@ S-1-5-80-1352715831-1104254428-97934242-2131353953-1898040052	XboxNetApiSvc
 S-1-5-80-1281037624-1782002805-990284447-3522102690-2853398433	xinputhid
 ```
 
-#3. Open ports
+### 3. Open ports
 
-![](../img/Pastedimage20240206211730.png)
+![](/seguridad/forense/img/Pastedimage20240206211730.png)
 
 Volatility seems to have no support for this functionality for Windows 10 / 11, so I will do it from the machine's own powershell:
 
@@ -757,7 +751,7 @@ LocalAddress    LocalPort
 0.0.0.0               135
 ```
 
-## 4. Connections established by the machine
+### 4. Connections established by the machine
 
 Like the above point, it seems that volatility has no support for the current versions of windows:
 
@@ -791,7 +785,7 @@ RemotePort    : 443
 State         : Established
 ```
 
-## 5. User sessions set remotely
+### 5. User sessions set remotely
 
   ```bash
 (volatility) javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f "/mnt/vdb/memoria/memdump.mem" windows.sessions.Sessions
@@ -895,7 +889,7 @@ N/A	-	1768	MemCompression	-	2024-02-05 19:31:16.000000
 
 ```
 
-#6. Ficheros recently transferred by NetBios
+### 6. Ficheros recently transferred by NetBios
 
 Volatility has no support for this function:
 
@@ -919,7 +913,7 @@ Dirección IP del nodo: [192.168.122.203] Id. de ámbito : []
 
 ```
 
-#7. DNS cache content
+### 7. DNS cache content
 
 Volatility has no support for this function:
 
@@ -948,7 +942,7 @@ Configuración IP de Windows
     Registro CNAME. . . . : cdp-tlu-shim.trafficmanager.net
 ```
 
-## 8. Environment variables
+### 8. Environment variables
 
   ```bash
 (volatility) javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f "/mnt/vdb/memoria/memdump.mem" windows.envars
@@ -966,102 +960,102 @@ For this we download the Registry Viewer 2.0.0 https: / / www.exteriro.com / ftk
 
 We open the system file that is the Windows registry:
 
-![](../img/Pastedimage20240206200558.png)
+![](/seguridad/forense/img/Pastedimage20240206200558.png)
 
 
-## 9. USB devices connected
+### 9. USB devices connected
 
-![](../img/Pastedimage20240206200915.png)
+![](/seguridad/forense/img/Pastedimage20240206200915.png)
 
-![](../img/Pastedimage20240206201401.png)
+![](/seguridad/forense/img/Pastedimage20240206201401.png)
 
-![](../img/Pastedimage20240206201441.png)
+![](/seguridad/forense/img/Pastedimage20240206201441.png)
 
 
 Autopsy:
 
-![](../img/Pastedimage20240206200947.png)
+![](/seguridad/forense/img/Pastedimage20240206200947.png)
 
-## 10. Wifi networks used recently.
+### 10. Wifi networks used recently.
 
  We can find it in -- > system / ControlSet001 / Control / Network / Connections
 
-![](../img/Pastedimage20240206202518.png)
+![](/seguridad/forense/img/Pastedimage20240206202518.png)
 
 
-## 11. Node firewall configuration.
+### 11. Node firewall configuration.
 
 system\ ControlSet001\ Services\ SharedAccess\ Parameters\ FirewallPolicy
 
-  ![](../img/Pastedimage20240206203007.png)
+  ![](/seguridad/forense/img/Pastedimage20240206203007.png)
 
-![](../img/Pastedimage20240206204447.png)
+![](/seguridad/forense/img/Pastedimage20240206204447.png)
 
 
-## 12. Programs that run at the Start.
+### 12. Programs that run at the Start.
 
  software\ Microsoft\ Windows\ Performance\ Run
 
-![](../img/Pastedimage20240206205755.png)
+![](/seguridad/forense/img/Pastedimage20240206205755.png)
 
 
 
-## 13. Association of file and application extensions.
+### 13. Association of file and application extensions.
 
 It's under this directory -- > software\ Classes
 
-![](../img/Pastedimage20240206205941.png)
+![](/seguridad/forense/img/Pastedimage20240206205941.png)
 
-![](../img/Pastedimage20240206210015.png)
+![](/seguridad/forense/img/Pastedimage20240206210015.png)
 
 
-## 14. Applications used recently.
+### 14. Applications used recently.
 
-![](../img/Pastedimage20240206200026.png)
+![](/seguridad/forense/img/Pastedimage20240206200026.png)
 
-## 15. Ficheros open recently.
+### 15. Ficheros open recently.
 
-![](../img/Pastedimage20240206195852.png)
+![](/seguridad/forense/img/Pastedimage20240206195852.png)
 
-## 16. Software Installed.
+### 16. Software Installed.
 
-![](../img/Pastedimage20240206195841.png)
+![](/seguridad/forense/img/Pastedimage20240206195841.png)
 
-## 17. Passwords kept.
+### 17. Passwords kept.
 
-![](../img/Pastedimage20240206195817.png)
+![](/seguridad/forense/img/Pastedimage20240206195817.png)
 
-## 18. User Accounts
+### 18. User Accounts
 
-![](../img/Pastedimage20240206195617.png)
+![](/seguridad/forense/img/Pastedimage20240206195617.png)
 
 We can see the answers to the security questions:
 
-![](../img/Pastedimage20240212131736.png)
+![](/seguridad/forense/img/Pastedimage20240212131736.png)
 
 ### With third-party applications:
 
 
-## 19. History of navigation and downloads. Cookies.
+### 19. History of navigation and downloads. Cookies.
 
 History:
-![](../img/Pastedimage20240206195525.png)
+![](/seguridad/forense/img/Pastedimage20240206195525.png)
 
 Downloads:
 
-![](../img/Pastedimage20240206195425.png)
+![](/seguridad/forense/img/Pastedimage20240206195425.png)
 
 Cookies:
 
-![](../img/Pastedimage20240206195403.png)
+![](/seguridad/forense/img/Pastedimage20240206195403.png)
 
 
 
-## 20. Encryption volumes
+### 20. Encryption volumes
 
 It shows you the encrypted FICHERS:
 
-![](../img/Pastedimage20240206195321.png)
+![](/seguridad/forense/img/Pastedimage20240206195321.png)
 
   
 
@@ -1069,51 +1063,51 @@ It shows you the encrypted FICHERS:
 
   
 
-## 21. Files with changed extension
+### 21. Files with changed extension
 
 We will see that the MIME type matches the extension:
-  ![](../img/Pastedimage20240206192803.png)
+  ![](/seguridad/forense/img/Pastedimage20240206192803.png)
   
  There is also an artifact that allows us to see the files that are with another extension:
 
-![](../img/Pastedimage20240217191651.png)
+![](/seguridad/forense/img/Pastedimage20240217191651.png)
 
 
-## 22. Deleted files
+### 22. Deleted files
 
 You have a specific section that tells you the deleted files:
-  ![](../img/Pastedimage20240206185456.png)
+  ![](/seguridad/forense/img/Pastedimage20240206185456.png)
 
  But if you browse the directories, you will be informed if there are any deleted files in it:
   
-  ![](../img/Pastedimage20240206185709.png)
+  ![](/seguridad/forense/img/Pastedimage20240206185709.png)
   
 
-## 23. Hidden Files
+### 23. Hidden Files
 
-![](../img/Pastedimage20240206193134.png)
+![](/seguridad/forense/img/Pastedimage20240206193134.png)
   
 
-## 24. Files containing a given chain
+### 24. Files containing a given chain
 
-![](../img/Pastedimage20240206192629.png)
+![](/seguridad/forense/img/Pastedimage20240206192629.png)
 
-![](../img/Pastedimage20240206192646.png)
+![](/seguridad/forense/img/Pastedimage20240206192646.png)
 
 
-## 25. Search for images by location.
+### 25. Search for images by location.
 
 The location of autopsy doesn't locate my image, so I'll use an external tool.
 
-![](../img/Pastedimage20240206193627.png)
+![](/seguridad/forense/img/Pastedimage20240206193627.png)
 
-![](../img/Pastedimage20240206193638.png)
+![](/seguridad/forense/img/Pastedimage20240206193638.png)
 
-![](../img/Pastedimage20240206193726.png)
+![](/seguridad/forense/img/Pastedimage20240206193726.png)
 
-## 26. File search by author.
+### 26. File search by author.
 
-![](../img/Pastedimage20240218193344.png)
+![](/seguridad/forense/img/Pastedimage20240218193344.png)
 
 ## Box B Linux Machine.
 
@@ -1128,7 +1122,7 @@ However I do not recognize them and have used both volatility 2 and version 3.
 I will connect to the machine and indicate you with commands how to show each exercise, I have no other.
 What I will do is redirect the output of the commands to a file on the device in which I have stored the spins.
 
-## 1. Processes in progress
+### 1. Processes in progress
 
 ```bash
 root@debian:~# ps aux > /mnt/procesos
@@ -1141,7 +1135,7 @@ root           3  0.0  0.0      0     0 ?        I<   16:44   0:00 [rcu_gp]
 
 ```
 
-#2. Services in progress
+### 2. Services in progress
 
 ```bash
 root@debian:~# systemctl list-units --type=service --state=running > /mnt/servicios_corriendo
@@ -1154,7 +1148,7 @@ root@debian:~# systemctl list-units --type=service --state=running
 
 ```
 
-#3. Open ports
+### 3. Open ports
 
 ```bash
 root@debian:~# ss -tuln > /mnt/puertos_abiertos
@@ -1164,7 +1158,7 @@ udp      UNCONN    0         0                    0.0.0.0:631                0.0
 udp      UNCONN    0         0                    0.0.0.0:42925              0.0.0.0:*        
 ```
 
-## 4. Connections established by the machine
+### 4. Connections established by the machine
 
 ```bash
 root@debian:~# ss -an > /mnt/conexiones_establecidas
@@ -1175,7 +1169,7 @@ u_str ESTAB  0      0                                               * 18971     
 u_str ESTAB  0      0                                               * 18439                   * 18440  
 ```
 
-## 5. User sessions set remotely
+### 5. User sessions set remotely
 
 ```bash
 root@debian:~# who
@@ -1192,13 +1186,13 @@ root@debian:~# sudo journalctl -u systemd-resolved > /mnt/cachedns
 ```
 
 
-## 8. Environment variables
+### 8. Environment variables
 
 ```bash
 root@debian:~# env > /mnt/variables_entorno
 ```
 
-## 9. USB devices connected
+### 9. USB devices connected
 
 ```bash
 root@debian:~# lsusb
@@ -1209,13 +1203,13 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 root@debian:~# lsusb > /mnt/usb_conectados
 ```
 
-## 10. recently used wifi networks
+### 10. recently used wifi networks
 
 ```bash
 Al ser un MV no tenemos historial de redes wifi
 ```
 
-#11. Node firewall configuration
+### 11. Node firewall configuration
 
 ```bash
 root@debian:~# sudo iptables -L
@@ -1232,7 +1226,7 @@ root@debian:~# sudo iptables -L > /mnt/firewall_nodo
 
 ```
 
-#12. Programs being implemented at Home
+### 12. Programs being implemented at Home
 
 ```bash
 root@debian:~# systemctl list-unit-files --type=service > /mnt/servicios_incio
@@ -1241,14 +1235,14 @@ networking.service                         enabled         enabled
 
 ```
 
-#13. Association of file and application extensions
+### 13. Association of file and application extensions
 
 ```bash
 root@debian:~# cat /usr/share/applications/mimeinfo.cache > /mnt/asosiacion_ficheros_ext
 
 ```
 
-#14. Newly used applications
+### 14. Newly used applications
 The closest thing to this, in Linux is to see what every user has done, so I'll get all the records:
 
 ```bash
@@ -1256,24 +1250,24 @@ root@debian:~# sudo cat /home/*/.bash_history > /mnt/historial_usuarios
 root@debian:~# sudo cat /root/.bash_history > /mnt/historial_root
 ```
 
-#15. Recently opened records
+### 15. Recently opened records
 * It will depend on the route of the files, I will set an example for the home
 
 ```bash
 root@debian:~# ls -lu /home/*/ > /mnt/ficheros_recientes
 ```
 
-#16. Installed Software
+### 16. Installed Software
 
 ```bash
 root@debian:~# dpkg --get-selections > /mnt/paquetes_instalados
 ```
 
-#17. Passwords saved
+### 17. Passwords saved
 
 Some configuration passwords are saved within our user's home directory, if we want to see the browser's, we will find it in the same place as autopsy.
 
-#18. User Accounts
+### 18. User Accounts
 
 ```bash
 root@debian:~# cat /etc/passwd | cut -d ":" -f 1 > /mnt/lista_usuarios
@@ -1282,15 +1276,15 @@ debian
 user1
 ```
 
-## 19. History of navigation, downloads and Cookies
+### 19. History of navigation, downloads and Cookies
 
 History:
 
-![](../img/Pastedimage20240218191820.png)
+![](/seguridad/forense/img/Pastedimage20240218191820.png)
 
 Cookies:
 
-![](../img/Pastedimage20240218191853.png)
+![](/seguridad/forense/img/Pastedimage20240218191853.png)
 
 Downloads:
 
@@ -1298,25 +1292,25 @@ Downloads:
 root@debian:~# ls -l /home/*/Descargas > /mnt/descargas_usuarios
 ```
 
-## 20 Encryption volumes
+### 20 Encryption volumes
 
 ```bash
 root@debian:~# lsblk -f | grep crypt
 └─sda1 crypto_LUKS 2                                      9fc1bfa7-9224-4e8e-896a-09516d4fd613     
 ```
 
-## 21 Files with changed extension
+### 21 Files with changed extension
 
 * The Mismatch Detector device does not charge me, but we can see it by looking at the metadata:
 
-![](../img/Pastedimage20240218190705.png)
+![](/seguridad/forense/img/Pastedimage20240218190705.png)
 
-#22. Deleted files
+### 22. Deleted files
 
-![](../img/Pastedimage20240218192845.png)
+![](/seguridad/forense/img/Pastedimage20240218192845.png)
 
 
-#23. Hidden Files
+### 23. Hidden Files
 
 In Linux, everyone who starts with.
 
@@ -1324,16 +1318,16 @@ In Linux, everyone who starts with.
 root@debian:~# find / -type f -name ".*" > /mnt/ficheros_ocultos
 ```
 
-#24. Files containing a given chain
+### 24. Files containing a given chain
 
 ```bash
 root@debian:~# grep -rnw / -e 'File' > /mnt/FicherosContienenFile
 ```
 
 
-## 26. File search by author
+### 26. File search by author
 
-![](../img/Pastedimage20240218193344.png)
+![](/seguridad/forense/img/Pastedimage20240218193344.png)
 
 
 I have already tried that I have not been able to use volatility for these exercises, to use commands to perform the checks manually. To give the exercises more seriousness, I'm going to take the hashes out of the different commands to make sure they don't change:
@@ -1366,12 +1360,13 @@ b419ec819114f21a10bc5146a0b28183165c8b2cf77b2fe160e3044b1b5e04a0  /mnt/vdb
 
 
 ## Bibliography
-https: / / cybersec.iescampanillas.com / files / 3046
-https: / / markuta.com / live-memory-acquisition -on-linux-systems /
-https: / / cpuu.hashnode.dev / how-to-perform-memory-forensic-analysis-in-linux-using-volatility-3
-https: / / isf-server.techanarchy.net /
-https: / / github.com / volatilityfoundation / volatility3? tab = readme-ov-file
-https: / / github.com / volatilityfoundation / dwarf2json
+
+- [Guía de Adquisición de Memoria en Sistemas Linux](https://cybersec.iescampanillas.com/files/3046)
+- [Adquisición de Memoria en Vivo en Linux](https://markuta.com/live-memory-acquisition-on-linux-systems/)
+- [Análisis Forense en Linux usando Volatility 3](https://cpuu.hashnode.dev/how-to-perform-memory-forensic-analysis-in-linux-using-volatility-3)
+- [Repositorio Oficial de Volatility 3](https://github.com/volatilityfoundation/volatility3?tab=readme-ov-file)
+- [Generador de Perfiles DWARF para Volatility (dwarf2json)](https://github.com/volatilityfoundation/dwarf2json)
+- [ISF Server - Entorno para Análisis Forense](https://isf-server.techanarchy.net/)
 
   
 

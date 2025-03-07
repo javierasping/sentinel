@@ -134,7 +134,7 @@ javiercruces@HPOMEN15:~/vpcs/src$ pwd
 En preferencias tienes que añadir la ruta donde has guardado el fichero compilado vpcs , en mi caso la ruta seria /home/javiercruces/vpcs/src/vpcs
 
 
-![](../img/vpc.png)
+![](/redes/instalar_gns3_debian12/img/vpc.png)
 
 
 <!-- ## GNS3 VM

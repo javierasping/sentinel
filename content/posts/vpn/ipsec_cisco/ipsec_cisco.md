@@ -10,7 +10,7 @@ hero: /images/vpn/ipsec_cisco.png
 
 En este post voy a montar una VPN IPSEC usando routers cisco .
 
-![](../img/Pastedimage20240128120659.png)
+![](/vpn/ipsec_cisco/img/Pastedimage20240128120659.png)
 
 
 > [!NOTE]  

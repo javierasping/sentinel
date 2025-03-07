@@ -6,8 +6,6 @@ tags: [Sistemas,ISO,ASO,Linux]
 hero: images/sistemas/ejercicios_de_manejo_de_modulos/ejercicios_de_manejo_de_modulos.jpg
 ---
 
-
-
 ## Trabajo con apt, aptitude, dpkg
 
 ### Ejercicio 1 Que acciones consigo al realizar apt update y apt upgrade. Explica detalladamente.
@@ -30,7 +28,7 @@ Una vez que apt update ha actualizado la información sobre los paquetes disponi
 
 ### Ejercicio 2 Lista la relación de paquetes que pueden ser actualizados. ¿Qué información puedes sacar a tenor de lo mostrado en el listado?
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.001.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.001.png)
 
 Puedes verificar la lista de paquetes que pueden ser actualizados utilizando el siguiente comando apt list --upgradable. Este comando mostrará una lista de paquetes disponibles para la actualización y proporcionará información sobre cada uno de ellos. Aquí hay una breve descripción de la información que puedes obtener a partir de este listado:
 
@@ -43,35 +41,35 @@ Puedes verificar la lista de paquetes que pueden ser actualizados utilizando el 
 
 ### Ejercicio 3 Indica la versión instalada, candidata así como la prioridad del paquete openssh-client
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.002.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.002.png)
 
 ## Ejercicio 4 ¿Cómo puedes sacar información de un paquete oficial instalado o que no este instalado?** Podemos usar el comando apt show para paquetes instalados como para no instalados .
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.003.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.003.jpeg)
 
 También podemos hacerlo con dpkg pero el paquete tiene que estar instalado → dpkg -s :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.004.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.004.jpeg)
 
 
 ### Ejercicio 5 Saca toda la información que puedas del paquete openssh-client que tienes actualmente instalado en tu máquina
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.005.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.005.jpeg)
 
 ### Ejercicio 6 Saca toda la información que puedas del paquete openssh-client candidato a actualizar en tu máquina
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.006.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.006.jpeg)
 
 
 ### Ejercicio 7 Lista todo el contenido referente al paquete openssh-client actual de tu máquina. Utiliza para ello tanto dpkg como apt.
 
 Usando dpkg :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.007.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.007.jpeg)
 
 Usando apt :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.008.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.008.png)
 
 
 ### Ejercicio 8 Listar el contenido de un paquete sin la necesidad de instalarlo o descargarlo. 
@@ -80,59 +78,59 @@ Podemos usar apt file  :
 
 - apt-file list [paquete]
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.009.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.009.jpeg)
 
 ### Ejercicio 9 Simula la instalación del paquete openssh-client
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.010.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.010.jpeg)
 
 ### Ejercicio 10 ¿Qué comando te informa de los posible bugs que presente un determinado paquete?
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.011.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.011.png)
 
 ### Ejercicio 11 Después de realizar un apt update && apt upgrade. Si quisieras actualizar únicamente los paquetes que tienen de cadena openssh. ¿Qué procedimiento seguirías?. Realiza esta acción, con las estructuras repetitivas que te ofrece bash, así como con el comando xargs.
 
 Usando la estructura repetitiva de bash , usando un one line :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.012.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.012.png)
 
 Usando xargs :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.013.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.013.png)
 
 ### Ejercicio 12 ¿Cómo encontrarías qué paquetes dependen de un paquete específico?
 
 Con este vemos las dependencias del paquete directas :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.014.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.014.png)
 
 Mientras que con este las dependencias indirectas :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.015.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.015.png)
 
 ### Ejercicio 13 ¿Cómo procederías para encontrar el paquete al que pertenece un determinado fichero? 
 
 Podemos usar dpkg :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.016.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.016.png)
 
 Podemos usar apt-file :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.017.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.017.png)
 
 ### Ejercicio 14 ¿Que procedimientos emplearías para liberar la caché en cuanto a descargas de paquetería? 
 
 Para limpiar la caché de descargas :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.018.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.018.png)
 
 Para eliminarlos paquetes descargados que ya no están en uso:
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.019.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.019.png)
 
 O podemos hacer las dos cosas a la vez con apt clean :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.020.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.020.png)
 
 ### Ejercicio 15 Realiza la instalación del paquete keyboard-configuration pasando previamente los valores de los parámetros de configuración como variables de entorno.
 
@@ -140,49 +138,49 @@ Nos aseguramos de que tenemos instalado el paquete :
 
 Para ello nos instalamos debconfs-utils:
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.021.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.021.png)
 
 En un fichero declaramos las variables que queramos configurar en el teclado :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.022.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.022.png)
 
 Y se las proporcionamos al debconf:
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.023.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.023.png)
 
 Y comprobaremos que se han aplicado los cambios :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.024.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.024.jpeg)
 
 ### Ejercicio 16 Reconfigura el paquete locales de tu equipo, añadiendo una localización que no exista previamente. Comprueba a modificar las variables de entorno correspondientes para que la sesión del usuario utilice otra localización.
 
 Si queremos almacenar nuestra configuración para cada usuario exportaremos nuestras variables y las pondremos en el bashrc :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.025.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.025.png)
 
 A continuación ejecutaremos dpkg-reconfigure y observaremos que tendremos seleccionado el valor de la variable :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.026.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.026.jpeg)
 
 ### Ejercicio 17 Interrumpe la configuración de un paquete y explica los pasos a dar para continuar la instalación
 
 Una vez irrumpamos la instalación de un paquete , para continuar la instalación del mismo podemos usar el comando dpkg:
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.027.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.027.png)
 
 Podemos usar el parámetro -a para todos los paquetes o especificar el nombre para continuar su instalación :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.028.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.028.png)
 
 ### Ejercicio 18 Explica la instrucción que utilizarías para hacer una actualización completa de todos los paquetes de tu sistema de manera completamente no interactiva
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.029.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.029.png)
 
 ### Ejercicio 19 Bloquea la actualización de determinados paquetes
 
 Lo marcamos para evitar las actualizaciones y listamos los marcados para comprobar que no se actualizara :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.030.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.030.png)
 
 
 
@@ -192,26 +190,26 @@ Lo marcamos para evitar las actualizaciones y listamos los marcados para comprob
 
 Podemos usar el comando apt :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.031.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.031.png)
 
 Podemos usar wget y descargarlo desde los repositorios de debían :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.032.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.032.jpeg)
 
 ## Ejercicio 2 ¿Cómo puedes ver el contenido, que no extraerlo, de lo que se instalará en el sistema de un paquete deb?
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.033.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.033.png)
 
 
 ### Ejercicio 3 Sobre el fichero .deb descargado, utiliza el comando ar. ar permite extraer el contenido de una paquete deb. Indica el procedimiento para visualizar con ar el contenido del paquete deb. Con el paquete que has descargado y utilizando el comando ar, descomprime el paquete. ¿Qué información dispones después de la extracción?. Indica la finalidad de lo extraído.
 
 Para visualizar el contenido :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.034.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.034.png)
 
 Para descomprimir el directorio :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.035.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.035.png)
 Hemos extraído 3 archivos del paquete :
 
 1. control.tar.xz : Contiene scripts que dpkg utiliza para instalar el paquete 
@@ -222,7 +220,7 @@ Indica el procedimiento para descomprimir lo extraído por ar del punto anterior
 
 Para descomprimir ficheros usaremos tar -xJf :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.036.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.036.png)
 
 Nos encontraremos los siguientes directorios y ficheros :
 
@@ -242,51 +240,51 @@ El archivo data.tar.xz contiene los archivos y directorios que se instalarán en
 
 ### Ejercicio 1 Añade a tu fichero sources.list los repositorios de bullseye-backports y sid.
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.037.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.037.png)
 
 ### Ejercicio 2 Configura el sistema APT para que los paquetes de debian bullseye tengan mayor prioridad y por tanto sean los que se instalen por defecto.
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.038.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.038.png)
 
 ### Ejercicio 3 Configura el sistema APT para que los paquetes de bullseye-backports tengan mayor prioridad que los de unstable.
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.039.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.039.jpeg)
 
 ### Ejercicio 4 ¿Cómo añades la posibilidad de descargar paquetería de la arquitectura i386 en tu sistema. ¿Que comando has empleado?. Lista arquitecturas no nativas. ¿Cómo procederías para desechar la posibilidad de descargar paquetería de la arquitectura i386?
 
 Para añadirla :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.040.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.040.png)
 
 Para eliminarla :
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.041.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.041.png)
 
 ### Ejercicio 5 Si quisieras descargar un paquete, ¿cómo puedes saber todas las versiones disponible de dicho paquete?
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.042.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.042.png)
 
 ### Ejercicio 6 Indica el procedimiento para descargar un paquete del repositorio stable.
 
 Tal y como lo tenemos configurado los paquetes por prioridad se descargaran del repositorio estable . Pero podemos indicárselo : 
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.043.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.043.png)
 
 ### Ejercicio 7 Indica el procedimiento para descargar un paquete del repositorio de buster-backports
 
 Tienes que tener el repositorio indicado en el sources.list luego puedes indicarlo con el parámetro -t.
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.044.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.044.png)
 
 ### Ejercicio 8 Indica el procedimiento para descargar un paquete del repositorio de sid
 
 Igual que el ejercicio anterior solo que aquí indicamos sid ya que tenemos indicado el repositorio en el sources.list:
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.045.png)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.045.png)
 
 ### Ejercicio 9 Indica el procedimiento para descargar un paquete de arquitectura i386.** Indicamos el nombre del paquete seguido de :i386
 
-![](../img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.046.jpeg)
+![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.046.jpeg)
 
 
 

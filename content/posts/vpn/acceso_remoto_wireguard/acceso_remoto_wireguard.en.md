@@ -8,7 +8,7 @@ hero: /images/vpn/wireguard_acceso_remoto.png
 
 
 
-![](../img/Pastedimage20240114150833.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240114150833.png)
 
 First I will configure the server machine as a VPN remote access and server server as a VPN client. I will then set up a Windows and Android client.
 
@@ -276,7 +276,7 @@ debian@servidor1:~$ sudo cp android.conf /var/www/html/
 ```
 
 From a terminal, as the browser does not work too well we download the file:
-![](../img/Pastedimage20240127122826.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127122826.png)
 
 Now let's add this new client to the server configuration file:
 
@@ -298,11 +298,11 @@ debian@servidor1:~$ sudo wg-quick up wg0
 
 Now open the wireguard application and give it import from file and activate the connection. Activate the tunnel and make sure the handshake occurs:
 
-![](../img/Pastedimage20240127123150.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127123150.png)
 
 If we open a terminal we can pings the customers:
 
-![](../img/Pastedimage20240127123551.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127123551.png)
 
 Windows client configuration
 
@@ -363,24 +363,24 @@ debian@servidor1:~$ sudo wg-quick up wg0
 
 Once we have all set up, access the Windows machine and download the configuration file:
 
-![](../img/Pastedimage20240127124840.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127124840.png)
 
 Open the wireguard application and select to import from file:
 
-![](../img/Pastedimage20240127124507.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127124507.png)
 
 Once the tunnel is activated and the handshake has been checked:
 
-![](../img/Pastedimage20240127125205.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127125205.png)
 
 
 If we return to our Windows, we will have created a new interface:
 
-![](../img/Pastedimage20240127125336.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127125336.png)
 
 And we'll have connectivity to the network machines 192.168.0.0 / 24:
 
-![](../img/Pastedimage20240127125609.png)
+![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127125609.png)
 
 By way of curiosity we can see on the server that customers are connected:
 

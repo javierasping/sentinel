@@ -467,7 +467,7 @@ debian@javiercrucesCA:~$ sudo systemctl reload apache2.service
 
 Demostración :
 
-![](../img/Pastedimage20240111115927.png)
+![](/seguridad/https_autofirmado/img/Pastedimage20240111115927.png)
 
 ### Paso 4: Configuración de Nginx
 
@@ -501,4 +501,4 @@ server {
 ```
 
 
-![](../img/Pastedimage20240111191950.png)
+![](/seguridad/https_autofirmado/img/Pastedimage20240111191950.png)

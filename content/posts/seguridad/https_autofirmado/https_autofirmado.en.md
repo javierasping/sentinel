@@ -6,8 +6,6 @@ tags: [LINUX,DEBIAN,HTTPS]
 hero: /images/seguridad/certificados_ssl.png
 ---
 
-
-
 At first a student will establish a Certified Authority and sign a certificate for the other student's page. We will then test it on the Apache and Nginx web servers.
 
 ### Create the certifying authority
@@ -26,6 +24,7 @@ debian@javiercrucesCA:/CA$ sudo mkdir certsdb certreqs crl private
 debian@javiercrucesCA:/CA$ sudo chmod 700 private/
 debian@javiercrucesCA:/CA$ sudo touch index.txt
 ```
+
 Once the directories are generated, move into the father CA / directory. When you are within it, you list the content in a graphic way so you can appreciate that everything has been generated correctly, making use of tree.
 You'll see that the 4 directories have been properly generated. Before continuing it is recommended to change the permissions to 700 to the private directory /, as it will contain the private key of the CA and we are interested that only the owner has access to it.
 In addition, we will need in the current directory a file that will act as a database for existing index.txt name certificates
@@ -41,8 +40,6 @@ debian@javiercrucesCA:/CA$ sudo tree -p
 
 5 directories, 1 file
 debian@javiercrucesCA:/CA$ 
-
-
 ```
 
 ### Step 2: Openssl configuration file
@@ -316,16 +313,13 @@ cacert.pem                            100% 7389     1.2MB/s   00:00
 
 ```
 
-
-
-
 ## Task 2: Configure HTTPS
 
 ### Step 1: Key creation and certificate application.
 
 The first thing you have to do is create a certificate signature application (CSR or Certificate Signing Request) and get it to your partner. In this case, let's do it with openssl, but it could be done with other multiple software options.
 
-To create a certificate signature application, we must first have a private key that will be associated with it, so we will generate a 4096 bit RSA private key, which will be stored in / etc / ssl / private /, running the command for it:
+To create a certificate signature application, we must first have a private key that will be associated with it, so we will generate a 4096 bit RSA private key, which will be stored in /etc/ssl/private/, running the command for it:
 
 ```bash
 debian@javiercrucesCA:~$ sudo openssl genrsa 4096 > javiercd.key
@@ -341,7 +335,7 @@ debian@javiercrucesCA:~$ sudo chmod 400 /etc/ssl/private/javiercd.key
 After that, we will create a .csr file of application for a certificate signature to be signed by the certifying authority (CA) created by our partner. This file does not contain confidential information, so it will not import the route where we store it or the assigned permits. In my case, I will store it in the current directory, running the openssl req command, with the options:
 
 - new: We indicate that the creation of the application for a certificate is interactive, as it will ask for certain parameters.
- - key: We indicate the private key to associate with this application for a certificate. In this case, the one generated in the previous step, / etc / ssl / private / tunombre.key.
+ - key: We indicate the private key to associate with this application for a certificate. In this case, the one generated in the previous step, /etc/ssl/private/tunombre.key.
  - out: We specify where the certificate signature application will be stored. In this case, in the current directory, with the name tunombre.csr.
 
 During the execution, you will ask us for a series of values to identify the certificate, which we will have to fill in according to the configuration we have made in the certification unit.
@@ -401,7 +395,7 @@ Once signed, I'll get it from your server.
 ### Step 2: Certificate storage on the server
 
 In addition to that signed certificate, you must send us the public key of the certification authority, that is, the certificate of the certificate, so that you can verify your signature on our certificate.
-Store both files in / etc / ssl / certs / and list the contents of that directory.
+Store both files in /etc/ssl/certs/ and list the contents of that directory.
 
 ```bash
 debian@javiercrucesCA:~$ sudo mv javiercd.csr.pem /etc/ssl/certs/
@@ -422,7 +416,6 @@ total 8
 -r-------- 1 debian debian   3272 Jan 11 09:37 javiercd.key
 
 ```
-
 
 ### Step 3: Apache configuration
 
@@ -467,7 +460,7 @@ debian@javiercrucesCA:~$ sudo systemctl reload apache2.service
 
 Demonstration:
 
-![](../img/Pastedimage20240111115927.png)
+![](/seguridad/https_autofirmado/img/Pastedimage20240111115927.png)
 
 ### Step 4: Nginx configuration
 
@@ -501,4 +494,4 @@ server {
 ```
 
 
-![](../img/Pastedimage20240111191950.png)
+![](/seguridad/https_autofirmado/img/Pastedimage20240111191950.png)

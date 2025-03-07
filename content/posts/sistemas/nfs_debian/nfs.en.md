@@ -13,15 +13,15 @@ The NFS (Network File System) technology has been a key part of file sharing in 
 
 We installed the nfs-kernel-server package.
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.001.png)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.001.png)
 
 We will create the directory we are going to share and change the owners and permissions of it:
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.002.png)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.002.png)
 
 In the file etc / exports we will indicate what our directory is and their respective permissions:
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.003.jpeg)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.003.jpeg)
 
 - * * ro * *: directory reading only permission
 - * * rw * *: reading and writing permission of the directory
@@ -32,45 +32,45 @@ In the file etc / exports we will indicate what our directory is and their respe
 
 We apply the changes and restart the service:
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.004.png)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.004.png)
 
 ## 2.Visualize it on a debian client
 
 We will install the following package:
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.005.png)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.005.png)
 
 We put it on our client:
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.006.png)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.006.png)
 
 We can also do this permanently in the fstab:
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.007.png)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.007.png)
 
 We can view the content:
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.008.png)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.008.png)
 
 Let's create a file and check that it has been created on the server:
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.009.png)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.009.png)
 
 ## 3 Visualization on Windows
 
 We download the NFS client feature:
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.010.jpeg)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.010.jpeg)
 
 We map the network unit:
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.011.jpeg)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.011.jpeg)
 
 We created a file remotely and we checked that it was created.
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.012.jpeg)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.012.jpeg)
 
 We also checked on the server:
 
-![](../img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.013.png)
+![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.013.png)
 

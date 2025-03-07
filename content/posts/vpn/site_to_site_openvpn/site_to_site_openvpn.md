@@ -12,7 +12,7 @@ hero: /images/vpn/sitetosite.png
 
 Para realizar este ejercicio he montado el siguiente escenario en GNS3 :
 
-![](../img/Pastedimage20240114150833.png)
+![](/vpn/site_to_site_openvpn/img/Pastedimage20240114150833.png)
 
 ### Configuración del router cisco
 Vamos a darle a cada interfaz la configuración de red correspondiente :
@@ -781,7 +781,7 @@ debian@servidor1:~$ ip -4 a
 
 La configuración de red del mismo se realiza desde el wifi :
 
-![](../img/Pastedimage20240117195853.png)
+![](/vpn/site_to_site_openvpn/img/Pastedimage20240117195853.png)
 
 Comprueba que desde la red local del mismo tienes conectividad con la ip asignada :
 
@@ -797,4 +797,4 @@ rtt min/avg/max/mdev = 0.534/0.534/0.534/0.000 ms
 
 Ademas este cuenta en las aplicaciones con un emulador de terminal que nos servirá para comprobar que tiene conectividad :
 
-![](../img/Pastedimage20240117200346.png)
+![](/vpn/site_to_site_openvpn/img/Pastedimage20240117200346.png)

@@ -6,7 +6,6 @@ tags: [ASO,REDHAT,ROCKY,CENTOS]
 hero: images/sistemas/selinux/selinux.jpg
 ---
 
-
 Enable SELinux on a Rocky-based server and make sure that the samba and nfs services work properly with a strict and secure SELinux configuration. Conducts the corresponding access tests.
 
 The stage consists of two machines, our server is based on Rocky 9 and our client is a Debian 12.

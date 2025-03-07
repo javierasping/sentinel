@@ -28,15 +28,15 @@ The first thing we're going to install is fundamental for the compilation of C p
 
 The building-essential package provides the necessary compilation tools, and dpkg-dev facilitates package management and source code delivery. You can install other specific development packages according to your needs, but these two are the most essential to start compiling C software in Debian.
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.001.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.001.png)
 
 Now let's download the source files from the package that we want to compile in my case I will make it samba:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.002.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.002.png)
 
 Once this is done we will see in our directory that a series of files and directories have been created:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.003.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.003.png)
 
 * * samba-4.17.12 + dfsg: * * This is the directory that contains the Samba source code, which was downloaded from Debian repositories. It is the source that will be used to compile and install Samba in your system.
 
@@ -48,55 +48,55 @@ Once this is done we will see in our directory that a series of files and direct
 
 Let's get in the main directory and we can see the source code of the package:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.004.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.004.png)
 
 The first thing we will do is install the units of the package that we want to compile in my case samba:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.005.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.005.png)
 
 Now let's launch the script configure. This script is used to configure samba compilation according to your needs and system characteristics:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.006.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.006.png)
 
 Now let's compile the source code using the make command. This will be in charge of compiling the code and creating the executables and libraries that the script has created configure:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.007.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.007.png)
 
 This will take a while depending on the size of the package in my case, it took me 8 minutes:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.008.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.008.png)
 
 Once the code is compiled to install it we will use make install:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.009.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.009.png)
 
 Once this is done we will have our package installed on the route / usr / local:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.010.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.010.png)
 
 Now to start the samba service we will run the nmbd file and make sure it is working:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.011.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.011.png)
 
 We see that the installed version is the one we have compiled:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.012.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.012.png)
 
 ### Uninstall the compiled package
 
 To remove the package we have compiled:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.013.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.013.png)
 
 We see that it only leaves us the service configuration files:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.014.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.014.png)
 
 They may remain in our samba trace system as the makefile file is not configured in this case to completely remove it, run whereis and remove the content of the routes:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.015.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.015.png)
 
 Once this has been done, we will have removed the samba trail:
 
-![](../img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.016.png)
+![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.016.png)
 

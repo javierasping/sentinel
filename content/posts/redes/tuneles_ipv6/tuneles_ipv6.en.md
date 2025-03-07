@@ -1,660 +1,667 @@
 ﻿---
-title: "IPV6 Tunes"
+title: "IPv6 Tunnels"
 date: 2023-09-08T10:00:00+00:00
-Description: In this detailed post, we explore the process of setting up IPv6 to IPv4 tunnels and vice versa in Linux and Cisco environments. As migration to IPv6 becomes important, the ability to establish communications between IPv4 and IPv6 networks becomes essential. We will cover the basic concepts of tunnel configuration, including the most common tunnel types, such as 6to4 and Teredo. In addition, we will provide step-by-step instructions for configuration on both Linux systems and Cisco devices
-tags: [Redes,IPV6,IPV4,Cisco,Linux]
+description: "In this detailed post, we explore the process of configuring IPv6 to IPv4 tunnels and vice versa in Linux and Cisco environments. As the migration to IPv6 gains importance, the ability to establish communication between IPv4 and IPv6 networks becomes essential. We will cover the basics of tunnel configuration, including the most common types of tunnels, such as 6to4 and Teredo. Additionally, we will provide step-by-step instructions for configuration on both Linux systems and Cisco devices."
+tags: [Networking, IPv6, IPv4, Cisco, Linux]
 hero: images/redes/tuneles_ipv6/portada.png
 ---
 
+## Introduction
 
+In this detailed post, we explore the process of configuring IPv6 to IPv4 tunnels and vice versa in Linux and Cisco environments. As the migration to IPv6 gains importance, the ability to establish communication between IPv4 and IPv6 networks becomes essential. We will cover the basics of tunnel configuration, including the most common types of tunnels, such as 6to4 and Teredo. Additionally, we will provide step-by-step instructions for configuration on both Linux systems and Cisco devices.
 
-In this detailed post, we explore the process of setting up IPv6 to IPv4 tunnels and vice versa in Linux and Cisco environments. As migration to IPv6 becomes important, the ability to establish communications between IPv4 and IPv6 networks becomes essential. We will cover the basic concepts of tunnel configuration, including the most common tunnel types, such as 6to4 and Teredo. In addition, we will provide step-by-step instructions for configuration on both Linux systems and Cisco devices
+## 6to4 Tunnels in Cisco
 
- ! [] (.. / img / Aspose.Words.c9cb3e7-b0e3-4eb4-b70b-2432dbadc7d8.001.jpeg) 
+### 1. Configuration of Router Network Interfaces
 
-### 6to4 Tunes in Swan
+#### R1
 
-1. They set up the Router network interfaces
+- **FastEthernet 0/0**  
+  - Network Prefix: `3333:db7::/64`  
+  - Link: `FE80::C801:20FF:FE69:0`  
+  - Global: `3333:DB7::C801:20FF:FE69:0`
 
-♪ R1 ♪
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.002.png)
 
-R1 - > FastEthernet 0 / 0
-- Take the network prefix - > 3333: db7:: / 64
-- Link: FE80:: C801: 20FF: FE69: 0 Global: 3333: DB7:: C801: 20FF: FE69: 0
+- **FastEthernet 1/0**
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.002.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.004.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.003.png)
+- **FastEthernet 2/0**
 
-R1 - > FastEthernet 1 / 0
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.005.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.004.png)
+For R1 router clients, we will configure SLAAC:
 
-R1 - > FastEthernet 2 / 0
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.006.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.005.png)
+#### R2
 
-For router 1 customers will configure SLAAC:
+- **FastEthernet 0/0**  
+  - Network Prefix: `3333:db7:1::/64`  
+  - Link: `FE80::C802:20FF:FE79:0`  
+  - Global: `3333:DB7:1:0:C802:20FF:FE79:0`
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.006.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.007.png)
 
+- **FastEthernet 1/0**
 
-* * R2 * *
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.009.png)
 
-R2 - > FastEthernet 0 / 0
+- **FastEthernet 2/0**
 
-- Take the network prefix - > 3333: db7: 1:: / 64
-- Link: FE80:: C802: 20FF: FE79: 0 Global: 3333: DB7: 1: 0: C802: 20FF: FE79: 0
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.010.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.007.png)
+For R2 router clients, we will configure SLAAC:
 
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.011.png)
 
- ! [] (.. / img / Aspose.Words.c9cb3e7-b0e3-4eb4-b70b-2432dbadc7d8.008.png) 
-R2- > FastEthernet 1 / 0
+#### R3
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.009.png)
+- **FastEthernet 0/0**  
+  - Network Prefix: `3333:db7:2::/64`  
+  - Link: `FE80::C803:20FF:FE89:0`  
+  - Global: `3333:DB7:2:0:C803:20FF:FE89:0`
 
-R2- > FastEthernet 2 / 0
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.012.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.010.png)
+- **FastEthernet 1/0**
 
-For router 2 customers will configure SLAAC:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.014.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.011.png)
+- **FastEthernet 2/0**
 
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.015.png)
 
-* * R3 * *
+For R3 router clients, we will configure SLAAC:
 
-R3 - > FastEthernet 0 / 0
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.016.png)
 
-- Take the network prefix - > 3333: db7: 2:: / 64
-- Link: FE80:: C803: 20FF: FE89: 0 Global: 3333: DB7: 2: 0: C803: 20FF: FE89: 0
+> **Note:** In this scenario, it is not necessary to manually configure IPv4 routes, as the network interface configuration will make IPv4 traffic routable.
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.012.png)
+## 2. GRE Tunnels
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.013.png)
+GRE is an unsecured site-to-site VPN tunneling protocol that can encapsulate a wide variety of protocol packets within IP tunnels. This allows an organization to transmit other protocols over an IP-based WAN.
 
-R3- > FastEthernet 1 / 0
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.017.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.014.png)
+This allows adding an IPv4 header to an IPv6 packet so it can travel over IPv4 networks.
 
-R3- > FastEthernet 2 / 0
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.018.jpeg)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.015.png)
-
-For router 3 customers will configure SLAAC:
-
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.016.png)
-
-* *\ * In this scenario we do not need to manually entrust IPV4 routes as with the configuration given on the network cards the scenario will be rolled on IPV4. * *
-
-2 GRE Tunes
-
-GRE is a non-secure site-to-site VPN tunneling protocol that can encapsulate a wide variety of protocol package types within IP tunnels, allowing an organization to deliver other protocols through an IP-based WAN.
-
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.017.png)
-
-This will allow an IPV4 header to travel through IPV4 networks on our IPV6 package.
-
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.018.jpeg)
-
-* * R1 - > R3 * *
+#### R1 → R3
 
 We will create a tunnel interface:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.019.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.019.png)
 
-We set the tunnel mode to GRE with IP that encapsulated our IPV6 packages within IPV4:
+# GRE Tunnel Configuration with IPv6 over IPv4
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.020.png)
+We set the tunnel mode to GRE with IP, which will encapsulate our IPv6 packets within IPv4:
 
-We give an IPV4 to our tunnel:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.020.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.021.png)
+We assign an IPv4 address to our tunnel:
 
-We set the WAN address of our router, FastEthernet 1 / 0:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.021.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.022.png)
+We set the WAN address of our router, FastEthernet 1/0:
 
-We establish the WAN direction of the tunnel end (R2):
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.022.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.023.png)
+We set the WAN address of the tunnel endpoint (R2):
 
-We enable OSPF that is a dynamic routing protocol:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.023.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.024.png)
+We enable OSPF, which is a dynamic routing protocol:
 
-This command adds to the tunnel network to OSPF:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.024.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.025.png)
+This command adds the tunnel network to OSPF:
 
-We will give an IPV6 to our tunnel, with the network prefix 2002 from the IPV4 of the 2002 router: 0A00: 0001:: 1 / 64:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.025.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.026.png)
+We assign an IPv6 address to our tunnel, with the network prefix `2002` based on the router's IPv4 address `2002:0A00:0001::1/64`:
 
-We create the route to get to the network:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.026.png)
 
-! [ref1]
+We create the route to reach the network:
 
-We'll create a tunnel interface.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.044.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.028.png)
+We create a tunnel interface:
 
-We set the tunnel mode to GRE with IP that encapsulated our IPV6 packages within IPV4:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.028.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.029.png)
+We set the tunnel mode to GRE with IP, which will encapsulate our IPv6 packets within IPv4:
 
-We give an IPV4 address to our tunnel:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.029.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.030.png)
+We assign an IPv4 address to our tunnel:
 
-We set the WAN address of our router, FastEthernet 1 / 0.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.030.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.031.png)
+We set the WAN address of our router, FastEthernet 1/0:
 
-We establish the WAN direction of the tunnel end (R2):
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.031.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.032.png)
+We set the WAN address of the tunnel endpoint (R2):
 
-We enable OSPF that is a dynamic routing protocol.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.032.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.033.png)
+We enable OSPF, which is a dynamic routing protocol:
 
-This command adds to the tunnel network to OSPF
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.033.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.034.png)
+This command adds the tunnel network to OSPF:
 
-We will give an IPV6 to our tunnel, with the network prefix 2002 from the IPV4 of the 2002 router: 0A00: 0002:: 1 / 64:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.034.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.035.png)
+We assign an IPv6 address to our tunnel, with the network prefix `2002` based on the router's IPv4 address `2002:0A00:0002::1/64`:
 
-We create the route to get to the network:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.035.png)
 
-! [ref1]
+We create the route to reach the network:
 
-We'll create a tunnel interface.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.044.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.036.png)
+We create a tunnel interface:
 
-We set the tunnel mode to GRE with IP that encapsulated our IPV6 packages within IPV4:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.036.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.037.png)
+We set the tunnel mode to GRE with IP, which will encapsulate our IPv6 packets within IPv4:
 
-We give an IPV4 address to our tunnel:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.037.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.038.png)
+We assign an IPv4 address to our tunnel:
 
-We set the WAN address of our router, FastEthernet 1 / 0.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.038.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.039.png)
+We set the WAN address of our router, FastEthernet 1/0:
 
-We establish the WAN direction of the tunnel end (R2):
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.039.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.040.png)
+We set the WAN address of the tunnel endpoint (R2):
 
-We enable OSPF that is a dynamic routing protocol.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.040.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.041.png)
+We enable OSPF, which is a dynamic routing protocol:
 
-This command adds to the tunnel network to OSPF
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.041.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.042.png)
+This command adds the tunnel network to OSPF:
 
-We will give an IPV6 to our tunnel, with the network prefix 2002 from the IPV4 of the 2002 router: 1400: 0001:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.042.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.043.png)
+We assign an IPv6 address to our tunnel, with the network prefix `2002` based on the router's IPv4 address `2002:1400:0001`:
 
-We create the route to get to the network:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.043.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.044.png)
+We create the route to reach the network:
 
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.044.png)
 
-* * R3 - > R1 * *
+## **R3 → R1**
 
-We'll create a tunnel interface.
+We create a tunnel interface:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.045.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.045.png)
 
-We set the tunnel mode to GRE with IP that encapsulated our IPV6 packages within IPV4:
+We set the tunnel mode to GRE with IP, which will encapsulate our IPv6 packets within IPv4:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.046.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.046.png)
 
-We give an IPV4 address to our tunnel:
+We assign an IPv4 address to our tunnel:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.047.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.047.png)
 
-We set the WAN address of our router, FastEthernet 1 / 0.
+We set the WAN address of our router, FastEthernet 1/0:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.048.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.048.png)
 
-We establish the WAN direction of the tunnel end (R2):
+We set the WAN address of the tunnel endpoint (R2):
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.049.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.049.png)
 
-We enable OSPF that is a dynamic routing protocol.
+We enable OSPF, which is a dynamic routing protocol:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.050.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.050.png)
 
-This command adds to the tunnel network to OSPF
+This command adds the tunnel network to OSPF:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.051.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.051.png)
 
-We will give an IPV6 to our tunnel, with the network prefix 2002 from the IPV4 of the 2002 router: 1400: 0002:: 1 / 64:
+We assign an IPv6 address to our tunnel, with the network prefix `2002` based on the router's IPv4 address `2002:1400:0002::1/64`:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.052.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.052.png)
 
-We create the route to get to the network:
+We create the route to reach the network:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.053.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.053.png)
 
+---
 
-* * R3 - > R2 * *
+## **R3 → R2**
 
-We'll create a tunnel interface.
+We create a tunnel interface:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.054.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.054.png)
 
-We set the tunnel mode to GRE with IP that encapsulated our IPV6 packages within IPV4:
+We set the tunnel mode to GRE with IP, which will encapsulate our IPv6 packets within IPv4:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.055.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.055.png)
 
-We give an IPV4 address to our tunnel:
+We assign an IPv4 address to our tunnel:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.056.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.056.png)
 
-We set the WAN address of our router, FastEthernet 1 / 0.
+We set the WAN address of our router, FastEthernet 1/0:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.057.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.057.png)
 
-We establish the WAN direction of the tunnel end (R2):
+We set the WAN address of the tunnel endpoint (R2):
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.058.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.058.png)
 
-We enable OSPF that is a dynamic routing protocol.
+We enable OSPF, which is a dynamic routing protocol:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.059.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.059.png)
 
-This command adds to the tunnel network to OSPF
+This command adds the tunnel network to OSPF:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.060.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.060.png)
 
-We will give an IPV6 to our tunnel, with the network prefix 2002 from the IPV4 of the router:
+We assign an IPv6 address to our tunnel, with the network prefix `2002` based on the router's IPv4 address `30.0.0.2 → 2002:1e00:0002::1/64`:
 
-30.0.0.2 - > 2002: 1e00: 0002:: 1 / 64
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.061.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.061.png)
+We create the route to reach the network:
 
-We create the route to get to the network:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.062.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.062.png)
+---
 
+## **R2 → R3**
 
-♪ R2- > R3 ♪
+We create a tunnel interface:
 
-We'll create a tunnel interface.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.063.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.063.png)
+We set the tunnel mode to GRE with IP, which will encapsulate our IPv6 packets within IPv4:
 
-We set the tunnel mode to GRE with IP that encapsulated our IPV6 packages within IPV4:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.064.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.064.png)
+We assign an IPv4 address to our tunnel:
 
-We give an IPV4 address to our tunnel:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.065.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.065.png)
+We set the WAN address of our router, FastEthernet 1/0:
 
-We set the WAN address of our router, FastEthernet 1 / 0.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.066.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.066.png)
+We set the WAN address of the tunnel endpoint (R2):
 
-We establish the WAN direction of the tunnel end (R2):
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.067.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.067.png)
+We enable OSPF, which is a dynamic routing protocol:
 
-We enable OSPF that is a dynamic routing protocol.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.068.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.068.png)
+This command adds the tunnel network to OSPF:
 
-This command adds to the tunnel network to OSPF
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.069.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.069.png)
+We assign an IPv6 address to our tunnel, with the network prefix `2002` based on the router's IPv4 address `30.0.0.1 → 2002:1e00:0001::1/64`:
 
-We will give an IPV6 to our tunnel, with the network prefix 2002 from the IPV4 of the router 30.0.0.1 - > 2002: 1e00: 0001:: 1 / 64:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.070.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.070.png)
+We create the route to reach the network:
 
-We create the route to get to the network:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.071.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.071.png)
+---
 
+### 3. Functionality Verification
 
+We will verify that the tunnels have been created. To do this, we will enter the following command on the three routers in our scenario:
 
-## 3 Operating checks
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.072.png)
 
-Let's check that the tunnels have been created for this we will introduce the following command in the three routers of our stage:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.073.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.072.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.074.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.073.png)
+This will appear once both ends of the tunnel have been created. If not, nothing will appear. In our case, we can see that the tunnels have been successfully created.
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.074.png)
+---
 
-This will appear once both ends of the tunnel have been created if nothing will appear. In our case we can see that the tunnels have been successfully created.
+#### Ping
 
+We will verify the functionality of the tunnels by performing a ping.
 
+- **PC1 → 3333:db7::e60:ddff:fea6:0**
+- **PC2 → 3333:db7:1:0:e2e:3bff:fe83:0**
+- **PC3 → 3333:db7:2:0:e62:5dff:fedf:0**
 
-## # # Ping
+**PC1 → PC2**
 
-We'll check the operation of the tunnels by doing a ping.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.075.png)
 
-- PC1- → 3333: db7:: e60: ddff: fea6: 0
-- PC2- → 3333: db7: 1: 0: e2e: 3bff: fe83: 0
-- PC3 - > 3333: db7: 2: 0: e62: 5dff: Fedf: 0
+**PC1 → PC3**
 
-PC1 - > PC2
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.076.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.075.png)
+**PC2 → PC1**
 
-PC1 - > PC3
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.077.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.076.png)
+**PC2 → PC3**
 
-PC2 - > PC1
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.078.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.077.png)
+**PC3 → PC1**
 
-PC2- → PC3
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.079.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.078.png)
+**PC3 → PC2**
 
-PC3 - > PC1
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.080.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.079.png)
+We can see that we have connectivity between all the machines in our scenario using IPv6, even though we have to traverse IPv4 networks.
 
-PC3 → PC2
+---
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.080.png)
+#### Traceroute
 
-We see that we have connectivity between all of our stage machines with IPV6 even if we have to cross IPV4 networks.
+We will verify the path that the packets follow.
 
-#### Traceroute ♪
+**Path of a packet from PC1 to PC2:**
 
-Let's check the path of the packages.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.081.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.081.png)
+**Path of a packet from PC1 to PC3:**
 
-Trajectory following a PC1 to PC3 package:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.082.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.082.png)
+**Path of a packet from PC2 to PC1:**
 
-Trajectory following a PC2 to PC1 package:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.083.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.083.png)
+**Path of a packet from PC2 to PC3:**
 
-Trajectory following a PC2 to PC3 package:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.084.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.084.png)
+**Path of a packet from PC3 to PC1:**
 
-Trajectory following a PC3 to PC1 package:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.085.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.085.png)
+**Path of a packet from PC3 to PC2:**
 
-Trajectory following a PC3 package to PC2:
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.086.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.086.png)
+---
 
-## 4 Study of an encapsulated package
+### 4. Study of an Encapsulated Packet
 
-♪ Before you go through the tunnel ♪
+**Before Passing Through the Tunnel**
 
-Package traveling from PC1 to PC2.
+A packet traveling from PC1 to PC2.
 
-We see that by not having crossed the tunnel, it does not yet have IPV4 headers, it only has IPV6. We can see that the origin is PC1 and the destination is PC3
+We can see that, since it has not yet passed through the tunnel, it does not have IPv4 headers, only IPv6. We can see that the source is PC1 and the destination is PC3:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.087.jpeg)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.087.jpeg)
 
-We'll see how in the next section once you get through the tunnel the router will put an IPV4 header so that you can get through that section.
+We will see how, in the next segment, once it passes through the tunnel, the router will add an IPv4 header so it can traverse that segment.
 
-♪ After crossing the tunnel ♪
+---
 
-If you look at a package that has passed through a tunnel we can see that it has "2 levels of network":
+## **After Passing Through the Tunnel**
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.088.png)
+If we look at a packet that has passed through a tunnel, we can see that it has "2 network layers":
 
-If we look at the network level, we see that the PIs of origin and destination are those of the ends of the tunnel. We also see that you use protocol 47 which means you've crossed a GRE tunnel.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.088.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.089.jpeg)
+If we look at the network layer, we see that the source and destination IPs are those of the tunnel endpoints. Additionally, we see that it uses protocol 47, which means it has passed through a GRE tunnel.
 
-Finally we can see at the IPV6 header, which is not distinguished from one that has not crossed a tunnel.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.089.jpeg)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.090.jpeg)
+Finally, we can see in the IPv6 header that it is indistinguishable from one that has not passed through a tunnel.
 
-♪ Once you get to the target network ♪
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.090.jpeg)
 
-We see that once it reaches the destination that is, once it has already travelled the IPV4 section and re-enter the IPV6 network the router will remove the IPV4 header and leave the IPV6 header for the package to reach its destination.
+---
 
-We see that the IPV6 header is still intact, it is the same throughout the package:
+## **Once It Reaches the Destination Network**
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.091.jpeg)
+We see that, once it reaches the destination (i.e., after traversing the IPv4 segment and re-entering the IPv6 network), the router will remove the IPv4 header and leave the IPv6 header so the packet can reach its destination.
 
-### 6to4 Linux Tunes
+We see that the IPv6 header remains intact; it is the same throughout the packet's journey:
 
- ! [] (.. / img / Aspose.Words.c9cb3e7-b0e3-4eb4-b70b-2432dbadc7d8.092.jpeg) 
-### 1.Network interface configuration
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.091.jpeg)
 
-I will respect the IPV4 addresses of the stage with swan.
+---
 
-♪ R1 ♪
+## 6to4 Tunnels in Linux
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.093.jpeg)
+### 1. Network Interface Configuration
 
-To apply the configuration we will make a sudo systemctl restart networking.service
+I will respect the IPv4 addresses from the Cisco scenario.
 
-I will configure SLAAC to configure the customers of our IPV6 network, we will previously have to have the radvd package installed with sudo apt install radvd.
+#### **R1**
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.094.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.093.jpeg)
 
-A set-up the service will restart radvd and our customers will automatically configure with the prefix indicated.
+To apply the configuration, we will run `sudo systemctl restart networking.service`.
 
+I will configure SLAAC to set up the clients on our IPv6 network. First, we need to install the `radvd` package with `sudo apt install radvd`.
 
-* * R2 * *
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.094.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.095.jpeg)
+Once the service is configured, we will restart `radvd`, and our clients will automatically configure themselves with the specified prefix.
 
-To apply the configuration we will make a sudo systemctl restart networking.service
+#### **R2**
 
-I will configure SLAAC to configure the customers of our IPV6 network, we will previously have to have the radvd package installed with sudo apt install radvd.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.095.jpeg)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.096.png)
+To apply the configuration, we will run `sudo systemctl restart networking.service`.
 
-A set-up the service will restart radvd and our customers will automatically configure with the prefix indicated.
+I will configure SLAAC to set up the clients on our IPv6 network. First, we need to install the `radvd` package with `sudo apt install radvd`.
 
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.096.png)
 
-* * R3 * *
+Once the service is configured, we will restart `radvd`, and our clients will automatically configure themselves with the specified prefix.
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.097.jpeg)
+#### **R3**
 
-To apply the configuration we will make a sudo systemctl restart networking.service
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.097.jpeg)
 
-I will configure SLAAC to configure the customers of our IPV6 network, we will previously have to have the radvd package installed with sudo apt install radvd.
+To apply the configuration, we will run `sudo systemctl restart networking.service`.
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.098.png)
+I will configure SLAAC to set up the clients on our IPv6 network. First, we need to install the `radvd` package with `sudo apt install radvd`.
 
-A set-up the service will restart radvd and our customers will automatically configure with the prefix indicated.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.098.png)
 
-* * In this scenario it is not necessary that we confess IPV4 routes manually as with the configuration given on the network cards the scenario will be rolled on IPV4. * *
+Once the service is configured, we will restart `radvd`, and our clients will automatically configure themselves with the specified prefix.
 
-However it will be necessary for all routers to enable the forwardbit for both IPV4 and IPV6.
+---
 
-For this we edit the sudo nano / etc / sysctl.conf file and discomment the following lines:
+**Note:** In this scenario, it is not necessary to manually configure IPv4 routes, as the network interface configuration will make IPv4 traffic routable.
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.099.jpeg)
+However, it will be necessary to enable the forwarding bit for both IPv4 and IPv6 on all routers.
 
-This will be repeated for each of our routers and reinitiated for the changes to be applied.
+To do this, we edit the file `sudo nano /etc/sysctl.conf` and uncomment the following lines:
 
-## 2.Configuration of the SIT tunnels
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.099.jpeg)
 
-The operation is similar to the GRE tunnels in swan this limp our packages and through a tunnel type interface you will add an IPV4 header to enable you to cross IPV4 networks.
+We will repeat this for each of our routers and reboot to apply the changes.
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.100.png)
+---
 
-Once the tunnel is up we will tell the router that to reach the prefix of the X network you will have to use it to add the header to our packages.
+### 2. SIT Tunnel Configuration
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.101.png)
+The operation is similar to GRE tunnels in Cisco. This will take our packets and, through a tunnel interface, add an IPv4 header so they can traverse IPv4 networks.
 
-For more comfort I have created a small script on each router with the commands necessary for the tunnel to work.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.100.png)
+
+Once the tunnel is up, we will tell the router that to reach the prefix of network X, it must use this tunnel to add the header to our packets.
+
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.101.png)
+
+For convenience, I have created a small script on each router with the necessary commands to make the tunnel work.
 
 It consists of 4 commands:
 
-1. It will create the tunnel interface with the destination and then the origin of this.
-2. The network card will be lifted
-3. It will assign the IPV6 to the tunnel from the IPV4 address of its origin.
-4. We'll create the traffic route that used the tunnel.
+1. It will create the tunnel interface with the destination and then the source.
+2. It will bring up the network interface.
+3. It will assign the IPv6 address to the tunnel based on the source IPv4 address.
+4. We will create the route for the traffic that will use the tunnel.
 
-We can give the tunnel the name we want in my case I have put tunnel followed by a number in order to identify them.
+We can name the tunnel as we wish. In my case, I have named it `tunnel` followed by a number to identify them.
 
+---
 
-* * R2 Tunes * *
+## **R2 Tunnels**
 
-So would the "script" of the R2 tunnels
+This is what the "script" for R2 tunnels would look like:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.102.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.102.png)
 
-Once the script is created, we will give you permission and execute it:
+Once the script is created, we will give it permissions and execute it:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.103.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.103.png)
 
-We will check that the interfaces have been created correctly:
+We will verify that the interfaces have been created correctly:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.104.jpeg)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.104.jpeg)
 
-! [ref2]
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.105.jpeg)
 
-Once the script is created, we will give you permission and execute it:
+---
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.106.png)
+## **R3 Tunnels**
 
-We will check that the interfaces have been created correctly:
+This is what the "script" for R3 tunnels would look like:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.107.jpeg)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.106.png)
 
+Once the script is created, we will give it permissions and execute it:
 
-* * R3 Tunes * *
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.107.png)
 
-So would the "script" of the R3 tunnels
+We will verify that the interfaces have been created correctly:
 
-! [ref2]
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.108.jpeg)
 
-Once the script is created, we will give you permission and execute it:
+---
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.108.png)
+### 3. Functionality Verification
 
-We will check that the interfaces have been created correctly:
+- **PC1 → 3333:db7::e47:bfff:fe86:0**
+- **PC2 → 2222:db7::ebc:f6ff:fe7d:0**
+- **PC3 → 4444:db7::e43:78ff:fec6:0**
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.109.jpeg)
+#### Ping
 
+**PC1 → PC2**
 
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.109.png)
 
-## 3.
+**PC1 → PC3**
 
-PC1 - > 3333: db7:: e47: bfff: fe86: 0 PC2 - > 2222: db7:: ebc: f6ff: fe7d: 0 PC3 - > 4444: db7:: e43: 78ff: fec6: 0
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.110.png)
 
-## # # Ping
+**PC2 → PC1**
 
-PC1 - > PC2
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.111.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.110.png)
+**PC2 → PC3**
 
-PC1 - > PC3
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.112.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.111.png)
+**PC3 → PC1**
 
-PC2 - > PC1
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.113.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.112.png)
+**PC3 → PC2**
 
-PC2 - > PC3
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.114.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.113.png)
+---
 
+#### Traceroute
 
-PC3 - > PC1
+Once we have verified connectivity, we will check if the packets use the tunnels.
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.114.png)
+**PC1 → PC2**
 
-PC3 - > PC2
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.115.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.115.png)
+**PC1 → PC3**
 
-#### Traceroute ♪
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.116.png)
 
-Once we have checked that we have connectivity, let's see if the packages use the tunnels.
+**PC2 → PC1**
 
-PC1 - > PC2
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.117.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.116.png)
+**PC2 → PC3**
 
-PC1 - > PC3
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.118.png)
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.117.png)
+**PC3 → PC1**
 
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.119.png)
 
-PC2 - > PC1
+**PC3 → PC2**
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.118.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.120.png)
 
-PC2 - > PC3
+---
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.119.png)
+### 4. Study of an Encapsulated Packet
 
-PC3 - > PC1
+#### **Before Passing Through the Tunnel**
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.120.png)
+A packet traveling from PC1 to PC2.
 
-PC3 - > PC2
+We can see that, since it has not yet passed through the tunnel, it does not have IPv4 headers, only IPv6. We can see that the source is PC1 and the destination is PC3:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.121.png)
+<!-- ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.121.jpeg) -->
 
-## 4 Study of an encapsulated package
+We will see how, in the next segment, once it passes through the tunnel, the router will add an IPv4 header so it can traverse that segment.
 
-♪ Before you go through the tunnel ♪
+---
 
-Package traveling from PC1 to PC2.
+#### **After Passing Through the Tunnel**
 
-We see that by not having crossed the tunnel, it does not yet have IPV4 headers, it only has IPV6. We can see that the origin is PC1 and the destination is PC3
+If we look at a packet that has passed through a tunnel, we can see that it has "2 network layers".
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.122.jpeg)
+If we look at the network layer, we see that the source and destination IPs are those of the tunnel endpoints. Additionally, we see that it uses protocol 47, which means it has passed through a GRE tunnel.
 
-We'll see how in the next section once you get through the tunnel the router will put an IPV4 header so that you can get through that section.
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.122.jpeg)
 
-♪ After crossing the tunnel ♪
+Finally, we can see in the IPv6 header that it is indistinguishable from one that has not passed through a tunnel.
 
-If we look at a package that has passed through a tunnel we can see that it has "2 levels of network."
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.123.jpeg)
 
-If we look at the network level, we see that the PIs of origin and destination are those of the ends of the tunnel. We also see that you use protocol 47 which means you've crossed a GRE tunnel.
+---
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.123.jpeg)
+#### **Once It Reaches the Destination Network**
 
+We see that, once it reaches the destination (i.e., after traversing the IPv4 segment and re-entering the IPv6 network), the router will remove the IPv4 header and leave the IPv6 header so the packet can reach its destination.
 
-Finally we can see at the IPV6 header, which is not distinguished from one that has not crossed a tunnel.
+We see that the IPv6 header remains intact; it is the same throughout the packet's journey:
 
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.124.jpeg)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.124.jpeg)
 
-♪ Once you get to the target network ♪
-
-We see that once it reaches the destination that is, once it has already travelled the IPV4 section and re-enter the IPV6 network the router will remove the IPV4 header and leave the IPV6 header for the package to reach its destination.
-
-We see that the IPV6 header is still intact, it is the same throughout the package:
-
-![](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.125.jpeg)
+---
 
 ## Bibliography
 
-- [6to4 automatic tunnel] (https: / / community.cisco.com / t5 / blogs-general / t% C3% BAneles-autom% C3% A1ticos-6to4 / ba-p / 4822594)
-- [Automatic Tunes for Ipv6] (https: / / educationadistancia.juntadeandalucia.es / centers / sevilla / pluginfile.php / 347162 / mod _ resource / content / 1 / 52470-Tunes% 20Automatiques% 20para% 20IPv6\ (1\) .pdf)
-- [GRE Tunes] (https: / / ccnadesdecero.es / tuneles-gre-characteristics -and -configuration /)
-- [SIT 6to4 Linux Tunes] (https: / / juncotic.com / tunel-ipv6-montando-tunel-ipv6 /)
+- [6to4 Automatic Tunnels](https://community.cisco.com/t5/blogs-general/t%C3%BAneles-autom%C3%A1ticos-6to4/ba-p/4822594)
+- [Automatic Tunnels for IPv6](https://educacionadistancia.juntadeandalucia.es/centros/sevilla/pluginfile.php/347162/mod_resource/content/1/52470-Tuneles%20Automaticos%20para%20IPv6\(1\).pdf)
+- [GRE Tunnels](https://ccnadesdecero.es/tuneles-gre-caracteristicas-y-configuracion/)
+- [SIT 6to4 Tunnels in Linux](https://juncotic.com/tunel-ipv6-montando-tunel-ipv6/)
 
-
-[ref1]:.. / img / Asposer.Words.c9cb3e7-b0e3-4eb4-b70b-2432dbadc7d8.027.png
-[ref2]:.. / img / Asposer.Words.c9cb3e7-b0e3-4eb4-b70b-2432dbadc7d8.105.png
+[ref1]: /redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.027.png
+[ref2]: /redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.105.png

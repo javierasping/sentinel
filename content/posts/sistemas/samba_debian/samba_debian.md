@@ -15,51 +15,51 @@ Samba facilita la interoperabilidad entre sistemas Windows y sistemas operativos
 
 Lo primero sera instalarnos el servidor samba :
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.001.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.001.png)
 
 En el fichero  /etc/samba/smb.conf  realizaremos la configuración de nuestra carpeta :
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.002.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.002.png)
 
 Nos crearemos un usuario de samba para poder acceder a los recursos :
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.003.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.003.png)
 
 Reiniciaremos el servicio para que se aplique la configuración :
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.004.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.004.png)
 
 ## 2.Acceso desde Windows
 
 Ahora podemos acceder desde un cliente Windows con el usuario que acabamos de crear -–> \\IP\DIRECTORIO\COMPARTIDO
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.005.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.005.png)
 
 Nos pedirá que nos autentiquemos  :
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.006.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.006.png)
 
 Podremos ver el contenido y crear :
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.007.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.007.png)
 
 ## 3.Acceso desde Linux
 
 Nos instalamos el paquete smbclient para poder conectarnos a unidades compartidas con samba:
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.008.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.008.png)
 
 Listar los directorios compartidos :
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.009.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.009.png)
 
 Nos conectamos al recurso compartido
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.010.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.010.png)
 
 Creare un directorio y comprobare que existe :
 
-![](../img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.011.png)
+![](/sistemas/samba_debian/img/Aspose.Words.7699cd74-f258-4715-a7b4-6d378b49c946.011.png)
 
 ## Bibliografía
 
