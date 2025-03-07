@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Migraciones en Linnux on Atlas</title><link>https://www.javiercd.es/posts/sistemas/migraciones/</link><description>Recent content in Migraciones en Linnux on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Wed, 29 Nov 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/sistemas/migraciones/index.xml" rel="self" type="application/rss+xml"/><item><title>Paso de CentOS stream 8 a CentOS stream 9</title><link>https://www.javiercd.es/posts/sistemas/migraciones/paso_de_centos_stream_8_a_centos_stream_9/paso_de_centos_stream_8_a_centos_stream_9/</link><pubDate>Wed, 29 Nov 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/sistemas/migraciones/paso_de_centos_stream_8_a_centos_stream_9/paso_de_centos_stream_8_a_centos_stream_9/</guid><description>&lt;h2 id="actualizar-los-paquetes">Actualizar los paquetes&lt;/h2>
 &lt;p>Antes de migrar, asegúrate de que tu sistema CentOS Stream 8 tenga todos los paquetes y actualizaciones más recientes.&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.64b29d49-eb3e-49be-9751-9727b0deafb9.001.jpeg" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/paso_de_centos_stream_8_a_centos_stream_9/img/Aspose.Words.64b29d49-eb3e-49be-9751-9727b0deafb9.001.jpeg" alt="">&lt;/p>
 &lt;p>Elimina los paquetes innecesarios que nos aparezcan al utilizar el siguiente comando ya que son paquetes huérfanos&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.64b29d49-eb3e-49be-9751-9727b0deafb9.002.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/paso_de_centos_stream_8_a_centos_stream_9/img/Aspose.Words.64b29d49-eb3e-49be-9751-9727b0deafb9.002.png" alt="">&lt;/p>
 &lt;h2 id="actualización-a-centos9">Actualización a CentOS9&lt;/h2>
 &lt;p>Instala los repositorios de CentOS 9 :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.64b29d49-eb3e-49be-9751-9727b0deafb9.003.jpeg" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/paso_de_centos_stream_8_a_centos_stream_9/img/Aspose.Words.64b29d49-eb3e-49be-9751-9727b0deafb9.003.jpeg" alt="">&lt;/p>
 &lt;p>Ahora vamos a actualizar los paquetes a CentOS 9:&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.64b29d49-eb3e-49be-9751-9727b0deafb9.004.png" alt="">&lt;/p>
-&lt;p>Cuando finalice la instalación nos lo indicara , es posible que se eliminen algunos paquetes :&lt;/p></description></item><item><title>Transformación instancia cloud</title><link>https://www.javiercd.es/posts/sistemas/migraciones/transformaci%C3%B3n_instancia_cloud/transformacion_instancia_cloud/</link><pubDate>Wed, 29 Nov 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/sistemas/migraciones/transformaci%C3%B3n_instancia_cloud/transformacion_instancia_cloud/</guid><description>&lt;h2 id="creación-del-esquema-lvm">Creación del esquema LVM&lt;/h2>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/paso_de_centos_stream_8_a_centos_stream_9/img/Aspose.Words.64b29d49-eb3e-49be-9751-9727b0deafb9.004.png" alt="">&lt;/p>
+&lt;p>Cuando finalice la instalación nos lo indicara , es posible que se eliminen algunos paquetes :&lt;/p></description></item><item><title>Transformación instancia cloud</title><link>https://www.javiercd.es/posts/sistemas/migraciones/transformacion_instancia_cloud/transformacion_instancia_cloud/</link><pubDate>Wed, 29 Nov 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/sistemas/migraciones/transformacion_instancia_cloud/transformacion_instancia_cloud/</guid><description>&lt;h2 id="creación-del-esquema-lvm">Creación del esquema LVM&lt;/h2>
 &lt;p>Nos instalamos el paquete LVM2&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.001.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.001.png" alt="">&lt;/p>
 &lt;p>Ahora crearemos las particiones en el segundo disco :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.002.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.002.png" alt="">&lt;/p>
 &lt;p>Creamos el grupo de volúmenes :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.003.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.003.png" alt="">&lt;/p>
 &lt;p>Creamos los volúmenes raíz y home :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.004.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.004.png" alt="">&lt;/p>
 &lt;p>La particiones tienes que tener el siguiente formato :&lt;/p>
 &lt;p>-vdb2 etx4&lt;/p>
 &lt;p>-FJCD-vg-home ext4&lt;/p>
 &lt;p>-FJCD-vg-raiz ext4&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.005.jpeg" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.005.jpeg" alt="">&lt;/p>
 &lt;p>Nos quedara darle formato a la efi :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.006.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.006.png" alt="">&lt;/p>
 &lt;p>Así quedaría nuestro esquema de particiones :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.007.jpeg" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.007.jpeg" alt="">&lt;/p>
 &lt;h2 id="copiar-el-contenido-de-las-particiones">Copiar el contenido de las particiones&lt;/h2>
 &lt;p>Ahora vamos a montar las particiones :&lt;/p></description></item><item><title>Eliminación de systemd</title><link>https://www.javiercd.es/posts/sistemas/migraciones/eliminacion_systemd/eliminacion_systemd/</link><pubDate>Wed, 20 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/sistemas/migraciones/eliminacion_systemd/eliminacion_systemd/</guid><description>&lt;p>Systemd y System V (SysV) son dos sistemas de inicio utilizados en distribuciones de Linux para gestionar el arranque del sistema y los servicios. System V (SysV) es un sistema de inicio tradicional que utiliza scripts de shell almacenados en diferentes niveles de ejecución (runlevels) para iniciar y detener servicios de manera secuencial. Fue ampliamente utilizado en muchas distribuciones de Unix y Linux durante décadas. Por otro lado, systemd es un sistema de inicio más moderno y avanzado que reemplaza a SysV. Introducido para mejorar la velocidad y eficiencia del arranque del sistema, systemd utiliza un enfoque basado en unidades y depende de la paralelización para iniciar servicios simultáneamente. Además, incluye características adicionales como la gestión de servicios, sockets, temporizadores, y dependencias, lo que lo convierte en una opción más robusta y flexible en comparación con SysV.&lt;/p></description></item><item><title>Migración de un sistema de ficheros</title><link>https://www.javiercd.es/posts/sistemas/migraciones/migracion_sistema_de_ficheros/sistemas-de-ficheros/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/sistemas/migraciones/migracion_sistema_de_ficheros/sistemas-de-ficheros/</guid><description>&lt;p>En ocasiones, es necesario actualizar el almacenamiento de nuestro sistema Debian para satisfacer las crecientes necesidades de espacio y mejorar la organización del disco. En esta guía, exploraremos el proceso de migración desde un disco con una única partición hacia uno con mayor capacidad, además de dividirlo en particiones separadas para una gestión más eficiente.&lt;/p>
 &lt;p>Este proceso no solo ampliará el espacio de almacenamiento disponible, sino que también brindará una estructura más ordenada al sistema, facilitando tareas como la gestión de respaldos, el rendimiento del sistema y la administración del espacio en disco.&lt;/p></description></item></channel></rss>

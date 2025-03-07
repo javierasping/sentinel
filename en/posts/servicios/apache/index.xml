@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apache under debian 10 configuration on Atlas</title><link>https://www.javiercd.es/en/posts/servicios/apache/</link><description>Recent content in Apache under debian 10 configuration on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/servicios/apache/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache configuration under debian</title><link>https://www.javiercd.es/en/posts/servicios/apache/apache/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/apache/apache/</guid><description>&lt;h3 id="install-an-apache-web-server-for-use-in-an-intranet">Install an Apache web server for use in an Intranet&lt;/h3>
+&lt;p>To install the server we must run as root the following command:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.125.png" alt="">&lt;/p>
+&lt;p>Create within the / var / www / html directory a file called intrada.html where you put a welcome message&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.126.png" alt="">&lt;/p>
+&lt;p>Now I&amp;rsquo;ll put it inside the route:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.127.png" alt="">&lt;/p>
+&lt;p>Next we will post a more complete page on our server, for it&lt;/p>
+&lt;p>use your web application website.&lt;/p></description></item></channel></rss>

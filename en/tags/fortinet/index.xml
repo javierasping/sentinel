@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FORTINET on Atlas</title><link>https://www.javiercd.es/en/tags/fortinet/</link><description>Recent content in FORTINET on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/fortinet/index.xml" rel="self" type="application/rss+xml"/><item><title>Fortinet CLI</title><link>https://www.javiercd.es/en/posts/cortafuegos/fortinet_cli/fortinet_cli/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/cortafuegos/fortinet_cli/fortinet_cli/</guid><description>&lt;h2 id="equivalence-from-gui-to-cli">Equivalence from GUI to CLI&lt;/h2>
+&lt;p>Initially, I started the practice using the command line (CLI), however, I found it more comfortable to do it from the graphic interface. Therefore, I decided to establish an equivalence between the different actions I have carried out during practice and to compare them with their counterpart in the terminal.&lt;/p>
+&lt;blockquote>
+&lt;p>[NOTE]
+In this post I do a small summary of the equivalencies between the GUI and the CLI of Fortinet that I have used in the 2 Fortinet firewall posts.&lt;/p></description></item><item><title>Implementation of a perimeter firewall with Fortinet I</title><link>https://www.javiercd.es/en/posts/cortafuegos/fortinet_uno/fortinet_uno/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/cortafuegos/fortinet_uno/fortinet_uno/</guid><description>&lt;p>Before you start the practice, the scenario you see in the practice is as similar as I can ride to the original practice. I have used version 7.0.9-1 of FortiGate, as the higher versions bring some restrictions. You can download the image from this [link](&lt;a href="https://drive.google.com/drive/folders/" target="_blank" rel="noopener">https://drive.google.com/drive/folders/&lt;/a> 1VGmeLN5inkWNNNUsIvq9ewGUzJLTLkiM).&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/cortafuegos/fortinet_uno/img/Pastedimage20240320223139.png" alt="">&lt;/p>
+&lt;h3 id="firewall-start-up">Firewall start-up&lt;/h3>
+&lt;p>FortiGate devices are made with the IP 192.168.1.99 / 24, as I am from GNS3 do not need to connect to this interface with a device and change the configuration. Since I can do it from the console.&lt;/p></description></item><item><title>Implementation of a perimeter firewall with Fortinet II</title><link>https://www.javiercd.es/en/posts/cortafuegos/fortinet_dos/fortinet_dos/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/cortafuegos/fortinet_dos/fortinet_dos/</guid><description>&lt;p>Now let&amp;rsquo;s emulate firewall practice II, but on GNS3. To this end, I have transformed client 1 into Odin, and added Thor and Loki as virtual machines instead of containers on the LAN network. I have also created a new network called DMZ, in which will be the Hela machine.&lt;/p>
+&lt;p>Since I have transformed the previous scenario into this new one, we have some rules created earlier. Therefore, I will remove from the statement those that are already created, such as making SSH to Odin from port 2222, but with the service listening in the 22.&lt;/p></description></item><item><title>VPN site to site with IPsec Fortinet</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</guid><description>&lt;p>In this post I will mount an IPSEC VPN using Fortinet firewalls, for which I will visualize them on GNS3.&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/vpn/site_to_site_fortinet/img/Pastedimage20240330235321.png" alt="">&lt;/p>
+&lt;h3 id="stage-preparation">Stage preparation&lt;/h3>
+&lt;p>To create the VPN I will add a new Fortigate to the stage.&lt;/p>
+&lt;p>So let&amp;rsquo;s proceed to set it up, the first thing will be to know the IP that the DHCP has given you:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>FortiGate-VM64-KVM login: admin
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Password:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>You are forced to change your password. Please input a new password.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>New Password:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Confirm Password:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Welcome!
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>FortiGate-VM64-KVM &lt;span style="color:#75715e"># get system interface physical port1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#f92672">[&lt;/span>onboard&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">==[&lt;/span>port1&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mode: dhcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ip: 192.168.122.22 255.255.255.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ipv6: ::/0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> status: up
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> speed: 1000Mbps &lt;span style="color:#f92672">(&lt;/span>Duplex: full&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> FEC: none
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> FEC_cap: none
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This IP you&amp;rsquo;ve given me for DHCP will be configured as static.&lt;/p></description></item></channel></rss>

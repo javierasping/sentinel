@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Taller 1 Corrector ortográfico de documentos markdown (test) on Atlas</title><link>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/</link><description>Recent content in Taller 1 Corrector ortográfico de documentos markdown (test) on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/ci_cd/taller1_jenkins/index.xml" rel="self" type="application/rss+xml"/><item><title>Taller 1: Corrector ortográfico de documentos markdown (test)</title><link>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/taller1/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/taller1/</guid><description>&lt;h1 id="taller-1-corrector-ortográfico-de-documentos-markdown-test">Taller 1: Corrector ortográfico de documentos markdown (test)&lt;/h1>
-&lt;h2 id="qué-tienes-que-entregarhttpsfpjosedomingoorgiaw5_ictaller1htmlquc3a9-tienes-que-entregar">&lt;a href="https://fp.josedomingo.org/iaw/5_ic/taller1.html#qu%C3%A9-tienes-que-entregar" target="_blank" rel="noopener">¿Qué tienes que entregar?&lt;/a>&lt;/h2>
+&lt;h2 id="qué-tienes-que-entregar">&lt;a href="https://fp.josedomingo.org/iaw/5_ic/taller1.html#qu%C3%A9-tienes-que-entregar" target="_blank" rel="noopener">¿Qué tienes que entregar?&lt;/a>&lt;/h2>
 &lt;ol>
 &lt;li>La URL del tu repositorio GitHub.&lt;/li>
 &lt;/ol>
@@ -49,4 +49,4 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
 &lt;li>Una captura de pantalla donde se vea la configuración del disparador del pipeline.&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="../img/Pasted_image_20240229084423.png" alt="">&lt;/p></description></item></channel></rss>
+&lt;p>&lt;img src="https://www.javiercd.es/ci_cd/taller1_jenkins/img/Pasted_image_20240229084423.png" alt="">&lt;/p></description></item></channel></rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VPN site to site with IPsec Fortinet on Atlas</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/</link><description>Recent content in VPN site to site with IPsec Fortinet on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/index.xml" rel="self" type="application/rss+xml"/><item><title>VPN site to site with IPsec Fortinet</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</guid><description>&lt;p>In this post I will mount an IPSEC VPN using Fortinet firewalls, for which I will visualize them on GNS3.&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/vpn/site_to_site_fortinet/img/Pastedimage20240330235321.png" alt="">&lt;/p>
+&lt;h3 id="stage-preparation">Stage preparation&lt;/h3>
+&lt;p>To create the VPN I will add a new Fortigate to the stage.&lt;/p>
+&lt;p>So let&amp;rsquo;s proceed to set it up, the first thing will be to know the IP that the DHCP has given you:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>FortiGate-VM64-KVM login: admin
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Password:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>You are forced to change your password. Please input a new password.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>New Password:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Confirm Password:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Welcome!
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>FortiGate-VM64-KVM &lt;span style="color:#75715e"># get system interface physical port1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#f92672">[&lt;/span>onboard&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">==[&lt;/span>port1&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mode: dhcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ip: 192.168.122.22 255.255.255.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ipv6: ::/0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> status: up
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> speed: 1000Mbps &lt;span style="color:#f92672">(&lt;/span>Duplex: full&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> FEC: none
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> FEC_cap: none
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This IP you&amp;rsquo;ve given me for DHCP will be configured as static.&lt;/p></description></item></channel></rss>

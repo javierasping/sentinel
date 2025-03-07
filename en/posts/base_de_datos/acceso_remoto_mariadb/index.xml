@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Remote access in MariaDB on Atlas</title><link>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/</link><description>Recent content in Remote access in MariaDB on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 01 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/index.xml" rel="self" type="application/rss+xml"/><item><title>Remote access configuration in MariaDB</title><link>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</guid><description>&lt;p>To allow remote access to your MariaDB server, follow these steps:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Configure the MariaDB configuration file&lt;/strong>
+First, edit the MariaDB configuration file to allow connections from specific IP addresses. Open the file &lt;code>/etc/mysql/mariadb.conf.d/50-server.cnf&lt;/code> with a text editor, for example, &lt;code>nano&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;p>Find the line that starts with &lt;code>bind-address&lt;/code> and change it to accept connections from any IP address. You can have him accept connections from all the PIs with:&lt;/p></description></item></channel></rss>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Contenedores on Atlas</title><link>https://www.javiercd.es/en/tags/contenedores/</link><description>Recent content in Contenedores on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/contenedores/index.xml" rel="self" type="application/rss+xml"/><item><title>Workshop 1: Storage and Networks in Docker</title><link>https://www.javiercd.es/en/posts/docker/taller1/taller1_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/docker/taller1/taller1_docker/</guid><description>&lt;h2 id="workshop-1-storage-and-networks-in-docker">Workshop 1: Storage and Networks in Docker&lt;/h2>
+&lt;h3 id="storage">Storage&lt;/h3>
+&lt;p>Let&amp;rsquo;s work with Docker volumes:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Create a Docker volume called &amp;ldquo;miweb&amp;rdquo;:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker volume create miweb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Create a container from the image &lt;code>php:7.4-apache&lt;/code>, mounting the Docker volume in &lt;code>/var/www/html&lt;/code> (the &lt;em>DocumentRoot&lt;/em> of the server):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker run -d --name my-apache-app -v miweb:/var/www/html -p 8080:80 php:7.4-apache
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Use the &lt;code>docker cp&lt;/code> command to copy an &lt;code>index.html&lt;/code> file (with your name) into &lt;code>/var/www/html&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#e6db74">&amp;#34;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;&amp;#34;&lt;/span> &amp;gt; index.html
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker cp index.html my-apache-app:/var/www/html/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Access the container from the browser to check the &lt;code>index.html&lt;/code> file:&lt;/p></description></item><item><title>Workshop 2: Multicontainer Scenarios in Docker</title><link>https://www.javiercd.es/en/posts/docker/taller2/taller2_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/docker/taller2/taller2_docker/</guid><description>&lt;h2 id="workshop-2-multicontainer-scenarios-in-docker">Workshop 2: Multicontainer Scenarios in Docker&lt;/h2>
+&lt;h3 id="nextcloud-deployment">Nextcloud deployment&lt;/h3>
+&lt;p>We will deploy the nextcloud application with a database (you can choose mariadb or PostgreSQL) using the docker-compose application. You can take as model the file &amp;lsquo;docker-compose.yml&amp;rsquo; that we have studied to display WordPress.&lt;/p>
+&lt;ol>
+&lt;li>Install docker- compose on your computer.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>Within a directory creates a &amp;lsquo;docker-composer.yml&amp;rsquo; file for the deployment of nextcloud with a database. Remember the environment variables and the persistence of information.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller2$ cat docker-compose.yaml
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>version: &lt;span style="color:#e6db74">&amp;#39;2&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>volumes:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nextcloud:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> db:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>services:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> db:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> image: mariadb:10.6
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> restart: always
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> command: --transaction-isolation&lt;span style="color:#f92672">=&lt;/span>READ-COMMITTED --log-bin&lt;span style="color:#f92672">=&lt;/span>binlog --binlog-format&lt;span style="color:#f92672">=&lt;/span>ROW
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volumes:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - db:/var/lib/mysql
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> environment:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_ROOT_PASSWORD&lt;span style="color:#f92672">=&lt;/span>root
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_PASSWORD&lt;span style="color:#f92672">=&lt;/span>javiercruces
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_DATABASE&lt;span style="color:#f92672">=&lt;/span>nextcloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_USER&lt;span style="color:#f92672">=&lt;/span>nextcloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> app:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> image: nextcloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> restart: always
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ports:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - 8081:80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> links:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - db
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volumes:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - nextcloud:/var/www/html
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> environment:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_PASSWORD&lt;span style="color:#f92672">=&lt;/span>javiercruces
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_DATABASE&lt;span style="color:#f92672">=&lt;/span>nextcloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_USER&lt;span style="color:#f92672">=&lt;/span>nextcloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_HOST&lt;span style="color:#f92672">=&lt;/span>db
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>Raise the stage with &amp;lsquo;docker-compose&amp;rsquo;.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller2$ docker compose up -d
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>+&lt;span style="color:#f92672">]&lt;/span> Running 2/2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ✔ Container taller2-db-1 Started 0.0s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ✔ Container taller2-app-1 Started 0.0s
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>Show the containers with &amp;lsquo;docker-compose&amp;rsquo;.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller2$ docker compose ps
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME IMAGE COMMAND SERVICE CREATED STATUS PORTS
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>taller2-app-1 nextcloud &lt;span style="color:#e6db74">&amp;#34;/entrypoint.sh apache2-foreground&amp;#34;&lt;/span> app &lt;span style="color:#ae81ff">7&lt;/span> minutes ago Up &lt;span style="color:#ae81ff">5&lt;/span> minutes 0.0.0.0:8081-&amp;gt;80/tcp, :::8081-&amp;gt;80/tcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>taller2-db-1 mariadb:10.6 &lt;span style="color:#e6db74">&amp;#34;docker-entrypoint.sh --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW&amp;#34;&lt;/span> db &lt;span style="color:#ae81ff">7&lt;/span> minutes ago Up &lt;span style="color:#ae81ff">5&lt;/span> minutes 3306/tcp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>Access the application and check that it works.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="https://www.javiercd.es/docker/taller2/img/Pasted_image_20240202091554.png" alt="">&lt;/p></description></item><item><title>Workshop 3: Docker Imaging</title><link>https://www.javiercd.es/en/posts/docker/taller3/taller3_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/docker/taller3/taller3_docker/</guid><description>&lt;h2 id="workshop-3-docker-image-creation">Workshop 3: Docker Image Creation&lt;/h2>
+&lt;p>Creating an image from a Dockerfile&lt;/p>
+&lt;p>1.Create a static website (e.g. search for an HTML5 template). Or just create an index.htm ml.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>Create a Dockerfile file to create an image with a web server by serving the page. You can use a debian or ubuntu base image, or an image that already has a web service, as we have seen in Example 1: Image construction with a static page.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller3$ cat Dockerfile
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#syntax=docker/dockerfile:1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>FROM httpd:2.4
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>COPY ./public_html/ /usr/local/apache2/htdocs/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EXPOSE &lt;span style="color:#ae81ff">80&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>Run the docker command that creates the new image. The image should be called my_server_web:v1.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller3$ docker build -t javiersaping/mi_servidor_web:v1 .
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Sending build context to Docker daemon 3.584kB
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Step 1/3 : FROM httpd:2.4
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ---&amp;gt; 92fa43a2ff60
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Step 2/3 : COPY ./public_html/ /usr/local/apache2/htdocs/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ---&amp;gt; b03556dd59b6
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Step 3/3 : EXPOSE &lt;span style="color:#ae81ff">80&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ---&amp;gt; Running in 1cc04e1deee4
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Removing intermediate container 1cc04e1deee4
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ---&amp;gt; 3078183767ef
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Successfully built 3078183767ef
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Successfully tagged javiersaping/mi_servidor_web:v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller3$ docker run -d -p 8081:80 javiersaping/mi_servidor_web:v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2a753adcd098c49b7b215b7c97267a09e09194303bee131150765222a4295dea
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="https://www.javiercd.es/docker/taller3/img/Pasted_image_20240208085015.png" alt="">&lt;/p></description></item></channel></rss>

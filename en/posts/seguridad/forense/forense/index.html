@@ -1,0 +1,888 @@
+<!doctype html><html lang=en><head><title>Forensic computer</title>
+<meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><link rel=stylesheet href=/application.ddf4c4775d35e5bc3dd64c797b179f99eaf85cf9811e64bd08f8c44a68d0b229.css integrity="sha256-3fTEd1015bw91kx5exefmer4XPmBHmS9CPjESmjQsik="><link rel=icon type=image/png href=/images/site/avatar_hu_f10227dc088ad43a.jpg><meta property="og:url" content="https://www.javiercd.es/en/posts/seguridad/forense/forense/"><meta property="og:site_name" content="Atlas"><meta property="og:title" content="Forensic computer"><meta property="og:description" content="Forensic informatics"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-03-28T10:00:00+00:00"><meta property="article:modified_time" content="2024-03-28T10:00:00+00:00"><meta property="article:tag" content="LINUX"><meta property="article:tag" content="DEBIAN"><meta property="article:tag" content="Windows"><meta property="article:tag" content="FORENSE"><meta name=twitter:card content="summary"><meta name=twitter:title content="Forensic computer"><meta name=twitter:description content="Forensic informatics"><meta name=description content="Forensic informatics"><script async src="https://www.googletagmanager.com/gtag/js?id=G-GVDYVWJLRH"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-GVDYVWJLRH")}</script><script>theme=localStorage.getItem("darkmode:color-scheme")||"system",theme=="system"&&(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?theme="dark":theme="light"),document.documentElement.setAttribute("data-theme",theme)</script></head><body class="type-posts kind-page" data-bs-spy=scroll data-bs-target=#TableOfContents data-bs-offset=80><div class="container-fluid bg-secondary wrapper"><nav class="navbar navbar-expand-xl top-navbar shadow" id=top-navbar><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button>
+<i data-feather=sidebar></i>
+</button>
+<a class=navbar-brand href=/en><img src=/images/site/masthead_hu_f10227dc088ad43a.png id=logo alt=Logo>
+Atlas</a>
+<button class="navbar-toggler navbar-light" id=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#top-nav-items aria-label=menu>
+<i data-feather=menu></i></button><div class="collapse navbar-collapse dynamic-navbar" id=top-nav-items><ul class="nav navbar-nav ms-auto"><li class=nav-item><a class=nav-link href=/en#home>Home</a></li><div id=top-navbar-divider></div><li class=nav-item><a class=nav-link id=blog-link href=/en/posts>Posts</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=languageSelector role=button data-bs-toggle=dropdown aria-haspopup=true aria-expanded=false><span class="flag-icon flag-icon-gb"></span>
+English</a><div class=dropdown-menu aria-labelledby=languageSelector><a class="dropdown-item nav-link languages-item" href=/posts/seguridad/forense/forense><span class="flag-icon flag-icon-es"></span>
+Español
+</a><a class="dropdown-item nav-link languages-item" href=/en/posts/seguridad/forense/forense><span class="flag-icon flag-icon-gb"></span>
+English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=themeSelector role=button data-bs-toggle=dropdown aria-haspopup=true aria-expanded=false><img id=navbar-theme-icon-svg class=theme-icon src=/icons/moon-svgrepo-com.svg width=20 alt="Dark Theme"></a><div id=themeMenu class="dropdown-menu dropdown-menu-icons-only" aria-labelledby=themeSelector><a class="dropdown-item nav-link" href=# data-scheme=light><img class=theme-icon src=/icons/sun-svgrepo-com.svg width=20 alt="Light Theme">
+</a><a class="dropdown-item nav-link" href=# data-scheme=dark><img class=theme-icon src=/icons/moon-svgrepo-com.svg width=20 alt="Dark Theme">
+</a><a class="dropdown-item nav-link" href=# data-scheme=system><img class=theme-icon src=/icons/computer-svgrepo-com.svg width=20 alt="System Theme"></a></div></li></ul></div></div><img src=/images/site/masthead_hu_f10227dc088ad43a.png class=d-none id=main-logo alt=Logo>
+<img src=/images/site/masthead_hu_f10227dc088ad43a.png class=d-none id=inverted-logo alt="Inverted Logo"></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><form class=mx-auto method=get action=/en/search><input type=text name=keyword placeholder=Search data-search id=search-box></form><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/en/posts/ data-filter=all>Posts</a></li><div class=subtree><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/ci_cd/> CI / CD Jenkins</a><ul><li><a class=list-link href=/en/posts/ci_cd/practica_jenkins/ title="CI / CD practice with Jenkins">CI / CD practice with Jenkins</a></li><li><a class=list-link href=/en/posts/ci_cd/taller1_jenkins/ title="Workshop 1 Ortho-rector of markdown documents (test)">Workshop 1 Ortho-rector of markdown documents (test)</a></li><li><a class=list-link href=/en/posts/ci_cd/taller2_jenkins/ title="Workshop 2 Valid HTML5 check and surge.sh deployment (test and deploy)">Workshop 2 Valid HTML5 check and surge.sh deployment (test and deploy)</a></li><li><a class=list-link href=/en/posts/ci_cd/taller3_jenkins/ title="Workshop 3 Continuous integration of django application (Test)">Workshop 3 Continuous integration of django application (Test)</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/base_de_datos/> Database</a><ul><li><a class=list-link href=/en/posts/base_de_datos/instalar_mariadb/ title="Install MariaDB in Debian">Install MariaDB in Debian</a></li><li><a class=list-link href=/en/posts/base_de_datos/interconexion_de_servidores/ title="Interconnection of database servers">Interconnection of database servers</a></li><li><a class=list-link href=/en/posts/base_de_datos/instalacion_oracle_19c_debian12/ title="Oracle 19c installation under Debian 12">Oracle 19c installation under Debian 12</a></li><li><a class=list-link href=/en/posts/base_de_datos/instalar_postgresql/ title="PostgreSQL installation in Debian 12">PostgreSQL installation in Debian 12</a></li><li><a class=list-link href=/en/posts/base_de_datos/oracle_acceso_remoto/ title="Remote access configuration in Oracle">Remote access configuration in Oracle</a></li><li><a class=list-link href=/en/posts/base_de_datos/acceso_remoto_mariadb/ title="Remote access in MariaDB">Remote access in MariaDB</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/docker/> Docker</a><ul><li><a class=list-link href=/en/posts/docker/taller1/ title="Workshop 1 Storage and networks in Docker">Workshop 1 Storage and networks in Docker</a></li><li><a class=list-link href=/en/posts/docker/taller2/ title="Workshop 2 Multicontainer Scenarios in Docker">Workshop 2 Multicontainer Scenarios in Docker</a></li><li><a class=list-link href=/en/posts/docker/taller3/ title="Workshop 3 Image creation Docker">Workshop 3 Image creation Docker</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/cortafuegos/> Firewall</a><ul><li><a class=list-link href=/en/posts/cortafuegos/fortinet_cli/ title="Fortinet CLI">Fortinet CLI</a></li><li><a class=list-link href=/en/posts/cortafuegos/fortinet_uno/ title="Perimetral with Fortinet I">Perimetral with Fortinet I</a></li><li><a class=list-link href=/en/posts/cortafuegos/fortinet_dos/ title="Perimetral with Fortinet II">Perimetral with Fortinet II</a></li><li><a class=list-link href=/en/posts/cortafuegos/nftables_uno/ title="Perimetral with Nftables I">Perimetral with Nftables I</a></li><li><a class=list-link href=/en/posts/cortafuegos/nftables_dos/ title="Perimetral with Nftables II">Perimetral with Nftables II</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/drivers/> Linux Drivers</a><ul><li><a class=list-link href=/en/posts/drivers/nvidia_driver/ title="Drivers Nvidia">Drivers Nvidia</a></li><li><a class=list-link href=/en/posts/drivers/nvidia_optimus/ title="How to choose which graph to use on my laptop with Linux">How to choose which graph to use on my laptop with Linux</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/redes/> Networks</a><ul><li><a class=list-link href=/en/posts/redes/android_gns3/ title="Android GNS3-KVM">Android GNS3-KVM</a></li><li><a class=list-link href=/en/posts/redes/escenario_ipv6_basico/ title="Basic IPv6 scenario">Basic IPv6 scenario</a></li><li><a class=list-link href=/en/posts/redes/instalacion_wireshark_gns3/ title="GNS3 and Wireshark installation">GNS3 and Wireshark installation</a></li><li><a class=list-link href=/en/posts/redes/instalar_gns3_debian12/ title="GNS3 installation in Debian 12">GNS3 installation in Debian 12</a></li><li><a class=list-link href=/en/posts/redes/switches_gns3/ title="GNS3 switch configuration">GNS3 switch configuration</a></li><li><a class=list-link href=/en/posts/redes/tuneles_ipv6/ title="IPV6 Tunnels">IPV6 Tunnels</a></li><li><a class=list-link href=/en/posts/redes/configuracion_de_nat/ title="NAT in Cisco and Linux">NAT in Cisco and Linux</a></li><li><a class=list-link href=/en/posts/redes/comandos_de_supervision_de_redes/ title="Network monitoring commands">Network monitoring commands</a></li><li><a class=list-link href=/en/posts/redes/enroutamiento_openstack/ title="OpenStack routing">OpenStack routing</a></li><li><a class=list-link href=/en/posts/redes/arp/ title="Protocol ARP">Protocol ARP</a></li><li><a class=list-link href=/en/posts/redes/underworld/ title=Underworld>Underworld</a></li><li><a class=list-link href=/en/posts/redes/underworld_evolution/ title="Underworld evolution">Underworld evolution</a></li></ul></li><li><i data-feather=minus-circle></i><a class="active list-link" href=/en/posts/seguridad/> Security</a><ul class=active><li><a class="active list-link" href=/en/posts/seguridad/forense/ title="Forensic computer">Forensic computer</a></li><li><a class=list-link href=/en/posts/seguridad/https_autofirmado/ title=HTTPS>HTTPS</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/servicios/> Services</a><ul><li><a class=list-link href=/en/posts/servicios/apache/ title=Apache>Apache</a></li><li><a class=list-link href=/en/posts/servicios/dhcp/ title=DHCP>DHCP</a></li><li><a class=list-link href=/en/posts/servicios/dns/ title=DNS>DNS</a></li><li><a class=list-link href=/en/posts/servicios/ftp/ title=FTP>FTP</a></li><li><a class=list-link href=/en/posts/servicios/nat_iptables/ title="NAT with iptables">NAT with iptables</a></li><li><a class=list-link href=/en/posts/servicios/ssh/ title=SSH>SSH</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/sistemas/> Systems</a><ul><li><a class=list-link href=/en/posts/sistemas/ad_ubuntu/ title="Active Directory in Ubuntu">Active Directory in Ubuntu</a></li><li><a class=list-link href=/en/posts/sistemas/recoleccion_logs_journald/ title="Centralized collection of logs journald">Centralized collection of logs journald</a></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/sistemas/compilaciones_linux/> Compilations in LINUX</a><ul><li><a class=list-link href=/en/posts/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/ title="Compilation of a C-program using a Makefile">Compilation of a C-program using a Makefile</a></li><li><a class=list-link href=/en/posts/sistemas/compilaciones_linux/compilacion_de_un_kernel/ title="Compilation of a kernel">Compilation of a kernel</a></li></ul></li><li><a class=list-link href=/en/posts/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/ title="Creation of an automated installation system">Creation of an automated installation system</a></li><li><a class=list-link href=/en/posts/sistemas/samba_debian/ title="Install and configure samba in Debian">Install and configure samba in Debian</a></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/sistemas/comandos_linux/> Linux Command</a><ul><li><a class=list-link href=/en/posts/sistemas/comandos_linux/ejercicios_de_modificacion_de_parametros_del_kernel/ title="Kernel parameter modification exercises">Kernel parameter modification exercises</a></li><li><a class=list-link href=/en/posts/sistemas/comandos_linux/comandos_procesos/ title="Linux processes">Linux processes</a></li><li><a class=list-link href=/en/posts/sistemas/comandos_linux/ejercicios_de_manejo_de_modulos/ title="Module management exercises">Module management exercises</a></li><li><a class=list-link href=/en/posts/sistemas/comandos_linux/gestion_de_paquetes/ title="Package management">Package management</a></li><li><a class=list-link href=/en/posts/sistemas/comandos_linux/empaquetadores_compresores/ title="Packaging and compressors">Packaging and compressors</a></li><li><a class=list-link href=/en/posts/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/ title="Paid management exercises">Paid management exercises</a></li><li><a class=list-link href=/en/posts/sistemas/comandos_linux/programacion_tareas/ title="Task programming">Task programming</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/sistemas/migraciones/> Migration in Linnux</a><ul><li><a class=list-link href=/en/posts/sistemas/migraciones/migracion_sistema_de_ficheros/ title="File system">File system</a></li><li><a class=list-link href=/en/posts/sistemas/migraciones/paso_de_centos_stream_8_a_centos_stream_9/ title="Migtation from CentOS stream 8 to CentOS stream 9">Migtation from CentOS stream 8 to CentOS stream 9</a></li><li><a class=list-link href=/en/posts/sistemas/migraciones/eliminacion_systemd/ title="Systemd elimination">Systemd elimination</a></li><li><a class=list-link href=/en/posts/sistemas/migraciones/transformacion_instancia_cloud/ title="Transformation instance cloud">Transformation instance cloud</a></li></ul></li><li><a class=list-link href=/en/posts/sistemas/nfs_debian/ title="NFS in Debian">NFS in Debian</a></li><li><a class=list-link href=/en/posts/sistemas/activacion_selinux/ title="SELinux activation configuration">SELinux activation configuration</a></li><li><a class=list-link href=/en/posts/sistemas/comparticion_de_directorios_en_windows/ title="Share resources in Windows">Share resources in Windows</a></li><li><a class=list-link href=/en/posts/sistemas/ssh_windows/ title="Ssh service in Windows">Ssh service in Windows</a></li><li><a class=list-link href=/en/posts/sistemas/almacenamiento_servidor_independiente/ title="Storage Spaces in Windows Server">Storage Spaces in Windows Server</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/vpn/> VPN</a><ul><li><a class=list-link href=/en/posts/vpn/comparativa_ovpn_wire/ title="OpenVPN and Wireguard Comparative">OpenVPN and Wireguard Comparative</a></li><li><a class=list-link href=/en/posts/vpn/acceso_remoto_openvpn/ title="OpenVPN remote access">OpenVPN remote access</a></li><li><a class=list-link href=/en/posts/vpn/acceso_remoto_strongswang/ title="Remote access Ipsec StrongSwan">Remote access Ipsec StrongSwan</a></li><li><a class=list-link href=/en/posts/vpn/ipsec_cisco/ title="Site-to-Site IPsec Cisco">Site-to-Site IPsec Cisco</a></li><li><a class=list-link href=/en/posts/vpn/site_to_site_fortinet/ title="Site-to-Site IPsec Fortinet">Site-to-Site IPsec Fortinet</a></li><li><a class=list-link href=/en/posts/vpn/site_to_site_openvpn/ title="Site-to-Site OpenVPN">Site-to-Site OpenVPN</a></li><li><a class=list-link href=/en/posts/vpn/site_to_site_wireguard/ title="Site-to-Site Wireguard">Site-to-Site Wireguard</a></li><li><a class=list-link href=/en/posts/vpn/acceso_remoto_wireguard/ title="Wireguard remote access">Wireguard remote access</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/en/posts/iaw/> Web applications</a><ul><li><a class=list-link href=/en/posts/iaw/lamp/ title="LAMP stack installation">LAMP stack installation</a></li><li><a class=list-link href=/en/posts/iaw/lemp/ title="LEMP stack installation">LEMP stack installation</a></li><li><a class=list-link href=/en/posts/iaw/wordpress/ title="WordPress LAMP">WordPress LAMP</a></li><li><a class=list-link href=/en/posts/iaw/wordpress_lemp/ title="WordPress LEMP">WordPress LEMP</a></li></ul></li></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(/images/seguridad/informatica_forense.png)></div><div class=page-content><div class="author-profile ms-auto align-self-lg-center"><img class=rounded-circle src=/images/default-avatar_hu_af7c48c7ef93202f.png alt="Author Image"><h5 class=author-name></h5><p class=text-muted>Thursday, March 28, 2024 | 23 minutes</p></div><div class=title><h1>Forensic computer</h1></div><div class=tags><ul style=padding-left:0><li class=rounded><a href=/en/tags/linux/ class="btn btn-sm btn-info">LINUX</a></li><li class=rounded><a href=/en/tags/debian/ class="btn btn-sm btn-info">DEBIAN</a></li><li class=rounded><a href=/en/tags/windows/ class="btn btn-sm btn-info">WINDOWS</a></li><li class=rounded><a href=/en/tags/forense/ class="btn btn-sm btn-info">FORENSE</a></li></ul></div><div class=post-content id=post-content><p>Forensics is the set of techniques that allows us to obtain as much information as possible after a computer incident or crime.
+In this practice, you will perform the evidence-taking and analysis phase on one Linux machine and another Windows. We&rsquo;ll assume we caught the criminal &lsquo;in fraganti&rsquo; and the machines were on. Optionally, you can perform an Android device analysis.
+On each of the machines you must do a memory and a hard drive, taking the necessary measures to certify the chain of custody.</p><h3 id=image-and-memory>Image and memory</h3><h2 id=windows>Windows</h2><p>I&rsquo;m going to prepare the disk in which it contains the tools:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@HPOMEN15:~$ sudo guestmount -a /var/lib/libvirt/images/win_foresense-1.qcow2 -m /dev/sda1 /mnt/vdb/
+</span></span><span style=display:flex><span>javiercruces@HPOMEN15:~/Descargas$ sudo cp AccessData_FTK_Imager_4.7.1.exe /mnt/vdb 
+</span></span></code></pre></div><p>This one I will pinch in the machine as I have installed the FTK:</p><p><img src=/seguridad/forense/img/Pastedimage20240205202959.png alt></p><h3 id=memory-flow>Memory Flow</h3><p>So let&rsquo;s proceed to get an image out of the memory:</p><p><img src=/seguridad/forense/img/Pastedimage20240205203403.png alt></p><p>We select where we will save it:</p><p><img src=/seguridad/forense/img/Pastedimage20240205203443.png alt></p><h3 id=record-overturn>Record overturn</h3><p>We are going to get the record, for this we select the option to get protected files:</p><p><img src=/seguridad/forense/img/Pastedimage20240205203507.png alt></p><p>I will select the password files and all the records, and I will save it on the external disk:</p><p><img src=/seguridad/forense/img/Pastedimage20240205203547.png alt></p><h3 id=disk-flying>Disk Flying</h3><p>To do the disk tilt, we will select to create disk image:</p><p><img src=/seguridad/forense/img/Pastedimage20240205203656.png alt></p><p>Our source disk is a physical device, so I will select that option:</p><p><img src=/seguridad/forense/img/Pastedimage20240205203718.png alt></p><p>We choose where we will save the image, in my case on the external disk:</p><p><img src=/seguridad/forense/img/Pastedimage20240205203819.png alt></p><p>Once done, check the image created:</p><p><img src=/seguridad/forense/img/Pastedimage20240205203942.png alt></p><p>Here are the hash of the disk image:</p><p><img src=/seguridad/forense/img/Pastedimage20240205204017.png alt></p><p>We will also turn the data disk that is encrypted:</p><p><img src=/seguridad/forense/img/Pastedimage20240205204148.png alt></p><p>The hashes of the second album:</p><p><img src=/seguridad/forense/img/Pastedimage20240205204206.png alt></p><p>Now I&rsquo;m going to get these files to my host machine, so I&rsquo;ll mount the volume of the mv in which I&rsquo;ve done the data spins:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@HPOMEN15:~$ sudo guestmount -a /var/lib/libvirt/images/win10-2.qcow2 -m /dev/sda2 /mnt/vdb/
+</span></span></code></pre></div><p>To make sure the image of the disks are not manipulated, I&rsquo;m going to take out all the hashes:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@HPOMEN15:~$ sudo find /mnt/vdb -type f -exec sha256sum <span style=color:#f92672>{}</span> +
+</span></span><span style=display:flex><span>e1b9ce9b57957b1a0607a72a057d6b7a9b34ea60f3f8aa8f38a3af979bd23066  /mnt/vdb/$RECYCLE.BIN/S-1-5-21-1723251262-3026432737-944335575-1001/desktop.ini
+</span></span><span style=display:flex><span>57020f3e585d0f2a7ee783054c50886db4c65af1bbbe5e12e114dbf674326184  /mnt/vdb/AccessData_FTK_Imager_4.7.1.exe
+</span></span><span style=display:flex><span>91cbca5b445780e72522d872e0d229000849d6deb464ac707ee378c0c0e1794c  /mnt/vdb/discodatos/discodatos.001
+</span></span><span style=display:flex><span>44ca1fe875ba863adbb5b2675acb3345122f8dee0ba3ce8e2c4cfb9c523d38b0  /mnt/vdb/discodatos/discodatos.001.txt
+</span></span><span style=display:flex><span>5a45f6418924d3eab3ea820b4bdb4a609e7f95a6f4665f043217593eeab5056e  /mnt/vdb/discowin/discowin.001
+</span></span><span style=display:flex><span>aeb282e38ebe64be765b43e20a6a419ac1aa1ae4d6edd08cae3d8973bc0ac5a9  /mnt/vdb/discowin/discowin.001.txt
+</span></span><span style=display:flex><span>372a1157215515100f42e5a73adecc2407a1d8b586fa2c4770d2619d8094baf1  /mnt/vdb/discowin/discowin.002
+</span></span><span style=display:flex><span>e06c8472a09f209f23e49fb63195d8c471c86aea67e9587002b884ade22c8b97  /mnt/vdb/discowin/discowin.003
+</span></span><span style=display:flex><span>947ce5b6c2d7c8139de359723fecef351b1c6877b09647fb1d3015a4588f95df  /mnt/vdb/discowin/discowin.004
+</span></span><span style=display:flex><span>7bc813aee24fd973f2c3563c66e92c3becbbe2a40e341e693b5c4c38df3c8eb8  /mnt/vdb/discowin/discowin.005
+</span></span><span style=display:flex><span>e7d920807e329ba1f9dfd3b6987a6c12efd7a3b9a0563302509db73d88862909  /mnt/vdb/discowin/discowin.006
+</span></span><span style=display:flex><span>94c1cd9d910a39a1df7852c69032d68cdaf8ba59b4849f84963f3728880e53c0  /mnt/vdb/discowin/discowin.007
+</span></span><span style=display:flex><span>fa01765ac897aa4c8a1c2e9569cf9b0c50c5aea2c947ae9bf932f0eec89986e3  /mnt/vdb/discowin/discowin.008
+</span></span><span style=display:flex><span>095a0b5d4e88826a88427f5a2e64d621f81315bd1307db21b34aa76fad65af84  /mnt/vdb/discowin/discowin.009
+</span></span><span style=display:flex><span>a70aa8c7c1c723d97d4845a87a33d47697d48edcacc7b9bc83f2510baee4237e  /mnt/vdb/discowin/discowin.010
+</span></span><span style=display:flex><span>3e6b92b9764b3786091e5bb67e8ffb8c3271be4c977101da9fa14afa12fea171  /mnt/vdb/discowin/discowin.011
+</span></span><span style=display:flex><span>3e6b92b9764b3786091e5bb67e8ffb8c3271be4c977101da9fa14afa12fea171  /mnt/vdb/discowin/discowin.012
+</span></span><span style=display:flex><span>3e6b92b9764b3786091e5bb67e8ffb8c3271be4c977101da9fa14afa12fea171  /mnt/vdb/discowin/discowin.013
+</span></span><span style=display:flex><span>83954736003d261f58a1ce24f73cba37953df229fdfebd15d00245ba5a700197  /mnt/vdb/discowin/discowin.014
+</span></span><span style=display:flex><span>5353e34d4487ae5450be372e5ec37a0ca5dd746b206823abf561cd2af5d0d371  /mnt/vdb/memoria/memdump.mem
+</span></span><span style=display:flex><span>e8380620a1d5a99c0a39da8a2c5a59af17dd4bff7a4d48d8652ecca9683ef099  /mnt/vdb/memoria/pagefile.sys
+</span></span><span style=display:flex><span>9cce8fc11ca271c3e528a48257bb5472c2f4cbdbb809c19895c36b1be51c3d0b  /mnt/vdb/registro/default
+</span></span><span style=display:flex><span>816ab103521bcb7adcd11b5ac9359fc8f0de945fe10507411d0127bdcc24ff70  /mnt/vdb/registro/SAM
+</span></span><span style=display:flex><span>cbac2073fe665e11e5d043c5ab054ae58c70687b0b59197559c4077e4fdaa696  /mnt/vdb/registro/SECURITY
+</span></span><span style=display:flex><span>7cd909de86fc9e9ecb73e3d432d68aa892053be3848b6c32d3aefffc347140f6  /mnt/vdb/registro/software
+</span></span><span style=display:flex><span>4cf3a831081ab8e890b5c297ed5238cecebdfecdb1805a3b2e391489cd48fe5b  /mnt/vdb/registro/system
+</span></span><span style=display:flex><span>0e2961777eb214825652cc4b35b3b85dcfbdba2a58f5d2c1f586d8800abe9f83  /mnt/vdb/registro/Users/Default/NTUSER.DAT
+</span></span><span style=display:flex><span>59ffce3dd25b5f242f425a6dfdc642813f429bc0c19694aad1dcd5d2a9871c1f  /mnt/vdb/registro/Users/javiercruces/Crypto/Keys/de7cf8a7901d2ad13e5c67c29e5d1662_42c962d9-bf79-4299-be81-eebad4e81473
+</span></span><span style=display:flex><span>ea127864137edff0844c2e5731c51d1d2ef22cb3a8030d413166df1114eae5a5  /mnt/vdb/registro/Users/javiercruces/NTUSER.DAT
+</span></span><span style=display:flex><span>a564c8fa96557437d4b69e870ff8797a8beee20892a632735ac0a1f838ed453b  /mnt/vdb/registro/Users/javiercruces/Protect/CREDHIST
+</span></span><span style=display:flex><span>fb321d3671cf9f911f933e29fc9a099cd6834838c40d01fe6404b6975990c041  /mnt/vdb/registro/Users/javiercruces/Protect/S-1-5-21-1723251262-3026432737-944335575-1001/e8d02ff1-98d6-4ba4-99a4-1db28276ecda
+</span></span><span style=display:flex><span>13150cc91caed3c1d4321e8815afd5fc21eb4831eb1a93b40b4c9c48a4109fa1  /mnt/vdb/registro/Users/javiercruces/Protect/S-1-5-21-1723251262-3026432737-944335575-1001/Preferred
+</span></span><span style=display:flex><span>78596ecc21720053b44f78689bb06870bbe4f47029dc3d7e781cfe4d2d7a940f  /mnt/vdb/registro/Users/javiercruces/UsrClass.dat
+</span></span></code></pre></div><h2 id=linux>Linux</h2><h3 id=disk-flying-1>Disk Flying</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@debian:~/LiME/src$ lsblk -f
+</span></span><span style=display:flex><span>NAME  FSTYPE FSVER LABEL                 UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+</span></span><span style=display:flex><span>sda                                                                                          
+</span></span><span style=display:flex><span>└─sda1
+</span></span><span style=display:flex><span>      crypto <span style=color:#ae81ff>2</span>                           9fc1bfa7-9224-4e8e-896a-09516d4fd613                
+</span></span><span style=display:flex><span>sr0   iso966 Jolie Debian 12.1.0 amd64 n 2023-07-22-10-52-30-00                              
+</span></span><span style=display:flex><span>vda                                                                                          
+</span></span><span style=display:flex><span>├─vda1
+</span></span><span style=display:flex><span>│     vfat   FAT32                       DB79-1C75                             597,9M    37% /boot
+</span></span><span style=display:flex><span>├─vda2
+</span></span><span style=display:flex><span>│     ext4   1.0                         6666d9d8-9a41-46e5-a370-0730f713d3a7    7,6G    52% /
+</span></span><span style=display:flex><span>└─vda3
+</span></span><span style=display:flex><span>      swap   <span style=color:#ae81ff>1</span>                           e24babe0-340c-4b09-836e-dd5f447bcecc                <span style=color:#f92672>[</span>SWAP<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>vdb                                                                                          
+</span></span><span style=display:flex><span>└─vdb1
+</span></span><span style=display:flex><span>      ext4   1.0                         f79f0d79-209b-42b9-9087-5c72ee1595ee     54G     3% /mnt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>javiercruces@debian:~/LiME/src$ sudo dd <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>/dev/vda2 of<span style=color:#f92672>=</span>/mnt/discoLinux.raw bs<span style=color:#f92672>=</span>64K
+</span></span><span style=display:flex><span>296784+0 records in
+</span></span><span style=display:flex><span>296784+0 records out
+</span></span><span style=display:flex><span><span style=color:#ae81ff>19450036224</span> bytes <span style=color:#f92672>(</span><span style=color:#ae81ff>19</span> GB, <span style=color:#ae81ff>18</span> GiB<span style=color:#f92672>)</span> copied, 27,2778 s, <span style=color:#ae81ff>713</span> MB/s
+</span></span><span style=display:flex><span>javiercruces@debian:~/LiME/src$ 
+</span></span></code></pre></div><h3 id=memory-discharge>Memory discharge</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@debian:~$ git clone https://github.com/504ensicsLabs/LiME.git
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>javiercruces@debian:~$ cd LiME/src/
+</span></span><span style=display:flex><span>javiercruces@debian:~/LiME/src$ make
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>javiercruces@debian:~/LiME/src$ sudo insmod ./lime-6.1.0-18-amd64.ko <span style=color:#e6db74>&#34;path=/mnt/vdb format=lime&#34;</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@HPOMEN15:~$ sudo guestmount -a /var/lib/libvirt/images/ASO-systemd-boot-1.qcow2 -m /dev/vda1 /mnt/vdb/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>javiercruces@HPOMEN15:~$ sudo ls -l /mnt/vdb
+</span></span><span style=display:flex><span>total <span style=color:#ae81ff>25023392</span>
+</span></span><span style=display:flex><span>-rw-r--r-- <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>19450036224</span> feb <span style=color:#ae81ff>18</span> 12:07 discoLinux.raw
+</span></span><span style=display:flex><span>drwx------ <span style=color:#ae81ff>2</span> root root       <span style=color:#ae81ff>16384</span> feb <span style=color:#ae81ff>18</span> 11:25 lost+found
+</span></span><span style=display:flex><span>-rw-r--r-- <span style=color:#ae81ff>1</span> root root  <span style=color:#ae81ff>1900818432</span> feb <span style=color:#ae81ff>18</span> 11:47 memdebian.mem
+</span></span><span style=display:flex><span>-r--r--r-- <span style=color:#ae81ff>1</span> root root  <span style=color:#ae81ff>4273066304</span> feb <span style=color:#ae81ff>18</span> 12:10 vdb
+</span></span></code></pre></div><p>I&rsquo;m going to keep the image hashes:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@HPOMEN15:~$ sudo find /mnt/vdb -type f -exec sha256sum <span style=color:#f92672>{}</span> +
+</span></span><span style=display:flex><span>5f136603c0e34a74a58bc59f1934f5f2850ca8bec9c356a283ee7161a8f39a76  /mnt/vdb/memdebian.mem
+</span></span><span style=display:flex><span>b63693142f2823a95a11d9f1fcbd845c118b2fc5d0b2508586d0fc6c8fe482af  /mnt/vdb/discoLinux.raw
+</span></span><span style=display:flex><span>b419ec819114f21a10bc5146a0b28183165c8b2cf77b2fe160e3044b1b5e04a0  /mnt/vdb/vdb
+</span></span></code></pre></div><h2 id=analysis-of-the-windows-machine>Analysis of the Windows machine</h2><p>The first thing I will do is create a case in autopsy (This documentation is made in debian, the exercises I have responded to on Windows).</p><p><img src=/seguridad/forense/img/Pastedimage20240205205321.png alt></p><p>We add meta-information to the case, if we consider it necessary:</p><p><img src=/seguridad/forense/img/Pastedimage20240205205343.png alt></p><p>We wait for autopsy to process the disk image:</p><p><img src=/seguridad/forense/img/Pastedimage20240205205353.png alt></p><h3 id=volatility-installation>Volatility installation</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@HPOMEN15:~$ git clone https://github.com/volatilityfoundation/volatility3.git
+</span></span><span style=display:flex><span>Clonando en <span style=color:#e6db74>&#39;volatility3&#39;</span>...
+</span></span><span style=display:flex><span>remote: Enumerating objects: 32373, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Counting objects: 100% <span style=color:#f92672>(</span>3665/3665<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Compressing objects: 100% <span style=color:#f92672>(</span>771/771<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</span></span><span style=display:flex><span>remote: Total <span style=color:#ae81ff>32373</span> <span style=color:#f92672>(</span>delta 3350<span style=color:#f92672>)</span>, reused <span style=color:#ae81ff>2971</span> <span style=color:#f92672>(</span>delta 2894<span style=color:#f92672>)</span>, pack-reused <span style=color:#ae81ff>28708</span>
+</span></span><span style=display:flex><span>Recibiendo objetos: 100% <span style=color:#f92672>(</span>32373/32373<span style=color:#f92672>)</span>, 6.32 MiB | 14.10 MiB/s, listo.
+</span></span><span style=display:flex><span>Resolviendo deltas: 100% <span style=color:#f92672>(</span>24696/24696<span style=color:#f92672>)</span>, listo.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>javiercruces@HPOMEN15:~$ cd volatility3/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>javiercruces@HPOMEN15:~/volatility3$ python3 -m venv volatility
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>javiercruces@HPOMEN15:~/volatility3$ source volatility/bin/activate
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>(</span>volatility<span style=color:#f92672>)</span> javiercruces@HPOMEN15:~/volatility3$ pip3 install -r requirements.txt
+</span></span></code></pre></div><h2 id=windows-machine>Windows machine</h2><h3 id=1-processes-in-progress>1. Processes in progress</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>(</span>volatility<span style=color:#f92672>)</span> javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f <span style=color:#e6db74>&#34;/mnt/vdb/memoria/memdump.mem&#34;</span> windows.pslist.PsList
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>PID	PPID	ImageFileName	Offset<span style=color:#f92672>(</span>V<span style=color:#f92672>)</span>	Threads	Handles	SessionId	Wow64	CreateTime	ExitTime	File output
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>4	0	System	0xb088ea4af080	158	-	N/A	False	2024-02-05 19:30:59.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>92	4	Registry	0xb088ea5b8040	4	-	N/A	False	2024-02-05 19:30:56.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>344	4	smss.exe	0xb0891a80e040	2	-	N/A	False	2024-02-05 19:30:59.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>448	440	csrss.exe	0xb088f6093140	10	-	0	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>516	440	wininit.exe	0xb088ebd2e080	1	-	0	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>528	508	csrss.exe	0xb088ebd34080	11	-	1	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>612	508	winlogon.exe	0xb08929ff6080	3	-	1	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>648	516	services.exe	0xb088eb1b40c0	10	-	0	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>668	516	lsass.exe	0xb088eb1b9080	10	-	0	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>768	516	fontdrvhost.ex	0xb088eb1bd080	5	-	0	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>776	612	fontdrvhost.ex	0xb088f59eb140	5	-	1	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>788	648	svchost.exe	0xb088f59ee240	25	-	0	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>880	648	svchost.exe	0xb08919be72c0	19	-	0	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>988	612	dwm.exe	0xb088f5d7e080	14	-	1	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>996	612	LogonUI.exe	0xb088f5d81080	13	-	1	False	2024-02-05 19:31:15.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>400	648	svchost.exe	0xb088f654c2c0	42	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>444	648	svchost.exe	0xb088f654e240	73	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>584	648	svchost.exe	0xb088f82052c0	16	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1032	648	svchost.exe	0xb088f8ea62c0	15	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1040	648	svchost.exe	0xb088f8ea8280	20	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1244	648	svchost.exe	0xb088f8e0a2c0	22	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1460	648	svchost.exe	0xb088fa6e62c0	19	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1520	648	svchost.exe	0xb088f9fc4080	14	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1572	648	svchost.exe	0xb088fa6e8300	3	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1768	4	MemCompression	0xb088f9fc8040	42	-	N/A	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1924	648	svchost.exe	0xb088fbbd42c0	8	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1956	648	svchost.exe	0xb088fc1292c0	9	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1052	648	svchost.exe	0xb088fe704240	11	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1068	648	svchost.exe	0xb088fe7062c0	5	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1232	648	svchost.exe	0xb088fe708080	4	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1568	648	spoolsv.exe	0xb088fdbde200	8	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>2052	648	svchost.exe	0xb088f67072c0	14	-	0	False	2024-02-05 19:31:16.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>2300	648	svchost.exe	0xb088f834a240	12	-	0	False	2024-02-05 19:31:17.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>2412	648	MsMpEng.exe	0xb088f5b06280	28	-	0	False	2024-02-05 19:31:17.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>2868	648	svchost.exe	0xb08919b82240	27	-	0	False	2024-02-05 19:31:18.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3044	1040	dasHost.exe	0xb088f5c08280	3	-	0	False	2024-02-05 19:31:18.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>664	648	svchost.exe	0xb088faadd300	5	-	0	False	2024-02-05 19:31:19.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3792	3784	csrss.exe	0xb088faaf5080	11	-	2	False	2024-02-05 19:31:38.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3840	3784	winlogon.exe	0xb08901ded080	6	-	2	False	2024-02-05 19:31:38.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3868	648	WUDFHost.exe	0xb088f55e5080	10	-	0	False	2024-02-05 19:31:38.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3960	3840	fontdrvhost.ex	0xb088f0fbb0c0	5	-	2	False	2024-02-05 19:31:38.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>4020	3840	dwm.exe	0xb088f7551340	16	-	2	False	2024-02-05 19:31:38.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3456	400	rdpclip.exe	0xb088eb1ed2c0	8	-	2	False	2024-02-05 19:31:39.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3616	444	sihost.exe	0xb088eaec5300	16	-	2	False	2024-02-05 19:31:39.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3400	648	svchost.exe	0xb088fafee340	20	-	2	False	2024-02-05 19:31:39.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3188	444	taskhostw.exe	0xb088f6af1380	12	-	2	False	2024-02-05 19:31:39.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3068	648	NisSrv.exe	0xb088eadcc300	7	-	0	False	2024-02-05 19:31:39.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3344	1040	ctfmon.exe	0xb088f632d080	11	-	2	False	2024-02-05 19:31:39.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>4208	3840	userinit.exe	0xb088fc324080	0	-	2	False	2024-02-05 19:31:40.000000 	2024-02-05 19:32:04.000000 	Disabled
+</span></span><span style=display:flex><span>4236	4208	explorer.exe	0xb088fc332080	76	-	2	False	2024-02-05 19:31:40.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>4388	648	svchost.exe	0xb088f5430080	14	-	2	False	2024-02-05 19:31:40.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>4452	648	SearchIndexer.	0xb0891ee2a240	21	-	0	False	2024-02-05 19:31:40.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>4876	788	StartMenuExper	0xb088f90130c0	14	-	2	False	2024-02-05 19:31:41.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>5096	788	RuntimeBroker.	0xb088f94ec340	4	-	2	False	2024-02-05 19:31:42.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>4732	788	SearchApp.exe	0xb088f65130c0	57	-	2	False	2024-02-05 19:31:42.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>5184	788	RuntimeBroker.	0xb088fb73e340	17	-	2	False	2024-02-05 19:31:42.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>5828	788	WmiPrvSE.exe	0xb088ead52300	8	-	0	False	2024-02-05 19:31:44.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>6028	3104	GoogleCrashHan	0xb088f871c340	5	-	0	True	2024-02-05 19:31:45.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>6092	3104	GoogleCrashHan	0xb088f870f080	4	-	0	False	2024-02-05 19:31:45.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3740	788	RuntimeBroker.	0xb0891ee2f080	9	-	2	False	2024-02-05 19:31:52.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>1912	788	smartscreen.ex	0xb088f901d080	7	-	2	False	2024-02-05 19:31:54.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3524	4236	SecurityHealth	0xb088f87020c0	6	-	2	False	2024-02-05 19:31:54.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>3236	648	SecurityHealth	0xb088f9c4e340	15	-	0	False	2024-02-05 19:31:54.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>820	4236	OneDrive.exe	0xb088f8ec7080	23	-	2	True	2024-02-05 19:31:55.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>6128	4236	chrome.exe	0xb088f8e61080	40	-	2	False	2024-02-05 19:31:56.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>2040	6128	chrome.exe	0xb088f8732080	8	-	2	False	2024-02-05 19:31:57.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>5404	6128	chrome.exe	0xb088f3cb2080	14	-	2	False	2024-02-05 19:31:57.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>5392	6128	chrome.exe	0xb088f60e8080	15	-	2	False	2024-02-05 19:31:57.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>5348	6128	chrome.exe	0xb088f8fa3080	8	-	2	False	2024-02-05 19:31:57.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>5496	6128	chrome.exe	0xb088f3cc1080	15	-	2	False	2024-02-05 19:31:57.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>6184	6128	chrome.exe	0xb088f44e5080	14	-	2	False	2024-02-05 19:31:57.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>6200	6128	chrome.exe	0xb088f3cf3080	14	-	2	False	2024-02-05 19:31:57.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>6380	788	TextInputHost.	0xb088f8a0e080	9	-	2	False	2024-02-05 19:31:57.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>6556	788	dllhost.exe	0xb0891a1ec080	11	-	2	False	2024-02-05 19:31:58.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>6156	6128	chrome.exe	0xb088f44cc080	14	-	2	False	2024-02-05 19:33:00.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>5284	6128	chrome.exe	0xb088f872c080	14	-	2	False	2024-02-05 19:33:00.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>4036	6128	chrome.exe	0xb088f44e4080	14	-	2	False	2024-02-05 19:33:05.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>6916	4236	FTK Imager.exe	0xb0891a1d9080	22	-	2	False	2024-02-05 19:33:11.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>6044	788	ApplicationFra	0xb0890d7dc080	13	-	2	False	2024-02-05 19:33:14.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>6104	788	Calculator.exe	0xb088f9bf1340	17	-	2	False	2024-02-05 19:33:14.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>5864	788	RuntimeBroker.	0xb0890d7d9080	6	-	2	False	2024-02-05 19:33:14.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>7020	648	svchost.exe	0xb088f8720300	7	-	0	False	2024-02-05 19:33:17.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>4788	648	SgrmBroker.exe	0xb088fbe4c080	7	-	0	False	2024-02-05 19:33:18.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>760	648	svchost.exe	0xb088fac482c0	13	-	0	False	2024-02-05 19:33:18.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>7348	788	HxCalendarAppI	0xb088f5f5a080	29	-	2	False	2024-02-05 19:33:20.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>7412	788	RuntimeBroker.	0xb088faf61080	6	-	2	False	2024-02-05 19:33:20.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>7476	788	HxTsr.exe	0xb088fc642080	13	-	2	False	2024-02-05 19:33:20.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>7816	4236	Taskmgr.exe	0xb088facb8340	16	-	2	False	2024-02-05 19:33:22.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>8072	788	explorer.exe	0xb088ead54080	11	-	2	False	2024-02-05 19:33:34.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>7256	3616	PaintStudio.Vi	0xb088facbe340	45	-	2	False	2024-02-05 19:33:39.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>7796	788	RuntimeBroker.	0xb088f8e64300	8	-	2	False	2024-02-05 19:33:40.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>900	788	Time.exe	0xb088f9c15080	16	-	2	False	2024-02-05 19:33:42.000000 	N/A	Disabled
+</span></span><span style=display:flex><span>2132	788	RuntimeBroker.	0xb088ead3d080	7	-	2	False	2024-02-05 19:33:43.000000 	N/A	Disabled
+</span></span></code></pre></div><h3 id=2-services-in-progress>2. Services in progress</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>(</span>volatility<span style=color:#f92672>)</span> javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f <span style=color:#e6db74>&#34;/mnt/vdb/memoria/memdump.mem&#34;</span> windows.getservicesids.GetServiceSIDs 
+</span></span><span style=display:flex><span>Volatility <span style=color:#ae81ff>3</span> Framework 2.5.2
+</span></span><span style=display:flex><span>Progress:  100.00		PDB scanning finished                        
+</span></span><span style=display:flex><span>SID	Service
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>S-1-5-80-4151353957-356578678-4163131872-800126167-2037860865	.NET CLR Networking 4.0.0.0
+</span></span><span style=display:flex><span>S-1-5-80-1135273183-3738781202-689480478-891280274-255333391	.NET Memory Cache 4.0
+</span></span><span style=display:flex><span>S-1-5-80-3459415445-2224257447-3423677131-2829651752-4257665947	3ware
+</span></span><span style=display:flex><span>S-1-5-80-2917441881-3404282297-3983348447-1829381237-2935805708	AarSvc
+</span></span><span style=display:flex><span>S-1-5-80-2345285467-3342891147-82292311-2275197348-1578354944	AarSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-1975967573-2913356537-819030703-3730719923-1995772179	AcpiDev
+</span></span><span style=display:flex><span>S-1-5-80-2670625634-2386107419-4204951937-4094372046-2600379021	acpiex
+</span></span><span style=display:flex><span>S-1-5-80-3267050047-1503497915-401953950-2662906978-1179039408	acpipagr
+</span></span><span style=display:flex><span>S-1-5-80-772678238-4220935223-620583658-4118486195-1180343772	acpitime
+</span></span><span style=display:flex><span>S-1-5-80-1863632671-1375125309-1493738800-1551534981-2387622636	Acx01000
+</span></span><span style=display:flex><span>S-1-5-80-3261807240-4279319092-2126406095-947934052-2578847935	ADOVMPPackage
+</span></span><span style=display:flex><span>S-1-5-80-2046354688-3987051615-3879164971-215375460-2633017214	ADP80XX
+</span></span><span style=display:flex><span>S-1-5-80-1535954936-2128305610-2033289386-4003803006-3961564848	ad_driver
+</span></span><span style=display:flex><span>S-1-5-80-521319896-1227547225-1440366370-1094984824-1952325498	afunix
+</span></span><span style=display:flex><span>S-1-5-80-3882103802-2937937445-2149894622-934926057-1088273958	ahcache
+</span></span><span style=display:flex><span>S-1-5-80-3532809085-2652327567-2620918877-1058261733-582902671	AJRouter
+</span></span><span style=display:flex><span>S-1-5-80-3520885947-347258037-358237196-958877718-2177097675	amdgpio2
+</span></span><span style=display:flex><span>S-1-5-80-3034931084-4111837248-3722498124-953434196-229084002	amdi2c
+</span></span><span style=display:flex><span>S-1-5-80-940484976-4139584748-3980625906-2403118188-3770008912	applockerfltr
+</span></span><span style=display:flex><span>S-1-5-80-2020831507-1298702824-3288167190-116113825-4190209	AppReadiness
+</span></span><span style=display:flex><span>S-1-5-80-3690054487-1922792274-847725564-1425669114-2396631621	AppVClient
+</span></span><span style=display:flex><span>S-1-5-80-1981223234-350633043-1452159618-1133528455-2295233572	AppvStrm
+</span></span><span style=display:flex><span>S-1-5-80-1995813674-3661462697-784932380-3834207926-917317866	AppvVemgr
+</span></span><span style=display:flex><span>S-1-5-80-1543189782-2596160705-3795570588-3168413527-2925017820	AppvVfs
+</span></span><span style=display:flex><span>S-1-5-80-1949724575-2387902436-65106593-1201171665-3967308604	AppXSvc
+</span></span><span style=display:flex><span>S-1-5-80-689100834-1985168674-2379302174-2224748125-4125308070	AssignedAccessManagerSvc
+</span></span><span style=display:flex><span>S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833	autotimesvc
+</span></span><span style=display:flex><span>S-1-5-80-286416697-2074333985-3953926783-2730543180-4207904231	bam
+</span></span><span style=display:flex><span>S-1-5-80-2025233850-3714960172-3834018148-2523054830-2209135241	BasicDisplay
+</span></span><span style=display:flex><span>S-1-5-80-4178409850-1580268469-397489987-3195816699-129657517	BasicRender
+</span></span><span style=display:flex><span>S-1-5-80-3969992995-4113734098-2838120167-1440264772-583281004	BcastDVRUserService
+</span></span><span style=display:flex><span>S-1-5-80-1091833278-2140613478-3064603973-1607650773-3857006778	BcastDVRUserService_50fad
+</span></span><span style=display:flex><span>S-1-5-80-856979437-3912875207-2720685236-703935298-3759072829	bcmfn2
+</span></span><span style=display:flex><span>S-1-5-80-3451400966-3703281935-2685268016-3285412533-1470843506	bindflt
+</span></span><span style=display:flex><span>S-1-5-80-2033999825-3741098712-1851668902-216055579-943193379	BluetoothUserService
+</span></span><span style=display:flex><span>S-1-5-80-2602215105-3353301314-225129424-3242260137-2199118732	BluetoothUserService_50fad
+</span></span><span style=display:flex><span>S-1-5-80-1988685059-1921232356-378231328-2704142597-890457928	BrokerInfrastructure
+</span></span><span style=display:flex><span>S-1-5-80-3316959809-2577409367-488518535-1805171532-1438653141	BTAGService
+</span></span><span style=display:flex><span>S-1-5-80-3397485379-1673558126-3852117732-4170930301-4011713027	BthA2dp
+</span></span><span style=display:flex><span>S-1-5-80-1264790548-4164306546-4160824920-750804445-3452039388	BthAvctpSvc
+</span></span><span style=display:flex><span>S-1-5-80-3742302039-178175996-3312716580-300089339-184318439	BthEnum
+</span></span><span style=display:flex><span>S-1-5-80-4190030514-1955060627-1650410980-2059579884-2945205035	BthHFEnum
+</span></span><span style=display:flex><span>S-1-5-80-2319449347-3660344761-1621844049-61588942-3837794983	BthLEEnum
+</span></span><span style=display:flex><span>S-1-5-80-411364929-2494992265-235336807-3339216277-1376253409	BthMini
+</span></span><span style=display:flex><span>S-1-5-80-3533787624-3536623824-1878644040-3113243162-1610647180	BTHUSB
+</span></span><span style=display:flex><span>S-1-5-80-1102738-1048517740-3681369803-3100335448-3129350187	bttflt
+</span></span><span style=display:flex><span>S-1-5-80-4235005237-3293881321-902755294-2421876860-1688724929	buttonconverter
+</span></span><span style=display:flex><span>S-1-5-80-3988044632-483646655-3689529973-3635425272-2751329168	CAD
+</span></span><span style=display:flex><span>S-1-5-80-3369530244-1263555520-1552818992-544823788-1590281562	camsvc
+</span></span><span style=display:flex><span>S-1-5-80-2195691530-3564058219-2185687823-1858318469-3207429352	CaptureService
+</span></span><span style=display:flex><span>S-1-5-80-2061916618-2473786339-1209003124-203996862-3865510505	CaptureService_50fad
+</span></span><span style=display:flex><span>S-1-5-80-546976454-1426073922-427304975-3694345144-4147405473	cbdhsvc
+</span></span><span style=display:flex><span>S-1-5-80-2514868401-1614040450-3339499687-2942524132-3960226468	cbdhsvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-3433512109-503559027-1389316256-1766580070-2256751264	CDPSvc
+</span></span><span style=display:flex><span>S-1-5-80-1260278928-804197538-2066346633-4268302704-2216462912	CDPUserSvc
+</span></span><span style=display:flex><span>S-1-5-80-1518900912-1420122119-1615577584-34666731-2598493892	CDPUserSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-1055174906-2416269421-2304048803-1043379310-100576628	cht4iscsi
+</span></span><span style=display:flex><span>S-1-5-80-867907225-1838866732-3207111219-3362010221-3938223369	cht4vbd
+</span></span><span style=display:flex><span>S-1-5-80-1592074278-3653508928-2768813056-1918619345-1433065180	CimFS
+</span></span><span style=display:flex><span>S-1-5-80-1404165011-2000956283-1442398411-3799073753-1383434776	CldFlt
+</span></span><span style=display:flex><span>S-1-5-80-65843127-2189646064-2697706863-2125155322-3141006483	ClipSVC
+</span></span><span style=display:flex><span>S-1-5-80-2119957892-4152124429-3625998117-4006912763-1737903618	cloudidsvc
+</span></span><span style=display:flex><span>S-1-5-80-2611951811-1959136347-1062071333-3982815153-2811717512	clr_optimization_v4.0.30319_32
+</span></span><span style=display:flex><span>S-1-5-80-2839768381-3691089589-2614646340-3191585287-3380622033	clr_optimization_v4.0.30319_64
+</span></span><span style=display:flex><span>S-1-5-80-4162882437-1505926369-3203888135-2472178355-2995762856	cnghwassist
+</span></span><span style=display:flex><span>S-1-5-80-1796617447-2916456010-10894564-1845345233-3515002435	condrv
+</span></span><span style=display:flex><span>S-1-5-80-3749766068-1582991359-4182444126-1144602875-625653745	ConsentUxUserSvc
+</span></span><span style=display:flex><span>S-1-5-80-1689245047-2517065848-119126955-928953782-3881496094	ConsentUxUserSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-1021139062-1866602279-1255292388-1008060685-2498416891	CoreMessagingRegistrar
+</span></span><span style=display:flex><span>S-1-5-80-109488485-4147369969-3056774085-3969564951-1913080067	CoreUI
+</span></span><span style=display:flex><span>S-1-5-80-2720979471-2110640377-1938553337-2954392914-939353058	CredentialEnrollmentManagerUserSvc
+</span></span><span style=display:flex><span>S-1-5-80-2870883986-4281173727-708603794-2134363143-2686522016	CredentialEnrollmentManagerUserSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-3427364867-2348656012-3079877547-1505400018-1601214341	dam
+</span></span><span style=display:flex><span>S-1-5-80-2667170245-2239725068-1742831399-533342241-2651120191	dcsvc
+</span></span><span style=display:flex><span>S-1-5-80-1692619910-1358769708-3047346990-2477994898-1876611151	DeviceAssociationBrokerSvc
+</span></span><span style=display:flex><span>S-1-5-80-933457078-909669165-2371787725-499192611-2576228100	DeviceAssociationBrokerSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-2536636004-4072673470-1048721469-2703517266-1433793019	DeviceAssociationService
+</span></span><span style=display:flex><span>S-1-5-80-2659457741-469498900-3203170401-3149177360-3048467625	DeviceInstall
+</span></span><span style=display:flex><span>S-1-5-80-3981010603-2563310902-4138807455-2513867770-1689624316	DevicePickerUserSvc
+</span></span><span style=display:flex><span>S-1-5-80-1542622939-2432071804-441627781-2155588311-412164416	DevicePickerUserSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-1731526583-713188386-1588570932-65458670-665563417	DevicesFlowUserSvc
+</span></span><span style=display:flex><span>S-1-5-80-2139216848-1834768328-3639298086-1478984899-2276215200	DevicesFlowUserSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-1646229720-1474186231-1049421145-3719583575-3014288788	DevQueryBroker
+</span></span><span style=display:flex><span>S-1-5-80-3837255464-839197112-3211601036-3795322556-2690640524	Dfsc
+</span></span><span style=display:flex><span>S-1-5-80-3427281794-3208260282-895156161-4152208786-3156774898	diagnosticshub.standardcollector.service
+</span></span><span style=display:flex><span>S-1-5-80-2291377395-3838044599-2142290114-2473825573-3813973113	diagsvc
+</span></span><span style=display:flex><span>S-1-5-80-2620808479-2171380039-3191355562-2070425692-3097948119	DiagTrack
+</span></span><span style=display:flex><span>S-1-5-80-2947989659-52033649-2604989816-125447294-1386081903	DialogBlockingService
+</span></span><span style=display:flex><span>S-1-5-80-1827140278-1118305254-4004251663-1512899043-4081885502	disk
+</span></span><span style=display:flex><span>S-1-5-80-4171086659-1617898341-2870161492-1466607281-2109097600	DispBrokerDesktopSvc
+</span></span><span style=display:flex><span>S-1-5-80-3914275374-678031271-1603343729-3906112567-2888048264	DisplayEnhancementService
+</span></span><span style=display:flex><span>S-1-5-80-538170410-2190149038-799223143-2506663053-4165713448	DmEnrollmentSvc
+</span></span><span style=display:flex><span>S-1-5-80-2597136289-665204401-1725106016-1253143166-1853691573	dmvsc
+</span></span><span style=display:flex><span>S-1-5-80-3841379657-834162867-3056945855-2577476187-70241904	dmwappushservice
+</span></span><span style=display:flex><span>S-1-5-80-3055155277-3816794035-3994065555-2874236192-2193176987	DoSvc
+</span></span><span style=display:flex><span>S-1-5-80-286057374-2594772386-1471686342-3682429118-820474675	DsmSvc
+</span></span><span style=display:flex><span>S-1-5-80-1551822644-3134808374-1042292604-2865742758-3851661496	DsSvc
+</span></span><span style=display:flex><span>S-1-5-80-4071458001-3563271761-1846288968-3700919931-3809667977	DusmSvc
+</span></span><span style=display:flex><span>S-1-5-80-1830903284-3590783070-1256105943-1989567323-3273248812	e1i65x64
+</span></span><span style=display:flex><span>S-1-5-80-3578261754-285310837-913589462-2834155770-667502746	Eaphost
+</span></span><span style=display:flex><span>S-1-5-80-263376457-2115425240-177348680-1339839713-3837480443	edgeupdate
+</span></span><span style=display:flex><span>S-1-5-80-605514040-344704999-4120406818-2499438505-150840210	edgeupdatem
+</span></span><span style=display:flex><span>S-1-5-80-2169634130-1039499152-2857656644-2663134321-2733247747	EhStorClass
+</span></span><span style=display:flex><span>S-1-5-80-286318078-2644501994-4034150745-2802514947-3987682007	EhStorTcgDrv
+</span></span><span style=display:flex><span>S-1-5-80-197064213-1107091946-1970926662-1288706631-716503202	embeddedmode
+</span></span><span style=display:flex><span>S-1-5-80-2744483880-3889877944-846434063-3461941807-3140553215	EntAppSvc
+</span></span><span style=display:flex><span>S-1-5-80-880578595-1860270145-482643319-2788375705-1540778122	EventLog
+</span></span><span style=display:flex><span>S-1-5-80-2617507558-3328795327-711547822-311560295-1636921165	fhsvc
+</span></span><span style=display:flex><span>S-1-5-80-1314638815-3435960472-2727226528-1675998635-1902597435	FileCrypt
+</span></span><span style=display:flex><span>S-1-5-80-3915894004-2104103821-3047269622-1811662266-774708259	FrameServer
+</span></span><span style=display:flex><span>S-1-5-80-3181391832-1165339916-824804796-1846270512-1987055954	gencounter
+</span></span><span style=display:flex><span>S-1-5-80-4137420670-1714900858-4048147207-1486404520-2727663781	genericusbfn
+</span></span><span style=display:flex><span>S-1-5-80-75387917-508843547-2432396020-3132913102-4137377952	GoogleChromeElevationService
+</span></span><span style=display:flex><span>S-1-5-80-3892015463-3880225558-716464106-2623782912-3537878324	GPIOClx0101
+</span></span><span style=display:flex><span>S-1-5-80-45206258-3912194098-2707507260-3008220167-2543420661	GpuEnergyDrv
+</span></span><span style=display:flex><span>S-1-5-80-1517824832-3405227061-4234718464-3265367437-2784406453	GraphicsPerfSvc
+</span></span><span style=display:flex><span>S-1-5-80-1628851891-332911214-942992855-2381080451-357317118	gupdate
+</span></span><span style=display:flex><span>S-1-5-80-1391398224-2746689181-3888380295-1755171859-6364376	gupdatem
+</span></span><span style=display:flex><span>S-1-5-80-1708301557-710215499-1045718168-382692165-3542596111	HdAudAddService
+</span></span><span style=display:flex><span>S-1-5-80-1632474125-2303985310-1465129739-461431387-3339616311	hidi2c
+</span></span><span style=display:flex><span>S-1-5-80-595487790-2902857704-1637225563-1046489922-3656573765	hidinterrupt
+</span></span><span style=display:flex><span>S-1-5-80-3338532743-2167017084-2688270890-3351665506-1257551220	hidspi
+</span></span><span style=display:flex><span>S-1-5-80-2718569444-1738374061-3304332439-3451140840-1824115491	hvcrash
+</span></span><span style=display:flex><span>S-1-5-80-44780642-2200031541-2427509763-915290973-996987375	HvHost
+</span></span><span style=display:flex><span>S-1-5-80-2939390288-356272421-3595829934-3436785230-198171780	hvservice
+</span></span><span style=display:flex><span>S-1-5-80-2274115272-1034313707-3787864051-261592831-2149061657	HwNClx0101
+</span></span><span style=display:flex><span>S-1-5-80-1636647319-4072889561-245816251-3892323420-125393640	hyperkbd
+</span></span><span style=display:flex><span>S-1-5-80-1568740187-908130129-1280451789-1901112753-2221687382	HyperVideo
+</span></span><span style=display:flex><span>S-1-5-80-2670277838-3947594761-3239889572-3393358898-1622853222	iagpio
+</span></span><span style=display:flex><span>S-1-5-80-2158641323-386083531-4194214369-34619318-3813434458	iai2c
+</span></span><span style=display:flex><span>S-1-5-80-1751987400-2816258287-31600907-3962047115-1737274117	iaLPSS2i_GPIO2
+</span></span><span style=display:flex><span>S-1-5-80-1111475540-466917029-2679550370-2578483454-692614412	iaLPSS2i_GPIO2_BXT_P
+</span></span><span style=display:flex><span>S-1-5-80-1739240851-3621344408-1713079411-1646377490-2636667785	iaLPSS2i_GPIO2_CNL
+</span></span><span style=display:flex><span>S-1-5-80-2673509282-3250608688-4161211656-2193043397-2070765280	iaLPSS2i_GPIO2_GLK
+</span></span><span style=display:flex><span>S-1-5-80-2560230824-2699639875-2946887507-2809778676-469529665	iaLPSS2i_I2C
+</span></span><span style=display:flex><span>S-1-5-80-12980661-1673373748-4127468638-2895847452-4070398594	iaLPSS2i_I2C_BXT_P
+</span></span><span style=display:flex><span>S-1-5-80-2145177943-2751001835-2841195933-1950876073-3621000904	iaLPSS2i_I2C_CNL
+</span></span><span style=display:flex><span>S-1-5-80-780176066-3721089017-3511631931-2580781662-523231243	iaLPSS2i_I2C_GLK
+</span></span><span style=display:flex><span>S-1-5-80-1532184652-4035834151-1950529856-1922329247-3348818483	iaLPSSi_GPIO
+</span></span><span style=display:flex><span>S-1-5-80-730113209-3859422966-2743155648-3421359225-3886647409	iaLPSSi_I2C
+</span></span><span style=display:flex><span>S-1-5-80-3323158773-131258738-3057376072-3701579410-1953672022	iaStorAV
+</span></span><span style=display:flex><span>S-1-5-80-2020084033-1359107645-3278428846-795142582-1815602196	iaStorAVC
+</span></span><span style=display:flex><span>S-1-5-80-3391758085-3386442682-1652486205-1841141806-1992729197	ibbus
+</span></span><span style=display:flex><span>S-1-5-80-3935728946-315639613-922904133-3250794525-491832002	icssvc
+</span></span><span style=display:flex><span>S-1-5-80-2392126525-1736915593-2210125632-2563158532-2616938475	IndirectKmd
+</span></span><span style=display:flex><span>S-1-5-80-2284069148-621670086-2606570695-3321162879-2563206788	InstallService
+</span></span><span style=display:flex><span>S-1-5-80-3327892994-1960904528-3982671949-1654996949-2464229733	intelpep
+</span></span><span style=display:flex><span>S-1-5-80-1900340034-3449890540-182776197-3466871519-875942235	intelpmax
+</span></span><span style=display:flex><span>S-1-5-80-3964494243-732302783-2234246214-3803256551-723791621	iorate
+</span></span><span style=display:flex><span>S-1-5-80-1954766798-2967939946-3605743322-553214224-2296400261	IPT
+</span></span><span style=display:flex><span>S-1-5-80-2355113075-3359631449-3346493237-3667020425-1655874352	IpxlatCfgSvc
+</span></span><span style=display:flex><span>S-1-5-80-3226934113-1398865432-993897477-3177498405-3382167683	ItSas35i
+</span></span><span style=display:flex><span>S-1-5-80-2148130874-1768494572-716210-54149643-3932447678	kbldfltr
+</span></span><span style=display:flex><span>S-1-5-80-2271880911-1251856977-1706928486-259807789-537220688	kdnic
+</span></span><span style=display:flex><span>S-1-5-80-2876499719-392125430-158013367-819050375-2387260967	ksthunk
+</span></span><span style=display:flex><span>S-1-5-80-3704025948-1094794811-1175534343-2088422159-783153058	lfsvc
+</span></span><span style=display:flex><span>S-1-5-80-2168654060-3115992504-1782388893-2584760693-2634250426	LicenseManager
+</span></span><span style=display:flex><span>S-1-5-80-828721388-3792639465-1596558500-741975338-1843353865	LSI_SAS2i
+</span></span><span style=display:flex><span>S-1-5-80-1292554068-3641467945-3524739894-1349342977-636852090	LSI_SAS3i
+</span></span><span style=display:flex><span>S-1-5-80-4045025553-2976580352-2420774707-2188590102-3192113229	LSI_SSS
+</span></span><span style=display:flex><span>S-1-5-80-1230977110-1477712667-2747199032-477530733-939374687	LSM
+</span></span><span style=display:flex><span>S-1-5-80-1594061079-2000966165-462148798-751814865-2644087104	LxpSvc
+</span></span><span style=display:flex><span>S-1-5-80-3028837079-3186095147-955107200-3701964851-1150726376	MapsBroker
+</span></span><span style=display:flex><span>S-1-5-80-3114654814-2921064011-1905572160-152804539-1417807178	mausbhost
+</span></span><span style=display:flex><span>S-1-5-80-1689786627-2800348145-589537150-160302296-3926153891	mausbip
+</span></span><span style=display:flex><span>S-1-5-80-482631164-113973055-3624764966-2186786627-2645029274	MbbCx
+</span></span><span style=display:flex><span>S-1-5-80-1346060813-323363712-587550660-3142329655-742851739	McpManagementService
+</span></span><span style=display:flex><span>S-1-5-80-1684110676-2342826027-2954792854-2461032557-4007556361	megasas2i
+</span></span><span style=display:flex><span>S-1-5-80-2869657570-1778740833-83850822-3186679656-2472655231	megasas35i
+</span></span><span style=display:flex><span>S-1-5-80-4024713676-1017792628-381990976-3540878265-1306153904	megasr
+</span></span><span style=display:flex><span>S-1-5-80-3999755614-3418583833-1896887384-2999918798-210212794	MessagingService
+</span></span><span style=display:flex><span>S-1-5-80-202946138-985291779-3159394747-43634094-4075641753	MessagingService_50fad
+</span></span><span style=display:flex><span>S-1-5-80-450487634-32044177-1119026171-1009345945-1629791242	MicrosoftEdgeElevationService
+</span></span><span style=display:flex><span>S-1-5-80-1290887583-3890804311-3227577290-3287571674-2651233138	Microsoft_Bluetooth_AvrcpTransport
+</span></span><span style=display:flex><span>S-1-5-80-1543190384-3367925291-586273452-2558737455-3425399499	MixedRealityOpenXRSvc
+</span></span><span style=display:flex><span>S-1-5-80-3755756047-2886117673-2566125725-1838300879-2590056170	mlx4_bus
+</span></span><span style=display:flex><span>S-1-5-80-3088073201-1464728630-1879813800-1107566885-823218052	mpssvc
+</span></span><span style=display:flex><span>S-1-5-80-766433145-569980108-2081788762-104033110-3841863914	MsBridge
+</span></span><span style=display:flex><span>S-1-5-80-61387632-1770052757-913906803-2764154990-1232092381	MSDTC Bridge 4.0.0.0
+</span></span><span style=display:flex><span>S-1-5-80-1709243854-2721926396-509980330-3397245316-2789600492	msgpiowin32
+</span></span><span style=display:flex><span>S-1-5-80-2335093085-4288963418-862046716-1348633750-1984735259	mshidumdf
+</span></span><span style=display:flex><span>S-1-5-80-3719317199-3405270365-2794832041-2304024896-2914089004	MsKeyboardFilter
+</span></span><span style=display:flex><span>S-1-5-80-2542081156-3563385132-3937647205-2588572414-2394664210	MsLldp
+</span></span><span style=display:flex><span>S-1-5-80-2804434951-625509142-572389148-2638030035-2993097285	MsQuic
+</span></span><span style=display:flex><span>S-1-5-80-3977605483-200570079-739940831-2932290302-2649018641	MsSecCore
+</span></span><span style=display:flex><span>S-1-5-80-1868534811-1113969215-1254686383-3122237719-2449736172	MsSecFlt
+</span></span><span style=display:flex><span>S-1-5-80-3642563950-456203802-1490755371-2601848954-63880797	MsSecWfp
+</span></span><span style=display:flex><span>S-1-5-80-4018724706-2388594414-778837249-3759549757-2342992247	mvumis
+</span></span><span style=display:flex><span>S-1-5-80-1693791390-661026542-4284378996-1616250691-2477593537	NaturalAuthentication
+</span></span><span style=display:flex><span>S-1-5-80-154974075-1852685594-3179713959-2755908004-3936262621	NcaSvc
+</span></span><span style=display:flex><span>S-1-5-80-3169048008-2586333165-76651690-3609634147-4147641610	NcbService
+</span></span><span style=display:flex><span>S-1-5-80-639065985-1709096039-2702309040-2770678766-2981280942	NcdAutoSetup
+</span></span><span style=display:flex><span>S-1-5-80-1929895091-2833432830-2697471735-1135988795-2264472352	ndfltr
+</span></span><span style=display:flex><span>S-1-5-80-375564701-3513094222-427343084-2529536460-2480510224	NdisImPlatform
+</span></span><span style=display:flex><span>S-1-5-80-1856495872-3151408123-1737732000-490184210-1622466692	NdisVirtualBus
+</span></span><span style=display:flex><span>S-1-5-80-3687920589-2211470767-2846922358-2300776228-356028302	ndiswanlegacy
+</span></span><span style=display:flex><span>S-1-5-80-1488665879-159185889-877450046-2151251822-3875779066	NDKPing
+</span></span><span style=display:flex><span>S-1-5-80-3999445478-1493703614-491198216-2250085872-3662815299	ndproxy
+</span></span><span style=display:flex><span>S-1-5-80-1235769596-2241049241-3512080025-3142132805-3400791542	Ndu
+</span></span><span style=display:flex><span>S-1-5-80-2475926400-260174619-1668875208-528473860-3272058262	NetAdapterCx
+</span></span><span style=display:flex><span>S-1-5-80-2038182892-1846284197-1242326240-2615352543-44767121	NetbiosSmb
+</span></span><span style=display:flex><span>S-1-5-80-3290392786-819420393-1694314755-3737624005-3552167228	NetSetupSvc
+</span></span><span style=display:flex><span>S-1-5-80-3551186791-2451211144-2320551185-397537932-3221552100	netvsc
+</span></span><span style=display:flex><span>S-1-5-80-2381253463-2694003897-3435975801-3559003598-683041300	NgcCtnrSvc
+</span></span><span style=display:flex><span>S-1-5-80-1999281942-4196217620-51267815-1628483199-606183737	NgcSvc
+</span></span><span style=display:flex><span>S-1-5-80-389868755-419489745-3026704534-2242740522-2006634936	npsvctrig
+</span></span><span style=display:flex><span>S-1-5-80-3903180505-3896017075-4285990333-2375284902-1925993444	nvdimm
+</span></span><span style=display:flex><span>S-1-5-80-3753458296-2578515382-296172075-2568624853-485985677	OneSyncSvc
+</span></span><span style=display:flex><span>S-1-5-80-3515428-2931623117-804653153-3478930650-257201455	OneSyncSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-3145084533-2700894668-2078824647-1465192519-3266618331	pdc
+</span></span><span style=display:flex><span>S-1-5-80-4215928932-1248355774-1205732377-1093571376-2379325634	perceptionsimulation
+</span></span><span style=display:flex><span>S-1-5-80-1046995410-3007147168-922272172-967041193-3794187727	percsas2i
+</span></span><span style=display:flex><span>S-1-5-80-42157666-624349265-169177574-52107575-3728749841	percsas3i
+</span></span><span style=display:flex><span>S-1-5-80-3596911058-2952229928-1888671852-1743692427-614402820	PerfHost
+</span></span><span style=display:flex><span>S-1-5-80-2636612206-2079418197-1004231589-1812192203-4197254245	PhoneSvc
+</span></span><span style=display:flex><span>S-1-5-80-2428418161-1754247685-758903264-2475084861-4167363882	PimIndexMaintenanceSvc
+</span></span><span style=display:flex><span>S-1-5-80-3410280176-3299602888-1332419371-1911054326-2542463980	PimIndexMaintenanceSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-2785576034-242416339-385417889-2054053173-3638954698	PktMon
+</span></span><span style=display:flex><span>S-1-5-80-3355885494-318102177-1313724702-1621550881-803011355	pmem
+</span></span><span style=display:flex><span>S-1-5-80-3239442711-4074742016-684152919-2253013163-2274039561	PNPMEM
+</span></span><span style=display:flex><span>S-1-5-80-3082810783-1413926421-1831856127-837733229-953361461	portcfg
+</span></span><span style=display:flex><span>S-1-5-80-1250897762-2760119941-576021590-2872322938-624617480	PrintNotify
+</span></span><span style=display:flex><span>S-1-5-80-3011530997-228986608-3623458339-2361303491-1043592577	PrintWorkflowUserSvc
+</span></span><span style=display:flex><span>S-1-5-80-1552224136-2279772909-4069248841-1973210782-3001653797	PrintWorkflowUserSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-2949785411-1458004381-4011503523-1439849274-3428788682	PushToInstall
+</span></span><span style=display:flex><span>S-1-5-80-1681795462-3431334705-92433549-1962541325-160118133	Ramdisk
+</span></span><span style=display:flex><span>S-1-5-80-2223301817-4248418169-3249847036-321434835-1272792247	RDMANDK
+</span></span><span style=display:flex><span>S-1-5-80-1934309797-2043993622-339923705-3871978825-766431271	RDPUDD
+</span></span><span style=display:flex><span>S-1-5-80-3072462152-34466603-861212222-1753422877-4071721522	RdpVideoMiniport
+</span></span><span style=display:flex><span>S-1-5-80-1596569074-2677311441-962104887-2749517281-2857086053	ReFS
+</span></span><span style=display:flex><span>S-1-5-80-2316697869-4025289487-468236631-2575080373-2608813053	ReFSv1
+</span></span><span style=display:flex><span>S-1-5-80-457603595-166122335-4119162879-888033224-3685571132	RetailDemo
+</span></span><span style=display:flex><span>S-1-5-80-2932307366-730193993-4255125875-3321969383-2534286350	RFCOMM
+</span></span><span style=display:flex><span>S-1-5-80-3216188369-3897538938-543323431-4144952942-4182718943	rhproxy
+</span></span><span style=display:flex><span>S-1-5-80-3765985997-1043742756-2756022526-3497566756-2081646175	RmSvc
+</span></span><span style=display:flex><span>S-1-5-80-3993802144-2555107232-3516638766-2735499450-3275915967	ScDeviceEnum
+</span></span><span style=display:flex><span>S-1-5-80-739156932-4202345562-1098723576-2529635932-2179704457	scmbus
+</span></span><span style=display:flex><span>S-1-5-80-3730768523-2660761635-2080149804-588026050-2891317352	sdbus
+</span></span><span style=display:flex><span>S-1-5-80-2993119251-3416827737-2039089254-2988278179-172925588	SDFRd
+</span></span><span style=display:flex><span>S-1-5-80-106427005-851153787-2361826242-1841078065-3276170637	sdstor
+</span></span><span style=display:flex><span>S-1-5-80-259296475-4084429506-1152984619-38739575-565535606	SecurityHealthService
+</span></span><span style=display:flex><span>S-1-5-80-2226967063-754826275-1661302337-2802353169-2369347280	SEMgrSvc
+</span></span><span style=display:flex><span>S-1-5-80-1523878533-411328482-2798077809-3098663872-2604013308	Sense
+</span></span><span style=display:flex><span>S-1-5-80-3835358604-2805616403-1686431098-2148037164-3679743528	SensorDataService
+</span></span><span style=display:flex><span>S-1-5-80-869152694-422618349-3448047118-1397179936-2828741493	SensorService
+</span></span><span style=display:flex><span>S-1-5-80-3391662211-1836087953-1525834830-1506885508-682969218	SerCx
+</span></span><span style=display:flex><span>S-1-5-80-3290564682-3359114709-1529561987-4148060287-271116923	SerCx2
+</span></span><span style=display:flex><span>S-1-5-80-1582054788-470990004-40152839-730814383-1124151202	SgrmAgent
+</span></span><span style=display:flex><span>S-1-5-80-3706850399-3459138796-2835936764-562029542-397710147	SgrmBroker
+</span></span><span style=display:flex><span>S-1-5-80-3246321066-2451215914-3422911474-2201726393-166328789	SharedRealitySvc
+</span></span><span style=display:flex><span>S-1-5-80-4106268995-3617844033-680706512-3896918354-2380077472	shpamsvc
+</span></span><span style=display:flex><span>S-1-5-80-3842628764-1253170212-1172882037-4289227758-4267631040	SmartSAMD
+</span></span><span style=display:flex><span>S-1-5-80-1821507682-1115666477-1591553307-1734210999-3312719974	smbdirect
+</span></span><span style=display:flex><span>S-1-5-80-230328282-2568015442-686465752-3474446193-2137307224	smphost
+</span></span><span style=display:flex><span>S-1-5-80-2950457502-2299174248-3328245479-1326271200-3113355612	SmsRouter
+</span></span><span style=display:flex><span>S-1-5-80-217413056-3833387362-178569430-1954288181-1272411947	SMSvcHost 4.0.0.0
+</span></span><span style=display:flex><span>S-1-5-80-2030916845-920430783-420616369-4268599728-1745276005	spaceparser
+</span></span><span style=display:flex><span>S-1-5-80-3804375463-2979979117-3280645550-3527107762-3022760719	spaceport
+</span></span><span style=display:flex><span>S-1-5-80-664203522-3160570195-1635065499-2708521076-3299712393	SpatialGraphFilter
+</span></span><span style=display:flex><span>S-1-5-80-3979690135-2752926531-2282419748-2415739691-1066856619	SpbCx
+</span></span><span style=display:flex><span>S-1-5-80-2731152606-4244467407-1946816704-3721569673-479255522	spectrum
+</span></span><span style=display:flex><span>S-1-5-80-2277354432-2697620045-1656008878-1855416240-261295475	ssh-agent
+</span></span><span style=display:flex><span>S-1-5-80-4118144674-975173503-976751360-2062754009-4288402176	StateRepository
+</span></span><span style=display:flex><span>S-1-5-80-3182985763-1431228038-2757062859-428472846-3914011746	stisvc
+</span></span><span style=display:flex><span>S-1-5-80-341174513-3036333638-3617001766-2776055326-2809179524	storahci
+</span></span><span style=display:flex><span>S-1-5-80-4243609067-2923323804-3669886039-3498181113-4202203050	stornvme
+</span></span><span style=display:flex><span>S-1-5-80-2198686546-2221861197-1858316108-2015056224-400908585	storqosflt
+</span></span><span style=display:flex><span>S-1-5-80-2019411066-3003329723-2609168412-3625837524-2221108837	storufs
+</span></span><span style=display:flex><span>S-1-5-80-2483706823-3321877870-553300257-593996131-450212729	svsvc
+</span></span><span style=display:flex><span>S-1-5-80-927584136-3246479672-3996289350-2713334021-2098405977	Synth3dVsc
+</span></span><span style=display:flex><span>S-1-5-80-1662832393-3268938575-4001313665-1200257238-783911988	SystemEventsBroker
+</span></span><span style=display:flex><span>S-1-5-80-842221325-3630721446-2015653073-424833842-1069621030	Tcpip6
+</span></span><span style=display:flex><span>S-1-5-80-1003279123-1651757316-1243245493-3539186934-1753552613	Telemetry
+</span></span><span style=display:flex><span>S-1-5-80-3141112300-3466319987-880208219-2791244925-2953947883	terminpt
+</span></span><span style=display:flex><span>S-1-5-80-427241336-4111990062-2791250970-2845566439-1217505164	TieringEngineService
+</span></span><span style=display:flex><span>S-1-5-80-410965207-2550896871-1717734767-2321332215-3755966139	TimeBrokerSvc
+</span></span><span style=display:flex><span>S-1-5-80-4077216321-3151206942-641340059-4241647091-1300899357	TokenBroker
+</span></span><span style=display:flex><span>S-1-5-80-325036955-4200148024-1479951852-2634116931-2865895459	TPM
+</span></span><span style=display:flex><span>S-1-5-80-1139522462-2689595747-457373284-4037083511-4201549542	TroubleshootingSvc
+</span></span><span style=display:flex><span>S-1-5-80-3547539953-1452514991-991928397-2821742631-2888215071	TsUsbFlt
+</span></span><span style=display:flex><span>S-1-5-80-651631395-3385332028-373277408-2457879084-1955742111	TsUsbGD
+</span></span><span style=display:flex><span>S-1-5-80-2292203918-1506848946-3955473809-4024494573-4108135173	tsusbhub
+</span></span><span style=display:flex><span>S-1-5-80-3641914668-2724251012-1186334157-2460844255-322272688	tzautoupdate
+</span></span><span style=display:flex><span>S-1-5-80-3033002672-3264167506-3374793840-2611327823-1324250788	UASPStor
+</span></span><span style=display:flex><span>S-1-5-80-3559279508-480464440-2060053639-2450836018-584673110	UcmCx0101
+</span></span><span style=display:flex><span>S-1-5-80-986347966-4291837576-3105858776-4112886612-1615276934	UcmTcpciCx0101
+</span></span><span style=display:flex><span>S-1-5-80-2946873420-2809826944-3342656785-1798640712-1793966795	UcmUcsiAcpiClient
+</span></span><span style=display:flex><span>S-1-5-80-3947455493-1779752151-1865639843-1092346862-2012747891	UcmUcsiCx0101
+</span></span><span style=display:flex><span>S-1-5-80-3476958810-2644384738-2655413726-1639285643-1444265662	Ucx01000
+</span></span><span style=display:flex><span>S-1-5-80-227846823-3077342265-3698762170-815164292-2633305508	UdeCx
+</span></span><span style=display:flex><span>S-1-5-80-2008930627-2960539461-4086452603-1305618659-1299222103	UdkUserSvc
+</span></span><span style=display:flex><span>S-1-5-80-2960622349-2603655608-463014845-353330955-2631882611	UdkUserSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-259741192-1658403178-390766877-3226735796-603445823	UEFI
+</span></span><span style=display:flex><span>S-1-5-80-3429946394-717031342-3915206314-2329540128-2872892288	UevAgentDriver
+</span></span><span style=display:flex><span>S-1-5-80-1639943639-1314739636-372181295-777240325-3530900257	UevAgentService
+</span></span><span style=display:flex><span>S-1-5-80-1983721769-1446015346-1638820087-833790554-4117195697	Ufx01000
+</span></span><span style=display:flex><span>S-1-5-80-2486803200-2786917169-1479676890-818817034-2254858114	UfxChipidea
+</span></span><span style=display:flex><span>S-1-5-80-3461039289-3711732118-2967254728-2566641523-4135479736	ufxsynopsys
+</span></span><span style=display:flex><span>S-1-5-80-951045732-3304998411-4140413591-2375454759-2566081399	UnistoreSvc
+</span></span><span style=display:flex><span>S-1-5-80-1232783531-1412289346-3408063018-2430219916-590553325	UnistoreSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-948646300-214352964-3153699637-3534669071-395810831	UrsChipidea
+</span></span><span style=display:flex><span>S-1-5-80-311046983-1549683341-1485789459-3189993376-3259784172	UrsCx01000
+</span></span><span style=display:flex><span>S-1-5-80-3858170093-3095794678-3940928812-3402197675-2417274444	UrsSynopsys
+</span></span><span style=display:flex><span>S-1-5-80-1038357558-2508750332-1127516358-2098882773-1571978916	usbaudio
+</span></span><span style=display:flex><span>S-1-5-80-3715696977-77976676-2422196092-1701963391-244329408	usbaudio2
+</span></span><span style=display:flex><span>S-1-5-80-2532058633-1854360046-4195713749-973563373-2229526857	USBHUB3
+</span></span><span style=display:flex><span>S-1-5-80-322830934-407560818-413383929-2953137197-2859522744	usbser
+</span></span><span style=display:flex><span>S-1-5-80-811199202-3756583514-1800339595-8156802-767824446	USBXHCI
+</span></span><span style=display:flex><span>S-1-5-80-2995899262-2131376444-1860748247-2210972999-1941275431	UserDataSvc
+</span></span><span style=display:flex><span>S-1-5-80-339627148-1085118590-1191147914-145126631-47496027	UserDataSvc_50fad
+</span></span><span style=display:flex><span>S-1-5-80-2008603874-3981339663-2468433650-2111681540-3858834245	UserManager
+</span></span><span style=display:flex><span>S-1-5-80-223807737-1693445485-119162242-1977420160-1403034029	UsoSvc
+</span></span><span style=display:flex><span>S-1-5-80-1989757894-211065159-731672622-1783776043-3948168785	VacSvc
+</span></span><span style=display:flex><span>S-1-5-80-2231687835-1975921998-2379643093-1123054981-1892632637	VerifierExt
+</span></span><span style=display:flex><span>S-1-5-80-2337629457-4082528419-1990172282-783805348-776062068	vhf
+</span></span><span style=display:flex><span>S-1-5-80-4056652736-3832535469-1849010726-800110142-2900318757	Vid
+</span></span><span style=display:flex><span>S-1-5-80-4005553843-2860153778-2672767370-1614289598-2532660634	VirtualRender
+</span></span><span style=display:flex><span>S-1-5-80-3419770058-1088902930-2242902800-2505332296-3985202246	vmgid
+</span></span><span style=display:flex><span>S-1-5-80-3074984378-4122987768-2130325677-2031866499-3405430279	vmicguestinterface
+</span></span><span style=display:flex><span>S-1-5-80-534935901-3437432317-481271085-1710633381-983106267	vmicheartbeat
+</span></span><span style=display:flex><span>S-1-5-80-1877308096-3090306141-3032871208-3115266146-1400827410	vmickvpexchange
+</span></span><span style=display:flex><span>S-1-5-80-3076811988-2254870394-2658297454-3934945422-2393138642	vmicrdv
+</span></span><span style=display:flex><span>S-1-5-80-3110303136-3426481729-3186938678-1087894076-2178433439	vmicshutdown
+</span></span><span style=display:flex><span>S-1-5-80-3098585136-2538892366-1097114017-2832417424-2016953023	vmictimesync
+</span></span><span style=display:flex><span>S-1-5-80-235582178-102246843-358262472-4132936818-1867412993	vmicvmsession
+</span></span><span style=display:flex><span>S-1-5-80-1752088424-1054500994-3489791022-3310831482-3926524968	vmicvss
+</span></span><span style=display:flex><span>S-1-5-80-2476029939-3227366791-4018265514-4032530291-4172793725	volume
+</span></span><span style=display:flex><span>S-1-5-80-1770745653-882454895-2389083440-3735684190-802018898	vpci
+</span></span><span style=display:flex><span>S-1-5-80-1072045427-3277916734-2175442256-760694638-1728218837	VSTXRAID
+</span></span><span style=display:flex><span>S-1-5-80-3303534547-3920260423-752829696-1552054067-268166277	vwififlt
+</span></span><span style=display:flex><span>S-1-5-80-2169053098-454685327-3448947123-3791923320-414336915	WaaSMedicSvc
+</span></span><span style=display:flex><span>S-1-5-80-1874328037-1620432936-4113708365-722077214-3851787529	WalletService
+</span></span><span style=display:flex><span>S-1-5-80-145391760-3682396335-1395736941-2543690743-1822485816	wanarp
+</span></span><span style=display:flex><span>S-1-5-80-3957613141-1606606214-622769385-3049525404-2510868034	wanarpv6
+</span></span><span style=display:flex><span>S-1-5-80-2145785123-2886438689-3072542501-3020378507-1504386134	WarpJITSvc
+</span></span><span style=display:flex><span>S-1-5-80-1468946484-2183346801-2582215073-2203958287-114577455	wcifs
+</span></span><span style=display:flex><span>S-1-5-80-4155767994-3874329934-3800885181-2130851812-726865888	Wcmsvc
+</span></span><span style=display:flex><span>S-1-5-80-486657452-3436462838-2743705563-1382716400-3286987141	wcnfs
+</span></span><span style=display:flex><span>S-1-5-80-3188579509-896559776-1549670742-2760322350-3311614235	WdBoot
+</span></span><span style=display:flex><span>S-1-5-80-2003142183-3009844670-3971145999-3073937758-3917121208	WdFilter
+</span></span><span style=display:flex><span>S-1-5-80-499275411-3916059529-905482537-4117857359-1999665194	wdiwifi
+</span></span><span style=display:flex><span>S-1-5-80-2105769960-3462231971-121635667-3410645665-2561607156	WdmCompanionFilter
+</span></span><span style=display:flex><span>S-1-5-80-2946744033-2833218566-1164540619-314168540-3391284662	WdNisDrv
+</span></span><span style=display:flex><span>S-1-5-80-3668810961-2468724468-4084584310-3029221373-430494444	WdNisSvc
+</span></span><span style=display:flex><span>S-1-5-80-1282825935-788281630-359899028-1878232204-2860951615	WEPHOSTSVC
+</span></span><span style=display:flex><span>S-1-5-80-1495648203-2503502111-1597754693-3445174711-1316708627	WFDSConMgrSvc
+</span></span><span style=display:flex><span>S-1-5-80-2768376765-85268660-951480638-2317617532-3422828864	WFPLWFS
+</span></span><span style=display:flex><span>S-1-5-80-533360197-2630880149-807505739-2151714924-2570839994	WiaRpc
+</span></span><span style=display:flex><span>S-1-5-80-3488966095-3237316714-2152248236-3202922946-3275547626	Windows Workflow Foundation 4.0.0.0
+</span></span><span style=display:flex><span>S-1-5-80-1314485122-3970895080-1653179290-3214604197-56682579	WindowsTrustedRT
+</span></span><span style=display:flex><span>S-1-5-80-2899914805-2506168806-919368875-2051509565-976885860	WindowsTrustedRTProxy
+</span></span><span style=display:flex><span>S-1-5-80-350045039-4213533676-3741949053-609707664-895491048	WinMad
+</span></span><span style=display:flex><span>S-1-5-80-4015764710-1917268369-2628323210-1820452808-4095801055	WinNat
+</span></span><span style=display:flex><span>S-1-5-80-2971715461-3208067863-1422018366-770925591-1162363329	WINUSB
+</span></span><span style=display:flex><span>S-1-5-80-1409370327-2262994431-3181734005-3492817815-127119016	WinVerbs
+</span></span><span style=display:flex><span>S-1-5-80-2429767553-128593128-2427591838-1778256749-2155598187	wisvc
+</span></span><span style=display:flex><span>S-1-5-80-1428027539-3309602793-2678353003-1498846795-3763184142	WlanSvc
+</span></span><span style=display:flex><span>S-1-5-80-2952724807-2252311773-3412998076-2712868122-780978283	wlidsvc
+</span></span><span style=display:flex><span>S-1-5-80-3916113136-2435487254-2535488001-4050622930-2364918814	wlpasvc
+</span></span><span style=display:flex><span>S-1-5-80-3577588319-513283748-931039988-2701962192-2148388740	WManSvc
+</span></span><span style=display:flex><span>S-1-5-80-1635442456-4231674260-3066288937-1147435026-1365933032	Wof
+</span></span><span style=display:flex><span>S-1-5-80-3413159032-3694667005-1396569551-1250786377-1429361823	workerdd
+</span></span><span style=display:flex><span>S-1-5-80-3006764832-2469330069-4024865495-2754276538-3243839463	workfolderssvc
+</span></span><span style=display:flex><span>S-1-5-80-2657955583-569354589-921901904-1883788092-850583853	WpcMonSvc
+</span></span><span style=display:flex><span>S-1-5-80-358856340-4190185137-1150018170-4132368399-2594611401	WpdUpFltr
+</span></span><span style=display:flex><span>S-1-5-80-1938892561-4120931771-3580170924-3403102300-2651602529	WpnService
+</span></span><span style=display:flex><span>S-1-5-80-951620777-1059631183-2804607755-3010024351-809615488	WpnUserService
+</span></span><span style=display:flex><span>S-1-5-80-1069300804-2231982870-930986846-425802403-2676852813	WpnUserService_50fad
+</span></span><span style=display:flex><span>S-1-5-80-1803441692-2341117941-3526855333-3767870088-2684717574	WUDFWpdFs
+</span></span><span style=display:flex><span>S-1-5-80-472864980-3821642676-709327584-2321888604-4243627364	XblAuthManager
+</span></span><span style=display:flex><span>S-1-5-80-2649222292-2060825207-2866066902-505902355-282187514	XblGameSave
+</span></span><span style=display:flex><span>S-1-5-80-794853676-1269112726-2386671565-1760138502-3367587780	xboxgip
+</span></span><span style=display:flex><span>S-1-5-80-3605394182-687838168-1441221562-1662690741-4241567093	XboxGipSvc
+</span></span><span style=display:flex><span>S-1-5-80-1352715831-1104254428-97934242-2131353953-1898040052	XboxNetApiSvc
+</span></span><span style=display:flex><span>S-1-5-80-1281037624-1782002805-990284447-3522102690-2853398433	xinputhid
+</span></span></code></pre></div><h3 id=3-open-ports>3. Open ports</h3><p><img src=/seguridad/forense/img/Pastedimage20240206211730.png alt></p><p>Volatility seems to have no support for this functionality for Windows 10 / 11, so I will do it from the machine&rsquo;s own powershell:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>(</span>volatility<span style=color:#f92672>)</span> javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f <span style=color:#e6db74>&#34;/mnt/vdb/memoria/memdump.mem&#34;</span> windows.netstat 
+</span></span><span style=display:flex><span>Volatility <span style=color:#ae81ff>3</span> Framework 2.5.2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>PS C:<span style=color:#ae81ff>\W</span>indows<span style=color:#ae81ff>\s</span>ystem32&gt; Get-NetTCPConnection | Where-Object <span style=color:#f92672>{</span>$_.State -eq <span style=color:#e6db74>&#39;Listen&#39;</span><span style=color:#f92672>}</span> | Select-Object LocalAddress, LocalPort
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>LocalAddress    LocalPort
+</span></span><span style=display:flex><span>------------    ---------
+</span></span><span style=display:flex><span>::                  <span style=color:#ae81ff>49670</span>
+</span></span><span style=display:flex><span>::                  <span style=color:#ae81ff>49669</span>
+</span></span><span style=display:flex><span>::                  <span style=color:#ae81ff>49668</span>
+</span></span><span style=display:flex><span>::                  <span style=color:#ae81ff>49667</span>
+</span></span><span style=display:flex><span>::                  <span style=color:#ae81ff>49666</span>
+</span></span><span style=display:flex><span>::                  <span style=color:#ae81ff>49665</span>
+</span></span><span style=display:flex><span>::                  <span style=color:#ae81ff>49664</span>
+</span></span><span style=display:flex><span>::                   <span style=color:#ae81ff>7680</span>
+</span></span><span style=display:flex><span>::                   <span style=color:#ae81ff>5357</span>
+</span></span><span style=display:flex><span>::                   <span style=color:#ae81ff>3389</span>
+</span></span><span style=display:flex><span>::                    <span style=color:#ae81ff>445</span>
+</span></span><span style=display:flex><span>::                    <span style=color:#ae81ff>135</span>
+</span></span><span style=display:flex><span>0.0.0.0             <span style=color:#ae81ff>49670</span>
+</span></span><span style=display:flex><span>0.0.0.0             <span style=color:#ae81ff>49669</span>
+</span></span><span style=display:flex><span>0.0.0.0             <span style=color:#ae81ff>49668</span>
+</span></span><span style=display:flex><span>0.0.0.0             <span style=color:#ae81ff>49667</span>
+</span></span><span style=display:flex><span>0.0.0.0             <span style=color:#ae81ff>49666</span>
+</span></span><span style=display:flex><span>0.0.0.0             <span style=color:#ae81ff>49665</span>
+</span></span><span style=display:flex><span>0.0.0.0             <span style=color:#ae81ff>49664</span>
+</span></span><span style=display:flex><span>0.0.0.0              <span style=color:#ae81ff>5040</span>
+</span></span><span style=display:flex><span>0.0.0.0              <span style=color:#ae81ff>3389</span>
+</span></span><span style=display:flex><span>192.168.122.203       <span style=color:#ae81ff>139</span>
+</span></span><span style=display:flex><span>0.0.0.0               <span style=color:#ae81ff>135</span>
+</span></span></code></pre></div><h3 id=4-connections-established-by-the-machine>4. Connections established by the machine</h3><p>Like the above point, it seems that volatility has no support for the current versions of windows:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>(</span>volatility<span style=color:#f92672>)</span> javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f <span style=color:#e6db74>&#34;/mnt/vdb/memoria/memdump.mem&#34;</span> windows.netscan.NetScan
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>PS C:<span style=color:#ae81ff>\W</span>indows<span style=color:#ae81ff>\s</span>ystem32&gt; Get-NetTCPConnection | Where-Object <span style=color:#f92672>{</span>$_.State -eq <span style=color:#e6db74>&#39;Established&#39;</span> -and $_.LocalAddress -ne <span style=color:#e6db74>&#39;127.0.0.1&#39;</span><span style=color:#f92672>}</span> | Select-Object LocalAddress, LocalPort, RemoteAddress, RemotePort, State
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>LocalAddress  : 192.168.122.203
+</span></span><span style=display:flex><span>LocalPort     : <span style=color:#ae81ff>49855</span>
+</span></span><span style=display:flex><span>RemoteAddress : 142.250.200.138
+</span></span><span style=display:flex><span>RemotePort    : <span style=color:#ae81ff>443</span>
+</span></span><span style=display:flex><span>State         : Established
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>LocalAddress  : 192.168.122.203
+</span></span><span style=display:flex><span>LocalPort     : <span style=color:#ae81ff>49853</span>
+</span></span><span style=display:flex><span>RemoteAddress : 184.28.177.55
+</span></span><span style=display:flex><span>RemotePort    : <span style=color:#ae81ff>80</span>
+</span></span><span style=display:flex><span>State         : Established
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>LocalAddress  : 192.168.122.203
+</span></span><span style=display:flex><span>LocalPort     : <span style=color:#ae81ff>49846</span>
+</span></span><span style=display:flex><span>RemoteAddress : 2.20.253.149
+</span></span><span style=display:flex><span>RemotePort    : <span style=color:#ae81ff>443</span>
+</span></span><span style=display:flex><span>State         : Established
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>LocalAddress  : 192.168.122.203
+</span></span><span style=display:flex><span>LocalPort     : <span style=color:#ae81ff>49845</span>
+</span></span><span style=display:flex><span>RemoteAddress : 184.28.177.9
+</span></span><span style=display:flex><span>RemotePort    : <span style=color:#ae81ff>443</span>
+</span></span><span style=display:flex><span>State         : Established
+</span></span></code></pre></div><h3 id=5-user-sessions-set-remotely>5. User sessions set remotely</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>(</span>volatility<span style=color:#f92672>)</span> javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f <span style=color:#e6db74>&#34;/mnt/vdb/memoria/memdump.mem&#34;</span> windows.sessions.Sessions
+</span></span><span style=display:flex><span>Volatility <span style=color:#ae81ff>3</span> Framework 2.5.2
+</span></span><span style=display:flex><span>Progress:  100.00		PDB scanning finished                        
+</span></span><span style=display:flex><span>Session ID	Session Type	Process ID	Process	User Name	Create Time
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>N/A	-	4	System	-	2024-02-05 19:30:59.000000 
+</span></span><span style=display:flex><span>N/A	-	92	Registry	-	2024-02-05 19:30:56.000000 
+</span></span><span style=display:flex><span>N/A	-	344	smss.exe	-	2024-02-05 19:30:59.000000 
+</span></span><span style=display:flex><span>0	-	448	csrss.exe	/SYSTEM	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>0	-	516	wininit.exe	/SYSTEM	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>0	-	648	services.exe	/SYSTEM	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>0	-	668	lsass.exe	/SYSTEM	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>0	-	768	fontdrvhost.ex	Font Driver Host/UMFD-0	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>0	-	788	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>0	-	880	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>0	-	400	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	444	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	584	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1032	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1040	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1244	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1460	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1520	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1572	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1924	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1956	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1052	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1068	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1232	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	1568	spoolsv.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	2052	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>0	-	2300	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:17.000000 
+</span></span><span style=display:flex><span>0	-	2412	MsMpEng.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:17.000000 
+</span></span><span style=display:flex><span>0	-	2868	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:18.000000 
+</span></span><span style=display:flex><span>0	-	3044	dasHost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:18.000000 
+</span></span><span style=display:flex><span>0	-	664	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:19.000000 
+</span></span><span style=display:flex><span>0	-	3868	WUDFHost.exe	/SYSTEM	2024-02-05 19:31:38.000000 
+</span></span><span style=display:flex><span>0	-	3068	NisSrv.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:39.000000 
+</span></span><span style=display:flex><span>0	-	4452	SearchIndexer.	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:40.000000 
+</span></span><span style=display:flex><span>0	-	5828	WmiPrvSE.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:44.000000 
+</span></span><span style=display:flex><span>0	-	6028	GoogleCrashHan	-	2024-02-05 19:31:45.000000 
+</span></span><span style=display:flex><span>0	-	6092	GoogleCrashHan	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:45.000000 
+</span></span><span style=display:flex><span>0	-	3236	SecurityHealth	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:54.000000 
+</span></span><span style=display:flex><span>0	-	7020	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:33:17.000000 
+</span></span><span style=display:flex><span>0	-	4788	SgrmBroker.exe	-	2024-02-05 19:33:18.000000 
+</span></span><span style=display:flex><span>0	-	760	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:33:18.000000 
+</span></span><span style=display:flex><span>1	-	528	csrss.exe	/SYSTEM	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>1	-	612	winlogon.exe	/SYSTEM	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>1	-	776	fontdrvhost.ex	Font Driver Host/UMFD-1	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>1	-	988	dwm.exe	/SYSTEM	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>1	-	996	LogonUI.exe	/SYSTEM	2024-02-05 19:31:15.000000 
+</span></span><span style=display:flex><span>N/A	-	1768	MemCompression	-	2024-02-05 19:31:16.000000 
+</span></span><span style=display:flex><span>2	-	3792	csrss.exe	/SYSTEM	2024-02-05 19:31:38.000000 
+</span></span><span style=display:flex><span>2	-	3840	winlogon.exe	/SYSTEM	2024-02-05 19:31:38.000000 
+</span></span><span style=display:flex><span>2	-	3960	fontdrvhost.ex	Font Driver Host/UMFD-2	2024-02-05 19:31:38.000000 
+</span></span><span style=display:flex><span>2	-	4020	dwm.exe	/SYSTEM	2024-02-05 19:31:38.000000 
+</span></span><span style=display:flex><span>2	-	3456	rdpclip.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000 
+</span></span><span style=display:flex><span>2	-	3616	sihost.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000 
+</span></span><span style=display:flex><span>2	-	3400	svchost.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000 
+</span></span><span style=display:flex><span>2	-	3188	taskhostw.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000 
+</span></span><span style=display:flex><span>2	-	3344	ctfmon.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000 
+</span></span><span style=display:flex><span>2	-	4208	userinit.exe	-	2024-02-05 19:31:40.000000 
+</span></span><span style=display:flex><span>2	RDP-Tcp#1	4236	explorer.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:40.000000 
+</span></span><span style=display:flex><span>2	-	4388	svchost.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:40.000000 
+</span></span><span style=display:flex><span>2	-	4876	StartMenuExper	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:41.000000 
+</span></span><span style=display:flex><span>2	-	5096	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:42.000000 
+</span></span><span style=display:flex><span>2	-	4732	SearchApp.exe	-	2024-02-05 19:31:42.000000 
+</span></span><span style=display:flex><span>2	-	5184	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:42.000000 
+</span></span><span style=display:flex><span>2	-	3740	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:52.000000 
+</span></span><span style=display:flex><span>2	-	1912	smartscreen.ex	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:54.000000 
+</span></span><span style=display:flex><span>2	RDP-Tcp#1	3524	SecurityHealth	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:54.000000 
+</span></span><span style=display:flex><span>2	RDP-Tcp#1	820	OneDrive.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:55.000000 
+</span></span><span style=display:flex><span>2	RDP-Tcp#1	6128	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:56.000000 
+</span></span><span style=display:flex><span>2	-	2040	chrome.exe	-	2024-02-05 19:31:57.000000 
+</span></span><span style=display:flex><span>2	RDP-Tcp#1	5404	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000 
+</span></span><span style=display:flex><span>2	RDP-Tcp#1	5392	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000 
+</span></span><span style=display:flex><span>2	RDP-Tcp#1	5348	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000 
+</span></span><span style=display:flex><span>2	-	5496	chrome.exe	-	2024-02-05 19:31:57.000000 
+</span></span><span style=display:flex><span>2	-	6184	chrome.exe	-	2024-02-05 19:31:57.000000 
+</span></span><span style=display:flex><span>2	-	6200	chrome.exe	-	2024-02-05 19:31:57.000000 
+</span></span><span style=display:flex><span>2	-	6380	TextInputHost.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000 
+</span></span><span style=display:flex><span>2	-	6556	dllhost.exe	-	2024-02-05 19:31:58.000000 
+</span></span><span style=display:flex><span>2	-	6156	chrome.exe	-	2024-02-05 19:33:00.000000 
+</span></span><span style=display:flex><span>2	-	5284	chrome.exe	-	2024-02-05 19:33:00.000000 
+</span></span><span style=display:flex><span>2	-	4036	chrome.exe	-	2024-02-05 19:33:05.000000 
+</span></span><span style=display:flex><span>2	-	6916	FTK Imager.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:11.000000 
+</span></span><span style=display:flex><span>2	-	6044	ApplicationFra	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:14.000000 
+</span></span><span style=display:flex><span>2	-	6104	Calculator.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:14.000000 
+</span></span><span style=display:flex><span>2	-	5864	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:14.000000 
+</span></span><span style=display:flex><span>2	-	7348	HxCalendarAppI	-	2024-02-05 19:33:20.000000 
+</span></span><span style=display:flex><span>2	-	7412	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:20.000000 
+</span></span><span style=display:flex><span>2	-	7476	HxTsr.exe	-	2024-02-05 19:33:20.000000 
+</span></span><span style=display:flex><span>2	-	7816	Taskmgr.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:22.000000 
+</span></span><span style=display:flex><span>2	-	8072	explorer.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:34.000000 
+</span></span><span style=display:flex><span>2	-	7256	PaintStudio.Vi	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:39.000000 
+</span></span><span style=display:flex><span>2	-	7796	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:40.000000 
+</span></span><span style=display:flex><span>2	-	900	Time.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:42.000000 
+</span></span><span style=display:flex><span>2	-	2132	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:43.000000 
+</span></span></code></pre></div><h3 id=6-ficheros-recently-transferred-by-netbios>6. Ficheros recently transferred by NetBios</h3><p>Volatility has no support for this function:</p><p>Being in an isolated network without any other Windows, files have not been transferred using this protocol</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ps data-lang=ps><span style=display:flex><span><span style=color:#a6e22e>PS</span> <span style=color:#a6e22e>C:\Windows\system32</span>&gt; <span style=color:#a6e22e>Get-WinEvent</span> <span style=color:#a6e22e>-LogName</span> <span style=color:#a6e22e>Security</span> <span style=color:#a6e22e>|</span> <span style=color:#a6e22e>Where-Object</span> {<span style=color:#a6e22e>$_.Message</span> <span style=color:#a6e22e>-match</span> <span style=color:#a6e22e>&#34;EventID:</span> <span style=color:#a6e22e>5140&#34;</span>} <span style=color:#a6e22e>|</span> <span style=color:#a6e22e>Select-Object</span> <span style=color:#a6e22e>TimeCreated,</span> <span style=color:#a6e22e>@</span>{<span style=color:#a6e22e>Name=&#34;File&#34;;Expression=</span>{<span style=color:#a6e22e>$_.Properties</span>[<span style=color:#ae81ff>8</span>]<span style=color:#a6e22e>.Value</span>}}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>PS</span> <span style=color:#a6e22e>C:\Users\javiercruces</span>&gt; <span style=color:#a6e22e>NBTSTAT</span> <span style=color:#a6e22e>-n</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Ethernet:</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Dirección</span> <span style=color:#a6e22e>IP</span> <span style=color:#a6e22e>del</span> <span style=color:#a6e22e>nodo:</span> [<span style=color:#a6e22e>192.168.122.203</span>] <span style=color:#a6e22e>Id.</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>ámbito</span> <span style=color:#a6e22e>:</span> []
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>              <span style=color:#a6e22e>Tabla</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>nombres</span> <span style=color:#a6e22e>locales</span> <span style=color:#a6e22e>NetBIOS</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#a6e22e>Nombre</span>             <span style=color:#a6e22e>Tipo</span>         <span style=color:#a6e22e>Estado</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>---------------------------------------------</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>DESKTOP-KG80ESU</span>&lt;<span style=color:#ae81ff>20</span>&gt;  <span style=color:#a6e22e>Único</span>       <span style=color:#a6e22e>Registrado</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>DESKTOP-KG80ESU</span>&lt;<span style=color:#ae81ff>00</span>&gt;  <span style=color:#a6e22e>Único</span>       <span style=color:#a6e22e>Registrado</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>WORKGROUP</span>      &lt;<span style=color:#ae81ff>00</span>&gt;  <span style=color:#a6e22e>Grupo</span>       <span style=color:#a6e22e>Registrado</span>
+</span></span></code></pre></div><h3 id=7-dns-cache-content>7. DNS cache content</h3><p>Volatility has no support for this function:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ps data-lang=ps><span style=display:flex><span><span style=color:#a6e22e>PS</span> <span style=color:#a6e22e>C:\Windows\system32</span>&gt; <span style=color:#a6e22e>ipconfig</span> /displaydns
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Configuración</span> <span style=color:#a6e22e>IP</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>Windows</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>edgedl.me.gvt1.com</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>----------------------------------------</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Nombre</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>registro</span>  <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#a6e22e>edgedl.me.gvt1.com</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Tipo</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>registro</span>  <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Período</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>vida</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#ae81ff>897</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Longitud</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>datos</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#ae81ff>4</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Sección</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#a6e22e>respuesta</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Un</span> <span style=color:#a6e22e>registro</span> <span style=color:#e6db74>(host)</span><span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#a6e22e>34.104.35.123</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>msedge.b.tlu.dl.delivery.mp.microsoft.com</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>----------------------------------------</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Nombre</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>registro</span>  <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#a6e22e>msedge.b.tlu.dl.delivery.mp.microsoft.com</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Tipo</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>registro</span>  <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#ae81ff>5</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Período</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>vida</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#ae81ff>44</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Longitud</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>datos</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#ae81ff>8</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Sección</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#a6e22e>respuesta</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>Registro</span> <span style=color:#a6e22e>CNAME.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>.</span> <span style=color:#a6e22e>:</span> <span style=color:#a6e22e>cdp-tlu-shim.trafficmanager.net</span>
+</span></span></code></pre></div><h3 id=8-environment-variables>8. Environment variables</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>(</span>volatility<span style=color:#f92672>)</span> javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f <span style=color:#e6db74>&#34;/mnt/vdb/memoria/memdump.mem&#34;</span> windows.envars
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>2132	RuntimeBroker.	0x1ae8f803400	USERDOMAIN	DESKTOP-KG80ESU
+</span></span><span style=display:flex><span>2132	RuntimeBroker.	0x1ae8f803400	USERDOMAIN_ROAMINGPROFILE	DESKTOP-KG80ESU
+</span></span><span style=display:flex><span>2132	RuntimeBroker.	0x1ae8f803400	USERNAME	javiercruces
+</span></span><span style=display:flex><span>2132	RuntimeBroker.	0x1ae8f803400	USERPROFILE	C:<span style=color:#ae81ff>\U</span>sers<span style=color:#ae81ff>\j</span>aviercruces
+</span></span><span style=display:flex><span>2132	RuntimeBroker.	0x1ae8f803400	windir	C:<span style=color:#ae81ff>\W</span>indows
+</span></span></code></pre></div><h3 id=analyzing-the-windows-registry>Analyzing the Windows Registry</h3><p>For this we download the Registry Viewer 2.0.0 https: / / <a href=https://www.exteriro.com target=_blank rel=noopener>www.exteriro.com</a> / ftk-product-download / registry-viewer-2-0-0</p><p>We open the system file that is the Windows registry:</p><p><img src=/seguridad/forense/img/Pastedimage20240206200558.png alt></p><h3 id=9-usb-devices-connected>9. USB devices connected</h3><p><img src=/seguridad/forense/img/Pastedimage20240206200915.png alt></p><p><img src=/seguridad/forense/img/Pastedimage20240206201401.png alt></p><p><img src=/seguridad/forense/img/Pastedimage20240206201441.png alt></p><p>Autopsy:</p><p><img src=/seguridad/forense/img/Pastedimage20240206200947.png alt></p><h3 id=10-wifi-networks-used-recently>10. Wifi networks used recently.</h3><p>We can find it in &ndash; > system / ControlSet001 / Control / Network / Connections</p><p><img src=/seguridad/forense/img/Pastedimage20240206202518.png alt></p><h3 id=11-node-firewall-configuration>11. Node firewall configuration.</h3><p>system\ ControlSet001\ Services\ SharedAccess\ Parameters\ FirewallPolicy</p><p><img src=/seguridad/forense/img/Pastedimage20240206203007.png alt></p><p><img src=/seguridad/forense/img/Pastedimage20240206204447.png alt></p><h3 id=12-programs-that-run-at-the-start>12. Programs that run at the Start.</h3><p>software\ Microsoft\ Windows\ Performance\ Run</p><p><img src=/seguridad/forense/img/Pastedimage20240206205755.png alt></p><h3 id=13-association-of-file-and-application-extensions>13. Association of file and application extensions.</h3><p>It&rsquo;s under this directory &ndash; > software\ Classes</p><p><img src=/seguridad/forense/img/Pastedimage20240206205941.png alt></p><p><img src=/seguridad/forense/img/Pastedimage20240206210015.png alt></p><h3 id=14-applications-used-recently>14. Applications used recently.</h3><p><img src=/seguridad/forense/img/Pastedimage20240206200026.png alt></p><h3 id=15-ficheros-open-recently>15. Ficheros open recently.</h3><p><img src=/seguridad/forense/img/Pastedimage20240206195852.png alt></p><h3 id=16-software-installed>16. Software Installed.</h3><p><img src=/seguridad/forense/img/Pastedimage20240206195841.png alt></p><h3 id=17-passwords-kept>17. Passwords kept.</h3><p><img src=/seguridad/forense/img/Pastedimage20240206195817.png alt></p><h3 id=18-user-accounts>18. User Accounts</h3><p><img src=/seguridad/forense/img/Pastedimage20240206195617.png alt></p><p>We can see the answers to the security questions:</p><p><img src=/seguridad/forense/img/Pastedimage20240212131736.png alt></p><h3 id=with-third-party-applications>With third-party applications:</h3><h3 id=19-history-of-navigation-and-downloads-cookies>19. History of navigation and downloads. Cookies.</h3><p>History:
+<img src=/seguridad/forense/img/Pastedimage20240206195525.png alt></p><p>Downloads:</p><p><img src=/seguridad/forense/img/Pastedimage20240206195425.png alt></p><p>Cookies:</p><p><img src=/seguridad/forense/img/Pastedimage20240206195403.png alt></p><h3 id=20-encryption-volumes>20. Encryption volumes</h3><p>It shows you the encrypted FICHERS:</p><p><img src=/seguridad/forense/img/Pastedimage20240206195321.png alt></p><h3 id=on-the-image-of-the-disk>On the image of the disk:</h3><h3 id=21-files-with-changed-extension>21. Files with changed extension</h3><p>We will see that the MIME type matches the extension:
+<img src=/seguridad/forense/img/Pastedimage20240206192803.png alt></p><p>There is also an artifact that allows us to see the files that are with another extension:</p><p><img src=/seguridad/forense/img/Pastedimage20240217191651.png alt></p><h3 id=22-deleted-files>22. Deleted files</h3><p>You have a specific section that tells you the deleted files:
+<img src=/seguridad/forense/img/Pastedimage20240206185456.png alt></p><p>But if you browse the directories, you will be informed if there are any deleted files in it:</p><p><img src=/seguridad/forense/img/Pastedimage20240206185709.png alt></p><h3 id=23-hidden-files>23. Hidden Files</h3><p><img src=/seguridad/forense/img/Pastedimage20240206193134.png alt></p><h3 id=24-files-containing-a-given-chain>24. Files containing a given chain</h3><p><img src=/seguridad/forense/img/Pastedimage20240206192629.png alt></p><p><img src=/seguridad/forense/img/Pastedimage20240206192646.png alt></p><h3 id=25-search-for-images-by-location>25. Search for images by location.</h3><p>The location of autopsy doesn&rsquo;t locate my image, so I&rsquo;ll use an external tool.</p><p><img src=/seguridad/forense/img/Pastedimage20240206193627.png alt></p><p><img src=/seguridad/forense/img/Pastedimage20240206193638.png alt></p><p><img src=/seguridad/forense/img/Pastedimage20240206193726.png alt></p><h3 id=26-file-search-by-author>26. File search by author.</h3><p><img src=/seguridad/forense/img/Pastedimage20240218193344.png alt></p><h2 id=box-b-linux-machine>Box B Linux Machine.</h2><p>Try to perform the same operations on a Linux machine for those sections that make sense and are not performed in an identical way to Windows.</p><p>By using volatility for this part, I do not recognize the plugins for the specific version of Debian, I have generated them following this tutorial:
+https: / / markuta.com / live-memory-acquisition -on-linux-systems /</p><p>However I do not recognize them and have used both volatility 2 and version 3.
+I will connect to the machine and indicate you with commands how to show each exercise, I have no other.
+What I will do is redirect the output of the commands to a file on the device in which I have stored the spins.</p><h3 id=1-processes-in-progress-1>1. Processes in progress</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# ps aux &gt; /mnt/procesos
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>root@debian:~# cat /mnt/procesos
+</span></span><span style=display:flex><span>USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+</span></span><span style=display:flex><span>root           <span style=color:#ae81ff>1</span>  0.3  0.6 <span style=color:#ae81ff>102660</span> <span style=color:#ae81ff>12616</span> ?        Ss   16:44   0:00 /sbin/init
+</span></span><span style=display:flex><span>root           <span style=color:#ae81ff>2</span>  0.0  0.0      <span style=color:#ae81ff>0</span>     <span style=color:#ae81ff>0</span> ?        S    16:44   0:00 <span style=color:#f92672>[</span>kthreadd<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>root           <span style=color:#ae81ff>3</span>  0.0  0.0      <span style=color:#ae81ff>0</span>     <span style=color:#ae81ff>0</span> ?        I&lt;   16:44   0:00 <span style=color:#f92672>[</span>rcu_gp<span style=color:#f92672>]</span>
+</span></span></code></pre></div><h3 id=2-services-in-progress-1>2. Services in progress</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# systemctl list-units --type<span style=color:#f92672>=</span>service --state<span style=color:#f92672>=</span>running &gt; /mnt/servicios_corriendo
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>root@debian:~# systemctl list-units --type<span style=color:#f92672>=</span>service --state<span style=color:#f92672>=</span>running
+</span></span><span style=display:flex><span>  UNIT                          LOAD   ACTIVE SUB     DESCRIPTION                                   
+</span></span><span style=display:flex><span>  accounts-daemon.service       loaded active running Accounts Service
+</span></span><span style=display:flex><span>  avahi-daemon.service          loaded active running Avahi mDNS/DNS-SD Stack
+</span></span><span style=display:flex><span>  colord.service                loaded active running Manage, Install and Generate Color Profiles
+</span></span></code></pre></div><h3 id=3-open-ports-1>3. Open ports</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# ss -tuln &gt; /mnt/puertos_abiertos
+</span></span><span style=display:flex><span>root@debian:~# ss -tuln 
+</span></span><span style=display:flex><span>Netid    State     Recv-Q    Send-Q         Local Address:Port          Peer Address:Port    Process    
+</span></span><span style=display:flex><span>udp      UNCONN    <span style=color:#ae81ff>0</span>         <span style=color:#ae81ff>0</span>                    0.0.0.0:631                0.0.0.0:*                  
+</span></span><span style=display:flex><span>udp      UNCONN    <span style=color:#ae81ff>0</span>         <span style=color:#ae81ff>0</span>                    0.0.0.0:42925              0.0.0.0:*        
+</span></span></code></pre></div><h3 id=4-connections-established-by-the-machine-1>4. Connections established by the machine</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# ss -an &gt; /mnt/conexiones_establecidas
+</span></span><span style=display:flex><span>root@debian:~# ss -an
+</span></span><span style=display:flex><span>u_dgr ESTAB  <span style=color:#ae81ff>0</span>      <span style=color:#ae81ff>0</span>                                               * <span style=color:#ae81ff>19629</span>                   * <span style=color:#ae81ff>19630</span>       
+</span></span><span style=display:flex><span>u_str ESTAB  <span style=color:#ae81ff>0</span>      <span style=color:#ae81ff>0</span>                        /run/user/112/pipewire-0 <span style=color:#ae81ff>19262</span>                   * <span style=color:#ae81ff>19261</span>       
+</span></span><span style=display:flex><span>u_str ESTAB  <span style=color:#ae81ff>0</span>      <span style=color:#ae81ff>0</span>                                               * <span style=color:#ae81ff>18971</span>                   * <span style=color:#ae81ff>18972</span>       
+</span></span><span style=display:flex><span>u_str ESTAB  <span style=color:#ae81ff>0</span>      <span style=color:#ae81ff>0</span>                                               * <span style=color:#ae81ff>18439</span>                   * <span style=color:#ae81ff>18440</span>  
+</span></span></code></pre></div><h3 id=5-user-sessions-set-remotely-1>5. User sessions set remotely</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# who
+</span></span><span style=display:flex><span>javiercruces pts/0        2024-02-18 16:44 <span style=color:#f92672>(</span>192.168.122.1<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>javiercruces pts/1        2024-02-18 16:46 <span style=color:#f92672>(</span>192.168.122.1<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>root@debian:~# who &gt; /mnt/conexiones_remtoas
+</span></span></code></pre></div><p>#7. DNS cache content</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# sudo journalctl -u systemd-resolved &gt; /mnt/cachedns
+</span></span></code></pre></div><h3 id=8-environment-variables-1>8. Environment variables</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# env &gt; /mnt/variables_entorno
+</span></span></code></pre></div><h3 id=9-usb-devices-connected-1>9. USB devices connected</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# lsusb
+</span></span><span style=display:flex><span>Bus <span style=color:#ae81ff>002</span> Device 002: ID 46f4:0001 QEMU QEMU USB HARDDRIVE
+</span></span><span style=display:flex><span>Bus <span style=color:#ae81ff>002</span> Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+</span></span><span style=display:flex><span>Bus <span style=color:#ae81ff>001</span> Device 002: ID 0627:0001 Adomax Technology Co., Ltd QEMU Tablet
+</span></span><span style=display:flex><span>Bus <span style=color:#ae81ff>001</span> Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+</span></span><span style=display:flex><span>root@debian:~# lsusb &gt; /mnt/usb_conectados
+</span></span></code></pre></div><h3 id=10-recently-used-wifi-networks>10. recently used wifi networks</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>Al ser un MV no tenemos historial de redes wifi
+</span></span></code></pre></div><h3 id=11-node-firewall-configuration-1>11. Node firewall configuration</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# sudo iptables -L
+</span></span><span style=display:flex><span>Chain INPUT <span style=color:#f92672>(</span>policy ACCEPT<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>target     prot opt source               destination         
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Chain FORWARD <span style=color:#f92672>(</span>policy ACCEPT<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>target     prot opt source               destination         
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Chain OUTPUT <span style=color:#f92672>(</span>policy ACCEPT<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>target     prot opt source               destination         
+</span></span><span style=display:flex><span>DROP       tcp  --  anywhere             anywhere             tcp dpt:9999
+</span></span><span style=display:flex><span>root@debian:~# sudo iptables -L &gt; /mnt/firewall_nodo
+</span></span></code></pre></div><h3 id=12-programs-being-implemented-at-home>12. Programs being implemented at Home</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# systemctl list-unit-files --type<span style=color:#f92672>=</span>service &gt; /mnt/servicios_incio
+</span></span><span style=display:flex><span>netfilter-persistent.service               enabled         enabled 
+</span></span><span style=display:flex><span>networking.service                         enabled         enabled 
+</span></span></code></pre></div><h3 id=13-association-of-file-and-application-extensions-1>13. Association of file and application extensions</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# cat /usr/share/applications/mimeinfo.cache &gt; /mnt/asosiacion_ficheros_ext
+</span></span></code></pre></div><h3 id=14-newly-used-applications>14. Newly used applications</h3><p>The closest thing to this, in Linux is to see what every user has done, so I&rsquo;ll get all the records:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# sudo cat /home/*/.bash_history &gt; /mnt/historial_usuarios
+</span></span><span style=display:flex><span>root@debian:~# sudo cat /root/.bash_history &gt; /mnt/historial_root
+</span></span></code></pre></div><h3 id=15-recently-opened-records>15. Recently opened records</h3><ul><li>It will depend on the route of the files, I will set an example for the home</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# ls -lu /home/*/ &gt; /mnt/ficheros_recientes
+</span></span></code></pre></div><h3 id=16-installed-software>16. Installed Software</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# dpkg --get-selections &gt; /mnt/paquetes_instalados
+</span></span></code></pre></div><h3 id=17-passwords-saved>17. Passwords saved</h3><p>Some configuration passwords are saved within our user&rsquo;s home directory, if we want to see the browser&rsquo;s, we will find it in the same place as autopsy.</p><h3 id=18-user-accounts-1>18. User Accounts</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# cat /etc/passwd | cut -d <span style=color:#e6db74>&#34;:&#34;</span> -f <span style=color:#ae81ff>1</span> &gt; /mnt/lista_usuarios
+</span></span><span style=display:flex><span>sshd
+</span></span><span style=display:flex><span>debian
+</span></span><span style=display:flex><span>user1
+</span></span></code></pre></div><h3 id=19-history-of-navigation-downloads-and-cookies>19. History of navigation, downloads and Cookies</h3><p>History:</p><p><img src=/seguridad/forense/img/Pastedimage20240218191820.png alt></p><p>Cookies:</p><p><img src=/seguridad/forense/img/Pastedimage20240218191853.png alt></p><p>Downloads:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# ls -l /home/*/Descargas &gt; /mnt/descargas_usuarios
+</span></span></code></pre></div><h3 id=20-encryption-volumes-1>20 Encryption volumes</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# lsblk -f | grep crypt
+</span></span><span style=display:flex><span>└─sda1 crypto_LUKS <span style=color:#ae81ff>2</span>                                      9fc1bfa7-9224-4e8e-896a-09516d4fd613     
+</span></span></code></pre></div><h3 id=21-files-with-changed-extension-1>21 Files with changed extension</h3><ul><li>The Mismatch Detector device does not charge me, but we can see it by looking at the metadata:</li></ul><p><img src=/seguridad/forense/img/Pastedimage20240218190705.png alt></p><h3 id=22-deleted-files-1>22. Deleted files</h3><p><img src=/seguridad/forense/img/Pastedimage20240218192845.png alt></p><h3 id=23-hidden-files-1>23. Hidden Files</h3><p>In Linux, everyone who starts with.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# find / -type f -name <span style=color:#e6db74>&#34;.*&#34;</span> &gt; /mnt/ficheros_ocultos
+</span></span></code></pre></div><h3 id=24-files-containing-a-given-chain-1>24. Files containing a given chain</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# grep -rnw / -e <span style=color:#e6db74>&#39;File&#39;</span> &gt; /mnt/FicherosContienenFile
+</span></span></code></pre></div><h3 id=26-file-search-by-author-1>26. File search by author</h3><p><img src=/seguridad/forense/img/Pastedimage20240218193344.png alt></p><p>I have already tried that I have not been able to use volatility for these exercises, to use commands to perform the checks manually. To give the exercises more seriousness, I&rsquo;m going to take the hashes out of the different commands to make sure they don&rsquo;t change:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root@debian:~# find /mnt/* -type f -exec sha256sum <span style=color:#f92672>{}</span> +
+</span></span><span style=display:flex><span>5b46470021e68c2f5b517fa0bf3daeea665e525d3fa427326c53f93f09968d32  /mnt/asosiacion_ficheros_ext
+</span></span><span style=display:flex><span>d9ed5ccc5da76e64a158605065f9bdccbb42dfa889d1b66d8c1660a4511065b4  /mnt/conexiones_establecidas
+</span></span><span style=display:flex><span>8c65702fe0e26bf57cb2138a618a3cd023be45a23c46e50c77fc191b36c842ca  /mnt/conexiones_remtoas
+</span></span><span style=display:flex><span>bf22d9341614e23448d92045f9ada00f2d62b00491261ec5843adca20e5a4b3a  /mnt/descargas_usuarios
+</span></span><span style=display:flex><span>b63693142f2823a95a11d9f1fcbd845c118b2fc5d0b2508586d0fc6c8fe482af  /mnt/discoLinux.raw
+</span></span><span style=display:flex><span>f5f82603dc58e22f0e38c70321ca1b28524b565b4a85264b07e06a5f9c967024  /mnt/FicherosContienenFile
+</span></span><span style=display:flex><span>faf7aa5603cb456e86c320549a4b34c12f3167260cb0e8cbfc94ec3ebd42f1ab  /mnt/ficheros_ocultos
+</span></span><span style=display:flex><span>f767cd7a3d0802ebaebb3f18be2d188eb4c16f6a53444e9669f153a304cdb027  /mnt/ficheros_recientes
+</span></span><span style=display:flex><span>cb910e861a19148c6249fa53cc5b957fb0ae2e0f37ef4081c77aa90e7dde7eb0  /mnt/firewall_nodo
+</span></span><span style=display:flex><span>61f44639402d823b9452ad6eaf66eff0ed078fe1cf512c0fdebc9bba9fb58fb1  /mnt/historial_root
+</span></span><span style=display:flex><span>fed8854df34d3687edcd85697fda768ba58b88fa1b8d788bdd0d033b29209f85  /mnt/historial_usuarios
+</span></span><span style=display:flex><span>0a2c590ff6773acf9f601586cb4b013fb65bc32070019acb7368ae4212c07f8d  /mnt/lista_usuarios
+</span></span><span style=display:flex><span>5f136603c0e34a74a58bc59f1934f5f2850ca8bec9c356a283ee7161a8f39a76  /mnt/memdebian.mem
+</span></span><span style=display:flex><span>1b503447d038a0ace6b81aaaf1390ac82ce6e08838a32e0b18b7656048794ebb  /mnt/paquetes_instalados
+</span></span><span style=display:flex><span>8e29c5c098b2a664c23deb84abe943b666ca0dc05ce8020d0bb110b17e12d60a  /mnt/procesos
+</span></span><span style=display:flex><span>9b889a5d5a59e615dc8fbbc4de9c5dbeaac1ae97990bab3dda39c3ef18c5dd72  /mnt/puertos_abiertos
+</span></span><span style=display:flex><span>cf7776ea7ca74f27b5a650ad14b074d3ac400df1b2729bca2e6a9f74696e94c3  /mnt/servicios_corriendo
+</span></span><span style=display:flex><span>b83d26c9829478eac7c19ff60eecc83b3d139fda26b5e057e882aefdaaeda7da  /mnt/servicios_incio
+</span></span><span style=display:flex><span>17a519d6c20c48bd9cb39c4fd39dd107ee23c909712fada41cb75ba0d5cb703d  /mnt/usb_conectados
+</span></span><span style=display:flex><span>575f849aed774bef68eb9cb85823030432afc6bfa3242ef4e1efe5cf14a98a0c  /mnt/variables_entorno
+</span></span><span style=display:flex><span>b419ec819114f21a10bc5146a0b28183165c8b2cf77b2fe160e3044b1b5e04a0  /mnt/vdb
+</span></span></code></pre></div><h2 id=bibliography>Bibliography</h2><ul><li><a href=https://cybersec.iescampanillas.com/files/3046 target=_blank rel=noopener>Guía de Adquisición de Memoria en Sistemas Linux</a></li><li><a href=https://markuta.com/live-memory-acquisition-on-linux-systems/ target=_blank rel=noopener>Adquisición de Memoria en Vivo en Linux</a></li><li><a href=https://cpuu.hashnode.dev/how-to-perform-memory-forensic-analysis-in-linux-using-volatility-3 target=_blank rel=noopener>Análisis Forense en Linux usando Volatility 3</a></li><li><a href="https://github.com/volatilityfoundation/volatility3?tab=readme-ov-file" target=_blank rel=noopener>Repositorio Oficial de Volatility 3</a></li><li><a href=https://github.com/volatilityfoundation/dwarf2json target=_blank rel=noopener>Generador de Perfiles DWARF para Volatility (dwarf2json)</a></li><li><a href=https://isf-server.techanarchy.net/ target=_blank rel=noopener>ISF Server - Entorno para Análisis Forense</a></li></ul></div><div class="row ps-3 pe-3"><div class="col-md-6 share-buttons"><strong>Share on:</strong>
+<a class="btn icon-button bg-facebook" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.javiercd.es%2fen%2fposts%2fseguridad%2fforense%2fforense%2f" target=_blank><i class="fab fa-facebook"></i>
+</a><a class="btn icon-button bg-twitter" href="https://twitter.com/share?url=https%3a%2f%2fwww.javiercd.es%2fen%2fposts%2fseguridad%2fforense%2fforense%2f&text=Forensic%20computer&via=Atlas" target=_blank><i class="fab fa-twitter"></i>
+</a><a class="btn icon-button bg-reddit" href="https://reddit.com/submit?url=https%3a%2f%2fwww.javiercd.es%2fen%2fposts%2fseguridad%2fforense%2fforense%2f&title=Forensic%20computer" target=_blank><i class="fab fa-reddit"></i>
+</a><a class="btn icon-button bg-linkedin" href="https://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.javiercd.es%2fen%2fposts%2fseguridad%2fforense%2fforense%2f&title=Forensic%20computer" target=_blank><i class="fab fa-linkedin"></i>
+</a><a class="btn icon-button bg-whatsapp" href="https://api.whatsapp.com/send?text=Forensic%20computer https%3a%2f%2fwww.javiercd.es%2fen%2fposts%2fseguridad%2fforense%2fforense%2f" target=_blank><i class="fab fa-whatsapp"></i>
+</a><a class="btn icon-button" href="mailto:?subject=Forensic%20computer&body=https%3a%2f%2fwww.javiercd.es%2fen%2fposts%2fseguridad%2fforense%2fforense%2f" target=_blank><i class="fas fa-envelope-open-text"></i></a></div><div class="col-md-6 btn-improve-page"><a href=https://github.com/javierasping/sentinel/edit/main/content/posts/seguridad/forense/forense.en.md title="Improve this page" target=_blank rel=noopener><i class="fas fa-code-branch"></i>
+Improve this page</a></div></div><hr><div class="row next-prev-navigator"></div><hr></div></div></div><a id=scroll-to-top class=btn type=button data-bs-toggle=tooltip data-bs-placement=left title="Scroll to top"><i class="fas fa-chevron-circle-up"></i></a></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center ps-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><ul><li><a href=#image-and-memory>Image and memory</a></li></ul></li><li><a href=#windows>Windows</a><ul><li><a href=#memory-flow>Memory Flow</a></li><li><a href=#record-overturn>Record overturn</a></li><li><a href=#disk-flying>Disk Flying</a></li></ul></li><li><a href=#linux>Linux</a><ul><li><a href=#disk-flying-1>Disk Flying</a></li><li><a href=#memory-discharge>Memory discharge</a></li></ul></li><li><a href=#analysis-of-the-windows-machine>Analysis of the Windows machine</a><ul><li><a href=#volatility-installation>Volatility installation</a></li></ul></li><li><a href=#windows-machine>Windows machine</a><ul><li><a href=#1-processes-in-progress>1. Processes in progress</a></li><li><a href=#2-services-in-progress>2. Services in progress</a></li><li><a href=#3-open-ports>3. Open ports</a></li><li><a href=#4-connections-established-by-the-machine>4. Connections established by the machine</a></li><li><a href=#5-user-sessions-set-remotely>5. User sessions set remotely</a></li><li><a href=#6-ficheros-recently-transferred-by-netbios>6. Ficheros recently transferred by NetBios</a></li><li><a href=#7-dns-cache-content>7. DNS cache content</a></li><li><a href=#8-environment-variables>8. Environment variables</a></li><li><a href=#analyzing-the-windows-registry>Analyzing the Windows Registry</a></li><li><a href=#9-usb-devices-connected>9. USB devices connected</a></li><li><a href=#10-wifi-networks-used-recently>10. Wifi networks used recently.</a></li><li><a href=#11-node-firewall-configuration>11. Node firewall configuration.</a></li><li><a href=#12-programs-that-run-at-the-start>12. Programs that run at the Start.</a></li><li><a href=#13-association-of-file-and-application-extensions>13. Association of file and application extensions.</a></li><li><a href=#14-applications-used-recently>14. Applications used recently.</a></li><li><a href=#15-ficheros-open-recently>15. Ficheros open recently.</a></li><li><a href=#16-software-installed>16. Software Installed.</a></li><li><a href=#17-passwords-kept>17. Passwords kept.</a></li><li><a href=#18-user-accounts>18. User Accounts</a></li><li><a href=#with-third-party-applications>With third-party applications:</a></li><li><a href=#19-history-of-navigation-and-downloads-cookies>19. History of navigation and downloads. Cookies.</a></li><li><a href=#20-encryption-volumes>20. Encryption volumes</a></li><li><a href=#on-the-image-of-the-disk>On the image of the disk:</a></li><li><a href=#21-files-with-changed-extension>21. Files with changed extension</a></li><li><a href=#22-deleted-files>22. Deleted files</a></li><li><a href=#23-hidden-files>23. Hidden Files</a></li><li><a href=#24-files-containing-a-given-chain>24. Files containing a given chain</a></li><li><a href=#25-search-for-images-by-location>25. Search for images by location.</a></li><li><a href=#26-file-search-by-author>26. File search by author.</a></li></ul></li><li><a href=#box-b-linux-machine>Box B Linux Machine.</a><ul><li><a href=#1-processes-in-progress-1>1. Processes in progress</a></li><li><a href=#2-services-in-progress-1>2. Services in progress</a></li><li><a href=#3-open-ports-1>3. Open ports</a></li><li><a href=#4-connections-established-by-the-machine-1>4. Connections established by the machine</a></li><li><a href=#5-user-sessions-set-remotely-1>5. User sessions set remotely</a></li><li><a href=#8-environment-variables-1>8. Environment variables</a></li><li><a href=#9-usb-devices-connected-1>9. USB devices connected</a></li><li><a href=#10-recently-used-wifi-networks>10. recently used wifi networks</a></li><li><a href=#11-node-firewall-configuration-1>11. Node firewall configuration</a></li><li><a href=#12-programs-being-implemented-at-home>12. Programs being implemented at Home</a></li><li><a href=#13-association-of-file-and-application-extensions-1>13. Association of file and application extensions</a></li><li><a href=#14-newly-used-applications>14. Newly used applications</a></li><li><a href=#15-recently-opened-records>15. Recently opened records</a></li><li><a href=#16-installed-software>16. Installed Software</a></li><li><a href=#17-passwords-saved>17. Passwords saved</a></li><li><a href=#18-user-accounts-1>18. User Accounts</a></li><li><a href=#19-history-of-navigation-downloads-and-cookies>19. History of navigation, downloads and Cookies</a></li><li><a href=#20-encryption-volumes-1>20 Encryption volumes</a></li><li><a href=#21-files-with-changed-extension-1>21 Files with changed extension</a></li><li><a href=#22-deleted-files-1>22. Deleted files</a></li><li><a href=#23-hidden-files-1>23. Hidden Files</a></li><li><a href=#24-files-containing-a-given-chain-1>24. Files containing a given chain</a></li><li><a href=#26-file-search-by-author-1>26. File search by author</a></li></ul></li><li><a href=#bibliography>Bibliography</a></li></ul></nav></div></div></section></div><footer id=footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-start"><div class="col-md-4 col-sm-12"><h5>Navigation</h5></div></div></div><hr><div class=container><div class="row text-start"><div class=col-md-4><a id=theme href=https://github.com/hugo-toha/toha target=_blank rel=noopener><img src=/images/theme-logo_hu_b3360284c55cf72d.png alt="Toha Theme Logo">
+Toha</a></div><div class="col-md-4 text-center">© 2025 Copyright.</div><div class="col-md-4 text-end"><a id=hugo href=https://gohugo.io/ target=_blank rel=noopener>Powered by
+<img src=/images/hugo-logo.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/application.b6e81adc7ec7b607dcd44cb550d5ac0e8aa374ad64c95daf8eddf470660f2331.js integrity="sha256-tuga3H7Htgfc1Ey1UNWsDoqjdK1kyV2vjt30cGYPIzE=" defer></script></body></html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>WordPress LEMP on Atlas</title><link>https://www.javiercd.es/en/posts/iaw/wordpress_lemp/</link><description>Recent content in WordPress LEMP on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 28 Oct 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/iaw/wordpress_lemp/index.xml" rel="self" type="application/rss+xml"/><item><title>WordPress installation in Debian 12 with PHP-8 LEMP battery</title><link>https://www.javiercd.es/en/posts/iaw/wordpress_lemp/instalacion_wordpress_lemp/</link><pubDate>Sat, 28 Oct 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/iaw/wordpress_lemp/instalacion_wordpress_lemp/</guid><description>&lt;p>#WordPress installation in Debian 12 with PHP-8 LEMP battery&lt;/p>
+&lt;p>WordPress is a very popular open source content management system (CMS) that is used to create and manage websites and blogs. It was first released in 2003 and has since won a wide user base and an active community of developers and designers.&lt;/p>
+&lt;h3 id="previous-requirements">Previous requirements&lt;/h3>
+&lt;ol>
+&lt;li>&lt;strong>Linux server:&lt;/strong> You must have a server that runs Linux, the guide is designed for Debian 12.&lt;/li>
+&lt;li>&lt;strong>User with superuser permissions:&lt;/strong> You must have access to a user with sudo privileges on the server in order to perform the installation and configuration tasks.&lt;/li>
+&lt;li>&lt;strong>Full Domain Name (FQDN):&lt;/strong> If you want to access your WordPress site through a custom domain, make sure you have a full domain name (FQDN) set up and pointed to the server.&lt;/li>
+&lt;li>&lt;strong>Internet access:&lt;/strong> You need Internet access to download packages and make updates during the installation process.&lt;/li>
+&lt;/ol>
+&lt;p>Make sure you meet all these requirements before you start installing WordPress on your server.&lt;/p></description></item></channel></rss>

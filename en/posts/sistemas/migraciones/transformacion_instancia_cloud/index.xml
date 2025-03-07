@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Transformation instance cloud on Atlas</title><link>https://www.javiercd.es/en/posts/sistemas/migraciones/transformacion_instancia_cloud/</link><description>Recent content in Transformation instance cloud on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 29 Nov 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/sistemas/migraciones/transformacion_instancia_cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Transformation instance cloud</title><link>https://www.javiercd.es/en/posts/sistemas/migraciones/transformacion_instancia_cloud/transformacion_instancia_cloud/</link><pubDate>Wed, 29 Nov 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/sistemas/migraciones/transformacion_instancia_cloud/transformacion_instancia_cloud/</guid><description>&lt;h2 id="creation-of-the-lvm-scheme">Creation of the LVM scheme&lt;/h2>
+&lt;p>We installed the LVM2 package&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.001.png" alt="">&lt;/p>
+&lt;p>Now we&amp;rsquo;ll create the partitions on the second disk:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.002.png" alt="">&lt;/p>
+&lt;p>We create the group of volumes:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.003.png" alt="">&lt;/p>
+&lt;p>We create the root and home volumes:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.004.png" alt="">&lt;/p>
+&lt;p>The partitions must have the following format:&lt;/p>
+&lt;p>-vdb2 etx4&lt;/p>
+&lt;ul>
+&lt;li>FJCD-vg-home ext4&lt;/li>
+&lt;/ul>
+&lt;p>-FJCD-vg-raiz ext4&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.005.jpeg" alt="">&lt;/p>
+&lt;p>We would have to format the efi:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.006.png" alt="">&lt;/p>
+&lt;p>So would our partition scheme:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.007.jpeg" alt="">&lt;/p>
+&lt;h2 id="copy-the-partition-content">Copy the partition content&lt;/h2>
+&lt;p>Now let&amp;rsquo;s ride the partitions:&lt;/p></description></item></channel></rss>

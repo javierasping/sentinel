@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Services on Atlas</title><link>https://www.javiercd.es/en/posts/servicios/</link><description>Recent content in Services on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/servicios/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache configuration under debian</title><link>https://www.javiercd.es/en/posts/servicios/apache/apache/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/apache/apache/</guid><description>&lt;h3 id="install-an-apache-web-server-for-use-in-an-intranet">Install an Apache web server for use in an Intranet&lt;/h3>
+&lt;p>To install the server we must run as root the following command:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.125.png" alt="">&lt;/p>
+&lt;p>Create within the / var / www / html directory a file called intrada.html where you put a welcome message&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.126.png" alt="">&lt;/p>
+&lt;p>Now I&amp;rsquo;ll put it inside the route:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.127.png" alt="">&lt;/p>
+&lt;p>Next we will post a more complete page on our server, for it&lt;/p>
+&lt;p>use your web application website.&lt;/p></description></item><item><title>DHCP server configuration under debian</title><link>https://www.javiercd.es/en/posts/servicios/dhcp/dhcp_ipv4/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/dhcp/dhcp_ipv4/</guid><description>&lt;h1 id="dhcp-server-configuration-under-debian">DHCP server configuration under debian&lt;/h1>
+&lt;p>In this article you will learn how to configure the DHCP is-dhcp-server. In addition, you will set up a reservation and configure it to work in two areas.&lt;/p>
+&lt;h3 id="isc-dhcp-server-installation">Isc-dhcp-server installation&lt;/h3>
+&lt;p>To install our dhcp server we run:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.015.png" alt="">&lt;/p>
+&lt;p>It will give us the following error as it is not configured:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/dhcp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.016.png" alt="">&lt;/p>
+&lt;h3 id="configuration-of-is-dhcp-server">Configuration of is-dhcp-server&lt;/h3>
+&lt;p>The first thing we have to do is set up the network interface that the dhcp server will work for, for this we edit the following file:&lt;/p></description></item><item><title>DNS server configuration in Debian</title><link>https://www.javiercd.es/en/posts/servicios/dns/dns/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/dns/dns/</guid><description>&lt;p>♪ DNS server settings in Debian&lt;/p>
+&lt;h3 id="dnsmasq">Dnsmasq&lt;/h3>
+&lt;p>The dnsmasq package allows you to start a DNS server in a very simple way. Simply by installing and starting the dnsmasq service, without any additional configuration, our PC will become a DNS cache server and will also solve the names we have configured in the / etc / hosts file of our server. The resolution will work both directly and inversely, that is, it will solve the IP given a PC name and the PC name given the IP.&lt;/p></description></item><item><title>FTP under debian</title><link>https://www.javiercd.es/en/posts/servicios/ftp/ftp/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/ftp/ftp/</guid><description>&lt;h2 id="ftp-server-under-debian">FTP server under debian&lt;/h2>
+&lt;h3 id="installation-and-configuration-of-the-authenticated-proftpd-server">Installation and configuration of the authenticated proFTPd server&lt;/h3>
+&lt;ol>
+&lt;li>
+&lt;p>First we will create a group called ftpgroup:
+&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.160.png" alt="">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Create two local users from the ftp group we have created: Jose and Maria&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.161.png" alt="">&lt;/p>
+&lt;ol start="3">
+&lt;li>We install the ftp service:&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.162.png" alt="">&lt;/p>
+&lt;ol start="4">
+&lt;li>Basic configuration of the proftpd.conf file:&lt;/li>
+&lt;/ol>
+&lt;p>All users access your directory only:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.163.png" alt="">&lt;/p>
+&lt;p>We can now access from the browser with users Jose and Maria:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.164.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.165.png" alt="">&lt;/p>
+&lt;p>Each of these I have created a folder with your name within your personal directories in order to identify them.&lt;/p></description></item><item><title>NAT with iptables</title><link>https://www.javiercd.es/en/posts/servicios/nat_iptables/nat_iptables/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/nat_iptables/nat_iptables/</guid><description>&lt;h1 id="nat-with-iptables">NAT with iptables&lt;/h1>
+&lt;p>In this article you will learn to set up a small scenario in which you can set up a series of services. You will create the scenario described below, and you will make it through an internal network, using a Linux server, that you have access to the Internet by configuring SNAT in it by using iptables.&lt;/p>
+&lt;h2 id="installation-of-the-test-environment">Installation of the test environment&lt;/h2>
+&lt;p>We will install the following environment:&lt;/p></description></item><item><title>SSH under debian</title><link>https://www.javiercd.es/en/posts/servicios/ssh/ssh/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/ssh/ssh/</guid><description>&lt;p>#SSH server under debian&lt;/p>
+&lt;h2 id="remote-management-using-ssh">Remote management using SSH&lt;/h2>
+&lt;p>The first thing we should do is install the package on the server and the client:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.079.png" alt="">&lt;/p>
+&lt;p>For safety it is usually not allowed to connect the root to the server; for this, the /etc/ssh/sshd config file should be modified, and the following option is put:&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.080.png" alt="">&lt;/p>
+&lt;p>And we restart the service to apply the changes:&lt;/p>
+&lt;h3 id="connect-to-ssh-server">Connect to ssh server&lt;/h3>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.081.png" alt="">&lt;/p>
+&lt;p>We&amp;rsquo;re going to install the ssh client, for that:&lt;/p></description></item></channel></rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PostgreSQL on Atlas</title><link>https://www.javiercd.es/en/tags/postgresql/</link><description>Recent content in PostgreSQL on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 01 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/postgresql/index.xml" rel="self" type="application/rss+xml"/><item><title>Interconnection of database servers</title><link>https://www.javiercd.es/en/posts/base_de_datos/interconexion_de_servidores/interconexion_servidores/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/interconexion_de_servidores/interconexion_servidores/</guid><description>&lt;p>This post addresses how to configure and manage connections between different databases, both homogeneous and heterogeneous, to facilitate interoperability between various database systems. Throughout the article, different connection scenarios are explored, starting with configurations between databases of the same type, such as Oracle to Oracle or PostgreSQL to PostgreSQL, and then moving towards heterogeneous connections between different technologies, such as Oracle to MySQL, PostgreSQL to Oracle, and vice versa. It also covers the steps needed to configure links, create users, and modify key configuration files, allowing remote consultations.&lt;/p></description></item><item><title>PostgreSQL installation in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</guid><description>&lt;p>In this post, I will guide you through the process of installing PostgreSQL in Debian 12, creating a user with basic permissions, and how to create and consult a database.&lt;/p>
+&lt;p>#1. PostgreSQL installation&lt;/p>
+&lt;p>To install PostgreSQL in Debian 12, follow these steps:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;ul>
+&lt;li>
+&lt;ul>
+&lt;li>Update the repositories and install PostgreSQL * *:&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;p>First, make sure your system is updated and install PostgreSQL:&lt;/p>
+&lt;pre>&lt;code>```bash
+sudo apt update
+sudo apt install postgresql
+```
+&lt;/code>&lt;/pre>
+&lt;ol start="2">
+&lt;li>
+&lt;ul>
+&lt;li>
+&lt;ul>
+&lt;li>Verifies that the service is in operation * *:&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;p>After installation, make sure that the PostgreSQL service is in operation:&lt;/p></description></item></channel></rss>

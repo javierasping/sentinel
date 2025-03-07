@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Workshop 1 Storage and networks in Docker on Atlas</title><link>https://www.javiercd.es/en/posts/docker/taller1/</link><description>Recent content in Workshop 1 Storage and networks in Docker on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/docker/taller1/index.xml" rel="self" type="application/rss+xml"/><item><title>Workshop 1: Storage and Networks in Docker</title><link>https://www.javiercd.es/en/posts/docker/taller1/taller1_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/docker/taller1/taller1_docker/</guid><description>&lt;h2 id="workshop-1-storage-and-networks-in-docker">Workshop 1: Storage and Networks in Docker&lt;/h2>
+&lt;h3 id="storage">Storage&lt;/h3>
+&lt;p>Let&amp;rsquo;s work with Docker volumes:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Create a Docker volume called &amp;ldquo;miweb&amp;rdquo;:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker volume create miweb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Create a container from the image &lt;code>php:7.4-apache&lt;/code>, mounting the Docker volume in &lt;code>/var/www/html&lt;/code> (the &lt;em>DocumentRoot&lt;/em> of the server):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker run -d --name my-apache-app -v miweb:/var/www/html -p 8080:80 php:7.4-apache
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Use the &lt;code>docker cp&lt;/code> command to copy an &lt;code>index.html&lt;/code> file (with your name) into &lt;code>/var/www/html&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#e6db74">&amp;#34;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;&amp;#34;&lt;/span> &amp;gt; index.html
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker cp index.html my-apache-app:/var/www/html/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Access the container from the browser to check the &lt;code>index.html&lt;/code> file:&lt;/p></description></item></channel></rss>

@@ -5,13 +5,13 @@ Sobre cada una de las máquinas debes realizar un volcado de memoria y otro de d
 &lt;p>Podemos compartir un directorio de nuestro servidor , accediendo a las propiedades del mismo . Una vez aquí pulsamos sobre el menú compartir :&lt;/p></description></item><item><title>Configuración servicio ssh en Windows</title><link>https://www.javiercd.es/posts/sistemas/ssh_windows/ssh_windows/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/sistemas/ssh_windows/ssh_windows/</guid><description>&lt;h2 id="1instalación-de-la-característica">1.Instalación de la característica&lt;/h2>
 &lt;p>Lo primero que comprobaremos es comprobar si el servidor ssh esta instalado en la maquina a la cual queremos conectarnos .&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ps" data-lang="ps">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">Get-WindowsCapability&lt;/span> &lt;span style="color:#a6e22e">-Online&lt;/span> &lt;span style="color:#a6e22e">|&lt;/span> &lt;span style="color:#a6e22e">Where-Object&lt;/span> &lt;span style="color:#a6e22e">Name&lt;/span> &lt;span style="color:#a6e22e">-like&lt;/span> &lt;span style="color:#a6e22e">&amp;#39;OpenSSH\*&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="../img/Aspose.Words.abd631a7-a62e-4d27-bef0-1d38f74ce102.001.jpeg" alt="">&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="https://www.javiercd.es/sistemas/ssh_windows/img/Aspose.Words.abd631a7-a62e-4d27-bef0-1d38f74ce102.001.jpeg" alt="">&lt;/p>
 &lt;p>En el caso de que tengamos la característica la instalaremos :&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ps" data-lang="ps">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">Add-WindowsCapability&lt;/span> &lt;span style="color:#a6e22e">-Online&lt;/span> &lt;span style="color:#a6e22e">-Name&lt;/span> &lt;span style="color:#a6e22e">OpenSSH.Server~~~~0.0.1.0&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="../img/Aspose.Words.abd631a7-a62e-4d27-bef0-1d38f74ce102.002.png" alt="">&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="https://www.javiercd.es/sistemas/ssh_windows/img/Aspose.Words.abd631a7-a62e-4d27-bef0-1d38f74ce102.002.png" alt="">&lt;/p>
 &lt;p>Por defecto el servicio estará parado así que lo arrancamos :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.abd631a7-a62e-4d27-bef0-1d38f74ce102.003.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/ssh_windows/img/Aspose.Words.abd631a7-a62e-4d27-bef0-1d38f74ce102.003.png" alt="">&lt;/p>
 &lt;p>Podemos configurarlo para que arranque automáticamente al reiniciar el equipo :&lt;/p>
-&lt;p>&lt;img src="../img/Aspose.Words.abd631a7-a62e-4d27-bef0-1d38f74ce102.004.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://www.javiercd.es/sistemas/ssh_windows/img/Aspose.Words.abd631a7-a62e-4d27-bef0-1d38f74ce102.004.png" alt="">&lt;/p>
 &lt;h2 id="2conectarnos-usando-par-de-claves">2.Conectarnos usando par de claves&lt;/h2>
 &lt;p>Lo primero que haremos sera generar un par de claves en el cliente , con ssh-keygen :&lt;/p></description></item></channel></rss>
