@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Atlas</title><link>https://www.javiercd.es/posts/docker/</link><description>Recent content in Docker on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Taller 1: Almacenamiento y redes en Docker</title><link>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</guid><description>&lt;h2 id="taller-1-almacenamiento-y-redes-en-docker">Taller 1: Almacenamiento y redes en Docker&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Atlas</title><link>https://www.javiercd.es/posts/docker/</link><description>Recent content in Docker on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sun, 09 Mar 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación de Docker Compose en Ubuntu 24</title><link>https://www.javiercd.es/posts/docker/instalar_docker_compose/instalar_docker_compose/</link><pubDate>Sun, 09 Mar 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/instalar_docker_compose/instalar_docker_compose/</guid><description>&lt;p>Guía completa para instalar y gestionar Docker Compose en sistemas Linux.&lt;/p>
+&lt;h2 id="instalación-desde-repositorio">Instalación desde repositorio&lt;/h2>
+&lt;h3 id="para-sistemas-basados-en-debianubuntu">Para sistemas basados en Debian/Ubuntu&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo apt-get update
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo apt-get install docker-compose-plugin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="para-sistemas-basados-en-rhelcentos">Para sistemas basados en RHEL/CentOS&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo yum check-update
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo yum install docker-compose-plugin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="para-sistemas-basados-en-fedora">Para sistemas basados en Fedora&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo dnf update
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo dnf install docker-compose-plugin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h2 id="actualización-del-complemento">Actualización del complemento&lt;/h2>
+&lt;h3 id="actualizar-en-ubuntudebian">Actualizar en Ubuntu/Debian&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo apt-get update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt-get upgrade docker-compose-plugin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="actualizar-en-rhelcentos">Actualizar en RHEL/CentOS&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo yum update docker-compose-plugin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h2 id="instalación-manual">Instalación manual&lt;/h2>
+&lt;h3 id="descarga-directa-del-binario">Descarga directa del binario&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>DOCKER_CONFIG&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>DOCKER_CONFIG&lt;span style="color:#66d9ef">:-&lt;/span>$HOME/.docker&lt;span style="color:#e6db74">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkdir -p $DOCKER_CONFIG/cli-plugins
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl -SL https://github.com/docker/compose/releases/download/v2.25.0/docker-compose-linux-&lt;span style="color:#66d9ef">$(&lt;/span>uname -m&lt;span style="color:#66d9ef">)&lt;/span> -o $DOCKER_CONFIG/cli-plugins/docker-compose
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="instalación-global-todos-los-usuarios">Instalación global (todos los usuarios)&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo curl -SL https://github.com/docker/compose/releases/download/v2.25.0/docker-compose-linux-&lt;span style="color:#66d9ef">$(&lt;/span>uname -m&lt;span style="color:#66d9ef">)&lt;/span> -o /usr/local/lib/docker/cli-plugins/docker-compose
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr></description></item><item><title>Instalación de Docker en Ubuntu 24</title><link>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/instalacion_docker_ubuntu24/</link><pubDate>Sun, 09 Mar 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/instalacion_docker_ubuntu24/</guid><description>&lt;p>Para comenzar con Docker Engine en Ubuntu, asegúrate de cumplir con los requisitos previos y sigue los pasos de instalación.&lt;/p>
+&lt;h2 id="requisitos-previos">Requisitos Previos&lt;/h2>
+&lt;h3 id="requisitos-del-sistema-operativo">Requisitos del Sistema Operativo&lt;/h3>
+&lt;p>Para instalar Docker Engine, necesitas la versión de 64 bits de una de estas versiones de Ubuntu:&lt;/p>
+&lt;ul>
+&lt;li>Ubuntu Oracular 24.10&lt;/li>
+&lt;li>Ubuntu Noble 24.04 (LTS)&lt;/li>
+&lt;li>Ubuntu Jammy 22.04 (LTS)&lt;/li>
+&lt;li>Ubuntu Focal 20.04 (LTS)&lt;/li>
+&lt;/ul>
+&lt;p>Docker Engine para Ubuntu es compatible con arquitecturas x86_64 (o amd64), armhf, arm64, s390x y ppc64le (ppc64el).&lt;/p></description></item><item><title>Taller 1: Almacenamiento y redes en Docker</title><link>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</guid><description>&lt;h2 id="taller-1-almacenamiento-y-redes-en-docker">Taller 1: Almacenamiento y redes en Docker&lt;/h2>
 &lt;h3 id="almacenamiento">Almacenamiento&lt;/h3>
 &lt;p>Vamos a trabajar con volúmenes docker:&lt;/p>
 &lt;ol>
