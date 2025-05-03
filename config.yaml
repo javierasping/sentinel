@@ -16,6 +16,11 @@ module:
     target: static/files
   - source: ./node_modules/katex/dist/fonts
     target: static/fonts
+  - source: ./node_modules/flag-icon-css/flags
+    target: static/flags
+  - source: static
+    target: static
+
 
 # Manage languages
 # For any more details, you can check the official documentation: https://gohugo.io/content-management/multilingual/
