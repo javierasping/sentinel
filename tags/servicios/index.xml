@@ -20,7 +20,26 @@
 &lt;p>Todos los usuarios accedan solo a su directorio :&lt;/p>
 &lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.163.png" alt="">&lt;/p>
 &lt;p>Ahora podemos acceder desde el navegador con los usuarios Jose y Maria :&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.164.png" alt="">&lt;/p></description></item><item><title>NAT con iptables</title><link>https://www.javiercd.es/posts/servicios/nat_iptables/nat_iptables/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/nat_iptables/nat_iptables/</guid><description>&lt;h1 id="nat-con-iptables">NAT con iptables&lt;/h1>
+&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.164.png" alt="">&lt;/p></description></item><item><title>Instalación y configuración de un servidor DHCP en Linux</title><link>https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/dhcp_ipv4/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/dhcp_ipv4/</guid><description>&lt;h1 id="configuración-del-servidor-dhcp-bajo-debian">Configuración del servidor DHCP bajo Debian&lt;/h1>
+&lt;p>En este artículo aprenderás cómo configurar el servidor DHCP &lt;code>isc-dhcp-server&lt;/code>. Además, configuraremos una reserva de IP y lo configuraremos para que funcione en dos ámbitos diferentes.&lt;/p>
+&lt;p>En mi caso esta es la configuración de red de mi servidor DHCP .&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Red externa del router&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto ens4
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface ens4 inet dhcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Red interna 1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto ens5
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface ens5 inet static
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address 192.168.10.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> netmask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Red interna 2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto ens6
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface ens6 inet static
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address 192.168.20.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> netmask 255.255.255.0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="instalación-del-servidor-isc-dhcp-server">Instalación del servidor isc-dhcp-server&lt;/h2>
+&lt;p>Para instalar el servidor DHCP en Debian, ejecutamos el siguiente comando:&lt;/p></description></item><item><title>NAT con iptables</title><link>https://www.javiercd.es/posts/servicios/nat_iptables/nat_iptables/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/nat_iptables/nat_iptables/</guid><description>&lt;h1 id="nat-con-iptables">NAT con iptables&lt;/h1>
 &lt;p>En este artículo aprenderás a configurar un pequeño escenario en el cual podrás configurar una serie de servicios. Crearás el escenario descrito a continuacion , además, harás que a través de una red interna, usando un servidor Linux, tengas acceso a Internet configurando SNAT en el mismo haciendo uso de iptables.&lt;/p>
 &lt;h2 id="instalación-del-entorno-de-pruebas">Instalación del entorno de pruebas&lt;/h2>
 &lt;p>Vamos a instalar el siguiente entorno:&lt;/p>

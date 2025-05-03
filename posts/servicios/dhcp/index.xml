@@ -1,1 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DHCP on Atlas</title><link>https://www.javiercd.es/posts/servicios/dhcp/</link><description>Recent content in DHCP on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><atom:link href="https://www.javiercd.es/posts/servicios/dhcp/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DHCP on Atlas</title><link>https://www.javiercd.es/posts/servicios/dhcp/</link><description>Recent content in DHCP on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/servicios/dhcp/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación y configuración de un servidor DHCP en Linux</title><link>https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/dhcp_ipv4/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/dhcp_ipv4/</guid><description>&lt;h1 id="configuración-del-servidor-dhcp-bajo-debian">Configuración del servidor DHCP bajo Debian&lt;/h1>
+&lt;p>En este artículo aprenderás cómo configurar el servidor DHCP &lt;code>isc-dhcp-server&lt;/code>. Además, configuraremos una reserva de IP y lo configuraremos para que funcione en dos ámbitos diferentes.&lt;/p>
+&lt;p>En mi caso esta es la configuración de red de mi servidor DHCP .&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Red externa del router&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto ens4
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface ens4 inet dhcp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Red interna 1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto ens5
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface ens5 inet static
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address 192.168.10.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> netmask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Red interna 2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto ens6
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface ens6 inet static
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address 192.168.20.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> netmask 255.255.255.0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="instalación-del-servidor-isc-dhcp-server">Instalación del servidor isc-dhcp-server&lt;/h2>
+&lt;p>Para instalar el servidor DHCP en Debian, ejecutamos el siguiente comando:&lt;/p></description></item></channel></rss>
