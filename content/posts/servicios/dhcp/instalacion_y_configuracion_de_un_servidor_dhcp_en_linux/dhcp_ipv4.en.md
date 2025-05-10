@@ -22,6 +22,10 @@ auto ens5
 iface ens5 inet static 
         address 192.168.10.1
         netmask 255.255.255.0
+        # SNAT for ens5 network , ensure that bit of forwarding is activated.
+        post-up iptables -t nat -A POSTROUTING -o ens4 -j MASQUERADE
+        post-down iptables -t nat -D POSTROUTING -o ens4 -j MASQUERADE
+
 
 # Internal network 2
 auto ens6 

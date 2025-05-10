@@ -1,9 +1,9 @@
 ---
 menu:
   sidebar:
-    identifier: Configuracion_DNS_bajo_debian_10
+    identifier: dns
     name: DNS
     parent: servicios
     weight: 0
-title: DNS service configuration in Debian
+title: DNS
 ---
