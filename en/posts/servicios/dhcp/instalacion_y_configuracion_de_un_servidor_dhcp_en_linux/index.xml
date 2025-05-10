@@ -10,6 +10,10 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface ens5 inet static
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address 192.168.10.1
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> netmask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># SNAT for ens5 network , ensure that bit of forwarding is activated.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> post-up iptables -t nat -A POSTROUTING -o ens4 -j MASQUERADE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> post-down iptables -t nat -D POSTROUTING -o ens4 -j MASQUERADE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Internal network 2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto ens6

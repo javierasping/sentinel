@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ASIR on Atlas</title><link>https://www.javiercd.es/tags/asir/</link><description>Recent content in ASIR on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sat, 10 May 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/tags/asir/index.xml" rel="self" type="application/rss+xml"/><item><title>Configuración de un servidor DNS esclavo con BIND9</title><link>https://www.javiercd.es/posts/servicios/dns/bind9/dns_esclavo/dns_esclavo/</link><pubDate>Sat, 10 May 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/dns/bind9/dns_esclavo/dns_esclavo/</guid><description>&lt;hr>
+&lt;p>En esta guía aprenderás a configurar un servidor DNS esclavo usando BIND9 en Debian. Este servidor se sincronizará con el servidor maestro (&lt;code>dns1.javiercruces.org&lt;/code>) y permitirá distribuir la carga de resolución de nombres en tu red local. Además, se te guiará para verificar que la transferencia de zonas se realiza correctamente.&lt;/p>
+&lt;p>En este caso, el servidor esclavo se encuentra en la red 192.168.10.0/24, con la IP 192.168.10.200.&lt;/p>
+&lt;hr>
+&lt;h2 id="1-preparación-inicial-del-servidor-esclavo">1. Preparación inicial del servidor esclavo&lt;/h2>
+&lt;h3 id="nombre-de-la-máquina">Nombre de la máquina&lt;/h3>
+&lt;p>Primero, asignamos el nombre correcto al host. Edita el archivo &lt;code>/etc/hostname&lt;/code>:&lt;/p></description></item><item><title>Instalación y configuración de BIND9 en Linux</title><link>https://www.javiercd.es/posts/servicios/dns/bind9/instalacion_basica/instalacion_configuracion/</link><pubDate>Sun, 04 May 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/dns/bind9/instalacion_basica/instalacion_configuracion/</guid><description>&lt;hr>
+&lt;p>En esta guía aprenderás a instalar y configurar un servidor DNS en Linux utilizando BIND9. Configurarás zonas de resolución directa e inversa para tu dominio, permitirás consultas desde otras máquinas en la red y realizarás pruebas utilizando herramientas como dig. Además, verás cómo configurar forwarders para resolver nombres externos eficientemente.&lt;/p>
+&lt;hr>
+&lt;h2 id="1-preparación-inicial">1. Preparación inicial&lt;/h2>
+&lt;h3 id="crear-la-máquina-dns">Crear la máquina DNS&lt;/h3>
+&lt;p>Crea una máquina y configúrala con el nombre &lt;code>dns1.tunombre.org&lt;/code>.&lt;/p>
+&lt;p>Para ello edita el fichero &lt;code>/etc/hostname&lt;/code>:&lt;/p></description></item></channel></rss>

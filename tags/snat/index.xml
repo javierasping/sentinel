@@ -11,7 +11,7 @@
 &lt;p>&lt;img src="https://www.javiercd.es/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.001.jpeg" alt="">&lt;/p>
 &lt;h3 id="preparación-del-entorno">Preparación del entorno&lt;/h3>
 &lt;h4 id="instalación-de-paquetes">Instalación de paquetes&lt;/h4>
-&lt;p>Una vez colocadas las maquinas deberemos de descargarnos apache para los servidores web , para realizar esto conectaremos ambos servidores a un switch y este a la nube NAT para disponer de acceso a internet .&lt;/p></description></item><item><title>Configuración servidor DNS en Debian</title><link>https://www.javiercd.es/posts/servicios/dns/dns/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/dns/dns/</guid><description>&lt;h1 id="configuración-servidor-dns-en-debian">Configuración servidor DNS en Debian&lt;/h1>
+&lt;p>Una vez colocadas las maquinas deberemos de descargarnos apache para los servidores web , para realizar esto conectaremos ambos servidores a un switch y este a la nube NAT para disponer de acceso a internet .&lt;/p></description></item><item><title>Configuración servidor DNS en Debian</title><link>https://www.javiercd.es/posts/servicios/dns/dnsmasq/instalacion_basica/dnsmasq/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/dns/dnsmasq/instalacion_basica/dnsmasq/</guid><description>&lt;h1 id="configuración-servidor-dns-en-debian">Configuración servidor DNS en Debian&lt;/h1>
 &lt;h2 id="dnsmasq">Dnsmasq&lt;/h2>
 &lt;p>El paquete dnsmasq permite poner en marcha un servidor DNS de una forma muy sencilla. Simplemente instalando y arrancando el servicio dnsmasq, sin realizar ningún tipo de configuración adicional, nuestro PC se convertirá en un servidor caché DNS y además, resolverá los nombres que tengamos configurados en el archivo /etc/hosts de nuestro servidor. La resolución funcionará tanto en sentido directo como en sentido inverso, es decir, resolverá la IP dado un nombre de PC y el nombre del PC dada la IP.&lt;/p></description></item><item><title>FTP bajo debian</title><link>https://www.javiercd.es/posts/servicios/ftp/ftp/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/ftp/ftp/</guid><description>&lt;h1 id="servidor-ftp-bajo-debian">Servidor FTP bajo debian&lt;/h1>
 &lt;h2 id="instalación-y-configuración-del-servidor-proftpd-autentificado">Instalación y configuración del servidor proFTPd autentificado&lt;/h2>
@@ -37,6 +37,10 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface ens5 inet static
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address 192.168.10.1
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> netmask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># SNAT para la red ens5 , recuerda activar el bit de forwarding&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> post-up iptables -t nat -A POSTROUTING -o ens4 -j MASQUERADE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> post-down iptables -t nat -D POSTROUTING -o ens4 -j MASQUERADE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Red interna 2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto ens6
