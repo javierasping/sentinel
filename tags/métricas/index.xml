@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Métricas on Atlas</title><link>https://www.javiercd.es/tags/m%C3%A9tricas/</link><description>Recent content in Métricas on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 17 Apr 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/tags/m%C3%A9tricas/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación de Prometheus con docker-compose y Node Exporter en Debian 12</title><link>https://www.javiercd.es/posts/observabilidad/metricas/prometheus/instalacion_basica_docker_compose/prometheus_docker_compose_debian12/</link><pubDate>Thu, 17 Apr 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/observabilidad/metricas/prometheus/instalacion_basica_docker_compose/prometheus_docker_compose_debian12/</guid><description>&lt;p>Esta guía es un tutorial introductorio que muestra cómo instalar, configurar y utilizar una instancia básica de Prometheus mediante Docker Compose. Además, se configurará un equipo con Linux (en este caso Debian 12) para que exponga sus métricas del sistema, las cuales serán recolectadas por Prometheus mediante el uso de Node Exporter.&lt;/p>
+&lt;h2 id="requisitos-previos">Requisitos previos&lt;/h2>
+&lt;ul>
+&lt;li>Tener instalado Docker y Docker compose&lt;/li>
+&lt;li>Tener un equipo Linux con el que cuentes con permisos de administrador&lt;/li>
+&lt;/ul>
+&lt;h2 id="creación-de-ficheros">Creación de ficheros&lt;/h2>
+&lt;h3 id="creación-del-docker-compose">Creación del docker-compose&lt;/h3>
+&lt;p>Todos los ficheros utilizados en este post los podrás encontrar en mi &lt;a href="https://github.com/javierasping/learn_observability" target="_blank" rel="noopener">github&lt;/a> .&lt;/p></description></item></channel></rss>

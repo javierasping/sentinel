@@ -10,7 +10,15 @@
 &lt;h2 id="1-preparación-inicial">1. Preparación inicial&lt;/h2>
 &lt;h3 id="crear-la-máquina-dns">Crear la máquina DNS&lt;/h3>
 &lt;p>Crea una máquina y configúrala con el nombre &lt;code>dns1.tunombre.org&lt;/code>.&lt;/p>
-&lt;p>Para ello edita el fichero &lt;code>/etc/hostname&lt;/code>:&lt;/p></description></item><item><title>Instalación de Docker Compose en Ubuntu 24</title><link>https://www.javiercd.es/posts/docker/instalar_docker_compose/instalar_docker_compose/</link><pubDate>Sun, 09 Mar 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/instalar_docker_compose/instalar_docker_compose/</guid><description>&lt;p>Guía completa para instalar y gestionar Docker Compose en sistemas Linux.&lt;/p>
+&lt;p>Para ello edita el fichero &lt;code>/etc/hostname&lt;/code>:&lt;/p></description></item><item><title>Instalación de Prometheus con docker-compose y Node Exporter en Debian 12</title><link>https://www.javiercd.es/posts/observabilidad/metricas/prometheus/instalacion_basica_docker_compose/prometheus_docker_compose_debian12/</link><pubDate>Thu, 17 Apr 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/observabilidad/metricas/prometheus/instalacion_basica_docker_compose/prometheus_docker_compose_debian12/</guid><description>&lt;p>Esta guía es un tutorial introductorio que muestra cómo instalar, configurar y utilizar una instancia básica de Prometheus mediante Docker Compose. Además, se configurará un equipo con Linux (en este caso Debian 12) para que exponga sus métricas del sistema, las cuales serán recolectadas por Prometheus mediante el uso de Node Exporter.&lt;/p>
+&lt;h2 id="requisitos-previos">Requisitos previos&lt;/h2>
+&lt;ul>
+&lt;li>Tener instalado Docker y Docker compose&lt;/li>
+&lt;li>Tener un equipo Linux con el que cuentes con permisos de administrador&lt;/li>
+&lt;/ul>
+&lt;h2 id="creación-de-ficheros">Creación de ficheros&lt;/h2>
+&lt;h3 id="creación-del-docker-compose">Creación del docker-compose&lt;/h3>
+&lt;p>Todos los ficheros utilizados en este post los podrás encontrar en mi &lt;a href="https://github.com/javierasping/learn_observability" target="_blank" rel="noopener">github&lt;/a> .&lt;/p></description></item><item><title>Instalación de Docker Compose en Ubuntu 24</title><link>https://www.javiercd.es/posts/docker/instalar_docker_compose/instalar_docker_compose/</link><pubDate>Sun, 09 Mar 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/instalar_docker_compose/instalar_docker_compose/</guid><description>&lt;p>Guía completa para instalar y gestionar Docker Compose en sistemas Linux.&lt;/p>
 &lt;h2 id="instalación-desde-repositorio">Instalación desde repositorio&lt;/h2>
 &lt;h3 id="para-sistemas-basados-en-debianubuntu">Para sistemas basados en Debian/Ubuntu&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo apt-get update
