@@ -3,7 +3,10 @@
         "debian",
         "enrutamiento",
         "Enrutamiento",
+        "Exporter",
         "licántropos",
+        "observabilidad",
+        "Prometheus",
         "redimensionarlos",
         "Wireshark"
     ]
