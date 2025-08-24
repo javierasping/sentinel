@@ -27,7 +27,7 @@ Dado que ya no es posible instalar paquetes pip fuera de un entorno virtual tras
 1. Encuentra la versión más reciente en el siguiente enlace: [Releases - EnvyControl](https://github.com/bayasdev/envycontrol/releases/latest).
 2. En esa página, selecciona y descarga el paquete .deb correspondiente. También puedes utilizar la herramienta wget para descargarlo desde la terminal.
 
-   ![Descarga del paquete .deb](../img/github_deb.png)
+   ![Descarga del paquete .deb](/drivers/nvidia_optimus/img/github_deb.png)
 
 3. Instala el paquete descargado con el siguiente comando:
 
