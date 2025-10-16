@@ -117,7 +117,7 @@ $ virsh domifaddr debian13
 
 CPU y memoria:
 ```bash
-javiercruces@FJCD-PC:~ [p-ie-omni|]
+javiercruces@FJCD-PC:~ 
 $ virsh domstats debian13
 Domain: 'debian13'
   state.state=1

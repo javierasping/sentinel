@@ -48,7 +48,7 @@ KVM se basa en **dos componentes principales**:
 
 2. **Espacio de usuario (User space):**  
    - `qemu-system-ARCH` emula dispositivos virtuales y controla las VMs.  
-   - Se puede gestionar mediante herramientas de QEMU (`qemu-img`, `qemu-monitor`) o mediante la pila libvirt (`virsh`, `virt-manager`, `virt-install`).
+   - Se puede gestionar mediante herramientas de QEMU (`qemu-img`, `qemu-monitor`) o mediante pila libvirt (`virsh`, `virt-manager`, `virt-install`).
 
 En la práctica, el término **KVM** se usa tanto para referirse a la funcionalidad del kernel como al componente de espacio de usuario.
 
