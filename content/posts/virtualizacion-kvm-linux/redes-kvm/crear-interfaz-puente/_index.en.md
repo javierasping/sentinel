@@ -4,6 +4,6 @@ menu:
     identifier: crear-interfaz-puente
     name: Create bridge interface
     parent: redes-kvm
-    weight: 2
+    weight: 3
 title: Create a network interface in bridge mode
 ---

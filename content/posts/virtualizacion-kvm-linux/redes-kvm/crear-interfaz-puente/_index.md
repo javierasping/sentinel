@@ -1,9 +1,9 @@
 ---
-title: Crear una interfaz de red en modo puente
+title: Crear redes puente
 menu:
   sidebar:
-    name: Interfaz en modo puente
+    name: Crear redes puente
     identifier: crear-interfaz-puente
     parent: redes-kvm
-    weight: 2
+    weight: 3
 ---

@@ -37,7 +37,7 @@ qemu-img info /var/lib/libvirt/images/debian13.qcow2
 
 # Comprobar si el agente invitado está operativo (para --quiesce)
 virsh domfsinfo debian13            # requiere qemu-guest-agent
-virsh qemu-agent-command debian13 '{"execute":"guest-info"}' --timeout 5 || true
+virsh qemu-agent-command debian13 '{"execute":"guest-info"}' --timeout 5
 ```
 
 Notas:
