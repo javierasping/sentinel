@@ -31,7 +31,7 @@ The `virt-install` command allows you to specify all the VM’s properties. For 
 ```bash
 # Example using a local ISO
 
-virt-install --connect qemu:///system     --name ubuntu-24.04-vm     --virt-type kvm --hvm --os-variant=ubuntu24.04     --ram 4096 --vcpus 2 --network network=default     --disk pool=default,size=20,bus=virtio,format=qcow2     --cdrom /var/lib/libvirt/images/ubuntu-24.04.3-live-server-amd64.iso     --boot uefi,cdrom,hd     --noautoconsole     --graphics none
+virt-install --connect qemu:///system     --name ubuntu-24.04-vm     --virt-type kvm --hvm --os-variant=ubuntu24.04     --ram 4096 --vcpus 2 --network network=default     --disk pool=default,size=20,bus=virtio,format=qcow2     --cdrom /var/lib/libvirt/images/ubuntu-24.04.3-live-server-amd64.iso     --boot uefi,cdrom,hd     --noautoconsole
 ```
 
 ### Parameter Explanation

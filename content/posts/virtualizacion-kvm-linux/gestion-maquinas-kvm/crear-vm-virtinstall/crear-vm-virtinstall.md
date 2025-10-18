@@ -39,9 +39,7 @@ virt-install --connect qemu:///system \
     --disk pool=default,size=20,bus=virtio,format=qcow2 \
     --cdrom /var/lib/libvirt/images/ubuntu-24.04.3-live-server-amd64.iso \
     --boot uefi,cdrom,hd \
-    --noautoconsole \
-    --graphics none
-
+    --noautoconsole
 ```
 
 ### Explicación de los parámetros

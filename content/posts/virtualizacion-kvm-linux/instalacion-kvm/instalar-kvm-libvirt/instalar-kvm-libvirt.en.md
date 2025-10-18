@@ -59,7 +59,7 @@ KVM acceleration can be used
 Install the essential KVM packages:
 
 ```bash
-sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils libosinfo-bin virt-install virt-manager virt-viewer -y
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils libosinfo-bin virt-install virt-manager virt-viewer libguestfs-tools -y
 ```
 
 Wait for the installation to complete.
