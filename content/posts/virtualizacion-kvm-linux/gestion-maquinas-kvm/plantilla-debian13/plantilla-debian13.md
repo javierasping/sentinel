@@ -207,6 +207,17 @@ sudo virt-clone --original debian13-base --name debian13-clonacion-completa \
 
 Con este comando tendremos una nueva máquina virtual con los mismos componentes que la plantilla.
 
+Antes de arrancar la clonación como un usuario no-root, asegúrate de ajustar propietario y permisos del fichero de disco recién creado. En muchas distribuciones el proceso QEMU/libvirt necesita que el archivo pertenezca al usuario/grupo que ejecuta el hypervisor (por ejemplo `libvirt-qemu:libvirt-qemu` o `qemu:qemu`). Si no se corrigen estos permisos, al iniciar la VM con un usuario distinto de root puede fallar.
+
+```bash
+javiercruces@FJCD-PC:~$ sudo chown libvirt-qemu:libvirt-qemu /var/lib/libvirt/images/debian13-clonacion-completa.qcow2
+javiercruces@FJCD-PC:~$ sudo chmod 660 /var/lib/libvirt/images/debian13-clonacion-completa.qcow2
+
+javiercruces@FJCD-PC:~$ sudo virsh start debian13-clonacion-completa
+Domain 'debian13-clonacion-completa' started
+```
+
+Si tu distribución usa otro usuario/grupo para el proceso qemu (por ejemplo `qemu:qemu`), sustituye `libvirt-qemu:libvirt-qemu` por el par correcto. Además, si usas SELinux o AppArmor revisa las políticas que puedan bloquear el acceso al fichero.
 
 ### 5.2 Clonación enlazada
 
@@ -234,6 +245,18 @@ sudo virt-install \
   --import \
   --noautoconsole
 ```
+
+Antes de arrancar la máquina clonada, ajusta propietario y permisos del fichero creado para evitar errores de acceso cuando el hipervisor (qemu/libvirt) no corra como root. En muchos sistemas el proceso corre como `libvirt-qemu:libvirt-qemu` o `qemu:qemu`.
+
+```bash
+javiercruces@FJCD-PC:~$ sudo chown libvirt-qemu:libvirt-qemu /var/lib/libvirt/images/debian13-clonacion-enlazada.qcow2
+javiercruces@FJCD-PC:~$ sudo chmod 660 /var/lib/libvirt/images/debian13-clonacion-enlazada.qcow2
+
+javiercruces@FJCD-PC:~$ sudo virsh start debian13-clonacion-enlazada
+Domain 'debian13-clonacion-enlazada' started
+```
+
+Si tu distribución usa otro usuario/grupo para qemu (por ejemplo `qemu:qemu`), sustituye `libvirt-qemu:libvirt-qemu` por el par correcto. Revisa también SELinux/AppArmor si persisten errores.
 
 
 ---

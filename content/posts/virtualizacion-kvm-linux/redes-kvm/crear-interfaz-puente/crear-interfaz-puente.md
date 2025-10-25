@@ -321,13 +321,13 @@ ping 192.168.100.127
 
 ## Referencias
 
-- Netplan — https://netplan.io/examples
-- Libvirt: Networking overview — https://libvirt.org/network.html
-- Debian Wiki: BridgeNetworkConnections — https://wiki.debian.org/BridgeNetworkConnections
-- iproute2: ip-link, ip-address, ip-route — https://man7.org/linux/man-pages/man8/ip.8.html
-- TUN/TAP (kernel docs) — https://www.kernel.org/doc/Documentation/networking/tuntap.txt
-- ip-netns (network namespaces) — https://man7.org/linux/man-pages/man8/ip-netns.8.html
-- veth (ip-link) — https://man7.org/linux/man-pages/man8/ip-link.8.html
-- Bonding (kernel docs) — https://www.kernel.org/doc/Documentation/networking/bonding.txt
-- brctl (bridge-utils) — https://manpages.debian.org/bridge-utils
+- Netplan   https://netplan.io/examples
+- Libvirt: Networking overview   https://libvirt.org/network.html
+- Debian Wiki: BridgeNetworkConnections   https://wiki.debian.org/BridgeNetworkConnections
+- iproute2: ip-link, ip-address, ip-route   https://man7.org/linux/man-pages/man8/ip.8.html
+- TUN/TAP (kernel docs)   https://www.kernel.org/doc/Documentation/networking/tuntap.txt
+- ip-netns (network namespaces)   https://man7.org/linux/man-pages/man8/ip-netns.8.html
+- veth (ip-link)   https://man7.org/linux/man-pages/man8/ip-link.8.html
+- Bonding (kernel docs)   https://www.kernel.org/doc/Documentation/networking/bonding.txt
+- brctl (bridge-utils)   https://manpages.debian.org/bridge-utils
 ---

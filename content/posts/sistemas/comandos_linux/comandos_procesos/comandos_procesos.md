@@ -82,7 +82,7 @@ Es un programa todo en uno: simultáneamente cumple las funciones de ps y kill. 
 
 Dentro de este podemos controlarlo usando las siguientes teclas:
 
-**-k**: este comando se usa para enviar una señal a un proceso. Luego, top le preguntará por el PID del proceso, seguido del número de la señal a enviar (predeterminadamente TERM — o 15);
+**-k**: este comando se usa para enviar una señal a un proceso. Luego, top le preguntará por el PID del proceso, seguido del número de la señal a enviar (predeterminadamente TERM   o 15);
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.016.png)
 

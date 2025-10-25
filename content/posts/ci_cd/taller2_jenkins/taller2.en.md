@@ -6,7 +6,7 @@ tags: [Jenkins, CI/CD]
 hero: images/ci_cd/jenkins/taller2.png
 ---
 
-In this exercise, we want to deploy an HTML5 page on the service _surge.sh_. We also want to check if the HTML5 code is valid. These two operations—checking if the HTML5 is valid (test) and deploying to surge.sh (deploy)—will be automated using Jenkins (CI/CD). 
+In this exercise, we want to deploy an HTML5 page on the service _surge.sh_. We also want to check if the HTML5 code is valid. These two operations checking if the HTML5 is valid (test) and deploying to surge.sh (deploy) will be automated using Jenkins (CI/CD). 
 
 Remember that the repository is [https://github.com/josedom24/ic-html5](https://github.com/josedom24/ic-html5).
 

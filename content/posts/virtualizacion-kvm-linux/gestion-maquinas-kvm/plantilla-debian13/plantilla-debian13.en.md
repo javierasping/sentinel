@@ -209,6 +209,18 @@ sudo virt-clone --original debian13-base --name debian13-clonacion-completa \
 
 With this command we'll have a new virtual machine with the same components as the template.
 
+Before starting the full clone as a non-root user, make sure to set the correct owner and permissions on the newly created disk file. On many distributions the QEMU/libvirt process runs as `libvirt-qemu:libvirt-qemu` or `qemu:qemu`; if permissions are not corrected, starting the VM as a non-root user may fail.
+
+```bash
+javiercruces@FJCD-PC:~$ sudo chown libvirt-qemu:libvirt-qemu /var/lib/libvirt/images/debian13-clonacion-completa.qcow2
+javiercruces@FJCD-PC:~$ sudo chmod 660 /var/lib/libvirt/images/debian13-clonacion-completa.qcow2
+
+javiercruces@FJCD-PC:~$ sudo virsh start debian13-clonacion-completa
+Domain 'debian13-clonacion-completa' started
+```
+
+If your distribution uses a different user/group for the qemu process (for example `qemu:qemu`), replace `libvirt-qemu:libvirt-qemu` accordingly. Also check SELinux/AppArmor policies if permission issues persist.
+
 
 ### 5.2 Linked clone
 
@@ -236,6 +248,18 @@ sudo virt-install \
   --import \
   --noautoconsole
 ```
+
+Before starting the cloned VM, make sure to set the correct owner and permissions on the newly created disk file to avoid access errors when the hypervisor process (qemu/libvirt) runs as a non-root user. On many systems the process runs as `libvirt-qemu:libvirt-qemu` or `qemu:qemu`.
+
+```bash
+javiercruces@FJCD-PC:~$ sudo chown libvirt-qemu:libvirt-qemu /var/lib/libvirt/images/debian13-clonacion-enlazada.qcow2
+javiercruces@FJCD-PC:~$ sudo chmod 660 /var/lib/libvirt/images/debian13-clonacion-enlazada.qcow2
+
+javiercruces@FJCD-PC:~$ sudo virsh start debian13-clonacion-enlazada
+Domain 'debian13-clonacion-enlazada' started
+```
+
+If your distribution uses a different user/group for qemu (for example `qemu:qemu`), replace `libvirt-qemu:libvirt-qemu` accordingly. Also check SELinux/AppArmor policies if you still encounter permission issues.
 
 ---
 

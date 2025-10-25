@@ -73,7 +73,7 @@ virt-install --connect qemu:///system     --name ubuntu-24.04-vm     --virt-type
   Prevents the console from automatically opening after VM creation.
 
 - `--boot cdrom,hd`  
-  Sets the boot order — first CD-ROM, then hard disk.
+  Sets the boot order   first CD-ROM, then hard disk.
 
 ## Validate the VM creation
 
