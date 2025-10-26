@@ -1,0 +1,10 @@
+<!-- mgmt-net.xml: plantilla de red libvirt para la red de gestión -->
+<network>
+  <name>mgmt-net</name>
+  <bridge name='virbr-mgmt' stp='on' delay='0'/>
+  <ip address='10.0.0.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='10.0.0.100' end='10.0.0.250'/>
+    </dhcp>
+  </ip>
+</network>

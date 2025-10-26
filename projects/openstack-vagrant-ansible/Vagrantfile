@@ -1,0 +1,7 @@
+# Vagrantfile minimal de ejemplo para el laboratorio OpenStack (modifica según tus necesidades)
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/focal64"
+  # Este Vagrantfile es una plantilla. Añade definición de máquinas, redes y provisión.
+end

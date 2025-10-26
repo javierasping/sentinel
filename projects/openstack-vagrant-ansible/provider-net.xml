@@ -1,0 +1,7 @@
+<!-- provider-net.xml: plantilla de red libvirt que representa la red pública/provider -->
+<network>
+  <name>provider-net</name>
+  <bridge name='virbr-provider' stp='on' delay='0'/>
+  <ip address='192.168.100.1' netmask='255.255.255.0'>
+  </ip>
+</network>
