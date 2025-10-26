@@ -1,97 +1,99 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CISCO on Atlas</title><link>https://www.javiercd.es/en/tags/cisco/</link><description>Recent content in CISCO on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/cisco/index.xml" rel="self" type="application/rss+xml"/><item><title>Remote access VPN with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</guid><description>&lt;ul>
-&lt;li>One of the two teams (which will act as a server) will be connected to two networks&lt;/li>
-&lt;li>For the authentication of the extremes, digital certificates shall be used, which shall be generated using openssl and stored in the / etc / openvpn directory, together with the Diffie- Helman parameters and the certificate of the Certification Authority itself.&lt;/li>
-&lt;li>Network addresses 10.99.99.0 / 24 will be used for VPN virtual addresses. The address 10.99.99.1 shall be assigned to the VPN server.&lt;/li>
-&lt;li>The server and client configuration files will be created in the / etc / openvpn directory of each machine, and will be called servor.conf and cliente.conf respectively.&lt;/li>
-&lt;li>After the establishment of the VPN, the client machine must be able to access a machine on the other network to which the server is connected.&lt;/li>
-&lt;/ul>
-&lt;h3 id="riding-the-stage">Riding the stage&lt;/h3>
-&lt;p>To perform this exercise I have mounted the following scenario on GNS3:&lt;/p></description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p>&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt="">&lt;/p>
-&lt;blockquote>
-&lt;p>[!NOTE]
-I will start from the VPN post remote access with Wireguard, so you may refer to this one during this article.&lt;/p>&lt;/blockquote>
-&lt;h2 id="key-generation">Key generation&lt;/h2>
-&lt;p>The first thing we will do is to install both the Wireguard package in both machines:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>root@servidor1:~# sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>debian@servidor2:~$ sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Let&amp;rsquo;s generate the pairs of keys that will be used to encrypt the connection. We will need a key for the server and a couple of additional keys for each client.&lt;/p></description></item><item><title>VPN site to site with IPsec Cisco</title><link>https://www.javiercd.es/en/posts/vpn/ipsec_cisco/ipsec_cisco/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/ipsec_cisco/ipsec_cisco/</guid><description>&lt;p>In this post I&amp;rsquo;m going to mount an IPSEC VPN using swan routers.&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/vpn/ipsec_cisco/img/Pastedimage20240128120659.png" alt="">&lt;/p>
-&lt;blockquote>
-&lt;p>[!NOTE]
-This post details the configuration of R2 and R3 routers, however R1 is explained in the post of &amp;ldquo;VPN OpenVPN remote access.&amp;rdquo; If you want to see the configuration of the latter, look at the section preparing the stage.&lt;/p>&lt;/blockquote>
-&lt;h2 id="-stage-configuration"># Stage configuration&lt;/h2>
-&lt;p>As I have changed stage, the 2 new routers have to be set up on the R2 and R3 network.&lt;/p></description></item><item><title>VPN site to site with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</guid><description>&lt;h3 id="riding-the-stage">Riding the stage&lt;/h3>
-&lt;p>To perform this exercise I have mounted the following scenario on GNS3:&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt="">&lt;/p>
-&lt;h3 id="swan-router-configuration">Swan router configuration&lt;/h3>
-&lt;p>Let&amp;rsquo;s give each interface the corresponding network configuration:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Interfaz que nos dará internet&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1#configure terminal
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface fastEthernet 0/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip add dhcp&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#no shut&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#exit&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Interfaz red Servidor 1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface fastEthernet 1/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip add 90.0.0.1 255.255.255.0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#no shut&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#exit&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Interfaz red Servidor 2&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface fastEthernet 1/1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip add 100.0.0.1 255.255.255.0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#no shut&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#exit&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Ruta por defecto para internet&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip route 0.0.0.0 0.0.0.0 192.168.122.1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Guarda la configuración&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1#write
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Configuración de SNAT&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1#conf term
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#access-list 1 permit 90.0.0.0 0.0.0.255&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#access-list 1 permit 100.0.0.0 0.0.0.255&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e"># ip nat pool NAT-Pool 192.168.122.127 192.168.122.127 prefix-length 24&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat inside source list 1 pool NAT-Pool overload&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface FastEthernet0/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat outside&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface FastEthernet1/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat inside&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface FastEthernet1/1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat inside&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Server Configuration 1&lt;/p></description></item><item><title>VPN Wireguard remote access</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</guid><description>&lt;p>&lt;img src="https://www.javiercd.es/vpn/acceso_remoto_wireguard/img/Pastedimage20240114150833.png" alt="">&lt;/p>
-&lt;p>First I will configure the server machine as a VPN remote access and server server as a VPN client. I will then set up a Windows and Android client.&lt;/p>
-&lt;p>The first thing we will do is to install both the Wireguard package in both machines:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>root@servidor1:~# sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>debian@servidor2:~$ sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Let&amp;rsquo;s generate the pairs of keys that will be used to encrypt the connection. We will need a key for the server and a couple of additional keys for each client.&lt;/p></description></item><item><title>GNS3 switch configuration</title><link>https://www.javiercd.es/en/posts/redes/switches_gns3/configuracion_de_switches_en_gns3/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/switches_gns3/configuracion_de_switches_en_gns3/</guid><description>&lt;p>You will learn to configure switches in GNS3, both generic devices and Cisco switches, using the VLans concept to segment the network and explore the complexities of network management.&lt;/p>
-&lt;h3 id="stage-preparation">Stage preparation&lt;/h3>
-&lt;p>The first thing I&amp;rsquo;ll do is set up the stage:&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.001.jpeg" alt="">&lt;/p>
-&lt;h3 id="customer-network-configuration">Customer network configuration&lt;/h3>
-&lt;p>Then set up the network cards of the customers, taking advantage that the NAT cloud includes a DHCP server.&lt;/p>
-&lt;p>To do this, we write on the VPCS the following command:&lt;/p></description></item><item><title>IPv6 Tunnels</title><link>https://www.javiercd.es/en/posts/redes/tuneles_ipv6/tuneles_ipv6/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/tuneles_ipv6/tuneles_ipv6/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>In this detailed post, we explore the process of configuring IPv6 to IPv4 tunnels and vice versa in Linux and Cisco environments. As the migration to IPv6 gains importance, the ability to establish communication between IPv4 and IPv6 networks becomes essential. We will cover the basics of tunnel configuration, including the most common types of tunnels, such as 6to4 and Teredo. Additionally, we will provide step-by-step instructions for configuration on both Linux systems and Cisco devices.&lt;/p></description></item><item><title>NAT Cisco and Linux Configuration</title><link>https://www.javiercd.es/en/posts/redes/configuracion_de_nat/configuracion_de_nat/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/configuracion_de_nat/configuracion_de_nat/</guid><description>&lt;p>In this article, we will explore the configuration of SNAT (Source Network Address Translation) and DNAT (Destination Network Address Translation) in scenarios with public addresses, using routers in Linux environments and Cisco devices.&lt;/p>
-&lt;h3 id="scenario-with-debian-machines">Scenario with debian machines&lt;/h3>
-&lt;p>&lt;img src="https://www.javiercd.es/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.001.jpeg" alt="">&lt;/p>
-&lt;h3 id="preparation-of-the-environment">Preparation of the environment&lt;/h3>
-&lt;h3 id="installation-of-packages">Installation of packages&lt;/h3>
-&lt;p>Once the machines are placed we must download Apache for the web servers, to do this we will connect both servers to a switch and this to the NAT cloud for Internet access.&lt;/p></description></item><item><title>Underworld</title><link>https://www.javiercd.es/en/posts/redes/underworld/underworld/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/underworld/underworld/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>You live in UNDERWORLD. In your world, there are different types of species with one goal: to &amp;ldquo;crossbreed&amp;rdquo; with each other. These creatures are:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>VAMPIRES&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>WEREWOLVES (LICÁNTROPOS):&lt;/strong> Werewolves with the ability to return to their human form.&lt;/li>
-&lt;li>&lt;strong>WOLFMEN (HOMBRES LOBO):&lt;/strong> Werewolves who, after their first transformation, cannot return to their human form.&lt;/li>
-&lt;li>&lt;strong>HUMANS:&lt;/strong> Some annoying little creatures.&lt;/li>
-&lt;li>&lt;strong>YOU:&lt;/strong> A tech-savvy warrior with superpowers like turning around a game that hasn&amp;rsquo;t even been released yet or having the ability to become invisible when going out to party and trying to flirt with a girl by saying things like: &amp;ldquo;Do you want me to compile your kernel, babe?&amp;rdquo;&lt;/li>
-&lt;/ul>
-&lt;p>The layout of UNDERWORLD is as follows:&lt;/p></description></item><item><title>Underworld evolution</title><link>https://www.javiercd.es/en/posts/redes/underworld_evolution/underworld_evolution/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/underworld_evolution/underworld_evolution/</guid><description>&lt;p>The world of UNDERWORLD has evolved greatly in recent months, so you must perform network management tasks to face the new situation.&lt;/p>
-&lt;p>On one hand, the Internet has been discovered in the Underworld, allowing each of the sub-worlds (remember: vampires, werewolves, lycanthropes, and humans) to connect to a router that, in turn, connects them to one of the two large routers that form Underworld&amp;rsquo;s Internet, called Marcus (for humans and vampires) and Alexander (for werewolves and lycanthropes). Marcus and Alexander are connected to each other.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CISCO on Atlas</title><link>https://www.javiercd.es/en/tags/cisco/</link><description>Recent content in CISCO on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/cisco/index.xml" rel="self" type="application/rss+xml"/><item><title>Remote access VPN with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</guid><description>&lt;ul&gt;
+&lt;li&gt;One of the two teams (which will act as a server) will be connected to two networks&lt;/li&gt;
+&lt;li&gt;For the authentication of the extremes, digital certificates shall be used, which shall be generated using openssl and stored in the / etc / openvpn directory, together with the Diffie- Helman parameters and the certificate of the Certification Authority itself.&lt;/li&gt;
+&lt;li&gt;Network addresses 10.99.99.0 / 24 will be used for VPN virtual addresses. The address 10.99.99.1 shall be assigned to the VPN server.&lt;/li&gt;
+&lt;li&gt;The server and client configuration files will be created in the / etc / openvpn directory of each machine, and will be called servor.conf and cliente.conf respectively.&lt;/li&gt;
+&lt;li&gt;After the establishment of the VPN, the client machine must be able to access a machine on the other network to which the server is connected.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="riding-the-stage"&gt;Riding the stage&lt;/h3&gt;
+&lt;p&gt;To perform this exercise I have mounted the following scenario on GNS3:&lt;/p&gt;</description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]
+I will start from the VPN post remote access with Wireguard, so you may refer to this one during this article.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="key-generation"&gt;Key generation&lt;/h2&gt;
+&lt;p&gt;The first thing we will do is to install both the Wireguard package in both machines:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;root@servidor1:~# sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;debian@servidor2:~$ sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s generate the pairs of keys that will be used to encrypt the connection. We will need a key for the server and a couple of additional keys for each client.&lt;/p&gt;</description></item><item><title>VPN site to site with IPsec Cisco</title><link>https://www.javiercd.es/en/posts/vpn/ipsec_cisco/ipsec_cisco/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/ipsec_cisco/ipsec_cisco/</guid><description>&lt;p&gt;In this post I&amp;rsquo;m going to mount an IPSEC VPN using swan routers.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/ipsec_cisco/img/Pastedimage20240128120659.png" alt=""&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]
+This post details the configuration of R2 and R3 routers, however R1 is explained in the post of &amp;ldquo;VPN OpenVPN remote access.&amp;rdquo; If you want to see the configuration of the latter, look at the section preparing the stage.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="-stage-configuration"&gt;# Stage configuration&lt;/h2&gt;
+&lt;p&gt;As I have changed stage, the 2 new routers have to be set up on the R2 and R3 network.&lt;/p&gt;</description></item><item><title>VPN site to site with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</guid><description>&lt;h3 id="riding-the-stage"&gt;Riding the stage&lt;/h3&gt;
+&lt;p&gt;To perform this exercise I have mounted the following scenario on GNS3:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
+&lt;h3 id="swan-router-configuration"&gt;Swan router configuration&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s give each interface the corresponding network configuration:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Interfaz que nos dará internet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1#configure terminal
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface fastEthernet 0/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip add dhcp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#no shut&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Interfaz red Servidor 1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface fastEthernet 1/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip add 90.0.0.1 255.255.255.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#no shut&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Interfaz red Servidor 2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface fastEthernet 1/1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip add 100.0.0.1 255.255.255.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#no shut&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Ruta por defecto para internet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip route 0.0.0.0 0.0.0.0 192.168.122.1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Guarda la configuración&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1#write
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Configuración de SNAT&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1#conf term
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#access-list 1 permit 90.0.0.0 0.0.0.255&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#access-list 1 permit 100.0.0.0 0.0.0.255&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;# ip nat pool NAT-Pool 192.168.122.127 192.168.122.127 prefix-length 24&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat inside source list 1 pool NAT-Pool overload&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface FastEthernet0/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat outside&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface FastEthernet1/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat inside&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface FastEthernet1/1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat inside&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Server Configuration 1&lt;/p&gt;</description></item><item><title>VPN Wireguard remote access</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</guid><description>&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/acceso_remoto_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;First I will configure the server machine as a VPN remote access and server server as a VPN client. I will then set up a Windows and Android client.&lt;/p&gt;
+&lt;p&gt;The first thing we will do is to install both the Wireguard package in both machines:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;root@servidor1:~# sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;debian@servidor2:~$ sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s generate the pairs of keys that will be used to encrypt the connection. We will need a key for the server and a couple of additional keys for each client.&lt;/p&gt;</description></item><item><title>GNS3 switch configuration</title><link>https://www.javiercd.es/en/posts/redes/switches_gns3/configuracion_de_switches_en_gns3/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/switches_gns3/configuracion_de_switches_en_gns3/</guid><description>&lt;p&gt;You will learn to configure switches in GNS3, both generic devices and Cisco switches, using the VLans concept to segment the network and explore the complexities of network management.&lt;/p&gt;
+&lt;h3 id="stage-preparation"&gt;Stage preparation&lt;/h3&gt;
+&lt;p&gt;The first thing I&amp;rsquo;ll do is set up the stage:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.001.jpeg" alt=""&gt;&lt;/p&gt;
+&lt;h3 id="customer-network-configuration"&gt;Customer network configuration&lt;/h3&gt;
+&lt;p&gt;Then set up the network cards of the customers, taking advantage that the NAT cloud includes a DHCP server.&lt;/p&gt;
+&lt;p&gt;To do this, we write on the VPCS the following command:&lt;/p&gt;</description></item><item><title>IPv6 Tunnels</title><link>https://www.javiercd.es/en/posts/redes/tuneles_ipv6/tuneles_ipv6/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/tuneles_ipv6/tuneles_ipv6/</guid><description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In this detailed post, we explore the process of configuring IPv6 to IPv4 tunnels and vice versa in Linux and Cisco environments. As the migration to IPv6 gains importance, the ability to establish communication between IPv4 and IPv6 networks becomes essential. We will cover the basics of tunnel configuration, including the most common types of tunnels, such as 6to4 and Teredo. Additionally, we will provide step-by-step instructions for configuration on both Linux systems and Cisco devices.&lt;/p&gt;</description></item><item><title>NAT Cisco and Linux Configuration</title><link>https://www.javiercd.es/en/posts/redes/configuracion_de_nat/configuracion_de_nat/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/configuracion_de_nat/configuracion_de_nat/</guid><description>&lt;p&gt;In this article, we will explore the configuration of SNAT (Source Network Address Translation) and DNAT (Destination Network Address Translation) in scenarios with public addresses, using routers in Linux environments and Cisco devices.&lt;/p&gt;
+&lt;h3 id="scenario-with-debian-machines"&gt;Scenario with debian machines&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.001.jpeg" alt=""&gt;&lt;/p&gt;
+&lt;h3 id="preparation-of-the-environment"&gt;Preparation of the environment&lt;/h3&gt;
+&lt;h3 id="installation-of-packages"&gt;Installation of packages&lt;/h3&gt;
+&lt;p&gt;Once the machines are placed we must download Apache for the web servers, to do this we will connect both servers to a switch and this to the NAT cloud for Internet access.&lt;/p&gt;</description></item><item><title>Underworld</title><link>https://www.javiercd.es/en/posts/redes/underworld/underworld/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/underworld/underworld/</guid><description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;You live in UNDERWORLD. In your world, there are different types of species with one goal: to &amp;ldquo;crossbreed&amp;rdquo; with each other. These creatures are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;VAMPIRES&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;WEREWOLVES (LICÁNTROPOS):&lt;/strong&gt; Werewolves with the ability to return to their human form.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;WOLFMEN (HOMBRES LOBO):&lt;/strong&gt; Werewolves who, after their first transformation, cannot return to their human form.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HUMANS:&lt;/strong&gt; Some annoying little creatures.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;YOU:&lt;/strong&gt; A tech-savvy warrior with superpowers like turning around a game that hasn&amp;rsquo;t even been released yet or having the ability to become invisible when going out to party and trying to flirt with a girl by saying things like: &amp;ldquo;Do you want me to compile your kernel, babe?&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The layout of UNDERWORLD is as follows:&lt;/p&gt;</description></item><item><title>Underworld evolution</title><link>https://www.javiercd.es/en/posts/redes/underworld_evolution/underworld_evolution/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/underworld_evolution/underworld_evolution/</guid><description>&lt;p&gt;The world of UNDERWORLD has evolved greatly in recent months, so you must perform network management tasks to face the new situation.&lt;/p&gt;
+&lt;p&gt;On one hand, the Internet has been discovered in the Underworld, allowing each of the sub-worlds (remember: vampires, werewolves, lycanthropes, and humans) to connect to a router that, in turn, connects them to one of the two large routers that form Underworld&amp;rsquo;s Internet, called Marcus (for humans and vampires) and Alexander (for werewolves and lycanthropes). Marcus and Alexander are connected to each other.&lt;/p&gt;</description></item></channel></rss>

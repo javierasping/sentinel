@@ -1,39 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Taller 1 Almacenamiento y redes en Docker on Atlas</title><link>https://www.javiercd.es/posts/docker/taller1/</link><description>Recent content in Taller 1 Almacenamiento y redes en Docker on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/docker/taller1/index.xml" rel="self" type="application/rss+xml"/><item><title>Taller 1: Almacenamiento y redes en Docker</title><link>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</guid><description>&lt;h2 id="taller-1-almacenamiento-y-redes-en-docker">Taller 1: Almacenamiento y redes en Docker&lt;/h2>
-&lt;h3 id="almacenamiento">Almacenamiento&lt;/h3>
-&lt;p>Vamos a trabajar con volúmenes docker:&lt;/p>
-&lt;ol>
-&lt;li>Crea un volumen docker que se llame &lt;code>miweb&lt;/code>.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ docker volume create miweb
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>miweb
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
-&lt;li>Crea un contenedor desde la imagen &lt;code>php:7.4-apache&lt;/code> donde montes en el directorio &lt;code>/var/www/html&lt;/code> (que sabemos que es el &lt;em>DocumentRoot&lt;/em> del servidor que nos ofrece esa imagen) el volumen docker que has creado.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ docker run -d --name my-apache-app -v miweb:/var/www/html -p 8080:80 php:7.4-apache
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>Utiliza el comando &lt;code>docker cp&lt;/code> para copiar un fichero &lt;code>index.html&lt;/code> (donde aparece tu nombre) en el directorio &lt;code>/var/www/html&lt;/code>.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ echo &lt;span style="color:#e6db74">&amp;#34;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;&amp;#34;&lt;/span> &amp;gt; index.html
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ docker cp index.html my-apache-app:/var/www/html/
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Successfully copied 2.05kB to my-apache-app:/var/www/html/
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
-&lt;li>Accede al contenedor desde el navegador para ver la información ofrecida por el fichero &lt;code>index.html&lt;/code>.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ curl http://localhost:8080
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
-&lt;li>Borra el contenedor&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ docker rm -f my-apache-app
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>my-apache-app
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
-&lt;li>Crea un nuevo contenedor y monta el mismo volumen como en el ejercicio anterior.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ docker run -d --name Taller1 -v miweb:/var/www/html -p 8080:80 php:7.4-apache
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>9edd4b2dd2499f923090ce6a246e44db136f162528a51f84ddb33659503bafd7
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
-&lt;li>Accede al contenedor desde el navegador para ver la información ofrecida por el fichero &lt;code>index.html&lt;/code>. ¿Seguía existiendo ese fichero?&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ curl http://localhost:8080
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Vamos a trabajar con bind mount:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Taller 1 Almacenamiento y redes en Docker on Atlas</title><link>https://www.javiercd.es/posts/docker/taller1/</link><description>Recent content in Taller 1 Almacenamiento y redes en Docker on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/docker/taller1/index.xml" rel="self" type="application/rss+xml"/><item><title>Taller 1: Almacenamiento y redes en Docker</title><link>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</guid><description>&lt;h2 id="taller-1-almacenamiento-y-redes-en-docker"&gt;Taller 1: Almacenamiento y redes en Docker&lt;/h2&gt;
+&lt;h3 id="almacenamiento"&gt;Almacenamiento&lt;/h3&gt;
+&lt;p&gt;Vamos a trabajar con volúmenes docker:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Crea un volumen docker que se llame &lt;code&gt;miweb&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker volume create miweb
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;miweb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;Crea un contenedor desde la imagen &lt;code&gt;php:7.4-apache&lt;/code&gt; donde montes en el directorio &lt;code&gt;/var/www/html&lt;/code&gt; (que sabemos que es el &lt;em&gt;DocumentRoot&lt;/em&gt; del servidor que nos ofrece esa imagen) el volumen docker que has creado.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker run -d --name my-apache-app -v miweb:/var/www/html -p 8080:80 php:7.4-apache
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;Utiliza el comando &lt;code&gt;docker cp&lt;/code&gt; para copiar un fichero &lt;code&gt;index.html&lt;/code&gt; (donde aparece tu nombre) en el directorio &lt;code&gt;/var/www/html&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ echo &lt;span style="color:#e6db74"&gt;&amp;#34;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;&amp;#34;&lt;/span&gt; &amp;gt; index.html
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker cp index.html my-apache-app:/var/www/html/
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Successfully copied 2.05kB to my-apache-app:/var/www/html/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="4"&gt;
+&lt;li&gt;Accede al contenedor desde el navegador para ver la información ofrecida por el fichero &lt;code&gt;index.html&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ curl http://localhost:8080
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="5"&gt;
+&lt;li&gt;Borra el contenedor&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker rm -f my-apache-app
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;my-apache-app
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="6"&gt;
+&lt;li&gt;Crea un nuevo contenedor y monta el mismo volumen como en el ejercicio anterior.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker run -d --name Taller1 -v miweb:/var/www/html -p 8080:80 php:7.4-apache
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;9edd4b2dd2499f923090ce6a246e44db136f162528a51f84ddb33659503bafd7
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="7"&gt;
+&lt;li&gt;Accede al contenedor desde el navegador para ver la información ofrecida por el fichero &lt;code&gt;index.html&lt;/code&gt;. ¿Seguía existiendo ese fichero?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ curl http://localhost:8080
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Vamos a trabajar con bind mount:&lt;/p&gt;</description></item></channel></rss>

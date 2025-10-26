@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cómo crear y configurar redes virtuales privadas on Atlas</title><link>https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/</link><description>Recent content in Cómo crear y configurar redes virtuales privadas on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sat, 18 Oct 2025 09:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/index.xml" rel="self" type="application/rss+xml"/><item><title>Cómo crear y configurar redes virtuales privadas</title><link>https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/crear-redes-virtuales-privadas-kvm/</link><pubDate>Sat, 18 Oct 2025 09:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/crear-redes-virtuales-privadas-kvm/</guid><description>&lt;p&gt;En esta guía crearemos tres tipos de redes virtuales gestionadas por libvirt:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;NAT (Network Address Translation)&lt;/li&gt;
+&lt;li&gt;Aislada (Isolated)&lt;/li&gt;
+&lt;li&gt;Muy aislada (Very isolated)
+weight: 2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="requisitos-y-notas-previas"&gt;Requisitos y notas previas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Paquetes: &lt;code&gt;libvirt-daemon&lt;/code&gt; y &lt;code&gt;libvirt-daemon-system&lt;/code&gt; (o equivalentes en tu distro). Opcional: &lt;code&gt;virt-manager&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Ejecuta los comandos como root o con &lt;code&gt;sudo&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Servicio: &lt;code&gt;systemctl status libvirtd&lt;/code&gt; debe estar activo.&lt;/li&gt;
+&lt;li&gt;Listar redes actuales: &lt;code&gt;virsh net-list --all&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Rutas de configuración (persistentes): &lt;code&gt;/etc/libvirt/qemu/networks/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cuidado con conflictos de subred: usa rangos que no choquen con tu red física ni con otras redes libvirt.&lt;/p&gt;</description></item></channel></rss>

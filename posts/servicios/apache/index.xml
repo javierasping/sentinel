@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Configuración Apache bajo debian 10 on Atlas</title><link>https://www.javiercd.es/posts/servicios/apache/</link><description>Recent content in Configuración Apache bajo debian 10 on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/servicios/apache/index.xml" rel="self" type="application/rss+xml"/><item><title>Configuración Apache bajo debian</title><link>https://www.javiercd.es/posts/servicios/apache/apache/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/apache/apache/</guid><description>&lt;h2 id="instalar-un-servidor-web-apache-para-el-uso-en-una-intranet">Instalar un servidor web Apache para el uso en una Intranet&lt;/h2>
-&lt;p>Para instalar el servidor debemos ejecutar como root el siguiente comando:&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.125.png" alt="">&lt;/p>
-&lt;p>Crea dentro del directorio /var/www/html un fichero llamado entrada.html en el que pongáis un mensaje de bienvenida&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.126.png" alt="">&lt;/p>
-&lt;p>Ahora lo meteré dentro de la ruta :&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.127.png" alt="">&lt;/p>
-&lt;p>A continuación vamos a publicar una página más completa en nuestro servidor, para ello&lt;/p>
-&lt;p>utiliza tu sitio web de aplicaciones web.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Configuración Apache bajo debian 10 on Atlas</title><link>https://www.javiercd.es/posts/servicios/apache/</link><description>Recent content in Configuración Apache bajo debian 10 on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/servicios/apache/index.xml" rel="self" type="application/rss+xml"/><item><title>Configuración Apache bajo debian</title><link>https://www.javiercd.es/posts/servicios/apache/apache/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/apache/apache/</guid><description>&lt;h2 id="instalar-un-servidor-web-apache-para-el-uso-en-una-intranet"&gt;Instalar un servidor web Apache para el uso en una Intranet&lt;/h2&gt;
+&lt;p&gt;Para instalar el servidor debemos ejecutar como root el siguiente comando:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.125.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Crea dentro del directorio /var/www/html un fichero llamado entrada.html en el que pongáis un mensaje de bienvenida&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.126.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Ahora lo meteré dentro de la ruta :&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.127.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;A continuación vamos a publicar una página más completa en nuestro servidor, para ello&lt;/p&gt;
+&lt;p&gt;utiliza tu sitio web de aplicaciones web.&lt;/p&gt;</description></item></channel></rss>

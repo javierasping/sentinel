@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Instalación y configuración de un servidor DHCP en Linux on Atlas</title><link>https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/</link><description>Recent content in Instalación y configuración de un servidor DHCP en Linux on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación y configuración de un servidor DHCP en Linux</title><link>https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/dhcp_ipv4/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/dhcp_ipv4/</guid><description>&lt;h1 id="configuración-del-servidor-dhcp-bajo-debian">Configuración del servidor DHCP bajo Debian&lt;/h1>
-&lt;p>En este artículo aprenderás cómo configurar el servidor DHCP &lt;code>isc-dhcp-server&lt;/code>. Además, configuraremos una reserva de IP y lo configuraremos para que funcione en dos ámbitos diferentes.&lt;/p>
-&lt;p>En mi caso esta es la configuración de red de mi servidor DHCP .&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Red externa del router&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto ens4
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface ens4 inet dhcp
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Red interna 1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto ens5
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface ens5 inet static
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address 192.168.10.1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> netmask 255.255.255.0
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># SNAT para la red ens5 , recuerda activar el bit de forwarding&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> post-up iptables -t nat -A POSTROUTING -o ens4 -j MASQUERADE
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> post-down iptables -t nat -D POSTROUTING -o ens4 -j MASQUERADE
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Red interna 2&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auto ens6
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iface ens6 inet static
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> address 192.168.20.1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> netmask 255.255.255.0
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="instalación-del-servidor-isc-dhcp-server">Instalación del servidor isc-dhcp-server&lt;/h2>
-&lt;p>Para instalar el servidor DHCP en Debian, ejecutamos el siguiente comando:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Instalación y configuración de un servidor DHCP en Linux on Atlas</title><link>https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/</link><description>Recent content in Instalación y configuración de un servidor DHCP en Linux on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación y configuración de un servidor DHCP en Linux</title><link>https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/dhcp_ipv4/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/dhcp/instalacion_y_configuracion_de_un_servidor_dhcp_en_linux/dhcp_ipv4/</guid><description>&lt;h1 id="configuración-del-servidor-dhcp-bajo-debian"&gt;Configuración del servidor DHCP bajo Debian&lt;/h1&gt;
+&lt;p&gt;En este artículo aprenderás cómo configurar el servidor DHCP &lt;code&gt;isc-dhcp-server&lt;/code&gt;. Además, configuraremos una reserva de IP y lo configuraremos para que funcione en dos ámbitos diferentes.&lt;/p&gt;
+&lt;p&gt;En mi caso esta es la configuración de red de mi servidor DHCP .&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Red externa del router&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;auto ens4
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;iface ens4 inet dhcp
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Red interna 1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;auto ens5
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;iface ens5 inet static
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; address 192.168.10.1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; netmask 255.255.255.0
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# SNAT para la red ens5 , recuerda activar el bit de forwarding&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; post-up iptables -t nat -A POSTROUTING -o ens4 -j MASQUERADE
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; post-down iptables -t nat -D POSTROUTING -o ens4 -j MASQUERADE
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Red interna 2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;auto ens6
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;iface ens6 inet static
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; address 192.168.20.1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; netmask 255.255.255.0
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="instalación-del-servidor-isc-dhcp-server"&gt;Instalación del servidor isc-dhcp-server&lt;/h2&gt;
+&lt;p&gt;Para instalar el servidor DHCP en Debian, ejecutamos el siguiente comando:&lt;/p&gt;</description></item></channel></rss>

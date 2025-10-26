@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Networking in KVM on Atlas</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/</link><description>Recent content in Networking in KVM on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 18 Oct 2025 09:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/index.xml" rel="self" type="application/rss+xml"/><item><title>Network types in KVM (NAT, isolated and bridged)</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/tipos-redes-kvm/tipos-redes-kvm/</link><pubDate>Sat, 18 Oct 2025 09:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/tipos-redes-kvm/tipos-redes-kvm/</guid><description>&lt;p&gt;In KVM, network virtualization is mainly managed through &lt;strong&gt;libvirt&lt;/strong&gt;, which lets us create and administer various kinds of virtual networks to which our virtual machines connect. Understanding the available network types is key to properly configuring guest connectivity and the host interaction.&lt;/p&gt;
+&lt;p&gt;There are two broad categories of networks in KVM:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Private virtual networks&lt;/strong&gt;: Internal networks isolated from the outside, managed via virtual bridges created by libvirt.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bridged networks&lt;/strong&gt;: Networks that connect virtual machines directly to the host&amp;rsquo;s physical network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="private-virtual-networks"&gt;Private virtual networks&lt;/h2&gt;
+&lt;p&gt;These networks are created on the host and provide a controlled environment for virtual machines. They fall into three main types:&lt;/p&gt;</description></item><item><title>How to create and configure private virtual networks</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/crear-redes-virtuales-privadas-kvm/</link><pubDate>Sat, 18 Oct 2025 09:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/crear-redes-virtuales-privadas-kvm/</guid><description>&lt;p&gt;In this step-by-step guide you&amp;rsquo;ll create three types of virtual networks managed by libvirt and learn simple ways to verify them:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;NAT (Network Address Translation)&lt;/li&gt;
+&lt;li&gt;Isolated&lt;/li&gt;
+&lt;li&gt;Very isolated (L2 only)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We&amp;rsquo;ll use &lt;code&gt;virsh&lt;/code&gt; and XML definitions (you can do the same with &lt;code&gt;virt-manager&lt;/code&gt;, but we&amp;rsquo;ll focus on the CLI). After each creation, there&amp;rsquo;s a quick check to confirm everything looks good.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="before-you-start-quick-requirements"&gt;Before you start: quick requirements&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Packages: &lt;code&gt;libvirt-daemon&lt;/code&gt; and &lt;code&gt;libvirt-daemon-system&lt;/code&gt; (or your distro equivalents). Optional: &lt;code&gt;virt-manager&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Run commands as root or with &lt;code&gt;sudo&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Service: &lt;code&gt;systemctl status libvirtd&lt;/code&gt; should be active.&lt;/li&gt;
+&lt;li&gt;See current networks: &lt;code&gt;virsh net-list --all&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Persistent config paths: &lt;code&gt;/etc/libvirt/qemu/networks/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Tip: avoid subnet conflicts; choose ranges that don&amp;rsquo;t collide with your physical LAN or other libvirt networks.&lt;/p&gt;</description></item><item><title>How to create a bridge interface on the KVM host</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-interfaz-puente/crear-interfaz-puente/</link><pubDate>Sat, 18 Oct 2025 09:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-interfaz-puente/crear-interfaz-puente/</guid><description>&lt;p&gt;A bridge on the host allows your virtual machines to connect directly to the physical network as if they were another machine on the LAN. It&amp;rsquo;s the basis for &amp;ldquo;bridged networks&amp;rdquo; covered in the network types section.&lt;/p&gt;
+&lt;p&gt;Important: if you perform these changes over remote SSH you may lose connectivity. Whenever possible use local/console access or have a recovery plan (KVM/IPMI, a second interface, maintenance window, etc.).&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="0-preparation-identify-your-physical-interface-and-back-up-configs"&gt;0. Preparation: identify your physical interface and back up configs&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Identify the physical interface connected to your LAN/Internet (for example: &lt;code&gt;enp1s0&lt;/code&gt;, &lt;code&gt;enp3s0&lt;/code&gt;, &lt;code&gt;eth0&lt;/code&gt;):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ip -br link
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ip -br addr
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;Back up your network configuration files before changing anything — use the command appropriate to your setup:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo cp -a /etc/netplan /etc/netplan.bak.&lt;span style="color:#66d9ef"&gt;$(&lt;/span&gt;date +%F&lt;span style="color:#66d9ef"&gt;)&lt;/span&gt; 2&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo cp -a /etc/network/interfaces /etc/network/interfaces.bak.&lt;span style="color:#66d9ef"&gt;$(&lt;/span&gt;date +%F&lt;span style="color:#66d9ef"&gt;)&lt;/span&gt; 2&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;Important note: the IP must live on the bridge (&lt;code&gt;br0&lt;/code&gt;), not on the physical interface. The physical interface will be left without an IP and become a slave of the bridge.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="option-a-netplan-modern-ubuntudebian"&gt;Option A: Netplan (modern Ubuntu/Debian)&lt;/h2&gt;
+&lt;p&gt;Applies to systems using Netplan (Ubuntu Server ≥ 18.04, Debian when migrated). The most common renderer is &lt;code&gt;networkd&lt;/code&gt;, but &lt;code&gt;NetworkManager&lt;/code&gt; can also be used. Here we configure &lt;code&gt;br0&lt;/code&gt; and enslave the physical interface to the bridge.&lt;/p&gt;</description></item></channel></rss>

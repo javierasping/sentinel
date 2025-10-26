@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Instalación de Docker en Ubuntu 24 on Atlas</title><link>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/</link><description>Recent content in Instalación de Docker en Ubuntu 24 on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sun, 09 Mar 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación de Docker en Ubuntu 24</title><link>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/instalacion_docker_ubuntu24/</link><pubDate>Sun, 09 Mar 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/instalacion_docker_ubuntu24/</guid><description>&lt;p>Para comenzar con Docker Engine en Ubuntu, asegúrate de cumplir con los requisitos previos y sigue los pasos de instalación.&lt;/p>
-&lt;h2 id="requisitos-previos">Requisitos Previos&lt;/h2>
-&lt;h3 id="requisitos-del-sistema-operativo">Requisitos del Sistema Operativo&lt;/h3>
-&lt;p>Para instalar Docker Engine, necesitas la versión de 64 bits de una de estas versiones de Ubuntu:&lt;/p>
-&lt;ul>
-&lt;li>Ubuntu Oracular 24.10&lt;/li>
-&lt;li>Ubuntu Noble 24.04 (LTS)&lt;/li>
-&lt;li>Ubuntu Jammy 22.04 (LTS)&lt;/li>
-&lt;li>Ubuntu Focal 20.04 (LTS)&lt;/li>
-&lt;/ul>
-&lt;p>Docker Engine para Ubuntu es compatible con arquitecturas x86_64 (o amd64), armhf, arm64, s390x y ppc64le (ppc64el).&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Instalación de Docker en Ubuntu 24 on Atlas</title><link>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/</link><description>Recent content in Instalación de Docker en Ubuntu 24 on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sun, 09 Mar 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación de Docker en Ubuntu 24</title><link>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/instalacion_docker_ubuntu24/</link><pubDate>Sun, 09 Mar 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/instalacion_docker_ubuntu24/</guid><description>&lt;p&gt;Para comenzar con Docker Engine en Ubuntu, asegúrate de cumplir con los requisitos previos y sigue los pasos de instalación.&lt;/p&gt;
+&lt;h2 id="requisitos-previos"&gt;Requisitos Previos&lt;/h2&gt;
+&lt;h3 id="requisitos-del-sistema-operativo"&gt;Requisitos del Sistema Operativo&lt;/h3&gt;
+&lt;p&gt;Para instalar Docker Engine, necesitas la versión de 64 bits de una de estas versiones de Ubuntu:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ubuntu Oracular 24.10&lt;/li&gt;
+&lt;li&gt;Ubuntu Noble 24.04 (LTS)&lt;/li&gt;
+&lt;li&gt;Ubuntu Jammy 22.04 (LTS)&lt;/li&gt;
+&lt;li&gt;Ubuntu Focal 20.04 (LTS)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Docker Engine para Ubuntu es compatible con arquitecturas x86_64 (o amd64), armhf, arm64, s390x y ppc64le (ppc64el).&lt;/p&gt;</description></item></channel></rss>

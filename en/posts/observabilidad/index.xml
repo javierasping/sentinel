@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>observability on Atlas</title><link>https://www.javiercd.es/en/posts/observabilidad/</link><description>Recent content in observability on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 17 Apr 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/observabilidad/index.xml" rel="self" type="application/rss+xml"/><item><title>Installing Prometheus with docker-compose and Node Exporter on Debian 12</title><link>https://www.javiercd.es/en/posts/observabilidad/metricas/prometheus/instalacion_basica_docker_compose/prometheus_docker_compose_debian12/</link><pubDate>Thu, 17 Apr 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/observabilidad/metricas/prometheus/instalacion_basica_docker_compose/prometheus_docker_compose_debian12/</guid><description>&lt;p>This guide is an introductory tutorial that shows how to install, configure, and use a basic instance of Prometheus using Docker Compose. Additionally, a Linux machine (in this case Debian 12) will be configured to expose its system metrics, which will be collected by Prometheus using Node Exporter.&lt;/p>
-&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
-&lt;ul>
-&lt;li>Docker and Docker Compose installed&lt;/li>
-&lt;li>A Linux machine with administrator privileges&lt;/li>
-&lt;/ul>
-&lt;h2 id="creating-files">Creating files&lt;/h2>
-&lt;h3 id="creating-the-docker-compose">Creating the docker-compose&lt;/h3>
-&lt;p>All the files used in this post can be found in my &lt;a href="https://github.com/javierasping/learn_observability" target="_blank" rel="noopener">github&lt;/a>.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>observability on Atlas</title><link>https://www.javiercd.es/en/posts/observabilidad/</link><description>Recent content in observability on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 17 Apr 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/observabilidad/index.xml" rel="self" type="application/rss+xml"/><item><title>Installing Prometheus with docker-compose and Node Exporter on Debian 12</title><link>https://www.javiercd.es/en/posts/observabilidad/metricas/prometheus/instalacion_basica_docker_compose/prometheus_docker_compose_debian12/</link><pubDate>Thu, 17 Apr 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/observabilidad/metricas/prometheus/instalacion_basica_docker_compose/prometheus_docker_compose_debian12/</guid><description>&lt;p&gt;This guide is an introductory tutorial that shows how to install, configure, and use a basic instance of Prometheus using Docker Compose. Additionally, a Linux machine (in this case Debian 12) will be configured to expose its system metrics, which will be collected by Prometheus using Node Exporter.&lt;/p&gt;
+&lt;h2 id="prerequisites"&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Docker and Docker Compose installed&lt;/li&gt;
+&lt;li&gt;A Linux machine with administrator privileges&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="creating-files"&gt;Creating files&lt;/h2&gt;
+&lt;h3 id="creating-the-docker-compose"&gt;Creating the docker-compose&lt;/h3&gt;
+&lt;p&gt;All the files used in this post can be found in my &lt;a href="https://github.com/javierasping/learn_observability" target="_blank" rel="noopener"&gt;github&lt;/a&gt;.&lt;/p&gt;</description></item></channel></rss>

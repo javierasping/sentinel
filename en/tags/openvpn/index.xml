@@ -1,62 +1,63 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OPENVPN on Atlas</title><link>https://www.javiercd.es/en/tags/openvpn/</link><description>Recent content in OPENVPN on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/openvpn/index.xml" rel="self" type="application/rss+xml"/><item><title>Comparative between OpenVPN and Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</guid><description>&lt;p>&lt;img src="https://www.javiercd.es/vpn/comparativa_ovpn_wire/img/Pastedimage20240114150833.png" alt="">&lt;/p>
-&lt;p>The goal of this post is to compare the different VPNs software most used by seeing which is faster, for which we will support in speed test using iperf3.&lt;/p>
-&lt;blockquote>
-&lt;p>[NOTE]
-The comparative part of the posts in this section in which we mount each type of VPN.&lt;/p>&lt;/blockquote>
-&lt;h2 id="speed-without-vpn">Speed without VPN&lt;/h2>
-&lt;p>I&amp;rsquo;m gonna start by comparing the speeds of these 2 systems, using iperf3. For this I have removed the cisco router as I had it configured with FastEthernet interfaces and changed it to a Linux router with GigabitEthernet interfaces.&lt;/p></description></item><item><title>Remote access VPN with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</guid><description>&lt;ul>
-&lt;li>One of the two teams (which will act as a server) will be connected to two networks&lt;/li>
-&lt;li>For the authentication of the extremes, digital certificates shall be used, which shall be generated using openssl and stored in the / etc / openvpn directory, together with the Diffie- Helman parameters and the certificate of the Certification Authority itself.&lt;/li>
-&lt;li>Network addresses 10.99.99.0 / 24 will be used for VPN virtual addresses. The address 10.99.99.1 shall be assigned to the VPN server.&lt;/li>
-&lt;li>The server and client configuration files will be created in the / etc / openvpn directory of each machine, and will be called servor.conf and cliente.conf respectively.&lt;/li>
-&lt;li>After the establishment of the VPN, the client machine must be able to access a machine on the other network to which the server is connected.&lt;/li>
-&lt;/ul>
-&lt;h3 id="riding-the-stage">Riding the stage&lt;/h3>
-&lt;p>To perform this exercise I have mounted the following scenario on GNS3:&lt;/p></description></item><item><title>VPN site to site with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</guid><description>&lt;h3 id="riding-the-stage">Riding the stage&lt;/h3>
-&lt;p>To perform this exercise I have mounted the following scenario on GNS3:&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt="">&lt;/p>
-&lt;h3 id="swan-router-configuration">Swan router configuration&lt;/h3>
-&lt;p>Let&amp;rsquo;s give each interface the corresponding network configuration:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Interfaz que nos dará internet&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1#configure terminal
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface fastEthernet 0/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip add dhcp&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#no shut&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#exit&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Interfaz red Servidor 1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface fastEthernet 1/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip add 90.0.0.1 255.255.255.0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#no shut&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#exit&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Interfaz red Servidor 2&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface fastEthernet 1/1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip add 100.0.0.1 255.255.255.0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#no shut&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#exit&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Ruta por defecto para internet&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip route 0.0.0.0 0.0.0.0 192.168.122.1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Guarda la configuración&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1#write
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Configuración de SNAT&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1#conf term
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#access-list 1 permit 90.0.0.0 0.0.0.255&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#access-list 1 permit 100.0.0.0 0.0.0.255&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e"># ip nat pool NAT-Pool 192.168.122.127 192.168.122.127 prefix-length 24&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat inside source list 1 pool NAT-Pool overload&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface FastEthernet0/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat outside&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface FastEthernet1/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat inside&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface FastEthernet1/1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat inside&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Server Configuration 1&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OPENVPN on Atlas</title><link>https://www.javiercd.es/en/tags/openvpn/</link><description>Recent content in OPENVPN on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/openvpn/index.xml" rel="self" type="application/rss+xml"/><item><title>Comparative between OpenVPN and Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</guid><description>&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/comparativa_ovpn_wire/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;The goal of this post is to compare the different VPNs software most used by seeing which is faster, for which we will support in speed test using iperf3.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[NOTE]
+The comparative part of the posts in this section in which we mount each type of VPN.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="speed-without-vpn"&gt;Speed without VPN&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;m gonna start by comparing the speeds of these 2 systems, using iperf3. For this I have removed the cisco router as I had it configured with FastEthernet interfaces and changed it to a Linux router with GigabitEthernet interfaces.&lt;/p&gt;</description></item><item><title>Remote access VPN with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</guid><description>&lt;ul&gt;
+&lt;li&gt;One of the two teams (which will act as a server) will be connected to two networks&lt;/li&gt;
+&lt;li&gt;For the authentication of the extremes, digital certificates shall be used, which shall be generated using openssl and stored in the / etc / openvpn directory, together with the Diffie- Helman parameters and the certificate of the Certification Authority itself.&lt;/li&gt;
+&lt;li&gt;Network addresses 10.99.99.0 / 24 will be used for VPN virtual addresses. The address 10.99.99.1 shall be assigned to the VPN server.&lt;/li&gt;
+&lt;li&gt;The server and client configuration files will be created in the / etc / openvpn directory of each machine, and will be called servor.conf and cliente.conf respectively.&lt;/li&gt;
+&lt;li&gt;After the establishment of the VPN, the client machine must be able to access a machine on the other network to which the server is connected.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="riding-the-stage"&gt;Riding the stage&lt;/h3&gt;
+&lt;p&gt;To perform this exercise I have mounted the following scenario on GNS3:&lt;/p&gt;</description></item><item><title>VPN site to site with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</guid><description>&lt;h3 id="riding-the-stage"&gt;Riding the stage&lt;/h3&gt;
+&lt;p&gt;To perform this exercise I have mounted the following scenario on GNS3:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
+&lt;h3 id="swan-router-configuration"&gt;Swan router configuration&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s give each interface the corresponding network configuration:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Interfaz que nos dará internet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1#configure terminal
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface fastEthernet 0/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip add dhcp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#no shut&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Interfaz red Servidor 1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface fastEthernet 1/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip add 90.0.0.1 255.255.255.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#no shut&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Interfaz red Servidor 2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface fastEthernet 1/1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip add 100.0.0.1 255.255.255.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#no shut&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Ruta por defecto para internet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip route 0.0.0.0 0.0.0.0 192.168.122.1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Guarda la configuración&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1#write
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Configuración de SNAT&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1#conf term
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#access-list 1 permit 90.0.0.0 0.0.0.255&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#access-list 1 permit 100.0.0.0 0.0.0.255&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;# ip nat pool NAT-Pool 192.168.122.127 192.168.122.127 prefix-length 24&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat inside source list 1 pool NAT-Pool overload&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface FastEthernet0/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat outside&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface FastEthernet1/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat inside&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface FastEthernet1/1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat inside&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Server Configuration 1&lt;/p&gt;</description></item></channel></rss>

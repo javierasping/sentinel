@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Resources on Atlas</title><link>https://www.javiercd.es/en/tags/resources/</link><description>Recent content in Resources on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 16 Oct 2025 13:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/resources/index.xml" rel="self" type="application/rss+xml"/><item><title>How to expand VM memory, CPU and disks</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/gestion-maquinas-kvm/ampliar-recursos-vm/ampliar-recursos-vm/</link><pubDate>Thu, 16 Oct 2025 13:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/gestion-maquinas-kvm/ampliar-recursos-vm/ampliar-recursos-vm/</guid><description>&lt;p&gt;In this article we&amp;rsquo;ll cover three practical cases for expanding resources in a VM managed with libvirt/KVM:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Increase the number of vCPUs (cores)&lt;/li&gt;
+&lt;li&gt;Increase RAM memory&lt;/li&gt;
+&lt;li&gt;Expand disk and filesystem inside the guest&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We&amp;rsquo;ll use &lt;code&gt;virsh&lt;/code&gt; commands, libguestfs tools where applicable, and standard utilities inside the guest (growpart, resize2fs, xfs_growfs, LVM). I&amp;rsquo;ll include &amp;ldquo;hot&amp;rdquo; methods when the system supports them and safe cold alternatives.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: To run without sudo, your user must belong to the &lt;code&gt;libvirt&lt;/code&gt; and &lt;code&gt;kvm&lt;/code&gt; groups.&lt;/p&gt;</description></item></channel></rss>

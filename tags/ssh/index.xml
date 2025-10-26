@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SSH on Atlas</title><link>https://www.javiercd.es/tags/ssh/</link><description>Recent content in SSH on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/tags/ssh/index.xml" rel="self" type="application/rss+xml"/><item><title>Configuración Apache bajo debian</title><link>https://www.javiercd.es/posts/servicios/apache/apache/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/apache/apache/</guid><description>&lt;h2 id="instalar-un-servidor-web-apache-para-el-uso-en-una-intranet">Instalar un servidor web Apache para el uso en una Intranet&lt;/h2>
-&lt;p>Para instalar el servidor debemos ejecutar como root el siguiente comando:&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.125.png" alt="">&lt;/p>
-&lt;p>Crea dentro del directorio /var/www/html un fichero llamado entrada.html en el que pongáis un mensaje de bienvenida&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.126.png" alt="">&lt;/p>
-&lt;p>Ahora lo meteré dentro de la ruta :&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.127.png" alt="">&lt;/p>
-&lt;p>A continuación vamos a publicar una página más completa en nuestro servidor, para ello&lt;/p>
-&lt;p>utiliza tu sitio web de aplicaciones web.&lt;/p></description></item><item><title>FTP bajo debian</title><link>https://www.javiercd.es/posts/servicios/ftp/ftp/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/ftp/ftp/</guid><description>&lt;h1 id="servidor-ftp-bajo-debian">Servidor FTP bajo debian&lt;/h1>
-&lt;h2 id="instalación-y-configuración-del-servidor-proftpd-autentificado">Instalación y configuración del servidor proFTPd autentificado&lt;/h2>
-&lt;p>1.Primero nos crearemos un grupo que se llame ftpgroup :
-&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.160.png" alt="">&lt;/p>
-&lt;p>2.Crea dos usuarios locales que pertenezcan al grupo ftp que hemos creado: Jose y Maria&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.161.png" alt="">&lt;/p>
-&lt;p>3.Nos instalamos el servicio ftp :&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.162.png" alt="">&lt;/p>
-&lt;p>4.Configuración básica del fichero proftpd.conf:&lt;/p>
-&lt;p>Todos los usuarios accedan solo a su directorio :&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.163.png" alt="">&lt;/p>
-&lt;p>Ahora podemos acceder desde el navegador con los usuarios Jose y Maria :&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.164.png" alt="">&lt;/p></description></item><item><title>SSH bajo debian</title><link>https://www.javiercd.es/posts/servicios/ssh/ssh/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/ssh/ssh/</guid><description>&lt;h1 id="servidor-ssh-bajo-debian">servidor SSH bajo debian&lt;/h1>
-&lt;h2 id="gestión-remota-usando-ssh">Gestión remota usando SSH&lt;/h2>
-&lt;p>Lo primeros que deberemos de hacer sera instalarnos el paquete en el servidor y el cliente :&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.079.png" alt="">&lt;/p>
-&lt;p>Por seguridad se suele no permitir la conexión del root al servidor; para ello, se debe modificar el archivo /etc/ssh/sshd_config, y se pone la siguiente opción:&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.080.png" alt="">&lt;/p>
-&lt;p>Y reiniciamos el servicio para que se apliquen los cambios :&lt;/p>
-&lt;h3 id="conectarse-al-servidor-ssh">Conectarse al servidor ssh&lt;/h3>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.081.png" alt="">&lt;/p>
-&lt;p>Vamos a instalarnos el cliente ssh, para ello:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SSH on Atlas</title><link>https://www.javiercd.es/tags/ssh/</link><description>Recent content in SSH on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/tags/ssh/index.xml" rel="self" type="application/rss+xml"/><item><title>Configuración Apache bajo debian</title><link>https://www.javiercd.es/posts/servicios/apache/apache/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/apache/apache/</guid><description>&lt;h2 id="instalar-un-servidor-web-apache-para-el-uso-en-una-intranet"&gt;Instalar un servidor web Apache para el uso en una Intranet&lt;/h2&gt;
+&lt;p&gt;Para instalar el servidor debemos ejecutar como root el siguiente comando:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.125.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Crea dentro del directorio /var/www/html un fichero llamado entrada.html en el que pongáis un mensaje de bienvenida&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.126.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Ahora lo meteré dentro de la ruta :&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.127.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;A continuación vamos a publicar una página más completa en nuestro servidor, para ello&lt;/p&gt;
+&lt;p&gt;utiliza tu sitio web de aplicaciones web.&lt;/p&gt;</description></item><item><title>FTP bajo debian</title><link>https://www.javiercd.es/posts/servicios/ftp/ftp/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/ftp/ftp/</guid><description>&lt;h1 id="servidor-ftp-bajo-debian"&gt;Servidor FTP bajo debian&lt;/h1&gt;
+&lt;h2 id="instalación-y-configuración-del-servidor-proftpd-autentificado"&gt;Instalación y configuración del servidor proFTPd autentificado&lt;/h2&gt;
+&lt;p&gt;1.Primero nos crearemos un grupo que se llame ftpgroup :
+&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.160.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;2.Crea dos usuarios locales que pertenezcan al grupo ftp que hemos creado: Jose y Maria&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.161.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;3.Nos instalamos el servicio ftp :&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.162.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;4.Configuración básica del fichero proftpd.conf:&lt;/p&gt;
+&lt;p&gt;Todos los usuarios accedan solo a su directorio :&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.163.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Ahora podemos acceder desde el navegador con los usuarios Jose y Maria :&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.164.png" alt=""&gt;&lt;/p&gt;</description></item><item><title>SSH bajo debian</title><link>https://www.javiercd.es/posts/servicios/ssh/ssh/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/servicios/ssh/ssh/</guid><description>&lt;h1 id="servidor-ssh-bajo-debian"&gt;servidor SSH bajo debian&lt;/h1&gt;
+&lt;h2 id="gestión-remota-usando-ssh"&gt;Gestión remota usando SSH&lt;/h2&gt;
+&lt;p&gt;Lo primeros que deberemos de hacer sera instalarnos el paquete en el servidor y el cliente :&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.079.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Por seguridad se suele no permitir la conexión del root al servidor; para ello, se debe modificar el archivo /etc/ssh/sshd_config, y se pone la siguiente opción:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.080.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Y reiniciamos el servicio para que se apliquen los cambios :&lt;/p&gt;
+&lt;h3 id="conectarse-al-servidor-ssh"&gt;Conectarse al servidor ssh&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.081.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Vamos a instalarnos el cliente ssh, para ello:&lt;/p&gt;</description></item></channel></rss>

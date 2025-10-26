@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Clone and rename virtual machines in KVM on Atlas</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/gestion-maquinas-kvm/clonar-y-renombrar-vm/</link><description>Recent content in Clone and rename virtual machines in KVM on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 16 Oct 2025 12:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/gestion-maquinas-kvm/clonar-y-renombrar-vm/index.xml" rel="self" type="application/rss+xml"/><item><title>Clone and rename virtual machines in KVM</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/gestion-maquinas-kvm/clonar-y-renombrar-vm/clonar-y-renombrar-vm/</link><pubDate>Thu, 16 Oct 2025 12:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/gestion-maquinas-kvm/clonar-y-renombrar-vm/clonar-y-renombrar-vm/</guid><description>&lt;p&gt;One of the advantages of virtualization is the ability to clone virtual machines to quickly create homogeneous environments. However, when we clone a VM that contains an operating system, the clone inherits unique identifiers such as the &lt;strong&gt;machine ID&lt;/strong&gt;, &lt;strong&gt;MAC&lt;/strong&gt; addresses, host &lt;strong&gt;SSH&lt;/strong&gt; keys, etc., which should be unique for each machine.&lt;/p&gt;
+&lt;p&gt;In this guide we will cover how to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Clone virtual machines with &lt;code&gt;virt-clone&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Generalize clones with &lt;code&gt;virt-sysprep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Customize new instances with &lt;code&gt;virt-customize&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Rename virtual machines with &lt;code&gt;virsh domrename&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Troubleshoot common issues after cloning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="prerequisites"&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;Make sure the following packages are installed:&lt;/p&gt;</description></item></channel></rss>

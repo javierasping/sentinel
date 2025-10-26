@@ -1,32 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PostgreSQL installation in Debian 12 on Atlas</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/</link><description>Recent content in PostgreSQL installation in Debian 12 on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 01 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/index.xml" rel="self" type="application/rss+xml"/><item><title>PostgreSQL installation in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</guid><description>&lt;p>In this post, I will guide you through the process of installing PostgreSQL in Debian 12, creating a user with basic permissions, and how to create and consult a database.&lt;/p>
-&lt;p>#1. PostgreSQL installation&lt;/p>
-&lt;p>To install PostgreSQL in Debian 12, follow these steps:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;ul>
-&lt;li>
-&lt;ul>
-&lt;li>Update the repositories and install PostgreSQL * *:&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ol>
-&lt;p>First, make sure your system is updated and install PostgreSQL:&lt;/p>
-&lt;pre>&lt;code>```bash
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PostgreSQL installation in Debian 12 on Atlas</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/</link><description>Recent content in PostgreSQL installation in Debian 12 on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 01 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/index.xml" rel="self" type="application/rss+xml"/><item><title>PostgreSQL installation in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</guid><description>&lt;p&gt;In this post, I will guide you through the process of installing PostgreSQL in Debian 12, creating a user with basic permissions, and how to create and consult a database.&lt;/p&gt;
+&lt;p&gt;#1. PostgreSQL installation&lt;/p&gt;
+&lt;p&gt;To install PostgreSQL in Debian 12, follow these steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;Update the repositories and install PostgreSQL * *:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;First, make sure your system is updated and install PostgreSQL:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```bash
 sudo apt update
 sudo apt install postgresql
 ```
-&lt;/code>&lt;/pre>
-&lt;ol start="2">
-&lt;li>
-&lt;ul>
-&lt;li>
-&lt;ul>
-&lt;li>Verifies that the service is in operation * *:&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ol>
-&lt;p>After installation, make sure that the PostgreSQL service is in operation:&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;Verifies that the service is in operation * *:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;After installation, make sure that the PostgreSQL service is in operation:&lt;/p&gt;</description></item></channel></rss>

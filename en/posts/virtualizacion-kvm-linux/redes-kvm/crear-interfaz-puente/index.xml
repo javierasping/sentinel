@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>How to create a bridge interface on the KVM host on Atlas</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-interfaz-puente/</link><description>Recent content in How to create a bridge interface on the KVM host on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 18 Oct 2025 09:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-interfaz-puente/index.xml" rel="self" type="application/rss+xml"/><item><title>How to create a bridge interface on the KVM host</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-interfaz-puente/crear-interfaz-puente/</link><pubDate>Sat, 18 Oct 2025 09:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-interfaz-puente/crear-interfaz-puente/</guid><description>&lt;p&gt;A bridge on the host allows your virtual machines to connect directly to the physical network as if they were another machine on the LAN. It&amp;rsquo;s the basis for &amp;ldquo;bridged networks&amp;rdquo; covered in the network types section.&lt;/p&gt;
+&lt;p&gt;Important: if you perform these changes over remote SSH you may lose connectivity. Whenever possible use local/console access or have a recovery plan (KVM/IPMI, a second interface, maintenance window, etc.).&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="0-preparation-identify-your-physical-interface-and-back-up-configs"&gt;0. Preparation: identify your physical interface and back up configs&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Identify the physical interface connected to your LAN/Internet (for example: &lt;code&gt;enp1s0&lt;/code&gt;, &lt;code&gt;enp3s0&lt;/code&gt;, &lt;code&gt;eth0&lt;/code&gt;):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ip -br link
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ip -br addr
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;Back up your network configuration files before changing anything — use the command appropriate to your setup:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo cp -a /etc/netplan /etc/netplan.bak.&lt;span style="color:#66d9ef"&gt;$(&lt;/span&gt;date +%F&lt;span style="color:#66d9ef"&gt;)&lt;/span&gt; 2&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo cp -a /etc/network/interfaces /etc/network/interfaces.bak.&lt;span style="color:#66d9ef"&gt;$(&lt;/span&gt;date +%F&lt;span style="color:#66d9ef"&gt;)&lt;/span&gt; 2&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;Important note: the IP must live on the bridge (&lt;code&gt;br0&lt;/code&gt;), not on the physical interface. The physical interface will be left without an IP and become a slave of the bridge.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="option-a-netplan-modern-ubuntudebian"&gt;Option A: Netplan (modern Ubuntu/Debian)&lt;/h2&gt;
+&lt;p&gt;Applies to systems using Netplan (Ubuntu Server ≥ 18.04, Debian when migrated). The most common renderer is &lt;code&gt;networkd&lt;/code&gt;, but &lt;code&gt;NetworkManager&lt;/code&gt; can also be used. Here we configure &lt;code&gt;br0&lt;/code&gt; and enslave the physical interface to the bridge.&lt;/p&gt;</description></item></channel></rss>

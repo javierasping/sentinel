@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>APACHE on Atlas</title><link>https://www.javiercd.es/en/tags/apache/</link><description>Recent content in APACHE on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/apache/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache configuration under debian</title><link>https://www.javiercd.es/en/posts/servicios/apache/apache/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/apache/apache/</guid><description>&lt;h3 id="install-an-apache-web-server-for-use-in-an-intranet">Install an Apache web server for use in an Intranet&lt;/h3>
-&lt;p>To install the server we must run as root the following command:&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.125.png" alt="">&lt;/p>
-&lt;p>Create within the / var / www / html directory a file called intrada.html where you put a welcome message&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.126.png" alt="">&lt;/p>
-&lt;p>Now I&amp;rsquo;ll put it inside the route:&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.127.png" alt="">&lt;/p>
-&lt;p>Next we will post a more complete page on our server, for it&lt;/p>
-&lt;p>use your web application website.&lt;/p></description></item><item><title>FTP under debian</title><link>https://www.javiercd.es/en/posts/servicios/ftp/ftp/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/ftp/ftp/</guid><description>&lt;h2 id="ftp-server-under-debian">FTP server under debian&lt;/h2>
-&lt;h3 id="installation-and-configuration-of-the-authenticated-proftpd-server">Installation and configuration of the authenticated proFTPd server&lt;/h3>
-&lt;ol>
-&lt;li>
-&lt;p>First we will create a group called ftpgroup:
-&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.160.png" alt="">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Create two local users from the ftp group we have created: Jose and Maria&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.161.png" alt="">&lt;/p>
-&lt;ol start="3">
-&lt;li>We install the ftp service:&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.162.png" alt="">&lt;/p>
-&lt;ol start="4">
-&lt;li>Basic configuration of the proftpd.conf file:&lt;/li>
-&lt;/ol>
-&lt;p>All users access your directory only:&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.163.png" alt="">&lt;/p>
-&lt;p>We can now access from the browser with users Jose and Maria:&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.164.png" alt="">&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.165.png" alt="">&lt;/p>
-&lt;p>Each of these I have created a folder with your name within your personal directories in order to identify them.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>APACHE on Atlas</title><link>https://www.javiercd.es/en/tags/apache/</link><description>Recent content in APACHE on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 08 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/apache/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache configuration under debian</title><link>https://www.javiercd.es/en/posts/servicios/apache/apache/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/apache/apache/</guid><description>&lt;h3 id="install-an-apache-web-server-for-use-in-an-intranet"&gt;Install an Apache web server for use in an Intranet&lt;/h3&gt;
+&lt;p&gt;To install the server we must run as root the following command:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.125.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Create within the / var / www / html directory a file called intrada.html where you put a welcome message&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.126.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Now I&amp;rsquo;ll put it inside the route:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/apache/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.127.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Next we will post a more complete page on our server, for it&lt;/p&gt;
+&lt;p&gt;use your web application website.&lt;/p&gt;</description></item><item><title>FTP under debian</title><link>https://www.javiercd.es/en/posts/servicios/ftp/ftp/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/ftp/ftp/</guid><description>&lt;h2 id="ftp-server-under-debian"&gt;FTP server under debian&lt;/h2&gt;
+&lt;h3 id="installation-and-configuration-of-the-authenticated-proftpd-server"&gt;Installation and configuration of the authenticated proFTPd server&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;First we will create a group called ftpgroup:
+&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.160.png" alt=""&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create two local users from the ftp group we have created: Jose and Maria&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.161.png" alt=""&gt;&lt;/p&gt;
+&lt;ol start="3"&gt;
+&lt;li&gt;We install the ftp service:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.162.png" alt=""&gt;&lt;/p&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;Basic configuration of the proftpd.conf file:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;All users access your directory only:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.163.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;We can now access from the browser with users Jose and Maria:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.164.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ftp/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.165.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Each of these I have created a folder with your name within your personal directories in order to identify them.&lt;/p&gt;</description></item></channel></rss>

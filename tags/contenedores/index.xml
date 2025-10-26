@@ -1,139 +1,139 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Contenedores on Atlas</title><link>https://www.javiercd.es/tags/contenedores/</link><description>Recent content in Contenedores on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sun, 09 Mar 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/tags/contenedores/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación de Docker Compose en Ubuntu 24</title><link>https://www.javiercd.es/posts/docker/instalar_docker_compose/instalar_docker_compose/</link><pubDate>Sun, 09 Mar 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/instalar_docker_compose/instalar_docker_compose/</guid><description>&lt;p>Guía completa para instalar y gestionar Docker Compose en sistemas Linux.&lt;/p>
-&lt;h2 id="instalación-desde-repositorio">Instalación desde repositorio&lt;/h2>
-&lt;h3 id="para-sistemas-basados-en-debianubuntu">Para sistemas basados en Debian/Ubuntu&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo apt-get update
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo apt-get install docker-compose-plugin
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="para-sistemas-basados-en-rhelcentos">Para sistemas basados en RHEL/CentOS&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo yum check-update
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo yum install docker-compose-plugin
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="para-sistemas-basados-en-fedora">Para sistemas basados en Fedora&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo dnf update
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo dnf install docker-compose-plugin
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
-&lt;h2 id="actualización-del-complemento">Actualización del complemento&lt;/h2>
-&lt;h3 id="actualizar-en-ubuntudebian">Actualizar en Ubuntu/Debian&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo apt-get update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt-get upgrade docker-compose-plugin
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="actualizar-en-rhelcentos">Actualizar en RHEL/CentOS&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo yum update docker-compose-plugin
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
-&lt;h2 id="instalación-manual">Instalación manual&lt;/h2>
-&lt;h3 id="descarga-directa-del-binario">Descarga directa del binario&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>DOCKER_CONFIG&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>DOCKER_CONFIG&lt;span style="color:#66d9ef">:-&lt;/span>$HOME/.docker&lt;span style="color:#e6db74">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkdir -p $DOCKER_CONFIG/cli-plugins
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl -SL https://github.com/docker/compose/releases/download/v2.25.0/docker-compose-linux-&lt;span style="color:#66d9ef">$(&lt;/span>uname -m&lt;span style="color:#66d9ef">)&lt;/span> -o $DOCKER_CONFIG/cli-plugins/docker-compose
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="instalación-global-todos-los-usuarios">Instalación global (todos los usuarios)&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo curl -SL https://github.com/docker/compose/releases/download/v2.25.0/docker-compose-linux-&lt;span style="color:#66d9ef">$(&lt;/span>uname -m&lt;span style="color:#66d9ef">)&lt;/span> -o /usr/local/lib/docker/cli-plugins/docker-compose
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr></description></item><item><title>Instalación de Docker en Ubuntu 24</title><link>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/instalacion_docker_ubuntu24/</link><pubDate>Sun, 09 Mar 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/instalacion_docker_ubuntu24/</guid><description>&lt;p>Para comenzar con Docker Engine en Ubuntu, asegúrate de cumplir con los requisitos previos y sigue los pasos de instalación.&lt;/p>
-&lt;h2 id="requisitos-previos">Requisitos Previos&lt;/h2>
-&lt;h3 id="requisitos-del-sistema-operativo">Requisitos del Sistema Operativo&lt;/h3>
-&lt;p>Para instalar Docker Engine, necesitas la versión de 64 bits de una de estas versiones de Ubuntu:&lt;/p>
-&lt;ul>
-&lt;li>Ubuntu Oracular 24.10&lt;/li>
-&lt;li>Ubuntu Noble 24.04 (LTS)&lt;/li>
-&lt;li>Ubuntu Jammy 22.04 (LTS)&lt;/li>
-&lt;li>Ubuntu Focal 20.04 (LTS)&lt;/li>
-&lt;/ul>
-&lt;p>Docker Engine para Ubuntu es compatible con arquitecturas x86_64 (o amd64), armhf, arm64, s390x y ppc64le (ppc64el).&lt;/p></description></item><item><title>Taller 1: Almacenamiento y redes en Docker</title><link>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</guid><description>&lt;h2 id="taller-1-almacenamiento-y-redes-en-docker">Taller 1: Almacenamiento y redes en Docker&lt;/h2>
-&lt;h3 id="almacenamiento">Almacenamiento&lt;/h3>
-&lt;p>Vamos a trabajar con volúmenes docker:&lt;/p>
-&lt;ol>
-&lt;li>Crea un volumen docker que se llame &lt;code>miweb&lt;/code>.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ docker volume create miweb
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>miweb
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
-&lt;li>Crea un contenedor desde la imagen &lt;code>php:7.4-apache&lt;/code> donde montes en el directorio &lt;code>/var/www/html&lt;/code> (que sabemos que es el &lt;em>DocumentRoot&lt;/em> del servidor que nos ofrece esa imagen) el volumen docker que has creado.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ docker run -d --name my-apache-app -v miweb:/var/www/html -p 8080:80 php:7.4-apache
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>Utiliza el comando &lt;code>docker cp&lt;/code> para copiar un fichero &lt;code>index.html&lt;/code> (donde aparece tu nombre) en el directorio &lt;code>/var/www/html&lt;/code>.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ echo &lt;span style="color:#e6db74">&amp;#34;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;&amp;#34;&lt;/span> &amp;gt; index.html
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ docker cp index.html my-apache-app:/var/www/html/
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Successfully copied 2.05kB to my-apache-app:/var/www/html/
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
-&lt;li>Accede al contenedor desde el navegador para ver la información ofrecida por el fichero &lt;code>index.html&lt;/code>.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ curl http://localhost:8080
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
-&lt;li>Borra el contenedor&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ docker rm -f my-apache-app
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>my-apache-app
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
-&lt;li>Crea un nuevo contenedor y monta el mismo volumen como en el ejercicio anterior.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ docker run -d --name Taller1 -v miweb:/var/www/html -p 8080:80 php:7.4-apache
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>9edd4b2dd2499f923090ce6a246e44db136f162528a51f84ddb33659503bafd7
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
-&lt;li>Accede al contenedor desde el navegador para ver la información ofrecida por el fichero &lt;code>index.html&lt;/code>. ¿Seguía existiendo ese fichero?&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~$ curl http://localhost:8080
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Vamos a trabajar con bind mount:&lt;/p></description></item><item><title>Taller 2: Escenarios multicontenedor en Docker</title><link>https://www.javiercd.es/posts/docker/taller2/taller2_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller2/taller2_docker/</guid><description>&lt;h2 id="taller-2-escenarios-multicontenedor-en-docker">Taller 2: Escenarios multicontenedor en Docker&lt;/h2>
-&lt;h3 id="despliegue-de-nextcloud">Despliegue de Nextcloud&lt;/h3>
-&lt;p>Vamos a desplegar la aplicación nextcloud con una base de datos (puedes elegir mariadb o PostgreSQL) utilizando la aplicación docker-compose. Puedes coger cómo modelo el fichero &lt;code>docker-compose.yml&lt;/code> el que hemos estudiado para desplegar WordPress.&lt;/p>
-&lt;ol>
-&lt;li>Instala docker-compose en tu ordenador.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
-&lt;li>Dentro de un directorio crea un fichero &lt;code>docker-compose.yml&lt;/code> para realizar el despliegue de nextcloud con una base de datos. Recuerda las variables de entorno y la persistencia de información.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller2$ cat docker-compose.yaml
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>version: &lt;span style="color:#e6db74">&amp;#39;2&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>volumes:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nextcloud:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> db:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>services:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> db:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> image: mariadb:10.6
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> restart: always
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> command: --transaction-isolation&lt;span style="color:#f92672">=&lt;/span>READ-COMMITTED --log-bin&lt;span style="color:#f92672">=&lt;/span>binlog --binlog-format&lt;span style="color:#f92672">=&lt;/span>ROW
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volumes:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - db:/var/lib/mysql
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> environment:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_ROOT_PASSWORD&lt;span style="color:#f92672">=&lt;/span>root
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_PASSWORD&lt;span style="color:#f92672">=&lt;/span>javiercruces
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_DATABASE&lt;span style="color:#f92672">=&lt;/span>nextcloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_USER&lt;span style="color:#f92672">=&lt;/span>nextcloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> app:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> image: nextcloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> restart: always
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ports:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - 8081:80
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> links:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - db
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volumes:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - nextcloud:/var/www/html
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> environment:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_PASSWORD&lt;span style="color:#f92672">=&lt;/span>javiercruces
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_DATABASE&lt;span style="color:#f92672">=&lt;/span>nextcloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_USER&lt;span style="color:#f92672">=&lt;/span>nextcloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_HOST&lt;span style="color:#f92672">=&lt;/span>db
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>Levanta el escenario con &lt;code>docker-compose&lt;/code>.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller2$ docker compose up -d
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>+&lt;span style="color:#f92672">]&lt;/span> Running 2/2
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ✔ Container taller2-db-1 Started 0.0s
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ✔ Container taller2-app-1 Started 0.0s
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
-&lt;li>Muestra los contenedores con &lt;code>docker-compose&lt;/code>.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller2$ docker compose ps
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME IMAGE COMMAND SERVICE CREATED STATUS PORTS
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>taller2-app-1 nextcloud &lt;span style="color:#e6db74">&amp;#34;/entrypoint.sh apache2-foreground&amp;#34;&lt;/span> app &lt;span style="color:#ae81ff">7&lt;/span> minutes ago Up &lt;span style="color:#ae81ff">5&lt;/span> minutes 0.0.0.0:8081-&amp;gt;80/tcp, :::8081-&amp;gt;80/tcp
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>taller2-db-1 mariadb:10.6 &lt;span style="color:#e6db74">&amp;#34;docker-entrypoint.sh --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW&amp;#34;&lt;/span> db &lt;span style="color:#ae81ff">7&lt;/span> minutes ago Up &lt;span style="color:#ae81ff">5&lt;/span> minutes 3306/tcp
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
-&lt;li>Accede a la aplicación y comprueba que funciona.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="https://www.javiercd.es/docker/taller2/img/Pasted_image_20240202091554.png" alt="">&lt;/p></description></item><item><title>Taller 3: Creación de imágenes Docker</title><link>https://www.javiercd.es/posts/docker/taller3/taller3_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller3/taller3_docker/</guid><description>&lt;h2 id="taller-3-creación-de-imágenes-docker">Taller 3: Creación de imágenes Docker&lt;/h2>
-&lt;p>Creación de una imagen a partir de un Dockerfile&lt;/p>
-&lt;p>1.Crea una página web estática (por ejemplo busca una plantilla HTML5). O simplemente crea un index.html.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;/code>&lt;/pre>&lt;/div>&lt;p>2.Crea un fichero Dockerfile que permita crear una imagen con un servidor web sirviendo la página. Puedes usar una imagen base debian o ubuntu, o una imagen que tenga ya un servicio web, como hemos visto en el apartado Ejemplo 1: Construcción de imágenes con una página estática.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Contenedores on Atlas</title><link>https://www.javiercd.es/tags/contenedores/</link><description>Recent content in Contenedores on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sun, 09 Mar 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/tags/contenedores/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación de Docker Compose en Ubuntu 24</title><link>https://www.javiercd.es/posts/docker/instalar_docker_compose/instalar_docker_compose/</link><pubDate>Sun, 09 Mar 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/instalar_docker_compose/instalar_docker_compose/</guid><description>&lt;p&gt;Guía completa para instalar y gestionar Docker Compose en sistemas Linux.&lt;/p&gt;
+&lt;h2 id="instalación-desde-repositorio"&gt;Instalación desde repositorio&lt;/h2&gt;
+&lt;h3 id="para-sistemas-basados-en-debianubuntu"&gt;Para sistemas basados en Debian/Ubuntu&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo apt-get install docker-compose-plugin
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="para-sistemas-basados-en-rhelcentos"&gt;Para sistemas basados en RHEL/CentOS&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo yum check-update
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo yum install docker-compose-plugin
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="para-sistemas-basados-en-fedora"&gt;Para sistemas basados en Fedora&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo dnf update
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo dnf install docker-compose-plugin
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="actualización-del-complemento"&gt;Actualización del complemento&lt;/h2&gt;
+&lt;h3 id="actualizar-en-ubuntudebian"&gt;Actualizar en Ubuntu/Debian&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo apt-get update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get upgrade docker-compose-plugin
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="actualizar-en-rhelcentos"&gt;Actualizar en RHEL/CentOS&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo yum update docker-compose-plugin
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="instalación-manual"&gt;Instalación manual&lt;/h2&gt;
+&lt;h3 id="descarga-directa-del-binario"&gt;Descarga directa del binario&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;DOCKER_CONFIG&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;${&lt;/span&gt;DOCKER_CONFIG&lt;span style="color:#66d9ef"&gt;:-&lt;/span&gt;$HOME/.docker&lt;span style="color:#e6db74"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mkdir -p $DOCKER_CONFIG/cli-plugins
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -SL https://github.com/docker/compose/releases/download/v2.25.0/docker-compose-linux-&lt;span style="color:#66d9ef"&gt;$(&lt;/span&gt;uname -m&lt;span style="color:#66d9ef"&gt;)&lt;/span&gt; -o $DOCKER_CONFIG/cli-plugins/docker-compose
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="instalación-global-todos-los-usuarios"&gt;Instalación global (todos los usuarios)&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo curl -SL https://github.com/docker/compose/releases/download/v2.25.0/docker-compose-linux-&lt;span style="color:#66d9ef"&gt;$(&lt;/span&gt;uname -m&lt;span style="color:#66d9ef"&gt;)&lt;/span&gt; -o /usr/local/lib/docker/cli-plugins/docker-compose
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;</description></item><item><title>Instalación de Docker en Ubuntu 24</title><link>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/instalacion_docker_ubuntu24/</link><pubDate>Sun, 09 Mar 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/instalar_docker_ubuntu24/instalacion_docker_ubuntu24/</guid><description>&lt;p&gt;Para comenzar con Docker Engine en Ubuntu, asegúrate de cumplir con los requisitos previos y sigue los pasos de instalación.&lt;/p&gt;
+&lt;h2 id="requisitos-previos"&gt;Requisitos Previos&lt;/h2&gt;
+&lt;h3 id="requisitos-del-sistema-operativo"&gt;Requisitos del Sistema Operativo&lt;/h3&gt;
+&lt;p&gt;Para instalar Docker Engine, necesitas la versión de 64 bits de una de estas versiones de Ubuntu:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ubuntu Oracular 24.10&lt;/li&gt;
+&lt;li&gt;Ubuntu Noble 24.04 (LTS)&lt;/li&gt;
+&lt;li&gt;Ubuntu Jammy 22.04 (LTS)&lt;/li&gt;
+&lt;li&gt;Ubuntu Focal 20.04 (LTS)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Docker Engine para Ubuntu es compatible con arquitecturas x86_64 (o amd64), armhf, arm64, s390x y ppc64le (ppc64el).&lt;/p&gt;</description></item><item><title>Taller 1: Almacenamiento y redes en Docker</title><link>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</guid><description>&lt;h2 id="taller-1-almacenamiento-y-redes-en-docker"&gt;Taller 1: Almacenamiento y redes en Docker&lt;/h2&gt;
+&lt;h3 id="almacenamiento"&gt;Almacenamiento&lt;/h3&gt;
+&lt;p&gt;Vamos a trabajar con volúmenes docker:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Crea un volumen docker que se llame &lt;code&gt;miweb&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker volume create miweb
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;miweb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;Crea un contenedor desde la imagen &lt;code&gt;php:7.4-apache&lt;/code&gt; donde montes en el directorio &lt;code&gt;/var/www/html&lt;/code&gt; (que sabemos que es el &lt;em&gt;DocumentRoot&lt;/em&gt; del servidor que nos ofrece esa imagen) el volumen docker que has creado.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker run -d --name my-apache-app -v miweb:/var/www/html -p 8080:80 php:7.4-apache
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;Utiliza el comando &lt;code&gt;docker cp&lt;/code&gt; para copiar un fichero &lt;code&gt;index.html&lt;/code&gt; (donde aparece tu nombre) en el directorio &lt;code&gt;/var/www/html&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ echo &lt;span style="color:#e6db74"&gt;&amp;#34;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;&amp;#34;&lt;/span&gt; &amp;gt; index.html
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker cp index.html my-apache-app:/var/www/html/
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Successfully copied 2.05kB to my-apache-app:/var/www/html/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="4"&gt;
+&lt;li&gt;Accede al contenedor desde el navegador para ver la información ofrecida por el fichero &lt;code&gt;index.html&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ curl http://localhost:8080
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="5"&gt;
+&lt;li&gt;Borra el contenedor&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker rm -f my-apache-app
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;my-apache-app
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="6"&gt;
+&lt;li&gt;Crea un nuevo contenedor y monta el mismo volumen como en el ejercicio anterior.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker run -d --name Taller1 -v miweb:/var/www/html -p 8080:80 php:7.4-apache
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;9edd4b2dd2499f923090ce6a246e44db136f162528a51f84ddb33659503bafd7
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="7"&gt;
+&lt;li&gt;Accede al contenedor desde el navegador para ver la información ofrecida por el fichero &lt;code&gt;index.html&lt;/code&gt;. ¿Seguía existiendo ese fichero?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ curl http://localhost:8080
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Vamos a trabajar con bind mount:&lt;/p&gt;</description></item><item><title>Taller 2: Escenarios multicontenedor en Docker</title><link>https://www.javiercd.es/posts/docker/taller2/taller2_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller2/taller2_docker/</guid><description>&lt;h2 id="taller-2-escenarios-multicontenedor-en-docker"&gt;Taller 2: Escenarios multicontenedor en Docker&lt;/h2&gt;
+&lt;h3 id="despliegue-de-nextcloud"&gt;Despliegue de Nextcloud&lt;/h3&gt;
+&lt;p&gt;Vamos a desplegar la aplicación nextcloud con una base de datos (puedes elegir mariadb o PostgreSQL) utilizando la aplicación docker-compose. Puedes coger cómo modelo el fichero &lt;code&gt;docker-compose.yml&lt;/code&gt; el que hemos estudiado para desplegar WordPress.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Instala docker-compose en tu ordenador.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;Dentro de un directorio crea un fichero &lt;code&gt;docker-compose.yml&lt;/code&gt; para realizar el despliegue de nextcloud con una base de datos. Recuerda las variables de entorno y la persistencia de información.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ cat docker-compose.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;version: &lt;span style="color:#e6db74"&gt;&amp;#39;2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; nextcloud:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; db:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;services:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; db:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; image: mariadb:10.6
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; restart: always
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; command: --transaction-isolation&lt;span style="color:#f92672"&gt;=&lt;/span&gt;READ-COMMITTED --log-bin&lt;span style="color:#f92672"&gt;=&lt;/span&gt;binlog --binlog-format&lt;span style="color:#f92672"&gt;=&lt;/span&gt;ROW
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - db:/var/lib/mysql
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; environment:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_ROOT_PASSWORD&lt;span style="color:#f92672"&gt;=&lt;/span&gt;root
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_PASSWORD&lt;span style="color:#f92672"&gt;=&lt;/span&gt;javiercruces
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_DATABASE&lt;span style="color:#f92672"&gt;=&lt;/span&gt;nextcloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_USER&lt;span style="color:#f92672"&gt;=&lt;/span&gt;nextcloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; app:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; image: nextcloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; restart: always
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ports:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - 8081:80
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; links:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - db
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - nextcloud:/var/www/html
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; environment:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_PASSWORD&lt;span style="color:#f92672"&gt;=&lt;/span&gt;javiercruces
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_DATABASE&lt;span style="color:#f92672"&gt;=&lt;/span&gt;nextcloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_USER&lt;span style="color:#f92672"&gt;=&lt;/span&gt;nextcloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_HOST&lt;span style="color:#f92672"&gt;=&lt;/span&gt;db
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;Levanta el escenario con &lt;code&gt;docker-compose&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ docker compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;[&lt;/span&gt;+&lt;span style="color:#f92672"&gt;]&lt;/span&gt; Running 2/2
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ✔ Container taller2-db-1 Started 0.0s
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ✔ Container taller2-app-1 Started 0.0s
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="4"&gt;
+&lt;li&gt;Muestra los contenedores con &lt;code&gt;docker-compose&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ docker compose ps
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;NAME IMAGE COMMAND SERVICE CREATED STATUS PORTS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;taller2-app-1 nextcloud &lt;span style="color:#e6db74"&gt;&amp;#34;/entrypoint.sh apache2-foreground&amp;#34;&lt;/span&gt; app &lt;span style="color:#ae81ff"&gt;7&lt;/span&gt; minutes ago Up &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; minutes 0.0.0.0:8081-&amp;gt;80/tcp, :::8081-&amp;gt;80/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;taller2-db-1 mariadb:10.6 &lt;span style="color:#e6db74"&gt;&amp;#34;docker-entrypoint.sh --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW&amp;#34;&lt;/span&gt; db &lt;span style="color:#ae81ff"&gt;7&lt;/span&gt; minutes ago Up &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; minutes 3306/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="5"&gt;
+&lt;li&gt;Accede a la aplicación y comprueba que funciona.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src="https://www.javiercd.es/docker/taller2/img/Pasted_image_20240202091554.png" alt=""&gt;&lt;/p&gt;</description></item><item><title>Taller 3: Creación de imágenes Docker</title><link>https://www.javiercd.es/posts/docker/taller3/taller3_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller3/taller3_docker/</guid><description>&lt;h2 id="taller-3-creación-de-imágenes-docker"&gt;Taller 3: Creación de imágenes Docker&lt;/h2&gt;
+&lt;p&gt;Creación de una imagen a partir de un Dockerfile&lt;/p&gt;
+&lt;p&gt;1.Crea una página web estática (por ejemplo busca una plantilla HTML5). O simplemente crea un index.html.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;2.Crea un fichero Dockerfile que permita crear una imagen con un servidor web sirviendo la página. Puedes usar una imagen base debian o ubuntu, o una imagen que tenga ya un servicio web, como hemos visto en el apartado Ejemplo 1: Construcción de imágenes con una página estática.&lt;/p&gt;</description></item></channel></rss>

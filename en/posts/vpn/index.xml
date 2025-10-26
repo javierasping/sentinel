@@ -1,106 +1,109 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VPN on Atlas</title><link>https://www.javiercd.es/en/posts/vpn/</link><description>Recent content in VPN on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/vpn/index.xml" rel="self" type="application/rss+xml"/><item><title>Comparative between OpenVPN and Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</guid><description>&lt;p>&lt;img src="https://www.javiercd.es/vpn/comparativa_ovpn_wire/img/Pastedimage20240114150833.png" alt="">&lt;/p>
-&lt;p>The goal of this post is to compare the different VPNs software most used by seeing which is faster, for which we will support in speed test using iperf3.&lt;/p>
-&lt;blockquote>
-&lt;p>[NOTE]
-The comparative part of the posts in this section in which we mount each type of VPN.&lt;/p>&lt;/blockquote>
-&lt;h2 id="speed-without-vpn">Speed without VPN&lt;/h2>
-&lt;p>I&amp;rsquo;m gonna start by comparing the speeds of these 2 systems, using iperf3. For this I have removed the cisco router as I had it configured with FastEthernet interfaces and changed it to a Linux router with GigabitEthernet interfaces.&lt;/p></description></item><item><title>Remote access VPN with Ipsec StrongSwan</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_strongswang/strongswang/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_strongswang/strongswang/</guid><description>&lt;p>StrongSwan is a VPN (Virtual Private Network) implementation based on IPsec, open source, multiplatform, complete and widely used. It works on operating systems such as Linux, FreeBSD, OS X, Windows, Android and iOS. Mainly, it is a key exchange demon that supports Internet Key Exchange protocols (IKEv1 and IKEv2) to establish security associations (SA) between two pairs.&lt;/p>
-&lt;blockquote>
-&lt;p>[NOTE]
-I will start from the VPN post remote access with OpenVPN, so you may refer to this during this article. If you want to have the same scenario go first to this.&lt;/p></description></item><item><title>Remote access VPN with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</guid><description>&lt;ul>
-&lt;li>One of the two teams (which will act as a server) will be connected to two networks&lt;/li>
-&lt;li>For the authentication of the extremes, digital certificates shall be used, which shall be generated using openssl and stored in the / etc / openvpn directory, together with the Diffie- Helman parameters and the certificate of the Certification Authority itself.&lt;/li>
-&lt;li>Network addresses 10.99.99.0 / 24 will be used for VPN virtual addresses. The address 10.99.99.1 shall be assigned to the VPN server.&lt;/li>
-&lt;li>The server and client configuration files will be created in the / etc / openvpn directory of each machine, and will be called servor.conf and cliente.conf respectively.&lt;/li>
-&lt;li>After the establishment of the VPN, the client machine must be able to access a machine on the other network to which the server is connected.&lt;/li>
-&lt;/ul>
-&lt;h3 id="riding-the-stage">Riding the stage&lt;/h3>
-&lt;p>To perform this exercise I have mounted the following scenario on GNS3:&lt;/p></description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p>&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt="">&lt;/p>
-&lt;blockquote>
-&lt;p>[!NOTE]
-I will start from the VPN post remote access with Wireguard, so you may refer to this one during this article.&lt;/p>&lt;/blockquote>
-&lt;h2 id="key-generation">Key generation&lt;/h2>
-&lt;p>The first thing we will do is to install both the Wireguard package in both machines:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>root@servidor1:~# sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>debian@servidor2:~$ sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Let&amp;rsquo;s generate the pairs of keys that will be used to encrypt the connection. We will need a key for the server and a couple of additional keys for each client.&lt;/p></description></item><item><title>VPN site to site with IPsec Cisco</title><link>https://www.javiercd.es/en/posts/vpn/ipsec_cisco/ipsec_cisco/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/ipsec_cisco/ipsec_cisco/</guid><description>&lt;p>In this post I&amp;rsquo;m going to mount an IPSEC VPN using swan routers.&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/vpn/ipsec_cisco/img/Pastedimage20240128120659.png" alt="">&lt;/p>
-&lt;blockquote>
-&lt;p>[!NOTE]
-This post details the configuration of R2 and R3 routers, however R1 is explained in the post of &amp;ldquo;VPN OpenVPN remote access.&amp;rdquo; If you want to see the configuration of the latter, look at the section preparing the stage.&lt;/p>&lt;/blockquote>
-&lt;h2 id="-stage-configuration"># Stage configuration&lt;/h2>
-&lt;p>As I have changed stage, the 2 new routers have to be set up on the R2 and R3 network.&lt;/p></description></item><item><title>VPN site to site with IPsec Fortinet</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</guid><description>&lt;p>In this post I will mount an IPSEC VPN using Fortinet firewalls, for which I will visualize them on GNS3.&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/vpn/site_to_site_fortinet/img/Pastedimage20240330235321.png" alt="">&lt;/p>
-&lt;h3 id="stage-preparation">Stage preparation&lt;/h3>
-&lt;p>To create the VPN I will add a new Fortigate to the stage.&lt;/p>
-&lt;p>So let&amp;rsquo;s proceed to set it up, the first thing will be to know the IP that the DHCP has given you:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>FortiGate-VM64-KVM login: admin
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Password:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>You are forced to change your password. Please input a new password.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>New Password:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Confirm Password:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Welcome!
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>FortiGate-VM64-KVM &lt;span style="color:#75715e"># get system interface physical port1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#f92672">[&lt;/span>onboard&lt;span style="color:#f92672">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">==[&lt;/span>port1&lt;span style="color:#f92672">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mode: dhcp
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ip: 192.168.122.22 255.255.255.0
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ipv6: ::/0
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> status: up
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> speed: 1000Mbps &lt;span style="color:#f92672">(&lt;/span>Duplex: full&lt;span style="color:#f92672">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> FEC: none
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> FEC_cap: none
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This IP you&amp;rsquo;ve given me for DHCP will be configured as static.&lt;/p></description></item><item><title>VPN site to site with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</guid><description>&lt;h3 id="riding-the-stage">Riding the stage&lt;/h3>
-&lt;p>To perform this exercise I have mounted the following scenario on GNS3:&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt="">&lt;/p>
-&lt;h3 id="swan-router-configuration">Swan router configuration&lt;/h3>
-&lt;p>Let&amp;rsquo;s give each interface the corresponding network configuration:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Interfaz que nos dará internet&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1#configure terminal
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface fastEthernet 0/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip add dhcp&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#no shut&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#exit&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Interfaz red Servidor 1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface fastEthernet 1/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip add 90.0.0.1 255.255.255.0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#no shut&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#exit&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Interfaz red Servidor 2&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface fastEthernet 1/1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip add 100.0.0.1 255.255.255.0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#no shut&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#exit&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Ruta por defecto para internet&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip route 0.0.0.0 0.0.0.0 192.168.122.1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Guarda la configuración&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1#write
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#Configuración de SNAT&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1#conf term
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#access-list 1 permit 90.0.0.0 0.0.0.255&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#access-list 1 permit 100.0.0.0 0.0.0.255&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e"># ip nat pool NAT-Pool 192.168.122.127 192.168.122.127 prefix-length 24&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat inside source list 1 pool NAT-Pool overload&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface FastEthernet0/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat outside&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface FastEthernet1/0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat inside&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#interface FastEthernet1/1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>R1&lt;span style="color:#f92672">(&lt;/span>config-if&lt;span style="color:#f92672">)&lt;/span>&lt;span style="color:#75715e">#ip nat inside&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Server Configuration 1&lt;/p></description></item><item><title>VPN Wireguard remote access</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</guid><description>&lt;p>&lt;img src="https://www.javiercd.es/vpn/acceso_remoto_wireguard/img/Pastedimage20240114150833.png" alt="">&lt;/p>
-&lt;p>First I will configure the server machine as a VPN remote access and server server as a VPN client. I will then set up a Windows and Android client.&lt;/p>
-&lt;p>The first thing we will do is to install both the Wireguard package in both machines:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>root@servidor1:~# sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>debian@servidor2:~$ sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install wireguard
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Let&amp;rsquo;s generate the pairs of keys that will be used to encrypt the connection. We will need a key for the server and a couple of additional keys for each client.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VPN on Atlas</title><link>https://www.javiercd.es/en/posts/vpn/</link><description>Recent content in VPN on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/vpn/index.xml" rel="self" type="application/rss+xml"/><item><title>Comparative between OpenVPN and Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/comparativa_ovpn_wire/comparativa_ovpn_wire/</guid><description>&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/comparativa_ovpn_wire/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;The goal of this post is to compare the different VPNs software most used by seeing which is faster, for which we will support in speed test using iperf3.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[NOTE]
+The comparative part of the posts in this section in which we mount each type of VPN.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="speed-without-vpn"&gt;Speed without VPN&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;m gonna start by comparing the speeds of these 2 systems, using iperf3. For this I have removed the cisco router as I had it configured with FastEthernet interfaces and changed it to a Linux router with GigabitEthernet interfaces.&lt;/p&gt;</description></item><item><title>Remote access VPN with Ipsec StrongSwan</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_strongswang/strongswang/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_strongswang/strongswang/</guid><description>&lt;p&gt;StrongSwan is a VPN (Virtual Private Network) implementation based on IPsec, open source, multiplatform, complete and widely used. It works on operating systems such as Linux, FreeBSD, OS X, Windows, Android and iOS. Mainly, it is a key exchange demon that supports Internet Key Exchange protocols (IKEv1 and IKEv2) to establish security associations (SA) between two pairs.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[NOTE]
+I will start from the VPN post remote access with OpenVPN, so you may refer to this during this article. If you want to have the same scenario go first to this.&lt;/p&gt;</description></item><item><title>Remote access VPN with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</guid><description>&lt;ul&gt;
+&lt;li&gt;One of the two teams (which will act as a server) will be connected to two networks&lt;/li&gt;
+&lt;li&gt;For the authentication of the extremes, digital certificates shall be used, which shall be generated using openssl and stored in the / etc / openvpn directory, together with the Diffie- Helman parameters and the certificate of the Certification Authority itself.&lt;/li&gt;
+&lt;li&gt;Network addresses 10.99.99.0 / 24 will be used for VPN virtual addresses. The address 10.99.99.1 shall be assigned to the VPN server.&lt;/li&gt;
+&lt;li&gt;The server and client configuration files will be created in the / etc / openvpn directory of each machine, and will be called servor.conf and cliente.conf respectively.&lt;/li&gt;
+&lt;li&gt;After the establishment of the VPN, the client machine must be able to access a machine on the other network to which the server is connected.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="riding-the-stage"&gt;Riding the stage&lt;/h3&gt;
+&lt;p&gt;To perform this exercise I have mounted the following scenario on GNS3:&lt;/p&gt;</description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]
+I will start from the VPN post remote access with Wireguard, so you may refer to this one during this article.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="key-generation"&gt;Key generation&lt;/h2&gt;
+&lt;p&gt;The first thing we will do is to install both the Wireguard package in both machines:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;root@servidor1:~# sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;debian@servidor2:~$ sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s generate the pairs of keys that will be used to encrypt the connection. We will need a key for the server and a couple of additional keys for each client.&lt;/p&gt;</description></item><item><title>VPN site to site with IPsec Cisco</title><link>https://www.javiercd.es/en/posts/vpn/ipsec_cisco/ipsec_cisco/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/ipsec_cisco/ipsec_cisco/</guid><description>&lt;p&gt;In this post I&amp;rsquo;m going to mount an IPSEC VPN using swan routers.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/ipsec_cisco/img/Pastedimage20240128120659.png" alt=""&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]
+This post details the configuration of R2 and R3 routers, however R1 is explained in the post of &amp;ldquo;VPN OpenVPN remote access.&amp;rdquo; If you want to see the configuration of the latter, look at the section preparing the stage.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="-stage-configuration"&gt;# Stage configuration&lt;/h2&gt;
+&lt;p&gt;As I have changed stage, the 2 new routers have to be set up on the R2 and R3 network.&lt;/p&gt;</description></item><item><title>VPN site to site with IPsec Fortinet</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</guid><description>&lt;p&gt;In this post I will mount an IPSEC VPN using Fortinet firewalls, for which I will visualize them on GNS3.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_fortinet/img/Pastedimage20240330235321.png" alt=""&gt;&lt;/p&gt;
+&lt;h3 id="stage-preparation"&gt;Stage preparation&lt;/h3&gt;
+&lt;p&gt;To create the VPN I will add a new Fortigate to the stage.&lt;/p&gt;
+&lt;p&gt;So let&amp;rsquo;s proceed to set it up, the first thing will be to know the IP that the DHCP has given you:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FortiGate-VM64-KVM login: admin
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Password:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;You are forced to change your password. Please input a new password.
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;New Password:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Confirm Password:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Welcome!
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FortiGate-VM64-KVM &lt;span style="color:#75715e"&gt;# get system interface physical port1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;==&lt;/span&gt; &lt;span style="color:#f92672"&gt;[&lt;/span&gt;onboard&lt;span style="color:#f92672"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;==[&lt;/span&gt;port1&lt;span style="color:#f92672"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; mode: dhcp
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ip: 192.168.122.22 255.255.255.0
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ipv6: ::/0
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; status: up
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; speed: 1000Mbps &lt;span style="color:#f92672"&gt;(&lt;/span&gt;Duplex: full&lt;span style="color:#f92672"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; FEC: none
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; FEC_cap: none
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This IP you&amp;rsquo;ve given me for DHCP will be configured as static.&lt;/p&gt;</description></item><item><title>VPN site to site with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</guid><description>&lt;h3 id="riding-the-stage"&gt;Riding the stage&lt;/h3&gt;
+&lt;p&gt;To perform this exercise I have mounted the following scenario on GNS3:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
+&lt;h3 id="swan-router-configuration"&gt;Swan router configuration&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s give each interface the corresponding network configuration:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Interfaz que nos dará internet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1#configure terminal
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface fastEthernet 0/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip add dhcp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#no shut&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Interfaz red Servidor 1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface fastEthernet 1/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip add 90.0.0.1 255.255.255.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#no shut&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Interfaz red Servidor 2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface fastEthernet 1/1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip add 100.0.0.1 255.255.255.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#no shut&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Ruta por defecto para internet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip route 0.0.0.0 0.0.0.0 192.168.122.1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Guarda la configuración&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1#write
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Configuración de SNAT&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1#conf term
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#access-list 1 permit 90.0.0.0 0.0.0.255&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#access-list 1 permit 100.0.0.0 0.0.0.255&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;# ip nat pool NAT-Pool 192.168.122.127 192.168.122.127 prefix-length 24&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat inside source list 1 pool NAT-Pool overload&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface FastEthernet0/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat outside&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface FastEthernet1/0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat inside&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface FastEthernet1/1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip nat inside&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Server Configuration 1&lt;/p&gt;</description></item><item><title>VPN Wireguard remote access</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_wireguard/acceso_remoto_wireguard/</guid><description>&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/acceso_remoto_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;First I will configure the server machine as a VPN remote access and server server as a VPN client. I will then set up a Windows and Android client.&lt;/p&gt;
+&lt;p&gt;The first thing we will do is to install both the Wireguard package in both machines:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;root@servidor1:~# sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;debian@servidor2:~$ sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s generate the pairs of keys that will be used to encrypt the connection. We will need a key for the server and a couple of additional keys for each client.&lt;/p&gt;</description></item></channel></rss>

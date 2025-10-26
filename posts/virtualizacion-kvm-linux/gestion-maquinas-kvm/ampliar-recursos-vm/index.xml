@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cómo ampliar memoria, CPU y discos de una máquina virtual on Atlas</title><link>https://www.javiercd.es/posts/virtualizacion-kvm-linux/gestion-maquinas-kvm/ampliar-recursos-vm/</link><description>Recent content in Cómo ampliar memoria, CPU y discos de una máquina virtual on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 16 Oct 2025 13:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/virtualizacion-kvm-linux/gestion-maquinas-kvm/ampliar-recursos-vm/index.xml" rel="self" type="application/rss+xml"/><item><title>Cómo ampliar memoria, CPU y discos de una máquina virtual</title><link>https://www.javiercd.es/posts/virtualizacion-kvm-linux/gestion-maquinas-kvm/ampliar-recursos-vm/ampliar-recursos-vm/</link><pubDate>Thu, 16 Oct 2025 13:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/virtualizacion-kvm-linux/gestion-maquinas-kvm/ampliar-recursos-vm/ampliar-recursos-vm/</guid><description>&lt;p&gt;En este artículo veremos tres casos prácticos para ampliar recursos en una VM gestionada con libvirt/KVM:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Subir número de vCPU (núcleos)&lt;/li&gt;
+&lt;li&gt;Aumentar memoria RAM&lt;/li&gt;
+&lt;li&gt;Ampliar el disco y el sistema de archivos dentro del invitado&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Usaremos comandos &lt;code&gt;virsh&lt;/code&gt;, herramientas de libguestfs cuando aplique y utilidades estándar dentro del invitado (growpart, resize2fs, xfs_growfs, LVM). Incluyo vías “en caliente” cuando el sistema lo soporta y alternativas seguras en frío.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Nota: Para ejecutar sin sudo, tu usuario debe pertenecer a los grupos &lt;code&gt;libvirt&lt;/code&gt; y &lt;code&gt;kvm&lt;/code&gt;.&lt;/p&gt;</description></item></channel></rss>

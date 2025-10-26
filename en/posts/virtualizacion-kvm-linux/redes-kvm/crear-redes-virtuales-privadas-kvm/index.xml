@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>How to create and configure private virtual networks on Atlas</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/</link><description>Recent content in How to create and configure private virtual networks on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 18 Oct 2025 09:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/index.xml" rel="self" type="application/rss+xml"/><item><title>How to create and configure private virtual networks</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/crear-redes-virtuales-privadas-kvm/</link><pubDate>Sat, 18 Oct 2025 09:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/crear-redes-virtuales-privadas-kvm/</guid><description>&lt;p&gt;In this step-by-step guide you&amp;rsquo;ll create three types of virtual networks managed by libvirt and learn simple ways to verify them:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;NAT (Network Address Translation)&lt;/li&gt;
+&lt;li&gt;Isolated&lt;/li&gt;
+&lt;li&gt;Very isolated (L2 only)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We&amp;rsquo;ll use &lt;code&gt;virsh&lt;/code&gt; and XML definitions (you can do the same with &lt;code&gt;virt-manager&lt;/code&gt;, but we&amp;rsquo;ll focus on the CLI). After each creation, there&amp;rsquo;s a quick check to confirm everything looks good.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="before-you-start-quick-requirements"&gt;Before you start: quick requirements&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Packages: &lt;code&gt;libvirt-daemon&lt;/code&gt; and &lt;code&gt;libvirt-daemon-system&lt;/code&gt; (or your distro equivalents). Optional: &lt;code&gt;virt-manager&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Run commands as root or with &lt;code&gt;sudo&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Service: &lt;code&gt;systemctl status libvirtd&lt;/code&gt; should be active.&lt;/li&gt;
+&lt;li&gt;See current networks: &lt;code&gt;virsh net-list --all&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Persistent config paths: &lt;code&gt;/etc/libvirt/qemu/networks/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Tip: avoid subnet conflicts; choose ranges that don&amp;rsquo;t collide with your physical LAN or other libvirt networks.&lt;/p&gt;</description></item></channel></rss>

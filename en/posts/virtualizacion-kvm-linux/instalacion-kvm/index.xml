@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Installing and configuring KVM on Linux on Atlas</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/instalacion-kvm/</link><description>Recent content in Installing and configuring KVM on Linux on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 13 Oct 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/instalacion-kvm/index.xml" rel="self" type="application/rss+xml"/><item><title>How to install KVM, QEMU and libvirt on Linux</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/instalacion-kvm/instalar-kvm-libvirt/instalar-kvm-libvirt/</link><pubDate>Mon, 13 Oct 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/instalacion-kvm/instalar-kvm-libvirt/instalar-kvm-libvirt/</guid><description>&lt;p&gt;To install &lt;strong&gt;KVM&lt;/strong&gt; on Ubuntu or Debian, you need to prepare the system with the required packages, verify hardware virtualization support, and authorize users to run virtual machines. Below are the steps to install KVM on Ubuntu 24.04 (Noble Numbat) or recent Debian releases.&lt;/p&gt;
+&lt;h2 id="step-1-update-the-system"&gt;Step 1: Update the system&lt;/h2&gt;
+&lt;p&gt;Before installing KVM, update your package repository information:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo apt update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="step-2-check-virtualization-support"&gt;Step 2: Check virtualization support&lt;/h2&gt;
+&lt;h3 id="21-verify-cpu-compatibility"&gt;2.1 Verify CPU compatibility&lt;/h3&gt;
+&lt;p&gt;Check if your CPU supports hardware virtualization:&lt;/p&gt;</description></item><item><title>How to validate the KVM host installation</title><link>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/instalacion-kvm/validar-host-kvm/validar-host-kvm/</link><pubDate>Mon, 13 Oct 2025 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/virtualizacion-kvm-linux/instalacion-kvm/validar-host-kvm/validar-host-kvm/</guid><description>&lt;p&gt;Before creating and running virtual machines with &lt;strong&gt;KVM&lt;/strong&gt;, it&amp;rsquo;s essential to validate that the host meets the required &lt;strong&gt;hardware and software&lt;/strong&gt; capabilities to ensure optimal performance. This guide describes how to verify system capabilities using tools such as &lt;code&gt;virt-host-validate&lt;/code&gt; and &lt;code&gt;virsh&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="1-validating-cpu-virtualization-support"&gt;1. Validating CPU virtualization support&lt;/h2&gt;
+&lt;p&gt;KVM requires processors with &lt;strong&gt;hardware virtualization extensions&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Intel: VT-x&lt;/li&gt;
+&lt;li&gt;AMD: AMD-V&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To check if your CPU is compatible, run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;grep --color -Ew &lt;span style="color:#e6db74"&gt;&amp;#39;svm|vmx|lm&amp;#39;&lt;/span&gt; /proc/cpuinfo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vmx&lt;/code&gt; → Intel CPU with VT-x&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;svm&lt;/code&gt; → AMD CPU with AMD-V&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lm&lt;/code&gt; → 64-bit support&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If your CPU lacks these extensions, only CPU emulation will be available and performance will be significantly reduced.&lt;/p&gt;</description></item></channel></rss>

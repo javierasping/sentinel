@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GNS3 on Atlas</title><link>https://www.javiercd.es/tags/gns3/</link><description>Recent content in GNS3 on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sun, 08 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/tags/gns3/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación GNS3 en Debian 12</title><link>https://www.javiercd.es/posts/redes/instalar_gns3_debian12/instalar_gns3_debian12/</link><pubDate>Sun, 08 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/instalar_gns3_debian12/instalar_gns3_debian12/</guid><description>&lt;p>En este artículo, te presento una actualización del proceso de instalación de GNS3 en Debian 12, basado en el post anterior para Debian 11. Si necesitas detalles más profundos sobre la instalación o la configuración de GNS3, te recomiendo revisar la versión anterior.&lt;/p>
-&lt;h2 id="instalación-gns3">Instalación GNS3&lt;/h2>
-&lt;p>Actualizamos los repositorios e instalamos las actualizaciones disponibles del sistema.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@HPOMEN15:~$ sudo apt update -y &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt upgrade -y
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Instalamos las dependencias necesarias para GNS3, incluyendo Python, herramientas de virtualización (KVM,QEMU,libvirt), bibliotecas adicionales (PyQt5,dynamips) y otras utilidades.&lt;/p></description></item><item><title>Instalación de android en GNS3 con KVM</title><link>https://www.javiercd.es/posts/redes/android_gns3/android/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/android_gns3/android/</guid><description>&lt;p>Para descargarnos la imagen de android puedes hacerlo desde esta pagina &amp;ndash;&amp;gt; &lt;a href="https://www.fosshub.com/Android-x86.html" target="_blank" rel="noopener">https://www.fosshub.com/Android-x86.html&lt;/a> :&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>wget https://www.fosshub.com/Android-x86.html?dwl&lt;span style="color:#f92672">=&lt;/span>android-x86_64-9.0-r2.iso
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Crea una maquina en KVM como si fuese un Debian , yo le he dado 2GB de RAM y 2 cores :&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/redes/android_gns3/Pastedimage20240117194542.png" alt="">&lt;/p>
-&lt;p>En nuestro caso podemos lanzar una instalación automática :&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/redes/android_gns3/Pastedimage20240117194647.png" alt="">&lt;/p>
-&lt;p>Cuando tengas la maquina instalada , apaga la maquina y vamos a importarla en gns3 . Para ello vamos a llevarnos el disco de KVM y vamos a importarlo en el directorio donde hayamos instalado las imágenes de GNS3 , luego haz propiedad del disco copiado a tu usuario .&lt;/p></description></item><item><title>Configuración de switches en GNS3</title><link>https://www.javiercd.es/posts/redes/switches_gns3/configuracion_de_switches_en_gns3/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/switches_gns3/configuracion_de_switches_en_gns3/</guid><description>&lt;p>Aprenderás a configurar switches en GNS3, tanto dispositivos genéricos como switches Cisco, utilizando el concepto de VLANs para segmentar la red y explorar las complejidades de la gestión de redes.&lt;/p>
-&lt;h2 id="preparación-escenario">Preparación escenario&lt;/h2>
-&lt;p>Lo primero que haré sera montar el escenario :&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.001.jpeg" alt="">&lt;/p>
-&lt;h3 id="configuración-de-red-de-los-clientes">Configuración de red de los clientes&lt;/h3>
-&lt;p>A continuación configurare las tarjetas de red de los clientes , aprovechando que la nube NAT incluye un servidor DHCP.&lt;/p>
-&lt;p>Para hacer esto escribimos en los VPCS el siguiente comando :&lt;/p></description></item><item><title>Instalación GNS3 y Wireshark en Debian</title><link>https://www.javiercd.es/posts/redes/instalacion_wireshark_gns3/instalacion-gns3-y-wireshark/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/instalacion_wireshark_gns3/instalacion-gns3-y-wireshark/</guid><description>&lt;blockquote>
-&lt;p>&lt;strong>⚠️ Advertencia:&lt;/strong> Este post fue desarrollado para Debian 11. Si tienes una versión más reciente, puedes revisar el post para Debian 12 que encontrarás en el apartado de redes de esta misma página. La única parte que no deberías seguir si cumples con esta condición es la instalación de GNS3. Todo el resto del contenido sigue siendo valido .&lt;/p>&lt;/blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GNS3 on Atlas</title><link>https://www.javiercd.es/tags/gns3/</link><description>Recent content in GNS3 on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sun, 08 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/tags/gns3/index.xml" rel="self" type="application/rss+xml"/><item><title>Instalación GNS3 en Debian 12</title><link>https://www.javiercd.es/posts/redes/instalar_gns3_debian12/instalar_gns3_debian12/</link><pubDate>Sun, 08 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/instalar_gns3_debian12/instalar_gns3_debian12/</guid><description>&lt;p&gt;En este artículo, te presento una actualización del proceso de instalación de GNS3 en Debian 12, basado en el post anterior para Debian 11. Si necesitas detalles más profundos sobre la instalación o la configuración de GNS3, te recomiendo revisar la versión anterior.&lt;/p&gt;
+&lt;h2 id="instalación-gns3"&gt;Instalación GNS3&lt;/h2&gt;
+&lt;p&gt;Actualizamos los repositorios e instalamos las actualizaciones disponibles del sistema.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@HPOMEN15:~$ sudo apt update -y &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt upgrade -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Instalamos las dependencias necesarias para GNS3, incluyendo Python, herramientas de virtualización (KVM,QEMU,libvirt), bibliotecas adicionales (PyQt5,dynamips) y otras utilidades.&lt;/p&gt;</description></item><item><title>Instalación de android en GNS3 con KVM</title><link>https://www.javiercd.es/posts/redes/android_gns3/android/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/android_gns3/android/</guid><description>&lt;p&gt;Para descargarnos la imagen de android puedes hacerlo desde esta pagina &amp;ndash;&amp;gt; &lt;a href="https://www.fosshub.com/Android-x86.html" target="_blank" rel="noopener"&gt;https://www.fosshub.com/Android-x86.html&lt;/a&gt; :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;wget https://www.fosshub.com/Android-x86.html?dwl&lt;span style="color:#f92672"&gt;=&lt;/span&gt;android-x86_64-9.0-r2.iso
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Crea una maquina en KVM como si fuese un Debian , yo le he dado 2GB de RAM y 2 cores :&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/redes/android_gns3/Pastedimage20240117194542.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;En nuestro caso podemos lanzar una instalación automática :&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/redes/android_gns3/Pastedimage20240117194647.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Cuando tengas la maquina instalada , apaga la maquina y vamos a importarla en gns3 . Para ello vamos a llevarnos el disco de KVM y vamos a importarlo en el directorio donde hayamos instalado las imágenes de GNS3 , luego haz propiedad del disco copiado a tu usuario .&lt;/p&gt;</description></item><item><title>Configuración de switches en GNS3</title><link>https://www.javiercd.es/posts/redes/switches_gns3/configuracion_de_switches_en_gns3/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/switches_gns3/configuracion_de_switches_en_gns3/</guid><description>&lt;p&gt;Aprenderás a configurar switches en GNS3, tanto dispositivos genéricos como switches Cisco, utilizando el concepto de VLANs para segmentar la red y explorar las complejidades de la gestión de redes.&lt;/p&gt;
+&lt;h2 id="preparación-escenario"&gt;Preparación escenario&lt;/h2&gt;
+&lt;p&gt;Lo primero que haré sera montar el escenario :&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.001.jpeg" alt=""&gt;&lt;/p&gt;
+&lt;h3 id="configuración-de-red-de-los-clientes"&gt;Configuración de red de los clientes&lt;/h3&gt;
+&lt;p&gt;A continuación configurare las tarjetas de red de los clientes , aprovechando que la nube NAT incluye un servidor DHCP.&lt;/p&gt;
+&lt;p&gt;Para hacer esto escribimos en los VPCS el siguiente comando :&lt;/p&gt;</description></item><item><title>Instalación GNS3 y Wireshark en Debian</title><link>https://www.javiercd.es/posts/redes/instalacion_wireshark_gns3/instalacion-gns3-y-wireshark/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/instalacion_wireshark_gns3/instalacion-gns3-y-wireshark/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;⚠️ Advertencia:&lt;/strong&gt; Este post fue desarrollado para Debian 11. Si tienes una versión más reciente, puedes revisar el post para Debian 12 que encontrarás en el apartado de redes de esta misma página. La única parte que no deberías seguir si cumples con esta condición es la instalación de GNS3. Todo el resto del contenido sigue siendo valido .&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;!-- ![2](/images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3.jpeg)
-![](/images/redes/instalacion_wireshark_gns3/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.003.jpeg) -->
-&lt;h2 id="1-introducción">1. &lt;strong>Introducción&lt;/strong>&lt;/h2>
-&lt;p>Wireshark es un analizador de protocolos utilizado para realizar análisis y solucionar problemas en redes de comunicaciones, para análisis de datos y protocolos, y como una herramienta didáctica.&lt;/p></description></item><item><title>Underworld</title><link>https://www.javiercd.es/posts/redes/underworld/underworld/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/underworld/underworld/</guid><description>&lt;h2 id="introducción">Introducción&lt;/h2>
-&lt;p>Vives en UNDERWORLD. En tu mundo, se presentan diferentes tipos de especies con un único fin, “cruzarse” entre sí. Estas criaturas son:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>VAMPIROS&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>LICÁNTROPOS: hombres lobo con la capacidad de regresar a su estado humano.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>HOMBRES LOBO: hombres lobo que tras su primera conversión a lobo, no pudieron regresar a su estado humano.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>HUMANOS: unos mierdecillas.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>TÚ: un guerrero informático con superpoderes como darse la vuelta a un juego que todavía no ha salido al mercado o poseer la facultad de volverse invisible cuando sale de fiesta y trata de cortejar a una fémina diciéndole frases del tipo: ¿quieres que te compile el kernel nena?&lt;/p></description></item></channel></rss>
+![](/images/redes/instalacion_wireshark_gns3/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.003.jpeg) --&gt;
+&lt;h2 id="1-introducción"&gt;1. &lt;strong&gt;Introducción&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Wireshark es un analizador de protocolos utilizado para realizar análisis y solucionar problemas en redes de comunicaciones, para análisis de datos y protocolos, y como una herramienta didáctica.&lt;/p&gt;</description></item><item><title>Underworld</title><link>https://www.javiercd.es/posts/redes/underworld/underworld/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/redes/underworld/underworld/</guid><description>&lt;h2 id="introducción"&gt;Introducción&lt;/h2&gt;
+&lt;p&gt;Vives en UNDERWORLD. En tu mundo, se presentan diferentes tipos de especies con un único fin, “cruzarse” entre sí. Estas criaturas son:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;VAMPIROS&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;LICÁNTROPOS: hombres lobo con la capacidad de regresar a su estado humano.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HOMBRES LOBO: hombres lobo que tras su primera conversión a lobo, no pudieron regresar a su estado humano.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HUMANOS: unos mierdecillas.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;TÚ: un guerrero informático con superpoderes como darse la vuelta a un juego que todavía no ha salido al mercado o poseer la facultad de volverse invisible cuando sale de fiesta y trata de cortejar a una fémina diciéndole frases del tipo: ¿quieres que te compile el kernel nena?&lt;/p&gt;</description></item></channel></rss>

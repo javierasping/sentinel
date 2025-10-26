@@ -1,62 +1,62 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CI / CD Jenkins on Atlas</title><link>https://www.javiercd.es/en/posts/ci_cd/</link><description>Recent content in CI / CD Jenkins on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/ci_cd/index.xml" rel="self" type="application/rss+xml"/><item><title>Practice CI/CD with Jenkins</title><link>https://www.javiercd.es/en/posts/ci_cd/practica_jenkins/practica_jenkins/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/ci_cd/practica_jenkins/practica_jenkins/</guid><description>&lt;p>The objective of this practice is the gradual development of a Pipeline that will perform tasks on the repository of an application.&lt;/p>
-&lt;p>The application we&amp;rsquo;re going to work with will be your fork of the Django Polls application. As we have seen, this application that implements the Django tutorial has a test module.&lt;/p>
-&lt;p>We will build the Pipeline in several phases:&lt;/p>
-&lt;h2 id="exercise-1-construction-of-a-docker-image">&lt;a href="https://fp.josedomingo.org/iaw/5_ic/practica.html#exercise-1-construccion-de-una-imagen-docker" target="_blank" rel="noopener">Exercise 1: Construction of a Docker image&lt;/a>&lt;/h2>
-&lt;p>We start from the pipeline that we have developed in the &lt;a href="https://fp.josedomingo.org/iaw/5_ic/taller3.html" target="_blank" rel="noopener">Workshop 3: Continuous integration of Django application (Test)&lt;/a>, where we have automated the application test.&lt;/p></description></item><item><title>Workshop 1: Markdown (test)</title><link>https://www.javiercd.es/en/posts/ci_cd/taller1_jenkins/taller1/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/ci_cd/taller1_jenkins/taller1/</guid><description>&lt;h2 id="workshop-1-ortho-rector-of-markdown-documents-test">Workshop 1: Ortho-rector of markdown documents (test)&lt;/h2>
-&lt;h3 id="what-do-you-have-to-deliver">&lt;a href="https://fp.josedomingo.org/iaw/5_ic/taller1.html#qu%C3%A9-tienes-que-entregar" target="_blank" rel="noopener">What do you have to deliver?&lt;/a>&lt;/h3>
-&lt;ol>
-&lt;li>The URL of your GitHub repository.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>https://github.com/javierasping/taller1_jenkins_ic-diccionario
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
-&lt;li>The content of your file &amp;lsquo;Jenkinfle&amp;rsquo;.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>pipeline &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> agent &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> docker &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> image &lt;span style="color:#e6db74">&amp;#39;debian&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> args &lt;span style="color:#e6db74">&amp;#39;-u root:root&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> stages &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> stage&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#39;Clone&amp;#39;&lt;/span>&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> steps &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> git branch:&lt;span style="color:#e6db74">&amp;#39;master&amp;#39;&lt;/span>, url:&lt;span style="color:#e6db74">&amp;#39;https://github.com/javierasping/taller1_jenkins_ic-diccionario.git&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> stage&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#39;Install&amp;#39;&lt;/span>&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> steps &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sh &lt;span style="color:#e6db74">&amp;#39;apt-get update &amp;amp;&amp;amp; apt-get install -y aspell-es &amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> stage&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#39;Test&amp;#39;&lt;/span>&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> steps &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sh &lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> export LC_ALL=C.UTF-8
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> OUTPUT=`cat doc/*.md | aspell list -d es -p ./.aspell.es.pws`
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> if [ -n &amp;#34;$OUTPUT&amp;#34; ]; then
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> echo $OUTPUT
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> exit 1
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> fi
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> &amp;#39;&amp;#39;&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> post &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> always &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mail to: &lt;span style="color:#e6db74">&amp;#39;javierasping@gmail.com&amp;#39;&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> subject: &lt;span style="color:#e6db74">&amp;#34;Status of pipeline: &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>currentBuild.fullDisplayName&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> body: &lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>env.BUILD_URL&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74"> has result &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>currentBuild.result&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>A screenshot where you see the pipeline trigger configuration.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="https://www.javiercd.es/ci_cd/taller1_jenkins/img/Pasted_image_20240229084423.png" alt="">&lt;/p></description></item><item><title>Workshop 2: Valid HTML5 Check and surge.sh Deployment (Test and Deploy)</title><link>https://www.javiercd.es/en/posts/ci_cd/taller2_jenkins/taller2/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/ci_cd/taller2_jenkins/taller2/</guid><description>&lt;p>In this exercise, we want to deploy an HTML5 page on the service &lt;em>surge.sh&lt;/em>. We also want to check if the HTML5 code is valid. These two operations—checking if the HTML5 is valid (test) and deploying to surge.sh (deploy)—will be automated using Jenkins (CI/CD).&lt;/p>
-&lt;p>Remember that the repository is &lt;a href="https://github.com/josedom24/ic-html5" target="_blank" rel="noopener">https://github.com/josedom24/ic-html5&lt;/a>.&lt;/p>
-&lt;p>As we saw in Example 2, to do the deployment, we need to save the token obtained from surge.sh. Let&amp;rsquo;s see how to work with credentials in Jenkins.&lt;/p></description></item><item><title>Workshop 3: Continuous Integration of Django Application (Test)</title><link>https://www.javiercd.es/en/posts/ci_cd/taller3_jenkins/taller3/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/ci_cd/taller3_jenkins/taller3/</guid><description>&lt;p>We will work with the application repository &lt;a href="https://github.com/josedom24/django_tutorial" target="_blank" rel="noopener">django_tutorial&lt;/a>. This application has a series of tests defined, which can be studied in the &lt;code>tests.py&lt;/code> file in the &lt;code>polls&lt;/code> directory.&lt;/p>
-&lt;p>Each test is defined by a function. In the file, you can read the comments to understand what each test is checking, or you can refer to the document &lt;a href="https://fp.josedomingo.org/iaw/5_ic/test_tutorial_django.html" target="_blank" rel="noopener">Tests in the Django tutorial application&lt;/a>.&lt;/p>
-&lt;p>To run the tests, execute:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>python3 manage.py test
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>At this moment, a temporary database is created where the defined tests are executed:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CI / CD Jenkins on Atlas</title><link>https://www.javiercd.es/en/posts/ci_cd/</link><description>Recent content in CI / CD Jenkins on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/ci_cd/index.xml" rel="self" type="application/rss+xml"/><item><title>Practice CI/CD with Jenkins</title><link>https://www.javiercd.es/en/posts/ci_cd/practica_jenkins/practica_jenkins/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/ci_cd/practica_jenkins/practica_jenkins/</guid><description>&lt;p&gt;The objective of this practice is the gradual development of a Pipeline that will perform tasks on the repository of an application.&lt;/p&gt;
+&lt;p&gt;The application we&amp;rsquo;re going to work with will be your fork of the Django Polls application. As we have seen, this application that implements the Django tutorial has a test module.&lt;/p&gt;
+&lt;p&gt;We will build the Pipeline in several phases:&lt;/p&gt;
+&lt;h2 id="exercise-1-construction-of-a-docker-image"&gt;&lt;a href="https://fp.josedomingo.org/iaw/5_ic/practica.html#exercise-1-construccion-de-una-imagen-docker" target="_blank" rel="noopener"&gt;Exercise 1: Construction of a Docker image&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We start from the pipeline that we have developed in the &lt;a href="https://fp.josedomingo.org/iaw/5_ic/taller3.html" target="_blank" rel="noopener"&gt;Workshop 3: Continuous integration of Django application (Test)&lt;/a&gt;, where we have automated the application test.&lt;/p&gt;</description></item><item><title>Workshop 1: Markdown (test)</title><link>https://www.javiercd.es/en/posts/ci_cd/taller1_jenkins/taller1/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/ci_cd/taller1_jenkins/taller1/</guid><description>&lt;h2 id="workshop-1-ortho-rector-of-markdown-documents-test"&gt;Workshop 1: Ortho-rector of markdown documents (test)&lt;/h2&gt;
+&lt;h3 id="what-do-you-have-to-deliver"&gt;&lt;a href="https://fp.josedomingo.org/iaw/5_ic/taller1.html#qu%C3%A9-tienes-que-entregar" target="_blank" rel="noopener"&gt;What do you have to deliver?&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;The URL of your GitHub repository.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;https://github.com/javierasping/taller1_jenkins_ic-diccionario
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;The content of your file &amp;lsquo;Jenkinfle&amp;rsquo;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pipeline &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; agent &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; docker &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; image &lt;span style="color:#e6db74"&gt;&amp;#39;debian&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; args &lt;span style="color:#e6db74"&gt;&amp;#39;-u root:root&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; stages &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; stage&lt;span style="color:#f92672"&gt;(&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#39;Clone&amp;#39;&lt;/span&gt;&lt;span style="color:#f92672"&gt;)&lt;/span&gt; &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; steps &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; git branch:&lt;span style="color:#e6db74"&gt;&amp;#39;master&amp;#39;&lt;/span&gt;, url:&lt;span style="color:#e6db74"&gt;&amp;#39;https://github.com/javierasping/taller1_jenkins_ic-diccionario.git&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; stage&lt;span style="color:#f92672"&gt;(&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#39;Install&amp;#39;&lt;/span&gt;&lt;span style="color:#f92672"&gt;)&lt;/span&gt; &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; steps &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; sh &lt;span style="color:#e6db74"&gt;&amp;#39;apt-get update &amp;amp;&amp;amp; apt-get install -y aspell-es &amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; stage&lt;span style="color:#f92672"&gt;(&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#39;Test&amp;#39;&lt;/span&gt;&lt;span style="color:#f92672"&gt;)&lt;/span&gt; &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; steps &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; sh &lt;span style="color:#e6db74"&gt;&amp;#39;&amp;#39;&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; export LC_ALL=C.UTF-8
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; OUTPUT=`cat doc/*.md | aspell list -d es -p ./.aspell.es.pws`
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; if [ -n &amp;#34;$OUTPUT&amp;#34; ]; then
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; echo $OUTPUT
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; exit 1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; fi
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; &amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; post &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; always &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; mail to: &lt;span style="color:#e6db74"&gt;&amp;#39;javierasping@gmail.com&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; subject: &lt;span style="color:#e6db74"&gt;&amp;#34;Status of pipeline: &lt;/span&gt;&lt;span style="color:#e6db74"&gt;${&lt;/span&gt;currentBuild.fullDisplayName&lt;span style="color:#e6db74"&gt;}&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; body: &lt;span style="color:#e6db74"&gt;&amp;#34;&lt;/span&gt;&lt;span style="color:#e6db74"&gt;${&lt;/span&gt;env.BUILD_URL&lt;span style="color:#e6db74"&gt;}&lt;/span&gt;&lt;span style="color:#e6db74"&gt; has result &lt;/span&gt;&lt;span style="color:#e6db74"&gt;${&lt;/span&gt;currentBuild.result&lt;span style="color:#e6db74"&gt;}&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;A screenshot where you see the pipeline trigger configuration.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/ci_cd/taller1_jenkins/img/Pasted_image_20240229084423.png" alt=""&gt;&lt;/p&gt;</description></item><item><title>Workshop 2: Valid HTML5 Check and surge.sh Deployment (Test and Deploy)</title><link>https://www.javiercd.es/en/posts/ci_cd/taller2_jenkins/taller2/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/ci_cd/taller2_jenkins/taller2/</guid><description>&lt;p&gt;In this exercise, we want to deploy an HTML5 page on the service &lt;em&gt;surge.sh&lt;/em&gt;. We also want to check if the HTML5 code is valid. These two operations checking if the HTML5 is valid (test) and deploying to surge.sh (deploy) will be automated using Jenkins (CI/CD).&lt;/p&gt;
+&lt;p&gt;Remember that the repository is &lt;a href="https://github.com/josedom24/ic-html5" target="_blank" rel="noopener"&gt;https://github.com/josedom24/ic-html5&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As we saw in Example 2, to do the deployment, we need to save the token obtained from surge.sh. Let&amp;rsquo;s see how to work with credentials in Jenkins.&lt;/p&gt;</description></item><item><title>Workshop 3: Continuous Integration of Django Application (Test)</title><link>https://www.javiercd.es/en/posts/ci_cd/taller3_jenkins/taller3/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/ci_cd/taller3_jenkins/taller3/</guid><description>&lt;p&gt;We will work with the application repository &lt;a href="https://github.com/josedom24/django_tutorial" target="_blank" rel="noopener"&gt;django_tutorial&lt;/a&gt;. This application has a series of tests defined, which can be studied in the &lt;code&gt;tests.py&lt;/code&gt; file in the &lt;code&gt;polls&lt;/code&gt; directory.&lt;/p&gt;
+&lt;p&gt;Each test is defined by a function. In the file, you can read the comments to understand what each test is checking, or you can refer to the document &lt;a href="https://fp.josedomingo.org/iaw/5_ic/test_tutorial_django.html" target="_blank" rel="noopener"&gt;Tests in the Django tutorial application&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To run the tests, execute:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;python3 manage.py test
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;At this moment, a temporary database is created where the defined tests are executed:&lt;/p&gt;</description></item></channel></rss>

@@ -1,61 +1,61 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Workshop 2 Multicontainer Scenarios in Docker on Atlas</title><link>https://www.javiercd.es/en/posts/docker/taller2/</link><description>Recent content in Workshop 2 Multicontainer Scenarios in Docker on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/docker/taller2/index.xml" rel="self" type="application/rss+xml"/><item><title>Workshop 2: Multicontainer Scenarios in Docker</title><link>https://www.javiercd.es/en/posts/docker/taller2/taller2_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/docker/taller2/taller2_docker/</guid><description>&lt;h2 id="workshop-2-multicontainer-scenarios-in-docker">Workshop 2: Multicontainer Scenarios in Docker&lt;/h2>
-&lt;h3 id="nextcloud-deployment">Nextcloud deployment&lt;/h3>
-&lt;p>We will deploy the nextcloud application with a database (you can choose mariadb or PostgreSQL) using the docker-compose application. You can take as model the file &amp;lsquo;docker-compose.yml&amp;rsquo; that we have studied to display WordPress.&lt;/p>
-&lt;ol>
-&lt;li>Install docker- compose on your computer.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
-&lt;li>Within a directory creates a &amp;lsquo;docker-composer.yml&amp;rsquo; file for the deployment of nextcloud with a database. Remember the environment variables and the persistence of information.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller2$ cat docker-compose.yaml
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>version: &lt;span style="color:#e6db74">&amp;#39;2&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>volumes:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nextcloud:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> db:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>services:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> db:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> image: mariadb:10.6
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> restart: always
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> command: --transaction-isolation&lt;span style="color:#f92672">=&lt;/span>READ-COMMITTED --log-bin&lt;span style="color:#f92672">=&lt;/span>binlog --binlog-format&lt;span style="color:#f92672">=&lt;/span>ROW
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volumes:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - db:/var/lib/mysql
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> environment:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_ROOT_PASSWORD&lt;span style="color:#f92672">=&lt;/span>root
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_PASSWORD&lt;span style="color:#f92672">=&lt;/span>javiercruces
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_DATABASE&lt;span style="color:#f92672">=&lt;/span>nextcloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_USER&lt;span style="color:#f92672">=&lt;/span>nextcloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> app:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> image: nextcloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> restart: always
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ports:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - 8081:80
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> links:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - db
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> volumes:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - nextcloud:/var/www/html
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> environment:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_PASSWORD&lt;span style="color:#f92672">=&lt;/span>javiercruces
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_DATABASE&lt;span style="color:#f92672">=&lt;/span>nextcloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_USER&lt;span style="color:#f92672">=&lt;/span>nextcloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - MYSQL_HOST&lt;span style="color:#f92672">=&lt;/span>db
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>Raise the stage with &amp;lsquo;docker-compose&amp;rsquo;.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller2$ docker compose up -d
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>+&lt;span style="color:#f92672">]&lt;/span> Running 2/2
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ✔ Container taller2-db-1 Started 0.0s
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ✔ Container taller2-app-1 Started 0.0s
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
-&lt;li>Show the containers with &amp;lsquo;docker-compose&amp;rsquo;.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>javiercruces@docker:~/taller2$ docker compose ps
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME IMAGE COMMAND SERVICE CREATED STATUS PORTS
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>taller2-app-1 nextcloud &lt;span style="color:#e6db74">&amp;#34;/entrypoint.sh apache2-foreground&amp;#34;&lt;/span> app &lt;span style="color:#ae81ff">7&lt;/span> minutes ago Up &lt;span style="color:#ae81ff">5&lt;/span> minutes 0.0.0.0:8081-&amp;gt;80/tcp, :::8081-&amp;gt;80/tcp
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>taller2-db-1 mariadb:10.6 &lt;span style="color:#e6db74">&amp;#34;docker-entrypoint.sh --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW&amp;#34;&lt;/span> db &lt;span style="color:#ae81ff">7&lt;/span> minutes ago Up &lt;span style="color:#ae81ff">5&lt;/span> minutes 3306/tcp
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
-&lt;li>Access the application and check that it works.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="https://www.javiercd.es/docker/taller2/img/Pasted_image_20240202091554.png" alt="">&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Workshop 2 Multicontainer Scenarios in Docker on Atlas</title><link>https://www.javiercd.es/en/posts/docker/taller2/</link><description>Recent content in Workshop 2 Multicontainer Scenarios in Docker on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/docker/taller2/index.xml" rel="self" type="application/rss+xml"/><item><title>Workshop 2: Multicontainer Scenarios in Docker</title><link>https://www.javiercd.es/en/posts/docker/taller2/taller2_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/docker/taller2/taller2_docker/</guid><description>&lt;h2 id="workshop-2-multicontainer-scenarios-in-docker"&gt;Workshop 2: Multicontainer Scenarios in Docker&lt;/h2&gt;
+&lt;h3 id="nextcloud-deployment"&gt;Nextcloud deployment&lt;/h3&gt;
+&lt;p&gt;We will deploy the nextcloud application with a database (you can choose mariadb or PostgreSQL) using the docker-compose application. You can take as model the file &amp;lsquo;docker-compose.yml&amp;rsquo; that we have studied to display WordPress.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install docker- compose on your computer.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;Within a directory creates a &amp;lsquo;docker-composer.yml&amp;rsquo; file for the deployment of nextcloud with a database. Remember the environment variables and the persistence of information.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ cat docker-compose.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;version: &lt;span style="color:#e6db74"&gt;&amp;#39;2&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; nextcloud:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; db:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;services:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; db:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; image: mariadb:10.6
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; restart: always
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; command: --transaction-isolation&lt;span style="color:#f92672"&gt;=&lt;/span&gt;READ-COMMITTED --log-bin&lt;span style="color:#f92672"&gt;=&lt;/span&gt;binlog --binlog-format&lt;span style="color:#f92672"&gt;=&lt;/span&gt;ROW
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - db:/var/lib/mysql
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; environment:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_ROOT_PASSWORD&lt;span style="color:#f92672"&gt;=&lt;/span&gt;root
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_PASSWORD&lt;span style="color:#f92672"&gt;=&lt;/span&gt;javiercruces
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_DATABASE&lt;span style="color:#f92672"&gt;=&lt;/span&gt;nextcloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_USER&lt;span style="color:#f92672"&gt;=&lt;/span&gt;nextcloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; app:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; image: nextcloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; restart: always
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ports:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - 8081:80
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; links:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - db
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - nextcloud:/var/www/html
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; environment:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_PASSWORD&lt;span style="color:#f92672"&gt;=&lt;/span&gt;javiercruces
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_DATABASE&lt;span style="color:#f92672"&gt;=&lt;/span&gt;nextcloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_USER&lt;span style="color:#f92672"&gt;=&lt;/span&gt;nextcloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_HOST&lt;span style="color:#f92672"&gt;=&lt;/span&gt;db
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;Raise the stage with &amp;lsquo;docker-compose&amp;rsquo;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ docker compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;[&lt;/span&gt;+&lt;span style="color:#f92672"&gt;]&lt;/span&gt; Running 2/2
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ✔ Container taller2-db-1 Started 0.0s
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ✔ Container taller2-app-1 Started 0.0s
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="4"&gt;
+&lt;li&gt;Show the containers with &amp;lsquo;docker-compose&amp;rsquo;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ docker compose ps
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;NAME IMAGE COMMAND SERVICE CREATED STATUS PORTS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;taller2-app-1 nextcloud &lt;span style="color:#e6db74"&gt;&amp;#34;/entrypoint.sh apache2-foreground&amp;#34;&lt;/span&gt; app &lt;span style="color:#ae81ff"&gt;7&lt;/span&gt; minutes ago Up &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; minutes 0.0.0.0:8081-&amp;gt;80/tcp, :::8081-&amp;gt;80/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;taller2-db-1 mariadb:10.6 &lt;span style="color:#e6db74"&gt;&amp;#34;docker-entrypoint.sh --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW&amp;#34;&lt;/span&gt; db &lt;span style="color:#ae81ff"&gt;7&lt;/span&gt; minutes ago Up &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; minutes 3306/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="5"&gt;
+&lt;li&gt;Access the application and check that it works.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src="https://www.javiercd.es/docker/taller2/img/Pasted_image_20240202091554.png" alt=""&gt;&lt;/p&gt;</description></item></channel></rss>

@@ -1,56 +1,56 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Database on Atlas</title><link>https://www.javiercd.es/en/posts/base_de_datos/</link><description>Recent content in Database on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 01 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/base_de_datos/index.xml" rel="self" type="application/rss+xml"/><item><title>Installation and Configuration of MariaDB in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</guid><description>&lt;h2 id="mariadb-installation-and-configuration-in-debian-12">MariaDB installation and configuration in Debian 12&lt;/h2>
-&lt;p>To install MariaDB in Debian 12, follow these steps:&lt;/p>
-&lt;p>1.&lt;strong>Update the repositories and install the MariaDB package&lt;/strong>:&lt;/p>
-&lt;p>First, update your system repositories and install MariaDB:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span> javiercruces@jcruces:~$ sudo apt update
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> javiercruces@jcruces:~$ sudo apt install mariadb-server
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>2.&lt;strong>Enable and start the MariaDB service&lt;/strong>:&lt;/p>
-&lt;p>Once installed, set MariaDB to automatically start the start and then start the service:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span> javiercruces@jcruces:~$ sudo systemctl start mariadb
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> javiercruces@jcruces:~$ sudo systemctl enable mariadb
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>3.&lt;strong>Configure MariaDB&lt;/strong>:&lt;/p></description></item><item><title>Interconnection of database servers</title><link>https://www.javiercd.es/en/posts/base_de_datos/interconexion_de_servidores/interconexion_servidores/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/interconexion_de_servidores/interconexion_servidores/</guid><description>&lt;p>This post addresses how to configure and manage connections between different databases, both homogeneous and heterogeneous, to facilitate interoperability between various database systems. Throughout the article, different connection scenarios are explored, starting with configurations between databases of the same type, such as Oracle to Oracle or PostgreSQL to PostgreSQL, and then moving towards heterogeneous connections between different technologies, such as Oracle to MySQL, PostgreSQL to Oracle, and vice versa. It also covers the steps needed to configure links, create users, and modify key configuration files, allowing remote consultations.&lt;/p></description></item><item><title>Oracle installation 19c under Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalacion_oracle_19c_debian12/instalacion_oracle/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalacion_oracle_19c_debian12/instalacion_oracle/</guid><description>&lt;p>Installing Oracle 19c on Debian 12 may seem complicated, but don&amp;rsquo;t worry, I&amp;rsquo;m here to guide you in every step. In this post, I will explain to you in a simple way how to prepare your system and make the installation of Oracle 19c in Debian 12.&lt;/p>
-&lt;h3 id="update-the-repositories">Update the repositories&lt;/h3>
-&lt;p>The first thing is to update the repositories of our virtual machine and in case we don&amp;rsquo;t have any packages we update it:&lt;/p></description></item><item><title>PostgreSQL installation in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</guid><description>&lt;p>In this post, I will guide you through the process of installing PostgreSQL in Debian 12, creating a user with basic permissions, and how to create and consult a database.&lt;/p>
-&lt;p>#1. PostgreSQL installation&lt;/p>
-&lt;p>To install PostgreSQL in Debian 12, follow these steps:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;ul>
-&lt;li>
-&lt;ul>
-&lt;li>Update the repositories and install PostgreSQL * *:&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ol>
-&lt;p>First, make sure your system is updated and install PostgreSQL:&lt;/p>
-&lt;pre>&lt;code>```bash
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Database on Atlas</title><link>https://www.javiercd.es/en/posts/base_de_datos/</link><description>Recent content in Database on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 01 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/base_de_datos/index.xml" rel="self" type="application/rss+xml"/><item><title>Installation and Configuration of MariaDB in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</guid><description>&lt;h2 id="mariadb-installation-and-configuration-in-debian-12"&gt;MariaDB installation and configuration in Debian 12&lt;/h2&gt;
+&lt;p&gt;To install MariaDB in Debian 12, follow these steps:&lt;/p&gt;
+&lt;p&gt;1.&lt;strong&gt;Update the repositories and install the MariaDB package&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;First, update your system repositories and install MariaDB:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo apt install mariadb-server
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;2.&lt;strong&gt;Enable and start the MariaDB service&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Once installed, set MariaDB to automatically start the start and then start the service:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo systemctl start mariadb
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo systemctl enable mariadb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;3.&lt;strong&gt;Configure MariaDB&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Interconnection of database servers</title><link>https://www.javiercd.es/en/posts/base_de_datos/interconexion_de_servidores/interconexion_servidores/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/interconexion_de_servidores/interconexion_servidores/</guid><description>&lt;p&gt;This post addresses how to configure and manage connections between different databases, both homogeneous and heterogeneous, to facilitate interoperability between various database systems. Throughout the article, different connection scenarios are explored, starting with configurations between databases of the same type, such as Oracle to Oracle or PostgreSQL to PostgreSQL, and then moving towards heterogeneous connections between different technologies, such as Oracle to MySQL, PostgreSQL to Oracle, and vice versa. It also covers the steps needed to configure links, create users, and modify key configuration files, allowing remote consultations.&lt;/p&gt;</description></item><item><title>Oracle installation 19c under Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalacion_oracle_19c_debian12/instalacion_oracle/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalacion_oracle_19c_debian12/instalacion_oracle/</guid><description>&lt;p&gt;Installing Oracle 19c on Debian 12 may seem complicated, but don&amp;rsquo;t worry, I&amp;rsquo;m here to guide you in every step. In this post, I will explain to you in a simple way how to prepare your system and make the installation of Oracle 19c in Debian 12.&lt;/p&gt;
+&lt;h3 id="update-the-repositories"&gt;Update the repositories&lt;/h3&gt;
+&lt;p&gt;The first thing is to update the repositories of our virtual machine and in case we don&amp;rsquo;t have any packages we update it:&lt;/p&gt;</description></item><item><title>PostgreSQL installation in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</guid><description>&lt;p&gt;In this post, I will guide you through the process of installing PostgreSQL in Debian 12, creating a user with basic permissions, and how to create and consult a database.&lt;/p&gt;
+&lt;p&gt;#1. PostgreSQL installation&lt;/p&gt;
+&lt;p&gt;To install PostgreSQL in Debian 12, follow these steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;Update the repositories and install PostgreSQL * *:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;First, make sure your system is updated and install PostgreSQL:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```bash
 sudo apt update
 sudo apt install postgresql
 ```
-&lt;/code>&lt;/pre>
-&lt;ol start="2">
-&lt;li>
-&lt;ul>
-&lt;li>
-&lt;ul>
-&lt;li>Verifies that the service is in operation * *:&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ol>
-&lt;p>After installation, make sure that the PostgreSQL service is in operation:&lt;/p></description></item><item><title>Remote access configuration in MariaDB</title><link>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</guid><description>&lt;p>To allow remote access to your MariaDB server, follow these steps:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>&lt;strong>Configure the MariaDB configuration file&lt;/strong>
-First, edit the MariaDB configuration file to allow connections from specific IP addresses. Open the file &lt;code>/etc/mysql/mariadb.conf.d/50-server.cnf&lt;/code> with a text editor, for example, &lt;code>nano&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol>
-&lt;p>Find the line that starts with &lt;code>bind-address&lt;/code> and change it to accept connections from any IP address. You can have him accept connections from all the PIs with:&lt;/p></description></item><item><title>Remote Access Configuration in Oracle</title><link>https://www.javiercd.es/en/posts/base_de_datos/oracle_acceso_remoto/oracle_acceso_remoto/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/oracle_acceso_remoto/oracle_acceso_remoto/</guid><description>&lt;p>To configure remote access in Oracle, it is essential to correctly adjust the network files located in &lt;code>$ORACLE_HOME/network/admin&lt;/code>. These files, such as &lt;code>listener.ora&lt;/code> and &lt;code>tnsnames.ora&lt;/code>, allow us to define how clients will connect to the database and which equipment will have access.&lt;/p>
-&lt;hr>
-&lt;h3 id="remote-access-configuration">Remote Access Configuration&lt;/h3>
-&lt;p>The Oracle configuration with respect to the network is saved in the directory that we have defined as the Oracle home: &lt;code>$ORACLE_HOME/network/admin&lt;/code>.&lt;/p>
-&lt;p>&lt;img src="https://www.javiercd.es/base_de_datos/oracle_acceso_remoto/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.029.png" alt="Oracle network directory">&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;Verifies that the service is in operation * *:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;After installation, make sure that the PostgreSQL service is in operation:&lt;/p&gt;</description></item><item><title>Remote access configuration in MariaDB</title><link>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</guid><description>&lt;p&gt;To allow remote access to your MariaDB server, follow these steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Configure the MariaDB configuration file&lt;/strong&gt;
+First, edit the MariaDB configuration file to allow connections from specific IP addresses. Open the file &lt;code&gt;/etc/mysql/mariadb.conf.d/50-server.cnf&lt;/code&gt; with a text editor, for example, &lt;code&gt;nano&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Find the line that starts with &lt;code&gt;bind-address&lt;/code&gt; and change it to accept connections from any IP address. You can have him accept connections from all the PIs with:&lt;/p&gt;</description></item><item><title>Remote Access Configuration in Oracle</title><link>https://www.javiercd.es/en/posts/base_de_datos/oracle_acceso_remoto/oracle_acceso_remoto/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/oracle_acceso_remoto/oracle_acceso_remoto/</guid><description>&lt;p&gt;To configure remote access in Oracle, it is essential to correctly adjust the network files located in &lt;code&gt;$ORACLE_HOME/network/admin&lt;/code&gt;. These files, such as &lt;code&gt;listener.ora&lt;/code&gt; and &lt;code&gt;tnsnames.ora&lt;/code&gt;, allow us to define how clients will connect to the database and which equipment will have access.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="remote-access-configuration"&gt;Remote Access Configuration&lt;/h3&gt;
+&lt;p&gt;The Oracle configuration with respect to the network is saved in the directory that we have defined as the Oracle home: &lt;code&gt;$ORACLE_HOME/network/admin&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/base_de_datos/oracle_acceso_remoto/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.029.png" alt="Oracle network directory"&gt;&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Redes en KVM on Atlas</title><link>https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/</link><description>Recent content in Redes en KVM on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sat, 18 Oct 2025 09:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/index.xml" rel="self" type="application/rss+xml"/><item><title>Tipos de redes en KVM (NAT, aisladas y puenteadas)</title><link>https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/tipos-redes-kvm/tipos-redes-kvm/</link><pubDate>Sat, 18 Oct 2025 09:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/tipos-redes-kvm/tipos-redes-kvm/</guid><description>&lt;p&gt;En KVM, la virtualización de redes se gestiona principalmente mediante &lt;strong&gt;libvirt&lt;/strong&gt;, que nos permite crear y administrar diferentes tipos de redes virtuales a las que se conectan nuestras máquinas virtuales. Entender los tipos de redes disponibles es clave para configurar adecuadamente la conectividad de los invitados y la interacción con el host.&lt;/p&gt;
+&lt;p&gt;Existen dos grandes categorías de redes en KVM:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Redes Virtuales Privadas&lt;/strong&gt;: Redes internas aisladas del exterior, gestionadas mediante bridges virtuales creados por libvirt.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redes Puente (Bridged)&lt;/strong&gt;: Redes que conectan directamente las máquinas virtuales a la red física del host.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="redes-virtuales-privadas"&gt;Redes Virtuales Privadas&lt;/h2&gt;
+&lt;p&gt;Estas redes se crean dentro del host y ofrecen un entorno controlado para las máquinas virtuales. Se clasifican en tres tipos principales:&lt;/p&gt;</description></item><item><title>Cómo crear y configurar redes virtuales privadas</title><link>https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/crear-redes-virtuales-privadas-kvm/</link><pubDate>Sat, 18 Oct 2025 09:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/crear-redes-virtuales-privadas-kvm/crear-redes-virtuales-privadas-kvm/</guid><description>&lt;p&gt;En esta guía crearemos tres tipos de redes virtuales gestionadas por libvirt:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;NAT (Network Address Translation)&lt;/li&gt;
+&lt;li&gt;Aislada (Isolated)&lt;/li&gt;
+&lt;li&gt;Muy aislada (Very isolated)
+weight: 2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="requisitos-y-notas-previas"&gt;Requisitos y notas previas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Paquetes: &lt;code&gt;libvirt-daemon&lt;/code&gt; y &lt;code&gt;libvirt-daemon-system&lt;/code&gt; (o equivalentes en tu distro). Opcional: &lt;code&gt;virt-manager&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Ejecuta los comandos como root o con &lt;code&gt;sudo&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Servicio: &lt;code&gt;systemctl status libvirtd&lt;/code&gt; debe estar activo.&lt;/li&gt;
+&lt;li&gt;Listar redes actuales: &lt;code&gt;virsh net-list --all&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Rutas de configuración (persistentes): &lt;code&gt;/etc/libvirt/qemu/networks/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cuidado con conflictos de subred: usa rangos que no choquen con tu red física ni con otras redes libvirt.&lt;/p&gt;</description></item><item><title>Cómo crear una interfaz puente (bridge) en el host KVM</title><link>https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/crear-interfaz-puente/crear-interfaz-puente/</link><pubDate>Sat, 18 Oct 2025 09:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/virtualizacion-kvm-linux/redes-kvm/crear-interfaz-puente/crear-interfaz-puente/</guid><description>&lt;p&gt;Un bridge (puente) en el host permite que tus máquinas virtuales se conecten directamente a la red física, como si fueran otro equipo más de la LAN. Es la base de las “redes puente” que vimos en los tipos de redes.&lt;/p&gt;
+&lt;p&gt;Importante: si haces esto por SSH remoto, podrías quedarte sin conexión al aplicar los cambios. Siempre que puedas, hazlo con acceso local/console o ten un plan de recuperación (KVM/IPMI, segunda interfaz, ventana de mantenimiento, etc.).&lt;/p&gt;</description></item></channel></rss>

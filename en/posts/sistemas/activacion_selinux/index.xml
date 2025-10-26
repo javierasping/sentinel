@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SELinux activation configuration on Atlas</title><link>https://www.javiercd.es/en/posts/sistemas/activacion_selinux/</link><description>Recent content in SELinux activation configuration on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 20 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/sistemas/activacion_selinux/index.xml" rel="self" type="application/rss+xml"/><item><title>SELinux activation configuration</title><link>https://www.javiercd.es/en/posts/sistemas/activacion_selinux/activacion_selinux/</link><pubDate>Wed, 20 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/sistemas/activacion_selinux/activacion_selinux/</guid><description>&lt;p>Enable SELinux on a Rocky-based server and make sure that the samba and nfs services work properly with a strict and secure SELinux configuration. Conducts the corresponding access tests.&lt;/p>
-&lt;p>The stage consists of two machines, our server is based on Rocky 9 and our client is a Debian 12.&lt;/p>
-&lt;p>On our server we will have SELinux enabled in enforcing mode.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>rocky@rocky-javiercruces ~&lt;span style="color:#f92672">]&lt;/span>$ sestatus
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SELinux status: enabled
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SELinuxfs mount: /sys/fs/selinux
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SELinux root directory: /etc/selinux
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Loaded policy name: targeted
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Current mode: enforcing
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Mode from config file: enforcing
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Policy MLS status: enabled
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Policy deny_unknown status: allowed
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Memory protection checking: actual &lt;span style="color:#f92672">(&lt;/span>secure&lt;span style="color:#f92672">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Max kernel policy version: &lt;span style="color:#ae81ff">33&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We will start by updating the packages needed to configure samba and nfs:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SELinux activation configuration on Atlas</title><link>https://www.javiercd.es/en/posts/sistemas/activacion_selinux/</link><description>Recent content in SELinux activation configuration on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 20 Sep 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/sistemas/activacion_selinux/index.xml" rel="self" type="application/rss+xml"/><item><title>SELinux activation configuration</title><link>https://www.javiercd.es/en/posts/sistemas/activacion_selinux/activacion_selinux/</link><pubDate>Wed, 20 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/sistemas/activacion_selinux/activacion_selinux/</guid><description>&lt;p&gt;Enable SELinux on a Rocky-based server and make sure that the samba and nfs services work properly with a strict and secure SELinux configuration. Conducts the corresponding access tests.&lt;/p&gt;
+&lt;p&gt;The stage consists of two machines, our server is based on Rocky 9 and our client is a Debian 12.&lt;/p&gt;
+&lt;p&gt;On our server we will have SELinux enabled in enforcing mode.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;[&lt;/span&gt;rocky@rocky-javiercruces ~&lt;span style="color:#f92672"&gt;]&lt;/span&gt;$ sestatus
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;SELinux status: enabled
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;SELinuxfs mount: /sys/fs/selinux
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;SELinux root directory: /etc/selinux
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Loaded policy name: targeted
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Current mode: enforcing
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Mode from config file: enforcing
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Policy MLS status: enabled
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Policy deny_unknown status: allowed
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Memory protection checking: actual &lt;span style="color:#f92672"&gt;(&lt;/span&gt;secure&lt;span style="color:#f92672"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Max kernel policy version: &lt;span style="color:#ae81ff"&gt;33&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We will start by updating the packages needed to configure samba and nfs:&lt;/p&gt;</description></item></channel></rss>
