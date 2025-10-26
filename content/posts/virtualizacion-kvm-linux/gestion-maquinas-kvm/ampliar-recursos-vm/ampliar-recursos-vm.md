@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/gestion-vm/ampliar-recursos.png
 weight: 5
 ---
 
-# Ampliar recursos de una máquina virtual en KVM
-
 En este artículo veremos tres casos prácticos para ampliar recursos en una VM gestionada con libvirt/KVM:
 
 - Subir número de vCPU (núcleos)

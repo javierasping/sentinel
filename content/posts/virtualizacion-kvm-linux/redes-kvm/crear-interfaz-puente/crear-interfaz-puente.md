@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/redes/redes-puente.png
 weight: 3
 ---
 
-# Crear una interfaz puente (bridge) en el host para KVM/libvirt
-
 Un bridge (puente) en el host permite que tus máquinas virtuales se conecten directamente a la red física, como si fueran otro equipo más de la LAN. Es la base de las “redes puente” que vimos en los tipos de redes.
 
 Importante: si haces esto por SSH remoto, podrías quedarte sin conexión al aplicar los cambios. Siempre que puedas, hazlo con acceso local/console o ten un plan de recuperación (KVM/IPMI, segunda interfaz, ventana de mantenimiento, etc.).

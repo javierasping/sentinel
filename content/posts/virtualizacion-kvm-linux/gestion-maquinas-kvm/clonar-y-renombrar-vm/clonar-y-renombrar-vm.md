@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/gestion-vm/hacer-clones.png
 weight: 4
 ---
 
-# Clonar y renombrar máquinas virtuales en KVM
-
 Una de las ventajas de la virtualización es la capacidad de clonar máquinas virtuales para crear entornos homogéneos rápidamente. Sin embargo, cuando clonamos una VM que contiene un sistema operativo, el clon hereda identificadores únicos como el **machine ID**, direcciones **MAC**, claves **SSH** de host, etc., que deberían ser únicos para cada máquina.
 
 En esta guía veremos cómo:

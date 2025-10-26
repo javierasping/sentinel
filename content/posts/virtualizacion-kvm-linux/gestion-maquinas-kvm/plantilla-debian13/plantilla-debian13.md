@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/gestion-vm/plantillas.png
 weight: 7
 ---
 
-# Plantillas de máquinas virtuales
-
 Una plantilla de máquina virtual (template) es una imagen preconfigurada del sistema operativo que usamos para desplegar rápidamente nuevas VMs, evitando repeticiones y errores. Aquí veremos cómo crear una plantilla maestra de Debian 13 lista para clonar.
 
 ---

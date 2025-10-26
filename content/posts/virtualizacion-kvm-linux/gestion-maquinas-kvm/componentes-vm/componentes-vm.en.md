@@ -4,9 +4,8 @@ date: 2025-10-13T10:00:00+00:00
 description: Learn about the fundamental components of a virtual machine in KVM and how to retrieve detailed information from the hypervisor using virsh.
 tags: [Virtualization,Linux,KVM,VM,Hypervisor,Ubuntu,Debian]
 hero: images/virtualizacion-kvm-linux/gestion-vm/componentes-vm.png
+weight: 2
 ---
-
-# Components of a virtual machine in KVM
 
 In **KVM (Kernel-based Virtual Machine)**, a virtual machine is composed of several elements that interact to emulate a complete hardware environment. Understanding each component helps you manage, troubleshoot, and optimize your VMs more efficiently.
 

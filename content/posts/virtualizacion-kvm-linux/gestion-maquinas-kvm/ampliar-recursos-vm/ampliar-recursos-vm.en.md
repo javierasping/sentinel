@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/gestion-vm/ampliar-recursos.png
 weight: 5
 ---
 
-# Expand virtual machine resources in KVM
-
 In this article we'll cover three practical cases for expanding resources in a VM managed with libvirt/KVM:
 
 - Increase the number of vCPUs (cores)

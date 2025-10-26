@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/gestion-vm/snapshots.png
 weight: 6
 ---
 
-# Snapshots en KVM/libvirt: cómo crearlos y gestionarlos
-
 Los snapshots (instantáneas) permiten capturar el estado de una máquina virtual en un momento concreto para poder volver atrás si algo sale mal (actualizaciones, cambios arriesgados, pruebas). En KVM con libvirt tenemos dos familias principales:
 
 - Snapshots internos: el contenido del snapshot se almacena dentro del propio fichero qcow2. Suelen requerir la VM apagada y sólo funcionan con almacenamiento qcow2 (no raw, LVM, etc.).

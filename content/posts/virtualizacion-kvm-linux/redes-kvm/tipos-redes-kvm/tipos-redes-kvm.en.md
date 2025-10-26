@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/redes/tipos-de-redes.png
 weight: 1
 ---
 
-# Network types in KVM
-
 In KVM, network virtualization is mainly managed through **libvirt**, which lets us create and administer various kinds of virtual networks to which our virtual machines connect. Understanding the available network types is key to properly configuring guest connectivity and the host interaction.
 
 There are two broad categories of networks in KVM:

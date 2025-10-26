@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/gestion-vm/gestion-virsh.png
 weight: 3
 ---
 
-# Virtual Machine Administration with virsh
-
 `virsh` is a powerful command-line tool included in **libvirt** that allows you to manage virtual machines and associated resources in **KVM**.  
 Through `virsh`, you can create, start, stop, modify, and monitor domains (virtual machines), as well as manage networks, volumes, and storage pools.
 

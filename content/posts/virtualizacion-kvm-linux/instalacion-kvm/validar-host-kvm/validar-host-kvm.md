@@ -6,9 +6,7 @@ description: Aprende a validar que tu host Ubuntu/Debian cumple con los requisit
 tags: [Virtualizacion,Linux,KVM,VM,Hypervisor,Ubuntu,Debian]
 hero: images/virtualizacion-kvm-linux/instalacion/validacion.png
 weight: 2
---------------------------------------------------------------------------
-
-# Validación del host para KVM en Ubuntu/Debian
+---
 
 Antes de crear y ejecutar máquinas virtuales con **KVM**, es fundamental validar que el host cumpla con los **requisitos de hardware y software** necesarios para garantizar un rendimiento óptimo. Esta guía describe cómo verificar las capacidades del sistema utilizando herramientas como `virt-host-validate` y `virsh`.
 

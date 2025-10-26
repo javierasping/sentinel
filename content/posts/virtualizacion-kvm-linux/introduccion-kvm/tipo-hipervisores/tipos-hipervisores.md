@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/introduccion/tipos-hipervisores.png
 weight: 2
 ---
 
-# Tipos de hipervisores
-
 ## ¿Qué es un hipervisor?
 
 Un **hipervisor**, también conocido como **monitor de máquinas virtuales** (VMM, del inglés Virtual Machine Monitor), es una capa de virtualización de software que permite crear y ejecutar múltiples máquinas virtuales (VM) dentro de un único servidor, así como ejecutar diferentes sistemas operativos de forma aislada.  

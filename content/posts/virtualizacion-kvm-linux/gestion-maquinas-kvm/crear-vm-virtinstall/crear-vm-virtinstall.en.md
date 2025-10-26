@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/gestion-vm/instalacion-virsh.png
 weight: 1
 ---
 
-# Create a Virtual Machine with virt-install in KVM
-
 After installing **KVM** on your Ubuntu or Debian system, the next step is to create a virtual machine using the **virt-install** command-line tool.
 
 ## Check existing virtual machines

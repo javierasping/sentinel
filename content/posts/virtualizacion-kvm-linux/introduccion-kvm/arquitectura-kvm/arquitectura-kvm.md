@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/introduccion/arquitectura-kvm.png
 weight: 3
 ---
 
-# Arquitectura y funcionamiento de KVM
-
 ## ¿Qué es KVM?
 
 KVM, o **Kernel-based Virtual Machine**, es una característica de software que se puede instalar en sistemas Linux para crear máquinas virtuales (VMs). Una máquina virtual actúa como un equipo independiente dentro de otra máquina física, compartiendo recursos como CPU, memoria y ancho de banda de red con el sistema host.  

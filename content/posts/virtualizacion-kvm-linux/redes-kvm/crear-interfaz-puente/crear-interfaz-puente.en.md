@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/redes/redes-puente.png
 weight: 3
 ---
 
-# Create a bridge network interface on the host for KVM/libvirt
-
 A bridge on the host allows your virtual machines to connect directly to the physical network as if they were another machine on the LAN. It's the basis for "bridged networks" covered in the network types section.
 
 Important: if you perform these changes over remote SSH you may lose connectivity. Whenever possible use local/console access or have a recovery plan (KVM/IPMI, a second interface, maintenance window, etc.).

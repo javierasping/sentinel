@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/introduccion/conceptos-basicos.png
 weight: 1
 ---
 
-# Basic Virtualization Concepts in Linux
-
 If you have ever wondered how multiple "machines" can run inside a single physical machine, the answer is **virtualization**. Let's explain it in a simple way.
 
 ## What is virtualization?

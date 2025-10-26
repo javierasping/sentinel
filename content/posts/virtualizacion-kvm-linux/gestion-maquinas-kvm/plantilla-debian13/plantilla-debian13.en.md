@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/gestion-vm/plantillas.png
 weight: 7
 ---
 
-# Virtual machine templates
-
 A virtual machine template is a preconfigured OS image that we use to quickly deploy new VMs, avoiding repetitions and errors. Here we'll see how to create a Debian 13 master template ready for cloning.
 
 ---

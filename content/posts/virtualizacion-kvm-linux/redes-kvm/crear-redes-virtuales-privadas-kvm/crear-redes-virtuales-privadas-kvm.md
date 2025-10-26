@@ -4,6 +4,7 @@ date: 2025-10-18T09:00:00+00:00
 description: "Guía práctica para crear redes virtuales en KVM/libvirt: NAT, redes aisladas y redes muy aisladas. Incluye comandos con virsh, ejemplos XML y verificación."
 tags: [KVM,Virtualizacion,Libvirt,Redes,Linux]
 hero: images/virtualizacion-kvm-linux/redes/redes-pivadas.png
+weight: 2
 ---
 En esta guía crearemos tres tipos de redes virtuales gestionadas por libvirt:
 

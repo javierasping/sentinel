@@ -6,8 +6,6 @@ tags: [KVM,Virtualization,Libvirt,Linux,VM,Snapshots]
 hero: images/virtualizacion-kvm-linux/gestion-vm/snapshots.png
 ---
 
-# Snapshots in KVM/libvirt: how to create and manage them
-
 Snapshots let you capture a VM's state at a specific moment so you can roll back if something goes wrong (updates, risky changes, tests). In KVM with libvirt there are two main families:
 
 - Internal snapshots: the snapshot content is stored inside the qcow2 file itself. They usually require the VM to be powered off and only work with qcow2 storage (not raw, LVM, etc.).

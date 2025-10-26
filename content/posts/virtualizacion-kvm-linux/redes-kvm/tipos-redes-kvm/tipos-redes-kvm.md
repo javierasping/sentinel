@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/redes/tipos-de-redes.png
 weight: 1
 ---
 
-# Tipos de redes en KVM
-
 En KVM, la virtualización de redes se gestiona principalmente mediante **libvirt**, que nos permite crear y administrar diferentes tipos de redes virtuales a las que se conectan nuestras máquinas virtuales. Entender los tipos de redes disponibles es clave para configurar adecuadamente la conectividad de los invitados y la interacción con el host.
 
 Existen dos grandes categorías de redes en KVM:

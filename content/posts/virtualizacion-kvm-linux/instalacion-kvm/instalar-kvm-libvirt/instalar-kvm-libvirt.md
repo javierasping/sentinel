@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/instalacion/instalacion.png
 weight: 1
 ---
 
-# Instalación de KVM en Ubuntu/Debian
-
 Para instalar **KVM** en Ubuntu o Debian, se requiere preparar el sistema con los paquetes necesarios, verificar el soporte de virtualización por hardware y autorizar a los usuarios para ejecutar máquinas virtuales. A continuación se detallan los pasos para instalar KVM en Ubuntu 24.04 (Noble Numbat) o Debian recientes.
 
 ## Paso 1: Actualizar el sistema

@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/gestion-vm/hacer-clones.png
 weight: 4
 ---
 
-# Clone and rename virtual machines in KVM
-
 One of the advantages of virtualization is the ability to clone virtual machines to quickly create homogeneous environments. However, when we clone a VM that contains an operating system, the clone inherits unique identifiers such as the **machine ID**, **MAC** addresses, host **SSH** keys, etc., which should be unique for each machine.
 
 In this guide we will cover how to:

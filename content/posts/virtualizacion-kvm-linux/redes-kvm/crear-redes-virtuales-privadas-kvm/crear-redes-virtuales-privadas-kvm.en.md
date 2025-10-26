@@ -4,6 +4,7 @@ date: 2025-10-18T09:00:00+00:00
 description: "Practical guide to create virtual networks in KVM/libvirt: NAT, isolated and very isolated networks. Includes virsh commands, XML examples and verification steps."
 tags: [KVM,Virtualization,Libvirt,Networking,Linux]
 hero: images/virtualizacion-kvm-linux/redes/redes-pivadas.png
+weight: 2
 ---
 
 In this step-by-step guide you'll create three types of virtual networks managed by libvirt and learn simple ways to verify them:

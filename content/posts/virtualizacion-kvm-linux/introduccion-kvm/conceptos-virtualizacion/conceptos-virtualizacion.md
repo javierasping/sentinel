@@ -7,8 +7,6 @@ hero: images/virtualizacion-kvm-linux/introduccion/conceptos-basicos.png
 weight: 1
 ---
 
-# Conceptos básicos de virtualización en Linux
-
 Si alguna vez te has preguntado cómo varias "máquinas" pueden funcionar dentro de una sola máquina física, la respuesta está en la **virtualización**. Vamos a explicarlo de forma sencilla.
 
 ## ¿Qué es la virtualización?
