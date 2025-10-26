@@ -1,5 +1,5 @@
 ---
-title: "Gestión de volúmenes con virsh (API libvirt)"
+title: "Cómo gestionar volúmenes con virsh"
 menu:
   sidebar:
     name: Gestión de volúmenes (virsh)

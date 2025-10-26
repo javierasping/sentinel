@@ -1,9 +1,10 @@
 ---
-title: "Crear una interfaz puente (bridge) en el host para KVM/libvirt"
+title: "Cómo crear una interfaz puente (bridge) en el host KVM"
 date: 2025-10-18T09:00:00+00:00
 description: "Guía paso a paso para crear un bridge (br0) en Linux y conectarlo a libvirt, con ejemplos para Netplan y ifupdown (interfaces)."
 tags: [KVM,Virtualizacion,Libvirt,Redes,Linux,Bridge]
-hero: images/virtualizacion-kvm-linux/redes-kvm/crear-interfaz-puente.jpg
+hero: images/virtualizacion-kvm-linux/redes/redes-puente.png
+weight: 3
 ---
 
 # Crear una interfaz puente (bridge) en el host para KVM/libvirt
@@ -321,13 +322,15 @@ ping 192.168.100.127
 
 ## Referencias
 
-- Netplan   https://netplan.io/examples
-- Libvirt: Networking overview   https://libvirt.org/network.html
-- Debian Wiki: BridgeNetworkConnections   https://wiki.debian.org/BridgeNetworkConnections
-- iproute2: ip-link, ip-address, ip-route   https://man7.org/linux/man-pages/man8/ip.8.html
-- TUN/TAP (kernel docs)   https://www.kernel.org/doc/Documentation/networking/tuntap.txt
-- ip-netns (network namespaces)   https://man7.org/linux/man-pages/man8/ip-netns.8.html
-- veth (ip-link)   https://man7.org/linux/man-pages/man8/ip-link.8.html
-- Bonding (kernel docs)   https://www.kernel.org/doc/Documentation/networking/bonding.txt
-- brctl (bridge-utils)   https://manpages.debian.org/bridge-utils
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
+- [Netplan](https://netplan.io/examples)
+- [Libvirt: Networking overview](https://libvirt.org/network.html)
+- [Debian Wiki: BridgeNetworkConnections](https://wiki.debian.org/BridgeNetworkConnections)
+- [iproute2 — ip-link, ip-address, ip-route](https://man7.org/linux/man-pages/man8/ip.8.html)
+- [TUN/TAP (kernel docs)](https://www.kernel.org/doc/Documentation/networking/tuntap.txt)
+- [ip-netns (network namespaces)](https://man7.org/linux/man-pages/man8/ip-netns.8.html)
+- [veth (ip-link)](https://man7.org/linux/man-pages/man8/ip-link.8.html)
+- [Bonding (kernel docs)](https://www.kernel.org/doc/Documentation/networking/bonding.txt)
+- [brctl (bridge-utils) manpage](https://manpages.debian.org/bridge-utils)
+
 ---

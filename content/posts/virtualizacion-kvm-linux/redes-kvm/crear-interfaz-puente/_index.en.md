@@ -5,5 +5,5 @@ menu:
     name: Create bridge interface
     parent: redes-kvm
     weight: 3
-title: Create a network interface in bridge mode
+title: How to create a bridge interface on the KVM host
 ---

@@ -1,10 +1,11 @@
 ---
 
-title: "Validación del host para KVM en Ubuntu/Debian"
+title: "Cómo validar la instalación del host KVM"
 date: 2025-10-13T10:00:00+00:00
 description: Aprende a validar que tu host Ubuntu/Debian cumple con los requisitos para ejecutar KVM y gestionar máquinas virtuales de manera eficiente.
 tags: [Virtualizacion,Linux,KVM,VM,Hypervisor,Ubuntu,Debian]
-hero: images/virtualizacion-kvm-linux/introduccion-kvm/validacion-host.jpg
+hero: images/virtualizacion-kvm-linux/instalacion/validacion.png
+weight: 2
 --------------------------------------------------------------------------
 
 # Validación del host para KVM en Ubuntu/Debian
@@ -136,6 +137,7 @@ virsh domcapabilities | grep diskDevice -A 5
 
 ## Referencias
 
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
 * [KVM-virsh - Ubuntu Help](https://help.ubuntu.com/community/KVM/Virsh)
 * [Managing guests using virsh - RedHat Virtualization Guide](https://access.redhat.com/documentation/en-us/red_hat_virtualization)
 * [virsh - libvirt guide](https://libvirt.org/virshcmdref.html)

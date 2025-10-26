@@ -1,9 +1,9 @@
 ---
-title: "Components of a virtual machine in KVM"
+title: "Key components of a virtual machine in KVM"
 date: 2025-10-13T10:00:00+00:00
 description: Learn about the fundamental components of a virtual machine in KVM and how to retrieve detailed information from the hypervisor using virsh.
 tags: [Virtualization,Linux,KVM,VM,Hypervisor,Ubuntu,Debian]
-hero: images/virtualizacion-kvm-linux/introduccion-kvm/componentes-vm.jpg
+hero: images/virtualizacion-kvm-linux/gestion-vm/componentes-vm.png
 ---
 
 # Components of a virtual machine in KVM
@@ -116,7 +116,7 @@ $ virsh domifaddr debian13
 
 CPU and memory:
 ```bash
-javiercruces@FJCD-PC:~
+javiercruces@FJCD-PC:~ [p-ie-omni|]
 $ virsh domstats debian13
 Domain: 'debian13'
   state.state=1

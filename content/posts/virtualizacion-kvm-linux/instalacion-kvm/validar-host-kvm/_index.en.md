@@ -5,5 +5,5 @@ menu:
     name: Validate KVM host
     parent: instalacion-kvm
     weight: 2
-title: Validate KVM host installation and functionality
+title: How to validate the KVM host installation
 ---

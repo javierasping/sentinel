@@ -5,5 +5,5 @@ menu:
     name: Create and configure private virtual networks
     parent: redes-kvm
     weight: 2
-title: Create and configure private virtual networks
+title: How to create and configure private virtual networks
 ---

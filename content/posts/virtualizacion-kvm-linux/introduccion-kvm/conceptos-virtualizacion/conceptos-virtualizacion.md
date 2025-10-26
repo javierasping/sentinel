@@ -3,7 +3,8 @@ title: "Conceptos básicos de virtualización en Linux"
 date: 2025-10-13T10:00:00+00:00
 description: Aprende de forma sencilla qué es la virtualización, cómo funcionan las máquinas virtuales y para qué sirve.
 tags: [Virtualizacion,Linux,KVM,VM]
-hero: images/virtualizacion-kvm-linux/introduccion-kvm/conceptos-virtualizacion.jpg
+hero: images/virtualizacion-kvm-linux/introduccion/conceptos-basicos.png
+weight: 1
 ---
 
 # Conceptos básicos de virtualización en Linux

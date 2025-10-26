@@ -5,5 +5,5 @@ menu:
     name: Installation and configuration
     parent: virtualizacion-kvm-linux
     weight: 2
-title: Installation and configuration of the KVM environment
+title: Installing and configuring KVM on Linux
 ---

@@ -1,9 +1,10 @@
 ---
-title: "Network types in KVM (libvirt)"
+title: "Network types in KVM (NAT, isolated and bridged)"
 date: 2025-10-18T09:00:00+00:00
 description: "Theoretical overview of the network types available in KVM/libvirt: NAT, isolated, very isolated, external bridge and macvtap; differences, connectivity and use cases."
 tags: [KVM,Virtualization,Libvirt,Networking,Linux]
-hero: images/virtualizacion-kvm-linux/redes-kvm/tipos-redes-kvm.jpg
+hero: images/virtualizacion-kvm-linux/redes/tipos-de-redes.png
+weight: 1
 ---
 
 # Network types in KVM
@@ -90,6 +91,7 @@ Note: in certain advanced scenarios, host↔VM communication can be enabled by c
 
 ## References
 
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
 - [Libvirt: Virtual networking overview](https://libvirt.org/network.html)
 - [Libvirt: Network XML format](https://libvirt.org/formatnetwork.html)
 - [Libvirt: Domain XML (interfaces, NIC types)](https://libvirt.org/formatdomain.html)

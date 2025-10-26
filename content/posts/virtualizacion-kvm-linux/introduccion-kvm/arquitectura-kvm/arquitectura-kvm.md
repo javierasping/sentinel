@@ -3,7 +3,8 @@ title: "Arquitectura y funcionamiento de KVM"
 date: 2025-10-13T10:00:00+00:00
 description: Aprende qué es KVM, cómo funciona, su arquitectura y cómo se utiliza para virtualizar sistemas en Linux.
 tags: [Virtualizacion,Linux,KVM,VM,Hypervisor]
-hero: images/virtualizacion-kvm-linux/introduccion-kvm/arquitectura-kvm.jpg
+hero: images/virtualizacion-kvm-linux/introduccion/arquitectura-kvm.png
+weight: 3
 ---
 
 # Arquitectura y funcionamiento de KVM

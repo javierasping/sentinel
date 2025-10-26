@@ -1,9 +1,10 @@
 ---
-title: "Ampliar recursos de una máquina virtual en KVM"
+title: "Cómo ampliar memoria, CPU y discos de una máquina virtual"
 date: 2025-10-16T13:00:00+00:00
 description: Cómo aumentar vCPU, memoria RAM y disco de una VM en KVM, incluyendo la ampliación del sistema de archivos dentro del invitado.
 tags: [KVM,Virtualizacion,Libvirt,Linux,VM,Recursos]
-hero: images/virtualizacion-kvm-linux/gestion-maquinas-kvm/ampliar-recursos.jpg
+hero: images/virtualizacion-kvm-linux/gestion-vm/ampliar-recursos.png
+weight: 5
 ---
 
 # Ampliar recursos de una máquina virtual en KVM
@@ -235,6 +236,7 @@ df -h
 
 ## Referencias
 
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
 - [virsh - Documentación oficial de libvirt](https://libvirt.org/manpages/virsh.html) - Comandos: setvcpus, setmem, setmaxmem, dominfo, vcpucount, dommemstat
 - [qemu-img - QEMU Documentation](https://www.qemu.org/docs/master/tools/qemu-img.html) - Comando resize para redimensionar imágenes de disco
 - [cloud-guest-utils - Launchpad](https://launchpad.net/cloud-utils) - Incluye growpart para ampliar particiones

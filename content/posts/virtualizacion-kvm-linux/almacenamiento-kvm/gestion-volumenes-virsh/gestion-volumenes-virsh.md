@@ -1,9 +1,10 @@
 ---
-title: "Gestión de volúmenes con virsh"
+title: "Cómo gestionar volúmenes con virsh"
 date: 2025-10-25T09:00:00+00:00
 description: "Operaciones con volúmenes dentro de pools: listar, crear (vol-create-as), borrar (vol-delete), clonar, redimensionar (vol-resize), vol-download, vol-upload. Comportamiento según tipo de pool."
 tags: [KVM,Virtualizacion,Libvirt,Almacenamiento,Volumenes]
-hero: images/virtualizacion-kvm-linux/almacenamiento-kvm/gestion-volumenes-virsh.jpg
+hero: images/virtualizacion-kvm-linux/almacenamiento/volumenes.png
+weight: 3
 ---
 
 Breve: ejemplos de uso de la API de libvirt (`virsh vol-*`) para gestionar volúmenes dentro de pools y las diferencias según el backend.
@@ -275,5 +276,6 @@ javiercruces@FJCD-PC:~$ virsh detach-disk --config testguest1 vdb
 
 ### Referencias
 
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
 - [Documentación oficial libvirt: Storage pool and volume XML format](https://libvirt.org/storage.html)
 - [virsh manpage / vol-* commands](https://libvirt.org/manpages/virsh.html)

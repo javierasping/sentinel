@@ -5,5 +5,5 @@ menu:
     name: Create VM with virt-install
     parent: gestion-maquinas-kvm
     weight: 1
-title: Create a virtual machine using virt-install
+title: How to create a virtual machine with virt-install
 ---

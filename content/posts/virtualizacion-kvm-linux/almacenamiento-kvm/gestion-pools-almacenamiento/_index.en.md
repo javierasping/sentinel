@@ -1,5 +1,5 @@
 ---
-title: "Managing storage pools"
+title: "How to manage storage pools"
 menu:
   sidebar:
     name: Managing pools

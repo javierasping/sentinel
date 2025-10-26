@@ -1,9 +1,10 @@
 ---
-title: "Create a Virtual Machine with virt-install in KVM"
+title: "How to create a virtual machine with virt-install"
 date: 2025-10-13T21:24:37+00:00
 description: Learn how to create virtual machines in KVM using the virt-install command-line tool on Ubuntu/Debian systems.
 tags: [Virtualization,Linux,KVM,VM,Hypervisor,Ubuntu,Debian]
-hero: images/virtualizacion-kvm-linux/introduccion-kvm/crear-vm-virt-install.jpg
+hero: images/virtualizacion-kvm-linux/gestion-vm/instalacion-virsh.png
+weight: 1
 ---
 
 # Create a Virtual Machine with virt-install in KVM

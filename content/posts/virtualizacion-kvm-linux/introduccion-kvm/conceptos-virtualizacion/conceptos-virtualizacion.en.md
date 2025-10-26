@@ -3,7 +3,8 @@ title: "Basic Virtualization Concepts in Linux"
 date: 2025-10-13T10:00:00+00:00
 description: Learn in a simple way what virtualization is, how virtual machines work, and why it is useful.
 tags: [Virtualization,Linux,KVM,VM]
-hero: images/virtualizacion-kvm-linux/introduccion-kvm/conceptos-virtualizacion.jpg
+hero: images/virtualizacion-kvm-linux/introduccion/conceptos-basicos.png
+weight: 1
 ---
 
 # Basic Virtualization Concepts in Linux

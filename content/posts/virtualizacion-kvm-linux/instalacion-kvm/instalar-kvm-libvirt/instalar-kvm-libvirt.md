@@ -1,9 +1,10 @@
 ---
-title: "Instalación de KVM en Ubuntu/Debian"
+title: "Cómo instalar KVM, QEMU y libvirt en Linux"
 date: 2025-10-13T10:00:00+00:00
 description: Aprende a instalar KVM en sistemas Ubuntu/Debian, configurar usuarios y verificar que la instalación sea correcta.
 tags: [Virtualizacion,Linux,KVM,VM,Hypervisor,Ubuntu,Debian]
-hero: images/virtualizacion-kvm-linux/introduccion-kvm/instalacion-kvm.jpg
+hero: images/virtualizacion-kvm-linux/instalacion/instalacion.png
+weight: 1
 ---
 
 # Instalación de KVM en Ubuntu/Debian

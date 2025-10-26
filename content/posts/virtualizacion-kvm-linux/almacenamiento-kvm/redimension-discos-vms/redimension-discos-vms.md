@@ -1,9 +1,10 @@
 ---
-title: "Redimensión de discos en máquinas virtuales"
+title: "Cómo redimensionar discos de máquinas virtuales"
 date: 2025-10-25T09:00:00+00:00
 description: "Cómo ampliar volúmenes con `virsh vol-resize` o `qemu-img resize` y los pasos necesarios dentro de la VM (redimensionar particiones y sistemas de archivos). Buenas prácticas y riesgos."
 tags: [KVM,Virtualizacion,Libvirt,Almacenamiento,Redimension]
-hero: images/virtualizacion-kvm-linux/almacenamiento-kvm/redimension-discos-vms.jpg
+hero: images/virtualizacion-kvm-linux/almacenamiento/redimensionar-volumenes.png
+weight: 4
 ---
 
 En este ejemplo usaremos el pool `default` y un volumen llamado `vdisk-10G.img`. Mostraremos cómo crear el volumen desde el host, cómo formatearlo con los sistemas de ficheros más comunes (ext4, FAT32, XFS, btrfs) usando la VM invitada, y finalmente cómo añadir 10 GB al volumen y redimensionar la partición y el sistema de ficheros.

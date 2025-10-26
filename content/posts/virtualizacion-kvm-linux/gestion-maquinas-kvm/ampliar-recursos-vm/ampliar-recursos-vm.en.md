@@ -1,9 +1,10 @@
 ---
-title: "Expand virtual machine resources in KVM"
+title: "How to expand VM memory, CPU and disks"
 date: 2025-10-16T13:00:00+00:00
 description: How to increase vCPU, RAM, and disk space of a VM in KVM, including expanding the filesystem inside the guest.
 tags: [KVM,Virtualization,Libvirt,Linux,VM,Resources]
-hero: images/virtualizacion-kvm-linux/gestion-maquinas-kvm/ampliar-recursos.jpg
+hero: images/virtualizacion-kvm-linux/gestion-vm/ampliar-recursos.png
+weight: 5
 ---
 
 # Expand virtual machine resources in KVM
@@ -235,6 +236,7 @@ df -h
 
 ## References
 
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
 - [virsh - Official libvirt documentation](https://libvirt.org/manpages/virsh.html) - Commands: setvcpus, setmem, setmaxmem, dominfo, vcpucount, dommemstat
 - [qemu-img - QEMU Documentation](https://www.qemu.org/docs/master/tools/qemu-img.html) - Resize command to resize disk images
 - [cloud-guest-utils - Launchpad](https://launchpad.net/cloud-utils) - Includes growpart to expand partitions

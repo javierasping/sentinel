@@ -1,9 +1,10 @@
 ---
-title: "Tipos de redes en KVM (libvirt)"
+title: "Tipos de redes en KVM (NAT, aisladas y puenteadas)"
 date: 2025-10-18T09:00:00+00:00
 description: "Descripción teórica de los tipos de redes disponibles en KVM/libvirt: NAT, aisladas, muy aisladas, bridge externo y macvtap; diferencias, conectividad y casos de uso."
 tags: [KVM,Virtualizacion,Libvirt,Redes,Linux]
-hero: images/virtualizacion-kvm-linux/redes-kvm/tipos-redes-kvm.jpg
+hero: images/virtualizacion-kvm-linux/redes/tipos-de-redes.png
+weight: 1
 ---
 
 # Tipos de redes en KVM
@@ -93,6 +94,7 @@ Nota: en ciertos escenarios avanzados se puede habilitar comunicación host↔VM
 
 ## Referencias
 
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
 - [Libvirt: Virtual networking overview](https://libvirt.org/network.html)
 - [Libvirt: Network XML format](https://libvirt.org/formatnetwork.html)
 - [Libvirt: Domain XML (interfaces, tipos de NIC)](https://libvirt.org/formatdomain.html)

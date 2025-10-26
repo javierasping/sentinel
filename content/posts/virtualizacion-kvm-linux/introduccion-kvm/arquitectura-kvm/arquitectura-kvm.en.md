@@ -1,9 +1,10 @@
 ---
-title: "KVM Architecture and Operation"
+title: "KVM architecture and operation"
 date: 2025-10-13T10:00:00+00:00
 description: Learn what KVM is, how it works, its architecture, and how it is used to virtualize systems on Linux.
 tags: [Virtualization,Linux,KVM,VM,Hypervisor]
-hero: images/virtualizacion-kvm-linux/introduccion-kvm/arquitectura-kvm.jpg
+hero: images/virtualizacion-kvm-linux/introduccion/arquitectura-kvm.png
+weight: 3
 ---
 
 # KVM Architecture and Operation

@@ -3,7 +3,8 @@ title: "Clonar y renombrar máquinas virtuales en KVM"
 date: 2025-10-16T12:00:00+00:00
 description: Aprende a clonar y renombrar máquinas virtuales en KVM usando virt-clone, virt-sysprep y virt-customize para crear plantillas reutilizables.
 tags: [KVM,Virtualizacion,Libvirt,Linux,VM,Clonacion]
-hero: images/virtualizacion-kvm-linux/clonar-renombrar-vm.jpg
+hero: images/virtualizacion-kvm-linux/gestion-vm/hacer-clones.png
+weight: 4
 ---
 
 # Clonar y renombrar máquinas virtuales en KVM
@@ -475,6 +476,7 @@ ssh admin@192.168.122.X
 
 ## Referencias
 
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
 - [Documentación oficial de virt-clone](https://linux.die.net/man/1/virt-clone)
 - [Documentación oficial de virt-sysprep](https://libguestfs.org/virt-sysprep.1.html)
 - [Documentación oficial de virt-customize](https://libguestfs.org/virt-customize.1.html)

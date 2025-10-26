@@ -1,5 +1,5 @@
 ---
-title: Crear y configurar redes privadas virtuales
+title: Cómo crear y configurar redes virtuales privadas
 menu:
   sidebar:
     name: Crear redes privadas

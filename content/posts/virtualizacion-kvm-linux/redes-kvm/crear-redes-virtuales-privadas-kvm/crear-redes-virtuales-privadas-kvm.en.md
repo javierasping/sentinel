@@ -1,9 +1,9 @@
 ---
-title: "Create virtual networks in KVM/libvirt (NAT, isolated and very isolated)"
+title: "How to create and configure private virtual networks"
 date: 2025-10-18T09:00:00+00:00
 description: "Practical guide to create virtual networks in KVM/libvirt: NAT, isolated and very isolated networks. Includes virsh commands, XML examples and verification steps."
 tags: [KVM,Virtualization,Libvirt,Networking,Linux]
-hero: images/virtualizacion-kvm-linux/redes-kvm/crear-redes-kvm.jpg
+hero: images/virtualizacion-kvm-linux/redes/redes-pivadas.png
 ---
 
 In this step-by-step guide you'll create three types of virtual networks managed by libvirt and learn simple ways to verify them:
@@ -207,6 +207,7 @@ Persistent files live under `/etc/libvirt/qemu/networks/` (and `.../autostart/`)
 
 ## References
 
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
 - [Libvirt: Virtual networking overview](https://libvirt.org/network.html)
 - [Libvirt: Network XML format](https://libvirt.org/formatnetwork.html)
 - [Libvirt: Domain XML (interfaces, NIC types)](https://libvirt.org/formatdomain.html)

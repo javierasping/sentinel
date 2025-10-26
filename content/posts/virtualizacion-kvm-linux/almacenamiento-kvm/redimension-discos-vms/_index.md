@@ -5,5 +5,5 @@ menu:
     name: Redimensión de discos (VMs)
     identifier: redimension-discos-vms
     parent: almacenamiento-kvm
-    weight: 6
+    weight: 4
 ---

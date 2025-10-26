@@ -3,7 +3,8 @@ title: "Introducción al almacenamiento en KVM/libvirt"
 date: 2025-10-25T09:00:00+00:00
 description: "Conceptos fundamentales: pools de almacenamiento, volúmenes, formatos (raw, qcow2), snapshots y tipos de backend (dir, disk, LVM, iSCSI, ZFS, etc.)."
 tags: [KVM,Virtualizacion,Libvirt,Almacenamiento]
-hero: images/virtualizacion-kvm-linux/almacenamiento-kvm/introduccion-almacenamiento-kvm.jpg
+hero: images/virtualizacion-kvm-linux/almacenamiento/introduccion-almacenamiento.png
+weight: 1
 ---
 
 El almacenamiento es un pilar en la virtualización: define cómo y dónde se guardan los discos de las máquinas virtuales, cómo se gestionan instantáneas (snapshots), y qué opciones de rendimiento y protección están disponibles.

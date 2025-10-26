@@ -1,11 +1,11 @@
 ---
-title: "Componentes de una máquina virtual en KVM"
+title: "Componentes principales de una máquina virtual en KVM"
 date: 2025-10-13T10:00:00+00:00
 description: Aprende sobre los componentes fundamentales de una máquina virtual en KVM y cómo obtener información detallada del hipervisor usando virsh.
 tags: [Virtualizacion,Linux,KVM,VM,Hypervisor,Ubuntu,Debian]
-hero: images/virtualizacion-kvm-linux/introduccion-kvm/componentes-vm.jpg
+hero: images/virtualizacion-kvm-linux/gestion-vm/componentes-vm.png
+weight: 2
 ---
-
 # Componentes de una máquina virtual en KVM
 
 En **KVM (Kernel-based Virtual Machine)**, una máquina virtual está compuesta por varios elementos que interactúan entre sí para emular un entorno de hardware completo. Comprender cada componente te ayudará a administrar, depurar y optimizar tus VMs de forma más eficiente.

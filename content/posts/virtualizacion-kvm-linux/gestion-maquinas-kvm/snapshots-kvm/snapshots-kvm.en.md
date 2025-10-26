@@ -1,9 +1,9 @@
 ---
-title: "Create and manage snapshots in KVM/libvirt"
+title: "How to create and manage snapshots in KVM"
 date: 2025-10-17T10:00:00+00:00
 description: Practical, detailed guide to create, list, revert, and delete virtual machine snapshots in KVM/libvirt, including internal/external snapshots, with memory and disk, quiesce with qemu-guest-agent, and cleanup with blockcommit.
 tags: [KVM,Virtualization,Libvirt,Linux,VM,Snapshots]
-hero: images/virtualizacion-kvm-linux/gestion-maquinas-kvm/snapshots.jpg
+hero: images/virtualizacion-kvm-linux/gestion-vm/snapshots.png
 ---
 
 # Snapshots in KVM/libvirt: how to create and manage them
@@ -256,6 +256,7 @@ virsh snapshot-create-as \
 
 ## References
 
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
 - [Domain snapshots (libvirt) - Overview](https://libvirt.org/formatsnapshot.html)
 - [virsh - snapshot commands](https://libvirt.org/manpages/virsh.html#domain-snapshots-commands)
 - [Blockcommit (libvirt) - Consolidation of external snapshots](https://libvirt.org/kbase/blockcommit.html)

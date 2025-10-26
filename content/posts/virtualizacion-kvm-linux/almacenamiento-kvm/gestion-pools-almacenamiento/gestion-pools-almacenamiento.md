@@ -1,9 +1,10 @@
 ---
-title: "Gestión de pools de almacenamiento"
+title: "Cómo gestionar pools de almacenamiento"
 date: 2025-10-25T09:00:00+00:00
 description: "Cómo crear, iniciar, configurar (autostart) y destruir pools usando virsh y archivos XML; listar y obtener información. Diferencias entre tipos: dir, disk, logical, iSCSI, ZFS, NFS."
 tags: [KVM,Virtualizacion,Libvirt,Almacenamiento,Pools]
-hero: images/virtualizacion-kvm-linux/almacenamiento-kvm/gestion-pools-almacenamiento.jpg
+hero: images/virtualizacion-kvm-linux/almacenamiento/pools.png
+weight: 2
 ---
 
 Tienes que incluir y responder a las siguientes preguntas en este post .
@@ -216,6 +217,4 @@ En el próximo artículo cubriremos cómo crear y gestionar volúmenes dentro de
 
 ## Fuentes
 
-- Documentación oficial libvirt: Storage management; Storage pool and volume XML format — https://libvirt.org/storage.html
-- Guía de uso y ejemplos: Xavi Aznar — "Cómo crear un storage pool en KVM" (2019)
-- Red Hat / documentación LVM y libvirt: secciones sobre pools LVM y ejemplos de `virsh`
+- [Documentación oficial libvirt: Storage management; Storage pool and volume XML format](https://libvirt.org/storage.html)

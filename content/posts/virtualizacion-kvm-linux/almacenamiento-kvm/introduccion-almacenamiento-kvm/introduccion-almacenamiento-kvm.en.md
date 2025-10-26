@@ -3,7 +3,8 @@ title: "Introduction to storage in KVM/libvirt"
 date: 2025-10-25T09:00:00+00:00
 description: "Fundamental concepts: storage pools, volumes, image formats (raw, qcow2), snapshots and backend types (dir, disk, LVM, iSCSI, ZFS, etc.)."
 tags: [KVM,Virtualization,Libvirt,Storage]
-hero: images/virtualizacion-kvm-linux/almacenamiento-kvm/introduccion-almacenamiento-kvm.jpg
+hero: images/virtualizacion-kvm-linux/almacenamiento/introduccion-almacenamiento.png
+weight: 1
 ---
 
 Storage is a foundational part of virtualization: it determines how and where virtual machine disks are stored, how snapshots are handled, and what performance and protection options are available.

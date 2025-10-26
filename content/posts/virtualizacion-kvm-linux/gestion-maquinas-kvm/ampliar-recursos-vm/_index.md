@@ -1,5 +1,5 @@
 ---
-title: Ampliar memoria, CPU y discos de una máquina virtual
+title: Cómo ampliar memoria, CPU y discos de una máquina virtual
 menu:
   sidebar:
     name: Ampliar recursos de una VM

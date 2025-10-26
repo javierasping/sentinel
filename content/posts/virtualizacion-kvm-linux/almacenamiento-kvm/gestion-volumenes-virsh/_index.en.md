@@ -1,5 +1,5 @@
 ---
-title: "Managing volumes with virsh (libvirt API)"
+title: "How to manage volumes with virsh (libvirt API)"
 menu:
   sidebar:
     name: Volumes (virsh)

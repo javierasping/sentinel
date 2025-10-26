@@ -1,5 +1,5 @@
 ---
-title: Instalación y configuración del entorno KVM
+title: Instalación y configuración de KVM en Linux
 menu:
   sidebar:
     name: Instalación y configuración

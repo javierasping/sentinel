@@ -1,9 +1,10 @@
 ---
-title: "Resizing disks in virtual machines"
+title: "How to resize virtual machine disks"
 date: 2025-10-25T09:00:00+00:00
 description: "How to expand volumes with `virsh vol-resize` or `qemu-img resize` and the necessary steps inside the VM (resize partitions and filesystems). Best practices and risks."
 tags: [KVM,Virtualization,Libvirt,Storage,Resize]
-hero: images/virtualizacion-kvm-linux/almacenamiento-kvm/redimension-discos-vms.jpg
+hero: images/virtualizacion-kvm-linux/almacenamiento/redimensionar-volumenes.png
+weight: 4
 ---
 
 In this example we'll use the `default` pool and a volume named `vdisk-10G.qcow2`. We'll show how to create the volume from the host, how to format it with common filesystems (ext4, FAT32, XFS, btrfs) from inside the guest, and finally how to add 10 GB to the volume and resize the partition and filesystem.

@@ -1,18 +1,16 @@
 ---
-title: "Crear redes virtuales en KVM/libvirt (NAT, aislada y muy aislada)"
+title: "Cómo crear y configurar redes virtuales privadas"
 date: 2025-10-18T09:00:00+00:00
 description: "Guía práctica para crear redes virtuales en KVM/libvirt: NAT, redes aisladas y redes muy aisladas. Incluye comandos con virsh, ejemplos XML y verificación."
 tags: [KVM,Virtualizacion,Libvirt,Redes,Linux]
-hero: images/virtualizacion-kvm-linux/redes-kvm/crear-redes-kvm.jpg
+hero: images/virtualizacion-kvm-linux/redes/redes-pivadas.png
 ---
-
 En esta guía crearemos tres tipos de redes virtuales gestionadas por libvirt:
 
 - NAT (Network Address Translation)
 - Aislada (Isolated)
 - Muy aislada (Very isolated)
-
-Usaremos `virsh` y definiciones XML. Todas las acciones pueden hacerse con `virt-manager`, pero aquí nos centraremos en línea de comandos.
+ weight: 2
 
 ---
 
@@ -198,6 +196,7 @@ Archivos persistentes en `/etc/libvirt/qemu/networks/` (y `.../autostart/`).
 
 ## Referencias
 
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
 - [Libvirt: Virtual networking overview](https://libvirt.org/network.html)
 - [Libvirt: Network XML format](https://libvirt.org/formatnetwork.html)
 - [Libvirt: Domain XML (interfaces, tipos de NIC)](https://libvirt.org/formatdomain.html)

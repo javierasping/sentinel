@@ -1,9 +1,10 @@
 ---
-title: "Tipos de hipervisores"
+title: "Tipos de hipervisores en Linux"
 date: 2025-10-13T10:00:00+00:00
 description: Aprende qué es un hipervisor, sus tipos, diferencias y ejemplos prácticos de uso en entornos Linux y Windows.
 tags: [Virtualizacion,Linux,KVM,VM,Hypervisor]
-hero: images/virtualizacion-kvm-linux/introduccion-kvm/tipos-hipervisores.jpg
+hero: images/virtualizacion-kvm-linux/introduccion/tipos-hipervisores.png
+weight: 2
 ---
 
 # Tipos de hipervisores

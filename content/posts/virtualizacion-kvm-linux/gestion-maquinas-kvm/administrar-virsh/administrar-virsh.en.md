@@ -1,9 +1,10 @@
 ---
-title: "Virtual Machine Administration with virsh"
+title: "How to manage virtual machines using virsh"
 date: 2025-10-16T10:00:00+00:00
 description: Practical guide on how to manage virtual machines with virsh, the libvirt command-line interface for KVM.
 tags: [KVM,Virtualization,Libvirt,Linux,VM,Administration]
-hero: images/virtualizacion-kvm-linux/administracion-virsh.jpg
+hero: images/virtualizacion-kvm-linux/gestion-vm/gestion-virsh.png
+weight: 3
 ---
 
 # Virtual Machine Administration with virsh

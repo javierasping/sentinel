@@ -1,5 +1,5 @@
 ---
-title: Administración de máquinas virtuales con virsh
+title: "Cómo administrar máquinas virtuales con virsh"
 menu:
   sidebar:
     name: Administrar con virsh

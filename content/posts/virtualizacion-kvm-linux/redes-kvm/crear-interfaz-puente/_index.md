@@ -1,5 +1,5 @@
 ---
-title: Crear redes puente
+title: Cómo crear una interfaz puente (bridge) en el host KVM
 menu:
   sidebar:
     name: Crear redes puente

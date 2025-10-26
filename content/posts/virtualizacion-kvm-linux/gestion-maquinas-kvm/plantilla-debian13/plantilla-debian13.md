@@ -1,9 +1,10 @@
 ---
-title: "Crear una plantilla de una máquina virtual Debian 13 en KVM/libvirt"
+title: "Cómo crear una plantilla de máquina virtual Debian 13"
 date: 2025-10-18T09:00:00+00:00
 description: "Guía paso a paso para crear una plantilla (golden image) de Debian 13 con KVM/libvirt: preparación, generalización con virt-sysprep, compactación con virt-sparsify, marcaje de solo lectura y buenas prácticas de clonación."
 tags: [KVM,Virtualizacion,Libvirt,Linux,VM,Templates,Debian13]
-hero: images/virtualizacion-kvm-linux/gestion-maquinas-kvm/plantilla-debian13.jpg
+hero: images/virtualizacion-kvm-linux/gestion-vm/plantillas.png
+weight: 7
 ---
 
 # Plantillas de máquinas virtuales
@@ -263,8 +264,10 @@ Si tu distribución usa otro usuario/grupo para qemu (por ejemplo `qemu:qemu`), 
 
 ## Referencias
 
-- virt-sysprep (libguestfs): https://libguestfs.org/virt-sysprep.1.html
-- virt-sparsify (libguestfs): https://libguestfs.org/virt-sparsify.1.html
-- virt-clone (libvirt): https://libvirt.org/manpages/virt-clone.html
-- virt-customize (libguestfs): https://libguestfs.org/virt-customize.1.html
-- qemu-img (resize/create/backing): https://www.qemu.org/docs/master/tools/qemu-img.html
+- [curso_virtualizacion_linux — GitHub](https://github.com/josedom24/curso_virtualizacion_linux)
+
+- [virt-sysprep (libguestfs)](https://libguestfs.org/virt-sysprep.1.html)
+- [virt-sparsify (libguestfs)](https://libguestfs.org/virt-sparsify.1.html)
+- [virt-clone (libvirt)](https://libvirt.org/manpages/virt-clone.html)
+- [virt-customize (libguestfs)](https://libguestfs.org/virt-customize.1.html)
+- [qemu-img (resize/create/backing)](https://www.qemu.org/docs/master/tools/qemu-img.html)

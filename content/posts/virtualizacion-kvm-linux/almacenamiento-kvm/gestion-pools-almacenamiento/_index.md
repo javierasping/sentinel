@@ -1,5 +1,5 @@
 ---
-title: "Gestión de pools de almacenamiento"
+title: "Cómo gestionar pools de almacenamiento"
 menu:
   sidebar:
     name: Gestión de pools
