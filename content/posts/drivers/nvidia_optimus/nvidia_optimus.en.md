@@ -6,7 +6,7 @@ tags: [NVIDIA Drivers, Linux]
 hero: images/drivers/elegir_grafica.png
 ---
 
-If you have a Linux laptop with an NVIDIA GPU, you may have noticed that the video ports are not working properly after installing the graphics drivers. If this sounds familiar, don't worry—I’ve got you covered.
+If you have a Linux laptop with an NVIDIA GPU, you may have noticed that the video ports are not working properly after installing the graphics drivers. If this sounds familiar, don't worry I’ve got you covered.
 
 I've been investigating and found a tool that can save you several headaches. It's called **EnvyControl**, a command-line utility (CLI) that allows you to easily choose which graphics card you want to use on your computer. This is especially useful if your laptop has a hybrid graphics configuration, such as Intel + NVIDIA or AMD + NVIDIA.
 
