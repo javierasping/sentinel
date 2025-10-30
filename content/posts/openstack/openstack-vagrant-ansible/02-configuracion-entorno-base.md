@@ -90,9 +90,6 @@ Los ficheros los encontraras debajo del directorio networks-definition
   <name>mgmt-net</name>
   <bridge name="virbr-mgmt" stp="on" delay="0"/>
   <ip address="10.0.0.1" netmask="255.255.255.0">
-    <dhcp>
-      <range start="10.0.0.100" end="10.0.0.254"/>
-    </dhcp>
   </ip>
 </network>
 ```
@@ -105,9 +102,6 @@ Los ficheros los encontraras debajo del directorio networks-definition
   <forward mode="nat"/>
   <bridge name="virbr-public" stp="on" delay="0"/>
   <ip address="192.168.100.1" netmask="255.255.255.0">
-    <dhcp>
-      <range start="192.168.100.100" end="192.168.100.254"/>
-    </dhcp>
   </ip>
 </network>
 ```
