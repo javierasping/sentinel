@@ -7,11 +7,11 @@ hero: ""
 weight: 5
 ---
 
-OpenStack está formado por muchos servicios; Keystone (Identity) se encarga de la autenticación, autorización y del catálogo de servicios. En este post voy a instalar Keystone en el nodo `controller01`, explicar los ficheros principales y comprobar que funciona.
+OpenStack está formado por muchos servicios, Keystone (Identity) se encarga de la autenticación, autorización y del catálogo de servicios. En este post instalaré Keystone en el nodo `controller01`, explicaré los ficheros principales y comprobaré que funciona.
 
 Recuerda que es necesario haber completado los pasos del post anterior.
 
-Todos los comando de este post se realizan en el nodo `controller01`.
+Todos los comandos de este post se realizan en el nodo `controller01`.
 
 ## Creación de la base de datos de Keystone
 
@@ -28,7 +28,7 @@ MariaDB [(none)]> CREATE DATABASE keystone;
 Query OK, 1 row affected (0.000 sec)
 ```
 
-Crea los usuarios y da los permisos a estos para la base de datos `keystone`:
+Crea los usuarios y concédeles permisos para la base de datos `keystone`:
 
 ```bash
 MariaDB [(none)]> CREATE USER 'keystone'@'localhost' IDENTIFIED BY 'KEYSTONE-DBPASS';
@@ -37,7 +37,7 @@ MariaDB [(none)]> CREATE USER 'keystone'@'%' IDENTIFIED BY 'KEYSTONE-DBPASS';
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%';
 ```
 
-Por ultimo sal del cliente de base de datos:
+Por último, sal del cliente de base de datos:
 
 ```bash
 MariaDB [(none)]> exit
@@ -46,7 +46,7 @@ Bye
 
 ## Configuración de Keystone
 
-En mi caso uso Apache con mod_wsgi para servir Keystone en el puerto 5000, el paquete suele crear la configuración necesaria en Apache automáticamente. Aun asi comprueba que la configuración es correcta en tu caso .
+En mi caso uso Apache con mod_wsgi para servir Keystone en el puerto 5000, el paquete suele crear la configuración necesaria en Apache automáticamente. Aún así, comprueba que la configuración es correcta en tu caso.
 
 Instala los paquetes necesarios con el siguiente comando:
 
@@ -70,7 +70,7 @@ En la sección `[token]` indica que usas Fernet:
 provider = fernet
 ```
 
-Actualiza la base de datos de Keystone con las migraciones del servicio, esto nos creara las tablas dentro de la base de datos .
+Actualiza la base de datos de Keystone con las migraciones del servicio, esto creará las tablas dentro de la base de datos:
 
 ```bash
 vagrant@controller01:~$ sudo su -s /bin/sh -c "keystone-manage db_sync" keystone
@@ -105,14 +105,14 @@ Edita el fichero `/etc/apache2/apache2.conf` y añade la opción `ServerName` ap
 ServerName controller01
 ```
 
-Luego de realizar el cambio , reinicia el servicio y asegurate de que el servicio esta levantado:
+Luego de realizar el cambio, reinicia el servicio y asegúrate de que está levantado:
 
 ```bash
 vagrant@controller01:~$ sudo systemctl restart apache2
 vagrant@controller01:~$ sudo systemctl status apache2
 ```
 
-En nuestro caso no usaremos TLS/HTTPS ya que es un laboratorio , asi que con esto hemos finalizado la configuración de Apache.
+En nuestro caso no usaremos TLS/HTTPS ya que es un laboratorio, así que con esto hemos finalizado la configuración de Apache.
 
 ## Finalizar la instalación
 
@@ -155,4 +155,4 @@ vagrant@controller01:~$ openstack token issue
 +------------+---------------------------------------------------------------------------------------------+
 ```
 
-Si has obtenido una salida similar a esta , la instalación de keystone en el nodo controlador ha finalizado.
+Si has obtenido una salida similar a esta, la instalación de Keystone en el nodo controlador ha finalizado.

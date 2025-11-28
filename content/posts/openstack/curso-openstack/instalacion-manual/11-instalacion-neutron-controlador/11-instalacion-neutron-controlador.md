@@ -11,7 +11,7 @@ En esta página instalo y configuro el servicio de red Neutron en el nodo contro
 
 ## Requisitos previos
 
-Antes de empezar asegúrate de tener:
+Antes de empezar, asegúrate de tener:
 
 - Keystone instalado y accesible.
 - Una base de datos MySQL/MariaDB disponible.
@@ -146,7 +146,7 @@ vagrant@controller01:~$ openstack endpoint create --region RegionOne network adm
 Instalo los paquetes de Neutron en el nodo controlador:
 
 ```bash
-vagrant@controller01:~$ sudo apt install -y neutron-server neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent  neutron-metadata-agent -y
+vagrant@controller01:~$ sudo apt install -y neutron-server neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent
 
 ```
 
@@ -332,7 +332,7 @@ INFO  [alembic.runtime.migration] Running upgrade 2e0d7a8a1586 -> 5c85685d616d
   OK
 ```
 
-## Reinicio servicios y compruebo agentes
+## Reiniciar servicios y comprobar agentes
 
 Reinicio los servicios para aplicar la configuración:
 

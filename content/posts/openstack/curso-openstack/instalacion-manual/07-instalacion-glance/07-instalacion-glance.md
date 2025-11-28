@@ -7,11 +7,11 @@ hero: ""
 weight: 7
 ---
 
-A primera vista, Glance puede parecer un servicio sencillo: su función es almacenar, gestionar y servir imágenes al servicio de cómputo (Nova). En este post instalo y configuro Glance en el nodo `controller01`, explico sus componentes clave y dejo un flujo mínimo para que puedas subir una imagen de prueba.
+A primera vista, Glance puede parecer un servicio sencillo, su función es almacenar, gestionar y servir imágenes al servicio de cómputo (Nova). En este post instalaré y configuraré Glance en el nodo `controller01`, explicaré sus componentes clave y dejaré un flujo mínimo para que puedas subir una imagen de prueba.
 
 ## Arquitectura de Glance
 
-Voy a resumir los componentes que verás durante la instalación:
+Te resumo los componentes que verás durante la instalación:
 
 - Glance API: expone la API REST para almacenar, listar y recuperar imágenes.
 - Glance Store: gestiona los backends donde se alojan los ficheros de imagen (file, Swift, Ceph, ...).
@@ -21,7 +21,7 @@ Glance usa una base de datos SQL para su estado, aquí usamos MySQL/MariaDB en e
 
 En esta guía uso el backend `file` (ficheros en el sistema local) por simplicidad.
 
-Recuerda que tienes que haber realizado los post anteriores antes de comenzar con la instalación de glance.
+Recuerda que tienes que haber realizado los posts anteriores antes de comenzar con la instalación de Glance.
 
 ## Creación de la base de datos
 
@@ -47,7 +47,7 @@ GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' IDENTIFIED BY 'GLANCE_D
 GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' IDENTIFIED BY 'GLANCE_DBPASS';
 ```
 
-Por ultimo sal del cliente de base de datos:
+Por último, sal del cliente de base de datos:
 
 ```bash
 MariaDB [(none)]> exit
@@ -165,7 +165,7 @@ Edita el fichero de configuración principal:
 vagrant@controller01:~$ sudo nano /etc/glance/glance-api.conf
 ```
 
-En `[database]` configuramos glance para que apunte a la base de datos que creé anteriormente:
+En `[database]` configuro Glance para que apunte a la base de datos que creé anteriormente:
 
 ```bash
 [database]
@@ -204,7 +204,7 @@ default_backend = fs
 filesystem_store_datadir = /var/lib/glance/images/
 ```
 
-En la sección `[oslo_limit]`, configura el acceso a Keystone (si utiliza el cliente unificado de límites):
+En la sección `[oslo_limit]`, configura el acceso a Keystone (si utilizas el cliente unificado de límites):
 
 ```bash
 [oslo_limit]
@@ -218,9 +218,9 @@ endpoint_id = ENDPOINT_ID
 region_name = RegionOne
 ```
 
-Reemplace `GLANCE_PASS` por la contraseña del usuario `glance` en Identity.
+Reemplaza `GLANCE_PASS` por la contraseña del usuario `glance` en Identity.
 
-Reemplace `ENDPOINT_ID` por el ID del endpoint de imagen que creó anteriormente; puede obtenerlo con:
+Reemplaza `ENDPOINT_ID` por el ID del endpoint de imagen que creaste anteriormente, puedes obtenerlo con:
 
 ```bash
 vagrant@controller01:~$ openstack endpoint list --service glance --region RegionOne
@@ -242,18 +242,18 @@ Asegúrate de que la cuenta `glance` tiene acceso de lector a recursos con alcan
 vagrant@controller01:~$ openstack role add --user glance --user-domain Default --system all reader
 ```
 
-Consulte la documentación de `oslo_limit` para más información sobre la configuración del cliente unificado de límites.
+Consulta la documentación de `oslo_limit` para más información sobre la configuración del cliente unificado de límites.
 
-En la sección `[DEFAULT]`, opcionalmente habilite cuotas por tenant:
+En la sección `[DEFAULT]`, opcionalmente habilita cuotas por tenant:
 
 ```bash
 [DEFAULT]
 use_keystone_limits = True
 ```
 
-Tenga en cuenta que debe haber creado los límites registrados (registered limits) como se muestra arriba si activa esta opción.
+Ten en cuenta que debes haber creado los límites registrados (registered limits) como se muestra arriba si activas esta opción.
 
-Una vez hemos acabado de configurar el servicio , crearemos las tablas en la base de datos :
+Una vez hemos acabado de configurar el servicio, crearemos las tablas en la base de datos:
 
 ```bash
 vagrant@controller01:~$ sudo su -s /bin/sh -c "glance-manage db_sync" glance
@@ -270,7 +270,7 @@ vagrant@controller01:~$ sudo service glance-api restart
 
 Vamos a comprobar el funcionamiento del servicio de imágenes usando CirrOS, una imagen Linux pequeña útil para probar despliegues OpenStack.
 
-Cargue las credenciales de administrador para ejecutar comandos de la CLI con privilegios:
+Carga las credenciales de administrador para ejecutar comandos de la CLI con privilegios:
 
 ```bash
 vagrant@controller01:~$ source admin-openrc
@@ -327,4 +327,4 @@ vagrant@controller01:~$ glance image-list
 +--------------------------------------+--------+
 ```
 
-Con esto he dejado Glance instalado y verificado con una imagen de prueba. Si quieres que cambie el backend a Swift o Ceph, lo hago en la siguiente iteración y añado los pasos de configuración y credenciales necesarios.
+Con esto he dejado Glance instalado y verificado con una imagen de prueba subida.

@@ -7,28 +7,24 @@ hero: ""
 weight: 4
 ---
 
-## Requisitos previos
-
-Hemos completado todos los pasos del post anterior (`03 - Guía de instalación manual de OpenStack con Vagrant`).
-
-Lo primero es levantar nuestro escenario , para ello como comente en el post anterior clona mi [repositorio](https://github.com/javierasping/openstack-vagrant-ansible#):
+Lo primero es levantar nuestro escenario. Para ello, como comenté en el post anterior, clona mi [repositorio](https://github.com/javierasping/openstack-vagrant-ansible#):
 
 ```bash
 git clone git@github.com:javierasping/openstack-vagrant-ansible.git
 git clone https://github.com/javierasping/openstack-vagrant-ansible.git
 ```
 
-Una vez clonado , todo lo referente a estos post esta debajo del directorio `manual-install`, asi que métete dentro de este .
+Una vez clonado, todo lo referente a estos posts está en el directorio `manual-install`, así que entra dentro de él.
 
-## Levantar las máquinas con vagrant
+## Levantar las máquinas con Vagrant
 
-Como te dije , dentro del repositorio encontraras el Vagrant file , simplemente tienes que lanzar el siguiente comando :
+Como te dije, dentro del repositorio encontrarás el Vagrantfile. Simplemente tienes que lanzar el siguiente comando:
 
 ```bash
 javiercruces@FJCD-PC:~/openstack-vagrant-ansible/manual-install$ vagrant up
 ```
 
-Una vez lanzado , asegúrate de que las maquinas están levantadas :
+Una vez lanzado, asegúrate de que las máquinas están levantadas:
 
 ```bash
 vagrant status
@@ -40,7 +36,7 @@ compute01                 running (libvirt)
 storage01                 running (libvirt)
 ```
 
-Para conectarse a las VMs puedes utilizar los siguientes comandos:
+Para conectarte a las VMs puedes utilizar los siguientes comandos:
 
 ```bash
 vagrant ssh controller01
@@ -48,11 +44,11 @@ vagrant ssh compute01
 vagrant ssh storage01
 ```
 
-Te recomiendo que te conectes a cada una de ellas en terminales independientes , asi te sera mas cómodo.
+Te recomiendo que te conectes a cada una de ellas en terminales independientes, así te será más cómodo.
 
 ## Instalación del cliente de OpenStack
 
-Como acabamos de levantar las maquinas los repositorios no están actualizados asi que actualizaremos los repositorios y instalaremos el cliente de OpenStack , como esto hay que hacerlo en los tres nodos.
+Como acabamos de levantar las máquinas, los repositorios no están actualizados, así que actualizaremos los repositorios e instalaremos el cliente de OpenStack. Esto hay que hacerlo en los tres nodos.
 
 En mi equipo lo ejecuto desde el directorio del laboratorio, en mi caso `~/openstack-vagrant-ansible/manual-install`:
 
@@ -64,7 +60,7 @@ done
 
 ## Instalación de la base de datos (MariaDB) en el nodo controlador
 
-Openstack utiliza una base de datos para almacenar la informacion de los diferentes servicios , en mi caso voy a instalar MariaDB y el cliente Python en el nodo controlador que utilizaremos posteriormente:
+OpenStack utiliza una base de datos para almacenar la información de los diferentes servicios. En mi caso voy a instalar MariaDB y el cliente Python en el nodo controlador, que utilizaremos posteriormente:
 
 ```bash
 vagrant ssh controller01 -c "sudo apt update && sudo apt install -y mariadb-server python3-pymysql"
@@ -252,4 +248,4 @@ Executing: /usr/lib/systemd/systemd-sysv-install enable etcd
 vagrant@controller01:~$ sudo systemctl start etcd
 ```
 
-Con esto ya hemos preparado las maquinas para comenzar la instalación de los servicios de OpenStack .
+Con esto ya hemos preparado las máquinas para comenzar la instalación de los servicios de OpenStack.

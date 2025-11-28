@@ -7,9 +7,9 @@ hero: ""
 weight: 6
 ---
 
-Identity (Keystone) es el servicio de autenticación y autorización de OpenStack. En este paso voy a preparar la configuración mínima de Identity que necesitamos para continuar con la instalación y para poder probar la OpenStack.
+Identity (Keystone) es el servicio de autenticación y autorización de OpenStack. En este paso prepararé la configuración mínima de Identity que necesitamos para continuar con la instalación y para poder probar OpenStack.
 
-Aunque el dominio `default` ya existe tras el `keystone-manage bootstrap`, voy a crear de forma explícita los proyectos y usuarios que usamos en las guías: `service` (para los usuarios de servicio) y `demo` (para pruebas de usuarios no administrativos). También crearé un rol de ejemplo y lo asignaré al usuario `demo`.
+Aunque el dominio `default` ya existe tras el `keystone-manage bootstrap`, crearé de forma explícita los proyectos y usuarios que usamos en las guías: `service` (para los usuarios de servicio) y `demo` (para pruebas de usuarios no administrativos). También crearé un rol de ejemplo y lo asignaré al usuario `demo`.
 
 Cuando muestro contraseñas en los ejemplos lo hago por claridad; si prefieres, usa `--password-prompt` para introducir la contraseña de forma interactiva y segura.
 
@@ -132,4 +132,4 @@ vagrant@controller01:~$ openstack token issue
 +------------+---------------------------------------------------------------------------------------------+
 ```
 
-Con esto concluyo la configuración básica de proyectos, usuarios y roles necesarios para continuar con la instalación de otros servicios.
+Con esto concluyo la configuración básica de proyectos, usuarios y roles necesaria para continuar con la instalación de otros servicios.

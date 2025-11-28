@@ -7,9 +7,7 @@ hero: ""
 weight: 8
 ---
 
-# Instalación y configuración del servicio Placement en Ubuntu
-
-Placement realiza el seguimiento de los recursos físicos disponibles y ayuda a Nova a planificar asignaciones. En esta guía instalo y configuro Placement en el `controller01` usando paquetes de Ubuntu y dejo los pasos mínimos para verificar su funcionamiento.
+Placement realiza el seguimiento de los recursos físicos disponibles y ayuda a Nova a planificar asignaciones. En esta guía instalaré y configuraré Placement en `controller01` usando paquetes de Ubuntu y dejaré los pasos mínimos para verificar su funcionamiento.
 
 ## Requisitos previos
 
@@ -131,7 +129,7 @@ vagrant@controller01:~$ openstack endpoint create --region RegionOne placement a
 +--------------+----------------------------------+
 ```
 
-> Nota: el puerto puede variar en tu entorno (p. ej. 8780).
+Nota: el puerto puede variar en tu entorno (por ejemplo 8780).
 
 ## Instalar los componentes
 
@@ -173,7 +171,7 @@ username = placement
 password = PLACEMENT_PASS
 ```
 
-Comenta o elimina opciones conflictivas si las hay.
+Comenta o elimina opciones conflictivas si las encuentras.
 
 ## Sincronizar la base de datos
 
@@ -248,5 +246,3 @@ vagrant@controller01:~$ openstack --os-placement-api-version 1.2 resource class 
 ```
 
 Si obtienes una lista (aunque vacía) sin errores, Placement está operativo.
-
----

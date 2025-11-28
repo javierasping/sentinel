@@ -7,11 +7,11 @@ hero: ""
 weight: 9
 ---
 
-Este documento describe cómo instalar y configurar el servicio Compute, denominado nova, en el nodo controlador (`controller01`).
+Este documento describe cómo instalar y configurar el servicio Compute, en nuestro caso Nova, en el nodo controlador (`controller01`).
 
 ## Requisitos previos
 
-Antes de empezar asegúrate de tener las bases de datos y las credenciales de Keystone básicas creadas (admin-openrc disponible).
+Antes de empezar, asegúrate de tener las bases de datos y las credenciales de Keystone básicas creadas (admin-openrc disponible).
 
 ### Crear las bases de datos (en `controller01`)
 
@@ -152,7 +152,7 @@ Instalo los paquetes de controlador que necesito en este nodo:
 vagrant@controller01:~$ sudo apt install nova-api nova-conductor nova-novncproxy nova-scheduler -y
 ```
 
-Editar el archivo `/etc/nova/nova.conf` y realizar los siguientes cambios:
+Edito el archivo `/etc/nova/nova.conf` y realizo los siguientes cambios:
 
 ### Sección `[api_database]` y `[database]`
 
@@ -240,7 +240,7 @@ lock_path = /var/lib/nova/tmp
 
 ### Sección `[placement]`
 
-Conecto Nova con el servicio Placement (usa `PLACEMENT_PASS`):
+Conecto Nova con el servicio Placement (reemplaza `PLACEMENT_PASS`):
 
 ```bash
 [placement]
@@ -254,7 +254,7 @@ username = placement
 password = PLACEMENT_PASS
 ```
 
-## 5. Inicializar las bases de datos de Nova (en `controller01`)
+## Inicializar las bases de datos de Nova (en `controller01`)
 
 Ejecuto los comandos de `nova-manage` para sincronizar esquemas y crear la celda adicional:
 
@@ -277,7 +277,7 @@ vagrant@controller01:~$ sudo su -s /bin/sh -c "nova-manage cell_v2 list_cells" n
 +-------+--------------------------------------+------------------------------------------+-------------------------------------------------+----------+
 ```
 
-## 6. Finalizar la instalación (en `controller01`)
+## Finalizar la instalación (en `controller01`)
 
 Reinicio los servicios de Nova para aplicar la nueva configuración:
 

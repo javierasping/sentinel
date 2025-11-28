@@ -11,11 +11,7 @@ En esta página configuro Neutron en el nodo de cómputo (`compute01`). El nodo 
 
 ## Requisitos previos
 
-Antes de empezar asegúrate de:
-
-- Haber configurado Neutron en el controlador (post 11).
-- Tener acceso SSH al nodo de cómputo.
-- Disponer de las credenciales de servicio (`admin-openrc`).
+Antes de empezar, asegúrate de haber completado todos los post anteriores.
 
 ## Instalar los componentes
 
@@ -108,7 +104,7 @@ username = neutron
 password = NEUTRON_PASS
 ```
 
-## Reinicio servicios y compruebo agentes
+## Reiniciar servicios y comprobar agentes
 
 Reinicio los servicios para aplicar la configuración:
 

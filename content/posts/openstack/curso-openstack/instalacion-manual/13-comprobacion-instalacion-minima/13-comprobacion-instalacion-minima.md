@@ -7,8 +7,6 @@ hero: ""
 weight: 13
 ---
 
-# Verificación mínima: ¿tu instalación levanta una instancia funcional?
-
 En este post realizamos una comprobación de extremo a extremo desde el nodo controlador (`controller01`). Primero verificamos los agentes de red, luego creamos la red y la subred internas, configuramos un router, preparamos la red externa, revisamos imagen y flavor, generamos un par de claves, lanzamos una instancia y validamos la conectividad (ICMP/SSH) mediante IP flotante. Mantenemos salidas reales para comparar.
 
 Antes de comenzar cargamos nuestras credenciales (si no están ya en el entorno):
@@ -17,8 +15,7 @@ Antes de comenzar cargamos nuestras credenciales (si no están ya en el entorno)
 source ~/admin-openrc
 ```
 
----
-### Paso 1: Verificar agentes de red
+## Paso 1: Verificar agentes de red
 
 Comprobamos que los agentes Neutron (linuxbridge, DHCP, L3, metadata) estén vivos y en estado UP:
 
@@ -50,10 +47,9 @@ Salida de ejemplo:
 +------------------+------------------+--------------+-------------------+-------+-------+------------------+
 ```
 
-> Nota: si algún agente aparece como DOWN revisa sus logs en `/var/log/neutron/`.
+Nota: si algún agente aparece como DOWN, revisa sus logs en `/var/log/neutron/`.
 
----
-### Paso 2: Crear red interna y subred
+## Paso 2: Crear red interna y subred
 
 Creamos la red de proyecto `test-net` que usará la instancia:
 
@@ -113,8 +109,7 @@ Salida de ejemplo:
 +----------------------+--------------------------------------+
 ```
 
----
-### Paso 3: Crear router y asociar la subred
+## Paso 3: Crear router y asociar la subred
 
 Creamos el router `test-router` que conectará la red interna con la externa:
 
@@ -145,8 +140,7 @@ Le añadimos la subred interna como interfaz para que gestione `192.168.50.0/24`
 vagrant@controller01:~$ openstack router add subnet test-router test-subnet
 ```
 
----
-### Paso 4: Crear red externa y establecer puerta de enlace
+## Paso 4: Crear red externa y establecer puerta de enlace
 
 Creamos la red externa `ext-net` (tipo flat) que representará la salida al exterior:
 
@@ -178,16 +172,14 @@ Verificamos los datos del router (debe mostrar `external_fixed_ips` y `enable_sn
 vagrant@controller01:~$ openstack router show test-router
 ```
 
----
-### Paso 5: Notas rápidas de diagnóstico
+## Paso 5: Notas rápidas de diagnóstico
 
 * Agente DOWN: revisar `/var/log/neutron/*` y comprobar servicio systemd.
 * Error creando red externa: validar `bridge_mappings` y existencia del dispositivo físico / bridge.
 * `No Network found for provider`: nombre mal escrito o falta definición en ML2.
 * MTU baja / conectividad errática: comparar `mtu` de la red con la interfaz física y ajustar si procede.
 
----
-### Paso 6: Imagen, flavor y par de claves
+## Paso 6: Imagen, flavor y par de claves
 
 Verificamos que exista la imagen base (por ejemplo `cirros`):
 
@@ -238,8 +230,7 @@ openstack floating ip create ext-net
 openstack server add floating ip test-vm <FLOATING_IP>
 ```
 
----
-### Paso 7: Acceder a la instancia y validar red
+## Paso 7: Acceder a la instancia y validar red
 
 Accedemos por SSH usando la IP flotante (si la clave fallara, la contraseña por defecto de CirrOS es `gocubsgo`):
 
@@ -280,8 +271,7 @@ PING 1.1.1.1 (1.1.1.1): 56 data bytes
 round-trip min/avg/max = 9.840/9.840/9.840 ms
 ```
 
----
-### Paso 8: Validar conectividad desde el host
+## Paso 8: Validar conectividad desde el host
 
 Desde el host físico validamos el ping a la IP flotante y confirmamos que la IP interna no es accesible (red aislada):
 
@@ -303,6 +293,6 @@ PING 192.168.50.225 (192.168.50.225) 56(84) bytes of data.
 1 packets transmitted, 0 received, 100% packet loss, time 0ms
 ```
 
-> Nota: la IP interna (192.168.50.x) está aislada por Neutron; solo la IP flotante es alcanzable desde fuera.
+Nota: la IP interna (192.168.50.x) está aislada por Neutron; solo la IP flotante es alcanzable desde fuera.
 
-Con esto hemos comprobado que todos los componentes que hemos instalado funcionan perfectamente .
+Con esto hemos comprobado que todos los componentes que hemos instalado funcionan perfectamente.

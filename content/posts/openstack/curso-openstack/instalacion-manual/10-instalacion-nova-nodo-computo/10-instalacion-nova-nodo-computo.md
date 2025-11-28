@@ -9,7 +9,7 @@ weight: 10
 
 En esta página configuro un nodo de cómputo (por ejemplo `compute01`) para que pueda ejecutar instancias con Nova. Uso QEMU/KVM cuando el hardware lo soporta; si no, dejo configurado QEMU puro.
 
-Antes de empezar asegúrate de:
+Antes de empezar, asegúrate de:
 
 - Haber añadido el nombre e IP del controlador en `/etc/hosts` del nodo de cómputo.
 - Disponer de las credenciales del servicio (`admin-openrc`) y de acceso al servidor de bases de datos.
@@ -135,7 +135,7 @@ Cargo las credenciales de administrador en el controlador y busco hosts sin mape
 vagrant@controller01:~$ source admin-openrc 
 ```
 
-Comprobamos si nuestro controlador detecta nodos de computo pendientes de ser añadidos :
+Compruebo si nuestro controlador detecta nodos de cómputo pendientes de ser añadidos:
 
 ```bash
 vagrant@controller01:~$ sudo su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova

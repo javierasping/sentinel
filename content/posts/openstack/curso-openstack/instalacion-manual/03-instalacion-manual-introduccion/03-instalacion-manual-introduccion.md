@@ -9,36 +9,40 @@ weight: 3
 
 ## Introducción y alcance
 
-En esta serie de posts te ensañare cómo desplegar manualmente una instalación mínima de OpenStack, en este caso es la ultima version disponible en la rama estable de los repositorios de ubuntu Caracal 2024.1, sobre un laboratorio de máquinas virtuales gestionadas con Vagrant. El objetivo no es ofrecer una solución de producción, sino entender los componentes, los ficheros de configuración clave y el orden correcto de despliegue para que una nube básica funcione: Keystone, Glance, Placement, Nova, Neutron, Cinder y Horizon.
+En esta serie de posts te enseñaré cómo desplegar manualmente una instalación mínima de OpenStack sobre un laboratorio de máquinas virtuales gestionadas con Vagrant. Usaremos la versión Caracal 2024.1, la última disponible en la rama estable de los repositorios de Ubuntu. El objetivo no es ofrecer una solución de producción, sino entender los componentes, los ficheros de configuración clave y el orden correcto de despliegue para que una nube básica funcione con Keystone, Glance, Placement, Nova, Neutron, Cinder y Horizon.
 
-Los ficheros que utilizo los puedes tener si accedes a mi [repositorio](https://github.com/javierasping/openstack-vagrant-ansible#):
+Los ficheros que utilizo están disponibles en mi [repositorio](https://github.com/javierasping/openstack-vagrant-ansible#). Puedes clonarlo usando los siguientes comandos, ya sea por SSH o HTTPS:
 
 ```bash
 git clone git@github.com:javierasping/openstack-vagrant-ansible.git
 git clone https://github.com/javierasping/openstack-vagrant-ansible.git
 ```
 
-Una vez clonado , todo lo referente a estos post esta debajo del directorio `manual-install`.
+Una vez clonado, todo lo referente a estos posts está en el directorio `manual-install`.
 
-Los post están pensado para que los leas en orden y te he dejado los comandos para que los puedas copiar y pegar , en el caso de que quieras replicarlo .
+Los posts están pensados para leerse en orden y he incluido los comandos listos para copiar y pegar, por si quieres replicar el laboratorio.
 
-## Escenario 
+## Escenario
 
-Para el laboratorio de OpenStack utilizamos Vagrant con la imagen base bento/ubuntu-24.04, que nos proporciona un Ubuntu 24.04 limpio y listo para instalar todos los componentes de la nube. Hemos definido un dominio de ejemplo openstack.javiercd.es para facilitar la resolución de nombres y el uso de FQDN en todos los servicios. La red de gestión se llama mgmt-net y cada máquina virtual recibe una IP estática, lo que garantiza una comunicación confiable entre los nodos sin depender de DHCP.
+Para el laboratorio de OpenStack utilizamos Vagrant con la imagen base bento/ubuntu-24.04, que proporciona un Ubuntu 24.04 limpio y listo para instalar todos los componentes de OpenStack. Hemos definido el dominio de ejemplo openstack.javiercd.es para facilitar la resolución de nombres y el uso de FQDN en todos los servicios. La red de gestión se llama mgmt-net y cada máquina virtual recibe una IP estática en esta red.
 
-El laboratorio está compuesto por tres nodos con roles bien definidos. El nodo controller01 actúa como controlador y aloja los servicios principales de OpenStack, incluyendo Keystone, Glance API, Nova API, Cinder API y Horizon, con 2 vCPU y aproximadamente 6 GiB de RAM. El nodo compute01 se encarga de ejecutar las instancias y los agentes de red, con 2 vCPU y 4 GiB de RAM. Por último, el nodo storage01 proporciona almacenamiento persistente mediante Cinder con backend LVM, disponiendo de 1 vCPU, 4 GiB de RAM y un disco adicional para los volúmenes. Todo el entorno está pensado para un laboratorio de pruebas, usando libvirt como proveedor recomendado por su estabilidad y eficiencia en Linux.
+El laboratorio está compuesto por tres nodos, cada uno con su propio rol. 
 
-En cuanto a las redes, como se trata de un entorno de laboratorio, solo configuramos dos por máquina. La red pública, proporcionada por libvirt, permitirá que nuestras máquinas accedan a Internet, y una red privada con IPs estáticas asignadas en el Vagrantfile simulará nuestra red de gestión.
+El nodo controller01 actúa como controlador y aloja los servicios principales de OpenStack: Keystone, Glance API, Nova API, Cinder API y Horizon, con 2 vCPU y 6 GiB de RAM.
 
-Si quieres, puedes modificar libremente los recursos asignados a cada nodo o cambiar los dominios empleados según tus necesidades.
+El nodo compute01 se encarga de ejecutar las instancias y los agentes de red, con 2 vCPU y 4 GiB de RAM.
 
-## Requisitos previos y recomendaciones
+Por último, el nodo storage01 proporciona almacenamiento persistente mediante Cinder con backend LVM, con 1 vCPU, 4 GiB de RAM y un disco adicional para los volúmenes.
 
-Para montar este laboratorio de OpenStack necesitarás que tu máquina tenga al menos 4 núcleos de CPU y 14 GB de RAM y con unos 50 GB de disco libres será suficiente. Yo lo he montado en mi equipo con Ubuntu 25 en el que ya tenía instalados KVM y Vagrant pero en tu caso tendrás que instalar estos paquetes antes de empezar. Además, asegúrate de que tu equipo soporte virtualización anidada para poder levantar correctamente las máquinas virtuales del laboratorio.
+Para virtualizar usaremos KVM/QEMU y desplegaré todo en mi máquina, que tiene Ubuntu 25 como sistema operativo.
+
+En cuanto a las redes, como se trata de un entorno de laboratorio, solo configuramos dos por máquina. La red pública será la red por defecto de Vagrant (192.168.121.0/24), que permitirá que nuestras máquinas accedan a Internet, y una red privada con IPs estáticas asignadas en el Vagrantfile simulará nuestra red de gestión (10.0.0.0/24).
+
+Si quieres, puedes modificar libremente los recursos asignados a cada nodo, cambiar los dominios empleados o ajustar las IPs según tus necesidades. Siéntete libre de adaptarlo a tu gusto si vas a replicar el laboratorio.
 
 ## Fuentes
 
-Para realizar este laboratorio he ido recopilando informacion de varias fuentes , asi que para tenerlas centralizadas las dejare en este post:
+Para realizar este laboratorio he recopilado información de varias fuentes. Para tenerlas centralizadas, las dejo en este post:
 
 - [OpenStack Install Guide — Environment: SQL/Database on Ubuntu](https://docs.openstack.org/install-guide/environment-sql-database-ubuntu.html)
 - [curso_openstack_ies - José Domingo Muñoz Rodríguez](https://github.com/josedom24/curso_openstack_ies/tree/main)
