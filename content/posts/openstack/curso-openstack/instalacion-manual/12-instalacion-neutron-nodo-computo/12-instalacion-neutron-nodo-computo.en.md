@@ -1,41 +1,37 @@
 ---
-title: "12 - Configurar Neutron en nodos de cómputo"
+title: "12 - Configure Neutron on compute nodes"
 date: 2025-11-23T12:00:00+00:00
-description: "Aprende a conectar tus nodos de cómputo a la red virtual de OpenStack con Neutron."
-tags: [openstack,instalacion,neutron]
+description: "Connect your compute nodes to OpenStack's virtual network with Neutron."
+tags: [openstack,installation,neutron]
 hero: images/openstack/instalacion-manual/instalar-configurar-neutron-computo.png
 weight: 12
 ---
 
-En esta página configuro Neutron en el nodo de cómputo (`compute01`). El nodo de cómputo gestiona la conectividad de red y los grupos de seguridad para las instancias que se ejecutan en él.
+On this page, we configure Neutron on the compute node (`compute01`). The compute node manages network connectivity and security groups for the instances that run on it.
 
-## Requisitos previos
+## Prerequisites
 
-Antes de empezar, asegúrate de haber completado todos los post anteriores.
+Make sure you have completed all previous posts before starting.
 
-## Instalar los componentes
-
-Instalo el agente Linux bridge en el nodo de cómputo:
+## Install the components
 
 ```bash
 vagrant@compute01:~$ sudo apt install -y neutron-linuxbridge-agent
 ```
 
-## Configurar el componente común
+## Configure the common component
 
-Edito `/etc/neutron/neutron.conf` para configurar la autenticación y la cola de mensajes.
+Edit `/etc/neutron/neutron.conf` to configure authentication and the message queue.
 
-En `[DEFAULT]` configuro el acceso a RabbitMQ y la estrategia de autenticación:
+In `[DEFAULT]`, configure access to RabbitMQ and the authentication strategy:
 
-```bash
+```ini
 [DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller01
 auth_strategy = keystone
-```
 
-En `[keystone_authtoken]` configuro la autenticación con Keystone:
+In `[keystone_authtoken]`, configure authentication with Keystone:
 
-```bash
 [keystone_authtoken]
 auth_uri = http://controller01:5000
 auth_url = http://controller01:5000
@@ -46,52 +42,52 @@ user_domain_name = default
 project_name = service
 username = neutron
 password = NEUTRON_PASS
-```
 
-En `[oslo_concurrency]` defino la ruta de bloqueo:
+In `[oslo_concurrency]`, define the lock path:
 
-```bash
 [oslo_concurrency]
 lock_path = /var/lib/neutron/tmp
 ```
 
-## Configurar el agente Linux Bridge
+## Configure the Linux Bridge agent
 
-El agente Linux bridge construye la infraestructura de red virtual y gestiona los grupos de seguridad para las instancias.
+The Linux bridge agent builds the virtual network infrastructure and manages security groups for instances.
 
-Edito `/etc/neutron/plugins/ml2/linuxbridge_agent.ini` y configuro las opciones.
+Edit `/etc/neutron/plugins/ml2/linuxbridge_agent.ini` and configure the options.
 
-En `[linux_bridge]` asigno la interfaz física que se mapea a la red proveedora (en este caso `eth0`):
+In `[linux_bridge]`, assign the physical interface mapped to the provider network (in this case `eth0`):
 
-```bash
+Edit `/etc/neutron/plugins/ml2/linuxbridge_agent.ini`:
+
+```ini
 [linux_bridge]
 physical_interface_mappings = provider:eth0
 ```
 
-En `[vxlan]` habilito VXLAN para redes de autoservicio y configuro la IP local para el tráfico VXLAN (sustituye `10.0.0.3` por la IP de gestión de tu nodo de cómputo):
+In `[vxlan]`, enable VXLAN for self-service networks and set the local IP for VXLAN traffic (replace `10.0.0.3` with your compute node's management IP):
 
-```bash
+```ini
 [vxlan]
 enable_vxlan = true
 local_ip = 10.0.0.3
 l2_population = true
 ```
 
-En `[securitygroup]` activo los grupos de seguridad y configuro el firewall de iptables:
+In `[securitygroup]`, enable security groups and configure the iptables firewall:
 
-```bash
+```ini
 [securitygroup]
 enable_security_group = true
 firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 ```
 
-## Configurar Nova para usar Neutron
+## Configure Nova to use Neutron
 
-Edito `/etc/nova/nova.conf` para que Nova use Neutron en este nodo.
+Edit `/etc/nova/nova.conf` so Nova uses Neutron on this node.
 
-En `[neutron]` configuro los parámetros de acceso:
+In `[neutron]`, configure the access parameters:
 
-```bash
+```ini
 [neutron]
 url = http://controller01:9696
 auth_url = http://controller01:5000
@@ -104,22 +100,20 @@ username = neutron
 password = NEUTRON_PASS
 ```
 
-## Reiniciar servicios y comprobar agentes
-
-Reinicio los servicios para aplicar la configuración:
+## Restart services and check agents
 
 ```bash
 vagrant@compute01:~$ sudo service nova-compute restart
 vagrant@compute01:~$ sudo service neutron-linuxbridge-agent restart
 ```
 
-Desde el controlador compruebo que todos los agentes están activos:
+From the controller, check that all agents are active:
 
 ```bash
 vagrant@controller01:~$ openstack network agent list
 ```
 
-Deberías ver el agente `Linux bridge` del nodo de cómputo (`compute01`) en estado `UP`, además de los agentes del controlador:
+You should see the `Linux bridge` agent from the compute node (`compute01`) in `UP` state, along with the controller agents:
 
 ```bash
 vagrant@controller01:~$ openstack network agent list

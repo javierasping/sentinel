@@ -3,7 +3,7 @@ title: "01 - ¿Qué es OpenStack?"
 date: 2025-11-23T12:00:00+00:00
 description: "Explicación sencilla de qué es OpenStack, sus componentes y cuándo se utiliza."
 tags: [openstack,introduccion]
-hero: ""
+hero: images/openstack/instalacion-manual/que-es-openstack.png
 weight: 1
 ---
 

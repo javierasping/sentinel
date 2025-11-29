@@ -3,7 +3,7 @@ title: "03 - Guía de instalación manual de OpenStack con Vagrant"
 date: 2025-11-23T12:00:00+00:00
 description: "Aprende a desplegar un laboratorio OpenStack paso a paso usando Vagrant y entornos virtuales."
 tags: [openstack,instalacion,vagrant]
-hero: ""
+hero: images/openstack/instalacion-manual/guia-instalacion-manual-vagrant.png
 weight: 3
 ---
 

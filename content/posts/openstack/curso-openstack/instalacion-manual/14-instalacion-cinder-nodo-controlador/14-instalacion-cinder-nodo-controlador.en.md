@@ -1,17 +1,17 @@
 ---
-title: "14 - Configurar Cinder en el nodo controlador"
+title: "14 - Install Cinder (controller node)"
 date: 2025-11-23T12:00:00+00:00
-description: "Instala y configura Cinder, el servicio de almacenamiento en bloque, en el nodo controlador OpenStack."
-tags: [openstack,instalacion,cinder]
+description: "Install and configure Cinder, the block storage service, on the OpenStack controller node."
+tags: [openstack,installation,cinder]
 hero: images/openstack/instalacion-manual/instalar-configurar-cinder-controlador.png
 weight: 14
 ---
 
-Este post detalla los pasos que seguimos para instalar y configurar **Cinder**, el servicio de almacenamiento en bloque de OpenStack, en el nodo controlador (`controller01`). Incluimos los comandos para crear la base de datos, configurar los servicios, endpoints y la integración con Nova.
+This post details the steps we follow to install and configure **Cinder**, the OpenStack block storage service, on the controller node (`controller01`). We include the commands to create the database, configure services, endpoints and the Nova integration.
 
-## Crear la base de datos de Cinder
+## Create the Cinder database
 
-Accedemos a MySQL y creamos la base de datos y el usuario:
+Access MySQL and create the database and user:
 
 ```bash
 vagrant@controller01:~$ sudo mysql
@@ -22,9 +22,9 @@ GRANT ALL PRIVILEGES ON cinder.* TO 'cinder'@'%' IDENTIFIED BY 'CINDER_DB_PASS';
 EXIT;
 ```
 
-## Crear el usuario de Cinder y asignar el rol admin
+## Create the Cinder user and assign the admin role
 
-Cargamos las credenciales de administrador y creamos el usuario `cinder` en el proyecto `service`:
+Load the admin credentials and create the `cinder` user in the `service` project:
 
 ```bash
 . admin-openrc
@@ -40,15 +40,20 @@ openstack role add --project service --user cinder admin
 | name                | cinder                           |
 | options             | {}                               |
 | password_expires_at | None                             |
-+---------------------+----------------------------------+
+---------------------+----------------------------------+
 ```
 
-## Crear los servicios y endpoints de Cinder
+## Create Cinder services and endpoints
 
-Creamos los servicios `cinderv2` y `cinderv3` y sus endpoints para la región `RegionOne`:
+Create `cinderv2` and `cinderv3` services and endpoints for region `RegionOne`:
 
 ```bash
 openstack service create --name cinderv2 --description "OpenStack Block Storage" volumev2
+```
+
+Example response:
+
+```
 +-------------+----------------------------------+
 | Field       | Value                            |
 +-------------+----------------------------------+
@@ -58,41 +63,37 @@ openstack service create --name cinderv2 --description "OpenStack Block Storage"
 | name        | cinderv2                         |
 | type        | volumev2                         |
 +-------------+----------------------------------+
+```
 
+```bash
 openstack service create --name cinderv3 --description "OpenStack Block Storage" volumev3
+```
 
-+-------------+----------------------------------+
-| Field       | Value                            |
-+-------------+----------------------------------+
-| description | OpenStack Block Storage          |
-| enabled     | True                             |
-| id          | 27fbad310c2d4f2e823898751c3cd4f5 |
-| name        | cinderv3                         |
-| type        | volumev3                         |
-+-------------+----------------------------------+
+For Cinder v2 endpoints:
 
-# Cinder v2
+```bash
 openstack endpoint create --region RegionOne volumev2 public  http://controller01:8776/v2/%\(project_id\)s
 openstack endpoint create --region RegionOne volumev2 internal http://controller01:8776/v2/%\(project_id\)s
 openstack endpoint create --region RegionOne volumev2 admin    http://controller01:8776/v2/%\(project_id\)s
+```
 
-# Cinder v3
+For Cinder v3 endpoints:
+
+```bash
 openstack endpoint create --region RegionOne volumev3 public  http://controller01:8776/v3/%\(project_id\)s
 openstack endpoint create --region RegionOne volumev3 internal http://controller01:8776/v3/%\(project_id\)s
 openstack endpoint create --region RegionOne volumev3 admin    http://controller01:8776/v3/%\(project_id\)s
-
-
 ```
 
-## Instalar los paquetes de Cinder
+## Install Cinder packages
 
 ```bash
 sudo apt install -y cinder-api cinder-scheduler
 ```
 
-## Configurar la base de datos y RabbitMQ
+## Configure the database and RabbitMQ
 
-Editamos el fichero `/etc/cinder/cinder.conf` para incluir los siguientes parámetros:
+Edit `/etc/cinder/cinder.conf` and include the following parameters:
 
 ```ini
 [database]
@@ -102,9 +103,9 @@ connection = mysql+pymysql://cinder:CINDER_DB_PASS@controller01/cinder
 transport_url = rabbit://openstack:RABBIT_PASS@controller01
 ```
 
-## Configurar acceso al servicio de identidad (Keystone)
+## Configure Keystone access
 
-Añadimos los parámetros para Keystone en el mismo fichero:
+Add Keystone parameters in the same file:
 
 ```ini
 [DEFAULT]
@@ -122,7 +123,7 @@ username = cinder
 password = KEYSTONE_SVC_PASS
 ```
 
-## Configurar IP del nodo y lock_path
+## Configure node IP and lock_path
 
 ```ini
 [DEFAULT]
@@ -130,22 +131,22 @@ my_ip = 10.0.0.11
 oslo_concurrency.lock_path = /var/lib/cinder/tmp
 ```
 
-## Sincronizar la base de datos de Cinder
+## Sync the Cinder database
 
 ```bash
 vagrant@controller01:~$ sudo su -s /bin/sh -c "cinder-manage db sync" cinder
 ```
 
-## Configurar Nova para usar Cinder
+## Configure Nova to use Cinder
 
-Añadimos la región de Cinder en el fichero de configuración de Nova `/etc/nova/nova.conf`:
+Add the Cinder region to Nova configuration `/etc/nova/nova.conf`:
 
 ```ini
 [cinder]
 os_region_name = RegionOne
 ```
 
-## Reiniciar los servicios
+## Restart services
 
 ```bash
 sudo service nova-api restart
@@ -153,11 +154,16 @@ sudo service cinder-scheduler restart
 sudo service apache2 restart
 ```
 
-## Verificar el funcionamiento de Cinder
+## Verify Cinder is working
 
 ```bash
 . admin-openrc
 vagrant@controller01:~$ openstack volume service list
+```
+
+Example output:
+
+```
 +------------------+--------------+------+---------+-------+----------------------------+
 | Binary           | Host         | Zone | Status  | State | Updated At                 |
 +------------------+--------------+------+---------+-------+----------------------------+
@@ -165,4 +171,4 @@ vagrant@controller01:~$ openstack volume service list
 +------------------+--------------+------+---------+-------+----------------------------+
 ```
 
-Nota: si algún servicio aparece con `State` distinto de `up` o `enabled`, revisa los logs en `/var/log/cinder/`.
+Note: if any service shows `State` other than `up` or `enabled`, check the logs under `/var/log/cinder/`.

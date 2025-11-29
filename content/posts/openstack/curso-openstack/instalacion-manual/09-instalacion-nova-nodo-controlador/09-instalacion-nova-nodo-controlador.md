@@ -3,7 +3,7 @@ title: "09 - Instalar y configurar Nova en el nodo controlador"
 date: 2025-11-23T12:00:00+00:00
 description: "Paso a paso para desplegar el servicio de computación Nova en el nodo controlador OpenStack."
 tags: [openstack,instalacion,nova]
-hero: ""
+hero: images/openstack/instalacion-manual/instalar-configurar-nova-controlador.png
 weight: 9
 ---
 

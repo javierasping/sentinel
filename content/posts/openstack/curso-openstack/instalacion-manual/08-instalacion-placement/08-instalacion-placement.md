@@ -3,7 +3,7 @@ title: "08 - Configurar Placement en OpenStack"
 date: 2025-11-23T12:00:00+00:00
 description: "Configura el servicio Placement para la planificación y gestión de recursos en OpenStack."
 tags: [openstack,instalacion,placement]
-hero: ""
+hero: images/openstack/instalacion-manual/instalar-configurar-placement.png
 weight: 8
 ---
 

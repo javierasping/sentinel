@@ -1,9 +1,9 @@
 ---
-title: "07 - Instalar y configurar Glance (servicio de imágenes)"
+title: "07 - Instalar y configurar Glance"
 date: 2025-11-23T12:00:00+00:00
 description: "Guía para instalar y configurar Glance, el servicio de imágenes de OpenStack, en tu laboratorio."
 tags: [openstack,instalacion,glance]
-hero: ""
+hero: images/openstack/instalacion-manual/instalar-configurar-glance.png
 weight: 7
 ---
 

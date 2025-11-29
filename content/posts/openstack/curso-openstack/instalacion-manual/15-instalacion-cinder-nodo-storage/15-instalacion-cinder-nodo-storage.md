@@ -3,7 +3,7 @@ title: "15 - Instalar y configurar Cinder en nodos de almacenamiento"
 date: 2025-11-23T12:00:00+00:00
 description: "Instalamos y configuramos Cinder en nodos de almacenamiento usando LVM en OpenStack."
 tags: [openstack,instalacion,cinder]
-hero: ""
+hero: images/openstack/instalacion-manual/instalar-configurar-cinder-storage.png
 weight: 15
 ---
 

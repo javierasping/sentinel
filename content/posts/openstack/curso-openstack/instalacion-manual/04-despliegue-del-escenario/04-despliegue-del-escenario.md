@@ -3,7 +3,7 @@ title: "04 - Despliegue y preparación del escenario"
 date: 2025-11-23T12:00:00+00:00
 description: "Configura tu entorno de pruebas OpenStack con todos los nodos necesarios para el laboratorio."
 tags: [openstack,instalacion,vagrant]
-hero: ""
+hero: images/openstack/instalacion-manual/despliegue-escenario.png
 weight: 4
 ---
 

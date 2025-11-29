@@ -3,7 +3,7 @@ title: "16 - Instalar y configurar Horizon en el nodo controlador"
 date: 2025-11-23T12:00:00+00:00
 description: "Instalamos el panel web Horizon para gestionar OpenStack desde la interfaz gráfica."
 tags: [openstack,instalacion,horizon]
-hero: ""
+hero: images/openstack/instalacion-manual/instalar-configurar-horizon-controlador.png
 weight: 16
 ---
 
@@ -57,7 +57,7 @@ Nota: cambia `volume: 2` por `volume: 3` porque usamos endpoints v3 para Cinder.
 
 ## Ajustar la configuración de Apache
 
-Editamos `/etc/apache2/conf-available/openstack-dashboard.conf` y añadimos la línea `WSGIApplicationGroup %{GLOBAL}` (al final del fichero) para evitar problemas con módulos Python.
+Edita `/etc/apache2/conf-available/openstack-dashboard.conf` y añade la línea `WSGIApplicationGroup %{GLOBAL}` (al final del fichero) para evitar problemas con módulos Python.
 
 ```bash
 WSGIScriptAlias /horizon /usr/share/openstack-dashboard/openstack_dashboard/wsgi.py process-group=horizon
@@ -92,8 +92,18 @@ vagrant@controller01:/usr/share/openstack-dashboard$ sudo python3 manage.py comp
 
 Abre un navegador y visita:
 
-`http://10.0.0.11/horizon`
+`http://controller01/horizon` o `http://IP_NODO_CONTROLADOR/horizon`
 
-Inicia sesión con un usuario creado en Keystone (por ejemplo, `admin` o un usuario de proyecto).
+Inicia sesión con un usuario creado en Keystone (por ejemplo, `admin` o un usuario de proyecto). Recuerda que el dominio por defecto es `Default`.
 
-![](/images/openstack/instalacion-manual/2025-11-23_18-40.png)
+![](/images/openstack/instalacion-manual/iniciar-sesion-horizon.png)
+
+Una vez dentro, verás el uso de los recursos de computación asignados a tu usuario:
+
+![](/images/openstack/instalacion-manual/vista-general.png)
+
+También puedes ver las instancias desplegadas e interactuar con ellas abriendo una consola:
+
+![](/images/openstack/instalacion-manual/instancias.png)
+
+![](/images/openstack/instalacion-manual/instancia-consola.png)

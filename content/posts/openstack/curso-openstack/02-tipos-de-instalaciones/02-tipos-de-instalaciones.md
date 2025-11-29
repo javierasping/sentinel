@@ -3,7 +3,7 @@ title: "02 - Métodos de instalación y despliegue de OpenStack"
 date: 2025-11-23T12:00:00+00:00
 description: "Resumen de los métodos habituales para instalar y desplegar OpenStack (manual, DevStack, OpenStack‑Ansible, Kolla, TripleO, etc.)."
 tags: [openstack,instalacion]
-hero: ""
+hero: images/openstack/instalacion-manual/metodos-instalacion-openstack.png
 weight: 2
 ---
 

@@ -3,7 +3,7 @@ title: "06 - Crear dominios, proyectos, usuarios y roles en OpenStack"
 date: 2025-11-23T12:00:00+00:00
 description: "Aprende a organizar tu entorno OpenStack creando dominios, proyectos, usuarios y roles correctamente."
 tags: [openstack,instalacion,identity]
-hero: ""
+hero: images/openstack/instalacion-manual/crear-dominios-proyectos.png
 weight: 6
 ---
 

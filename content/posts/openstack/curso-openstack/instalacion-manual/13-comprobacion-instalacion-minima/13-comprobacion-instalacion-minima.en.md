@@ -1,29 +1,29 @@
 ---
-title: "13 - Verificar la instalación mínima de OpenStack"
+title: "13 - Verify the Minimum OpenStack Installation"
 date: 2025-11-23T12:00:00+00:00
-description: "Comprobación end-to-end: agentes, redes, router, imagen, instancia, IP flotante y conectividad."
-tags: [openstack,instalacion,verificacion]
+description: "End-to-end verification: agents, networks, router, image, instance, floating IP and connectivity."
+tags: [openstack,installation,verification]
 hero: images/openstack/instalacion-manual/verificar-intalacion-minima.png
 weight: 13
 ---
 
-En este post realizamos una comprobación de extremo a extremo desde el nodo controlador (`controller01`). Primero verificamos los agentes de red, luego creamos la red y la subred internas, configuramos un router, preparamos la red externa, revisamos imagen y flavor, generamos un par de claves, lanzamos una instancia y validamos la conectividad (ICMP/SSH) mediante IP flotante. Mantenemos salidas reales para comparar.
+On this post we perform an end-to-end verification from the controller node (`controller01`). First we check the network agents, then we create the internal network and subnet, configure a router, prepare the external network, check image and flavor, create an SSH keypair, launch an instance and validate connectivity (ICMP/SSH) using a floating IP. Example outputs are included to compare against your environment.
 
-Antes de comenzar cargamos nuestras credenciales (si no están ya en el entorno):
+Before starting, load your admin credentials if they are not already in the environment:
 
 ```bash
-source ~/admin-openrc
+vagrant@controller01:~$ source ~/admin-openrc
 ```
 
-## Paso 1: Verificar agentes de red
+## Step 1: Verify network agents
 
-Comprobamos que los agentes Neutron (linuxbridge, DHCP, L3, metadata) estén vivos y en estado UP:
+Check that Neutron agents (linuxbridge, DHCP, L3, metadata) are alive and in UP state:
 
 ```bash
 vagrant@controller01:~$ openstack network agent list
 ```
 
-Salida de ejemplo:
+Example output:
 
 ```
 +------------------+------------------+--------------+-------------------+-------+-------+------------------+
@@ -47,17 +47,17 @@ Salida de ejemplo:
 +------------------+------------------+--------------+-------------------+-------+-------+------------------+
 ```
 
-Nota: si algún agente aparece como DOWN, revisa sus logs en `/var/log/neutron/`.
+Note: if any agent appears as DOWN, check its logs in `/var/log/neutron/`.
 
-## Paso 2: Crear red interna y subred
+## Step 2: Create internal network and subnet
 
-Creamos la red de proyecto `test-net` que usará la instancia:
+Create the project network `test-net` that will be used by the instance:
 
 ```bash
 vagrant@controller01:~$ openstack network create test-net
 ```
 
-Salida de ejemplo (puede variar el `id` y `provider:segmentation_id`):
+Example output (IDs and segmentation_id can differ):
 
 ```
 +---------------------------+--------------------------------------+
@@ -83,13 +83,13 @@ Salida de ejemplo (puede variar el `id` y `provider:segmentation_id`):
 +---------------------------+--------------------------------------+
 ```
 
-Creamos la subred `test-subnet` dentro de la red (definimos rango y gateway):
+Create the subnet `test-subnet` within the network (define range and gateway):
 
 ```bash
 vagrant@controller01:~$ openstack subnet create --network test-net --subnet-range 192.168.50.0/24 test-subnet
 ```
 
-Salida de ejemplo:
+Example output:
 
 ```
 +----------------------+--------------------------------------+
@@ -109,15 +109,15 @@ Salida de ejemplo:
 +----------------------+--------------------------------------+
 ```
 
-## Paso 3: Crear router y asociar la subred
+## Step 3: Create router and attach the subnet
 
-Creamos el router `test-router` que conectará la red interna con la externa:
+Create the router `test-router` to connect the internal network with the external network:
 
 ```bash
 vagrant@controller01:~$ openstack router create test-router
 ```
 
-Salida de ejemplo inicial (sin gateway externo todavía):
+Initial output (without external gateway yet):
 
 ```
 +-------------------------+--------------------------------------+
@@ -134,15 +134,15 @@ Salida de ejemplo inicial (sin gateway externo todavía):
 +-------------------------+--------------------------------------+
 ```
 
-Le añadimos la subred interna como interfaz para que gestione `192.168.50.0/24`:
+Add the internal subnet as an interface so the router manages `192.168.50.0/24`:
 
 ```bash
 vagrant@controller01:~$ openstack router add subnet test-router test-subnet
 ```
 
-## Paso 4: Crear red externa y establecer puerta de enlace
+## Step 4: Create external network and set gateway
 
-Creamos la red externa `ext-net` (tipo flat) que representará la salida al exterior:
+Create the external network `ext-net` (flat) that represents external connectivity:
 
 ```bash
 vagrant@controller01:~$ openstack network create --external \
@@ -150,7 +150,7 @@ vagrant@controller01:~$ openstack network create --external \
     --provider-network-type flat ext-net
 ```
 
-Creamos la subred externa `ext-subnet` con su pool de IP flotantes:
+Create the external subnet `ext-subnet` with a pool of floating IPs:
 
 ```bash
 vagrant@controller01:~$ openstack subnet create --network ext-net \
@@ -160,85 +160,84 @@ vagrant@controller01:~$ openstack subnet create --network ext-net \
     --dns-nameserver 8.8.8.8 ext-subnet
 ```
 
-Asociamos la red externa al router para habilitar SNAT y tráfico saliente:
+Associate the external network to the router to enable SNAT and outgoing traffic:
 
 ```bash
 vagrant@controller01:~$ openstack router set test-router --external-gateway ext-net
 ```
 
-Verificamos los datos del router (debe mostrar `external_fixed_ips` y `enable_snat: true`):
+Verify the router details (should show `external_fixed_ips` and `enable_snat: true`):
 
 ```bash
 vagrant@controller01:~$ openstack router show test-router
 ```
 
-## Paso 5: Notas rápidas de diagnóstico
+## Step 5: Quick diagnostics
 
-* Agente DOWN: revisar `/var/log/neutron/*` y comprobar servicio systemd.
-* Error creando red externa: validar `bridge_mappings` y existencia del dispositivo físico / bridge.
-* `No Network found for provider`: nombre mal escrito o falta definición en ML2.
-* MTU baja / conectividad errática: comparar `mtu` de la red con la interfaz física y ajustar si procede.
+- Agent DOWN: check `/var/log/neutron/*` and systemd service status.
+- Error creating external network: validate `bridge_mappings` and existence of the physical device/bridge.
+- `No Network found for provider`: misspelled name or missing definition in ML2.
+- Low MTU / erratic connectivity: compare the network `mtu` with the physical interface and adjust if necessary.
 
-## Paso 6: Imagen, flavor y par de claves
+## Step 6: Image, flavor and keypair
 
-Verificamos que exista la imagen base (por ejemplo `cirros`):
+Check that the base image exists (for example `cirros`):
 
 ```bash
 vagrant@controller01:~$ openstack image list
 ```
 
-Creamos un par de claves `testkey` y protegemos el fichero privado:
+Create a keypair `testkey` and secure the private file:
 
 ```bash
 vagrant@controller01:~$ openstack keypair create testkey > testkey.pem
 vagrant@controller01:~$ chmod 600 testkey.pem
 ```
 
-Si no existe el flavor `m1.tiny`, lo creamos (RAM 512 MiB, disco 1 GiB, 1 vCPU):
+If the flavor `m1.tiny` does not exist, create it (RAM 512 MiB, disk 1 GiB, 1 vCPU):
 
 ```bash
-openstack flavor create --id m1.tiny --ram 512 --disk 1 --vcpus 1 m1.tiny
+vagrant@controller01:~$ openstack flavor create --id m1.tiny --ram 512 --disk 1 --vcpus 1 m1.tiny
 ```
 
-
-Lanzamos la instancia `test-vm` en la red interna (el `net-id` corresponde a la red `test-net`; puede diferir en tu entorno):
+Launch the instance `test-vm` on the internal network (the `net-id` corresponds to your `test-net`):
 
 ```bash
 vagrant@controller01:~$ openstack server create --flavor m1.tiny --image cirros --nic net-id=9d446c54-f58c-4301-a515-428598f460ca --security-group default --key-name testkey test-vm
 ```
 
-Comprobamos que su estado pase de BUILD a ACTIVE:
+Check that its state moves from BUILD to ACTIVE:
 
 ```bash
-openstack server list
-openstack server show test-vm | grep -E "status|addresses|flavor|image"
+vagrant@controller01:~$ openstack server list
+vagrant@controller01:~$ openstack server show test-vm | grep -E "status|addresses|flavor|image"
 ```
 
-Si se queda en BUILD/ERROR revisamos `openstack console log show test-vm` y los logs de Nova.
+If it remains in BUILD or goes to ERROR, check `openstack console log show test-vm` and Nova logs.
 
-Si necesitamos acceso SSH/ICMP desde fuera, añadimos reglas al security group `default` (solo para laboratorio; en producción usar reglas mínimas necesarias):
+For external access (lab only), add rules to the `default` security group:
 
 ```bash
-openstack security group rule create --proto tcp --dst-port 22 default
-openstack security group rule create --proto icmp default
+vagrant@controller01:~$ openstack security group rule create --proto tcp --dst-port 22 default
+vagrant@controller01:~$ openstack security group rule create --proto icmp default
 ```
 
-Creamos una IP flotante y la asociamos (sustituye `<FLOATING_IP>` por la dirección asignada):
+Create a floating IP and associate it (replace `<FLOATING_IP>` with the allocated address):
 
 ```bash
-openstack floating ip create ext-net
-openstack server add floating ip test-vm <FLOATING_IP>
+vagrant@controller01:~$ openstack floating ip create ext-net
+vagrant@controller01:~$ openstack server add floating ip test-vm <FLOATING_IP>
 ```
 
-## Paso 7: Acceder a la instancia y validar red
+## Step 7: Access the instance and validate network
 
-Accedemos por SSH usando la IP flotante (si la clave fallara, la contraseña por defecto de CirrOS es `gocubsgo`):
+SSH to the instance using the floating IP (Cirros default password `gocubsgo` if needed):
 
 ```bash
 vagrant@controller01:~$ ssh -i .ssh/testkey.pem cirros@192.168.121.212
 ```
 
-Verificamos la interfaz y el hostname dentro de la instancia:
+Inside the instance check the interface and hostname:
 
 ```bash
 $ ip -4 a
@@ -252,7 +251,7 @@ $ hostname
 test-vm
 ```
 
-Comprobamos la conectividad con la puerta de enlace interna del router y con Internet:
+Check connectivity to the router's internal gateway and to the Internet:
 
 ```bash
 $ ping 192.168.50.1 -c 1
@@ -271,9 +270,9 @@ PING 1.1.1.1 (1.1.1.1): 56 data bytes
 round-trip min/avg/max = 9.840/9.840/9.840 ms
 ```
 
-## Paso 8: Validar conectividad desde el host
+## Step 8: Validate connectivity from the host
 
-Desde el host físico validamos el ping a la IP flotante y confirmamos que la IP interna no es accesible (red aislada):
+From the host machine ping the floating IP and confirm the internal IP is not reachable:
 
 ```bash
 javiercruces@FJCD-PC:~/openstack-vagrant-ansible/manual-install (main) [prd-eu-west|]
@@ -293,6 +292,6 @@ PING 192.168.50.225 (192.168.50.225) 56(84) bytes of data.
 1 packets transmitted, 0 received, 100% packet loss, time 0ms
 ```
 
-Nota: la IP interna (192.168.50.x) está aislada por Neutron; solo la IP flotante es alcanzable desde fuera.
+Note: the internal IP (192.168.50.x) is isolated by Neutron; only the floating IP is reachable from outside.
 
-Con esto hemos comprobado que todos los componentes que hemos instalado funcionan perfectamente.
+With this we have verified the installed components are working as expected.

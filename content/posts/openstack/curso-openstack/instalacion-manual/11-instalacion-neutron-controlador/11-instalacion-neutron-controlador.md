@@ -3,7 +3,7 @@ title: "11 - Configurar Neutron en el nodo controlador"
 date: 2025-11-23T12:00:00+00:00
 description: "Guía completa para configurar Neutron, el servicio de redes de OpenStack, en el controlador."
 tags: [openstack,instalacion,neutron]
-hero: ""
+hero: images/openstack/instalacion-manual/instalar-configurar-neutron-controlador.png
 weight: 11
 ---
 

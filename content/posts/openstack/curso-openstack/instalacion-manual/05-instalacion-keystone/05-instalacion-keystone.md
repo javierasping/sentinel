@@ -3,7 +3,7 @@ title: "05 - Instalar y configurar Keystone en el nodo controlador"
 date: 2025-11-23T12:00:00+00:00
 description: "Paso a paso para instalar el servicio de identidad Keystone en el nodo controlador OpenStack."
 tags: [openstack,instalacion,keystone]
-hero: ""
+hero: images/openstack/instalacion-manual/instalar-keystone-nodo-controlador.png
 weight: 5
 ---
 
