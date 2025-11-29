@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Placement on Atlas</title><link>https://www.javiercd.es/en/tags/placement/</link><description>Recent content in Placement on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 23 Nov 2025 12:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/placement/index.xml" rel="self" type="application/rss+xml"/><item><title>08 - Configure Placement in OpenStack</title><link>https://www.javiercd.es/en/posts/openstack/curso-openstack/instalacion-manual/08-instalacion-placement/08-instalacion-placement/</link><pubDate>Sun, 23 Nov 2025 12:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/openstack/curso-openstack/instalacion-manual/08-instalacion-placement/08-instalacion-placement/</guid><description>&lt;p&gt;Placement tracks available physical resources and helps Nova schedule allocations. In this guide I will install and configure Placement on &lt;code&gt;controller01&lt;/code&gt; using Ubuntu packages and provide the minimal steps to verify it.&lt;/p&gt;
+&lt;h2 id="prerequisites"&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;Before starting, make sure you have:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Keystone installed and reachable.&lt;/li&gt;
+&lt;li&gt;A MySQL/MariaDB database available.&lt;/li&gt;
+&lt;li&gt;Administrative credentials (&lt;code&gt;admin-openrc&lt;/code&gt;) to create users and services.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="create-the-database"&gt;Create the database&lt;/h2&gt;
+&lt;p&gt;Connect to the database server as &lt;code&gt;root&lt;/code&gt; to create the Placement database:&lt;/p&gt;</description></item></channel></rss>

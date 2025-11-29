@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Neutron on Atlas</title><link>https://www.javiercd.es/tags/neutron/</link><description>Recent content in Neutron on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sun, 23 Nov 2025 12:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/tags/neutron/index.xml" rel="self" type="application/rss+xml"/><item><title>11 - Configurar Neutron en el nodo controlador</title><link>https://www.javiercd.es/posts/openstack/curso-openstack/instalacion-manual/11-instalacion-neutron-controlador/11-instalacion-neutron-controlador/</link><pubDate>Sun, 23 Nov 2025 12:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/openstack/curso-openstack/instalacion-manual/11-instalacion-neutron-controlador/11-instalacion-neutron-controlador/</guid><description>&lt;p&gt;En esta página instalo y configuro el servicio de red Neutron en el nodo controlador (&lt;code&gt;controller01&lt;/code&gt;). Neutron gestiona las redes virtuales, routers, subredes y demás componentes de networking para las instancias.&lt;/p&gt;
+&lt;h2 id="requisitos-previos"&gt;Requisitos previos&lt;/h2&gt;
+&lt;p&gt;Antes de empezar, asegúrate de tener:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Keystone instalado y accesible.&lt;/li&gt;
+&lt;li&gt;Una base de datos MySQL/MariaDB disponible.&lt;/li&gt;
+&lt;li&gt;Credenciales administrativas (&lt;code&gt;admin-openrc&lt;/code&gt;) para crear usuarios y servicios.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="crear-la-base-de-datos"&gt;Crear la base de datos&lt;/h3&gt;
+&lt;p&gt;Me conecto al servidor de base de datos como &lt;code&gt;root&lt;/code&gt; para crear la base de datos de Neutron:&lt;/p&gt;</description></item><item><title>12 - Configurar Neutron en nodos de cómputo</title><link>https://www.javiercd.es/posts/openstack/curso-openstack/instalacion-manual/12-instalacion-neutron-nodo-computo/12-instalacion-neutron-nodo-computo/</link><pubDate>Sun, 23 Nov 2025 12:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/openstack/curso-openstack/instalacion-manual/12-instalacion-neutron-nodo-computo/12-instalacion-neutron-nodo-computo/</guid><description>&lt;p&gt;En esta página configuro Neutron en el nodo de cómputo (&lt;code&gt;compute01&lt;/code&gt;). El nodo de cómputo gestiona la conectividad de red y los grupos de seguridad para las instancias que se ejecutan en él.&lt;/p&gt;
+&lt;h2 id="requisitos-previos"&gt;Requisitos previos&lt;/h2&gt;
+&lt;p&gt;Antes de empezar, asegúrate de haber completado todos los post anteriores.&lt;/p&gt;
+&lt;h2 id="instalar-los-componentes"&gt;Instalar los componentes&lt;/h2&gt;
+&lt;p&gt;Instalo el agente Linux bridge en el nodo de cómputo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vagrant@compute01:~$ sudo apt install -y neutron-linuxbridge-agent
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="configurar-el-componente-común"&gt;Configurar el componente común&lt;/h2&gt;
+&lt;p&gt;Edito &lt;code&gt;/etc/neutron/neutron.conf&lt;/code&gt; para configurar la autenticación y la cola de mensajes.&lt;/p&gt;</description></item></channel></rss>

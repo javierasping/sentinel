@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>08 - Configurar Placement en OpenStack on Atlas</title><link>https://www.javiercd.es/posts/openstack/curso-openstack/instalacion-manual/08-instalacion-placement/</link><description>Recent content in 08 - Configurar Placement en OpenStack on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Sun, 23 Nov 2025 12:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/openstack/curso-openstack/instalacion-manual/08-instalacion-placement/index.xml" rel="self" type="application/rss+xml"/><item><title>08 - Configurar Placement en OpenStack</title><link>https://www.javiercd.es/posts/openstack/curso-openstack/instalacion-manual/08-instalacion-placement/08-instalacion-placement/</link><pubDate>Sun, 23 Nov 2025 12:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/openstack/curso-openstack/instalacion-manual/08-instalacion-placement/08-instalacion-placement/</guid><description>&lt;p&gt;Placement realiza el seguimiento de los recursos físicos disponibles y ayuda a Nova a planificar asignaciones. En esta guía instalaré y configuraré Placement en &lt;code&gt;controller01&lt;/code&gt; usando paquetes de Ubuntu y dejaré los pasos mínimos para verificar su funcionamiento.&lt;/p&gt;
+&lt;h2 id="requisitos-previos"&gt;Requisitos previos&lt;/h2&gt;
+&lt;p&gt;Antes de empezar, asegúrate de tener:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Keystone instalado y accesible.&lt;/li&gt;
+&lt;li&gt;Una base de datos MySQL/MariaDB disponible.&lt;/li&gt;
+&lt;li&gt;Credenciales administrativas (&lt;code&gt;admin-openrc&lt;/code&gt;) para crear usuarios y servicios.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="crear-la-base-de-datos"&gt;Crear la base de datos&lt;/h2&gt;
+&lt;p&gt;Me conecto al servidor de base de datos como &lt;code&gt;root&lt;/code&gt; para crear la base de datos de Placement:&lt;/p&gt;</description></item></channel></rss>
