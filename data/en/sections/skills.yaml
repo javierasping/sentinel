@@ -49,7 +49,7 @@ skills:
     summary: "Experience in managing Apache and Nginx web servers, including configuration and maintenance."
 
   - name: Reverse Proxy
-    logo: /images/sections/skills/reversep.png
+    logo: /images/sections/skills/reversep.webp
     summary: "Configuring and managing reverse proxies to redirect user requests to backend servers, using solutions like Nginx and Apache."
 
   - name: Load Balancers
@@ -58,7 +58,7 @@ skills:
     url: "https://www.haproxy.org/"
 
   - name: DNS
-    logo: /images/sections/skills/dns.png
+    logo: /images/sections/skills/dns.webp
     summary: "Experience in configuring and managing DNS servers using BIND9. Able to manage zones, records, and resolve name resolution issues in local networks and external domains."
 
   - name: Email
@@ -78,7 +78,7 @@ skills:
     summary: "Configuration and management of routers with IOS, Switching (VLAN, QoS, Port Trunking), and Administration (Maintenance, Security, VPN, VLAN, WiFi, IPv6)."
 
   - name: Databases
-    logo: /images/sections/skills/database.png
+    logo: /images/sections/skills/database.webp
     summary: "Experience in administering and managing various databases such as Oracle, MySQL, PostgreSQL, and MongoDB, as well as knowledge of SQL and PL/SQL."
 
   - name: CI/CD
