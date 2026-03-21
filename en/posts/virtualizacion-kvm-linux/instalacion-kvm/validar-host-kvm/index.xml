@@ -6,7 +6,7 @@
 &lt;li&gt;AMD: AMD-V&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;To check if your CPU is compatible, run:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;grep --color -Ew &lt;span style="color:#e6db74"&gt;&amp;#39;svm|vmx|lm&amp;#39;&lt;/span&gt; /proc/cpuinfo
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;grep --color -Ew &lt;span style="color:#e6db74"&gt;&amp;#39;svm|vmx|lm&amp;#39;&lt;/span&gt; /proc/cpuinfo
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;vmx&lt;/code&gt; → Intel CPU with VT-x&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;svm&lt;/code&gt; → AMD CPU with AMD-V&lt;/li&gt;

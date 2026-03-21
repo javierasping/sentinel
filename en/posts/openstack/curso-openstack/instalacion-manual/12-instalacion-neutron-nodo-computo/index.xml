@@ -2,7 +2,7 @@
 &lt;h2 id="prerequisites"&gt;Prerequisites&lt;/h2&gt;
 &lt;p&gt;Make sure you have completed all previous posts before starting.&lt;/p&gt;
 &lt;h2 id="install-the-components"&gt;Install the components&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vagrant@compute01:~$ sudo apt install -y neutron-linuxbridge-agent
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vagrant@compute01:~$ sudo apt install -y neutron-linuxbridge-agent
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="configure-the-common-component"&gt;Configure the common component&lt;/h2&gt;
 &lt;p&gt;Edit &lt;code&gt;/etc/neutron/neutron.conf&lt;/code&gt; to configure authentication and the message queue.&lt;/p&gt;
 &lt;p&gt;In &lt;code&gt;[DEFAULT]&lt;/code&gt;, configure access to RabbitMQ and the authentication strategy:&lt;/p&gt;</description></item></channel></rss>

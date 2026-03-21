@@ -3,7 +3,7 @@
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Configura el archivo de configuración de MariaDB&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Primero, edita el archivo de configuración de MariaDB para permitir conexiones desde direcciones IP específicas. Abre el archivo &lt;code&gt;/etc/mysql/mariadb.conf.d/50-server.cnf&lt;/code&gt; con un editor de texto, por ejemplo, &lt;code&gt;nano&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Busca la línea que comienza con &lt;code&gt;bind-address&lt;/code&gt; y cámbiala para que acepte conexiones desde cualquier dirección IP. Puedes hacer que acepte conexiones desde todas las IPs con:&lt;/p&gt;</description></item><item><title>Configuración de acceso remoto en Oracle</title><link>https://www.javiercd.es/posts/base_de_datos/oracle_acceso_remoto/oracle_acceso_remoto/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/base_de_datos/oracle_acceso_remoto/oracle_acceso_remoto/</guid><description>&lt;p&gt;Para configurar el acceso remoto en Oracle, es fundamental ajustar correctamente los archivos de red ubicados en $ORACLE_HOME/network/admin. Estos archivos, como listener.ora y tnsnames.ora, permiten definir cómo se conectarán los clientes a la base de datos y qué equipos tendrán acceso.&lt;/p&gt;
 &lt;h2 id="configuración-acceso-remoto"&gt;Configuración acceso remoto&lt;/h2&gt;
 &lt;p&gt;La configuración de oracle con respecto a la red se guarda en el directorio que hayamos definido como home de oracle $ORACLE_HOME/network/admin :&lt;/p&gt;
@@ -27,7 +27,7 @@
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Actualiza los repositorios e instala PostgreSQL&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;Primero, asegúrate de que tu sistema esté actualizado e instala PostgreSQL:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo apt update
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo apt update
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo apt install postgresql
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
@@ -37,7 +37,7 @@
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Actualiza los repositorios e instala el paquete de MariaDB&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;Primero, actualiza los repositorios de tu sistema e instala MariaDB:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@jcruces:~$ sudo apt update
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@jcruces:~$ sudo apt update
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@jcruces:~$ sudo apt install mariadb-server
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;

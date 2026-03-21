@@ -3,7 +3,7 @@
 &lt;h2 id="preparación-del-escenario"&gt;Preparación del escenario&lt;/h2&gt;
 &lt;p&gt;Para crear la VPN añadiré al escenario un nuevo Fortigate .&lt;/p&gt;
 &lt;p&gt;Así que vamos a proceder a configurarlo , lo primero sera conocer la IP que le ha dado el DHCP :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FortiGate-VM64-KVM login: admin
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FortiGate-VM64-KVM login: admin
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Password:
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;You are forced to change your password. Please input a new password.
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;New Password:

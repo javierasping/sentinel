@@ -3,5 +3,5 @@
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Configura el archivo de configuración de MariaDB&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Primero, edita el archivo de configuración de MariaDB para permitir conexiones desde direcciones IP específicas. Abre el archivo &lt;code&gt;/etc/mysql/mariadb.conf.d/50-server.cnf&lt;/code&gt; con un editor de texto, por ejemplo, &lt;code&gt;nano&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Busca la línea que comienza con &lt;code&gt;bind-address&lt;/code&gt; y cámbiala para que acepte conexiones desde cualquier dirección IP. Puedes hacer que acepte conexiones desde todas las IPs con:&lt;/p&gt;</description></item></channel></rss>

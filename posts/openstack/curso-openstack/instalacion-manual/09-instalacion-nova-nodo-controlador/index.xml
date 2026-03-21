@@ -3,5 +3,5 @@
 &lt;p&gt;Antes de empezar, asegúrate de tener las bases de datos y las credenciales de Keystone básicas creadas (admin-openrc disponible).&lt;/p&gt;
 &lt;h3 id="crear-las-bases-de-datos-en-controller01"&gt;Crear las bases de datos (en &lt;code&gt;controller01&lt;/code&gt;)&lt;/h3&gt;
 &lt;p&gt;Me conecto al servidor SQL como &lt;code&gt;root&lt;/code&gt; para crear las bases necesarias:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vagrant@controller01:~$ sudo mysql
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vagrant@controller01:~$ sudo mysql
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Creo las bases de datos &lt;code&gt;nova_api&lt;/code&gt;, &lt;code&gt;nova&lt;/code&gt; y &lt;code&gt;nova_cell0&lt;/code&gt;:&lt;/p&gt;</description></item></channel></rss>

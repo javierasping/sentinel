@@ -3,5 +3,5 @@
 &lt;p&gt;All commands in this post are executed on the &lt;code&gt;controller01&lt;/code&gt; node.&lt;/p&gt;
 &lt;h2 id="create-the-keystone-database"&gt;Create the Keystone database&lt;/h2&gt;
 &lt;p&gt;Connect to the database server as root:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo mysql
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo mysql
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create the &lt;code&gt;keystone&lt;/code&gt; database:&lt;/p&gt;</description></item></channel></rss>

@@ -18,7 +18,7 @@ The comparative part of the posts in this section in which we mount each type of
 &lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
 &lt;h3 id="swan-router-configuration"&gt;Swan router configuration&lt;/h3&gt;
 &lt;p&gt;Let&amp;rsquo;s give each interface the corresponding network configuration:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Interfaz que nos dará internet&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#Interfaz que nos dará internet&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1#configure terminal
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#interface fastEthernet 0/0&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;R1&lt;span style="color:#f92672"&gt;(&lt;/span&gt;config-if&lt;span style="color:#f92672"&gt;)&lt;/span&gt;&lt;span style="color:#75715e"&gt;#ip add dhcp&lt;/span&gt;

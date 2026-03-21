@@ -11,7 +11,7 @@ In this post I do a small summary of the equivalencies between the GUI and the C
 &lt;h3 id="stage-preparation"&gt;Stage preparation&lt;/h3&gt;
 &lt;p&gt;To create the VPN I will add a new Fortigate to the stage.&lt;/p&gt;
 &lt;p&gt;So let&amp;rsquo;s proceed to set it up, the first thing will be to know the IP that the DHCP has given you:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FortiGate-VM64-KVM login: admin
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FortiGate-VM64-KVM login: admin
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Password:
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;You are forced to change your password. Please input a new password.
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;New Password:
