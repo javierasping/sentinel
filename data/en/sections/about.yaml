@@ -19,7 +19,7 @@ designation: Sysadmin
 # resume: "files/resume.pdf"
 
 # a summary about you
-summary: 'I have experience in system administration, covering operating systems such as GNU/Linux and Windows, virtualization, cloud services, and management tools. Additionally, I have knowledge in databases, networking, and security, which allows me to tackle a wide range of challenges in system administration.'
+summary: 'Platform Engineer specialized in Kong Gateway with automated deployments (Helm/CI/CD), authentication (mTLS, OIDC, Key-Auth), and full observability (Prometheus, Grafana, Loki, OpenSearch). Experience in AWS (VPCs, ALB, IAM), containers (Docker/Kubernetes), automation in Go/Bash/Python, and service hardening to ensure availability, security, and continuity.'
 
 # your social links
 # give as many as you want. use font-awesome for the icons.

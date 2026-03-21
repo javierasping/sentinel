@@ -89,3 +89,10 @@ degrees:
     customSections: #(optional)
       - name: Trabajo fin de grado
         content: MAAS "Metal as a service"
+
+  - name: Grado en Ingeniería Informática
+    timeframe: 2024
+    institution:
+      name: UNIR
+      url: "https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-online-ingenieria-informatica"
+      icon: fa-university

@@ -19,7 +19,7 @@ designation: Administrador de sistemas
 # resume: "files/resume.pdf"
 
 # a summary about you
-summary: 'Tengo experiencia en administración de sistemas, abarcando sistemas operativos como GNU/Linux y Windows, virtualización, servicios en la nube, y herramientas de gestión. Además, tengo conocimientos en bases de datos, redes y seguridad, lo que me permite abordar una amplia gama de desafíos en el ámbito de la administración de sistemas'
+summary: 'Platform Engineer especializado en Kong Gateway con despliegues automatizados (Helm/CI-CD), autenticación (mTLS, OIDC, Key-Auth) y observabilidad completa (Prometheus, Grafana, Loki, OpenSearch). Experiencia en AWS (VPC, ALB, IAM), contenedores (Docker/Kubernetes), automatización en Go/Bash/Python y hardening de servicios para garantizar disponibilidad, seguridad y continuidad.'
 
 # your social links
 # give as many as you want. use font-awesome for the icons.
