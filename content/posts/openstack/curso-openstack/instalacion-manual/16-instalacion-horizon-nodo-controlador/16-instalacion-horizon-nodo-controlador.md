@@ -96,14 +96,14 @@ Abre un navegador y visita:
 
 Inicia sesión con un usuario creado en Keystone (por ejemplo, `admin` o un usuario de proyecto). Recuerda que el dominio por defecto es `Default`.
 
-![](/images/openstack/instalacion-manual/iniciar-sesion-horizon.png)
+![](/images/openstack/instalacion-manual/login_openstack.png)
 
 Una vez dentro, verás el uso de los recursos de computación asignados a tu usuario:
 
-![](/images/openstack/instalacion-manual/vista-general.png)
+![](/images/openstack/instalacion-manual/vista-genera-instalacion-manual.png)
 
 También puedes ver las instancias desplegadas e interactuar con ellas abriendo una consola:
 
-![](/images/openstack/instalacion-manual/instancias.png)
+![](/images/openstack/instalacion-manual/instancias-instalacion-manual..png)
 
-![](/images/openstack/instalacion-manual/instancia-consola.png)
+![](/images/openstack/instalacion-manual/hipervisores-instalacion-manual.png)

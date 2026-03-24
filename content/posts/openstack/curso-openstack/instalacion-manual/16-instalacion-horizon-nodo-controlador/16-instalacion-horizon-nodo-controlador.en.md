@@ -95,10 +95,10 @@ Open a browser and visit:
 
 Log in with a user created in Keystone (e.g., `admin` or a project user). The default domain is `Default`.
 
-![](/images/openstack/instalacion-manual/iniciar-sesion-horizon.png)
+![](/images/openstack/instalacion-manual/login_openstack.png)
 
-![](/images/openstack/instalacion-manual/vista-general.png)
+![](/images/openstack/instalacion-manual/general_vieuw.png)
 
-![](/images/openstack/instalacion-manual/instancias.png)
+![](/images/openstack/instalacion-manual/instances.png)
 
-![](/images/openstack/instalacion-manual/instancia-consola.png)
+![](/images/openstack/instalacion-manual/services.png)
