@@ -916,4 +916,4 @@ Por supuesto tambien podemos ver los servicios que hemos instalado:
 ![](/images/openstack/instalacion-manual/services.png)
 
 
-Hasta aquí este post,la idea ha sido mostrar, de forma práctica, cómo desplegar una instalación básica de OpenStack en un entorno de laboratorio, entendiendo los pasos clave y los componentes implicados en el proceso.
+Hasta aquí este post, la idea ha sido mostrar, de forma práctica, cómo desplegar una instalación básica de OpenStack en un entorno de laboratorio, entendiendo los pasos clave y los componentes implicados en el proceso.
