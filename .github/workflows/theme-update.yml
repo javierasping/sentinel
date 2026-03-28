@@ -7,13 +7,15 @@ on:
 jobs:
   update-theme:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v6
         with:
           ref: main
 
       # Setup mise
-      - uses: jdx/mise-action@v3
+      - uses: jdx/mise-action@v4
 
       - name: Install dependencies
         run: |

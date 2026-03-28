@@ -3,7 +3,7 @@ title: "17 - Installing OpenStack using kolla-ansible on virtual machines"
 date: 2025-11-23T12:00:00+00:00
 description: "We install the Horizon web dashboard to manage OpenStack from the GUI."
 tags: [openstack,installation,horizon]
-hero: images/openstack/instalacion-manual/instalar-configurar-horizon-controlador.png
+hero: images/openstack/instalacion-manual/instalacion-openstack-ansible-kolla.png
 weight: 17
 ---
 
