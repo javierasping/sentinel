@@ -1,5 +1,5 @@
 ---
-title: "Installation of NVIDIA Controllers in Debian 12"
+title: "Installation of NVIDIA Drivers in Debian 12"
 date: 2024-09-01T10:00:00+00:00
 Description: Learn how to install NVIDIA drivers in Debian 12 to optimize your system's graphic performance.
 tags: [Controladores NVIDIA,Linux]
@@ -8,11 +8,11 @@ slug: instalacion-controladores-nvidia-debian-12
 ---
 
 
-The installation of NVIDIA drivers in the Linux universe has traditionally been a challenge, especially in distributions such as Debian, where free software policies often complicate the process.
+Installing NVIDIA drivers in Linux has traditionally been a challenge, especially in distributions such as Debian, where free software policies often complicate the process.
 
-In this post I will explain a simple way to install NVIDIA drivers using the official Debian repositories. In addition, at the end of the article, you will learn to install a key tool called Nvidia Optimus, which will provide you with the ability to select which graphics card you will use.
+In this post, I will explain a simple way to install NVIDIA drivers using the official Debian repositories. In addition, at the end of the article, you will learn to install a key tool called Nvidia Optimus, which will allow you to select which graphics card your system will use.
 
-This tool is especially useful in laptops, as it is common for these devices to present problems when emitting video through ports, a situation that can be easily with this tool.
+This tool is especially useful in laptops, as it is common for these devices to present problems when emitting video through ports, a situation that can be easily solved with this tool.
 
 ## Identification of Our GPU
 
@@ -24,9 +24,9 @@ javiercruces@HPOMEN15:~$ lspci -nn | egrep -i "3d|display|vga"
 06:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Cezanne [Radeon Vega Series / Radeon Vega Mobile Series] [1002:1638] (rev c5)
 ```
 
-As you can see in the output of the previous command, my laptop has two graphics cards. Identifying the model is crucial, as if we choose a manual driver installation, we will need the specific for our GPU.
+As you can see in the output of the previous command, my laptop has two graphics cards. Identifying the model is crucial, as a manual driver installation requires the specific driver for your GPU.
 
-However, in Debian we have a utility that simplifies this process, indicating which controller we should install. However, to access this utility, we need to modify our Debian repositories.
+However, in Debian we have a utility that simplifies this process, indicating which controller we should install. However, to access this utility, we need to modify the Debian repositories file.
 
 To make this modification, we will add the "non-free" section to our repositories using a text editor of our preference:
 ```bash
@@ -36,7 +36,7 @@ deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmwa
 
 ```
 
-Remember that every time you modify this file you have to make an update for it to be updated.
+Remember that every time you modify this file, you must run an update for the changes to take effect.
 
 ```bash
 javiercruces@HPOMEN15:~$ sudo apt update -y 
@@ -82,7 +82,7 @@ javiercruces@HPOMEN15:~$ sudo apt install linux-headers-686
 ```
 
 
-Once the driver's dependencies are installed, we will install the same:
+Once the driver dependencies are installed, we will proceed to install the driver:
 
 ```bash
 javiercruces@HPOMEN15:~$ sudo apt install nvidia-driver -y
@@ -90,9 +90,9 @@ javiercruces@HPOMEN15:~$ sudo apt install nvidia-driver -y
 
 During installation, you are likely to find a typically blue screen that informs you about a conflict with the "nouveau" driver, which is the driver installed automatically by Debian due to its free software features. Simply click "OK" on this screen and continue the installation process.
 
-At the end of the installation, you will need to restart your equipment to load the NVIDIA module. After reboot, you can check if it has been properly loaded using the following command. Using the tilted bar (/), you can filter the output by writing the word "nvidia," which will take you directly to the relevant information on your graphic card, allowing you to confirm that the NVIDIA module is loaded.
+At the end of the installation, you will need to restart your equipment to load the NVIDIA module. After reboot, you can check if it has been properly loaded using the following command. By using the forward slash (/), you can filter the output by typing "nvidia", which will take you directly to the relevant information on your graphic card, allowing you to confirm that the NVIDIA module is loaded.
 
-You have to check that on the line "Kernel driver in use," have the nvidia module.
+Ensure that the "Kernel driver in use" line specifies the `nvidia` module.
 
 ```bash
 javiercruces@HPOMEN15:~$ lspci -knn | less
@@ -106,7 +106,7 @@ javiercruces@HPOMEN15:~$ lspci -knn | less
 
 ```
 
-You may not have noticed but now on your desktop you will have an app called nvidia-settings with which you can set your graph.
+You may not have noticed but now on your desktop you will have an app called `nvidia-settings` to configure your graphics card.
 
 In addition if you want to see from the command line information of your GPU NVIDIA you have at your disposal the following command:
 
@@ -140,13 +140,13 @@ javiercruces@HPOMEN15:~$
 ```
 
 
-Congratulations, Master of NVIDIA Drivers! You have unlocked an epic achievement in the realm of computer science. Not anyone is able to get here, I don't want to disappoint you but have you checked that the HDMI and DisplayPort ports of your team work?
+Congratulations, Master of NVIDIA Drivers! You've unlocked an epic achievement in computing. Not everyone makes it this far; I hate to be the bearer of bad news, but have you checked if the HDMI and DisplayPort ports on your machine actually work?
 
 At this point, two possible paths are opened:
 
 In the first stage, your ports work perfectly without requiring additional intervention. If this is your case, congratulations you see God has favorites.
 
-If, on the contrary, like I'm not one of them, as the ports have just checked, they don't emit video, on your monitor you'll see that you have no signal even though on the debian you see the monitor detects you.
+If, on the contrary, you're not one of the lucky ones and the ports don't output video (your monitor shows no signal even though Debian detects it),
 
 If this problem occurs you can find a post on this same page explaining a possible solution, for this we will make use of the nvidia optimus tool. I leave the link below https://www.javiercd.es/posts/drivers/nvidia_optimus/nvidia_optimus/
 

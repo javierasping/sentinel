@@ -8,9 +8,9 @@ slug: instalacion-controladores-nvidia-debian-12
 ---
 
 
-La instalación de los controladores de NVIDIA en el universo de Linux ha sido tradicionalmente un desafío, especialmente en distribuciones como Debian, donde las políticas del software libre a menudo complican el proceso.
+La instalación de los controladores de NVIDIA en Linux ha sido tradicionalmente un desafío, especialmente en distribuciones como Debian, donde las políticas del software libre a menudo complican el proceso.
 
-En este post voy a explicarte una forma sencilla de instalar los drivers de NVIDIA usando los repositorios oficiales de Debian . Además, al final del artículo, aprenderás a instalar una herramienta clave llamada Nvidia Optimus, que te brindará la capacidad de seleccionar qué tarjeta gráfica utilizará tu equipo.
+En este post, te explicaré una forma sencilla de instalar los controladores de NVIDIA utilizando los repositorios oficiales de Debian. Además, al final del artículo, aprenderás a instalar una herramienta clave llamada Nvidia Optimus, que te brindará la capacidad de seleccionar qué tarjeta gráfica utilizará tu equipo.
 
 Esta herramienta es especialmente útil en portátiles, ya que es común que estos dispositivos presenten problemas al emitir video a través de los puertos, una situación que puede ser fácilmente con esta herramienta.
 
@@ -26,7 +26,7 @@ javiercruces@HPOMEN15:~$ lspci -nn | egrep -i "3d|display|vga"
 
 Como se puede apreciar en la salida del comando anterior, mi equipo portátil cuenta con dos tarjetas gráficas. Identificar el modelo es crucial, ya que si optamos por una instalación manual del controlador, necesitaremos el específico para nuestra GPU.
 
-No obstante, en Debian contamos con una utilidad que simplifica este proceso, indicándonos qué controlador debemos instalar. Sin embargo, para acceder a esta utilidad, es necesario modificar nuestros repositorios de Debian.
+No obstante, en Debian contamos con una utilidad que simplifica este proceso, indicándonos qué controlador debemos instalar. Sin embargo, para acceder a esta utilidad, es necesario modificar el archivo de repositorios de Debian.
 
 Para llevar a cabo esta modificación, añadiremos la sección "non-free" a nuestros repositorios utilizando un editor de texto de nuestra preferencia:
 ```bash
@@ -36,7 +36,7 @@ deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmwa
 
 ```
 
-Recuerda que cada vez que modifiques este fichero tienes que hacer un update para que se actualice.
+Recuerda que cada vez que modifiques este archivo debes ejecutar la actualización de los repositorios para que los cambios surtan efecto.
 
 ```bash
 javiercruces@HPOMEN15:~$ sudo apt update -y 
@@ -82,7 +82,7 @@ javiercruces@HPOMEN15:~$ sudo apt install linux-headers-686
 ```
 
 
-Una vez instalada las dependencias del driver , instalaremos el mismo :
+Una vez instaladas las dependencias del controlador, procederemos a instalarlo:
 
 ```bash
 javiercruces@HPOMEN15:~$ sudo apt install nvidia-driver -y
@@ -92,7 +92,7 @@ Durante la instalación, es probable que encuentres una pantalla típicamente az
 
 Al concluir la instalación, será necesario reiniciar tu equipo para cargar el módulo de NVIDIA. Después de reiniciar, puedes verificar si se ha cargado correctamente utilizando el siguiente comando. Utilizando la barra inclinada (/), puedes filtrar la salida escribiendo la palabra "nvidia", lo que te llevará directamente a la información relevante de tu tarjeta gráfica, permitiéndote confirmar que el módulo de NVIDIA está cargado.
 
-Tienes que comprobar que en la linea "Kernel driver in use" , tenga el modulo nvidia . 
+Debes comprobar que en la línea "Kernel driver in use" aparezca el módulo `nvidia`. 
 
 ```bash
 javiercruces@HPOMEN15:~$ lspci -knn | less
@@ -140,13 +140,13 @@ javiercruces@HPOMEN15:~$
 ```
 
 
-¡Felicidades, Maestro de los Drivers NVIDIA! Has desbloqueado un logro épico en el reino de la informática. No cualquiera es capaz de llegar hasta aquí, no quiero desilusionarte pero ¿has verificado que funcionen los puertos HDMI y DisplayPort de tu equipo?
+¡Felicidades, Maestro de los Drivers NVIDIA! Has desbloqueado un logro épico en el reino de la informática. No cualquiera llega hasta aquí; no quiero desilusionarte, pero ¿has verificado que los puertos HDMI y DisplayPort de tu equipo funcionan correctamente?
 
 En este punto, se abren dos posibles caminos:
 
-En el primer escenario, tus puertos funcionan a la perfección sin requerir intervención adicional. Si este es tu caso, felicidades se ve que Dios tiene favoritos .
+En el primer escenario, tus puertos funcionan a la perfección sin requerir intervención adicional. Si este es tu caso, felicidades, parece que Dios tiene favoritos.
 
-Si por el contrario al igual que yo no eres uno de ellos , como acabas de comprobar los puertos no emiten video , en tu monitor veras que no tienes señal a pesar de que en el debian veas que te detecta el monitor. 
+Si, por el contrario, al igual que yo no eres uno de ellos y has comprobado que los puertos no emiten video (el monitor no recibe señal a pesar de que Debian lo detecte), 
 
 Si te ocurre este problema puedes encontrar un post en esta misma pagina explicando una posible solución , para ello haremos uso de la herramienta nvidia optimus . Te dejo el enlace a continuación https://www.javiercd.es/posts/drivers/nvidia_optimus/nvidia_optimus/ 
 
