@@ -1,14 +1,14 @@
 ---
 title: "How to Choose Which GPU to Use on My Laptop with Linux"
 date: 2024-09-01T10:00:00+00:00
-description: Learn how to install NVIDIA drivers in Debian 12 to optimize your system's graphic performance.
+description: Learn how to use EnvyControl on Debian to manage your laptop's graphics card and fix video port issues.
 tags: [NVIDIA Drivers, Linux]
 hero: images/drivers/elegir_grafica.png
 ---
 
-If you have a Linux laptop with an NVIDIA GPU, you may have noticed that the video ports are not working properly after installing the graphics drivers. If this sounds familiar, don't worry I’ve got you covered.
+If you have a Linux laptop with an NVIDIA GPU, you may have noticed that the video ports do not function correctly after installing the drivers. If this sounds familiar, don't worry, I've got you covered.
 
-I've been investigating and found a tool that can save you several headaches. It's called **EnvyControl**, a command-line utility (CLI) that allows you to easily choose which graphics card you want to use on your computer. This is especially useful if your laptop has a hybrid graphics configuration, such as Intel + NVIDIA or AMD + NVIDIA.
+I've been researching and found a tool that can save you a lot of trouble. It's called **EnvyControl**, a command-line utility (CLI) that allows you to easily choose which graphics card you want to use on your computer. This is especially useful if your laptop has a hybrid graphics configuration, such as Intel + NVIDIA or AMD + NVIDIA.
 
 In my case, I set up the tool to always use the dedicated GPU, and voilà! The video ports started working smoothly.
 
