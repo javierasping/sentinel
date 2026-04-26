@@ -6,7 +6,7 @@ tags: [Oracle, Mysql, PostgreSQL, Debian]
 hero: images/base_de_datos/interconexion_de_servidores/interconexion_de_servidores.png
 ---
 
-Este post aborda cómo configurar y gestionar conexiones entre diferentes bases de datos, tanto homogéneas como heterogéneas, para facilitar la interoperabilidad entre sistemas de bases de datos diversos. A lo largo del artículo, se exploran distintos escenarios de conexión, comenzando con configuraciones entre bases de datos del mismo tipo, como Oracle a Oracle o PostgreSQL a PostgreSQL, y luego avanzando hacia conexiones heterogéneas entre diferentes tecnologías, como Oracle a MySQL, PostgreSQL a Oracle, y viceversa. También se cubren los pasos necesarios para configurar enlaces, crear usuarios, y modificar archivos de configuración clave, permitiendo así realizar consultas remotas 
+Este post aborda cómo configurar y gestionar conexiones entre diferentes bases de datos, tanto homogéneas como heterogéneas, para facilitar la interoperabilidad entre sistemas de bases de datos diversos. A lo largo del artículo, se exploran distintos escenarios de conexión, comenzando con configuraciones entre bases de datos del mismo tipo, como Oracle a Oracle o PostgreSQL a PostgreSQL, y luego avanzando hacia conexiones heterogéneas entre diferentes tecnologías, como Oracle a MySQL, PostgreSQL a Oracle, y viceversa. También se cubren los pasos necesarios para configurar enlaces, crear usuarios, y modificar archivos de configuración clave, permitiendo así realizar consultas remotas entre servidores.
 
 ## Conexiones homogéneas 
 
@@ -436,9 +436,3 @@ Finalmente, instalamos la extensión con el comando `make install`:
 Finalmente, podemos realizar consultas que involucren datos de ambas bases de datos (PostgreSQL y Oracle). Esto permite trabajar con información distribuida de manera integrada:
 
 ![Consultas combinadas](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.065.png)
-
-
-
-[ref1]: ../img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.060.jpeg
-[ref2]: ../img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.061.jpeg
-[ref3]: ../img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.062.jpeg
