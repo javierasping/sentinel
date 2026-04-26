@@ -15,7 +15,7 @@
     - [ ] `nftables_uno`
     - [ ] `nftables_dos`
 - [ ] **docker**
-- [ ] **drivers**
+- [x] **drivers**: All posts reviewed and corrected (ES/EN).
 - [ ] **iaw**
 - [ ] **observabilidad**
 - [ ] **openstack**
