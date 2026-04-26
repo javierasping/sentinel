@@ -7,17 +7,17 @@ hero: images/docker/taller3.png
 
 ---
 
-##  Taller 3: Creación de imágenes Docker
+## Taller 3: Creación de imágenes Docker
 
-Creación de una imagen a partir de un Dockerfile
+### Creación de una imagen a partir de un Dockerfile
 
-1.Crea una página web estática (por ejemplo busca una plantilla HTML5). O simplemente crea un index.html.
+1. Crea una página web estática (por ejemplo, busca una plantilla HTML5) o simplemente crea un archivo `index.html`.
 
 ```bash
 
 ```
 
-2.Crea un fichero Dockerfile que permita crear una imagen con un servidor web sirviendo la página. Puedes usar una imagen base debian o ubuntu, o una imagen que tenga ya un servicio web, como hemos visto en el apartado Ejemplo 1: Construcción de imágenes con una página estática.
+2. Crea un archivo `Dockerfile` para generar una imagen con un servidor web que sirva dicha página. Puedes utilizar una imagen base de Debian o Ubuntu, o una imagen que ya incluya un servicio web, como vimos en el apartado 'Ejemplo 1: Construcción de imágenes con una página estática'.
 
 ```bash
 javiercruces@docker:~/taller3$ cat Dockerfile 
@@ -28,7 +28,7 @@ EXPOSE 80
 
 ```
 
-3.Ejecuta el comando docker que crea la nueva imagen. La imagen se debe llamar /mi_servidor_web:v1.
+3. Ejecuta el comando de Docker para crear la nueva imagen. La imagen debe llamarse `mi_servidor_web:v1`.
 
 ```bash
 javiercruces@docker:~/taller3$ docker build -t javiersaping/mi_servidor_web:v1 .
@@ -52,7 +52,7 @@ javiercruces@docker:~/taller3$ docker run -d -p 8081:80 javiersaping/mi_servidor
 ![](/docker/taller3/img/Pasted_image_20240208085015.png)
 
 
-4.Conéctate a Docker Hub y sube la imagen que acabas de crear.
+4. Inicia sesión en Docker Hub y sube la imagen que acabas de crear.
 
 ```bash
 javiercruces@docker:~/taller3$ docker login
@@ -68,7 +68,7 @@ a7eff924c5ac: Mounted from library/httpd
 v1: digest: sha256:85a8e341e3fd89b313a263a45c91ad846d673f198301e482c4f07352aef8bd42 size: 1779
 ```
 
-5.Descarga la imagen en otro ordenador donde tengas docker instalado, y crea un contenedor a partir de ella. (Si no tienes otro ordenador con docker instalado, borra la imagen en tu ordenador y bájala de Docker Hub).
+5. Descarga la imagen en otro ordenador que tenga Docker instalado y crea un contenedor a partir de ella. (Si no dispones de otro equipo, elimina la imagen de tu ordenador y descárgala nuevamente desde Docker Hub).
 
 ```bash
 javiercruces@docker:~/taller3$ docker image ls 
@@ -103,13 +103,13 @@ docker.io/javiersaping/mi_servidor_web:v1
 
 ```
 
-6.Vamos a hacer una modificación de la página web: haz una modificación al fichero index.html.
+6. Vamos a realizar una modificación en la página web: edita el archivo `index.html`.
 
 ```bash
 javiercruces@docker:~/taller3/public_html$ echo "<h1>Taller3 FJCD V2</h1>" > index.html
 ```
 
-7.Vuelve a crear una nueva imagen, en esta caso pon ta etiqueta v2. Súbela a Docker Hub.
+7. Crea una nueva imagen, esta vez utilizando la etiqueta `v2`, y súbela a Docker Hub.
 
 ```bash
 javiercruces@docker:~/taller3$ docker build -t javiersaping/mi_servidor_web:v2 .
@@ -137,7 +137,7 @@ v2: digest: sha256:a2af8396c3dfaa8d0312868161bff238c17b742cd46d57296ed304a9495b2
 
 ```
 
-8.Por último, baja la nueva imagen en el ordenador donde está corriendo el contenedor. Para hacer la implantación de la nueva versión debes borrar el contenedor y crear uno nuevo desde la nueva versión de la imagen.
+8. Por último, descarga la nueva imagen en el ordenador donde se ejecuta el contenedor. Para implementar la nueva versión, debes eliminar el contenedor actual y crear uno nuevo a partir de la nueva versión de la imagen.
 
 ```bash
 javiercruces@docker:~/taller3$ docker ps
