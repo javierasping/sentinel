@@ -2,15 +2,15 @@
 title: "Taller 3: Integración continua de aplicación django (Test)"
 date: 2024-03-14T10:00:00+00:00
 description:  Taller 3 Integración continua de aplicación django (Test)
-tags: [Jenkis,CI/CD]
+tags: [Jenkins, CI/CD]
 hero: images/ci_cd/jenkins/taller3.png
 
 ---
 
 
-Vamos a trabajar con el repositorio de la aplicación [django_tutorial](https://github.com/josedom24/django_tutorial). Esta aplicación tiene definidas una serie de test, que podemos estudiar en el fichero `tests.py` del directorio `polls`.
+Vamos a trabajar con el repositorio de la aplicación [django_tutorial](https://github.com/josedom24/django_tutorial). Esta aplicación tiene definidas una serie de test, que podemos estudiar en el fichero `tests.py` del directorio `polls`.
 
-Cada test viene definido por una función. En el fichero puedes leer los comentarios para saber que es lo que prueba cada test, o puedes ver el documento [Tests en la aplicación tutorial Django](https://fp.josedomingo.org/iaw/5_ic/test_tutorial_django.html).
+Cada test viene definido por una función. En el fichero puedes leer los comentarios para saber qué es lo que prueba cada test, o puedes consultar el documento [Tests en la aplicación tutorial Django](https://fp.josedomingo.org/iaw/5_ic/test_tutorial_django.html).
 
 Para ejecutar los test ejecutamos:
 
@@ -32,7 +32,7 @@ OK
 Destroying test database for alias 'default'...
 ```
 
-Por ejemplo, hay dos tests definidos en la función `test_no_questions` y en la función `test_future_question` que comprueban que si no hay preguntas en la base de datos debe aparecer el mensaje **“No polls are available”**. Si un programador modifica la aplicación y en el fichero `polls/templates/polls/index.html` y cambia el mensaje:
+Por ejemplo, hay dos tests definidos en la función `test_no_questions` y en la función `test_future_question` que comprueban que si no hay preguntas en la base de datos debe aparecer el mensaje **"No polls are available"**. Si un programador modifica la aplicación y en el fichero `polls/templates/polls/index.html` y cambia el mensaje:
 
 ```
 ...
@@ -75,11 +75,11 @@ Ran 10 tests in 0.022s
 FAILED (failures=2)
 ```
 
-**Recuerda que para hacer fallar un test, no hay que tocar el fichero `test.py`. Los test no se pasan porque al modificar el código de la aplicación se dejan de cumplir las condiciones indicadas en los test.**
+**Recuerda que para hacer fallar un test, no hay que tocar el fichero `test.py`. Los test no se pasan porque al modificar el código de la aplicación se dejan de cumplir las condiciones indicadas en los test.**
 
 ## Pipeline para realizar un test automático[Permalink](https://fp.josedomingo.org/iaw/5_ic/taller3.html#pipeline-para-realizar-un-test-autom%C3%A1tico "Permalink")
 
-Sabiendo como se ejecutan los test, es fácil hacer un pipeline que lo haga por nosotros de forma automática:
+Sabiendo cómo se ejecutan los test, es fácil crear un pipeline que lo haga por nosotros de forma automática:
 
 ```
 pipeline {
@@ -114,13 +114,13 @@ pipeline {
 3. Instalamos los requerimientos.
 4. Realizamos los test.
 
-Prueba a cambiar el código para que un test falle y comprueba como el pipeline falla.
+Prueba a cambiar el código para que un test falle y comprueba cómo el pipeline falla.
 
 1. Una captura de pantalla donde se vea la salida de un build que se ha ejecutado de manera correcta.
 
 ![](/ci_cd/taller3_jenkins/img/Pasted_image_20240305231003.png)
 
-2. Modifica el código de la aplicación para que se produzca un fallo en el código. **Recuerda que para hacer fallar un test, no hay que tocar el fichero `test.py`. Los test no se pasan porque al modificar el código de la aplicación se dejan de cumplir las condiciones indicadas en los test. Recuerda no elegir en el que hemos visto en este taller:mensaje “No polls are available”.**
+2. Modifica el código de la aplicación para que se produzca un fallo en el código. **Recuerda que para hacer fallar un test, no hay que tocar el fichero `test.py`. Los test no se pasan porque al modificar el código de la aplicación se dejan de cumplir las condiciones indicadas en los test. Recuerda no elegir en el que hemos visto en este taller:mensaje "No polls are available".**
 
 ```bash
     def was_published_recently(self):

@@ -2,15 +2,15 @@
 title: "Taller 2 Comprobación de HTML5 válido y despliegue en surge.sh (test y deploy)"
 date: 2024-03-14T10:00:00+00:00
 description: Taller 2 Comprobación de HTML5 válido y despliegue en surge.sh (test y deploy)
-tags: [Jenkis,CI/CD]
+tags: [Jenkins, CI/CD]
 hero: images/ci_cd/jenkins/taller2.png
 
 ---
 
 
-En este ejercicio queremos desplegar una página HTML5 en el servicio _surge.sh_, además queremos comprobar si el código HTML5 es válido. Estas dos operaciones: comprobar si el HTML5 es válido (test) y el despliegue en surge.sh (deploy) lo vamos a hacer con Jenkins de forma automática (IC y DC). Recuerda que el repositorio es [https://github.com/josedom24/ic-html5](https://github.com/josedom24/ic-html5).
+En este ejercicio queremos desplegar una página HTML5 en el servicio _surge.sh_; además, queremos comprobar si el código HTML5 es válido. Estas dos operaciones: comprobar si el HTML5 es válido (test) y el despliegue en surge.sh (deploy), las realizaremos con Jenkins de forma automática (IC y DC). Recuerda que el repositorio es [https://github.com/josedom24/ic-html5](https://github.com/josedom24/ic-html5).
 
-Como vimos en el ejemplo 2, para hacer el despliegue necesitamos guardar el token que hemos obtenido de surge para que nos autentifiquemos. veamos como trabajar con credenciales en Jenkins.
+Como vimos en el ejemplo 2, para realizar el despliegue necesitamos guardar el token obtenido de surge para autentificarnos. Veamos cómo trabajar con credenciales en Jenkins.
 
 ## [Crear credenciales](https://fp.josedomingo.org/iaw/5_ic/taller2.html#crear-credenciales)
 
@@ -68,7 +68,7 @@ pipeline {
 }
 ```
 
-Instalamos y configuraramos Ngrok con nuestro token
+Instalamos y configuramos Ngrok con nuestro token:
 
 ```bash
 debian@jenkins:~$ curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
@@ -80,11 +80,11 @@ Authtoken saved to configuration file: /home/debian/.config/ngrok/ngrok.yml
 
 ```
 
-Indicamos en jenkins que vamos a utilizar un WebHook :
+Indicamos en Jenkins que vamos a utilizar un WebHook:
 
 ![](/ci_cd/taller2_jenkins/img/Pasted_image_20240306121635.png)
 
-Lanzo un ejemplo de HTML correcto y otro con errores :
+Lanzo un ejemplo de HTML correcto y otro con errores:
 
 ![](/ci_cd/taller2_jenkins/img/Pasted_image_20240306121613.png)
 
@@ -92,11 +92,11 @@ Lanzo un ejemplo de HTML correcto y otro con errores :
 
 ![](/ci_cd/taller2_jenkins/img/Pasted_image_20240306121701.png)
 
-Comprobamos que los cambios en el repositorio son recibidos en el WebHook :
+Comprobamos que los cambios en el repositorio son recibidos por el WebHook:
 
 ![](/ci_cd/taller2_jenkins/img/Pasted_image_20240306121550.png)
 
-En GitHub comprobamos que le esta mandando la petición al  WebHook :
+En GitHub comprobamos que se está enviando la petición al WebHook:
 
 ![](/ci_cd/taller2_jenkins/img/Pasted_image_20240306121714.png)
 

@@ -1,12 +1,12 @@
 ---
 title: "Workshop 1: Markdown (test)"
 date: 2024-03-14T10:00:00+00:00
-description: Workshop 1 Ortho-rector of markdown documents (test)
-tags: [Jenkis,CI/CD]
+description: Workshop 1: Markdown spell checker (test)
+tags: [Jenkins, CI/CD]
 hero: images/ci_cd/jenkins/taller1.png
 ---
 
-## Workshop 1: Ortho-rector of markdown documents (test)
+## Workshop 1: Markdown spell checker (test)
 
 ### [What do you have to deliver?](https://fp.josedomingo.org/iaw/5_ic/taller1.html#qu%C3%A9-tienes-que-entregar)
 
@@ -17,7 +17,7 @@ https://github.com/javierasping/taller1_jenkins_ic-diccionario
 ```
 
 
-2. The content of your file 'Jenkinfle'.
+2. The content of your `Jenkinsfile`.
 
 ```bash
 pipeline {
@@ -67,7 +67,7 @@ pipeline {
 
 ![](/ci_cd/taller1_jenkins/img/Pasted_image_20240229084437.png)
 
-4. A capture of an email received without any error, and another with some error in the execution of the pipeline.
+4. A screenshot of an email received without any errors, and another with an error during the pipeline execution.
 
 ![](/ci_cd/taller1_jenkins/img/Pasted_image_20240229084555.png)
 

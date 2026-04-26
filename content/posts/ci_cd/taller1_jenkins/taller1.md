@@ -2,7 +2,7 @@
 title: "Taller 1: Corrector ortográfico de documentos markdown (test)"
 date: 2024-03-14T10:00:00+00:00
 description: Taller 1 Corrector ortográfico de documentos markdown (test)
-tags: [Jenkis,CI/CD]
+tags: [Jenkins, CI/CD]
 hero: images/ci_cd/jenkins/taller1.png
 
 ---
@@ -12,14 +12,14 @@ hero: images/ci_cd/jenkins/taller1.png
 
 ## [¿Qué tienes que entregar?](https://fp.josedomingo.org/iaw/5_ic/taller1.html#qu%C3%A9-tienes-que-entregar)
 
-1. La URL del tu repositorio GitHub.
+1. La URL de tu repositorio GitHub.
 
 ```bash
 https://github.com/javierasping/taller1_jenkins_ic-diccionario
 ```
 
 
-2. El contenido de la tu fichero `Jenkinfile`.
+2. El contenido de tu fichero `Jenkinsfile`.
 
 ```bash
 pipeline {
@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Install') {
             steps {
-                sh 'apt-get update && apt-get install -y aspell-es ' 
+                sh 'apt-get update && apt-get install -y aspell-es '
             }
         }
         stage('Test') {
@@ -69,7 +69,7 @@ pipeline {
 
 ![](/ci_cd/taller1_jenkins/img/Pasted_image_20240229084437.png)
 
-4. Una captura de un correo electrónico recibido sin ningún error, y otro con algún error en al ejecución del pipeline.
+4. Una captura de un correo electrónico recibido sin errores, y otra con algún error en la ejecución del pipeline.
 
 ![](/ci_cd/taller1_jenkins/img/Pasted_image_20240229084555.png)
 
