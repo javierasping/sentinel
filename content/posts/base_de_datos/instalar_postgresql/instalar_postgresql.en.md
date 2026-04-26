@@ -9,13 +9,13 @@ hero: images/base_de_datos/instalar_postgre/instalacion_postgree.png
 
 
 
-In this post, I will guide you through the process of installing PostgreSQL in Debian 12, creating a user with basic permissions, and how to create and consult a database.
+In this post, I will guide you through the process of installing PostgreSQL on Debian 12, creating a user with basic permissions, and how to create and query a database.
 
-#1. PostgreSQL installation
+## 1. PostgreSQL Installation
 
-To install PostgreSQL in Debian 12, follow these steps:
+To install PostgreSQL on Debian 12, follow these steps:
 
-1. * * Update the repositories and install PostgreSQL * *:
+1. **Update the repositories and install PostgreSQL**:
 
  First, make sure your system is updated and install PostgreSQL:
 
@@ -24,79 +24,79 @@ To install PostgreSQL in Debian 12, follow these steps:
     sudo apt install postgresql 
     ```
 
-2. * * Verifies that the service is in operation * *:
+2. **Verify that the service is running**:
 
- After installation, make sure that the PostgreSQL service is in operation:
+ After installation, make sure that the PostgreSQL service is running:
 
     ```bash
     sudo systemctl status postgresql
     ```
 
- You should see a message that indicates the service is active (running).
+You should see a message indicating that the service is active (running).
 
-#2. Creation of a User and Allocation of Permissions
+## 2. User Creation and Permission Assignment
 
-1. * * Access the user 'postgres' * *:
+1. **Access the `postgres` user**:
 
- PostgreSQL creates a user called 'postgres' during installation. Access this user to perform the configuration tasks:
+ PostgreSQL creates a user called `postgres` during installation. Access this user to perform the configuration tasks:
 
     ```bash
     sudo -u postgres psql
     ```
 
- If you want you can change the user's password to the database with the following command:
+If you wish, you can change the password for the `postgres` database user with the following command:
     
     ```sql
     ALTER USER postgres WITH PASSWORD 'tu_nueva_contraseña';
     ```
 
-2. * * Create a new user * *:
+2. **Create a new user**:
 
- Within the 'postgres' prompt, to create a new user uses the following command.
+ Within the `postgres` prompt, use the following command to create a new user:
 
     ```sql
     CREATE USER javiercruces WITH PASSWORD 'tu_contraseña';
     ```
 
-3. * * Create a new database * *:
+3. **Create a new database**:
 
- Then create a database that will be associated with your new user.
+ Next, create a database associated with your new user:
 
     ```sql
      CREATE DATABASE mypgdatabase OWNER mypguser;
     ```
 
-4. * * Create an administrator user * *
+4. **Create an administrator user**:
 
- If you want to create a user with all the privileges in a database, enter the following command:
+ If you want to create a user with all privileges on a database, enter the following command:
 
     ```sql
     GRANT ALL PRIVILEGES ON DATABASE nombre_base_de_datos TO nombre_usuario;
     ```
 
- Get out of the console with '\ q':
+Exit the console with `\\q`:
 
     ```sql
     \q
     ```
 
-#3. Connection test
+## 3. Connection Test
 
-1. * * Connect to PostgreSQL with the new user * *:
+1. **Connect to PostgreSQL with the new user**:
 
- From the user 'postgres', or directly from your terminal, try to connect to PostgreSQL using the new user:
+ From the `postgres` user, or directly from your terminal, try to connect to PostgreSQL using the new user:
 
     ```bash
     psql -U nombre_usuario -d nombre_base_de_datos
     ```
 
- You will be asked for the user's password. If you can access the database, the configuration was successful.
+You will be asked for the user's password. If you can access the database, the configuration was successful.
 
-#4. Creation and Consultation of a Table
+## 4. Table Creation and Querying
 
-1. * * Create a new table * *:
+1. **Create a new table**:
 
- Once inside the PostgreSQL console with the new user, create a new table. For example, for a table of football equipment:
+ Once inside the PostgreSQL console with the new user, create a new table. For example, a table for football teams:
 
     ```sql
     CREATE TABLE equipos (
@@ -106,7 +106,7 @@ To install PostgreSQL in Debian 12, follow these steps:
     );
     ```
 
-2. * * Insert data in the table * *:
+2. **Insert data into the table**:
 
  Insert some test data into the created table:
 
@@ -116,15 +116,15 @@ To install PostgreSQL in Debian 12, follow these steps:
     ('Barcelona', 5);
     ```
 
-3. * * See the data in the table * *:
+3. **Query the data in the table**:
 
- Conducts a consultation to verify that the data have been correctly inserted:
+ Perform a query to verify that the data has been correctly inserted:
 
     ```sql
     SELECT * FROM equipos;
     ```
 
- The expected exit should be:
+The expected output should be:
 
     ```plaintext
      id |    nombre    | titulos
