@@ -2,7 +2,7 @@
 title: "Práctica CI/CD con Jenkins"
 date: 2024-03-14T10:00:00+00:00
 description: Práctica CI/CD con Jenkins
-tags: [Jenkis,CI/CD]
+tags: [Jenkins, CI/CD]
 hero: images/ci_cd/jenkins/practica.png
 
 ---
@@ -16,23 +16,23 @@ Vamos a construir el Pipeline en varias fases:
 
 ## [Ejercicio 1: Construcción de una imagen docker](https://fp.josedomingo.org/iaw/5_ic/practica.html#ejercicio-1-construcci%C3%B3n-de-una-imagen-docker)
 
-Partimos del pipeline que hemos desarrollado en el [Taller 3: Integración continua de aplicación django (Test)](https://fp.josedomingo.org/iaw/5_ic/taller3.html), donde hemos automatizado el test de la aplicación.
+Partimos del pipeline que hemos desarrollado en el [Taller 3: Integración continua de aplicación django (Test)](https://fp.josedomingo.org/iaw/5_ic/taller3.html), donde hemos automatizado el test de la aplicación.
 
-Modifica el pipeline para que después de hacer el test sobre la aplicación, genere una imagen docker. tienes que tener en cuenta que los pasos para generar la imagen lo tienes que realizar en la máquina donde está instalado Jenkins. Tendrás que añadir las siguientes acciones:
+Modifica el pipeline para que después de hacer el test sobre la aplicación, genere una imagen docker. Tienes que tener en cuenta que los pasos para generar la imagen deben realizarse en la máquina donde está instalado Jenkins. Tendrás que añadir las siguientes acciones:
 
-1. Construir la imagen con el `Dockerfile` que tengas en el repositorio.
+1. Construir la imagen con el `Dockerfile` que tengas en el repositorio.
 2. Subir la imagen a tu cuenta de Docker Hub.
 3. Borrar la imagen que se ha creado.
 
-Por lo tanto tienes que estudiar el apartado [Ejecución de un pipeline en varios runner](https://fp.josedomingo.org/iaw/5_ic/jenkins/runner.html) para ejecutar el pipeline en dos runner:
+Por lo tanto, debes estudiar el apartado [Ejecución de un pipeline en varios runners](https://fp.josedomingo.org/iaw/5_ic/jenkins/runner.html) para ejecutar el pipeline en dos runners:
 
-- En el contenedor docker a partir de la imagen `python:3` los pasos del taller 3.
-- En la máquina de Jenkins los pasos de este ejercicio.
+- En el contenedor Docker a partir de la imagen `python:3`, los pasos del Taller 3.
+- En la máquina de Jenkins, los pasos de este ejercicio.
 
 Otras consideraciones:
 
 - Cuando termine de ejecutar el pipeline te mandará un correo de notificación.
-- El pipeline se guardará en un fichero `Jenkinsfile` en tu repositorio, y la configuración del pipeline hará referencia a él.
+- El pipeline se guardará en un fichero `Jenkinsfile` en tu repositorio, y la configuración del pipeline hará referencia a él.
 
 ### [Entrega](https://fp.josedomingo.org/iaw/5_ic/practica.html#entrega)
 
@@ -53,7 +53,7 @@ Otras consideraciones:
 
 ![](/ci_cd/practica_jenkins/img/Pasted_image_20240307100721.png)
 
-3. Introduce un fallo en el `Dockerfile` y muestra la salida del build donde se produce el error.
+3. Introduce un fallo en el `Dockerfile` y muestra la salida del build donde se produce el error.
 
 ```bash
 
@@ -61,7 +61,7 @@ Otras consideraciones:
 
 ![](/ci_cd/practica_jenkins/img/Pasted_image_20240307100737.png)
 
-4. Entrega la URL del repositorio para ver el `Jenkinsfile`.
+4. Entrega la URL del repositorio para ver el `Jenkinsfile`.
 
 ```bash
 https://github.com/javierasping/django_tutorial_docker.git
@@ -81,18 +81,18 @@ https://github.com/javierasping/django_tutorial_docker.git
 
 Amplía el pipeline anterior para que tenga una última etapa donde se haga el despliegue de la imagen que se ha subido a Docker Hub en tu entorno de producción (VPS). Algunas pistas:
 
-- Busca información de cómo hacer el despliegue a un servidor remoto (ssh, buscando algún plugin con esa funcionalidad,…)
+- Busca información de cómo hacer el despliegue a un servidor remoto (ssh, buscando algún plugin con esa funcionalidad,...)
 - Si vas a hacer conexiones por ssh, tendrás que guardar una credencial en tu Jenkins con el nombre de usuario y contraseña.
-- Para el despliegue deberá usar el fichero `docker-compose.yaml` que has generado en otras prácticas.
+- Para el despliegue deberá usar el fichero `docker-compose.yaml` que has generado en otras prácticas.
 - Se deberá borrar el contenedor con la versión anterior, descargar la nueva imagen y crear un nuevo contenedor.
 
 Otras consideraciones:
 
-- Cambia el disparador del pipeline. Configúralo con un webhook de github, para que cada vez que se produce un push se ejecute el pipeline. Para que el webhook pueda acceder a tu Jenkins puedes usar [ngrok](https://ngrok.com/).
+- Cambia el disparador del pipeline. Configúralo con un webhook de github, para que cada vez que se produce un push se ejecute el pipeline. Para que el webhook pueda acceder a tu Jenkins puedes usar [ngrok](https://ngrok.com/).
 
 ### [Entrega](https://fp.josedomingo.org/iaw/5_ic/practica.html#entrega)
 
-1. El contenido del fichero `Jenkinsfile`.
+1. El contenido del fichero `Jenkinsfile`.
 2. Las credenciales que has guardado en Jenkins.
 
 ![](/ci_cd/practica_jenkins/img/Pasted_image_20240307151636.png)
@@ -106,7 +106,7 @@ Ejecución normal del pipeline :
 La configuración de nginx y los contenedores ejecutandose
 
 ```bash
-javiercruces@atlas:~$ sudo cat /etc/nginx/sites-available/django_docker 
+javiercruces@atlas:~$ sudo cat /etc/nginx/sites-available/django_docker
 server {
     listen 80;
     server_name djangodocker.javiercd.es;
@@ -131,8 +131,8 @@ server {
 
 javiercruces@atlas:~$ docker ps
 CONTAINER ID   IMAGE                             COMMAND                  CREATED          STATUS          PORTS                                       NAMES
-4d7947fc359f   javierasping/django_tutorial_ic   "/bin/sh -c 'python3…"   33 minutes ago   Up 33 minutes   0.0.0.0:8082->3000/tcp, :::8082->3000/tcp   django_tutorial_web
-bdf947a4bccc   mariadb                           "docker-entrypoint.s…"   33 minutes ago   Up 33 minutes   3306/tcp                                    mariadb-django
+4d7947fc359f   javierasping/django_tutorial_ic   "/bin/sh -c 'python3..."   33 minutes ago   Up 33 minutes   0.0.0.0:8082->3000/tcp, :::8082->3000/tcp   django_tutorial_web
+bdf947a4bccc   mariadb                           "docker-entrypoint.s..."   33 minutes ago   Up 33 minutes   3306/tcp                                    mariadb-django
 
 ```
 La aplicación funcionando en el VPS :

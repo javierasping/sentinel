@@ -53,7 +53,7 @@ https://github.com/javierasping/django_tutorial_docker.git
 ```
 
 
-5. Pants with the mail you received from the execution of the pipeline.
+5. A screenshot of the email you received after the pipeline execution.
 
 ```bash
 
@@ -64,16 +64,16 @@ https://github.com/javierasping/django_tutorial_docker.git
 
 ## [Exercise 2: Deployment of the application](https://fp.josedomingo.org/iaw/5_ic/practica.html#exercise-2-deployment-de-la-application)
 
-Expand the previous pipeline to have a final stage where you can display the image that has been uploaded to Docker Hub in your production environment (VPS). Some leads:
+Expand the previous pipeline to have a final stage where you can deploy the image that has been uploaded to Docker Hub in your production environment (VPS). Some tips:
 
-- Find information on how to do the deployment to a remote server (ssh, looking for some plugin with that functionality,...).
-- If you are going to make ssh connections, you will have to save a credential on your Jenkins with the username and password.
-- For deployment, you must use the `docker-compose.yaml` file you have generated in other practices.
-- The container must be deleted with the previous version, the new image must be downloaded, and a new container created.
+- Find information on how to deploy to a remote server (SSH, looking for a plugin with that functionality, etc.).
+- If you are going to use SSH connections, you will have to save a credential in Jenkins with the username and password.
+- For deployment, you must use the `docker-compose.yaml` file you generated in other practices.
+- The container with the previous version must be deleted, the new image must be downloaded, and a new container created.
 
 Other considerations:
 
-- Change the pipeline trigger. Configure it with a GitHub webhook so that every time a push is produced, the pipeline is run. For the webhook to access your Jenkins, you can use [ngrok](https://ngrok.com/).
+- Change the pipeline trigger. Configure it with a GitHub webhook so that the pipeline runs every time a push occurs. To allow the webhook to access your Jenkins, you can use [ngrok](https://ngrok.com/).
 
 ## [Delivery](https://fp.josedomingo.org/iaw/5_ic/practica.html#delivery)
 
@@ -82,13 +82,13 @@ Other considerations:
 
 ![](/ci_cd/practica_jenkins/img/Pasted_image_20240307151636.png)
 
-3. Show the teacher how the complete CI/CD is done.
+3. Show the teacher how the complete CI/CD process is performed.
 
-Normal execution of the pipeline:
+Normal pipeline execution:
 
 ![](/ci_cd/practica_jenkins/img/Pasted_image_20240307151713.png)
 
-The nginx configuration and the containers run:
+The Nginx configuration and the running containers:
 
 ```bash
 javiercruces@atlas:~$ sudo cat /etc/nginx/sites-available/django_docker 
@@ -120,11 +120,11 @@ CONTAINER ID   IMAGE                             COMMAND                  CREATE
 bdf947a4bccc   mariadb                           "docker-entrypoint.s…"   33 minutes ago   Up 33 minutes   3306/tcp                                    mariadb-django
 
 ```
-The application running in the VPS:
+The application running on the VPS:
 
 ![](/ci_cd/practica_jenkins/img/Pasted_image_20240307191739.png)
 
-The Ngrok and Webhole settings
+The Ngrok and Webhook settings:
 
 ```bash
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
