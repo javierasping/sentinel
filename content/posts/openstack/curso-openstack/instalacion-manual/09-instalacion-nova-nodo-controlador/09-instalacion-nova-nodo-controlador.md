@@ -7,21 +7,21 @@ hero: images/openstack/instalacion-manual/instalar-configurar-nova-controlador.p
 weight: 9
 ---
 
-Este documento describe cómo instalar y configurar el servicio Compute, en nuestro caso Nova, en el nodo controlador (`controller01`).
+Este documento describe el proceso de instalación y configuración del servicio de cómputo, Nova, en el nodo controlador (`controller01`).
 
 ## Requisitos previos
 
-Antes de empezar, asegúrate de tener las bases de datos y las credenciales de Keystone básicas creadas (admin-openrc disponible).
+Antes de comenzar, asegúrate de que las bases de datos y las credenciales básicas de Keystone hayan sido creadas y que el archivo `admin-openrc` esté disponible.
 
 ### Crear las bases de datos (en `controller01`)
 
-Me conecto al servidor SQL como `root` para crear las bases necesarias:
+Nos conectaremos al servidor SQL como `root` para crear las bases de datos necesarias:
 
 ```bash
 vagrant@controller01:~$ sudo mysql
 ```
 
-Creo las bases de datos `nova_api`, `nova` y `nova_cell0`:
+Creación de las bases de datos `nova_api`, `nova` y `nova_cell0`:
 
 ```sql
 CREATE DATABASE nova_api;
@@ -29,7 +29,7 @@ CREATE DATABASE nova;
 CREATE DATABASE nova_cell0;
 ```
 
-Concedo los permisos a la cuenta `nova` (reemplaza `NOVA_DBPASS` por tu contraseña):
+Asignaremos los permisos a la cuenta `nova` (sustituye `NOVA_DBPASS` por la contraseña definida):
 
 ```sql
 GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost' IDENTIFIED BY 'NOVA_DBPASS';
@@ -42,7 +42,7 @@ GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'localhost' IDENTIFIED BY 'NOVA_D
 GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'%' IDENTIFIED BY 'NOVA_DBPASS';
 ```
 
-Salgo del cliente cuando termino:
+Finalmente, salimos del cliente de la base de datos:
 
 ```sql
 exit;
@@ -50,13 +50,13 @@ exit;
 
 ## Crear credenciales del servicio (en `controller01`)
 
-Cargo las variables del entorno del administrador para ejecutar comandos de Keystone:
+Cargaremos las variables de entorno del administrador para ejecutar los comandos de Keystone:
 
 ```bash
 vagrant@controller01:~$ source admin-openrc 
 ```
 
-Creo el usuario de servicio `nova` (usa `NOVA_PASSWORDS` como ejemplo de contraseña):
+Crearemos el usuario de servicio `nova` (utiliza `NOVA_PASSWORDS` como contraseña de ejemplo):
 
 ```bash
 vagrant@controller01:~$ openstack user create --domain default --password NOVA_PASSWORDS nova
@@ -74,13 +74,13 @@ vagrant@controller01:~$ openstack user create --domain default --password NOVA_P
 +---------------------+----------------------------------+
 ```
 
-Asigno el rol `admin` al usuario `nova` dentro del proyecto `service`:
+Añadiremos el rol `admin` al usuario `nova` dentro del proyecto `service`:
 
 ```bash
 vagrant@controller01:~$ openstack role add --project service --user nova admin
 ```
 
-Registro la entidad de servicio `nova` en Keystone:
+Registraremos la entidad de servicio `nova` en Keystone:
 
 ```bash
 vagrant@controller01:~$ openstack service create --name nova --description "OpenStack Compute" compute
@@ -97,7 +97,7 @@ vagrant@controller01:~$ openstack service create --name nova --description "Open
 
 ## Crear los endpoints de la API (en `controller01`)
 
-A continuación creo los endpoints públicos, internos y admin para el servicio de cómputo:
+A continuación, crearemos los endpoints públicos, internos y de administración para el servicio de cómputo:
 
 ```bash
 vagrant@controller01:~$ openstack endpoint create --region RegionOne compute public http://controller01:8774/v2.1
@@ -146,17 +146,17 @@ vagrant@controller01:~$ openstack endpoint create --region RegionOne compute adm
 
 ## Instalar y configurar los componentes de Nova (en `controller01`)
 
-Instalo los paquetes de controlador que necesito en este nodo:
+Instalaremos los paquetes del controlador necesarios en este nodo:
 
 ```bash
 vagrant@controller01:~$ sudo apt install nova-api nova-conductor nova-novncproxy nova-scheduler -y
 ```
 
-Edito el archivo `/etc/nova/nova.conf` y realizo los siguientes cambios:
+Editaremos el archivo `/etc/nova/nova.conf` para aplicar los siguientes cambios:
 
 ### Sección `[api_database]` y `[database]`
 
-Configuro las cadenas de conexión a las bases de datos creadas (reemplaza `NOVA_DBPASS`):
+Configuraremos las cadenas de conexión a las bases de datos creadas (sustituye `NOVA_DBPASS` por la contraseña definida):
 
 ```bash
 [api_database]
@@ -168,7 +168,7 @@ connection = mysql+pymysql://nova:NOVA_DBPASS@controller01/nova
 
 ### Sección `[DEFAULT]`
 
-En `[DEFAULT]` indico la conexión a RabbitMQ y la IP de gestión del controlador (`my_ip`):
+En la sección `[DEFAULT]`, indicaremos la conexión a RabbitMQ y la IP de gestión del controlador (`my_ip`):
 
 ```bash
 [DEFAULT]
@@ -178,7 +178,7 @@ my_ip = 10.0.0.2
 
 ### Sección `[keystone_authtoken]`
 
-Configuro el acceso a Keystone para validar tokens:
+Configuraremos el acceso a Keystone para la validación de tokens:
 
 ```bash
 [keystone_authtoken]
@@ -195,7 +195,7 @@ password = NOVA_PASS
 
 ### Sección `[service_user]`
 
-Habilito el token de servicio y apunto al endpoint v3:
+Habilitaremos el token de servicio y definiremos el endpoint v3:
 
 ```bash
 [service_user]
@@ -211,7 +211,7 @@ password = NOVA_PASS
 
 ### Sección `[vnc]`
 
-Configuro VNC para que use la IP de gestión:
+Configuraremos VNC para que utilice la IP de gestión:
 
 ```bash
 [vnc]
@@ -222,7 +222,7 @@ server_proxyclient_address = $my_ip
 
 ### Sección `[glance]`
 
-Indico la URL del servicio Glance para que Nova pueda recuperar imágenes:
+Definiremos la URL del servicio Glance para que Nova pueda recuperar las imágenes:
 
 ```bash
 [glance]
@@ -231,7 +231,7 @@ api_servers = http://controller01:9292
 
 ### Sección `[oslo_concurrency]`
 
-Directorio para bloqueos temporales:
+Definiremos el directorio para los bloqueos temporales:
 
 ```bash
 [oslo_concurrency]
@@ -240,7 +240,7 @@ lock_path = /var/lib/nova/tmp
 
 ### Sección `[placement]`
 
-Conecto Nova con el servicio Placement (reemplaza `PLACEMENT_PASS`):
+Conectaremos Nova con el servicio Placement (sustituye `PLACEMENT_PASS` por la contraseña definida):
 
 ```bash
 [placement]
@@ -256,7 +256,7 @@ password = PLACEMENT_PASS
 
 ## Inicializar las bases de datos de Nova (en `controller01`)
 
-Ejecuto los comandos de `nova-manage` para sincronizar esquemas y crear la celda adicional:
+Ejecutaremos los comandos de `nova-manage` para sincronizar los esquemas y crear la celda adicional:
 
 ```bash
 vagrant@controller01:~$ sudo su -s /bin/sh -c "nova-manage api_db sync" nova
@@ -265,7 +265,7 @@ vagrant@controller01:~$ sudo su -s /bin/sh -c "nova-manage cell_v2 create_cell -
 vagrant@controller01:~$ sudo su -s /bin/sh -c "nova-manage db sync" nova
 ```
 
-Verifico que las celdas estén registradas correctamente:
+Verificaremos que las celdas se hayan registrado correctamente:
 
 ```bash
 vagrant@controller01:~$ sudo su -s /bin/sh -c "nova-manage cell_v2 list_cells" nova
@@ -279,7 +279,7 @@ vagrant@controller01:~$ sudo su -s /bin/sh -c "nova-manage cell_v2 list_cells" n
 
 ## Finalizar la instalación (en `controller01`)
 
-Reinicio los servicios de Nova para aplicar la nueva configuración:
+Reiniciaremos los servicios de Nova para aplicar la nueva configuración:
 
 ```bash
 vagrant@controller01:~$  sudo service nova-api restart
