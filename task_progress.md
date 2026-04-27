@@ -18,10 +18,7 @@
     - [x] `lamp`
     - [x] `lemp`
     - [x] `wordpress` (LAMP)
-
-## Pending Sections
-- [ ] **iaw**:
-    - [ ] `wordpress_lemp`
+    - [x] `wordpress_lemp`
 - [ ] **iaw**: Update `_index` files if necessary.
 - [ ] **observabilidad**
 - [ ] **openstack**
