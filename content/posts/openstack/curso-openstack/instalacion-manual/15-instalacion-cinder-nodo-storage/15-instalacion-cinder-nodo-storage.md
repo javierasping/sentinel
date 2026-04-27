@@ -7,31 +7,31 @@ hero: images/openstack/instalacion-manual/instalar-configurar-cinder-storage.png
 weight: 15
 ---
 
-En este post explico cómo instalar y configurar el servicio de volúmenes de OpenStack (Cinder) en un nodo de almacenamiento usando LVM.
+En este post, explicaremos cómo instalar y configurar el servicio de volúmenes de OpenStack (Cinder) en un nodo de almacenamiento utilizando LVM.
 
-Nota: ejecuta los comandos en el nodo de almacenamiento (`storage01`) y úsalos tal como aparecen.
+Nota: ejecuta los comandos en el nodo de almacenamiento (`storage01`) y utilízalos tal como aparecen.
 
-## Instalar los paquetes necesarios
+## Instalaremos los paquetes necesarios:
 
 ```bash
 vagrant@storage01:~$ sudo apt install -y lvm2 thin-provisioning-tools
 ```
 
-## Verificar el disco `/dev/vdb`
+## Verificación del disco `/dev/vdb`
 
 ```bash
 vagrant@storage01:~$ fdisk -l
 ```
 
-Asegúrate de que `/dev/vdb` aparece y no tiene particiones antes de continuar.
+Asegúrate de que `/dev/vdb` esté presente y no tenga particiones antes de continuar.
 
-## Crear el volumen físico LVM
+## Creación del volumen físico LVM:
 
 ```bash
 vagrant@storage01:~$ sudo pvcreate /dev/vdb
 ```
 
-## Crear el grupo de volúmenes `cinder-volumes`
+## Creación del grupo de volúmenes `cinder-volumes`:
 
 ```bash
 vagrant@storage01:~$ sudo vgcreate cinder-volumes /dev/vdb
@@ -39,7 +39,7 @@ vagrant@storage01:~$ sudo vgcreate cinder-volumes /dev/vdb
 
 ## Editar `/etc/lvm/lvm.conf`
 
-Dentro de la sección `devices`, añade o modifica la línea `filter` para evitar que LVM escanee discos no deseados:
+En la sección `devices`, añade o modifica la línea `filter` para evitar que LVM escanee discos no deseados:
 
 ```conf
 filter = [ "a/sda/", "a/vdb/", "r/.*/"]
@@ -47,15 +47,15 @@ filter = [ "a/sda/", "a/vdb/", "r/.*/"]
 
 Esto evita que LVM escanee dispositivos que no forman parte del backend de volúmenes.
 
-## Instalar el servicio Cinder Volume
+## Instalaremos el servicio Cinder Volume:
 
 ```bash
 vagrant@storage01:~$ sudo apt install -y cinder-volume
 ```
 
-## Configurar acceso a la base de datos y RabbitMQ
+## Configuraremos el acceso a la base de datos y RabbitMQ:
 
-Configura todo esto en el fichero `/etc/cinder/cinder.conf`. Añade o modifica las siguientes secciones y parámetros:
+Configuraremos todo esto en el archivo `/etc/cinder/cinder.conf`. Añadiremos o modificaremos las siguientes secciones y parámetros:
 
 ```ini
 [database]
@@ -65,9 +65,9 @@ connection = mysql+pymysql://cinder:CINDER_DB_PASS@controller01/cinder
 transport_url = rabbit://openstack:openstack@controller01
 ```
 
-## Configurar acceso a Keystone
+## Configuraremos el acceso a Keystone:
 
-En el fichero `/etc/cinder/cinder.conf`, añade la sección `keystone_authtoken` completa:
+En el archivo `/etc/cinder/cinder.conf`, añadiremos la sección `keystone_authtoken` completa:
 
 ```ini
 [keystone_authtoken]
@@ -82,17 +82,17 @@ username = cinder
 password = CINDER_SVC_PASS
 ```
 
-## Configurar la IP del nodo de almacenamiento
+## Configuraremos la IP del nodo de almacenamiento:
 
-En `/etc/cinder/cinder.conf`, bajo la sección `[DEFAULT]`, añade:
+En `/etc/cinder/cinder.conf`, bajo la sección `[DEFAULT]`, añadiremos:
 
 ```ini
 my_ip = 10.0.0.4
 ```
 
-## Configurar el backend LVM
+## Configuraremos el backend LVM:
 
-En el mismo fichero `/etc/cinder/cinder.conf`, añade la sección `[lvm]`:
+En el mismo archivo `/etc/cinder/cinder.conf`, añadiremos la sección `[lvm]`:
 
 ```ini
 [lvm]
@@ -108,27 +108,27 @@ Y en `[DEFAULT]`, asegúrate de incluir:
 enabled_backends = lvm
 ```
 
-## Configurar Glance y `lock_path`
+## Configuraremos Glance y la ruta de bloqueo (`lock_path`):
 
-En la sección `[DEFAULT]`, añade:
+En la sección `[DEFAULT]`, añadiremos:
 
 ```ini
 glance_api_servers = http://controller01:9292
 oslo_concurrency.lock_path = /var/lib/cinder/tmp
 ```
 
-## Reiniciar servicios
+## Reiniciaremos los servicios:
 
-Lanza los siguientes comandos para reiniciarlos y asegúrate de que estén levantados.
+Ejecuta los siguientes comandos para reiniciarlos y verifica que estén activos.
 
 ```bash
 vagrant@storage01:~$ sudo service target restart
 vagrant@storage01:~$ sudo service cinder-volume restart
 ```
 
-## Comprobar que el servicio está corriendo
+## Verificación de que el servicio está activo
 
-Pod ultimo comprueba que usando el cliente de OpenStack los servicios están levantados :
+Finalmente, comprobaremos que, utilizando el cliente de OpenStack, los servicios están activos:
 
 ```bash
 vagrant@controller01:~$ openstack volume service list
