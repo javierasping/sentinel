@@ -7,9 +7,9 @@ hero: images/openstack/instalacion-manual/instalar-keystone-nodo-controlador.png
 weight: 5
 ---
 
-OpenStack está formado por muchos servicios, Keystone (Identity) se encarga de la autenticación, autorización y del catálogo de servicios. En este post instalaré Keystone en el nodo `controller01`, explicaré los ficheros principales y comprobaré que funciona.
+OpenStack está compuesto por múltiples servicios; Keystone (Identity) es el encargado de la autenticación, la autorización y la gestión del catálogo de servicios. En este post, instalaremos Keystone en el nodo `controller01`, analizaremos los archivos principales y verificaremos su funcionamiento.
 
-Recuerda que es necesario haber completado los pasos del post anterior.
+Recuerda que es imprescindible haber completado los pasos detallados en el post anterior.
 
 Todos los comandos de este post se realizan en el nodo `controller01`.
 
@@ -21,14 +21,14 @@ Conéctate al servidor de base de datos como root:
 vagrant@controller01:~$ sudo mysql
 ```
 
-Crea la base de datos `keystone`:
+Creación de la base de datos `keystone`:
 
 ```bash
 MariaDB [(none)]> CREATE DATABASE keystone;
 Query OK, 1 row affected (0.000 sec)
 ```
 
-Crea los usuarios y concédeles permisos para la base de datos `keystone`:
+Creación de los usuarios y asignación de permisos para la base de datos `keystone`:
 
 ```bash
 MariaDB [(none)]> CREATE USER 'keystone'@'localhost' IDENTIFIED BY 'KEYSTONE-DBPASS';
@@ -37,7 +37,7 @@ MariaDB [(none)]> CREATE USER 'keystone'@'%' IDENTIFIED BY 'KEYSTONE-DBPASS';
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%';
 ```
 
-Por último, sal del cliente de base de datos:
+Finalmente, salimos del cliente de la base de datos:
 
 ```bash
 MariaDB [(none)]> exit
@@ -46,46 +46,46 @@ Bye
 
 ## Configuración de Keystone
 
-En mi caso uso Apache con mod_wsgi para servir Keystone en el puerto 5000, el paquete suele crear la configuración necesaria en Apache automáticamente. Aún así, comprueba que la configuración es correcta en tu caso.
+En este caso, utilizamos Apache con `mod_wsgi` para servir Keystone en el puerto 5000. Generalmente, el paquete crea la configuración necesaria en Apache de forma automática; aun así, es recomendable verificar que la configuración sea correcta.
 
-Instala los paquetes necesarios con el siguiente comando:
+Instalaremos los paquetes necesarios mediante el siguiente comando:
 
 ```bash
 vagrant@controller01:~$ sudo apt install keystone apache2 libapache2-mod-wsgi-py3 -y
 ```
 
-Edita el fichero `/etc/keystone/keystone.conf` y configura la conexión a la base de datos:
+Editaremos el archivo `/etc/keystone/keystone.conf` para configurar la conexión a la base de datos:
 
 ```bash
 [database]
 connection = mysql+pymysql://keystone:KEYSTONE_DBPASS@10.0.0.2/keystone
 ```
 
-Sustituye `KEYSTONE_DBPASS` por la contraseña que hayas elegido para la base de datos.
+Sustituye `KEYSTONE_DBPASS` por la contraseña que hayas definido para la base de datos.
 
-En la sección `[token]` indica que usas Fernet:
+En la sección `[token]`, indicaremos que utilizaremos Fernet:
 
 ```bash
 [token]
 provider = fernet
 ```
 
-Actualiza la base de datos de Keystone con las migraciones del servicio, esto creará las tablas dentro de la base de datos:
+Actualizaremos la base de datos de Keystone mediante las migraciones del servicio, lo que creará las tablas necesarias:
 
 ```bash
 vagrant@controller01:~$ sudo su -s /bin/sh -c "keystone-manage db_sync" keystone
 ```
 
-Nota: las opciones `--keystone-user` y `--keystone-group` permiten ejecutar keystone con un usuario/grupo distinto del por defecto, en mi caso usamos `keystone`.
+Nota: las opciones `--keystone-user` y `--keystone-group` permiten ejecutar Keystone con un usuario o grupo distinto al predeterminado; en este caso, utilizamos `keystone`.
 
-Inicializa las claves Fernet y las credenciales protegidas:
+Inicializaremos las claves Fernet y las credenciales protegidas:
 
 ```bash
 vagrant@controller01:~$ sudo keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
 vagrant@controller01:~$ sudo keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
 ```
 
-Ahora realizo el bootstrap del servicio Identity (esto crea el usuario `admin` y el proyecto `admin` iniciales):
+A continuación, realizaremos el bootstrap del servicio de identidad (proceso que crea el usuario `admin` y el proyecto `admin` iniciales):
 
 ```bash
 vagrant@controller01:~$ sudo keystone-manage bootstrap --bootstrap-password ADMIN_PASS \
@@ -95,28 +95,28 @@ vagrant@controller01:~$ sudo keystone-manage bootstrap --bootstrap-password ADMI
   --bootstrap-region-id RegionOne
 ```
 
-Sustituye `ADMIN_PASS` por la contraseña que quieras usar para el usuario administrador.
+Sustituye `ADMIN_PASS` por la contraseña que desees asignar al usuario administrador.
 
 ## Configuración del servidor web Apache
 
-Edita el fichero `/etc/apache2/apache2.conf` y añade la opción `ServerName` apuntando al nodo controlador:
+Editaremos el archivo `/etc/apache2/apache2.conf` para añadir la directiva `ServerName` apuntando al nodo controlador:
 
 ```bash
 ServerName controller01
 ```
 
-Luego de realizar el cambio, reinicia el servicio y asegúrate de que está levantado:
+Tras realizar el cambio, reiniciaremos el servicio y verificaremos que se haya iniciado correctamente:
 
 ```bash
 vagrant@controller01:~$ sudo systemctl restart apache2
 vagrant@controller01:~$ sudo systemctl status apache2
 ```
 
-En nuestro caso no usaremos TLS/HTTPS ya que es un laboratorio, así que con esto hemos finalizado la configuración de Apache.
+En este caso, al tratarse de un laboratorio, no utilizaremos TLS/HTTPS, por lo que con esto finalizamos la configuración de Apache.
 
 ## Finalizar la instalación
 
-Configura la cuenta administrativa creando un fichero `admin-openrc` con las siguientes variables de entorno:
+Configuraremos la cuenta administrativa creando el archivo `admin-openrc` con las siguientes variables de entorno:
 
 ```bash
 vagrant@controller01:~$ nano admin-openrc
@@ -129,17 +129,17 @@ export OS_AUTH_URL=http://controller01:5000/v3
 export OS_IDENTITY_API_VERSION=3
 ```
 
-Estos valores son los que crea `keystone-manage bootstrap` por defecto.
+Estos valores son los asignados por defecto mediante el comando `keystone-manage bootstrap`.
 
-Sustituye `ADMIN_PASS` por la contraseña que usaste en el comando `keystone-manage bootstrap`.
+Sustituye `ADMIN_PASS` por la contraseña utilizada en el comando `keystone-manage bootstrap`.
 
-Por ultimo ,comprueba que `admin-openrc` se ha creado correctamente cargando las variables:
+Finalmente, verificaremos que el archivo `admin-openrc` se ha creado correctamente cargando las variables de entorno:
 
 ```bash
 vagrant@controller01:~$ source admin-openrc
 ```
 
-Comprueba que eres capaz de generar un token para verificar que Keystone responde correctamente:
+Verificaremos que es posible generar un token para confirmar que Keystone responde correctamente:
 
 ```bash
 vagrant@controller01:~$ openstack token issue
@@ -155,4 +155,4 @@ vagrant@controller01:~$ openstack token issue
 +------------+---------------------------------------------------------------------------------------------+
 ```
 
-Si has obtenido una salida similar a esta, la instalación de Keystone en el nodo controlador ha finalizado.
+Si obtienes una salida similar, la instalación de Keystone en el nodo controlador se ha completado correctamente.
