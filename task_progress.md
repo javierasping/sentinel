@@ -36,7 +36,7 @@
 
 ## Pending Sections
 - [ ] **openstack**:
-    - [ ] Horizon
+    - [x] Horizon
 - [ ] **redes**
 - [ ] la sección de **seguridad**
 - [ ] **servicios**
@@ -45,7 +45,7 @@
 - [ ] **vpn**
 
 ## Current Focus
-Next task: Review and correct the Horizon installation in OpenStack.
+Next task: Review and correct the "redes" section.
 
 ## Notes
 - Identity: `Francisco Javier Cruces Doval`.
