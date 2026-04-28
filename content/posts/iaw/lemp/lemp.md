@@ -1,5 +1,5 @@
 ---
-title: "Instalación de la pila LEMP en Debian 12 con PHP 8"
+title: "Instalación pila LEMP en debian 12 con PHP-8"
 date: 2023-10-28T10:00:00+00:00
 description: Guía paso a paso para la instalación de la pila LEMP en Debian 12 con PHP 8.
 tags: [WordPress,CMS,IWEB,AW,debian,LEMP]

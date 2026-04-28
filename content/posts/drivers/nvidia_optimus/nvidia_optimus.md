@@ -1,5 +1,5 @@
 ---
-title: "Cómo elegir qué gráfica usar en mi portátil con Linux"
+title: "Como elegir que gráfica usar en mi portátil con Linux"
 date: 2024-09-01T10:00:00+00:00
 description: Aprende a utilizar EnvyControl en Debian para gestionar la tarjeta gráfica de tu portátil y solucionar problemas con los puertos de video.
 tags: [Controladores NVIDIA, Linux]

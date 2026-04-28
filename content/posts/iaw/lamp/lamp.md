@@ -1,5 +1,5 @@
 ---
-title: "Instalación de la pila LAMP en Debian 12"
+title: "Instalación pila LAMP en debian 12"
 date: 2023-10-28T10:00:00+00:00
 description: Guía paso a paso para la instalación de la pila LAMP en Debian 12.
 tags: [WordPress,CMS,IWEB,AW,debian,LAMP]

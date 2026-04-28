@@ -1,5 +1,5 @@
 ---
-title: "Installation of NVIDIA Drivers in Debian 12"
+title: "Installation of NVIDIA Controllers in Debian 12"
 date: 2024-09-01T10:00:00+00:00
 Description: Learn how to install NVIDIA drivers in Debian 12 to optimize your system's graphic performance.
 tags: [Controladores NVIDIA,Linux]

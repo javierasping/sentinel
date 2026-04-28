@@ -19,18 +19,33 @@
     - [x] `lemp`
     - [x] `wordpress` (LAMP)
     - [x] `wordpress_lemp`
-- [ ] **iaw**: Update `_index` files if necessary.
-- [ ] **observabilidad**
-- [ ] **openstack**
+- [x] **observabilidad**: All posts reviewed and corrected (ES/EN).
+- [x] **openstack**:
+    - [x] Introducción
+    - [x] Métodos de instalación
+    - [x] Despliegue del escenario
+    - [x] Keystone
+    - [x] Placement
+    - [x] Glance
+    - [x] Nova Controlador
+    - [x] Nova Cómputo
+    - [x] Neutron Controlador
+    - [x] Neutron Cómputo
+    - [x] Cinder Controlador
+    - [x] Cinder Storage
+
+## Pending Sections
+- [ ] **openstack**:
+    - [ ] Horizon
 - [ ] **redes**
-- [ ] **seguridad**
+- [ ] la sección de **seguridad**
 - [ ] **servicios**
 - [ ] **sistemas**
 - [ ] **virtualizacion-kvm-linux**
 - [ ] **vpn**
 
 ## Current Focus
-Next task: Review and correct `wordpress_lemp` in the `iaw` section.
+Next task: Review and correct the Horizon installation in OpenStack.
 
 ## Notes
 - Identity: `Francisco Javier Cruces Doval`.
