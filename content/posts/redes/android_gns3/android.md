@@ -8,21 +8,21 @@ hero: /images/redes/android_gns3/android.png
 
 
 
-Para descargarnos la imagen de android puedes hacerlo desde esta pagina -->  https://www.fosshub.com/Android-x86.html :
+Para descargar la imagen de Android, puede utilizar la siguiente página: https://www.fosshub.com/Android-x86.html
 
 ```bash
 wget https://www.fosshub.com/Android-x86.html?dwl=android-x86_64-9.0-r2.iso
 ```
 
-Crea una maquina en KVM como si fuese un Debian , yo le he dado 2GB de RAM y 2 cores :
+Cree una máquina virtual en KVM siguiendo el proceso similar a una instalación de Debian; se recomienda asignar 2 GB de RAM y 2 núcleos de CPU:
 
 ![](/redes/android_gns3/Pastedimage20240117194542.png)
 
-En nuestro caso podemos lanzar una instalación automática :
+En este caso, se puede iniciar una instalación automática:
 
 ![](/redes/android_gns3/Pastedimage20240117194647.png)
 
-Cuando tengas la maquina instalada , apaga la maquina y vamos a importarla en gns3 . Para ello vamos a llevarnos el disco de KVM y vamos a importarlo en el directorio donde hayamos instalado las imágenes de GNS3 , luego haz propiedad del disco copiado a tu usuario .
+Una vez instalada la máquina, apáguela para proceder con la importación en GNS3. Para ello, copie el disco de KVM al directorio de imágenes de GNS3 y asigne la propiedad del archivo al usuario actual:
 
 ```bash
 cp /var/lib/libvirt/images/android-wireguard.qcow2 /home/javiercruces/GNS3/images/QEMU/
@@ -30,18 +30,18 @@ cp /var/lib/libvirt/images/android-wireguard.qcow2 /home/javiercruces/GNS3/image
 javiercruces@HPOMEN15:~$ sudo chown javiercruces:javiercruces /home/javiercruces/GNS3/images/QEMU/android-wireguard.qcow2 
 ```
 
-Ahora accede a tu GNS3 y en preferencias vamos a añadir una nueva QEMU VMs :
+Ahora, acceda a GNS3 y, en el menú de Preferencias, añada una nueva máquina virtual QEMU:
 
 ![](/redes/android_gns3/Pastedimage20240117195338.png)
 
-Selecciona el binario de emulación x86_64 y asignale la memoria que consideres oportuna , a mi con 2GB me funciona correctamente : 
+Seleccione el binario de emulación x86_64 y asigne la memoria RAM adecuada; 2 GB resultan suficientes para un funcionamiento correcto: 
 
 ![](/redes/android_gns3/Pastedimage20240117195434.png)
 
-Como la imagen utiliza entorno gráfico vamos a seleccionar VNC :
+Dado que la imagen utiliza un entorno gráfico, seleccione VNC como método de consola:
 
 ![](/redes/android_gns3/Pastedimage20240117195509.png)
 
-Y selecciona el disco que hemos copiado a la carpeta images anteriormente :
+Finalmente, seleccione el disco que fue copiado previamente a la carpeta de imágenes:
 
 ![](/redes/android_gns3/Pastedimage20240117195622.png)
