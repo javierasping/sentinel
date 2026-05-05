@@ -6,18 +6,18 @@ tags: [Docker,Kubernetes,Contenedores]
 hero: images/docker/taller2.png
 
 ---
-##  Taller 2: Escenarios multicontenedor en Docker
-###  Despliegue de Nextcloud
+## Taller 2: Escenarios multicontenedor en Docker
+### Despliegue de Nextcloud
 
-Vamos a desplegar la aplicación nextcloud con una base de datos (puedes elegir mariadb o PostgreSQL) utilizando la aplicación docker-compose. Puedes coger cómo modelo el fichero `docker-compose.yml` el que hemos estudiado para desplegar WordPress.
+Vamos a desplegar la aplicación Nextcloud con una base de datos (puedes elegir MariaDB o PostgreSQL) utilizando Docker Compose. Puedes tomar como modelo el archivo `docker-compose.yml` que hemos estudiado para desplegar WordPress.
 
-1. Instala docker-compose en tu ordenador.
+1. Instala Docker Compose en tu equipo.
 
 ```bash
 
 ```
 
-2. Dentro de un directorio crea un fichero `docker-compose.yml` para realizar el despliegue de nextcloud con una base de datos. Recuerda las variables de entorno y la persistencia de información.
+2. Crea un archivo `docker-compose.yml` dentro de un directorio para realizar el despliegue de Nextcloud con una base de datos. Recuerda configurar las variables de entorno y la persistencia de la información.
 
 ```bash
 javiercruces@docker:~/taller2$ cat docker-compose.yaml 
@@ -57,7 +57,7 @@ services:
 
 ```
 
-3. Levanta el escenario con `docker-compose`.
+3. Levanta el escenario utilizando `docker compose up -d`.
 
 ```bash
 javiercruces@docker:~/taller2$ docker compose up -d 
@@ -66,7 +66,7 @@ javiercruces@docker:~/taller2$ docker compose up -d
  ✔ Container taller2-app-1  Started                                                                0.0s
 ```
 
-4. Muestra los contenedores con `docker-compose`.
+4. Muestra los contenedores activos con `docker compose ps`.
 
 ```bash
 javiercruces@docker:~/taller2$ docker compose ps
@@ -76,7 +76,7 @@ taller2-db-1    mariadb:10.6   "docker-entrypoint.sh --transaction-isolation=REA
 
 ```
 
-5. Accede a la aplicación y comprueba que funciona.
+5. Accede a la aplicación mediante el navegador y comprueba que funciona correctamente.
 
 ```bash
 
@@ -84,7 +84,7 @@ taller2-db-1    mariadb:10.6   "docker-entrypoint.sh --transaction-isolation=REA
 
 ![](/docker/taller2/img/Pasted_image_20240202091554.png)
 
-6. Comprueba el almacenamiento que has definido y que se ha creado una nueva red de tipo bridge.
+6. Verifica el almacenamiento definido y confirma que se ha creado una nueva red de tipo bridge.
 
 ```bash
 javiercruces@docker:~/taller2$ docker network ls
@@ -109,7 +109,7 @@ local     taller2_nextcloud
 
 ```
 
-7. Borra el escenario con `docker-compose`.
+7. Elimina el escenario utilizando `docker compose rm -sf`.
 
 ```bash
 javiercruces@docker:~/taller2$ docker compose rm -sf

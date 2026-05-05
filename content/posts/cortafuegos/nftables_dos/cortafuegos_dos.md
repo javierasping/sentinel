@@ -9,7 +9,7 @@ hero: /images/cortafuegos/nftables2.png
 
 
 
-Sobre el escenario creado en el módulo de servicios con las máquinas Odin (Router), Hela (DMZ), Loki y Thor (LAN) y empleando nftables, configura un cortafuegos perimetral en la máquina Odin de forma que el escenario siga funcionando completamente teniendo en cuenta los siguientes puntos:
+Utilizando el escenario creado en el módulo de servicios con las máquinas Odin (Router), Hela (DMZ), Loki y Thor (LAN), y empleando Nftables, configuraremos un cortafuegos perimetral en la máquina Odin. El objetivo es que el escenario siga funcionando correctamente, teniendo en cuenta los siguientes puntos:
 
     • Se valorará la creación de cadenas diferentes para cada flujo de tráfico (de LAN al exterior, de LAN a DMZ, etc…).
     • Política por defecto DROP para todas las cadenas.
@@ -17,13 +17,13 @@ Sobre el escenario creado en el módulo de servicios con las máquinas Odin (Rou
     • Debemos implementar que el cortafuegos funcione después de un reinicio de la máquina.
     • Debes mostrar pruebas de funcionamiento de todas las reglas.
 
-Para no hacer demasiado larga la practica , voy a mostrarte los hits de las reglas al final , así como el script completo de las reglas . Ya que solo te pondré en cada ejercicio las reglas que intervienen y una comprobación del mismo .
+Para no hacer demasiado extensa la práctica, mostraré los hits de las reglas al final, así como el script completo de la configuración. En cada ejercicio, solo incluiré las reglas pertinentes y la comprobación de su funcionamiento.
 
 ## Montar el escenario con Nftables
 
-Voy a eliminar iptables y vamos a pasar a Nftables para que no perdamos ninguna funcionalidad del escenario .
+Eliminaremos `iptables` y migraremos a Nftables para mantener todas las funcionalidades del escenario.
 
-Lo primero sera crear las tablas y cadenas :
+Lo primero será crear las tablas y las cadenas:
 
 ```bash
 javiercruces@odin:~$ sudo nft add table inet filter
@@ -38,7 +38,7 @@ javiercruces@odin:~$ sudo nft add chain inet filter DMZ_LAN { type filter hook f
 javiercruces@odin:~$ sudo nft add chain inet filter DMZ_WAN { type filter hook forward priority 0\; counter \; policy accept \;}
 ```
 
-Así quedarían nuestras cadenas creadas :
+Así quedarían nuestras cadenas creadas:
 
 ```bash
 javiercruces@odin:~$ sudo nft list chains
@@ -70,11 +70,11 @@ table inet filter {
 }
 ```
 
-La red LAN corresponde a la red de los contenedores 192.168.0.0/24 .
-La red DMZ corresponde a la red de hela 172.16.0.0/16 .
+La red LAN corresponde a la red de los contenedores `192.168.0.0/24`.
+La red DMZ corresponde a la red de Hela `172.16.0.0/16`.
 
 
-Continuamos creando la tabla de NAT para poder configurar el SNAT y el DNAT  , estas ya que suelen ser un numero reducido de reglas no voy a crear distintas cadenas :
+A continuación, crearemos la tabla de NAT para configurar el SNAT y el DNAT. Dado que suelen ser un número reducido de reglas, no crearemos cadenas distintas para cada flujo:
 
 ```bash
 # Creamos la tabla NAT
@@ -89,9 +89,9 @@ javiercruces@odin:~$ sudo nft add chain nat postrouting { type nat hook postrout
 
 ### Reglas SNAT
 
-Una vez hecho esto voy a crear las reglas de SNAT para que nuestros clientes puedan salir a Internet en la red LAN y DMZ :
+Una vez hecho esto, crearé las reglas de SNAT para que los clientes de las redes LAN y DMZ puedan acceder a Internet:
 
-Mi tarjeta de red que esta de cara al exterior es la ens4 .
+Mi interfaz de red orientada al exterior es la `ens4`.
 
 ```bash
 # Regla SNAT para LAN
@@ -104,10 +104,10 @@ sudo nft add rule ip nat postrouting oifname "ens4" ip saddr 172.16.0.0/16 count
 
 ```
 
-Vamos a comprobar que en los clientes ya pueden acceder a Internet , actualmente la política por defecto es ACCEPT.
+Comprobaremos que los clientes ya pueden acceder a Internet (actualmente, la política por defecto es `ACCEPT`).
 
 
-Comprobación de SNAT en Hela :
+Comprobación de SNAT en Hela:
 
 ```bash
 [javiercruces@hela ~]$ ping www.javiercd.es -c 1
@@ -119,7 +119,7 @@ PING javierasping.github.io (185.199.109.153) 56(84) bytes of data.
 rtt min/avg/max/mdev = 39.439/39.439/39.439/0.000 ms
 ```
 
-Comprobación de SNAT en Thor :
+Comprobación de SNAT en Thor:
 
 ```bash
 javiercruces@thor:~$ ping www.javiercd.es -c 1
@@ -132,7 +132,7 @@ rtt min/avg/max/mdev = 38.138/38.138/38.138/0.000 ms
 
 ```
 
-Comprobación de SNAT en Loki :
+Comprobación de SNAT en Loki:
 
 ```bash
 javiercruces@loki:~$ ping www.javiercd.es -c 1
@@ -144,7 +144,7 @@ PING javierasping.github.io (185.199.111.153) 56(84) bytes of data.
 rtt min/avg/max/mdev = 37.667/37.667/37.667/0.000 ms
 ```
 
-Por ultimo nos aseguraremos de que la regla recibe hits :
+Por último, nos aseguraremos de que la regla registre hits:
 
 ```bash
 javiercruces@odin:~$ sudo nft list ruleset
@@ -159,7 +159,7 @@ javiercruces@odin:~$ sudo nft list ruleset
 
 ### Reglas de DNAT
 
-Las reglas anteriores que teníamos eran las siguientes :
+Las reglas que teníamos anteriormente eran las siguientes:
 
 ```bash
 javiercruces@odin:~$ sudo iptables -L -t nat
@@ -171,7 +171,7 @@ DNAT       tcp  --  anywhere             anywhere             tcp dpt:smtp to:19
 DNAT       tcp  --  anywhere             anywhere             tcp dpt:mysql to:192.168.0.3
 ```
 
-Así que vamos a pasarlas a nftables :
+Por lo tanto, las migraremos a Nftables:
 
 ```bash
 # Para un wordpress que hay en hela
@@ -187,7 +187,7 @@ sudo nft add rule ip nat prerouting tcp dport 25 counter dnat to 192.168.0.3
 sudo nft add rule ip nat prerouting tcp dport 3306 counter dnat to 192.168.0.3
 ```
 
-Ahora vamos a añadir una series de reglas para permitir el trafico anterior y el resto de la preparacion del escenario :
+Ahora añadiremos una serie de reglas para permitir el tráfico anterior y completar la preparación del escenario:
 
 ```bash
 # PERMITIR USO DE ODIN
@@ -256,9 +256,9 @@ sudo nft add rule inet filter DMZ_LAN iifname "br-intra2" oifname "ens3" tcp spo
 
 El cortafuegos debe cumplir al menos estas reglas: 
 
-### La máquina Odin tiene un servidor ssh escuchando por el puerto 22, pero al acceder desde el exterior habrá que conectar al puerto 2222. 
+### La máquina Odin tiene un servidor SSH escuchando en el puerto 22, pero al acceder desde el exterior se deberá conectar al puerto 2222. 
 
-Para realizar este ejercicio voy a hacer un DNAT a la interfaz de DMZ de odin que es la 192.168.0.1 , asi me conectare a esa interfaz por ssh . Posteriomente hay que permitir este trafico que va desde la ens4 a la ens3 .
+Para realizar este ejercicio, haré un DNAT hacia la interfaz de DMZ de Odin (`192.168.0.1`), permitiendo la conexión SSH a dicha interfaz. Posteriormente, habilitaremos el tráfico desde la `ens4` hacia la `ens3`.
 
 ```bash
 # Permitimos el trafico que ahora "cambiamos" el puerto con la regla DNAT de 2222 a 22 hacia odin
@@ -269,7 +269,7 @@ sudo nft add rule ip nat prerouting iifname "ens4" tcp dport 2222 counter dnat t
 ```
 
 
-Pondré la política por defecto DROP una vez llegado a este punto :
+Estableceré la política por defecto en `DROP` una vez llegados a este punto:
 
 ```bash
 sudo nft chain inet filter input { policy drop \; }
@@ -282,7 +282,7 @@ sudo nft chain inet filter LAN_DMZ { policy drop \; }
 sudo nft chain inet filter DMZ_WAN { policy drop \; }
 ```
 
-Y vamos a comprobar que la conexión funciona por el puerto 2222 :
+Y comprobaremos que la conexión funciona a través del puerto 2222:
 
 ```bash
 javiercruces@HPOMEN15:~$ ssh 172.22.200.47 -p 2222
@@ -298,7 +298,7 @@ Last login: Sat Mar  9 13:49:09 2024 from 172.29.0.58
 javiercruces@odin:~$ 
 ```
 
-Comprobamos los hits en las reglas :
+Comprobaremos los hits en las reglas:
 
 ```bash
 javiercruces@odin:~$ sudo nft list ruleset
@@ -310,9 +310,11 @@ oifname "ens4" tcp sport 22 ct state established counter packets 355383 bytes 21
 iifname "ens4" tcp dport 2222 counter packets 5 bytes 300 dnat to 192.168.0.1:22
 ```
 
-### Desde Thor y Hela se debe permitir la conexión ssh por el puerto 22 a la máquina Odin. 
+### Desde Thor y Hela se debe permitir la conexión SSH por el puerto 22 a la máquina Odin.
 
-Para poder comprobar estas reglas voy a permitir las conexiones ssh desde Odin a ambas redes DMZ y LAN
+
+
+Para comprobar estas reglas, permitiré las conexiones SSH desde Odin hacia ambas redes, DMZ y LAN:
 
 ```bash
 # Permitir conexiones ssh de odin a hela
@@ -332,7 +334,7 @@ sudo nft add rule inet filter input iifname "br-intra2" ip saddr 192.168.0.2 tcp
 sudo nft add rule inet filter output oifname "br-intra2" ip daddr 192.168.0.2 tcp sport 22 ct state established counter accept
 ```
 
-Vamos a comprobar las 2 reglas anteriores conectándonos a Odin por ssh desde estos dos clientes :
+Comprobaremos las dos reglas anteriores conectándonos a Odin por SSH desde estos dos clientes:
 
 ```bash
 #Hela --> Odin

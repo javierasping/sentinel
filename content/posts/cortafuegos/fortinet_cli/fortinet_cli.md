@@ -8,31 +8,31 @@ hero: /images/cortafuegos/fortinet_cli.png
 
 
 
-## Equivalencia de GUI a CLI 
+## Equivalencia de la GUI a la CLI 
 
-Inicialmente, empecé la práctica utilizando la línea de comandos (CLI) sin embargo, encontré que resulta más cómodo realizarla desde la interfaz gráfica. Por eso, decidí establecer una equivalencia entre las diferentes acciones que he llevado a cabo durante la práctica y compararlas con su contraparte en la terminal.
+Inicialmente, empecé la práctica utilizando la línea de comandos (CLI); sin embargo, encontré que resulta más cómodo realizarla desde la interfaz gráfica. Por eso, decidí establecer una equivalencia entre las diferentes acciones que he llevado a cabo durante la práctica y compararlas con su equivalente en la terminal.
 
 
 > [!NOTE]  
 > En este post hago un pequeño resumen de las equivalencias entre la GUI y la CLI de Fortinet que he utilizado en los 2 post de cortafuegos Fortinet.
 
-### Configurar una interfaz
+### Configuración de una interfaz
 
-Como ya tenemos el cortafuegos configurado tenemos 2 opciones a la hora de ver la configuración de una determinada interfaz .
+Como ya tenemos el cortafuegos configurado, tenemos dos opciones a la hora de ver la configuración de una determinada interfaz.
 
-Ver la configuración de todas las interfaces :
+Ver la configuración de todas las interfaces:
 
 ```bash
 show system interface
 ```
 
-O especificar una en concreto : 
+O especificar una en particular: 
 
 ```bash
 show system interface port1
 ```
 
-Si observamos la configuración de las tres interfaces que he establecido durante la práctica, podemos notar que la sintaxis es muy sencilla. Prácticamente, incluso sin tener conocimientos previos sobre el tema, es fácil de comprender.
+Si observamos la configuración de las tres interfaces que he configurado durante la práctica, podemos notar que la sintaxis es muy sencilla. Prácticamente, incluso sin tener conocimientos previos sobre el tema, es fácil de comprender.
 
 ```bash
 FTG # show system interface 
@@ -72,9 +72,9 @@ config system interface
 
 ```
 
-Como puedes ver en la interfaz puerto 1 que es la que corresponde a la WAN , anteriormente desactive el acceso para configurarlo desde esta interfaz  , pero por comodidad lo he dejado activado para usar el navegador de mi portátil . 
+Como puedes ver en la interfaz del puerto 1, que corresponde a la WAN, anteriormente desactivé el acceso para evitar configurarlo desde esta interfaz, pero por comodidad lo he dejado activado para utilizar el navegador de mi portátil. 
 
-Una configuración que nos puede interesar es configurar una interfaz por DHCP , en mi caso lo haré en el puerto 4 :
+Una configuración que nos puede interesar es configurar una interfaz mediante DHCP; en mi caso, lo haré en el puerto 4:
 
 ```bash
 # Accedemos al modo de configuración
@@ -87,7 +87,7 @@ FTG (port4) # set mode dhcp
 FTG (port4) # end
 ```
 
-Ahora si listamos la configurar de la interfaz se habrá aplicado el cambio :
+Ahora, si listamos la configuración de la interfaz, veremos que se ha aplicado el cambio:
 
 ```bash 
 FTG # show system interface port4
@@ -103,7 +103,7 @@ end
 
 En este punto, observamos que los comandos que hemos utilizado coinciden con los que el sistema muestra al listar la configuración.
 
-Ahora, lo que nos interesa es conocer la dirección IP de nuestra interfaz. Si deseamos listar todas las direcciones IP asignadas, simplemente no especificamos el nombre de la interfaz. En mi caso, me interesa saber la dirección IP de la interfaz del puerto 4:
+Ahora, lo que nos interesa es conocer la dirección IP de una interfaz. Si deseamos listar todas las direcciones IP asignadas, basta con no especificar el nombre de la interfaz. En mi caso, me interesa saber la dirección IP de la interfaz del puerto 4:
 
 ```bash
 FTG # get system interface physical port4
@@ -119,13 +119,13 @@ FTG # get system interface physical port4
 ```
 
 
-Esto es lo básico que necesitamos para comenzar a configurar las interfaces . Te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/10620/config-system-interface) a la documentación oficial donde explica todos los detalles . 
+Esto es lo básico que necesitamos para comenzar a configurar las interfaces. Te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/10620/config-system-interface) a la documentación oficial donde se explican todos los detalles. 
 
 ### Políticas
 
-Lo siguiente que hemos realizado en la practica es crear reglas desde la CLI , así que comenzare listando las reglas existentes , recuerda que en la versión de prueba tenemos un limite de 10 reglas simultaneas así que he eliminado algunas reglas durante la realización de la misma .
+Lo siguiente que hemos realizado en la práctica es crear reglas desde la CLI, así que comenzaré listando las reglas existentes. Recuerda que en la versión de prueba tenemos un límite de 10 reglas simultáneas, así que he eliminado algunas reglas durante la realización de la misma.
 
-Para hacer la salida mas legible vamos a ver una regla "normal" y otra de DNAT para compararlas :
+Para hacer la salida más legible, vamos a ver una regla "normal" y otra de DNAT para compararlas:
 
 ```bash
 FTG # show firewall policy
@@ -159,22 +159,22 @@ config firewall policy
     next 
 ```
 
-Vemos que la salida es bastante clara , si nos paramos a ver los parámetros comunes :
+Vemos que la salida es bastante clara. Si nos fijamos en los parámetros comunes:
 
-- name: Nombre que le queremos dar a la regla .
-- UUID: Un identificador único que le asigna automáticamente el FW a cada regla .
-- srcintf: Interfaz de origen (Por donde entra el trafico)
-- dstintf: Interfaz de origen (Por donde entra el trafico)
-- action: Que acción queremos que haga la regla accept | deny . 
-- srcaddr:  Dirección de origen
-- dstaddr: Dirección de destino
-- schedule: Programación de la regla , por si es una regla temporal esta solo estará activa durante cierto tiempo .
-- service: Nombre del servicio (Va asignado a un numero de puerto)
-- nat: Si queremos que la regla haga SNAT .
+- name: Nombre que queremos dar a la regla.
+- UUID: Un identificador único que el firewall asigna automáticamente a cada regla.
+- srcintf: Interfaz de origen (por donde entra el tráfico).
+- dstintf: Interfaz de destino (por donde sale el tráfico).
+- action: Acción que queremos que realice la regla (`accept` | `deny`).
+- srcaddr: Dirección de origen.
+- dstaddr: Dirección de destino.
+- schedule: Programación de la regla; si es una regla temporal, solo estará activa durante cierto periodo.
+- service: Nombre del servicio (asociado a un número de puerto).
+- nat: Si queremos que la regla aplique SNAT.
 
-Esto seria la sintaxis básica de cada regla como ves entre una regla "normal" y una de DNAT lo único que cambia es la dirección del trafico y la IP de destino que en este dispositivo es una IP virtual .
+Esta es la sintaxis básica de cada regla. Como puedes observar, entre una regla 'normal' y una de DNAT, lo único que cambia es la dirección del tráfico y la IP de destino, que en este dispositivo se define como una IP virtual.
 
-Si queremos borrar una regla , haremos lo siguiente :
+Si queremos eliminar una regla, haremos lo siguiente:
 
 ```bash
 # Accedemos al modo de configuracion de las politicas de seguridad
@@ -185,7 +185,7 @@ FTG (policy) # delete 2
 FTG (policy) # end
 ```
 
-Para añadir una nueva regla, la sintaxis es similar a cuando listamos las reglas, pero necesitamos especificar un número de identificación (ID) al crearla. Es recomendable que sepas el número de la última regla que añadiste. Si no indicas un número, no se creará una nueva regla.
+Para añadir una nueva regla, la sintaxis es similar a la de listado, pero es necesario especificar un número de identificación (ID) al crearla. Es recomendable saber el número de la última regla añadida, ya que si no se indica un número, la regla no se creará.
 
 ```bash
 FTG#config firewall policy
@@ -205,13 +205,13 @@ FTG (12) # next
 FTG (policy) # end
 ```
 
-Hay muchísimas mas opciones que ignoro que no ha sido necesarias utilizarlas en la practica , te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/323620/config-firewall-policy) a la documentación oficial donde detalla todas las distintas opciones .
+Hay muchísimas más opciones que no han sido necesarias utilizar durante la práctica; te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/323620/config-firewall-policy) a la documentación oficial donde se detallan todas las opciones.
 
 ### Servicios
 
-Los servicios son unos objetos los cuales almacenan un numero o conjunto de puertos los cuales posteriormente utilizaras al crear reglas .Aunque estos dispositivos vienen con los servicios mas comunes de fabrica , muchas veces es necesario que creemos uno nuevo acorde a nuestras necesidades .
+Los servicios son objetos que almacenan un número o conjunto de puertos que posteriormente se utilizan al crear reglas. Aunque estos dispositivos incluyen los servicios más comunes de fábrica, a menudo es necesario crear uno nuevo según nuestras necesidades.
 
-Al igual que con los comandos anteriores de listar , podemos listar todos los servicios o uno en concreto :
+Al igual que con los comandos anteriores de listado, podemos listar todos los servicios o uno en particular:
 
 ```bash
 FTG # show firewall service custom
@@ -240,7 +240,7 @@ end
 
 ```
 
-Para borrar un servicio , seguiremos los siguientes pasos :
+Para eliminar un servicio, seguiremos estos pasos:
 
 ```bash
 # Accedemos a la configuración de los servicios
@@ -251,7 +251,7 @@ FTG (custom) # delete SSH_2222
 FTG (custom) # end
 ```
 
-Si queremos crearlo seguiremos los siguientes pasos :
+Para crearlo, seguiremos los siguientes pasos:
 
 ```bash
 # Accedemos a la configuración de los servicios
@@ -267,15 +267,15 @@ FTG (SSH_2222) # next
 FTG (custom) # end
 ```
 
-Te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.0/ngfw-deployment/546227/creating-service-objects) a la documentación oficial referente a los servicios donde explica con detalle todas las opciones de los mismos .
+Te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.0/ngfw-deployment/546227/creating-service-objects) a la documentación oficial referente a los servicios, donde se explican detalladamente todas las opciones.
 
 ### IPs Virtuales
 
-Las IP Virtuales Estáticas (VIP) se utilizan para mapear direcciones IP externas a direcciones IP internas. Esto también se llama DNAT, donde el destino de un paquete se está enviando a una dirección diferente.
+Las IPs Virtuales Estáticas (VIP) se utilizan para mapear direcciones IP externas a direcciones IP internas. Este proceso también se conoce como DNAT, en el cual la dirección de destino de un paquete se redirige a una dirección diferente.
 
-Las VIP estáticas se utilizan comúnmente para mapear direcciones IP públicas a recursos detrás del FortiGate que utilizan direcciones IP privadas. Una VIP estática uno a uno es cuando se mapea todo el rango de puertos. Una VIP de reenvío de puertos es cuando el mapeo se configura en un puerto específico o rango de puertos.
+Las VIP estáticas se utilizan comúnmente para mapear direcciones IP públicas a recursos internos que utilizan direcciones IP privadas. Una VIP estática uno a uno es cuando se mapea todo el rango de puertos. Una VIP de reenvío de puertos es cuando el mapeo se configura en un puerto o rango de puertos específicos.
 
-Si queremos listar las diferentes IPs virtuales que tenemos usaremos el siguiente comando , si solo queremos listar una en concreta indicaremos su nombre :
+Si queremos listar las IPs virtuales configuradas, utilizaremos el siguiente comando; si solo queremos ver una en particular, indicaremos su nombre:
 
 ```bash
 FTG # show firewall vip
@@ -309,7 +309,7 @@ config firewall vip
 end
 ```
 
-En el caso de que queramos eliminar una de estas IPs virtuales , seguiremos los siguientes pasos :
+En caso de que queramos eliminar una de estas IPs virtuales, seguiremos estos pasos:
 
 ```bash
 # Accedemos al modo de configuración
@@ -320,33 +320,33 @@ FTG (vip) # delete DNAT_HELA_WEB
 FTG (vip) # end
 ```
 
-Por otro lado para crear una de estas , como hemos realizado desde la GUI seguiremos los siguientes pasos :
+Para crear una de estas VIPs, seguiremos estos pasos (similar a lo realizado desde la GUI):
 
 ```bash
 # Accedemos al modo de configuración
 FTG # config firewall vip
 # Le asignamos el nombre que deseemos
 FTG (vip) # edit DNAT_HELA_WEB
-# Indicamos opcionalmente sobre el servicio que sera usado esta IP virtual
+# Indicamos, opcionalmente, el servicio que utilizará esta IP virtual:
 FTG (DNAT_HELA_WEB) # set service "HTTP"
-# Indicamos la Ip externa
+# Indicamos la IP externa:
 FTG (DNAT_HELA_WEB) # set extip 192.168.122.77
-# Indicamos la Ip interna
+# Indicamos la IP interna:
 FTG (DNAT_HELA_WEB) # set mappedip "192.168.200.2"
-# Indicamos la interfaz externa
+# Indicamos la interfaz externa:
 FTG (DNAT_HELA_WEB) # set extintf "port1"
 # Guardamos y salimos
 FTG (DNAT_HELA_WEB) # next
 FTG (vip) # end
 ```
 
-Las IP virtuales tienen mas parámetros de configuración que no he utilizado en la practica , te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.9/administration-guide/510402/static-virtual-ips) a la documentación oficial donde detalla toda la configuración que podemos acceder con las mismas .
+Las IPs virtuales cuentan con más parámetros de configuración que no han sido necesarios durante la práctica; te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.9/administration-guide/510402/static-virtual-ips) a la documentación oficial donde se detalla toda la configuración disponible.
 
 ### Rutas estáticas 
 
-Nuestro dispositivo necesita conocer hacia donde enviar el trafico , para esto existen las rutas estáticas .
+El dispositivo necesita conocer el destino del tráfico; para ello existen las rutas estáticas.
 
-Para listar las rutas que tiene configurado nuestro cortafuegos , usaremos el siguiente comando :
+Para listar las rutas configuradas en el cortafuegos, usaremos el siguiente comando:
 
 ```bash
 FTG # show router static
@@ -358,7 +358,7 @@ config router static
 end
 ```
 
-Al igual que hemos hecho anteriormente , si queremos eliminar esta ruta por defecto seguiremos los siguientes pasos :
+Al igual que hemos hecho anteriormente, si queremos eliminar esta ruta por defecto, seguiremos estos pasos:
 
 ```bash
 FTG # config router static
@@ -366,14 +366,14 @@ FTG (static) # delete 1
 FTG (static) # end
 ```
 
-Si queremos añadir una ruta , puedes utilizar este ejemplo :
+Para añadir una ruta, puedes utilizar el siguiente ejemplo:
 
 ```bash
 FTG # config router static
 FTG (static) # edit 1
-# El siguiete salto o puerta de enlace 
+# El siguiente salto o puerta de enlace: 
 FTG (1) # set gateway 192.168.122.1
-# La interfaz por donde saldra el trafico
+# La interfaz por la que saldrá el tráfico:
 FTG (1) # set device "port1"
 FTG (1) # next
 FTG (static) # end

@@ -6,26 +6,28 @@ tags: [Docker,Kubernetes,Contenedores]
 hero: images/docker/taller1.png
 
 ---
-##  Taller 1: Almacenamiento y redes en Docker 
+## Taller 1: Almacenamiento y redes en Docker
 
-###  Almacenamiento
 
-Vamos a trabajar con volúmenes docker:
 
-1. Crea un volumen docker que se llame `miweb`.
+### Almacenamiento
+
+Trabajaremos con volúmenes de Docker:
+
+1. Crea un volumen de Docker llamado `miweb`.
 
 ```bash
 javiercruces@docker:~$ docker volume create miweb
 miweb
 ```
 
-2. Crea un contenedor desde la imagen `php:7.4-apache` donde montes en el directorio `/var/www/html` (que sabemos que es el _DocumentRoot_ del servidor que nos ofrece esa imagen) el volumen docker que has creado.
+2. Crea un contenedor a partir de la imagen `php:7.4-apache`, montando el volumen creado en el directorio `/var/www/html` (que es el _DocumentRoot_ del servidor proporcionado por esa imagen).
 
 ```bash
 javiercruces@docker:~$ docker run -d --name my-apache-app -v miweb:/var/www/html -p 8080:80 php:7.4-apache
 ```
 
-3. Utiliza el comando `docker cp` para copiar un fichero `index.html` (donde aparece tu nombre) en el directorio `/var/www/html`.
+3. Utiliza el comando `docker cp` para copiar un archivo `index.html` (que contenga tu nombre) en el directorio `/var/www/html`.
 
 ```bash
 javiercruces@docker:~$ echo "<h1>Javier Cruces</h1>" > index.html
@@ -33,57 +35,57 @@ javiercruces@docker:~$ docker cp index.html my-apache-app:/var/www/html/
 Successfully copied 2.05kB to my-apache-app:/var/www/html/
 ```
 
-4. Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `index.html`.
+4. Accede al contenedor desde el navegador para ver la información del archivo `index.html`.
 
 ```bash
 javiercruces@docker:~$ curl http://localhost:8080
 <h1>Javier Cruces</h1>
 ```
 
-5. Borra el contenedor
+5. Elimina el contenedor
 
 ```bash
 javiercruces@docker:~$ docker rm -f my-apache-app
 my-apache-app
 ```
 
-6. Crea un nuevo contenedor y monta el mismo volumen como en el ejercicio anterior.
+6. Crea un nuevo contenedor y monta el mismo volumen que en el ejercicio anterior.
 
 ```bash
 javiercruces@docker:~$ docker run -d --name Taller1 -v miweb:/var/www/html -p 8080:80 php:7.4-apache
 9edd4b2dd2499f923090ce6a246e44db136f162528a51f84ddb33659503bafd7
 ```
 
-7. Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `index.html`. ¿Seguía existiendo ese fichero?
+7. Accede al contenedor desde el navegador para ver la información del archivo `index.html`. ¿Sigue existiendo el archivo?
 
 ```bash
 javiercruces@docker:~$ curl http://localhost:8080
 <h1>Javier Cruces</h1>
 ```
 
-Vamos a trabajar con bind mount:
+Trabajaremos con bind mounts:
 
-1. Crea un directorio en tu host y dentro crea un fichero `index.html` (donde aparece tu nombre).
+1. Crea un directorio en tu host y, dentro de él, un archivo `index.html` (que contenga tu nombre).
 
 ```bash
 javiercruces@docker:~$ mkdir taller1
 javiercruces@docker:~$ cp index.html taller1/
 ```
 
-2. Crea un contenedor desde la imagen `php:7.4-apache` donde montes en el directorio `/var/www/html` el directorio que has creado por medio de `bind mount`.
+2. Crea un contenedor a partir de la imagen `php:7.4-apache`, montando el directorio creado en `/var/www/html` mediante un `bind mount`.
 
 ```bash
 javiercruces@docker:~$ docker run -d --name Taller1 -v /home/javiercruces/taller1/:/var/www/html -p 8080:80 php:7.4-apache
 ```
 
-3. Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `index.html`.
+3. Accede al contenedor desde el navegador para ver la información del archivo `index.html`.
 
 ```bash
 javiercruces@docker:~$ curl http://localhost:8080
 <h1>Javier Cruces</h1>
 ```
 
-4. Modifica el contenido del fichero `index.html` en tu host y comprueba que al refrescar la página ofrecida por el contenedor, el contenido ha cambiado.
+4. Modifica el contenido del archivo `index.html` en tu host y comprueba que, al refrescar la página en el navegador, el contenido ha cambiado.
 
 ```bash
 javiercruces@docker:~$ echo "<h1>Javier Cruces Doval</h1>" > taller1/index.html
@@ -92,20 +94,20 @@ javiercruces@docker:~$ curl http://localhost:8080
 
 ```
 
-5. Borra el contenedor
+5. Elimina el contenedor
 
 ```bash
 javiercruces@docker:~$ docker rm -f Taller1
 Taller1
 ```
 
-6. Crea un nuevo contenedor y monta el mismo directorio como en el ejercicio anterior.
+6. Crea un nuevo contenedor y monta el mismo directorio que en el ejercicio anterior.
 
 ```bash
 javiercruces@docker:~$ docker run -d --name Taller1 -v /home/javiercruces/taller1/:/var/www/html -p 8080:80 php:7.4-apache
 ```
 
-7. Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `index.html`. ¿Se sigue viendo el mismo contenido?
+7. Accede al contenedor desde el navegador para ver la información del archivo `index.html`. ¿Se sigue viendo el mismo contenido?
 
 ```bash
 javiercruces@docker:~$ curl http://localhost:8080
@@ -114,9 +116,9 @@ javiercruces@docker:~$ curl http://localhost:8080
 
 ### Redes
 
-#### Despliegue de Nextcloud + mariadb
+#### Despliegue de Nextcloud + MariaDB
 
-Vamos a desplegar la aplicación Nextcloud con una base de datos (**NOTA: Para que no te de errores utiliza la imagen `mariadb:10.5`**). Te puede servir el ejercicio que hemos realizado para desplegar [Wordpress](https://fp.josedomingo.org/iaw/4_docker/wordpress.html). Para ello sigue los siguientes pasos:
+Vamos a desplegar la aplicación Nextcloud con una base de datos (**Nota: para evitar errores, utiliza la imagen `mariadb:10.5`**). Puedes basarte en el ejercicio realizado para desplegar [WordPress](https://fp.josedomingo.org/iaw/4_docker/wordpress.html). Para ello, sigue estos pasos:
 
 1. Crea una red de tipo bridge.
 
@@ -139,7 +141,7 @@ javiercruces@docker:~$ docker run -d --name wp_db \
     mariadb:10.5
 ```
 
-3. A continuación, siguiendo la documentación de la imagen [Nextcloud](https://hub.docker.com/_/nextcloud), crea un contenedor conectado a la misma red, e indica las variables adecuadas para que se configure de forma adecuada y realice la conexión a la base de datos. El contenedor también debe ser persistente usando almacenamiento.
+3. A continuación, siguiendo la documentación de la imagen [Nextcloud](https://hub.docker.com/_/nextcloud), crea un contenedor conectado a la misma red e indica las variables necesarias para que se configure correctamente y realice la conexión a la base de datos. El contenedor también debe ser persistente mediante el uso de almacenamiento.
 
 ```bash
 javiercruces@docker:~$ docker run -d --name nextcloud \

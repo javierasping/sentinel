@@ -10,122 +10,83 @@ hero: images/redes/arp/portada.png
 
 The Address Resolution Protocol (ARP) is fundamental in computer networks to map IP addresses to physical link layer addresses (MAC). Its main function is to find the MAC address associated with a specific IP address on a local network. When one device needs to communicate with another on the same network, it uses ARP to determine the MAC address of the destination before sending data.
 
-### Do you think the ARP question is a message of dissemination? Make a Wireshark capture of an ARP request and analyze it to justify your response.
+### Nature of ARP Requests
 
-Yes, it is a message of dissemination as in the header we can see that the destination has a broadcast address. This address is the one that has all its bits at 1 which in the mac addresses is translated into FF:FF:FF:FF:FF:FF.
+ARP requests are broadcast messages, as the destination address in the header is a broadcast address. This address has all its bits set to 1, which in MAC addresses is represented as `FF:FF:FF:FF:FF:FF`.
 
-When it comes to you, in this case to whom it has IP address 192.168.1.1 will return the request and in the origin we will get its MAC address.
+When the device with the requested IP address (for example, `192.168.1.1`) receives this message, it responds to the request, allowing the sender to obtain the corresponding MAC address.
 
 ![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.001.jpeg)
 
-### Do you think the ARP response is a message of dissemination? Make a Wireshark capture of an ARP response and analyze it to justify your response.
+### Nature of ARP Responses
 
-We can see in the answer that in the destination direction comes that of the pc that I send the question, so the answer is not a broadcast message but a point-by-point communication.
+In an ARP response, the destination address is that of the device that initiated the request. Therefore, the response is not a broadcast message, but a unicast (point-to-point) communication.
 
 ![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.002.jpeg)
 
 
-### The computers of a network store in memory a cache with the IP-MAC correspondences they know. It explains the process of updating the ARP cache after observing how it is being filled on the machines of a small GNS3 scenario with a local network with four computers connected to a switch. See how the ARP cache of all computers changes when you go ping between one computer and another.
+### ARP Cache Update Process
 
-When we do a ping the issuer and the receiver "add each other to the ARP table", if we consult them in both we will see that they are included:
+When a ping operation is performed, both the sender and the receiver add each other to their respective ARP tables. By consulting both tables, it can be verified that the correspondences have been registered.
 
-![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.003.png)
+The retention time for entries in the cache is generally 120 seconds; once this period expires, the entry is automatically deleted.
 
-![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.004.png)
+Devices that did not participate in the communication do not store any information in their ARP cache regarding said transaction.
 
-We can see that the time they are kept in cache is 120 seconds, when this time is over, the entrance is deleted.
+### Using the `ip neigh` Command
 
-While in the pcs that have not intervened they will not store anything in the cache arp on the "transaction made":
+The `ip neigh` command allows management of the ARP table, where IP-to-MAC address relationships are stored. This command can be used to view the table, add, delete, or modify entries, as well as adjust the lifetime of entries.
 
-![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.005.png)
+**Main functions:**
 
-![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.006.png)
+- **Show the full ARP table**: `ip neighbour show`
+- **Add an entry to the ARP table**: `ip neighbour add {IP} lladdr {MAC} dev {interface}`
+- **Remove an entry from the ARP table**: `ip neighbour del {IP} dev {interface}`
+- **Set the lifetime of an entry**: `ip neighbour change {IP} dev {interface} nud {state}`
+- **Search for a specific entry**: `ip neighbour | grep {IP}`
 
-### Analyze the ip neigh command to see the possibilities it offers and think about what the real use of each of them can be.
+This command is the modern alternative and complement to the traditional `arp` command.
 
-This command allows us to interact with the arp table where the IP-MAC address ratio is saved. For example, we can view it, add inputs or delete them and modify them. We can also change the time during which a request is saved in the table.
+### Gratuitous ARP
 
-For example, list the content:
+A Gratuitous ARP is a request issued by a device to inform other devices on the network about its own IP and MAC address, thereby updating their ARP tables.
 
-![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.007.png)
-
-We can summarize your functions:
-
-- Show the full ARP table: ip neighbourhood show
-- Add an entry to the ARP table: ip near add (IP) laddr {MAC} dev {interface}
-- Remove an entry from the ARP table: ip nearby from the {IP} dev {interface}
-- Set the life time of an entry in the ARP table: ip neighbourhood change {IP} dev {interface} nud {state}
-- Search for a specific entry in the ARP table: ip near 124; grep {IP}
-
-Basically this is what we need to know to be able to control the ARP tables with the IP command in replacement (or as a complement) to "arp."
-
-### Find out what a free ARP is and what the meaning of its existence is.
-
-It is a request issued by a device in order to update the arp table of the other devices of a network. It simply informs other network devices of its own IP and MAC address.
-
-The main purpose of free ARP is to ensure that all devices on a network have the most up-to-date information possible on the IP and MAC addresses of other devices on the network.
-
-One of its utilities is to detect IP's conflicts, "this ip is already taken" this is because another team has responded with these packages.
-
-Therefore, from this information this incidence can be resolved.
+Its primary purpose is to ensure that all devices have the most up-to-date information possible. One of its most common uses is the detection of IP address conflicts; if another device responds to a gratuitous ARP packet, it indicates that the IP address is already in use.
 
 
-## Explain with your words what an ARP Spofing attack is based on and how it is carried out. Can it be used as an attack technique from your home to an alien network? How could we defend ourselves against him?
+### ARP Spoofing Attack
 
-The attack changes the flow of data sent from a Victim PC that passes through a Gateway to make a MITM (Man in the Middle) attack by getting the victim's traffic through an Attack machine in a manner that is safe for the victim.
+ARP Spoofing consists of modifying the data flow between a victim device and its default gateway. The attacker sends fake ARP responses to associate their own MAC address with the IP address of the gateway on the victim's machine, thereby achieving a Man-in-the-Middle (MITM) attack.
 
-Thus the attacker intercepts the messages and is able to obtain all the traffic from the network by obtaining passwords and confidential or sensitive information.
+In this way, the attacker intercepts all traffic, enabling them to obtain passwords and confidential or sensitive information.
 
-![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.008.jpeg)
+**Attack steps:**
 
-The steps followed by an attacker in carrying out this attack are:
+1. **Network scanning**: Obtaining a list of connected devices.
+2. **Sending fake ARP packets**: Associating the attacker's MAC with the victim's or gateway's IP.
+3. **Interception**: Capturing all traffic passing between the targets.
 
-1. Scanning the network, to get a relationship of the connected devices.
-2. Send false arp packages to associate your ip address to your own mac.
-3. Once the client has been "deceived," the attacker will start intercepting all the traffic.
+This attack requires the attacker to have access to the local network. To prevent it, the following are recommended:
 
-These attacks only occur if the attacker gets access to your local network, so to protect ourselves we can use:
+- Using ARP spoofing detection tools.
+- Implementing firewalls capable of blocking suspicious ARP packets.
+- Employing encryption protocols such as IPsec and SSL/TLS.
+- Configuring static entries in the ARP table.
 
-- ARP Spofing detection tools.
-- Use a firewall as it is able to block suspicious ARP packages.
-- Use protocols like Ipsec and SSL / TLS.
-- Configure the arp table in a static way.
+### MAC Flooding and MAC Spoofing
 
-### There are two types of switch attacks called MAC Flooding and MAC Spofing. What are they and how can we defend ourselves from them?
+**MAC Flooding**: Consists of saturating the MAC address table of a network device (such as a switch) by sending a massive amount of fake addresses. When the table is full, the switch begins to forward traffic to all its ports (acting like a hub), which can allow data interception or lead to a denial of service (DoS).
 
-MAC Flooding consists of filling the arp table of a network device, for example a switch and making it not able to locate to which mouth the traffic goes to if it sends it through all the mouths causing at worst to leave the device out of service.
+To mitigate this attack, it is recommended to limit the table size and enable the detection of suspicious traffic.
 
-To mitigate this attack it is recommended to set a limit on the size of the ARP table and the detection and blocking of suspicious traffic.
+**MAC Spoofing**: Consists of falsifying the MAC address of a device to impersonate another and thus intercept specific traffic or access restricted resources.
 
-While the MAC Spofing consists of falsifying a MAC address to intercept a particular traffic, it can have access to private content.
+To mitigate this attack, the following strategies can be implemented:
 
-To mitigate this attack in the event that you supply a machine from my network and have access to content we can implement second factor authentication tools or use digital certificates.
-
-We can also implement the following strategies in our network:
-
-**Static inputs to ARP table**
-
-The first solution that exists is to work with static routes in network equipment. This allows to invalidate ARP messages, because the IP is associated with a MAC address and this does not change over time. It is a simple and generally applied solution to ensure that the predetermined link door is really that of the network and not an attacker. However, it is a difficult strategy to apply if you have a network with a lot of terminals.
-
-**DHCP snooping**
-
-It is a strategy that keeps a record of the MAC that are connected in each port and immediately detects if there is a subplanting. Several network equipment manufacturers incorporate this solution into their equipment, such as CISCO.
-
-**Dynamic ARP Inspection**
-
-To prevent the supplanting of ARP (ARP spoofing) and the resulting ARP poisoning (ARP poisoning), a switch should ensure that only ARP Requests and ARP Replies are transmitted valid.
-
-The Dynamic ARP / Dynamic ARP Inspection (DAI) Dynamic Inspection requires DHCP snooping and helps prevent ARP attacks as follows:
-
-- Not transmitting invalid or free / free ARP responses / Replies to other ports in the same VLAN.
-- Intercept all requests / Requests and answers / Replies ARP in unreliable ports.
-- Checking each intercepted package for a valid IP to MAC link.
-- Discard and record invalid ARP responses to prevent ARP poisoning.
-- Error-disabling the interface if you exceed the number of ARP DAI packages configured.
-
-## RARP 
-
-RARP is Reversal ARP, which means that you consult the corresponding IP from a MAC address. In case you return more than one IP address, then the MAC has been cloned.
+- **Static ARP table entries**: Manually associating IPs with MAC addresses to prevent dynamic ARP messages from modifying the table. This is ideal for the default gateway.
+- **DHCP Snooping**: Maintains a record of MACs connected to each port and immediately detects impersonations.
+- **Dynamic ARP Inspection (DAI)**: Requires DHCP Snooping and ensures that only valid ARP requests and responses are transmitted, discarding suspicious packets.
+- **RARP (Reverse ARP)**: Allows querying the IP associated with a MAC address. If more than one IP is returned, it indicates that the MAC has been cloned.
 
 
 

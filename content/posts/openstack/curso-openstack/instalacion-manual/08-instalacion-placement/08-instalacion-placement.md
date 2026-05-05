@@ -7,7 +7,7 @@ hero: images/openstack/instalacion-manual/instalar-configurar-placement.png
 weight: 8
 ---
 
-Placement realiza el seguimiento de los recursos físicos disponibles y ayuda a Nova a planificar asignaciones. En esta guía instalaré y configuraré Placement en `controller01` usando paquetes de Ubuntu y dejaré los pasos mínimos para verificar su funcionamiento.
+Placement se encarga del seguimiento de los recursos físicos disponibles y asiste a Nova en la planificación de las asignaciones. En esta guía, instalaremos y configuraremos Placement en el nodo `controller01` utilizando paquetes de Ubuntu y definiremos los pasos mínimos para verificar su funcionamiento.
 
 ## Requisitos previos
 
@@ -19,7 +19,7 @@ Antes de empezar, asegúrate de tener:
 
 ## Crear la base de datos
 
-Me conecto al servidor de base de datos como `root` para crear la base de datos de Placement:
+Nos conectaremos al servidor de la base de datos como `root` para crear la base de datos de Placement:
 
 ```bash
 vagrant@controller01:~$ sudo mysql
@@ -33,17 +33,17 @@ GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' IDENTIFIED BY 'PL
 GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' IDENTIFIED BY 'PLACEMENT_DBPASS';
 ```
 
-Salgo del cliente cuando termine.
+Finalmente, salimos del cliente de la base de datos.
 
 ## Crear el usuario y los endpoints del servicio
 
-Cargo mis credenciales de administrador para trabajar con la CLI de OpenStack:
+Cargaremos las credenciales de administrador para trabajar con la CLI de OpenStack:
 
 ```bash
 vagrant@controller01:~$ source admin-openrc
 ```
 
-Creo el usuario `placement` en Keystone (usa `PLACEMENT_PASSWORD` como contraseña de ejemplo):
+Crearemos el usuario `placement` en Keystone (utiliza `PLACEMENT_PASSWORD` como contraseña de ejemplo):
 
 ```bash
 vagrant@controller01:~$ openstack user create --domain default --password PLACEMENT_PASSWORD placement
@@ -61,13 +61,13 @@ vagrant@controller01:~$ openstack user create --domain default --password PLACEM
 +---------------------+----------------------------------+
 ```
 
-Añado el rol `admin` al usuario dentro del proyecto `service`:
+Añadiremos el rol `admin` al usuario dentro del proyecto `service`:
 
 ```bash
 vagrant@controller01:~$ openstack role add --project service --user placement admin
 ```
 
-Registro el servicio Placement en el catálogo de Keystone:
+Registraremos el servicio Placement en el catálogo de Keystone:
 
 ```bash
 vagrant@controller01:~$ openstack service create --name placement --description "Placement API" placement
@@ -82,7 +82,7 @@ vagrant@controller01:~$ openstack service create --name placement --description 
 +-------------+----------------------------------+
 ```
 
-Creo los endpoints públicos, internos y admin apuntando al puerto 8778:
+Crearemos los endpoints públicos, internos y de administración, apuntando al puerto 8778:
 
 ```bash
 vagrant@controller01:~$ openstack endpoint create --region RegionOne placement public http://controller01:8778 
@@ -133,7 +133,7 @@ Nota: el puerto puede variar en tu entorno (por ejemplo 8780).
 
 ## Instalar los componentes
 
-Instalo el paquete del servicio Placement:
+Instalaremos el paquete del servicio Placement:
 
 ```bash
 vagrant@controller01:~$ sudo apt install placement-api -y
@@ -141,13 +141,13 @@ vagrant@controller01:~$ sudo apt install placement-api -y
 
 ## Configurar Placement
 
-Edito el fichero principal para apuntar a la base de datos y a Keystone:
+Editaremos el archivo de configuración principal para definir la conexión con la base de datos y Keystone:
 
 ```bash
 vagrant@controller01:~$ sudo nano /etc/placement/placement.conf
 ```
 
-En la sección de la base de datos configuro la cadena de conexión (sustituye `PLACEMENT_DBPASS`):
+En la sección de la base de datos, configuraremos la cadena de conexión (sustituye `PLACEMENT_DBPASS` por la contraseña definida):
 
 ```ini
 [placement_database]
@@ -175,7 +175,7 @@ Comenta o elimina opciones conflictivas si las encuentras.
 
 ## Sincronizar la base de datos
 
-Ejecuto la creación de tablas con `placement-manage`:
+Ejecutaremos la creación de las tablas mediante el comando `placement-manage`:
 
 ```bash
 vagrant@controller01:~$ sudo su -s /bin/sh -c "placement-manage db sync" placement
@@ -185,7 +185,7 @@ Puedes ignorar advertencias deprecatorias si no afectan al proceso.
 
 ## Finalizar la instalación
 
-Reinicio Apache (Placement suele servirse mediante mod_wsgi):
+Reiniciaremos Apache (Placement se sirve habitualmente mediante `mod_wsgi`):
 
 ```bash
 vagrant@controller01:~$ sudo service apache2 restart
@@ -193,7 +193,7 @@ vagrant@controller01:~$ sudo service apache2 restart
 
 ## Verificación
 
-Compruebo el estado con `placement-status`:
+Verificaremos el estado del servicio utilizando `placement-status`:
 
 ```bash
 vagrant@controller01:~$ sudo -u placement placement-status upgrade check
@@ -214,7 +214,7 @@ vagrant@controller01:~$ sudo -u placement placement-status upgrade check
 +-------------------------------------------+
 ```
 
-Y pruebo la API de Placement listando las clases de recursos:
+Finalmente, probaremos la API de Placement listando las clases de recursos:
 
 ```bash
 vagrant@controller01:~$ openstack --os-placement-api-version 1.2 resource class list --sort-column name

@@ -1,16 +1,16 @@
 ---
 title: "Instalación pila LEMP en debian 12 con PHP-8"
 date: 2023-10-28T10:00:00+00:00
-description: Instalación pila LEMP en debian 12 con PHP-8
+description: Guía paso a paso para la instalación de la pila LEMP en Debian 12 con PHP 8.
 tags: [WordPress,CMS,IWEB,AW,debian,LEMP]
 hero: /images/iweb/lamp/portada_lemp.png
 ---
 
 
 
-# Instalación pila LEMP en debian 12 con PHP-8
+# Instalación de la pila LEMP en Debian 12 con PHP 8
 
-En esta guía, te explicare los pasos necesarios para instalar una pila LEMP (Linux, Nginx, MariaDB y PHP) en un servidor con Debian 12. La configuración incluirá PHP 8.2 como versión principal. La pila LEMP es esencial para alojar sitios web y aplicaciones web basadas en PHP, como WordPress u otras aplicaciones dinámicas. Sigue los pasos detallados a continuación para configurar tu servidor LEMP con PHP 8.2.
+En esta guía, te explicaré los pasos necesarios para instalar una pila LEMP (Linux, Nginx, MariaDB y PHP) en un servidor con Debian 12. La configuración incluirá PHP 8.2 como versión principal. La pila LEMP es esencial para alojar sitios web y aplicaciones web basadas en PHP, como WordPress u otras aplicaciones dinámicas. Sigue los pasos detallados a continuación para configurar tu servidor LEMP con PHP 8.2.
 
 ## Requisitos previos
 
@@ -26,7 +26,7 @@ Primero, actualiza y actualiza los paquetes del sistema:
 javiercruces@IWEB:~$ sudo apt update && sudo apt upgrade
 ```
 
-Además, asegúrate de que los siguientes paquetes estén instalados en tu sistema , ya que los utilizaremos mas adelante :
+Además, asegúrate de que los siguientes paquetes estén instalados en tu sistema, ya que los utilizaremos más adelante:
 
 ```bash
 javiercruces@IWEB:~$ sudo apt install wget nano unzip tar -y
@@ -52,7 +52,7 @@ javiercruces@IWEB:~$
 ```
 ## Instalación MariaDB
 
-Puedes usar indistintamente MariaDB o Mysql , en mi caso usare MariaDB :
+Puedes utilizar indistintamente MariaDB o MySQL; en mi caso, utilizaremos MariaDB:
 
 ```bash
 javiercruces@IWEB:~$ sudo apt install mariadb-server
@@ -123,7 +123,7 @@ listen = 127.0.0.1:9000
 
 Guarda los cambios y cierra el archivo.
 
-Ahora vamos a editar la configuración del sitio virtual por defecto para hacerlo funcionar con fpm . 
+Ahora editaremos la configuración del sitio virtual por defecto para que funcione con PHP-FPM. 
 
 Para lograrlo, vamos a modificar el contenido dentro de la sección `location` en la configuración del servidor. Aquí te proporciono un ejemplo de archivo de configuración que puedes utilizar:
 
@@ -152,7 +152,7 @@ server {
 }
 ```
 
-Ahora vamos a reiniciar los servicios tanto de php como de Nginx para asegurar de que sea aplicado la configuración , pero primero vamos a comprobar si tienes errores de sintaxis en ambos ficheros .
+Ahora reiniciaremos los servicios de PHP y Nginx para aplicar la configuración, pero primero comprobaremos si hay errores de sintaxis en ambos archivos.
 
 Para comprobar errores de sintaxis en Nginx :
 
@@ -169,7 +169,7 @@ javiercruces@IWEB:~$ sudo php-fpm8.2 -t
 [02-Nov-2023 17:33:02] NOTICE: configuration file /etc/php/8.2/fpm/php-fpm.conf test is successful
 ```
 
-Una vez las dos salidas de estos comandos no contienen errores , vamos a reiniciar ambos servicios para que se aplique la configuración :
+Una vez que ambos comandos confirmen que no hay errores, reiniciaremos los servicios para aplicar la configuración:
 
 ```bash
 javiercruces@IWEB:/etc/nginx$ sudo systemctl restart php8.2-fpm nginx.service
@@ -196,4 +196,4 @@ Este archivo PHP mostrará información detallada sobre la configuración de PHP
 
 ![](/iaw/lemp/img/info-php.png)
 
-Una vez hecho esto , ya tienes instalado la pila LEMP para que la utilices en tus CMS.
+Con esto, ya tendrías instalada la pila LEMP para utilizarla en tus CMS.

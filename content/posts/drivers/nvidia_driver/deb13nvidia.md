@@ -9,7 +9,7 @@ slug: instalacion-controladores-nvidia-debian-13
 
 La instalación de los controladores de NVIDIA en el universo de Linux ha sido tradicionalmente un desafío, especialmente en distribuciones como Debian, donde las políticas del software libre a menudo complican el proceso.
 
-En este post voy a explicarte una forma sencilla de instalar los drivers de NVIDIA usando los repositorios oficiales de Debian 13 (Trixie). Además, al final del artículo, aprenderás a instalar una herramienta clave llamada Nvidia Optimus, que te brindará la capacidad de seleccionar qué tarjeta gráfica utilizará tu equipo.
+En este post, te explicaré una forma sencilla de instalar los controladores de NVIDIA utilizando los repositorios oficiales de Debian 13 (Trixie). Además, al final del artículo, aprenderás a instalar una herramienta clave llamada Nvidia Optimus, que te brindará la capacidad de seleccionar qué tarjeta gráfica utilizará tu equipo.
 
 Esta herramienta es especialmente útil en portátiles, ya que es común que estos dispositivos presenten problemas al emitir video a través de los puertos, una situación que puede ser fácilmente solucionada con esta herramienta.
 

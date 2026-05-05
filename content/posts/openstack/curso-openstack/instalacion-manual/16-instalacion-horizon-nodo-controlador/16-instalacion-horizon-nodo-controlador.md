@@ -7,7 +7,7 @@ hero: images/openstack/instalacion-manual/instalar-configurar-horizon-controlado
 weight: 16
 ---
 
-En este post explico de forma sencilla cómo instalar y configurar el panel web Horizon en el nodo controlador (`controller01`).
+En este artículo explicamos de forma sencilla cómo instalar y configurar el panel web Horizon en el nodo controlador (`controller01`).
 
 ## Instalar los paquetes necesarios
 
@@ -18,7 +18,7 @@ vagrant@controller01:~$ sudo apt install -y openstack-dashboard
 
 ## Editar la configuración principal de Horizon
 
-Edita el fichero `/etc/openstack-dashboard/local_settings.py` y asegúrate de que contiene las siguientes líneas modificadas o añadidas. Si prefieres editar con `vim` o `nano`, usa `sudo`.
+Edite el archivo `/etc/openstack-dashboard/local_settings.py` y asegúrese de que contiene las siguientes líneas modificadas o añadidas. Si prefiere editar con `vim` o `nano`, use `sudo`.
 
 ```bash
 vagrant@controller01:~$ sudo nano /etc/openstack-dashboard/local_settings.py
@@ -53,11 +53,11 @@ OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = "Default"
 OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
 ```
 
-Nota: cambia `volume: 2` por `volume: 3` porque usamos endpoints v3 para Cinder. Si prefieres usar v2, modifica `OPENSTACK_API_VERSIONS['volume']` a `2`.
+Nota: cambie `volume: 2` por `volume: 3` porque usamos endpoints v3 para Cinder. Si prefiere usar v2, modifique `OPENSTACK_API_VERSIONS['volume']` a `2`.
 
 ## Ajustar la configuración de Apache
 
-Edita `/etc/apache2/conf-available/openstack-dashboard.conf` y añade la línea `WSGIApplicationGroup %{GLOBAL}` (al final del fichero) para evitar problemas con módulos Python.
+Edite `/etc/apache2/conf-available/openstack-dashboard.conf` y añada la línea `WSGIApplicationGroup %{GLOBAL}` (al final del archivo) para evitar problemas con módulos Python.
 
 ```bash
 WSGIScriptAlias /horizon /usr/share/openstack-dashboard/openstack_dashboard/wsgi.py process-group=horizon
@@ -90,7 +90,7 @@ vagrant@controller01:/usr/share/openstack-dashboard$ sudo python3 manage.py comp
 
 ## Acceder a Horizon
 
-Abre un navegador y visita:
+Abra un navegador y visite:
 
 `http://controller01/horizon` o `http://IP_NODO_CONTROLADOR/horizon`
 

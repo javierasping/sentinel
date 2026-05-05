@@ -1,7 +1,7 @@
 ---
 title: "Instalación de Prometheus con docker-compose y Node Exporter en Debian 12"
 date: 2025-04-17T10:00:00+00:00
-description: Instalación de Prometheus con docker-compose y Node Exporter en Debian 12
+description: Guía paso a paso para la instalación de Prometheus con Docker Compose y Node Exporter en Debian 12.
 tags: [Métricas,Prometheus,Observabilidad]
 hero: /images/observabilidad/metricas/prometheus/prometheus_docker_compose.png
 ---
@@ -19,12 +19,12 @@ Esta guía es un tutorial introductorio que muestra cómo instalar, configurar y
 
 Todos los ficheros utilizados en este post los podrás encontrar en mi [github](https://github.com/javierasping/learn_observability) . 
 
-Lo primero que haremos sera crear nuestro fichero `docker-compose` .
+Lo primero que haremos será crear nuestro archivo `docker-compose.yaml`.
 
-En este destacaremos 2 apartados :
+En este archivo destacaremos dos puntos:
 
-- El puerto en el que trabaja Prometheus es el 9090 , en mi caso lo mantendré y no lo cambiare .
-- El fichero de configuración que le añadiremos al contenedor , esto es para que nos sea mas cómodo modificar su configuración .
+- El puerto de Prometheus es el 9090; en mi caso, lo mantendré sin cambios.
+- El archivo de configuración que añadiremos al contenedor, lo cual facilitará la modificación de su configuración.
 
 ```bash
 javiercruces@HPOMEN15:~/learn_observability/exercise1$ cat docker-compose.yaml 
@@ -45,7 +45,7 @@ services:
 
 El archivo `prometheus.yml` es el principal fichero de configuración de Prometheus. En él definimos tanto los parámetros globales como los targets desde los que Prometheus recogerá las métricas. También se pueden configurar etiquetas y personalizar la frecuencia de muestreo.
 
-En este ejemplo que podemos encontrar en la pagina de [getting started](https://prometheus.io/docs/prometheus/latest/getting_started/) de Prometheus , añadiremos nuestra maquina debian 12 , en mi caso como el Prometheus esta corriendo en docker he añadido como IP la puerta de enlace de su red ya que corresponde a mi maquina física Debian 12 .
+Utilizando el ejemplo de la página [Getting Started](https://prometheus.io/docs/prometheus/latest/getting_started/) de Prometheus, añadiremos nuestra máquina Debian 12. Dado que Prometheus se ejecuta en Docker, he utilizado la IP de la puerta de enlace de la red para referenciar mi máquina física Debian 12.
 
 Para más detalles sobre todas las opciones disponibles, consulta la [documentación oficial de Prometheus](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
 
@@ -76,7 +76,7 @@ scrape_configs:
 
 ## Configuración del Node Exporter en Debian 12
 
-Para permitir que Prometheus recoja métricas del sistema operativo, instalaremos **Node Exporter**, un servicio que se encargara de sacar las métricas de nuestro sistema para que prometheus pueda scrapearlas .
+Para permitir que Prometheus recoja métricas del sistema operativo, instalaremos **Node Exporter**, un servicio encargado de extraer las métricas del sistema para que Prometheus pueda recolectarlas (scrapearlas).
 
 ### Instalación del paquete
 
@@ -88,14 +88,14 @@ javiercruces@HPOMEN15:~/learn_observability/exercise1$ sudo apt install promethe
 
 ### Verificación del servicio
 
-Una vez instalado el demonio estará corriendo automáticamente en nuestro sistema , pero puedes lanzar el siguiente comando para asegurarte de ello :
+Una vez instalado, el demonio se ejecutará automáticamente en el sistema, pero puedes utilizar el siguiente comando para confirmarlo:
 
 ```bash
 javiercruces@HPOMEN15:~/learn_observability/exercise1$ sudo systemctl is-enabled prometheus-node-exporter
 enabled
 ```
 
-También puedes comprobarlo y obtener mas información con el siguiente comando :
+También puedes comprobarlo y obtener más información con el siguiente comando:
 
 Salida esperada (resumida):
 
@@ -124,26 +124,26 @@ may 17 01:59:00 HPOMEN15 prometheus-node-exporter[8488]: ts=2025-05-16T23:59:00.
 may 17 01:59:00 HPOMEN15 prometheus-node-exporter[8488]: ts=2025-05-16T23:59:00.893Z caller=tls_config.go:235 level=info msg="TLS is disabled." http2=false address=[::]:9100
 ```
 
-Si te fijas , en las dos ultimas lineas nos dice que esta escuchando en el puerto 9100.
-Como información adicional del servicio , la ruta de la unidad de systemd esta en `/lib/systemd/system/prometheus-node-exporter.service` y la configuración de node-exporter en `/etc/default/prometheus-node-exporter`.
+Si observas las dos últimas líneas, verás que el servicio está escuchando en el puerto 9100.
+Como información adicional, la ruta de la unidad de systemd se encuentra en `/lib/systemd/system/prometheus-node-exporter.service` y la configuración de Node Exporter en `/etc/default/prometheus-node-exporter`.
 
 ## Levantamos el escenario
 
-Una vez preparado el fichero de configuración de nuestro prometheus y nuestro node exporter esta funcionando . Vamos a levantar nuestro prometheus :
+Una vez preparado el archivo de configuración de Prometheus y con Node Exporter funcionando, levantaremos Prometheus:
 
 ```bash
 javiercruces@HPOMEN15:~/learn_observability/exercise1$ docker compose up -d
 ```
 
-Una vez levantado accederemos con un navegador al puerto que hemos expusto nuestro prometheus , en mi caso al 9090 :
+Una vez levantado, accederemos a través del navegador al puerto expuesto de Prometheus (en mi caso, el 9090):
 
 ![](/observabilidad/metricas/prometheus/acceso_prometheus.png)
 
-Vamos a comprobar que prometheus recibe las metricas de nuestro Debian 12 para ello accedemos a `http://localhost:9090/targets` , en mi caso ambos estan levantados y estamos recibiendo sus metricas :
+Comprobaremos que Prometheus recibe las métricas de Debian 12 accediendo a `http://localhost:9090/targets`; en mi caso, ambos servicios están activos y recibiendo métricas:
 
 ![](/observabilidad/metricas/prometheus/targets_prometheus.png)
 
-Por ultimo vamos a consultar un par de metricas :
+Por último, consultaremos un par de métricas:
 
 ![](/observabilidad/metricas/prometheus/network_metric.png)
 

@@ -6,21 +6,21 @@ tags: [GNS3,ANDORID,LINUX,DEBIAN,KVM]
 hero: /images/redes/android_gns3/android.png
 ---
 
-To download the android image you can do it from this page -- > https://www.fosshub.com/Android-x86.html:
+To download the Android image, you can use the following page: https://www.fosshub.com/Android-x86.html
 
 ```bash
 wget https://www.fosshub.com/Android-x86.html?dwl=android-x86_64-9.0-r2.iso
 ```
 
-Create a KVM machine as if it were a Debian, I've given it 2GB of RAM and 2 Cores:
+Create a KVM machine similar to a Debian installation; it is recommended to assign 2 GB of RAM and 2 CPU cores:
 
 ![](/redes/android_gns3/img/Pastedimage20240117194542.png)
 
-In our case we can launch an automatic installation:
+In this case, an automatic installation can be initiated:
 
 ![](/redes/android_gns3/img/Pastedimage20240117194647.png)
 
-When you have the machine installed, turn off the machine and we'll import it in gns3. To do this we will take the KVM disk and import it into the directory where we have installed the GNS3 images, then property the copied disk to your user.
+Once the machine is installed, power it off to proceed with the import into GNS3. To do this, copy the KVM disk to the GNS3 images directory and change the ownership of the copied disk to your user:
 
 ```bash
 cp /var/lib/libvirt/images/android-wireguard.qcow2 /home/javiercruces/GNS3/images/QEMU/
@@ -28,18 +28,18 @@ cp /var/lib/libvirt/images/android-wireguard.qcow2 /home/javiercruces/GNS3/image
 javiercruces@HPOMEN15:~$ sudo chown javiercruces:javiercruces /home/javiercruces/GNS3/images/QEMU/android-wireguard.qcow2 
 ```
 
-Now access your GNS3 and in preferences we will add a new QEMU VMs:
+Now, access GNS3 and, in Preferences, add a new QEMU VM:
 
 ![](/redes/android_gns3/img/Pastedimage20240117195338.png)
 
-Select the emulation binary x86 _ 64 and assign the memory you consider appropriate, to me with 2GB works correctly:
+Select the x86_64 emulation binary and assign an appropriate amount of memory; 2 GB is sufficient for correct operation:
 
 ![](/redes/android_gns3/img/Pastedimage20240117195434.png)
 
-As the image uses graphic environment we will select VNC:
+Since the image uses a graphical environment, select VNC as the console type:
 
 ![](/redes/android_gns3/img/Pastedimage20240117195509.png)
 
-And select the disk that we have copied to the folder images above:
+Finally, select the disk that was previously copied to the images folder:
 
 ![](/redes/android_gns3/img/Pastedimage20240117195622.png)

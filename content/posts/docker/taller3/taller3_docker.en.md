@@ -9,15 +9,15 @@ hero: images/docker/taller3.png
 
 ## Workshop 3: Docker Image Creation
 
-Creating an image from a Dockerfile
+### Creating an image from a Dockerfile
 
-1.Create a static website (e.g. search for an HTML5 template). Or just create an index.htm ml.
+1. Create a static website (e.g., search for an HTML5 template) or simply create an `index.html` file.
 
 ```bash
 
 ```
 
-2. Create a Dockerfile file to create an image with a web server by serving the page. You can use a debian or ubuntu base image, or an image that already has a web service, as we have seen in Example 1: Image construction with a static page.
+2. Create a `Dockerfile` to build an image with a web server serving the page. You can use a Debian or Ubuntu base image, or an image that already includes a web service, as seen in 'Example 1: Image construction with a static page'.
 
 ```bash
 javiercruces@docker:~/taller3$ cat Dockerfile 
@@ -28,7 +28,7 @@ EXPOSE 80
 
 ```
 
-3. Run the docker command that creates the new image. The image should be called my_server_web:v1.
+3. Run the Docker command to create the new image. The image should be named `mi_servidor_web:v1`.
 
 ```bash
 javiercruces@docker:~/taller3$ docker build -t javiersaping/mi_servidor_web:v1 .
@@ -52,7 +52,7 @@ javiercruces@docker:~/taller3$ docker run -d -p 8081:80 javiersaping/mi_servidor
 ![](/docker/taller3/img/Pasted_image_20240208085015.png)
 
 
-4. Connect to Docker Hub and upload the image you just created.
+4. Log in to Docker Hub and upload the image you just created.
 
 ```bash
 javiercruces@docker:~/taller3$ docker login
@@ -68,7 +68,7 @@ a7eff924c5ac: Mounted from library/httpd
 v1: digest: sha256:85a8e341e3fd89b313a263a45c91ad846d673f198301e482c4f07352aef8bd42 size: 1779
 ```
 
-5. Download the image to another computer where you have docker installed, and create a container from it. (If you don't have another computer with docker installed, delete the image on your computer and download it from Docker Hub).
+5. Download the image to another computer with Docker installed and create a container from it. (If you don't have another computer available, delete the image from your machine and download it again from Docker Hub).
 
 ```bash
 javiercruces@docker:~/taller3$ docker image ls 
@@ -103,13 +103,13 @@ docker.io/javiersaping/mi_servidor_web:v1
 
 ```
 
-6. Let's make a modification of the website: make a modification to the index.html file.
+6. Let's modify the website: edit the `index.html` file.
 
 ```bash
 javiercruces@docker:~/taller3/public_html$ echo "<h1>Taller3 FJCD V2</h1>" > index.html
 ```
 
-7. Re-create a new image, in this case put a v2 tag. Get her up to Docker Hub.
+7. Create a new image, this time using the `v2` tag, and upload it to Docker Hub.
 
 ```bash
 javiercruces@docker:~/taller3$ docker build -t javiersaping/mi_servidor_web:v2 .
@@ -137,7 +137,7 @@ v2: digest: sha256:a2af8396c3dfaa8d0312868161bff238c17b742cd46d57296ed304a9495b2
 
 ```
 
-8. Finally, put the new image down on the computer where the container is running. To implement the new version you must delete the container and create a new one from the new version of the image.
+8. Finally, download the new image onto the computer where the container is running. To deploy the new version, you must delete the current container and create a new one from the new version of the image.
 
 ```bash
 javiercruces@docker:~/taller3$ docker ps

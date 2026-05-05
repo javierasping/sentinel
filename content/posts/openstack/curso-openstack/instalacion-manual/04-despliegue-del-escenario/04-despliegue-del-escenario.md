@@ -7,24 +7,24 @@ hero: images/openstack/instalacion-manual/despliegue-escenario.png
 weight: 4
 ---
 
-Lo primero es levantar nuestro escenario. Para ello, como comenté en el post anterior, clona mi [repositorio](https://github.com/javierasping/openstack-vagrant-ansible#):
+Lo primero es desplegar nuestro escenario. Para ello, como comenté en el post anterior, clona mi [repositorio](https://github.com/javierasping/openstack-vagrant-ansible#):
 
 ```bash
 git clone git@github.com:javierasping/openstack-vagrant-ansible.git
 git clone https://github.com/javierasping/openstack-vagrant-ansible.git
 ```
 
-Una vez clonado, todo lo referente a estos posts está en el directorio `manual-install`, así que entra dentro de él.
+Una vez clonado, accederemos al directorio `manual-install`, donde se encuentra todo el contenido relacionado con estos posts.
 
 ## Levantar las máquinas con Vagrant
 
-Como te dije, dentro del repositorio encontrarás el Vagrantfile. Simplemente tienes que lanzar el siguiente comando:
+Dentro del repositorio encontrarás el `Vagrantfile`. Para iniciar el despliegue, ejecuta el siguiente comando:
 
 ```bash
 javiercruces@FJCD-PC:~/openstack-vagrant-ansible/manual-install$ vagrant up
 ```
 
-Una vez lanzado, asegúrate de que las máquinas están levantadas:
+Tras ejecutar el comando, verifica que las máquinas virtuales se hayan iniciado correctamente:
 
 ```bash
 vagrant status
@@ -36,7 +36,7 @@ compute01                 running (libvirt)
 storage01                 running (libvirt)
 ```
 
-Para conectarte a las VMs puedes utilizar los siguientes comandos:
+Para acceder a las máquinas virtuales, puedes utilizar los siguientes comandos:
 
 ```bash
 vagrant ssh controller01
@@ -44,13 +44,13 @@ vagrant ssh compute01
 vagrant ssh storage01
 ```
 
-Te recomiendo que te conectes a cada una de ellas en terminales independientes, así te será más cómodo.
+Se recomienda abrir una terminal independiente para cada nodo, facilitando así el seguimiento de la instalación.
 
 ## Instalación del cliente de OpenStack
 
-Como acabamos de levantar las máquinas, los repositorios no están actualizados, así que actualizaremos los repositorios e instalaremos el cliente de OpenStack. Esto hay que hacerlo en los tres nodos.
+Dado que las máquinas acaban de ser desplegadas, es necesario actualizar los repositorios e instalar el cliente de OpenStack en los tres nodos.
 
-En mi equipo lo ejecuto desde el directorio del laboratorio, en mi caso `~/openstack-vagrant-ansible/manual-install`:
+Si ejecutas el comando desde el directorio del laboratorio (por ejemplo, `~/openstack-vagrant-ansible/manual-install`), puedes utilizar el siguiente bucle:
 
 ```bash
 for name in controller01 compute01 storage01; do
@@ -60,13 +60,13 @@ done
 
 ## Instalación de la base de datos (MariaDB) en el nodo controlador
 
-OpenStack utiliza una base de datos para almacenar la información de los diferentes servicios. En mi caso voy a instalar MariaDB y el cliente Python en el nodo controlador, que utilizaremos posteriormente:
+OpenStack requiere una base de datos para almacenar la información de sus servicios. Instalaremos MariaDB y el cliente de Python en el nodo controlador:
 
 ```bash
 vagrant ssh controller01 -c "sudo apt update && sudo apt install -y mariadb-server python3-pymysql"
 ```
 
-Crea y edita el fichero de configuración para permitir la conexión remota a las bases de datos almacenadas en el controlador:
+Crea y edita el archivo de configuración para habilitar la conexión remota a las bases de datos alojadas en el controlador:
 
 ```bash
 vagrant ssh controller01 -c "sudo tee /etc/mysql/mariadb.conf.d/99-openstack.cnf > /dev/null <<'EOF'
@@ -81,15 +81,15 @@ character-set-server = utf8
 EOF"
 ```
 
-Nota: sustituye `10.0.0.2` por la dirección IP de gestión del nodo controlador en tu entorno.
+Nota: sustituye `10.0.0.2` por la dirección IP de gestión del nodo controlador de tu entorno.
 
-Voy a reiniciar el servicio de base de datos para aplicar la nueva configuración:
+Reiniciaremos el servicio de la base de datos para aplicar la nueva configuración:
 
 ```bash
 vagrant ssh controller01 -c "sudo systemctl restart mariadb || sudo systemctl restart mysql"
 ```
 
-Ahora ejecuto el asistente de seguridad de MariaDB para eliminar usuarios de prueba y asegurar el root:
+A continuación, ejecutaremos el asistente de seguridad de MariaDB para eliminar los usuarios anónimos y asegurar la cuenta root:
 
 ```bash
 vagrant@controller01:~$ sudo mysql_secure_installation
@@ -158,15 +158,15 @@ Thanks for using MariaDB!
 
 ## Instalar cola de mensajes (RabbitMQ)
 
-OpenStack utiliza una cola de mensajes para coordinar las operaciones y el intercambio de estado entre los distintos servicios. El servicio de cola de mensajes normalmente se ejecuta en el nodo controlador. OpenStack admite varios motores de colas, como RabbitMQ y Qpid, pero la mayoría de las distribuciones que empaquetan OpenStack suelen ofrecer soporte para uno en concreto. Esta guía implementa RabbitMQ porque es el más habitualmente soportado; si prefieres otro motor, consulta la documentación específica del mismo.
+OpenStack utiliza un sistema de colas de mensajes para coordinar las operaciones y el intercambio de estados entre los servicios. Habitualmente, este servicio se ejecuta en el nodo controlador. Aunque existen diversos motores, como RabbitMQ o Qpid, la mayoría de las distribuciones soportan RabbitMQ, por lo que utilizaremos este en la guía. Si prefieres otro motor, consulta su documentación específica.
 
-Instalamos RabbitMQ en el nodo controlador:
+Instalaremos RabbitMQ en el nodo controlador:
 
 ```bash
 vagrant@controller01:~$ sudo apt install rabbitmq-server -y
 ```
 
-Creamos el usuario de RabbitMQ para OpenStack (en mi ejemplo uso `RABBIT_PASS` como marcador, usa una contraseña segura en tu entorno):
+Crearemos el usuario de RabbitMQ para OpenStack (utiliza una contraseña segura en lugar del marcador `RABBIT_PASS`):
 
 ```bash
 vagrant@controller01:~$ sudo rabbitmqctl add_user openstack RABIT_PASSWORD
@@ -175,9 +175,9 @@ Done. Don't forget to grant the user permissions to some virtual hosts! See 'rab
 
 ```
 
-Yo uso `RABBIT_PASS` como marcador, asegúrate de usar una contraseña segura en tu entorno.
+Recuerda sustituir `RABBIT_PASS` por una contraseña segura.
 
-Le concedemos permisos de configuración, escritura y lectura al usuario `openstack`:
+Asignaremos permisos de configuración, lectura y escritura al usuario `openstack`:
 
 ```bash
 vagrant@controller01:~$ sudo rabbitmqctl set_permissions openstack ".*" ".*" ".*"
@@ -186,15 +186,15 @@ Setting permissions for user "openstack" in vhost "/" ...
 
 ## Instalación de Memcached
 
-El mecanismo de autenticación del servicio Identity (keystone) usa Memcached para cachear tokens. El servicio memcached suele ejecutarse en el nodo controlador. En entornos de producción se recomienda combinar firewall, autenticación y cifrado para proteger el servicio.
+El servicio de identidad (Keystone) utiliza Memcached para el almacenamiento en caché de los tokens. Habitualmente, Memcached se ejecuta en el nodo controlador. En entornos de producción, es fundamental combinar el uso de firewalls, autenticación y cifrado para proteger este servicio.
 
-Instala Memcached y el cliente Python en el controlador (usado por Keystone/Horizon):
+Instalaremos Memcached y el cliente de Python en el nodo controlador (utilizado por Keystone y Horizon):
 
 ```bash
 vagrant@controller01:~$ sudo apt install memcached python3-memcache -y
 ```
 
-Edita `/etc/memcached.conf` para que Memcached escuche en la IP de gestión del controlador:
+Editaremos `/etc/memcached.conf` para que Memcached escuche en la dirección IP de gestión del controlador:
 
 ```bash
 vagrant@controller01:~$ sudo nano /etc/memcached.conf
@@ -205,7 +205,7 @@ vagrant@controller01:~$ sudo nano /etc/memcached.conf
 -l 127.16.0.11 # Change this
 ```
 
-Reinicia el servicio Memcached para aplicar los cambios:
+Reiniciaremos el servicio Memcached para aplicar los cambios:
 
 ```bash
 vagrant@controller01:~$ sudo service memcached restart
@@ -213,17 +213,17 @@ vagrant@controller01:~$ sudo service memcached restart
 
 ## Instalación de etcd
 
-Algunos servicios de OpenStack pueden usar etcd, un almacén de pares clave-valor distribuido y fiable, útil para bloqueo distribuido, almacenamiento de configuración, seguimiento de la disponibilidad de servicios y otros casos.
+Algunos servicios de OpenStack pueden utilizar `etcd`, un almacén de pares clave-valor distribuido y fiable, útil para el bloqueo distribuido, la gestión de la configuración y el seguimiento de la disponibilidad de los servicios.
 
-El servicio `etcd` se ejecuta normalmente en el nodo controlador.
+El servicio `etcd` se ejecuta habitualmente en el nodo controlador.
 
-Instala `etcd` en el nodo controlador (opcional para algunos servicios):
+Instalaremos `etcd` en el nodo controlador (este paso es opcional para algunos servicios):
 
 ```bash
 vagrant@controller01:~$ sudo apt install etcd-server -y
 ```
 
-Ajusta la configuración de `etcd` con las URLs de cluster y la IP de gestión:
+Ajustaremos la configuración de `etcd` definiendo las URLs del clúster y la IP de gestión:
 
 ```bash
 vagrant@controller01:~$ sudo nano /etc/default/etcd
@@ -238,7 +238,7 @@ ETCD_LISTEN_PEER_URLS="http://0.0.0.0:2380"
 ETCD_LISTEN_CLIENT_URLS="http://10.0.0.2:2379"
 ```
 
-Habilita y arranca el servicio `etcd`:
+Habilitaremos e iniciaremos el servicio `etcd`:
 
 ```bash
 vagrant@controller01:~$ sudo systemctl enable etcd
@@ -248,4 +248,4 @@ Executing: /usr/lib/systemd/systemd-sysv-install enable etcd
 vagrant@controller01:~$ sudo systemctl start etcd
 ```
 
-Con esto ya hemos preparado las máquinas para comenzar la instalación de los servicios de OpenStack.
+Con estos pasos, habremos preparado la infraestructura básica para iniciar la instalación de los servicios de OpenStack.

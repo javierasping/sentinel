@@ -9,20 +9,20 @@ hero: /images/cortafuegos/fortinet1.png
 
 
 
-Antes de comenzar la practica , el escenario que ves en la practica es lo mas parecido que puedo montar a la practica original . He utilizado la versión 7.0.9-1 de FortiGate , ya que las versiones superiores traen algunas restricciones .  Puedes descargarte la imagen desde este [link](https://drive.google.com/drive/folders/1VGmeLN5inkWoNNUsIvq9ewGUzJLTLkiM) .
+Antes de comenzar la práctica, el escenario que ves es lo más parecido que he podido montar a la práctica original. He utilizado la versión 7.0.9-1 de FortiGate, ya que las versiones superiores traen algunas restricciones. Puedes descargarte la imagen desde este [link](https://drive.google.com/drive/folders/1VGmeLN5inkWoNNUsIvq9ewGUzJLTLkiM).
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320223139.png)
 
 
 ## Puesta en marcha del cortafuegos
 
-Los dispositivos FortiGate vienen configurados de fabrica con la IP 192.168.1.99/24 , como estoy desde GNS3 no es necesario que me conecte a esta interfaz con un dispositivo y cambie la configuración . Ya que puedo hacerlo desde la consola .
+Los dispositivos FortiGate vienen configurados de fábrica con la IP 192.168.1.99/24. Como estoy utilizando GNS3, no es necesario que me conecte a esta interfaz con un dispositivo para cambiar la configuración, ya que puedo hacerlo directamente desde la consola.
 
-Por defecto a través de ese puerto esta habilitada la administración por http , https , ssh y telnet .
+Por defecto, a través de ese puerto está habilitada la administración por HTTP, HTTPS, SSH y Telnet.
 
-En mi caso me conectare desde la consola , le cambiare el hostname y configurare el puerto 1 para que coja IP por DHCP . 
+En mi caso me conectaré desde la consola, le cambiaré el hostname y configuraré el puerto 1 para que obtenga una IP por DHCP. 
 
-El usuario por defecto es admin y la contraseña en blanco . Cuando iniciemos sesión por primera vez nos obligara a cambiarla :
+El usuario por defecto es `admin` y la contraseña está en blanco. Al iniciar sesión por primera vez, el sistema obligará a cambiarla:
 
 ```bash
 FortiGate-VM64-KVM login: admin
@@ -33,7 +33,7 @@ Confirm Password:
 Welcome!
 ```
 
-Lo primero que haré sera cambiarle el hostname , como ves es similar a cisco ya que tenemos un modo de configuración  :
+Lo primero que haré será cambiarle el hostname. Como ves, es similar a Cisco, ya que utilizamos un modo de configuración:
 
 ```bash
 FortiGate-VM64-KVM # conf sys global
@@ -41,7 +41,7 @@ FortiGate-VM64-KVM (global) # set hostname FGT
 FortiGate-VM64-KVM (global) # end
 ```
 
-Ahora vamos a configurar el puerto 1 por DHCP para que así desde el cliente 2 lo pueda configurar sin tener que manualmente cambiar la IP del mismo . Ademas voy a configurar el acceso por http y https para poder configurarlo desde un navegador :
+Ahora vamos a configurar el puerto 1 por DHCP para que el Cliente 2 pueda configurarlo sin tener que cambiar la IP manualmente. Además, voy a habilitar el acceso por HTTP y HTTPS para poder gestionarlo desde un navegador:
 
 ```bash
 FGT # show system interface port1
@@ -56,7 +56,7 @@ config system interface
 end
 ```
 
-Ahora vamos a ver la IP que el DHCP le ha asignado con el siguiente comando :
+Ahora veremos la IP que el DHCP le ha asignado con el siguiente comando:
 
 ```bash
 FGT # get system interface 
@@ -64,11 +64,11 @@ FGT # get system interface
 name: port1   mode: dhcp    ip: 192.168.122.77 255.255.255.0   status: up    netbios-forward: disable    type: physical   ring-rx: 0   ring-tx: 0   netflow-sampler: disable    sflow-sampler: disable    src-check: enable    explicit-web-proxy: disable    explicit-ftp-proxy: disable    proxy-captive-portal: disable    mtu-override: disable    wccp: disable    drop-overlapped-fragment: disable    drop-fragment: disable  
 ```
 
-Ahora desde cualquier maquina que tenga acceso a la red 'externa' podremos conectarnos al FW :
+Ahora, desde cualquier máquina que tenga acceso a la red 'externa', podremos conectarnos al firewall:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320225245.png)
 
-Cuando te inicies sesión veras un panel con información general sobre el estado dispositivo :
+Al iniciar sesión, verás un panel con información general sobre el estado del dispositivo:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320225435.png)
 
@@ -76,230 +76,230 @@ Cuando te inicies sesión veras un panel con información general sobre el estad
 
 Como has visto en la imagen de la topología, la red LAN está conectada al puerto 2. Por lo tanto, procederemos a configurarlo.
 
-Vamos a dirigirnos a Network > Interfaces , selecciona el puerto 2 y pulsa en editar en la barra superior :
+Nos dirigiremos a Network > Interfaces, seleccionaremos el puerto 2 y pulsaremos en editar en la barra superior:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320230138.png)
 
-Una vez dentro de la pantalla de configuración de la interfaz, puedes personalizar el puerto asignándole un alias. Además, para facilitar la gestión futura, le he asignado el rol LAN al puerto2, indicando que será utilizado para una red local. Posteriormente, he configurado la dirección IP del mismo, asignándole la 192.168.100.1/24. Además, he creado un objeto con esa IP, lo que facilitará la referencia a esta dirección IP en futuras configuraciones, eliminando la necesidad de recordar la IP .
+Una vez dentro de la pantalla de configuración de la interfaz, puedes personalizar el puerto asignándole un alias. Además, para facilitar la gestión futura, le he asignado el rol LAN al puerto 2, indicando que será utilizado para una red local. Posteriormente, he configurado la dirección IP, asignándole la 192.168.100.1/24. Además, he creado un objeto con esa IP, lo que facilitará la referencia a esta dirección en futuras configuraciones, evitando la necesidad de recordar la IP.
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320230527.png)
 
-Sigamos con la configuración de la interfaz. Desde la red LAN, donde estaremos la mayor parte del tiempo, permitiré el acceso vía HTTPS y SSH para configurar el FortiGate. También dejaré que respondan a los pings para asegurarme la conectividad con el mismo. Además, cada interfaz puede ser un servidor DHCP, así que le configurare uno para la LAN. Por último, activaré la opción para detectar dispositivos, así tendré control sobre quién se conecta a la red.
+Sigamos con la configuración de la interfaz. Desde la red LAN, donde estaremos la mayor parte del tiempo, permitiré el acceso vía HTTPS y SSH para configurar el FortiGate. También habilitaré la respuesta a pings para asegurar la conectividad. Además, cada interfaz puede actuar como servidor DHCP, por lo que configuraré uno para la LAN. Por último, activaré la opción para detectar dispositivos, así tendré control sobre quién se conecta a la red.
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320231025.png)
 
-Una vez configurado el acceso administrativo desde la LAN , voy a quitar el acceso administrativo desde la interfaz puerto 1 ya que esta seria Internet (WAN).
+Una vez configurado el acceso administrativo desde la LAN, voy a quitar el acceso administrativo desde la interfaz del puerto 1, ya que esta representaría la salida a Internet (WAN).
 
-Así que le cambiare el ROL a WAN y le quitare el acceso administrativo :
+Por lo tanto, le cambiaré el rol a WAN y eliminaré el acceso administrativo:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320231953.png)
 
-Si recuerdas anteriormente marcamos en la interfaz LAN la casilla Device connection , si queremos ver los dispositivos conectados a esta red accedemos a Security Fabric > Asset Identify Center :
+Si recuerdas, anteriormente marcamos en la interfaz LAN la casilla "Device connection". Si queremos ver los dispositivos conectados a esta red, accedemos a Security Fabric > Asset Identify Center:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320232223.png)
 
-Para apartados posteriores , como voy a realizar la practica de cortafuegos de nodo , es interesante crear un objeto con ese host . Así no sera necesario que recuerde su IP :
+Para apartados posteriores, ya que realizaré la práctica de cortafuegos de nodo, es conveniente crear un objeto con ese host para no tener que recordar su IP:
 
 ![](/cortafuegos/fortinet_uno/img/add_object_cliente1.png)
 
-Aunque no he mencionado nada anteriormente , la política por defecto de estos dispositivos es DROP en todas las direcciones :
+Aunque no lo he mencionado anteriormente, la política por defecto de estos dispositivos es DROP en todas las direcciones:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320232353.png)
 
-Ahora vamos a crear una nueva política que permita el tráfico desde la LAN hacia Internet (WAN) en cualquier dirección. Esta política sería similar a las que tenemos en casa, donde podemos acceder a cualquier sitio web. Además, desde aquí podemos decir que haga SNAT, lo que nos permitirá navegar acceder a Internet. También podremos configurar hacia qué interfaz se realizará este SNAT.
+Ahora vamos a crear una nueva política que permita el tráfico desde la LAN hacia Internet (WAN) en cualquier dirección. Esta política sería similar a la de un router doméstico, permitiendo acceder a cualquier sitio web. Además, configuraremos el SNAT para permitir la navegación por Internet y definiremos la interfaz de salida.
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320232648.png)
 
-Para acabar con la configuración inicial , crearemos la ruta por defecto para salir a Internet . Para ello nos iremos a Network > Static Routes  :
+Para finalizar la configuración inicial, crearemos la ruta por defecto para salir a Internet. Para ello, nos dirigiremos a Network > Static Routes:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320233928.png)
 
-Una vez aplicada esta política ya podremos comenzar a realizar la practica , ademas podemos acceder a Internet desde el cliente 1 :
+Una vez aplicada esta política, ya podremos comenzar la práctica y acceder a Internet desde el Cliente 1:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320233557.png)
 
 ## Reglas del cortafuegos
 
-Para comenzar desactivare la política anterior , la editare y al final de esta le quitare el tic que la activa :
+Para comenzar, desactivaré la política anterior editándola y desmarcando la casilla de activación:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320234721.png)
 
-Quedando así inactiva :
+Quedando así inactiva:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240320234740.png)
 
 
 #### Los equipos de la red local deben poder tener conexión al exterior.
 
-Para configurar el SNAT en dispositivos FortiGate , es un poco distinto ya que en cada regla que vayamos a permitir tendremos que marcar la casilla si queremos hacer NAT .
+Para configurar el SNAT en dispositivos FortiGate, el proceso es distinto, ya que en cada regla que permitamos debemos marcar la casilla si deseamos aplicar NAT.
 
-Ademas podemos especificar todas las opciones posibles que se nos ocurra , en mi caso dejare este apartado sin activar y lo iré haciendo en las reglas siguientes . La imagen que ves a continuación es para indicarte donde se activaría . Ademas podemos indicar porque interfaz queremos que salga el trafico . Esto es útil si tenemos dos o mas salidas de Internet para hacer un balanceador de carga .
+Además, podemos especificar diversas opciones. En mi caso, dejaré este apartado desactivado y lo iré configurando en las reglas siguientes. La imagen a continuación indica dónde se activaría. También podemos indicar la interfaz por la que debe salir el tráfico, lo cual es útil si tenemos varias salidas a Internet para realizar un balanceo de carga.
 
-Una vez aquí dentro de la configuración de la interfaz le decimos que la interfaz es de tipo NAT , ademas podemos indicarle que no haga PAT .
+Una vez dentro de la configuración de la interfaz, definimos que la interfaz es de tipo NAT y podemos indicar que no realice PAT.
 
 ![](/cortafuegos/fortinet_uno/img/fw_1_a.png)
 
 #### Permitimos hacer ping desde la LAN a la máquina cortafuegos.
 
-En estos dispositivos no seria una regla como tal , si no que esta opción en concreto se indica desde la opción de acceso administrativo de la interfaz :
+En estos dispositivos, esto no se configura como una regla propiamente dicha, sino que se indica en las opciones de acceso administrativo de la interfaz:
 
 ![](/cortafuegos/fortinet_uno/img/fw_2_a.png)
 
-Una vez aplicado , si nos vamos al cliente 1 podremos hacerle ping al cortafuegos :
+Una vez aplicado, si nos situamos en el Cliente 1, podremos hacer ping al cortafuegos:
 
 ![](/cortafuegos/fortinet_uno/img/cliente1_ping_fw.png)
 
-#### Permite realizar conexiones ssh desde los equipos de la LAN
+#### Permitir conexiones SSH desde los equipos de la LAN
 
-Crearemos la regla que permite el trafico SSH , aqui en el origen podemos poner o el cliente1 (creamos el objeto en la preparación del escenario) o directamente poner all en el origen :
+Crearemos la regla que permite el tráfico SSH. En el origen, podemos especificar el Cliente 1 (creando el objeto en la preparación del escenario) o permitir todos los orígenes:
 
 
 ![](/cortafuegos/fortinet_uno/img/fw_3_a.png)
 
-Aunque actualmente en mi esquema solo tenga un cliente , ceñiendome al enunciado si quiero que TODOS los cliente de la red LAN puedan hacer ssh en origen tengo que permitir todos :
+Aunque actualmente solo tenga un cliente en mi esquema, siguiendo el enunciado, para que TODOS los clientes de la red LAN puedan hacer SSH, debo permitir todos los orígenes:
 
 ![](/cortafuegos/fortinet_uno/img/fw_3_a_2.png)
 
-Como te explique en el apartado a de la practica , en este tipos de dispositivo tenemos que indicarle si queremos que la regla sea de tipo NAT para que haga SNAT o no .
+Como expliqué en el primer apartado, en este tipo de dispositivos debemos indicar si queremos que la regla sea de tipo NAT para aplicar SNAT.
 
-Una vez aplicada la regla podremos conectarnos por ssh desde el cliente1:
+Una vez aplicada la regla, podremos conectarnos por SSH desde el Cliente 1:
 
 ![](/cortafuegos/fortinet_uno/img/cliente1_ssh_atlas.png)
 
-Vamos a asegurarnos de que la regla tiene hits :
+Verifiquemos que la regla tiene hits:
 
 ![](/cortafuegos/fortinet_uno/img/fw_3_a_hits.png)
 
 
-####  Permite la navegación en la red LAN
+#### Permitir la navegación en la red LAN
 
-Para ello vamos a crear 2 reglas para la red LAN . Una que permita hacer consultas DNS y otra para permitir el trafico HTTPS y HTTP , ademas en ambas reglas sera necesario indicar que se haga NAT .
+Para ello, crearemos dos reglas para la red LAN: una que permita las consultas DNS y otra para el tráfico HTTPS y HTTP. En ambas reglas será necesario activar el NAT.
 
 ![](/cortafuegos/fortinet_uno/img/fw_4_a_dns.png)
 
 ![](/cortafuegos/fortinet_uno/img/fw_4_a_https.png)
 
-Como te has fijado no he indicado el numero de puerto , si no que estos dispositivos tienen unos objetos llamados servicios en los cuales se almacenan los números de puerto de los mismos . Podemos crear los objetos que queramos y personalizar los existentes según nuestras necesidades .
+Como habéis notado, no he indicado el número de puerto; esto es porque estos dispositivos utilizan objetos llamados "servicios", donde se almacenan los puertos. Podemos crear nuestros propios objetos o personalizar los existentes.
 
-Vamos a comprobar que podemos navegar en el cliente 1 :
+Comprobemos que podemos navegar desde el Cliente 1:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322192235.png)
 
-Ni que decir tiene que por supuesto que podemos hacer un dig , con la regla actual lo podemos hacer a cualquier servidor DNS :
+No hace falta decir que también podemos realizar un `dig`. Con la regla actual, podemos consultar cualquier servidor DNS:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322192456.png)
 
-Vamos a comprobar que tenemos hits en las reglas :
+Verifiquemos que las reglas tienen hits:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322192318.png)
 
 
-#### Instala un servidor de correos en la máquina de la LAN. Permite el acceso desde el exterior y desde el cortafuegos al servidor de correos. Para probarlo puedes ejecutar un telnet al puerto 25 tcp.
+#### Instalar un servidor de correo en la máquina de la LAN. Permitir el acceso desde el exterior y desde el cortafuegos al servidor de correos. Para probarlo, se puede ejecutar un telnet al puerto 25 TCP.
 
-Como actualmente tenemos permitido la navegación solo por https es fundamental que los repositorios de la maquina estén configurados  podremos instalar paquetes en nuestro cliente , asi que vamos a instalar postfix :
+Como actualmente solo permitimos la navegación por HTTPS, es fundamental configurar los repositorios de la máquina para poder instalar paquetes en nuestro cliente; así que instalaremos Postfix:
 
 ```bash
 sudo apt update && sudo apt install postfix -y
 ```
 
-Ahora vamos a configurar la primera regla de DNAT que vamos a tener en el escenario . Para ello tendremos que crear una IP virtual y decirle cual es la IP externa (WAN) y la IP donde vamos a hacer el DNAT (LAN) .
+Ahora configuraremos la primera regla de DNAT del escenario. Para ello, crearemos una IP virtual, definiendo la IP externa (WAN) y la IP de destino donde haremos el DNAT (LAN).
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322202326.png)
 
-Ahora vamos a añadir la regla en nuestra política , en el destino de la regla indicaremos la IP virtual que acabamos de crear y indicamos el servicio SMTP que tiene configurado el puerto 25 TCP :
+Ahora añadiremos la regla en nuestra política. En el destino indicaremos la IP virtual recién creada y el servicio SMTP, que utiliza el puerto 25 TCP:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322203152.png)
 
-Y vamos a comprobar que desde un cliente externo , como es Cliente 2 podemos acceder a Cliente 1 :
+Comprobaremos que desde un cliente externo (Cliente 2) podemos acceder al Cliente 1:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322202558.png)
 
-Vamos a comprobar que la regla que acabamos de crear tiene hits :
+Verifiquemos que la regla tiene hits:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322203530.png)
 
 
-#### Permite hacer conexiones ssh desde exterior a la LAN
+#### Permitir conexiones SSH desde el exterior a la LAN
 
-Para realizar esto volveremos a hacer un DNAT , tendremos que volver a crear una nueva IP virtual ya que anteriormente especifique que esa IP solo se utilizaba para el protocolo SMTP . Así que voy a crear una nueva :
+Para lograr esto, crearemos otra IP virtual, ya que la anterior se especificó solo para el protocolo SMTP. Crearemos una nueva:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322204310.png)
 
-Una vez creada la nueva IP virtual para el ssh , crearemos la regla de DNAT :
+Una vez creada la nueva IP virtual para SSH, definiremos la regla de DNAT:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322204626.png)
 
-Vamos a probar nuestra nueva regla desde el cliente 2 :
+Probamos la nueva regla desde el Cliente 2:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322204918.png)
 
-Vamos a comprobar los hits de nuestra nueva regla :
+Verifiquemos los hits de la nueva regla:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322205046.png)
 
-#### Modifica la regla anterior, para que al acceder desde el exterior por ssh tengamos que conectar al puerto 2222, aunque el servidor ssh este configurado para acceder por el puerto 22.
+#### Modificar la regla anterior para que, al acceder desde el exterior por SSH, se conecte al puerto 2222, aunque el servidor SSH esté configurado en el puerto 22.
 
-Para realizar esto tendremos que generar un nuevo servicio que este en el puerto 2222 :
+Para ello, generaremos un nuevo servicio configurado en el puerto 2222:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322205327.png)
 
-Ahora vamos a modificar nuestra IP virtual modificando el servicio por el nuevo que hemos creado con el puerto 2222 y haremos un port forwarding al puerto 22 :
+Ahora modificaremos nuestra IP virtual, cambiando el servicio por el nuevo (puerto 2222) y configurando un redireccionamiento de puertos (port forwarding) al puerto 22:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322205425.png)
 
 
-Una vez hecho esto podremos acceder por ssh utilizando el puerto 2222 y que nos redirija al 22 . No es necesario que modifiquemos las reglas , solo con esto ya podremos acceder :
+Una vez hecho esto, podremos acceder por SSH utilizando el puerto 2222, el cual nos redirigirá al 22. No es necesario modificar las reglas; con este cambio ya es posible acceder:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322205611.png)
 
-Vamos a comprobar los hits de las reglas , ademas en el apartado de Virtual IP también tenemos un contador de hits :
+Verifiquemos los hits de las reglas; además, en el apartado de Virtual IP también tenemos un contador de hits:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322205747.png)
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322205954.png)
 
-#### Permite hacer consultas DNS desde la LAN sólo al servidor 8.8.8.8. Comprueba que no puedes hacer un dig @1.1.1.1.
+#### Permitir que los equipos de la LAN puedan realizar consultas DNS solo al servidor 8.8.8.8. Comprobar que no es posible hacer un `dig @1.1.1.1`.
 
-Para esto vamos a modificar la regla que permite las consultas DNS y vamos a indicar que el destino solo sea 8.8.8.8 .
+Para ello, modificaremos la regla que permite las consultas DNS, indicando que el único destino permitido es 8.8.8.8.
 
-Primero necesitaremos crear un nuevo objeto con la IP del servidor DNS de Google :
+Primero, crearemos un nuevo objeto con la IP del servidor DNS de Google:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322210309.png)
 
-Ahora modificamos la regla y pondremos este objeto como destino :
+Ahora modificamos la regla y asignamos este objeto como destino:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322210344.png)
 
-Vamos a comprobar la modificación de la regla , para que solo podamos hacer consultas dns a 8.8.8.8 :
+Comprobemos que solo podemos realizar consultas DNS a 8.8.8.8:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322210423.png)
 
-Podemos comprobar que los hits han subido :
+Verifiquemos que los hits han aumentado:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322210549.png)
 
 
 
-#### Permite que los equipos de la LAN puedan navegar por internet, excepto a la página www.realbetisbalompie.es
+#### Permitir que los equipos de la LAN naveguen por Internet, excepto a la página www.realbetisbalompie.es
 
-Estos cortafuegos de nueva generación traen una serie de servicios que nos filtran en el nivel de aplicación que nos permite detectar palabras clave para filtrar el contenido (drogas , pornografía , armas ... ) , en este cortafuegos el filtrar por palabras clave es un servicio de pago , hay que pagar una licencia . Ademas nos permite crear filtros para bloquear ciertas paginas web , que en este caso es gratuito. 
+Estos cortafuegos de nueva generación incluyen servicios que filtran en la capa de aplicación, permitiendo detectar palabras clave para filtrar el contenido (drogas, pornografía, armas, etc.). En este equipo, el filtrado por palabras clave es un servicio de pago; sin embargo, la creación de filtros para bloquear páginas web específicas es gratuita.
 
-Lo primero sera crear nuestra política de filtro_web :
+Primero, crearemos nuestra política de filtro web:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322211146.png)
 
-Y añadimos en la misma un nuevo filtro por URL :
+Añadimos en la política un nuevo filtro por URL:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322211118.png)
 
-Ahora nos dirigimos a la regla que nos permite el trafico https y en seguridad le añadimos el filtro web que acabamos de crear :
+Ahora nos dirigimos a la regla que permite el tráfico HTTPS y, en la sección de seguridad, añadimos el filtro web recién creado:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322211227.png)
 
-A la izquierda accederé desde el navegador de mi maquina física y puedo acceder a la pagina del maligno , sin embargo si  accedo desde el cliente 1 el firewall no nos deja acceder :
+Si accedemos desde el navegador de mi máquina física, puedo entrar en la página. Sin embargo, si accedo desde el Cliente 1, el firewall bloquea el acceso:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322211357.png)
 
-Si accedemos a FortiView Destinations podremos ver las paginas que ha bloqueado nuestro filtro :
+Si accedemos a FortiView Destinations, podremos ver las páginas que ha bloqueado nuestro filtro:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322211950.png)

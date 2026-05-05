@@ -1,14 +1,14 @@
 ---
 title: "Instalación pila LAMP en debian 12"
 date: 2023-10-28T10:00:00+00:00
-description: Instalación pila LAMP
+description: Guía paso a paso para la instalación de la pila LAMP en Debian 12.
 tags: [WordPress,CMS,IWEB,AW,debian,LAMP]
 hero: /images/iweb/lamp/portada_lamp.png
 ---
 
 
 
-# Instalación pila LAMP en Debian 12
+# Instalación de la pila LAMP en Debian 12
 
 Si estás utilizando Debian 12, sigue los pasos a continuación para instalar un servidor web LAMP completo en Debian GNU/Linux 12 "Bookworm" (Stable). Ten en cuenta que Debian 12 incluye PHP 8.2 en sus repositorios, lo que puede ser diferente de versiones anteriores de Debian.
 
@@ -42,7 +42,7 @@ javiercruces@IWEB:~$ sudo systemctl restart apache2
 
 ## Instalación y configuración de MariaDB
 
-Puedes usar indistintamente MariaDB o Mysql , en mi caso usare MariaDB :
+Puedes utilizar indistintamente MariaDB o MySQL; en este caso, utilizaremos MariaDB:
 
 ```bash
 javiercruces@IWEB:~$ sudo apt install mariadb-server
@@ -73,4 +73,4 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 MariaDB [(none)]> 
 ```
 
-Con esto ya tendrías instalada la pila LAMP en debian 12 
+Con esto, ya tendrías instalada la pila LAMP en Debian 12. 

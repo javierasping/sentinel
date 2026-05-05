@@ -6,29 +6,29 @@ tags: [FIREWALL,LINUX,DEBIAN,FORTINET]
 hero: /images/cortafuegos/fortinet2.png
 ---
 
-Ahora vamos a emular la práctica de cortafuegos II, pero en GNS3. Para ello, he transformado al cliente 1 en Odin, además he añadido a Thor y Loki como máquinas virtuales en lugar de contenedores en la red LAN. También he creado una nueva red llamada DMZ, en la cual estará la máquina Hela.
+Ahora vamos a emular la práctica de cortafuegos II, pero en GNS3. Para ello, he transformado al Cliente 1 en Odin; además, he añadido a Thor y Loki como máquinas virtuales en lugar de contenedores en la red LAN. También he creado una nueva red llamada DMZ, en la cual estará la máquina Hela.
 
-Dado que he transformado el escenario anterior en este nuevo, contamos con algunas reglas creadas anteriormente. Por lo tanto, eliminaré del enunciado aquellas que ya estén creadas, como la de hacer SSH a Odin desde el puerto 2222, pero con el servicio escuchando en el 22.
+Dado que he transformado el escenario anterior en este nuevo, contamos con algunas reglas creadas anteriormente. Por lo tanto, eliminaré del enunciado aquellas que ya estén implementadas, como la de realizar SSH a Odin desde el puerto 2222, con el servicio escuchando en el puerto 22.
 
-Además, ahora vamos a hacer unas reservas DHCP para tener controladas las IP de las nuevas máquinas.
+Además, ahora realizaremos unas reservas DHCP para tener controladas las IP de las nuevas máquinas.
 
-Ademas como no cuento con los servicios montados en el antiguo escenario en Opsentack y para las reglas del enunciado montare lo mínimo para hacer que funcionen las reglas . 
+Asimismo, como no cuento con los servicios montados en el antiguo escenario de OpenStack, montaré lo mínimo necesario para que funcionen las reglas del enunciado.
 
-A lo largo de esta practica te explicare que por como esta montado la topologia de la red , todos de la red LAN pueden comunicarse entre sin necesidad de pasar por el cortafuegos . Así que en algunos ejercicios omitiré la parte de hacer que Loki y Thor se comuniquen con Odin.  Ademas no voy  a montar el servidor DNS ni LDAP ya que las reglas de DNAT son bastante sencillas y a lo largo de la practica aparecen varios ejercicios de hacer DNAT entre las distintas redes . En lugar de esto voy a añadir VPN al final de la misma ya que lo veo mas interesante que repetir las mismas reglas cambiando el servicio .   
+A lo largo de esta práctica explicaré que, debido a la topología de la red, todos los dispositivos de la red LAN pueden comunicarse entre sí sin necesidad de pasar por el cortafuegos. Por lo tanto, en algunos ejercicios omitiré la parte de hacer que Loki y Thor se comuniquen con Odin. Además, no montaré el servidor DNS ni LDAP, ya que las reglas de DNAT son sencillas y se repiten a lo largo de la práctica. En su lugar, añadiré una sección de VPN al final, ya que resulta más interesante que repetir las mismas reglas cambiando el servicio.   
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329110607.png)
 
 ## Preparación del escenario 
 
-Lo primero que haré sera crear una nueva red en el puerto 3 , que corresponde a la red DMZ .
+Lo primero que haré será crear una nueva red en el puerto 3, que corresponde a la red DMZ.
 
-Como veras en la imagen a continuación he seleccionado que el rol sea LAN , para que me permita tener un servidor DHCP en esa red . Como es una red en la que albergara los servicios no quiero que desde esta se pueda acceder a configurar el cortafuegos así que dejare la administración desactivada .
+Como verás en la imagen a continuación, he seleccionado que el rol sea LAN para permitirme tener un servidor DHCP en esa red. Como es una red que albergará los servicios, no quiero que desde ella se pueda acceder a la configuración del cortafuegos, así que dejaré la administración desactivada.
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329160410.png)
 
-Ahora iré accediendo a los nuevos clientes y les cambiare el nombre de maquina y configurándolas por DHCP .
+Ahora accederé a los nuevos clientes, les cambiaré el nombre de la máquina y los configuraré por DHCP.
 
-Maquina Odin , esta era anteriormente la maquina cliente 1 , solo hay que cambiarle el FQDN y el hostname :
+Máquina Odin: esta era anteriormente la máquina Cliente 1; solo hay que cambiarle el FQDN y el hostname:
 
 ```bash
 osboxes@odin:~$ hostname -f
@@ -43,7 +43,7 @@ osboxes@odin:~$ ip -4 a
        valid_lft 604790sec preferred_lft 604790sec
 ```
 
-Maquina Thor :
+Máquina Thor:
 
 ```bash
 debian@thor:~$ hostname -f
@@ -59,7 +59,7 @@ debian@thor:~$ ip -4 a
 debian@thor:~$ 
 ```
 
-Maquina Loki :
+Máquina Loki:
 
 ```bash
 debian@loki:~$ hostname -f
@@ -74,7 +74,7 @@ debian@loki:~$ ip -4 a
        valid_lft 604724sec preferred_lft 604724sec
 ```
 
-Maquina Hela : 
+Máquina Hela: 
 
 ```bash
 debian@hela:~$ hostname -f
@@ -90,28 +90,28 @@ debian@hela:~$ ip -4 a
 ```
 
 
-Ahora vamos a hacer unas reservas en el servidor DHCP , accederemos a Dashborad > Networks > DHCP , una vez aquí le daremos clic derecho sobre cada cliente de los 4 que tenemos en el escenario y le crearemos una reserva : 
+Ahora realizaremos unas reservas en el servidor DHCP. Accederemos a Dashboard > Networks > DHCP; una vez allí, haremos clic derecho sobre cada uno de los cuatro clientes del escenario para crear una reserva: 
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329162616.png)
 
-Nos saldrá un menú similar a este para enlazar la dirección MAC a la IP :
+Nos aparecerá un menú similar a este para enlazar la dirección MAC a la IP:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329162730.png)
 
-Una vez hagamos esto con nuestro clientes nos indicara que tenemos la reserva hecha :
+Una vez hecho esto con nuestros clientes, el sistema nos indicará que la reserva se ha creado correctamente:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329162855.png)
 
 
 ## Reglas del cortafuegos
 
-Vamos a comenzar a crear las reglas , como dije anteriormente partimos del escenario anterior , así que algunas reglas para el funcionamiento mínimo de la red están creadas . 
+Vamos a comenzar a crear las reglas. Como mencioné anteriormente, partimos del escenario anterior, por lo que algunas reglas para el funcionamiento mínimo de la red ya están creadas. 
 
-Te dejo una captura de como se quedaron las reglas , para que veas del estado en el que partimos  :
+Te dejo una captura de cómo han quedado las reglas para que veas el estado inicial:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329163530.png)
 
-Algunas de las siguiente reglas ya esta configurada del ejercicio anterior , como la siguiente regla --> *La máquina Odin tiene un servidor ssh escuchando por el puerto 22, pero al acceder desde el exterior habrá que conectar al puerto 2222*
+Algunas de las siguientes reglas ya están configuradas desde el ejercicio anterior, como la siguiente: *La máquina Odin tiene un servidor SSH escuchando por el puerto 22, pero al acceder desde el exterior habrá que conectar al puerto 2222*.
 
 ```bash
 javiercruces@HPOMEN15:~$ ssh osboxes@192.168.122.77 -p 2222
@@ -131,20 +131,20 @@ osboxes@odin:~$ hostname -f
 odin.javiercd.gonzalonazareno.org
 ```
 
-A continuación veras que hay algunas reglas que he eliminado o modificado , ya que en el escenario actual no se pueden hacer , bien o por la topología o porque anteriormente la maquina Odin era el cortafuegos . En cualquier caso alguna he mantenido y he explicado algunas cosas adicionales . 
+A continuación, verás que hay algunas reglas que he eliminado o modificado, ya que en el escenario actual no se pueden implementar, ya sea por la topología o porque anteriormente la máquina Odin actuaba como cortafuegos. En cualquier caso, he mantenido algunas y he añadido explicaciones adicionales. 
 
 
-### Desde Thor y Hela se debe permitir la conexión ssh por el puerto 22 a la máquina Odin. 
+### Desde Thor y Hela se debe permitir la conexión SSH por el puerto 22 a la máquina Odin.
 
-Esta regla no la podemos realizar ya que al tener un switch de por medio interconectando los dispositivos , el trafico no pasara por el cortafuegos por lo que no podremos aplicar reglas en el cortafuego para impedir el trafico local . 
+Esta regla no se puede implementar ya que, al tener un switch de por medio interconectando los dispositivos, el tráfico no pasa por el cortafuegos, por lo que no podemos aplicar reglas para impedir el tráfico local. 
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329170454.png)
 
-Veras que aunque cree la regla , en el cortafuegos esta no se inmutara :
+Verás que, aunque cree la regla, en el cortafuegos esta no se incrementará:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329170554.png)
 
-Ves que por ejemplo si me conecto desde loki o desde thor puedo llegar a odin :
+Ves que, por ejemplo, si me conecto desde Loki o desde Thor, puedo llegar a Odin:
 
 ```bash
 debian@loki:~$ ssh osboxes@192.168.100.2
@@ -163,18 +163,18 @@ Last login: Fri Mar 29 11:42:43 2024 from 192.168.100.3
 osboxes@odin:~$ 
 ```
 
-Pero no llego por la regla que he creado si no por la propia topologia de la red , la regla no tiene hits :
+Pero no llego a través de la regla que he creado, sino por la propia topología de la red; la regla no tiene hits:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329170725.png)
 
-Todo el trafico se encarga de redirigirlo el swicht .
-### A la máquina Odin se le puede hacer ping desde la DMZ, pero desde la LAN se le debe rechazar la conexión (REJECT) y desde el exterior se rechazará de manera silenciosa. 
+Todo el tráfico es redirigido por el switch.
+### ### A la máquina Odin se le puede hacer ping desde la DMZ, pero desde la LAN se le debe rechazar la conexión (REJECT) y desde el exterior se rechazará de manera silenciosa.
 
-Para permitir que desde la red DMZ podamos hacer ping hacia Odin crearemos la siguiente regla :
+Para permitir que desde la red DMZ podamos hacer ping hacia Odin, crearemos la siguiente regla:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329171345.png)
 
-Vamos a comprobar que desde la DMZ podemos hacer el ping a Odin :
+Vamos a comprobar que desde la DMZ podemos hacer el ping a Odin:
 
 ```bash
 debian@hela:~$ ping 192.168.100.2 -c 1
@@ -186,13 +186,13 @@ PING 192.168.100.2 (192.168.100.2) 56(84) bytes of data.
 rtt min/avg/max/mdev = 2.379/2.379/2.379/0.000 ms
 ```
 
-Como vemos la regla esta funcionando , así que vamos a comprobar los hits :
+Como vemos, la regla está funcionando, así que comprobaremos los hits:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329171520.png)
 
-Por el mismo motivo que en el ejercicio anterior , desde la red LAN no podemos limitar el ping hacia Odin ya que no pasa por el cortafuegos si no por el switch .
+Por el mismo motivo que en el ejercicio anterior, desde la red LAN no podemos limitar el ping hacia Odin, ya que no pasa por el cortafuegos, sino por el switch.
 
-Algo parecido nos pasara desde la WAN , al ser un ping dirigido a la IP de la interfaz este se desactiva desde la configuración de la misma , siempre se rechaza de manera silenciosa pero no da opción a elegirlo  :
+Algo parecido ocurrirá desde la WAN; al ser un ping dirigido a la IP de la interfaz, este se desactiva desde la configuración de la misma, y siempre se rechaza de manera silenciosa, sin dar opción a elegir el método:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329172526.png)
 
@@ -206,17 +206,17 @@ PING 192.168.122.77 (192.168.122.77) 56(84) bytes of data.
 1 packets transmitted, 0 received, 100% packet loss, time 0ms
 ```
 
-### La máquina Odin puede hacer ping a la LAN, la DMZ y al exterior. 
+### La máquina Odin puede hacer ping a la LAN, la DMZ y al exterior.
 
-La maquina Odin por la propia topologia puede hacerle ping a todas las maquinas de la LAN ya que el trafico hacia esta red pasa por el swicht .
+La máquina Odin, por la propia topología, puede hacer ping a todas las máquinas de la LAN, ya que el tráfico hacia esta red pasa por el switch.
 
-Para que pueda hacer ping hacia la  DMZ y a la WAN vamos a crear dos reglas :
+Para que pueda hacer ping hacia la DMZ y la WAN, crearemos dos reglas:
 
-La regla para la WAN :
+La regla para la WAN:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329172816.png)
 
-La regla para la DMZ :
+La regla para la DMZ:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329172903.png)
 
@@ -249,16 +249,16 @@ PING 192.168.100.3 (192.168.100.3) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.503/0.503/0.503/0.000 ms
 ```
 
-Vamos a comprobar los hits de las dos reglas que acabamos de crear :
+Vamos a comprobar los hits de las dos reglas que acabamos de crear:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329173231.png)
-### Desde la máquina Hela se puede hacer ping y conexión ssh a las máquinas de la LAN. 
+### Desde la máquina Hela se puede hacer ping y conexión SSH a las máquinas de la LAN.
 
-Para lograr esto creare la siguiente regla . Podríamos separarla en 2 reglas independientes para tener los contadores por separado , pero en este caso no es importante distinguir el trafico .
+Para lograr esto, crearé la siguiente regla. Podríamos separarla en dos reglas independientes para tener los contadores por separado, pero en este caso no es importante distinguir el tráfico.
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329173630.png)
 
-Vamos a comprobar la regla , haciendo un ping a las distintas maquinas de la red LAN , ya que anteriormente había una regla para permitir todos los pings hacia Odin :
+Vamos a comprobar la regla haciendo un ping a las distintas máquinas de la red LAN, ya que anteriormente había una regla para permitir todos los pings hacia Odin:
 
 ```bash
 # HELA --> ODIN
@@ -289,7 +289,7 @@ PING 192.168.100.4 (192.168.100.4) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.998/0.998/0.998/0.000 ms
 ```
 
-Ahora vamos a comprobar que podemos conectarnos por ssh desde Hela a la LAN :
+Ahora comprobaremos que podemos conectarnos por SSH desde Hela a la LAN:
 
 ```bash
 debian@hela:~$ ssh osboxes@192.168.100.2 'hostname -f'
@@ -305,17 +305,17 @@ debian@192.168.100.4's password:
 thor.javiercd.gonzalonazareno.org
 ```
 
-La regla funciona correctamente , vamos a comprobar que ha subido los hits :
+La regla funciona correctamente; comprobemos que han subido los hits:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329174824.png)
 
-### Desde cualquier máquina de la LAN se puede conectar por ssh a la máquina Hela. 
+### Desde cualquier máquina de la LAN se puede conectar por SSH a la máquina Hela.
 
- Para ello vamos a crear la siguiente regla :
+Para ello, vamos a crear la siguiente regla:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329175356.png)
 
-Ahora vamos a comprobar la regla que acabamos de crear :
+Ahora comprobaremos la regla:
 
 ```bash
 osboxes@odin:~$ ssh debian@192.168.200.2 'hostname -f'
@@ -331,35 +331,35 @@ debian@192.168.200.2's password:
 hela.javiercd.gonzalonazareno.org
 ```
 
-Vamos a comprobar que los hits de la regla han subido :
+Comprobemos que los hits de la regla han subido:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329175844.png)
 
-### Configura la máquina Odin para que las máquinas de LAN y DMZ puedan acceder al exterior. 
+### Configurar la máquina Odin para que las máquinas de la LAN y DMZ puedan acceder al exterior.
 
-El SNAT en este dispositivo podemos elegir activarlo por cada regla y no en general . Si te has fijado a lo largo de la practica en todas las reglas que implica dar un salto de interfaz he marcado la casilla NAT :
+El SNAT en este dispositivo se puede activar por cada regla, en lugar de hacerlo de forma general. Si te has fijado, a lo largo de la práctica, en todas las reglas que implican un salto de interfaz, he marcado la casilla NAT:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329180159.png)
 
-Por lo que este apartado se va a ir realizando a lo largo de la practica conforme creemos las reglas . 
-### Las máquinas de la LAN pueden hacer ping al exterior y navegar. 
+Por lo tanto, este apartado se irá realizando a lo largo de la práctica conforme creemos las reglas. 
+### Las máquinas de la LAN pueden hacer ping al exterior y navegar.
 
-Vamos a tener que crear 3 reglas :
-- Permitir el trafico HTTP/HTTPS
+Para ello, tendremos que crear tres reglas:
+- Permitir el tráfico HTTP/HTTPS
 - Permitir las consultas DNS
 - Permitir hacer ping
 
-De estas tres reglas las dos primeras están creadas con anterioridad :
+De estas tres reglas, las dos primeras ya están creadas:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184029.png)
 
-Por lo que solo nos queda añadir la regla del ping , que seria la siguiente :
+Por lo que solo nos queda añadir la regla del ping, que sería la siguiente:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184222.png)
 
 Como tengo una versión de prueba puedo tener como máximo 10 entradas , así que voy a eliminar la que solo deja hacer ping al exterior a Odin .
 
-Vamos a comprobar las reglas , desde un cliente de la red LAN:
+Comprobemos las reglas desde un cliente de la red LAN:
 
 ```bash
 osboxes@odin:~$ dig @8.8.8.8 www.javiercd.es
@@ -423,43 +423,43 @@ content-length: 26744
 
 ```
 
-Así quedarían nuestras tres reglas , veremos que tenemos hits en las mismas  :
+Así quedarían nuestras tres reglas; veremos que tenemos hits en todas ellas:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184410.png)
 
-### La máquina Hela puede navegar. Instala un servidor web, un servidor ftp y un servidor de correos si no los tienes aún. 
+### La máquina Hela puede navegar. Instala un servidor web, un servidor FTP y un servidor de correos si no los tienes aún.
 
-Para realizar esto es necesario tener permitido el DNS y la navegación . Para ello he creado la siguiente regla :
+Para realizar esto, es necesario permitir el DNS y la navegación. Para ello, he creado la siguiente regla:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329184830.png)
 
-La he creado en una sola regla para ahorrar en el numero de las mismas , he borrado las que permitía el ping desde DMZ a LAN de ejercicios anteriores . 
+La he creado en una sola regla para ahorrar espacio; he borrado las reglas que permitían el ping desde la DMZ a la LAN de ejercicios anteriores. 
 
 ```bash
 debian@hela:~$ sudo apt install proftpd postfix apache2 -y
 ```
 
-### Configura la máquina Odin para que los servicios web y ftp sean accesibles desde el exterior. 
+### Configura la máquina Odin para que los servicios web y FTP sean accesibles desde el exterior.
 
-Para hacer el DNAT deberemos de crear 2 IPs virtuales , como hicimos en cortafuegos I .
+Para hacer el DNAT, deberemos crear dos IPs virtuales, como hicimos en Cortafuegos I.
 
-Una para cada servicio que queramos hacer un DNAT . Para el servidor web : 
+Una para cada servicio que queramos hacer DNAT. Para el servidor web: 
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329190416.png)
 
-Y para el servidor FTP :
+Y para el servidor FTP:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329190509.png)
 
-Ahora vamos a crear la propia regla de DNAT para el servidor web , en la cual como destino indicamos la IP virtual que acabamos de crear :
+Ahora crearemos la regla de DNAT para el servidor web, en la cual, como destino, indicamos la IP virtual que acabamos de crear:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329191130.png)
 
-Veremos que si accedemos a la IP del cortafuegos de la WAN accederemos al apache de Hela :
+Veremos que, si accedemos a la IP del cortafuegos desde la WAN, accederemos al Apache de Hela:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329191232.png)
 
-También crearemos la regla DNAT para el servidor FTP :
+También crearemos la regla DNAT para el servidor FTP:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329191852.png)
 
@@ -477,26 +477,26 @@ Using binary mode to transfer files.
 ftp>
 ```
 
-Si comprobamos los hits de las reglas veremos que en ambas ha subido :
+Si comprobamos los hits de las reglas, veremos que en ambas han subido:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329192338.png)
 
 
-### El servidor web y el servidor ftp deben ser accesibles desde la LAN y desde el exterior. 
+### El servidor web y el servidor FTP deben ser accesibles desde la LAN y desde el exterior.
 
-Para realizar este ejercicio deberemos de volver a generar las 2 IPs virtuales pero ahora indicaremos la IP de la tarjeta LAN del firewall . 
+Para realizar este ejercicio, deberemos generar nuevamente las dos IPs virtuales, pero ahora indicaremos la IP de la interfaz LAN del firewall. 
 
-Para el DNAT del servidor web :
+Para el DNAT del servidor web:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329192709.png)
 
-Repetiremos lo mismo para el servicio FTP , cambiando el servicio :
+Repetiremos lo mismo para el servicio FTP, cambiando el servicio:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329192818.png)
 
-Ahora crearemos las 2 reglas de DNAT para permitir el acceso desde la LAN .
+Ahora crearemos las dos reglas de DNAT para permitir el acceso desde la LAN.
 
-Para el servidor web :
+Para el servidor web:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193041.png)
 
@@ -504,7 +504,7 @@ Para el servidor FTP:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193132.png)
 
-Vamos a comprobar que podemos acceder a ambos servicios :
+Vamos a comprobar que podemos acceder a ambos servicios:
 
 ```bash
 osboxes@odin:~$ curl -I  http://192.168.100.1
@@ -528,21 +528,21 @@ Remote system type is UNIX.
 Using binary mode to transfer files.
 ```
 
-Vamos a comprobar que han subido los hits en las reglas :
+Comprobemos que han subido los hits en las reglas:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193324.png)
 
-### El servidor de correos sólo debe ser accesible desde la LAN. 
+### El servidor de correos sólo debe ser accesible desde la LAN.
 
-Volvemos a repetir los mismos pasos , le crearemos una IP virtual para poder hacer la regla de DNAT :
+Volvemos a repetir los mismos pasos; crearemos una IP virtual para poder realizar la regla de DNAT:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193427.png)
 
-Ahora vamos a crear la regla de DNAT :
+Ahora crearemos la regla de DNAT:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193724.png)
 
-Y comprobaremos que desde un PC de la LAN haciendo un telnet llegamos al servidor de correos :
+Y comprobaremos que, desde un PC de la LAN, haciendo un telnet, llegamos al servidor de correos:
 
 ```bash
 osboxes@odin:~$ telnet 192.168.100.1 25
@@ -555,21 +555,21 @@ quit
 Connection closed by foreign host.
 ```
 
-Veremos que el hit de la regla ha subido :
+Veremos que el hit de la regla ha subido:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329193822.png)
 
 ### En la máquina Loki instala un servidor Postgres si no lo tiene aún. A este servidor se puede acceder desde la DMZ, pero no desde el exterior.
 
-Volveremos a repetir el proceso de crear una nueva IP virtual para este servicio . Ademas en este caso he tenido que crear el servicio ya que no existía . 
+Volveremos a repetir el proceso de crear una nueva IP virtual para este servicio. Además, en este caso, he tenido que crear el servicio ya que no existía. 
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329195211.png)
 
-Vamos a crear la regla de DNAT :
+Vamos a crear la regla de DNAT:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329200331.png)
 
-Vamos a comprobar que tenemos acceso al servidor pgsql desde la red DMZ :
+Vamos a comprobar que tenemos acceso al servidor pgsql desde la red DMZ:
 
 ```bash
 debian@hela:~$ psql -h 192.168.200.1 -U postgres -W
@@ -581,7 +581,7 @@ Type "help" for help.
 postgres=# \q
 ```
 
-Comprobaremos que la regla tiene hits :
+Comprobaremos que la regla tiene hits:
 
 ![](/cortafuegos/fortinet_dos/img/Pastedimage20240329200721.png)
 

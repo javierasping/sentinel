@@ -7,17 +7,17 @@ hero: images/docker/taller2.png
 
 ---
 ## Workshop 2: Multicontainer Scenarios in Docker
-### Nextcloud deployment
+### Nextcloud Deployment
 
-We will deploy the nextcloud application with a database (you can choose mariadb or PostgreSQL) using the docker-compose application. You can take as model the file 'docker-compose.yml' that we have studied to display WordPress.
+We will deploy the Nextcloud application with a database (you can choose MariaDB or PostgreSQL) using Docker Compose. You can use the `docker-compose.yml` file we studied for the WordPress deployment as a model.
 
-1. Install docker- compose on your computer.
+1. Install Docker Compose on your computer.
 
 ```bash
 
 ```
 
-2. Within a directory creates a 'docker-composer.yml' file for the deployment of nextcloud with a database. Remember the environment variables and the persistence of information.
+2. Within a directory, create a `docker-compose.yml` file to deploy Nextcloud with a database. Remember to configure the environment variables and data persistence.
 
 ```bash
 javiercruces@docker:~/taller2$ cat docker-compose.yaml 
@@ -57,7 +57,7 @@ services:
 
 ```
 
-3. Raise the stage with 'docker-compose'.
+3. Start the scenario using `docker compose up -d`.
 
 ```bash
 javiercruces@docker:~/taller2$ docker compose up -d 
@@ -66,7 +66,7 @@ javiercruces@docker:~/taller2$ docker compose up -d
  ✔ Container taller2-app-1  Started                                                                0.0s
 ```
 
-4. Show the containers with 'docker-compose'.
+4. Display the containers using `docker compose ps`.
 
 ```bash
 javiercruces@docker:~/taller2$ docker compose ps
@@ -76,7 +76,7 @@ taller2-db-1    mariadb:10.6   "docker-entrypoint.sh --transaction-isolation=REA
 
 ```
 
-5. Access the application and check that it works.
+5. Access the application via a browser and verify that it works correctly.
 
 ```bash
 
@@ -84,7 +84,7 @@ taller2-db-1    mariadb:10.6   "docker-entrypoint.sh --transaction-isolation=REA
 
 ![](/docker/taller2/img/Pasted_image_20240202091554.png)
 
-6. Check the storage you have defined and that a new bridge-type network has been created.
+6. Verify the defined storage and confirm that a new bridge-type network has been created.
 
 ```bash
 javiercruces@docker:~/taller2$ docker network ls
@@ -109,7 +109,7 @@ local     taller2_nextcloud
 
 ```
 
-7. Delete the stage with 'docker-compose'.
+7. Delete the scenario using `docker compose rm -sf`.
 
 ```bash
 javiercruces@docker:~/taller2$ docker compose rm -sf

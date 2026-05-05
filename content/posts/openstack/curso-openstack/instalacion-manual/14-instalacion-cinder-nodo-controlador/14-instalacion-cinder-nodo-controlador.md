@@ -7,11 +7,11 @@ hero: images/openstack/instalacion-manual/instalar-configurar-cinder-controlador
 weight: 14
 ---
 
-Este post detalla los pasos que seguimos para instalar y configurar **Cinder**, el servicio de almacenamiento en bloque de OpenStack, en el nodo controlador (`controller01`). Incluimos los comandos para crear la base de datos, configurar los servicios, endpoints y la integración con Nova.
+Este post detalla los pasos para instalar y configurar **Cinder**, el servicio de almacenamiento en bloque de OpenStack, en el nodo controlador (`controller01`). Incluimos los comandos necesarios para crear la base de datos, configurar los servicios y endpoints, y realizar la integración con Nova.
 
 ## Crear la base de datos de Cinder
 
-Accedemos a MySQL y creamos la base de datos y el usuario:
+Nos conectaremos a MySQL para crear la base de datos y el usuario correspondiente:
 
 ```bash
 vagrant@controller01:~$ sudo mysql
@@ -24,7 +24,7 @@ EXIT;
 
 ## Crear el usuario de Cinder y asignar el rol admin
 
-Cargamos las credenciales de administrador y creamos el usuario `cinder` en el proyecto `service`:
+Cargaremos las credenciales de administrador y crearemos el usuario `cinder` dentro del proyecto `service`:
 
 ```bash
 . admin-openrc
@@ -45,7 +45,7 @@ openstack role add --project service --user cinder admin
 
 ## Crear los servicios y endpoints de Cinder
 
-Creamos los servicios `cinderv2` y `cinderv3` y sus endpoints para la región `RegionOne`:
+Registraremos los servicios `cinderv2` y `cinderv3`, así como sus endpoints para la región `RegionOne`:
 
 ```bash
 openstack service create --name cinderv2 --description "OpenStack Block Storage" volumev2
@@ -92,7 +92,7 @@ sudo apt install -y cinder-api cinder-scheduler
 
 ## Configurar la base de datos y RabbitMQ
 
-Editamos el fichero `/etc/cinder/cinder.conf` para incluir los siguientes parámetros:
+Editaremos el archivo `/etc/cinder/cinder.conf` para incluir los siguientes parámetros:
 
 ```ini
 [database]
@@ -104,7 +104,7 @@ transport_url = rabbit://openstack:RABBIT_PASS@controller01
 
 ## Configurar acceso al servicio de identidad (Keystone)
 
-Añadimos los parámetros para Keystone en el mismo fichero:
+Añadiremos los parámetros de conexión con Keystone en el mismo archivo:
 
 ```ini
 [DEFAULT]
@@ -138,14 +138,14 @@ vagrant@controller01:~$ sudo su -s /bin/sh -c "cinder-manage db sync" cinder
 
 ## Configurar Nova para usar Cinder
 
-Añadimos la región de Cinder en el fichero de configuración de Nova `/etc/nova/nova.conf`:
+Añadiremos la región de Cinder al archivo de configuración de Nova `/etc/nova/nova.conf`:
 
 ```ini
 [cinder]
 os_region_name = RegionOne
 ```
 
-## Reiniciar los servicios
+## Reiniciaremos los servicios:
 
 ```bash
 sudo service nova-api restart
@@ -153,7 +153,7 @@ sudo service cinder-scheduler restart
 sudo service apache2 restart
 ```
 
-## Verificar el funcionamiento de Cinder
+## Verificación del funcionamiento de Cinder
 
 ```bash
 . admin-openrc

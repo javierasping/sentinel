@@ -7,7 +7,7 @@ hero: images/openstack/instalacion-manual/instalar-configurar-neutron-controlado
 weight: 11
 ---
 
-En esta página instalo y configuro el servicio de red Neutron en el nodo controlador (`controller01`). Neutron gestiona las redes virtuales, routers, subredes y demás componentes de networking para las instancias.
+En esta guía, instalaremos y configuraremos el servicio de red Neutron en el nodo controlador (`controller01`). Neutron es el encargado de gestionar las redes virtuales, routers, subredes y demás componentes de networking para las instancias.
 
 ## Requisitos previos
 
@@ -19,7 +19,7 @@ Antes de empezar, asegúrate de tener:
 
 ### Crear la base de datos
 
-Me conecto al servidor de base de datos como `root` para crear la base de datos de Neutron:
+Nos conectaremos al servidor de la base de datos como `root` para crear la base de datos de Neutron:
 
 1. Accedo al cliente SQL:
 
@@ -27,13 +27,13 @@ Me conecto al servidor de base de datos como `root` para crear la base de datos 
 vagrant@controller01:~$ sudo mysql           
 ```
 
-2. Creo la base de datos `neutron`:
+2. Creación de la base de datos `neutron`:
 
 ```sql
 MariaDB [(none)]> CREATE DATABASE neutron;
 ```
 
-3. Concedo los permisos al usuario `neutron` (sustituye `NEUTRON_DBPASS` por tu contraseña):
+3. Asignaremos los permisos al usuario `neutron` (sustituye `NEUTRON_DBPASS` por la contraseña definida):
 
 ```sql
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' \
@@ -42,11 +42,11 @@ MariaDB [(none)]> GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' \
   IDENTIFIED BY 'NEUTRON_DBPASS';
 ```
 
-4. Salgo del cliente cuando termine.
+4. Finalmente, salimos del cliente de la base de datos.
 
 ### Crear el usuario y los endpoints del servicio
 
-Cargo mis credenciales de administrador para trabajar con la CLI de OpenStack:
+Cargaremos las credenciales de administrador para trabajar con la CLI de OpenStack:
 
 1. Cargo las variables de entorno:
 
@@ -54,7 +54,7 @@ Cargo mis credenciales de administrador para trabajar con la CLI de OpenStack:
 vagrant@controller01:~$ source admin-openrc 
 ```
 
-2. Creo el usuario `neutron` en Keystone (usa `NEUTRON_PASSWORD` como contraseña de ejemplo):
+2. Crearemos el usuario `neutron` en Keystone (utiliza `NEUTRON_PASSWORD` como contraseña de ejemplo):
 
 ```bash
 vagrant@controller01:~$ openstack user create --domain default --password NEUTRON_PASSWORD neutron
@@ -73,13 +73,13 @@ vagrant@controller01:~$ openstack user create --domain default --password NEUTRO
 +---------------------+----------------------------------+
 ```
 
-3. Añado el rol `admin` al usuario `neutron` dentro del proyecto `service`:
+3. Añadiremos el rol `admin` al usuario `neutron` dentro del proyecto `service`:
 
 ```bash
 vagrant@controller01:~$ openstack role add --project service --user neutron admin
 ```
 
-4. Registro el servicio Neutron en el catálogo de Keystone:
+4. Registraremos el servicio Neutron en el catálogo de Keystone:
 
 ```bash
 vagrant@controller01:~$ openstack service create --name neutron --description "OpenStack Networking" network
@@ -94,7 +94,7 @@ vagrant@controller01:~$ openstack service create --name neutron --description "O
 +-------------+----------------------------------+
 ```
 
-5. Creo los endpoints públicos, internos y admin apuntando al puerto 9696:
+5. Crearemos los endpoints públicos, internos y de administración, apuntando al puerto 9696:
 
 ```bash
 vagrant@controller01:~$ openstack endpoint create --region RegionOne network public http://controller01:9696
@@ -143,7 +143,7 @@ vagrant@controller01:~$ openstack endpoint create --region RegionOne network adm
 
 ## Instalar y configurar los componentes de Neutron
 
-Instalo los paquetes de Neutron en el nodo controlador:
+Instalaremos los paquetes de Neutron en el nodo controlador:
 
 ```bash
 vagrant@controller01:~$ sudo apt install -y neutron-server neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent
@@ -152,16 +152,16 @@ vagrant@controller01:~$ sudo apt install -y neutron-server neutron-plugin-ml2 ne
 
 ### Configurar el archivo principal de Neutron
 
-Edito `/etc/neutron/neutron.conf` y configuro las secciones clave.
+Editaremos el archivo `/etc/neutron/neutron.conf` para configurar las secciones clave.
 
-En `[database]` establezco la cadena de conexión a MariaDB (sustituye `NEUTRON_DBPASS`):
+En la sección `[database]`, definiremos la cadena de conexión a MariaDB (sustituye `NEUTRON_DBPASS` por la contraseña definida):
 
 ```bash
 [database]
 connection = mysql+pymysql://neutron:NEUTRON_DBPASS@controller01/neutron
 ```
 
-En `[DEFAULT]` activo ML2, el plugin de ruteo y la conexión a RabbitMQ (sustituye `RABBIT_PASS`):
+En la sección `[DEFAULT]`, activaremos ML2, el plugin de ruteo y la conexión a RabbitMQ (sustituye `RABBIT_PASS` por tu contraseña):
 
 ```bash
 [DEFAULT]
@@ -173,7 +173,7 @@ notify_nova_on_port_status_changes = true
 notify_nova_on_port_data_changes = true
 ```
 
-En `[api]` y `[keystone_authtoken]` configuro la autenticación con Keystone (reemplaza `NEUTRON_PASS`):
+En las secciones `[api]` y `[keystone_authtoken]`, configuraremos la autenticación con Keystone (sustituye `NEUTRON_PASS` por la contraseña definida):
 
 ```bash
 [api]
@@ -192,7 +192,7 @@ username = neutron
 password = NEUTRON_PASS
 ```
 
-En `[nova]` indico cómo Neutron se autentica frente a Nova (sustituye `NOVA_PASS`):
+En la sección `[nova]`, indicaremos cómo Neutron se autentica frente a Nova (sustituye `NOVA_PASS` por la contraseña definida):
 
 ```bash
 [nova]
@@ -206,7 +206,7 @@ username = nova
 password = NOVA_PASS
 ```
 
-En `[oslo_concurrency]` defino la ruta de bloqueo:
+En la sección `[oslo_concurrency]`, definiremos la ruta de bloqueo:
 
 ```bash
 [oslo_concurrency]
@@ -215,9 +215,9 @@ lock_path = /var/lib/neutron/tmp
 
 ### Configurar el plugin Modular Layer 2 (ML2)
 
-ML2 conecta los tipos de red con el mecanismo (linuxbridge). Edito `/etc/neutron/plugins/ml2/ml2_conf.ini` para habilitar drivers y tipos.
+El plugin Modular Layer 2 (ML2) conecta los tipos de red con el mecanismo (en este caso, linuxbridge). Editaremos `/etc/neutron/plugins/ml2/ml2_conf.ini` para habilitar los drivers y tipos correspondientes.
 
-En `[ml2]` activo flat, VLAN y VXLAN:
+En la sección `[ml2]`, activaremos los tipos flat, VLAN y VXLAN:
 
 ```bash
 [ml2]
@@ -227,14 +227,14 @@ mechanism_drivers = linuxbridge,l2population
 extension_drivers = port_security
 ```
 
-Defino la red flat llamada `provider`:
+Definiremos la red flat denominada `provider`:
 
 ```bash
 [ml2_type_flat]
 flat_networks = provider
 ```
 
-Configuro el rango VNI para VXLAN:
+Configuraremos el rango VNI para VXLAN:
 
 ```bash
 [ml2_type_vxlan]
@@ -247,7 +247,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 
 ### Configurar Linux Bridge Agent
 
-En `/etc/neutron/plugins/ml2/linuxbridge_agent.ini` indico la interfaz física y la IP local para VXLAN:
+En el archivo `/etc/neutron/plugins/ml2/linuxbridge_agent.ini`, indicaremos la interfaz física y la IP local para VXLAN:
 
 ```bash
 [linux_bridge]
@@ -266,7 +266,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 
 ### Configurar L3 Agent
 
-En `/etc/neutron/l3_agent.ini` uso el driver de linuxbridge:
+En `/etc/neutron/l3_agent.ini`, utilizaremos el driver de linuxbridge:
 
 ```bash
 [DEFAULT]
@@ -275,7 +275,7 @@ interface_driver = linuxbridge
 
 ### Configurar DHCP Agent
 
-En `/etc/neutron/dhcp_agent.ini` activo el driver de linuxbridge y Dnsmasq:
+En `/etc/neutron/dhcp_agent.ini`, activaremos el driver de linuxbridge y Dnsmasq:
 
 ```bash
 [DEFAULT]
@@ -286,7 +286,7 @@ enable_isolated_metadata = true
 
 ### Configurar Metadata Agent
 
-En `/etc/neutron/metadata_agent.ini` indico el host de Nova y la clave compartida:
+En `/etc/neutron/metadata_agent.ini`, indicaremos el host de Nova y la clave compartida:
 
 ```bash
 [DEFAULT]
@@ -296,7 +296,7 @@ metadata_proxy_shared_secret = openstack
 
 ### Configurar Nova para usar Neutron
 
-En `/etc/nova/nova.conf` configuro la sección `[neutron]` para que Nova use el servicio de red:
+En el archivo `/etc/nova/nova.conf`, configuraremos la sección `[neutron]` para que Nova utilice el servicio de red:
 
 ```bash
 [neutron]
@@ -315,7 +315,7 @@ metadata_proxy_shared_secret = openstack
 
 ### Poblar la base de datos de Neutron
 
-Ejecuto las migraciones para crear las tablas necesarias:
+Ejecutaremos las migraciones para crear las tablas necesarias en la base de datos:
 
 ```bash
 sudo su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
@@ -334,7 +334,7 @@ INFO  [alembic.runtime.migration] Running upgrade 2e0d7a8a1586 -> 5c85685d616d
 
 ## Reiniciar servicios y comprobar agentes
 
-Reinicio los servicios para aplicar la configuración:
+Reiniciaremos los servicios para aplicar la nueva configuración:
 
 ```bash
 sudo service nova-api restart
@@ -345,7 +345,7 @@ sudo service neutron-metadata-agent restart
 sudo service neutron-l3-agent restart
 ```
 
-Compruebo el estado de los agentes con:
+Verificaremos el estado de los agentes utilizando el siguiente comando:
 
 ```bash
 vagrant@controller01:~$ openstack network agent list

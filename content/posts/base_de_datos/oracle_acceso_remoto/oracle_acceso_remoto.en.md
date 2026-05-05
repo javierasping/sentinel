@@ -56,11 +56,8 @@ Once this is done, the command to connect is as follows:
 
 ![Connection command](/base_de_datos/oracle_acceso_remoto/img/IMG_20231028_213222.jpg)
 
-The syntax is:
+The syntax is: `user/password@//IP:PORT/SID`
 
-
-The syntax is user/password@//IP:PORT /SID
-
-We can consult tables, I have added the outline of the previous year's project:
+We can query tables; I have added the schema of the previous year's project:
 
 ![](/base_de_datos/oracle_acceso_remoto/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.034.png)

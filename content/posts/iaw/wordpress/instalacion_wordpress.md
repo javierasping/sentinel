@@ -1,36 +1,36 @@
 ---
 title: "Instalación WordPress en Debian 12 con pila LAMP PHP-8"
 date: 2023-10-28T10:00:00+00:00
-description: Instalación WordPress en Debian 12 con pila LAMP PHP-8
+description: Guía paso a paso para la instalación de WordPress en Debian 12 utilizando la pila LAMP con PHP 8.
 tags: [WordPress,CMS,IWEB,AW,debian]
 hero: /images/iweb/wordpress/wordpress_lamp.png
 ---
 
 
-# Instalación WordPress en Debian 12 con pila LAMP PHP-8
+# Instalación de WordPress en Debian 12 con la pila LAMP y PHP 8
 
 WordPress es un sistema de gestión de contenidos (CMS, por sus siglas en inglés) de código abierto muy popular que se utiliza para crear y administrar sitios web y blogs. Fue lanzado por primera vez en 2003 y desde entonces ha ganado una amplia base de usuarios y una comunidad activa de desarrolladores y diseñadores.
 
 
 ## Preparación
 
-Antes de empezar con la instalación de WordPress vamos a dejar claro en una lista cual es el ecosistema de nuestro servidor para que todo funcione correctamente:
+Antes de comenzar con la instalación de WordPress, definiremos la configuración necesaria del servidor para asegurar que todo funcione correctamente:
 
 - Servidor LAMP completo: Apache + MySQL -o MariaDB- y PHP 8.x.
 - Configurado un VirtualHost para nuestro dominio.
 - Creación de base de datos con usuario.
 
-Si no tienes instalado la pila LAMP sigue puedes hacerlo en [este enlace.](https://www.javiercd.es/posts/iaw/lamp/lamp/)
+Si no tienes instalada la pila LAMP, puedes hacerlo a través de [este enlace](https://www.javiercd.es/posts/iaw/lamp/lamp/).
 
 ## Creación del VirtualHost
 
-Copiamos el archivo de configuración predeterminado de Apache y lo renombramos a wordpress.conf
+Copiaremos el archivo de configuración predeterminado de Apache y lo renombraremos como `wordpress.conf`
 
 ```bash
 javiercruces@IWEB:/etc/apache2/sites-available$ sudo cp 000-default.conf wordpress.conf
 ```
 
-Configuramos el sitio virtual , recuerda cambiar el ServerName y DocumentRoot
+Configuraremos el sitio virtual; recuerda modificar el `ServerName` y el `DocumentRoot`
 
 ```bash
 <VirtualHost *:80>
@@ -64,7 +64,7 @@ Configuramos el sitio virtual , recuerda cambiar el ServerName y DocumentRoot
 </VirtualHost>
 ```
 
-Habilitamos el sitio virtual wordpress.conf
+Habilitaremos el sitio virtual `wordpress.conf`
 
 ```bash
 javiercruces@IWEB:/etc/apache2/sites-available$ sudo a2ensite wordpress.conf 
@@ -74,13 +74,13 @@ To activate the new configuration, you need to run:
 
 ```
 
-Recargamos Apache para aplicar la nueva configuración
+Reiniciaremos Apache para aplicar la nueva configuración
 
 ```bash
 javiercruces@IWEB:/etc/apache2/sites-available$ sudo systemctl reload apache2
 ```
 
-Para acceder a este VirtualHost , en la maquina donde vayas a acceder al wordpress , al no tener servidor dns recuerda poner en el fichero host la ip de tu servidor con el ServerName :
+Para acceder a este VirtualHost desde la máquina cliente, dado que no disponemos de un servidor DNS, recuerda añadir la IP del servidor y el `ServerName` correspondiente al archivo `/etc/hosts` :
 
 ```bash
 javiercruces@HPOMEN15:~$ cat /etc/hosts 
@@ -91,8 +91,8 @@ javiercruces@HPOMEN15:~$ cat /etc/hosts
 
 ## Creación de la base de datos con un usuario.
 
-Te recomiendo que **apuntes** los datos introducidos a continuación ya que los necesitaras mas adelante .
-Nos conectamos a la base de datos :
+Te recomiendo **anotar** los datos introducidos a continuación, ya que los necesitarás más adelante.
+Nos conectaremos a la base de datos:
 ```bash
 javiercruces@IWEB:~$ sudo mysql -u root -p
 Enter password: 
@@ -103,23 +103,23 @@ Server version: 10.11.4-MariaDB-1~deb12u1 Debian 12
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-#Creamos una base de datos :
+# Creación de la base de datos:
 MariaDB [(none)]> CREATE DATABASE fjcd_wordpress;
 Query OK, 1 row affected (0,001 sec)
 
-#Nos creamos el usuario para nuestra base de datos
+# Creación del usuario para la base de datos:
 MariaDB [(none)]> CREATE USER 'fjcd-wordpress'@'localhost' IDENTIFIED BY 'tu_contraseña';
 Query OK, 0 rows affected (0,013 sec)
 
-#Le damos permisos sobre la base de datos que hemos creado:
+# Asignación de permisos sobre la base de datos creada:
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON fjcd_wordpress.* TO 'fjcd-wordpress'@'localhost';
 Query OK, 0 rows affected (0,010 sec)
 
-#Actualizamos los permisos:
+# Actualización de los permisos:
 MariaDB [(none)]> FLUSH PRIVILEGES;
 Query OK, 0 rows affected (0,000 sec)
 
-#Nos salimos de la CLI de mysql
+# Salida de la CLI de MySQL
 MariaDB [(none)]> EXIT;
 Bye
 ```
@@ -127,7 +127,7 @@ Bye
 
 ## **Instalación de WordPress**
 
-Lo primero que haremos será **[descargarnos WordPress](https://wordpress.org/download/?ref=voidnull.es)**, podemos hacerlo usando wget o si lo tenemos descargado en nuestro anfitrión pasarlo haciendo uso de SCP o FTP .
+Lo primero que haremos será **[descargar WordPress](https://wordpress.org/download/?ref=voidnull.es)**. Podemos hacerlo utilizando `wget` o, si ya lo hemos descargado en el equipo anfitrión, transferirlo mediante SCP o FTP.
 
 ```bash
 javiercruces@IWEB:~$ wget https://wordpress.org/latest.tar.gz
@@ -143,26 +143,26 @@ latest.tar.gz             100%[=====================================>]  22,38M  
 2023-10-27 12:33:19 (14,8 MB/s) - «latest.tar.gz» guardado [23465047/23465047]
 ```
 
-Y **descomprimiremos el fichero** y copiaremos los ficheros dentro del **`DocumentRoot`** de nuestro **`VirtualHost`:**
+A continuación, **descomprimiremos el archivo** y copiaremos los archivos dentro del `DocumentRoot` de nuestro `VirtualHost`:
 
 ```
 javiercruces@IWEB:~$ sudo mkdir   /var/www/wordpress/
 javiercruces@IWEB:~$ sudo tar -zxf latest.tar.gz -C /var/www/
 ```
 
-Entramos a la ruta del **WordPress** para realizar poner correctamente el esquema de permisos :
+Accederemos al directorio de **WordPress** para configurar correctamente el esquema de permisos:
 
 ```
 javiercruces@IWEB:~$ cd /var/www/
 ```
 
-Cambiamos usuario y grupos:
+Cambiaremos el propietario y el grupo:
 
 ```
 javiercruces@IWEB:/var/www$ sudo chown -R www-data:www-data wordpress/
 ```
 
-Y ponemos los permisos correctos a WordPress:
+Asignaremos los permisos correctos a WordPress:
 
 ```
 find . -type d -exec chmod 755 {} \;
@@ -170,40 +170,40 @@ find . -type f -exec chmod 644 {} \;
 
 ```
 
-Una vez hemos configurado todo esto, ahora ya podemos acceder con nuestro navegador a nuestro dominio para iniciar la instalación de **WordPress.**
+Una vez configurado todo esto, ya podemos acceder a través del navegador a nuestro dominio para iniciar la instalación de **WordPress**.
 
 ## Instalación Web
 
-Accedemos a la url que hemos puesto en el ServerName de nuestro sitio virtual y posteriormente hemos configurado en el fichero hosts .
+Accedemos a la URL definida en el `ServerName` de nuestro sitio virtual y configurada previamente en el archivo `/etc/hosts`.
 
-Lo primero sera seleccionar el idioma :
+Lo primero será seleccionar el idioma:
 
 ![Untitled](/iaw/wordpress/img/Untitled.png)
 
-A continuación nos dará una breve explicación de que es el CMS WordPress :
+A continuación, se mostrará una breve explicación sobre el CMS WordPress:
 
 ![Untitled](/iaw/wordpress/img/Untitled%201.png)
 
-Ahora deberás de introducir los datos referente a los usuarios y el nombre de la base de datos que has creado con anterioridad 
+Ahora deberás introducir los datos del usuario y el nombre de la base de datos creada anteriormente: 
 
 ![Untitled](/iaw/wordpress/img/Untitled%202.png)
 
-Una vez introducidos los datos correctos continuaremos con la instalación :
+Una vez introducidos los datos correctos, continuaremos con la instalación:
 
 ![Untitled](/iaw/wordpress/img/Untitled%203.png)
 
-Ahora deberás de introducir los datos para tu wordpress , como el nombre del sitio asi como la creación de un usuario administrador para que posteriormente puedas acceder a wp-admin:
+Ahora deberás introducir la información de tu sitio de WordPress, como el nombre del sitio y la creación de un usuario administrador para acceder posteriormente al panel `wp-admin`:
 
 ![Untitled](/iaw/wordpress/img/Untitled%204.png)
 
-Listo !! Ya has instalado wordpress
+¡Listo! Ya has instalado WordPress.
 
 ![Untitled](/iaw/wordpress/img/Untitled%205.png)
 
-Ahora para acceder al panel de administración de wordpress deberás de introducir la siguiente url en tu navegador e inicia sesión con el usuario que has creado:
+Para acceder al panel de administración de WordPress, introduce la siguiente URL en tu navegador e inicia sesión con el usuario creado:
 
 ![Untitled](/iaw/wordpress/img/Untitled%206.png)
 
-Listo !! Asi se ve el panel de administración de wordpress:
+¡Listo! Así es como se ve el panel de administración de WordPress:
 
 ![Untitled](/iaw/wordpress/img/Untitled%207.png)

@@ -8,18 +8,18 @@ hero: /images/cortafuegos/nftables1.png
 
 
 
-En este post sobre un escenario con maquinas Debian , aplicaremos reglas con Nftables para conrtrolar el trafico que entra y sale en nuestra red , intentando imitar un escenario. 
+En este post, utilizando un escenario con máquinas Debian, aplicaremos reglas con Nftables para controlar el tráfico que entra y sale de nuestra red, intentando imitar un escenario real.
 
 
 
 > [!NOTE]  
-> Para desplegar el escenario para realizar estos ejercicios necesitaras desplegar el fichero .yaml que encontraras en el enlace del párrafo siguiente . Este se encargara de desplegar 2 maquinas una que hará de cortafuegos y otra que simulara un cliente que estará conectado a la primera maquina para simular una red local .
+> Para desplegar el escenario necesario para realizar estos ejercicios, deberás desplegar el fichero `.yaml` que encontrarás en el enlace del párrafo siguiente. Este se encargará de desplegar dos máquinas: una que actuará como cortafuegos y otra que simulará un cliente conectado a la primera para representar una red local.
 
 Realiza con NFTABLES el ejercicio de la página https://fp.josedomingo.org/seguridadgs/u03/perimetral_iptables.html documentando las pruebas de funcionamiento realizadas.
 
 ## Preparación del escenario
 
-Lo primero que haremos es activar el bit de forwarding. Para ello, editaremos el archivo `/etc/sysctl.conf` utilizando el siguiente comando :
+Lo primero que haremos es activar el bit de forwarding. Para ello, editaremos el archivo `/etc/sysctl.conf` utilizando el siguiente comando:
 
 ```bash
 javiercruces@router-fw:~$ sudo nano /etc/sysctl.conf 
@@ -34,20 +34,20 @@ javiercruces@router-fw:~$ sudo sysctl -p
 net.ipv4.ip_forward = 1
 ```
 
-Ahora añadiremos la tabla filter :
+Ahora añadiremos la tabla `filter`:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add table inet filter
 ```
 
-Podemos ver las tablas creadas :
+Podemos ver las tablas creadas:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft list tables
 table inet filter
 ```
 
-Crear las cadenas para la entrada y salida :
+Crearemos las cadenas para la entrada y la salida:
 
 ```bash
 # Cadena de "entrada"
@@ -60,7 +60,7 @@ javiercruces@router-fw:~$ sudo nft add chain inet filter output { type filter ho
 javiercruces@router-fw:~$ sudo nft add chain inet filter forward { type filter hook forward priority 0 \; counter \; policy drop \; }
 ```
 
-Ahora comprobaremos que se han creado estas tres cadenas :
+Ahora comprobaremos que se han creado estas tres cadenas:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft list chains
@@ -78,9 +78,9 @@ table inet filter {
 ```
 ## Reglas del cortafuegos
 
-### Permitir ssh hacia el cortafuegos
+### Permitir SSH hacia el cortafuegos
 
-Ahora vamos a permitir el ssh hacia la maquina router-fw  :
+Ahora vamos a permitir el acceso SSH hacia la máquina `router-fw`:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule inet filter input iif ens3 tcp dport 22 ct state new,established counter accept
@@ -89,7 +89,7 @@ javiercruces@router-fw:~$ sudo nft add rule inet filter output oif ens3 tcp spor
 
 ### Política por defecto DROP
 
-Ahora vamos a poner la política por defecto DROP:
+Ahora estableceremos la política por defecto en DROP:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft chain inet filter input { policy drop \; }
@@ -97,7 +97,7 @@ javiercruces@router-fw:~$ sudo nft chain inet filter output { policy drop \; }
 javiercruces@router-fw:~$ sudo nft chain inet filter forward { policy drop \; }
 ```
 
-Comprobaremos que con la nueva política podemos conectarnos por ssh y no hemos perdido la conexión , viendo que tenemos hits en las reglas .
+Comprobaremos que, con la nueva política, podemos seguir conectándonos por SSH y que no hemos perdido la conexión, verificando que tenemos hits en las reglas.
 
 ```bash
 javiercruces@router-fw:~$ sudo nft list ruleset
@@ -118,9 +118,9 @@ table inet filter {
 
 ### SNAT
 
-Hacemos SNAT para que los equipos de la LAN puedan acceder al exterior.
+Configuraremos el SNAT para que los equipos de la LAN puedan acceder al exterior.
 
-Para ello sera necesario que creemos la tabla NAT y sus cadenas . Como podemos observar hemos indicado menos prioridad en la cadena postrouting (mientras menor sea el número, mayor es su prioridad) para que las reglas de dicha cadena se ejecuten después de las reglas de prerouting.
+Para ello será necesario crear la tabla NAT y sus cadenas. Como podemos observar, hemos asignado una prioridad menor a la cadena `postrouting` (cuanto menor sea el número, mayor es la prioridad) para que las reglas de dicha cadena se ejecuten después de las de `prerouting`.
 
 ```bash
 # Creamos la tabla NAT
@@ -133,19 +133,19 @@ javiercruces@router-fw:~$ sudo nft add chain nat prerouting { type nat hook prer
 javiercruces@router-fw:~$ sudo nft add chain nat postrouting { type nat hook postrouting priority 100 \; }
 ```
 
-Ahora vamos a permitir hacer SNAT a la red LAN :
+Ahora permitiremos el SNAT para la red LAN:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule ip nat postrouting oifname "ens3" ip saddr 192.168.100.0/24 counter masquerade
 ```
-### Permitimos el ssh desde el cortafuego a la LAN
+### Permitir SSH desde el cortafuegos a la LAN
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule inet filter output oifname "ens4" ip daddr 192.168.100.0/24 tcp dport 22 ct state new,established counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "ens4" ip saddr 192.168.100.0/24 tcp sport 22 ct state established counter accept
 ```
 
-Ahora que podemos conectarnos por ssh a nuestra maquina LAN , vamos a comprobar las 2 reglas anteriores . Conectarnos por ssh y el SNAT :
+Ahora que podemos conectarnos por SSH a nuestra máquina LAN, comprobaremos las dos reglas anteriores: la conexión SSH y el SNAT:
 
 ```bash
 javiercruces@router-fw:~$ ssh debian@192.168.100.10
@@ -166,9 +166,9 @@ PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
 2 packets transmitted, 0 received, 100% packet loss, time 1002ms
 ```
 
-Veremos que podemos conectarnos por ssh , sin embargo el ping no esta permitido pero lo he realizado para que la regla de SNAT tenga hits.
+Veremos que podemos conectarnos por SSH; sin embargo, el ping no está permitido, pero lo he ejecutado para que la regla de SNAT registre hits.
 
-Vamos a ver que las reglas tienen hits :
+Verificaremos que las reglas tienen hits:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft list ruleset
@@ -204,17 +204,17 @@ table ip nat {
 }
 ```
 
-Como podemos ver el SNAT tiene hits , así que la regla esta funcionando , pero como no dejamos que atraviese el firewall estas no saldrán . 
-### Permitimos tráfico para la interfaz loopback
+Como podemos ver, el SNAT tiene hits, por lo que la regla está funcionando, pero como no permitimos que el tráfico atraviese el firewall, los paquetes no saldrán.
+### Permitir tráfico para la interfaz loopback
 
-Añadimos las reglas , para permitir el trafico hacia la interfaz loopback :
+Añadiremos las reglas para permitir el tráfico hacia la interfaz loopback:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "lo" counter accept    
 javiercruces@router-fw:~$ sudo nft add rule inet filter output oifname "lo" counter accept
 ```
 
-Comprobamos que tenemos conectividad :
+Comprobamos que tenemos conectividad:
 
 ```bash
 javiercruces@router-fw:~$ ping 127.0.0.1
@@ -222,7 +222,7 @@ PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
 64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.205 ms
 ```
 
-Vamos a ver los hits de la regla :
+Verifiquemos los hits de la regla:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft list ruleset | grep lo
@@ -230,16 +230,16 @@ javiercruces@router-fw:~$ sudo nft list ruleset | grep lo
 		oifname "lo" counter packets 2 bytes 168 accept
 ```
 
-### Peticiones y respuestas protocolo ICMP
+### Peticiones y respuestas del protocolo ICMP
 
-Vamos a permitir a la maquina router-fw aceptar peticiones ICMP y que envié la respuesta :
+Vamos a permitir que la máquina `router-fw` acepte peticiones ICMP y envíe la respuesta:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule inet filter output oifname "ens3" icmp type echo-reply counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "ens3" icmp type echo-request counter accept
 ```
 
-Le hago ping desde mi maquina :
+Realizo un ping desde mi máquina:
 
 ```bash
 javiercruces@HPOMEN15:~/Documentos/2ºASIR/SAD/cortafuegos1$ ping 172.22.201.120 -c 1
@@ -253,14 +253,14 @@ rtt min/avg/max/mdev = 85.403/85.403/85.403/0.000 ms
 
 ### Permitir hacer ping desde la LAN
 
-Vamos a permitir que se pueda hacer ping desde la LAN :
+Vamos a permitir que se pueda hacer ping desde la LAN:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens4" oifname "ens3" ip saddr 192.168.100.0/24 icmp type echo-request counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens3" oifname "ens4" ip daddr 192.168.100.0/24 icmp type echo-reply counter accept
 ```
 
-Vamos a comprobarlo :
+Vamos a comprobarlo:
 
 ```bash
 debian@lan:~$ ping 1.1.1.1
@@ -273,7 +273,7 @@ PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
 rtt min/avg/max/mdev = 40.821/40.834/40.848/0.013 ms
 ```
 
-Vamos a ver los hits de la regla , ademas con esta podemos comprobar la regla del SNAT :
+Verificaremos los hits de la regla y, además, comprobaremos la regla del SNAT:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft list ruleset
@@ -321,7 +321,7 @@ javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens4" o
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens3" oifname "ens4" ip daddr 192.168.100.0/24 udp sport 53 ct state established counter accept
 ```
 
-Vamos a hacer una consulta utilizando el comando host , ya que no dispongo otra herramienta instalada para hacer consultas dns  :
+Vamos a hacer una consulta utilizando el comando `host`, ya que no dispongo de otra herramienta instalada para realizar consultas DNS:
 
 ```bash
 debian@lan:~$ host www.javiercd.es
@@ -336,7 +336,7 @@ javierasping.github.io has IPv6 address 2606:50c0:8003::153
 javierasping.github.io has IPv6 address 2606:50c0:8002::153
 ```
 
-Vamos a consultar los hits de las reglas :
+Vamos a consultar los hits de las reglas:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft list ruleset
@@ -350,21 +350,21 @@ javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens4" o
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens3" oifname "ens4" ip protocol tcp ip daddr 192.168.100.0/24 tcp sport { 80,443} ct state established counter accept
 ```
 
-Para verificar este punto, necesitaremos modificar el archivo /etc/nsswitch.conf, el cual determina la prioridad de la resolución DNS. Realizaremos esta modificación para priorizar la consulta DNS al servicio de DNS de systemd, el cual está incluido en Debian y Ubuntu. Esto permitirá que las consultas se realicen primero en la propia máquina y, en caso necesario, serán enviadas al servidor DNS configurado ya que en este escenario las aplicaciones no nos resuelven si no realizamos esta modificación .
+Para verificar este punto, necesitaremos modificar el archivo `/etc/nsswitch.conf`, el cual determina la prioridad de la resolución DNS. Realizaremos esta modificación para priorizar la consulta DNS al servicio de DNS de `systemd`, el cual está incluido en Debian y Ubuntu. Esto permitirá que las consultas se realicen primero en la propia máquina y, en caso necesario, sean enviadas al servidor DNS configurado, ya que en este escenario las aplicaciones no resuelven si no realizamos esta modificación.
 
 ```bash
 debian@lan:~$ sudo nano /etc/nsswitch.conf 
 hosts:          files dns resolve [!UNAVAIL=return]
 ```
 
-Ademas cambiaremos el servidor dns de la maquina y en lugar de ser nosotros , pondremos el del instituto :
+Además, cambiaremos el servidor DNS de la máquina y, en lugar de ser nosotros, pondremos el del instituto:
 
 ```bash
 debian@lan:~$ sudo cat /etc/resolv.conf 
 nameserver 172.22.0.1
 ```
 
-Una vez aplicados los cambios vamos a pedir una web por el nombre de dominio , así comprobaremos el funcionamiento de los dos puntos anteriores . Pediré solo las cabeceras para que la salida sea mas legible , un código 200 seria correcto . En la parte de http nos da una redirección ya que el servidor te redirige a https  :
+Una vez aplicados los cambios, vamos a solicitar una web por el nombre de dominio, así comprobaremos el funcionamiento de los dos puntos anteriores. Pediré solo las cabeceras para que la salida sea más legible; un código 200 sería correcto. En la parte de HTTP nos da una redirección, ya que el servidor te redirige a HTTPS:
 
 ```bash
 debian@lan:~$ curl -I https://www.javiercd.es/
@@ -414,28 +414,30 @@ Connection: close
 ```
 
 
-### Permitimos el acceso a nuestro servidor web de la LAN desde el exterior 
+### Permitimos el acceso a nuestro servidor web de la LAN desde el exterior
 
-Como ya tenemos resolución dns y navegación web , podremos actualizar nuestros repositorios y instalar paquetes : 
+
+
+Como ya tenemos resolución DNS y navegación web, podremos actualizar nuestros repositorios e instalar paquetes: 
 
 ```bash
 debian@lan:~$ sudo apt update -y && sudo apt install apache2 -y 
 ```
 
-Una vez instalado apache vamos a realizar la regla de DNAT :
+Una vez instalado Apache, vamos a realizar la regla de DNAT:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule ip nat prerouting iifname "ens3" tcp dport 80 counter dnat to 192.168.100.10
 ```
 
-Ahora tenemos que permitir en la cadena forward el trafico para permitir el DNAT . Las peticiones al servidor web y las respuestas 
+Ahora tenemos que permitir en la cadena `forward` el tráfico para habilitar el DNAT. Permitiremos las peticiones al servidor web y las respuestas:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens3" oifname "ens4" ip daddr 192.168.100.0/24 tcp dport 80 ct state new,established counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens4" oifname "ens3" ip saddr 192.168.100.0/24 tcp sport 80 ct state established counter accept
 ```
 
-Ahora vamos a comprobar que podemos acceder al servidor web :
+Ahora comprobaremos que podemos acceder al servidor web:
 
 ```bash
 javiercruces@HPOMEN15:~/Documentos/2ºASIR/SAD/cortafuegos1$ curl -I 172.22.201.120
@@ -454,7 +456,7 @@ Desde un navegador :
 
 ![](../img/Pastedimage20240228112558.png)
 
-Por ultimo vamos a comprobar que las reglas involucradas tienen hits y te dejo el listado completo para que veas las reglas hasta este punto  :
+Por último, vamos a comprobar que las reglas involucradas tienen hits y te dejo el listado completo para que veas las reglas hasta este punto:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft list ruleset
@@ -505,16 +507,16 @@ table ip nat {
 ```
 ## Ejercicios adicionales
 
-Debes añadir después las reglas necesarias para que se permitan las siguientes operaciones:
+A continuación, deberás añadir las reglas necesarias para permitir las siguientes operaciones:
 
-### Permite poder hacer conexiones ssh al exterior desde la máquina cortafuegos.
+### Permitir hacer conexiones SSH al exterior desde la máquina cortafuegos.
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule inet filter output oifname "ens3" tcp dport 22 ct state new,established  counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "ens3" tcp sport 22 ct state established  counter accept
 ```
 
-Vamos a conectarnos por ssh desde la maquina cortafuegos a otra para comprobar esto :
+Vamos a conectarnos por SSH desde la máquina cortafuegos a otra para comprobar esto:
 
 ```bash
 javiercruces@router-fw:~$ ssh 172.22.200.47
@@ -530,7 +532,7 @@ Last login: Wed Feb 28 10:35:56 2024 from 172.22.201.120
 javiercruces@odin:~$ 
 ```
 
-Vamos a comprobar los hits en las reglas :
+Vamos a comprobar los hits en las reglas:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft list ruleset 
@@ -539,16 +541,16 @@ oifname "ens3" tcp dport 22 ct state established,new counter packets 89 bytes 16
 
 ```
 
-### Permite hacer consultas DNS desde la máquina cortafuegos sólo al servidor 8.8.8.8. Comprueba que no puedes hacer un dig @1.1.1.1.
+### Permitir que la máquina cortafuegos pueda realizar consultas DNS solo al servidor 8.8.8.8. Comprueba que no puedes hacer un `dig @1.1.1.1`.
 
-Vamos a añadir esta regla :
+Añadiremos la siguiente regla:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule inet filter output oifname "ens3" ip daddr 8.8.8.8 udp dport 53 ct state new,established counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "ens3" ip saddr 8.8.8.8 udp sport 53 ct state established counter accept
 ```
 
-Ahora vamos a comprobar que a traves de la 1.1.1.1 no podemos resolver nombres pero con la 8.8.8.8 si : 
+Ahora comprobaremos que, a través de la 1.1.1.1, no podemos resolver nombres, pero con la 8.8.8.8 sí: 
 
 ```bash
 javiercruces@router-fw:~$ dig @1.1.1.1 www.javiercd.es
@@ -589,7 +591,7 @@ javierasping.github.io.	3600	IN	A	185.199.111.153
 
 ```
 
-Vamos a ver los hits de las reglas :
+Vamos a ver los hits de las reglas:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft list ruleset 
@@ -597,16 +599,16 @@ iifname "ens3" ip saddr 8.8.8.8 udp sport 53 ct state established counter packet
 oifname "ens3" ip daddr 8.8.8.8 udp dport 53 ct state established,new counter packets 314 bytes 21912 accept
 ```
 
-### Permite que la máquina cortafuegos pueda navegar por https.
+### Permitir que la máquina cortafuegos pueda navegar por HTTPS.
 
-Vamos a añadir la regla :
+Añadiremos la regla:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule inet filter output oifname "ens3" ip protocol tcp tcp dport 443 ct state new,established  counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "ens3" ip protocol tcp tcp sport 443  ct state established  counter accept
 ```
 
-Vamos a comprobar que pidiendo las cabeceras , que es similar a navegar podemos ver un código 200 en https :
+Comprobaremos que, pidiendo las cabeceras (lo cual es similar a navegar), vemos un código 200 en HTTPS:
 
 ```bash
 javiercruces@router-fw:~$ curl -I https://www.javiercd.es/
@@ -636,20 +638,20 @@ content-length: 26459
 
 ### Los equipos de la red local deben poder tener conexión al exterior.
 
-SNAT realizado anteriormente 
+SNAT realizado anteriormente.
 
 ### Permitimos el ssh desde el cortafuegos a la LAN
 
-Permitido por regla anterior 
+Permitido por regla anterior.
 
-### Permitimos hacer ping desde la LAN a la máquina cortafuegos.
+### Permitir hacer ping desde la LAN a la máquina cortafuegos.
 
 ```bash
 javiercruces@router-fw:~$ sudo nft add rule inet filter output oifname "ens4" icmp type echo-reply counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "ens4" icmp type echo-request counter accept
 ```
 
-Realizamos el ping desde LAN al cortafuegos
+Realizamos el ping desde la LAN al cortafuegos:
 
 ```bash
 debian@lan:~$ ping 192.168.100.2
@@ -715,7 +717,7 @@ javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens4" o
 javiercruces@router-fw:~$ sudo nft add rule ip nat prerouting iifname "ens3" tcp dport 25 counter dnat to 192.168.100.10
 ```
 
-Vamos a comprobarlo :
+Vamos a comprobarlo:
 
 ```bash
 javiercruces@HPOMEN15:~/Documentos/2ºASIR/SAD/cortafuegos1$ telnet 172.22.201.120 25
@@ -821,7 +823,7 @@ Añadimos la regla nueva para permitir solo consultas al 8.8.8.8 :
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens4" oifname "ens3" ip saddr 192.168.100.0/24 udp dport 53 ip daddr 8.8.8.8 counter accept
 ```
 
-Vamos a comprobarlo :
+Vamos a comprobarlo:
 
 ```bash
 debian@lan:~$ dig @1.1.1.1 www.javiercd.es
@@ -861,7 +863,7 @@ javierasping.github.io.	3600	IN	A	185.199.111.153
 ;; MSG SIZE  rcvd: 144
 ```
 
-Vamos a ver los hits de las reglas :
+Vamos a ver los hits de las reglas:
 
 ```bash
 javiercruces@router-fw:~$ sudo nft -a list table inet filter

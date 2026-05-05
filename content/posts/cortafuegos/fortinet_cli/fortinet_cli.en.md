@@ -8,16 +8,16 @@ hero: /images/cortafuegos/fortinet_cli.png
 
 ## Equivalence from GUI to CLI
 
-Initially, I started the practice using the command line (CLI), however, I found it more comfortable to do it from the graphic interface. Therefore, I decided to establish an equivalence between the different actions I have carried out during practice and to compare them with their counterpart in the terminal.
+Initially, I started the practice using the command line (CLI); however, I found it more convenient to do it from the graphical interface. Therefore, I decided to establish an equivalence between the different actions I have carried out during the practice and compare them with their counterpart in the terminal.
 
 > [NOTE]
 > In this post I do a small summary of the equivalencies between the GUI and the CLI of Fortinet that I have used in the 2 Fortinet firewall posts.
 
 ### Configure an interface
 
-As we already have the set-up firewall we have 2 options when viewing the configuration of a particular interface.
+Since the firewall is already set up, we have two options when viewing the configuration of a particular interface.
 
-See the configuration of all interfaces:
+View the configuration of all interfaces:
 
 ```bash
 show system interface
@@ -29,7 +29,7 @@ Or specify a particular one:
 show system interface port1
 ```
 
-If we look at the configuration of the three interfaces I have established during practice, we can note that the syntax is very simple. Virtually, even without prior knowledge of the subject, it is easy to understand.
+If we look at the configuration of the three interfaces I have set up during the practice, we can note that the syntax is very simple. Virtually, even without prior knowledge of the subject, it is easy to understand.
 
 ```bash
 FTG # show system interface 
@@ -69,9 +69,9 @@ config system interface
 
 ```
 
-As you can see in the port 1 interface that corresponds to the WAN, previously disable the access to configure it from this interface, but for comfort I have left it enabled to use my laptop's browser.
+As you can see in the port 1 interface, which corresponds to the WAN, I previously disabled access to avoid configuring it from this interface, but for convenience, I have left it enabled to use my laptop's browser.
 
-A configuration that may interest us is to set up a DHCP interface, in my case I will do it in port 4:
+A configuration that may interest us is setting up a DHCP interface; in my case, I will do it on port 4:
 
 ```bash
 #Accedemos al modo de configuración
@@ -84,7 +84,7 @@ FTG (port4) # set mode dhcp
 FTG (port4) # end
 ```
 
-Now if we list the interface configuration, the change will have been applied:
+Now, if we list the interface configuration, we can see that the change has been applied:
 
 ```bash 
 FTG # show system interface port4
@@ -100,7 +100,7 @@ end
 
 At this point, we note that the commands we have used match those that the system shows when listing the configuration.
 
-Now, what we're interested in is knowing the IP address of our interface. If we want to list all the assigned IP addresses, we simply do not specify the interface name. In my case, I am interested to know the IP address of the port interface 4:
+Now, what we're interested in is knowing the IP address of an interface. If we want to list all the assigned IP addresses, we simply do not specify the interface name. In my case, I am interested in knowing the IP address of the interface on port 4:
 
 ```bash
 FTG # get system interface physical port4
@@ -116,13 +116,13 @@ FTG # get system interface physical port4
 ```
 
 
-This is the basic thing we need to start setting up the interfaces. I leave you a [link] (https: / / docs.fortinet.com / document / fortigate / 7.0.0 / cli-reference / 10620 / config-system-interface) to the official documentation where it explains all the details.
+This is the basic information we need to start setting up the interfaces. I leave you a [link](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/10620/config-system-interface) to the official documentation where all the details are explained.
 
 ### Policies
 
-The next thing we have done in practice is to create rules from the CLI, so I will start by listing the existing rules, remember that in the test version we have a limit of 10 simultaneous rules so I have removed some rules during the performance of it.
+The next thing we have done in the practice is to create rules from the CLI, so I will start by listing the existing rules. Remember that in the trial version we have a limit of 10 simultaneous rules, so I have removed some rules during the process.
 
-To make the output more legible we will see a "normal" rule and a DNAT rule to compare them:
+To make the output more legible, we will look at a "normal" rule and a DNAT rule to compare them:
 
 ```bash
 FTG # show firewall policy
@@ -156,20 +156,20 @@ config firewall policy
     next 
 ```
 
-We see that the output is quite clear, if we stop to see the common parameters:
+The output is quite clear. If we look at the common parameters:
 
 - name: Name we want to give to the rule.
-- UUID: A unique identifier that automatically assigns the FW to each rule.
-- srcintf: Home interface (The way the traffic enters)
-- dstantf: Home interface (From where the traffic enters)
-- action: What action we want you to make the rule accept - 124; deny.
-- srcaddr: address of origin
-- dstaddr: Address of destination
-- schedule: Regulation programming, in case it is a temporary rule this will only be active for a certain time.
-- service: Service name (assigned to a port number)
-- nat: If we want the rule to make SNAT.
+- UUID: A unique identifier that the firewall automatically assigns to each rule.
+- srcintf: Source interface (where the traffic enters).
+- dstintf: Destination interface (where the traffic exits).
+- action: Action the rule should take (`accept` | `deny`).
+- srcaddr: Source address.
+- dstaddr: Destination address.
+- schedule: Rule scheduling; if it is a temporary rule, it will only be active for a certain period.
+- service: Service name (associated with a port number).
+- nat: Whether the rule should apply SNAT.
 
-This would be the basic syntax of each rule as you see between a "normal" rule and one of DNAT the only thing that changes is the traffic address and the target IP that on this device is a virtual IP.
+This is the basic syntax of each rule. As you can see, between a 'normal' rule and one of DNAT, the only thing that changes is the traffic direction and the destination IP, which on this device is a virtual IP.
 
 If we want to delete a rule, we will do the following:
 
@@ -182,7 +182,7 @@ FTG (policy) # delete 2
 FTG (policy) # end
 ```
 
-To add a new rule, the syntax is similar to when we list the rules, but we need to specify an ID number when creating it. You should know the number of the last rule you added. If you don't indicate a number, a new rule will not be created.
+To add a new rule, the syntax is similar to the listing process, but we need to specify an ID number when creating it. It is recommended to know the number of the last rule added, as a new rule will not be created if no number is indicated.
 
 ```bash
 FTG#config firewall policy
@@ -202,11 +202,11 @@ FTG (12) # next
 FTG (policy) # end
 ```
 
-There are many more options that I ignore that have not been necessary to use in practice, I leave you a [link](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/323620/config-firewall-policy) to the official documentation where details all the different options.
+There are many more options that were not necessary to use during the practice; I leave you a [link](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/323620/config-firewall-policy) to the official documentation where all the different options are detailed.
 
 ### Services
 
-Services are objects that store a number or set of ports that you will later use when creating rules. Although these devices come with the most common manufacturing services, it is often necessary that we create a new one according to our needs.
+Services are objects that store a number or set of ports that are later used when creating rules. Although these devices include the most common factory services, it is often necessary to create a new one according to our needs.
 
 As with the previous listing commands, we can list all the services or one in particular:
 
@@ -237,7 +237,7 @@ end
 
 ```
 
-To delete a service, we will follow the following steps:
+To delete a service, we will follow these steps:
 
 ```bash
 #Accedemos a la configuración de los servicios
@@ -248,7 +248,7 @@ FTG (custom) # delete SSH_2222
 FTG (custom) # end
 ```
 
-If we want to create it, we will follow the following steps:
+To create one, we will follow these steps:
 
 ```bash
 #Accedemos a la configuración de los servicios
@@ -264,15 +264,15 @@ FTG (SSH_2222) # next
 FTG (custom) # end
 ```
 
-I leave you a [link] (https: / / docs.fortinet.com / document / fortigate / 7.0.0 / ngfw-deployment / 546227 / creating-service-objects) to the official documentation concerning the services where you explain in detail all the options of the services.
+I leave you a [link](https://docs.fortinet.com/document/fortigate/7.0.0/ngfw-deployment/546227/creating-service-objects) to the official documentation regarding services, where all the options are explained in detail.
 
-### Virtual PIs
+### Virtual IPs
 
-The VIPs are used to map external IP addresses to internal IP addresses. This is also called DNAT, where the destination of a package is being sent to a different address.
+Static Virtual IPs (VIPs) are used to map external IP addresses to internal IP addresses. This process is also known as DNAT, in which the destination of a packet is redirected to a different address.
 
-Static VIP are commonly used to map public IP addresses to resources behind the FortiGate that use private IP addresses. A static VIP one by one is when the entire range of ports is mapped. A port forwarding VIP is when the mapping is set up in a specific port or port range.
+Static VIPs are commonly used to map public IP addresses to internal resources that use private IP addresses. A one-to-one static VIP is when the entire range of ports is mapped. A port forwarding VIP is when the mapping is set up for a specific port or range of ports.
 
-If we want to list the different virtual PIs we have we will use the following command, if we only want to list one in particular we will indicate its name:
+If we want to list the configured virtual IPs, we will use the following command; if we only want to view one in particular, we will indicate its name:
 
 ```bash
 FTG # show firewall vip
@@ -306,7 +306,7 @@ config firewall vip
 end
 ```
 
-In case we want to remove one of these virtual PIs, we will follow the following steps:
+In case we want to remove one of these virtual IPs, we will follow these steps:
 
 ```bash
 #Accedemos al modo de configuración
@@ -317,33 +317,33 @@ FTG (vip) # delete DNAT_HELA_WEB
 FTG (vip) # end
 ```
 
-On the other hand to create one of these, as we have done from the GUI we will follow the following steps:
+To create one of these VIPs, we will follow these steps (similar to what was done from the GUI):
 
 ```bash
 #Accedemos al modo de configuración
 FTG # config firewall vip
 #Le asignamos el nombre que deseemos
 FTG (vip) # edit DNAT_HELA_WEB
-#Indicamos opcionalmente sobre el servicio que sera usado esta IP virtual
+#We optionally indicate the service that will use this virtual IP:
 FTG (DNAT_HELA_WEB) # set service "HTTP"
-#Indicamos la Ip externa
+#We indicate the external IP:
 FTG (DNAT_HELA_WEB) # set extip 192.168.122.77
-#Indicamos la Ip interna
+#We indicate the internal IP:
 FTG (DNAT_HELA_WEB) # set mappedip "192.168.200.2"
-#Indicamos la interfaz externa
+#We indicate the external interface:
 FTG (DNAT_HELA_WEB) # set extintf "port1"
 #Guardamos y salimos
 FTG (DNAT_HELA_WEB) # next
 FTG (vip) # end
 ```
 
-Virtual IP have more configuration parameters that I have not used in practice, I leave you a [link] (https: / / docs.fortinet.com / document / fortigate / 7.0.9 / administration-guide / 510402 / static-virtual-ips) to the official documentation where you detail all the settings that we can access with them.
+Virtual IPs have more configuration parameters that were not necessary during the practice; I leave you a [link](https://docs.fortinet.com/document/fortigate/7.0.9/administration-guide/510402/static-virtual-ips) to the official documentation where all the available configuration is detailed.
 
 ### Static routes
 
-Our device needs to know where to send the traffic, for this there are static routes.
+The device needs to know the destination of the traffic; for this, static routes exist.
 
-To list the routes that our firewall has set up, we will use the following command:
+To list the routes configured on the firewall, we will use the following command:
 
 ```bash
 FTG # show router static
@@ -355,7 +355,7 @@ config router static
 end
 ```
 
-As we have done before, if we want to remove this default route we will follow the following steps:
+As we have done before, if we want to remove this default route, we will follow these steps:
 
 ```bash
 FTG # config router static
@@ -363,14 +363,14 @@ FTG (static) # delete 1
 FTG (static) # end
 ```
 
-If we want to add a route, you can use this example:
+To add a route, you can use the following example:
 
 ```bash
 FTG # config router static
 FTG (static) # edit 1
-#El siguiete salto o puerta de enlace
+#The next hop or default gateway:
 FTG (1) # set gateway 192.168.122.1
-#La interfaz por donde saldra el trafico
+#The interface through which the traffic will exit:
 FTG (1) # set device "port1"
 FTG (1) # next
 FTG (static) # end

@@ -6,11 +6,11 @@ tags: [MariaDB,Debian]
 hero: images/base_de_datos/instalar_mariadb/instalar_mariadb.png
 ---
 
-## MariaDB installation and configuration in Debian 12
+## Installation and configuration of MariaDB in Debian 12
 
 To install MariaDB in Debian 12, follow these steps:
 
-1.**Update the repositories and install the MariaDB package**:
+1. **Update the repositories and install the MariaDB package**:
 
  First, update your system repositories and install MariaDB:
 
@@ -19,16 +19,16 @@ To install MariaDB in Debian 12, follow these steps:
     javiercruces@jcruces:~$ sudo apt install mariadb-server
    ```
 
-2.**Enable and start the MariaDB service**:
+2. **Enable and start the MariaDB service**:
 
- Once installed, set MariaDB to automatically start the start and then start the service:
+ Once installed, set MariaDB to start automatically on boot and then start the service:
 
    ```bash
     javiercruces@jcruces:~$ sudo systemctl start mariadb
     javiercruces@jcruces:~$ sudo systemctl enable mariadb
    ```
 
-3.**Configure MariaDB**:
+3. **Configure MariaDB**:
 
  Run the security script to make initial settings:
 
@@ -36,7 +36,7 @@ To install MariaDB in Debian 12, follow these steps:
     javiercruces@jcruces:~$ sudo mysql_secure_installation
    ```
 
- He then answers the following questions from the assistant:
+Then, answer the following questions from the assistant:
 
    ```bash
 # Enter the current password for root (press Enter if there is no password):
@@ -65,7 +65,7 @@ Reload privilege tables now? [Y/n]:
 
    ```
 
-4. **Create a new user and assign permissions** :
+4. **Create a new user and assign permissions**:
 
  Connect to MariaDB as root:
 
@@ -73,7 +73,7 @@ Reload privilege tables now? [Y/n]:
     javiercruces@jcruces:~$ sudo mysql -u root
    ```
 
- Then create a new user and give him complete permissions on the database:
+Then, create a new user and grant full permissions on the database:
 
    ```sql
     CREATE USER 'javiercruces'@'localhost' IDENTIFIED BY 'tu_contraseña';
@@ -90,9 +90,9 @@ Reload privilege tables now? [Y/n]:
     javiercruces@jcruces:~$ mysql -u javiercruces -p
    ```
 
-6. **Create a new database, insert data and consult the table**:
+6. **Create a new database, insert data, and query the table**:
 
- Create a database, a table and add some data:
+ Create a database, a table, and add some data:
 
    ```sql
     CREATE DATABASE futbol;
@@ -109,13 +109,13 @@ Reload privilege tables now? [Y/n]:
     ('Barcelona', 5);
    ```
 
- He then makes a consultation to verify the data:
+Then, perform a query to verify the data:
 
    ```sql
    SELECT * FROM titulos_champions;
    ```
 
- The expected exit should be:
+The expected output should be:
 
    ```sql
    +----+--------------+--------------+
