@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Taller 2 Escenarios multicontenedor en Docker on Atlas</title><link>https://www.javiercd.es/posts/docker/taller2/</link><description>Recent content in Taller 2 Escenarios multicontenedor en Docker on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/docker/taller2/index.xml" rel="self" type="application/rss+xml"/><item><title>Taller 2: Escenarios multicontenedor en Docker</title><link>https://www.javiercd.es/posts/docker/taller2/taller2_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller2/taller2_docker/</guid><description>&lt;h2 id="taller-2-escenarios-multicontenedor-en-docker"&gt;Taller 2: Escenarios multicontenedor en Docker&lt;/h2&gt;
 &lt;h3 id="despliegue-de-nextcloud"&gt;Despliegue de Nextcloud&lt;/h3&gt;
-&lt;p&gt;Vamos a desplegar la aplicación nextcloud con una base de datos (puedes elegir mariadb o PostgreSQL) utilizando la aplicación docker-compose. Puedes coger cómo modelo el fichero &lt;code&gt;docker-compose.yml&lt;/code&gt; el que hemos estudiado para desplegar WordPress.&lt;/p&gt;
+&lt;p&gt;Vamos a desplegar la aplicación Nextcloud con una base de datos (puedes elegir MariaDB o PostgreSQL) utilizando Docker Compose. Puedes tomar como modelo el archivo &lt;code&gt;docker-compose.yml&lt;/code&gt; que hemos estudiado para desplegar WordPress.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Instala docker-compose en tu ordenador.&lt;/li&gt;
+&lt;li&gt;Instala Docker Compose en tu equipo.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
-&lt;li&gt;Dentro de un directorio crea un fichero &lt;code&gt;docker-compose.yml&lt;/code&gt; para realizar el despliegue de nextcloud con una base de datos. Recuerda las variables de entorno y la persistencia de información.&lt;/li&gt;
+&lt;li&gt;Crea un archivo &lt;code&gt;docker-compose.yml&lt;/code&gt; dentro de un directorio para realizar el despliegue de Nextcloud con una base de datos. Recuerda configurar las variables de entorno y la persistencia de la información.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ cat docker-compose.yaml
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;version: &lt;span style="color:#e6db74"&gt;&amp;#39;2&amp;#39;&lt;/span&gt;
@@ -42,20 +42,20 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_USER&lt;span style="color:#f92672"&gt;=&lt;/span&gt;nextcloud
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_HOST&lt;span style="color:#f92672"&gt;=&lt;/span&gt;db
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
-&lt;li&gt;Levanta el escenario con &lt;code&gt;docker-compose&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Levanta el escenario utilizando &lt;code&gt;docker compose up -d&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ docker compose up -d
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;[&lt;/span&gt;+&lt;span style="color:#f92672"&gt;]&lt;/span&gt; Running 2/2
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ✔ Container taller2-db-1 Started 0.0s
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ✔ Container taller2-app-1 Started 0.0s
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="4"&gt;
-&lt;li&gt;Muestra los contenedores con &lt;code&gt;docker-compose&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Muestra los contenedores activos con &lt;code&gt;docker compose ps&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ docker compose ps
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;NAME IMAGE COMMAND SERVICE CREATED STATUS PORTS
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;taller2-app-1 nextcloud &lt;span style="color:#e6db74"&gt;&amp;#34;/entrypoint.sh apache2-foreground&amp;#34;&lt;/span&gt; app &lt;span style="color:#ae81ff"&gt;7&lt;/span&gt; minutes ago Up &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; minutes 0.0.0.0:8081-&amp;gt;80/tcp, :::8081-&amp;gt;80/tcp
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;taller2-db-1 mariadb:10.6 &lt;span style="color:#e6db74"&gt;&amp;#34;docker-entrypoint.sh --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW&amp;#34;&lt;/span&gt; db &lt;span style="color:#ae81ff"&gt;7&lt;/span&gt; minutes ago Up &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; minutes 3306/tcp
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="5"&gt;
-&lt;li&gt;Accede a la aplicación y comprueba que funciona.&lt;/li&gt;
+&lt;li&gt;Accede a la aplicación mediante el navegador y comprueba que funciona correctamente.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src="https://www.javiercd.es/docker/taller2/img/Pasted_image_20240202091554.png" alt=""&gt;&lt;/p&gt;</description></item></channel></rss>

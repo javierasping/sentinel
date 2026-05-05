@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MariaDB on Atlas</title><link>https://www.javiercd.es/en/tags/mariadb/</link><description>Recent content in MariaDB on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 01 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/mariadb/index.xml" rel="self" type="application/rss+xml"/><item><title>Installation and Configuration of MariaDB in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</guid><description>&lt;h2 id="mariadb-installation-and-configuration-in-debian-12"&gt;MariaDB installation and configuration in Debian 12&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MariaDB on Atlas</title><link>https://www.javiercd.es/en/tags/mariadb/</link><description>Recent content in MariaDB on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 01 Sep 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/tags/mariadb/index.xml" rel="self" type="application/rss+xml"/><item><title>Installation and Configuration of MariaDB in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</guid><description>&lt;h2 id="installation-and-configuration-of-mariadb-in-debian-12"&gt;Installation and configuration of MariaDB in Debian 12&lt;/h2&gt;
 &lt;p&gt;To install MariaDB in Debian 12, follow these steps:&lt;/p&gt;
-&lt;p&gt;1.&lt;strong&gt;Update the repositories and install the MariaDB package&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Update the repositories and install the MariaDB package&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;First, update your system repositories and install MariaDB:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo apt update
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo apt install mariadb-server
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;2.&lt;strong&gt;Enable and start the MariaDB service&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;Once installed, set MariaDB to automatically start the start and then start the service:&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;&lt;strong&gt;Enable and start the MariaDB service&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Once installed, set MariaDB to start automatically on boot and then start the service:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo systemctl start mariadb
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo systemctl enable mariadb
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;3.&lt;strong&gt;Configure MariaDB&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Remote access configuration in MariaDB</title><link>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</guid><description>&lt;p&gt;To allow remote access to your MariaDB server, follow these steps:&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;&lt;strong&gt;Configure MariaDB&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Run the security script to make initial settings:&lt;/p&gt;</description></item><item><title>Remote access configuration in MariaDB</title><link>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</guid><description>&lt;p&gt;To allow remote access to your MariaDB server, follow these steps:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Configure the MariaDB configuration file&lt;/strong&gt;
@@ -16,4 +23,4 @@ First, edit the MariaDB configuration file to allow connections from specific IP
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Find the line that starts with &lt;code&gt;bind-address&lt;/code&gt; and change it to accept connections from any IP address. You can have him accept connections from all the PIs with:&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;Find the line that starts with &lt;code&gt;bind-address&lt;/code&gt; and change it to accept connections from any IP address. You can make it accept connections from all IP addresses with:&lt;/p&gt;</description></item></channel></rss>

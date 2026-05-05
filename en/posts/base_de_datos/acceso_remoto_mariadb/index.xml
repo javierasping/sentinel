@@ -6,4 +6,4 @@ First, edit the MariaDB configuration file to allow connections from specific IP
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Find the line that starts with &lt;code&gt;bind-address&lt;/code&gt; and change it to accept connections from any IP address. You can have him accept connections from all the PIs with:&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;Find the line that starts with &lt;code&gt;bind-address&lt;/code&gt; and change it to accept connections from any IP address. You can make it accept connections from all IP addresses with:&lt;/p&gt;</description></item></channel></rss>

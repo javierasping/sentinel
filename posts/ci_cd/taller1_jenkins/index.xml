@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Taller 1 Corrector ortográfico de documentos markdown (test) on Atlas</title><link>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/</link><description>Recent content in Taller 1 Corrector ortográfico de documentos markdown (test) on Atlas</description><generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Thu, 14 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/posts/ci_cd/taller1_jenkins/index.xml" rel="self" type="application/rss+xml"/><item><title>Taller 1: Corrector ortográfico de documentos markdown (test)</title><link>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/taller1/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/ci_cd/taller1_jenkins/taller1/</guid><description>&lt;h1 id="taller-1-corrector-ortográfico-de-documentos-markdown-test"&gt;Taller 1: Corrector ortográfico de documentos markdown (test)&lt;/h1&gt;
 &lt;h2 id="qué-tienes-que-entregar"&gt;&lt;a href="https://fp.josedomingo.org/iaw/5_ic/taller1.html#qu%C3%A9-tienes-que-entregar" target="_blank" rel="noopener"&gt;¿Qué tienes que entregar?&lt;/a&gt;&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;La URL del tu repositorio GitHub.&lt;/li&gt;
+&lt;li&gt;La URL de tu repositorio GitHub.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;https://github.com/javierasping/taller1_jenkins_ic-diccionario
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
-&lt;li&gt;El contenido de la tu fichero &lt;code&gt;Jenkinfile&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;El contenido de tu fichero &lt;code&gt;Jenkinsfile&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pipeline &lt;span style="color:#f92672"&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; agent &lt;span style="color:#f92672"&gt;{&lt;/span&gt;

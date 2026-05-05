@@ -37,50 +37,50 @@
 &lt;/ul&gt;
 &lt;p&gt;Docker Engine para Ubuntu es compatible con arquitecturas x86_64 (o amd64), armhf, arm64, s390x y ppc64le (ppc64el).&lt;/p&gt;</description></item><item><title>Taller 1: Almacenamiento y redes en Docker</title><link>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller1/taller1_docker/</guid><description>&lt;h2 id="taller-1-almacenamiento-y-redes-en-docker"&gt;Taller 1: Almacenamiento y redes en Docker&lt;/h2&gt;
 &lt;h3 id="almacenamiento"&gt;Almacenamiento&lt;/h3&gt;
-&lt;p&gt;Vamos a trabajar con volúmenes docker:&lt;/p&gt;
+&lt;p&gt;Trabajaremos con volúmenes de Docker:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Crea un volumen docker que se llame &lt;code&gt;miweb&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Crea un volumen de Docker llamado &lt;code&gt;miweb&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker volume create miweb
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;miweb
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
-&lt;li&gt;Crea un contenedor desde la imagen &lt;code&gt;php:7.4-apache&lt;/code&gt; donde montes en el directorio &lt;code&gt;/var/www/html&lt;/code&gt; (que sabemos que es el &lt;em&gt;DocumentRoot&lt;/em&gt; del servidor que nos ofrece esa imagen) el volumen docker que has creado.&lt;/li&gt;
+&lt;li&gt;Crea un contenedor a partir de la imagen &lt;code&gt;php:7.4-apache&lt;/code&gt;, montando el volumen creado en el directorio &lt;code&gt;/var/www/html&lt;/code&gt; (que es el &lt;em&gt;DocumentRoot&lt;/em&gt; del servidor proporcionado por esa imagen).&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker run -d --name my-apache-app -v miweb:/var/www/html -p 8080:80 php:7.4-apache
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
-&lt;li&gt;Utiliza el comando &lt;code&gt;docker cp&lt;/code&gt; para copiar un fichero &lt;code&gt;index.html&lt;/code&gt; (donde aparece tu nombre) en el directorio &lt;code&gt;/var/www/html&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Utiliza el comando &lt;code&gt;docker cp&lt;/code&gt; para copiar un archivo &lt;code&gt;index.html&lt;/code&gt; (que contenga tu nombre) en el directorio &lt;code&gt;/var/www/html&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ echo &lt;span style="color:#e6db74"&gt;&amp;#34;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;&amp;#34;&lt;/span&gt; &amp;gt; index.html
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker cp index.html my-apache-app:/var/www/html/
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Successfully copied 2.05kB to my-apache-app:/var/www/html/
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="4"&gt;
-&lt;li&gt;Accede al contenedor desde el navegador para ver la información ofrecida por el fichero &lt;code&gt;index.html&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Accede al contenedor desde el navegador para ver la información del archivo &lt;code&gt;index.html&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ curl http://localhost:8080
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="5"&gt;
-&lt;li&gt;Borra el contenedor&lt;/li&gt;
+&lt;li&gt;Elimina el contenedor&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker rm -f my-apache-app
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;my-apache-app
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="6"&gt;
-&lt;li&gt;Crea un nuevo contenedor y monta el mismo volumen como en el ejercicio anterior.&lt;/li&gt;
+&lt;li&gt;Crea un nuevo contenedor y monta el mismo volumen que en el ejercicio anterior.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ docker run -d --name Taller1 -v miweb:/var/www/html -p 8080:80 php:7.4-apache
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;9edd4b2dd2499f923090ce6a246e44db136f162528a51f84ddb33659503bafd7
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="7"&gt;
-&lt;li&gt;Accede al contenedor desde el navegador para ver la información ofrecida por el fichero &lt;code&gt;index.html&lt;/code&gt;. ¿Seguía existiendo ese fichero?&lt;/li&gt;
+&lt;li&gt;Accede al contenedor desde el navegador para ver la información del archivo &lt;code&gt;index.html&lt;/code&gt;. ¿Sigue existiendo el archivo?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~$ curl http://localhost:8080
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&amp;lt;h1&amp;gt;Javier Cruces&amp;lt;/h1&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Vamos a trabajar con bind mount:&lt;/p&gt;</description></item><item><title>Taller 2: Escenarios multicontenedor en Docker</title><link>https://www.javiercd.es/posts/docker/taller2/taller2_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller2/taller2_docker/</guid><description>&lt;h2 id="taller-2-escenarios-multicontenedor-en-docker"&gt;Taller 2: Escenarios multicontenedor en Docker&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Trabajaremos con bind mounts:&lt;/p&gt;</description></item><item><title>Taller 2: Escenarios multicontenedor en Docker</title><link>https://www.javiercd.es/posts/docker/taller2/taller2_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller2/taller2_docker/</guid><description>&lt;h2 id="taller-2-escenarios-multicontenedor-en-docker"&gt;Taller 2: Escenarios multicontenedor en Docker&lt;/h2&gt;
 &lt;h3 id="despliegue-de-nextcloud"&gt;Despliegue de Nextcloud&lt;/h3&gt;
-&lt;p&gt;Vamos a desplegar la aplicación nextcloud con una base de datos (puedes elegir mariadb o PostgreSQL) utilizando la aplicación docker-compose. Puedes coger cómo modelo el fichero &lt;code&gt;docker-compose.yml&lt;/code&gt; el que hemos estudiado para desplegar WordPress.&lt;/p&gt;
+&lt;p&gt;Vamos a desplegar la aplicación Nextcloud con una base de datos (puedes elegir MariaDB o PostgreSQL) utilizando Docker Compose. Puedes tomar como modelo el archivo &lt;code&gt;docker-compose.yml&lt;/code&gt; que hemos estudiado para desplegar WordPress.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Instala docker-compose en tu ordenador.&lt;/li&gt;
+&lt;li&gt;Instala Docker Compose en tu equipo.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
-&lt;li&gt;Dentro de un directorio crea un fichero &lt;code&gt;docker-compose.yml&lt;/code&gt; para realizar el despliegue de nextcloud con una base de datos. Recuerda las variables de entorno y la persistencia de información.&lt;/li&gt;
+&lt;li&gt;Crea un archivo &lt;code&gt;docker-compose.yml&lt;/code&gt; dentro de un directorio para realizar el despliegue de Nextcloud con una base de datos. Recuerda configurar las variables de entorno y la persistencia de la información.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ cat docker-compose.yaml
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;version: &lt;span style="color:#e6db74"&gt;&amp;#39;2&amp;#39;&lt;/span&gt;
@@ -117,23 +117,51 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_USER&lt;span style="color:#f92672"&gt;=&lt;/span&gt;nextcloud
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - MYSQL_HOST&lt;span style="color:#f92672"&gt;=&lt;/span&gt;db
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
-&lt;li&gt;Levanta el escenario con &lt;code&gt;docker-compose&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Levanta el escenario utilizando &lt;code&gt;docker compose up -d&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ docker compose up -d
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;[&lt;/span&gt;+&lt;span style="color:#f92672"&gt;]&lt;/span&gt; Running 2/2
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ✔ Container taller2-db-1 Started 0.0s
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ✔ Container taller2-app-1 Started 0.0s
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="4"&gt;
-&lt;li&gt;Muestra los contenedores con &lt;code&gt;docker-compose&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Muestra los contenedores activos con &lt;code&gt;docker compose ps&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller2$ docker compose ps
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;NAME IMAGE COMMAND SERVICE CREATED STATUS PORTS
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;taller2-app-1 nextcloud &lt;span style="color:#e6db74"&gt;&amp;#34;/entrypoint.sh apache2-foreground&amp;#34;&lt;/span&gt; app &lt;span style="color:#ae81ff"&gt;7&lt;/span&gt; minutes ago Up &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; minutes 0.0.0.0:8081-&amp;gt;80/tcp, :::8081-&amp;gt;80/tcp
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;taller2-db-1 mariadb:10.6 &lt;span style="color:#e6db74"&gt;&amp;#34;docker-entrypoint.sh --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW&amp;#34;&lt;/span&gt; db &lt;span style="color:#ae81ff"&gt;7&lt;/span&gt; minutes ago Up &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt; minutes 3306/tcp
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="5"&gt;
-&lt;li&gt;Accede a la aplicación y comprueba que funciona.&lt;/li&gt;
+&lt;li&gt;Accede a la aplicación mediante el navegador y comprueba que funciona correctamente.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src="https://www.javiercd.es/docker/taller2/img/Pasted_image_20240202091554.png" alt=""&gt;&lt;/p&gt;</description></item><item><title>Taller 3: Creación de imágenes Docker</title><link>https://www.javiercd.es/posts/docker/taller3/taller3_docker/</link><pubDate>Thu, 14 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/posts/docker/taller3/taller3_docker/</guid><description>&lt;h2 id="taller-3-creación-de-imágenes-docker"&gt;Taller 3: Creación de imágenes Docker&lt;/h2&gt;
-&lt;p&gt;Creación de una imagen a partir de un Dockerfile&lt;/p&gt;
-&lt;p&gt;1.Crea una página web estática (por ejemplo busca una plantilla HTML5). O simplemente crea un index.html.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;2.Crea un fichero Dockerfile que permita crear una imagen con un servidor web sirviendo la página. Puedes usar una imagen base debian o ubuntu, o una imagen que tenga ya un servicio web, como hemos visto en el apartado Ejemplo 1: Construcción de imágenes con una página estática.&lt;/p&gt;</description></item></channel></rss>
+&lt;h3 id="creación-de-una-imagen-a-partir-de-un-dockerfile"&gt;Creación de una imagen a partir de un Dockerfile&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Crea una página web estática (por ejemplo, busca una plantilla HTML5) o simplemente crea un archivo &lt;code&gt;index.html&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;Crea un archivo &lt;code&gt;Dockerfile&lt;/code&gt; para generar una imagen con un servidor web que sirva dicha página. Puedes utilizar una imagen base de Debian o Ubuntu, o una imagen que ya incluya un servicio web, como vimos en el apartado &amp;lsquo;Ejemplo 1: Construcción de imágenes con una página estática&amp;rsquo;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller3$ cat Dockerfile
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# syntax=docker/dockerfile:1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FROM httpd:2.4
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;COPY ./public_html/ /usr/local/apache2/htdocs/
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;EXPOSE &lt;span style="color:#ae81ff"&gt;80&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;Ejecuta el comando de Docker para crear la nueva imagen. La imagen debe llamarse &lt;code&gt;mi_servidor_web:v1&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller3$ docker build -t javiersaping/mi_servidor_web:v1 .
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Sending build context to Docker daemon 3.584kB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Step 1/3 : FROM httpd:2.4
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ---&amp;gt; 92fa43a2ff60
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Step 2/3 : COPY ./public_html/ /usr/local/apache2/htdocs/
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ---&amp;gt; b03556dd59b6
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Step 3/3 : EXPOSE &lt;span style="color:#ae81ff"&gt;80&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ---&amp;gt; Running in 1cc04e1deee4
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Removing intermediate container 1cc04e1deee4
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ---&amp;gt; 3078183767ef
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Successfully built 3078183767ef
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Successfully tagged javiersaping/mi_servidor_web:v1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@docker:~/taller3$ docker run -d -p 8081:80 javiersaping/mi_servidor_web:v1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2a753adcd098c49b7b215b7c97267a09e09194303bee131150765222a4295dea
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src="https://www.javiercd.es/docker/taller3/img/Pasted_image_20240208085015.png" alt=""&gt;&lt;/p&gt;</description></item></channel></rss>
