@@ -1,7 +1,7 @@
 ---
 title: "Workshop 1: Markdown (test)"
 date: 2024-03-14T10:00:00+00:00
-description: Workshop 1: Markdown spell checker (test)
+description: "Workshop 1: Markdown spell checker (test)"
 tags: [Jenkins, CI/CD]
 hero: images/ci_cd/jenkins/taller1.png
 ---
