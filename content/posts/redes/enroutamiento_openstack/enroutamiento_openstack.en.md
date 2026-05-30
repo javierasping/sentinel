@@ -114,7 +114,7 @@ Having the following relation of IPS:
 
 Router 1
 
-As it is a router we will have to activate the forward bit for it we will enter the following command:
+As it is a router, we will have to activate the forwarding bit. To do so, we will enter the following command:
 ```bash
 echo 1 > /proc/sys/net/ipv4/ip\_forward
 ```
@@ -139,24 +139,24 @@ ip route add default via 10.0.110.30 dev ens4
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.010.png)
 
-So we'd have the routing table:
+As a result, we would have the routing table:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.011.png)
 
 ### PC1
 
-We will delete the default route on the device
+We will delete the default route on the device.
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.012.png)
 
-And we'll add the new route.
+Then, we'll add the new route.
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.013.png)
 
 
 Router 2
 
-As it is a router we will have to activate the forward bit for it we will enter the following command:
+As it is a router, we will have to activate the forwarding bit. To do so, we will enter the following command:
 
 ```bash
 echo 1 > /proc/sys/net/ipv4/ip\_forward
@@ -174,7 +174,7 @@ It would be like this:
 
 ### P2
 
-As we did before, we will remove the default route that it brings and add the new one: 
+As we did before, we will remove the default route and add the new one: 
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.017.png)
 
@@ -188,7 +188,7 @@ echo 1 > /proc/sys/net/ipv4/ip\_forward
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.019.png)
 
-We will create the routing table for our stage:
+We will create the routing table for our scenario:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.020.png)
 
@@ -198,7 +198,7 @@ The routing table would be as follows:
 
 ### P2
 
-As with others we will have to change the default route to the ip of the router to which we are connected:
+As with the others, we will have to change the default route to the IP of the router to which we are connected:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.022.png)
 
@@ -216,19 +216,19 @@ As with others we will have to change the default route to the ip of the router 
 
 1. Modify the default route
 
-The modification of the default route is because I can't modify the configuration of the network cards so I can't modify the link door.
+The modification of the default route is necessary because I cannot modify the configuration of the network cards, and thus cannot modify the default gateway.
 
-By default when using the script this comes with the X.X.X.1 link door however this does not match the client link door.
+By default, when using the script, this comes with the X.X.X.1 gateway. However, this does not match the client gateway.
 
-For routers we must also modify it to indicate where we will send the traffic "by default."
+For routers, we must also modify it to indicate where we will send the traffic "by default."
 
-If we want to make the forwarding bit keep permanently so that when we restart the team it will not return to 0:
+If we want the forwarding bit to persist permanently so that it does not return to 0 when we restart the system:
 
 - > We write directly in the /etc/sysctl.conf file:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.023.png)
 
-If we want to turn the configuration of the routing tables into a file to have a backup of them we use:
+If we want to save the configuration of the routing tables to a file for backup purposes, we use:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.024.png)
 
@@ -273,7 +273,7 @@ PC3-PC2
 
 ### Traffic capture on the r2 or r3 router showing traffic between h1 and h3.
 
-To capture a particular interface and save it in a file we will use tcpdump:
+To capture a particular interface and save it to a file, we will use tcpdump:
 
 ```bash
 tcpdump -i NOMBRE\_INTERFAZ -w NOMBRE\_ARCHIVO
@@ -281,7 +281,7 @@ tcpdump -i NOMBRE\_INTERFAZ -w NOMBRE\_ARCHIVO
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.032.png)
 
-If we want to have an output to the command instead of saving the file we will use the -n parameter: Here we see how the ICMP REQUEST comes from PC3 to PC1 and the ICMP REPLY from PC1 to PC3
+If we want the output to be displayed in the command instead of saving the file, we will use the -n parameter. Here we see how the ICMP REQUEST comes from PC3 to PC1, and the ICMP REPLY from PC1 to PC3
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.033.png)
 
