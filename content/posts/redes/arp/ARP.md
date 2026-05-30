@@ -1,9 +1,9 @@
 ﻿---
 title: "Protocolo ARP"
 date: 2023-09-08T10:00:00+00:00
-description: Documento en el cual se responden a una serie de preguntas sobre el protocolo ARP
+description: Documento que responde a una serie de preguntas sobre el protocolo ARP
 tags: [Redes, ARP]
-hero: images/redes/arp/portada.png
+hero: /images/redes/arp/portada.png
 ---
 
 

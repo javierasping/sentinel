@@ -1,8 +1,8 @@
 ---
-title: "Installation of android in GNS3 with KVM"
+title: "Installation of Android in GNS3 with KVM"
 date: 2024-03-28T10:00:00+00:00
-Description: Installation of android in GNS3 with KVM
-tags: [GNS3,ANDORID,LINUX,DEBIAN,KVM]
+description: Installation of Android in GNS3 with KVM
+tags: [GNS3,ANDROID,LINUX,DEBIAN,KVM]
 hero: /images/redes/android_gns3/android.png
 ---
 

@@ -1,9 +1,9 @@
 ﻿---
 title: "ARP Protocol"
 date: 2023-09-08T10:00:00+00:00
-description: Document in which a number of questions about the ARP protocol are answered
-tags: [Redes, ARP]
-hero: images/redes/arp/portada.png
+description: Document that answers a series of questions about the ARP protocol
+tags: [Networks, ARP]
+hero: /images/redes/arp/portada.png
 ---
 
 
@@ -94,5 +94,5 @@ To mitigate this attack, the following strategies can be implemented:
 
 - [ip neigh](https://rm-rf.es/control-de-tablas-arp-con-el-comando-ip/)
 - [arp spoofing](https://www.incibe-cert.es/blog/arp-spoofing)
-- [Free ARP](http://www.tranquilidadologica.com/2006/05/pagetes-arp-gratuitos.html)
+- [Gratuitous ARP](http://www.tranquilidadtecnologica.com/2006/05/paquetes-arp-gratuitos.html)
 - [mitigation measures](http://profesores.elo.utfsm.cl/~agv/elo323/2s14/projects/reports/MoraMorales/mitigation.html#:~:text=is%20a%20strategy%20which%20maintains,is%20a%20case%20of%20CISCO.)
