@@ -1,14 +1,14 @@
 ﻿---
 title: "Configuración de NAT Cisco y Linux"
 date: 2023-09-08T10:00:00+00:00
-description: Enrutamiento de un escenario con direcciones publicas , configuramos SNAT y DNAT en maquinas Linux y cisco .
+description: Enrutamiento de un escenario con direcciones públicas, configuramos SNAT y DNAT en máquinas Linux y Cisco.
 tags: [Redes, Enrutamiento,NAT,SNAT,DNAT,Cisco,Linux]
 hero: images/redes/configuracion_nat/portada.png
 ---
 
 En este artículo, exploraremos la configuración de SNAT (Source Network Address Translation) y DNAT (Destination Network Address Translation) en escenarios con direcciones públicas, haciendo uso de routers en entornos Linux y dispositivos Cisco.
 
-## Escenario con maquinas debian
+## Escenario con máquinas Debian
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.001.jpeg)
 
@@ -17,47 +17,47 @@ En este artículo, exploraremos la configuración de SNAT (Source Network Addres
 
 #### Instalación de paquetes
 
-Una vez colocadas las maquinas deberemos de descargarnos apache para los servidores web , para realizar esto conectaremos ambos servidores a un switch y este a la nube NAT para disponer de acceso a internet .
+Una vez colocadas las máquinas deberemos descargar Apache para los servidores web; para realizar esto conectaremos ambos servidores a un switch y este a la nube NAT para disponer de acceso a internet.
 
 Ahora actualizaremos los repositorios haciendo un apt update :
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.002.png)
 
-A continuación ya podremos descargar los paquetes , para los servidores instalaremos apache :
+A continuación ya podremos descargar los paquetes; para los servidores instalaremos Apache:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.003.png)
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.004.png)
 
-Y para el router de casa descargaremos el servidor DHCP :
+Y para el router de casa descargaremos el servidor DHCP:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.005.png)
 
-Al acabar la instalación saltara un código de error similar a este , esto es debido a que no hay una configuración valida en el servicio :
+Al acabar la instalación saltará un código de error similar a este; esto es debido a que no hay una configuración válida en el servicio:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.006.jpeg)
 
-Por ahora ignoraremos esto y posteriormente configuraremos el servidor DHCP .
+Por ahora ignoraremos esto y posteriormente configuraremos el servidor DHCP.
 
-Con esto habríamos instalado todos los paquetes necesarios para instalar la practica así que podemos montar el escenario .
+Con esto habríamos instalado todos los paquetes necesarios para instalar la práctica, así que podemos montar el escenario.
 
 #### Configuración de las tarjetas de red
 
-Nos encontraremos con un pequeño obstáculo a la hora de hacer el escenario ya que necesitamos que algunos routers tengan mas de una tarjeta de red . 
+Nos encontraremos con un pequeño obstáculo a la hora de montar el escenario, ya que necesitamos que algunos routers tengan más de una tarjeta de red. 
 
-Para añadir mas de una tarjeta con el dispositivo apagado y sin estar conectado a nadie , hacemos sobre el clic derecho y pulsamos sobre  configure > network  , y seleccionamos el numero de adaptadores que necesitamos tener en cada uno , por ejemplo para el router de casa necesito tener dos adaptadores :
+Para añadir más de una tarjeta con el dispositivo apagado y sin estar conectado a nadie, hacemos clic derecho y pulsamos sobre Configure > Network, y seleccionamos el número de adaptadores que necesitamos tener en cada uno; por ejemplo, para el router de casa necesito tener dos adaptadores:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.007.jpeg)
 
-Una vez hecho esto con las maquinas que necesitan mas de una tarjeta , montaremos el escenario y procederemos a configurar sus tarjetas . 
+Una vez hecho esto con las máquinas que necesitan más de una tarjeta, montaremos el escenario y procederemos a configurar sus tarjetas. 
 
-Para  modificar  la  configuración  de  las  tarjetas  de  red  lo  haremos  editando  el  fichero /etc/network/interfaces  .Para que se aplique la configuración de las tarjetas de red que hemos realizado tenemos varias opciones .
+Para modificar la configuración de las tarjetas de red lo haremos editando el fichero /etc/network/interfaces. Para que se aplique la configuración de las tarjetas de red que hemos realizado tenemos varias opciones:
 
-Subir y bajar la tarjeta que hemos modificado : 
+Subir y bajar la tarjeta que hemos modificado: 
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.008.png)
 
-También podemos ahorrar tiempo y reiniciar el servicio de networking , esto funcionara para todas las tarjetas simultáneamente así que nos ahorrara tiempo :
+También podemos ahorrar tiempo y reiniciar el servicio de networking; esto funcionará para todas las tarjetas simultáneamente, así que nos ahorrará tiempo:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.009.png)
 
@@ -78,9 +78,9 @@ Router R2:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.013.jpeg)
 
-Así seria la relación de ips que tienen las tarjetas de red de los routers . Para aplicar esta configuración a las tarjetas de red tendremos que reiniciar la misma como indico al principio de este apartado .
+Así sería la relación de IPs que tienen las tarjetas de red de los routers. Para aplicar esta configuración a las tarjetas de red tendremos que reiniciar la misma, como indiqué al principio de este apartado.
 
-Para que el escenario funcione debemos activar el bit de forwarding para estos 4 routers , en este caso lo haré de forma permanente para ello editamos el fichero /etc/sysctl.conf y descomentamos esta linea :
+Para que el escenario funcione debemos activar el bit de forwarding para estos 4 routers; en este caso lo haré de forma permanente, para ello editamos el fichero /etc/sysctl.conf y descomentamos esta línea:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.014.png)
 
@@ -88,7 +88,7 @@ Para que el escenario funcione debemos activar el bit de forwarding para estos 4
 
 #### Rutas necesarias
 
-Para mi esquema actual las rutas que necesitamos en los routers son :
+Para mi esquema actual, las rutas que necesitamos en los routers son:
 
 Router R1:
 
@@ -110,7 +110,7 @@ Router CASA:
 
 #### Comprobación de conectividad
 
-Vamos a hacer ping desde cada uno de los routers a su extremos “mas lejanos” para asegurarnos de que hemos realizado correctamente el enrutamiento .
+Vamos a hacer ping desde cada uno de los routers a sus extremos “más lejanos” para asegurarnos de que hemos realizado correctamente el enrutamiento.
 
 Router R1 –> R2 
 
@@ -132,67 +132,63 @@ Router CASA –> R1
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.023.png)
 
-Router CASA –> R2
+Vemos que todos los dispositivos que tienen direcciones IPs públicas tienen conectividad entre sí, pero ¿qué pasa con los que tienen direccionamiento privado en nuestro escenario? Estos no tendrán conectividad, ya que no se enrutan direcciones privadas en los routers de internet.
 
-![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.024.png)
+Es decir, si lanzamos un ping hacia una dirección privada que sea de otra red, por ejemplo del servidor 1 al servidor 2, este no llegará, ya que en las tablas de enrutamiento del router del ISP no existen rutas para direcciones privadas.
 
-Vemos que todos los dispositivos que tiene direcciónes ips publicas tienen conectividad entre si pero que pasa con los que tienen direcciónamiento privado en nuestro escenario , estos no tendrán conectividad ya que no se enrutan direcciónes privadas en los routers de internet .
+Por lo que será imposible alcanzar una red privada diferente a la que pertenezcamos.
 
-Es decir si lanzamos un ping hacia una dirección privada que sea de otra red , por ejemplo del servidor1 al servidor2 este no llegara , ya que en las tablas de enrutamiento del router del ISP no existen rutas para direcciónes privadas .
-
-Por lo que sera imposible alcanzar una red privada diferente a la que pertenezcamos .
-
-Por ejemplo desde casa si le hacemos ping a google se lo hacemos a la dirección PUBLICA 8..8.8.8 no a la dirección privada que tiene el servidor , puede ser la 172.22.1.15
+Por ejemplo, desde casa, si le hacemos ping a Google, se lo hacemos a la dirección PÚBLICA 8.8.8.8, no a la dirección privada que tiene el servidor, que puede ser la 172.22.1.15.
 
 ### Configuración del servicio DHCP en router CASA
 
-Retomando lo que habíamos hecho anteriormente en el apartado de instalación de paquetes ya hemos descargado el servidor DHCP para debian (isc-dhcp-server). Así que ahora vamos a configurarlo . 
+Retomando lo que habíamos hecho anteriormente en el apartado de instalación de paquetes, ya hemos descargado el servidor DHCP para Debian (isc-dhcp-server). Así que ahora vamos a configurarlo. 
 
-Lo primero que necesitamos hacer es decirle a nuestro servidor a través de que tarjeta de red queremos que este reparta direcciónes ip , en  nuestro caso es la tarjeta ens5 .
+Lo primero que necesitamos hacer es decirle a nuestro servidor a través de qué tarjeta de red queremos que reparta direcciones IP; en nuestro caso es la tarjeta ens5.
 
-Para ello editaremos el fichero /etc/default/isc-dhcp-server y añadiremos el nombre de la tarjeta en la sección de IPV4 :
+Para ello editaremos el fichero /etc/default/isc-dhcp-server y añadiremos el nombre de la tarjeta en la sección de IPv4:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.025.jpeg)
 
-Ahora vamos a indicarle a nuestro servidor DHCP que configuración queremos que le asigne a nuestros clientes para ello editamos el fichero  /etc/dhcp/dhcpd.conf , podemos aprovechar uno de los ejemplos que vienen comentados y aplicar nuestra configuración :
+Ahora vamos a indicarle a nuestro servidor DHCP qué configuración queremos que asigne a nuestros clientes; para ello editamos el fichero /etc/dhcp/dhcpd.conf. Podemos aprovechar uno de los ejemplos que vienen comentados y aplicar nuestra configuración:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.026.png)
 
-Este es un ejemplo muy sencillo de un servidor dhcp pero con esto es suficiente para nuestro escenario .
+Este es un ejemplo muy sencillo de un servidor DHCP, pero con esto es suficiente para nuestro escenario.
 
-Los campos significan :
+Los campos significan:
 
-- subnet : dirección de red de la cual queremos repartir direcciónes ip con este servicio .
-- netmask : Mascara de red de la red  la cual queremos configurar los dispositivos.
-- range: Rango de direcciónes de la cual queremos repartir ips siendo la primera la inicial y la ultima la final .
-- option routers: Seria la puerta de enlace de nuestra red 
-- option broadcast-address : dirección de broadcast de nuestra red .
+- subnet: dirección de red de la cual queremos repartir direcciones IP con este servicio.
+- netmask: Máscara de red de la red la cual queremos configurar los dispositivos.
+- range: Rango de direcciones de la cual queremos repartir IPs, siendo la primera la inicial y la última la final.
+- option routers: Sería la puerta de enlace de nuestra red.
+- option broadcast-address: dirección de broadcast de nuestra red.
 
-Una vez configurado con los parámetros de nuestra red reiniciaremos el servicio :
+Una vez configurado con los parámetros de nuestra red, reiniciaremos el servicio:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.027.png)
 
-Y comprobaremos que el servicio esta activo :
+Y comprobaremos que el servicio está activo:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.028.jpeg)
 
-Ahora para que los clientes puedan recibir una dirección utilizando este servicio deberemos de configurar las tarjetas de red de PC1 y PC2 de la siguiente manera :
+Ahora, para que los clientes puedan recibir una dirección utilizando este servicio, deberemos de configurar las tarjetas de red de PC1 y PC2 de la siguiente manera:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.029.png)
 
-Reiniciamos el servicio para que esta se aplique y el servidor nos asigne automáticamente la configuración de red :
+Reiniciamos el servicio para que esta se aplique y el servidor nos asigne automáticamente la configuración de red:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.030.png)
 
-Comprobamos que efectivamente nos ha asignado la configuración de la red :
+Comprobamos que efectivamente nos ha asignado la configuración de la red:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.031.jpeg)
 
-También podemos hacer un seguimiento de a quien le hemos asignado la ip  través del servidor viendo el siguiente archivo /var/lib/dhcp/dhcpd.leases el cual guarda las concesiones que hemos realizado .
+También podemos hacer un seguimiento de a quién le hemos asignado la IP a través del servidor viendo el siguiente archivo /var/lib/dhcp/dhcpd.leases, el cual guarda las concesiones que hemos realizado.
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.032.png)
 
-Podemos ver cuando empieza así como a quien se le ha asignado viendo su dirección MAC.
+Podemos ver cuándo empieza, así como a quién se le ha asignado, viendo su dirección MAC.
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.033.jpeg)
 
@@ -494,7 +490,7 @@ Seria necesario únicamente que añadamos las rutas por defecto en los Routers R
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.095.png)
 
-Vemos que todos los dispositivos que tiene direcciónes ips publicas tienen conectividad entre si pero que pasa con los que tienen direcciónamiento privado en nuestro escenario , estos no tendrán conectividad ya que no se enrutan direcciónes privadas en los routers de internet .
+Vemos que todos los dispositivos que tienen direcciones IPs públicas tienen conectividad entre sí, pero ¿qué pasa con los que tienen direccionamiento privado en nuestro escenario? Estos no tendrán conectividad, ya que no se enrutan direcciones privadas en los routers de internet.
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.096.png)
 
