@@ -10,21 +10,21 @@ Esta guía es un tutorial introductorio que muestra cómo instalar, configurar y
 
 ## Requisitos previos
 
-- Tener instalado Docker y Docker compose
-- Tener un equipo Linux con el que cuentes con permisos de administrador 
+- Tener instalados Docker y Docker Compose
+- Tener un equipo Linux con permisos de administrador
 
 ## Creación de ficheros
 
 ### Creación del docker-compose
 
-Todos los ficheros utilizados en este post los podrás encontrar en mi [github](https://github.com/javierasping/learn_observability) . 
+Todos los archivos utilizados en este post los podrás encontrar en mi [GitHub](https://github.com/javierasping/learn_observability). 
 
 Lo primero que haremos será crear nuestro archivo `docker-compose.yaml`.
 
 En este archivo destacaremos dos puntos:
 
 - El puerto de Prometheus es el 9090; en mi caso, lo mantendré sin cambios.
-- El archivo de configuración que añadiremos al contenedor, lo cual facilitará la modificación de su configuración.
+- Añadiremos el archivo de configuración al contenedor, lo cual facilitará su modificación.
 
 ```bash
 javiercruces@HPOMEN15:~/learn_observability/exercise1$ cat docker-compose.yaml 
@@ -58,7 +58,7 @@ global:
   external_labels:
     monitor: 'javiercd-metrics'
 
-# En esta sección configuraremos todos los targets de los cual vamos a extraer métricas
+# En esta sección configuraremos todos los targets de los cuales vamos a extraer métricas
 scrape_configs:
     # Scrape del propio Prometheus
   - job_name: 'prometheus'        
@@ -149,7 +149,7 @@ Por último, consultaremos un par de métricas:
 
 ![](/observabilidad/metricas/prometheus/memory_metric.png)
 
-## Bibliografia 
+## Bibliografía 
 
 - [Getting started Prometheus](https://prometheus.io/docs/prometheus/latest/getting_started/)
 - [Prometheus configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
