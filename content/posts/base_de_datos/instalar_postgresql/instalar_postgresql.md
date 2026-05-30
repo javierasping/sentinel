@@ -44,7 +44,7 @@ Para instalar PostgreSQL en Debian 12, sigue estos pasos:
     sudo -u postgres psql
     ```
 
-    Si quieres puedes cambiar la contraseña del usuario postgres de la base de datos con el siguiente comando:
+    Si quieres, puedes cambiar la contraseña del usuario postgres de la base de datos con el siguiente comando:
     
     ```sql
     ALTER USER postgres WITH PASSWORD 'tu_nueva_contraseña';
@@ -52,7 +52,7 @@ Para instalar PostgreSQL en Debian 12, sigue estos pasos:
 
 2. **Crea un nuevo usuario**:
 
-    Dentro del prompt de `postgres`,para crear un nuevo usuario utiliza el siguiente comando. 
+    Dentro del prompt de `postgres`, para crear un nuevo usuario, utiliza el siguiente comando: 
 
     ```sql
     CREATE USER javiercruces WITH PASSWORD 'tu_contraseña';
@@ -68,7 +68,7 @@ Para instalar PostgreSQL en Debian 12, sigue estos pasos:
 
 4. **Crear un usuario administrador**
 
-    Si quieres crear un usuario con todos los privilegios en una base de datos introduce el siguiente comando:
+    Si quieres crear un usuario con todos los privilegios en una base de datos, introduce el siguiente comando:
 
     ```sql
     GRANT ALL PRIVILEGES ON DATABASE nombre_base_de_datos TO nombre_usuario;
