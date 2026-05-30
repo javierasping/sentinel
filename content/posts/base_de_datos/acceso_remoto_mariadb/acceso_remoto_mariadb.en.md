@@ -21,9 +21,9 @@ To allow remote access to your MariaDB server, follow these steps:
     bind-address = 0.0.0.0
     ```
 
- If you prefer to allow connections only from specific IP addresses, replace `0.0.0.0` with the desired IP addresses, separated by commas. Save the file and close the editor (`Ctrl + X`, then `Y` to confirm the changes and `Enter` to go out in `nano`).
+ If you prefer to allow connections only from specific IP addresses, replace `0.0.0.0` with the desired IP addresses, separated by commas. Save the file and close the editor (`Ctrl + X`, then `Y` to confirm the changes and `Enter` to exit nano).
 
-2. **Restart MariaDB service**
+2. **Restart the MariaDB service**
  For the changes to take effect, restart the MariaDB service:
 
     ```bash
@@ -31,7 +31,7 @@ To allow remote access to your MariaDB server, follow these steps:
     ```
 
 3. **Install the MariaDB client on the machine from which you want to connect**
- In the client machine (from which you want to access the MariaDB server), install the MariaDB client. In Debian or Ubuntu, you can do it with:
+ On the client machine (from which you want to access the MariaDB server), install the MariaDB client. In Debian or Ubuntu, you can do this with:
 
     ```bash
     sudo apt update
