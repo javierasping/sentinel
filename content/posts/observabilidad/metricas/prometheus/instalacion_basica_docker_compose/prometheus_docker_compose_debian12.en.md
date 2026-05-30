@@ -23,7 +23,7 @@ The first thing we will do is create our `docker-compose.yaml` file.
 
 Here we highlight two aspects:
 
-- Prometheus listens on port 9090; in my case, I will leave it unchanged.
+- Prometheus listens on port 9090. In my case, I will leave it unchanged.
 - Adding the configuration file to the container makes it easier to modify.
 
 ```bash
