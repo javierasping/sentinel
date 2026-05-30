@@ -19,14 +19,14 @@ The Oracle configuration with respect to the network is saved in the directory t
 - **`listener.ora`**: This file is used to configure Oracle's listening service. It contains information about the connection points and protocols that the Oracle server will use to accept client connections.
 - **`samples`**: Within this directory, there are examples of configuration files for various Oracle components. These sample files are useful as a reference when we need to create configuration files.
 - **`shrept.lst`**: This file is part of the Oracle recovery process and is used to track the replication of real-time change records. It is essential when working with data replication.
-- **`sqlnet.ora`**: This file sets Oracle's network options. Here, it defines how server names are resolved, sets security measures, and adjusts the security layer.
+- **`sqlnet.ora`**: This file sets Oracle's network options. It defines how server names are resolved, sets security measures, and adjusts the security layer.
 - **`tnsnames.ora`**: Here, the aliases that Oracle will use are defined.
 
 ---
 
 ### Configuring `listener.ora`
 
-We will start by configuring the `listener.ora` file and indicate which equipment can connect to the database. In my case, I allow connections from all devices:
+We will start by configuring the `listener.ora` file to indicate which equipment can connect to the database. In my case, I allow connections from all devices:
 
 ![listener.ora configuration](/base_de_datos/oracle_acceso_remoto/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.030.png)
 
