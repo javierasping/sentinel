@@ -138,7 +138,7 @@ Por ejemplo, desde casa, si hacemos `ping` a Google, lo hacemos a la dirección 
 
 Retomando la instalación de paquetes, ya hemos descargado el servidor DHCP para Debian (`isc-dhcp-server`). Ahora procederemos a configurarlo.
 
-Primero debemos indicar al servidor a través de qué tarjeta de red queremos repartir las direcciones IP; en nuestro caso, es la tarjeta `ens5`.
+Primero debemos indicar al servidor a través de qué tarjeta de red queremos repartir las direcciones IP. En nuestro caso, es la tarjeta `ens5`.
 
 Para ello, editaremos el fichero `/etc/default/isc-dhcp-server` y añadiremos el nombre de la tarjeta en la sección de IPv4:
 
