@@ -138,7 +138,7 @@ For example, if we ping Google from home, we use the public address `8.8.8.8`, n
 
 Returning to the package installation section, we have already downloaded the DHCP server for Debian (`isc-dhcp-server`). We will now configure it.
 
-First, we must tell the server which network interface to use for distributing IP addresses; in our case, it is the `ens5` interface.
+First, we must tell the server which network interface to use for distributing IP addresses. In our case, it is the `ens5` interface.
 
 To do this, we edit the `/etc/default/isc-dhcp-server` file and add the interface name in the IPv4 section:
 
