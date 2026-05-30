@@ -15,16 +15,16 @@ This guide is an introductory tutorial that shows how to install, configure, and
 
 ## Creating files
 
-### Creating the docker-compose
+### Creating the Docker Compose file
 
-All the files used in this post can be found in my [github](https://github.com/javierasping/learn_observability).
+All the files used in this post can be found in my [GitHub](https://github.com/javierasping/learn_observability).
 
-The first thing we will do is create our `docker-compose` file.
+The first thing we will do is create our `docker-compose.yaml` file.
 
 Here we highlight two aspects:
 
-- Prometheus works on port 9090; in my case, I will keep it and not change it.
-- The configuration file added to the container makes it easier to modify the configuration.
+- Prometheus listens on port 9090; in my case, I will leave it unchanged.
+- Adding the configuration file to the container makes it easier to modify.
 
 ```bash
 javiercruces@HPOMEN15:~/learn_observability/exercise1$ cat docker-compose.yaml 
@@ -108,7 +108,7 @@ javiercruces@HPOMEN15:~/learn_observability/exercise1$ sudo systemctl status pro
 ...
 ```
 
-Note in the last lines that it is listening on port 9100. Additional info:
+Note in the last lines that it is listening on port 9100. Additional information:
 - Systemd unit file path: `/lib/systemd/system/prometheus-node-exporter.service`
 - Node exporter config path: `/etc/default/prometheus-node-exporter`
 
