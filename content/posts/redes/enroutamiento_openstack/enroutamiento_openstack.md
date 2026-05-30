@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Enrutamiento en OpenStack"
 date: 2023-09-08T10:00:00+00:00
 description: Enrutamos un escenario desplegado usando la orquestación de OpenStack
@@ -77,7 +77,7 @@ Teniendo la siguiente relación de IPs:
 | 0.0.0.0/0   &nbsp; | 10.0.110.30 | &nbsp; ens4   &nbsp;|
 
 
-\*Las redes en las que estamos directamente conectados se crearan automáticamente las rutas.
+\*Para las redes en las que estamos directamente conectados, las rutas se crearán automáticamente.
 
 
 | R2          |          |           |
@@ -90,7 +90,7 @@ Teniendo la siguiente relación de IPs:
 | 0.0.0.0/0  &nbsp;  | 10.0.130.36 | &nbsp; ens5    &nbsp;|
 
 
-*Las redes en las que estamos directamente conectados se crearan automáticamente las rutas.
+*Para las redes en las que estamos directamente conectados, las rutas se crearán automáticamente.
 
 |R3|||
 | - | :- | :- |
@@ -105,7 +105,7 @@ Teniendo la siguiente relación de IPs:
 
 ### Router 1
 
-Como es un router, deberemos activar el bit de forwarding; para ello introduciremos el siguiente comando:
+Como es un router, deberemos activar el bit de forwarding. Para ello, introduciremos el siguiente comando:
 ```bash
 echo 1 > /proc/sys/net/ipv4/ip\_forward
 ```
@@ -147,7 +147,7 @@ Y añadiremos la nueva ruta:
 
 ### Router 2
 
-Como es un router, deberemos activar el bit de forwarding; para ello introduciremos el siguiente comando:
+Como es un router, deberemos activar el bit de forwarding. Para ello, introduciremos el siguiente comando:
 
 ```bash
 echo 1 > /proc/sys/net/ipv4/ip\_forward
@@ -209,7 +209,7 @@ Al igual que con los demás, deberemos cambiar la ruta por defecto por la IP del
 
 La modificación de la ruta por defecto es necesaria ya que no es posible modificar la configuración de las tarjetas de red, y por tanto, la puerta de enlace.
 
-Por defecto, al utilizar el script, la puerta de enlace es X.X.X.1; sin embargo, esta no coincide con la de los clientes.
+Por defecto, al utilizar el script, la puerta de enlace es X.X.X.1. Sin embargo, esta no coincide con la de los clientes.
 
 Para los routers, también debemos modificarla para indicar por dónde se enviará el tráfico por defecto.
 
@@ -272,7 +272,7 @@ tcpdump -i NOMBRE\_INTERFAZ -w NOMBRE\_ARCHIVO
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.032.png)
 
-Si queremos tener una salida del comando en lugar de guardar el archivo, usaremos el parámetro -n: aquí vemos cómo llegan los ICMP REQUEST de PC3 a PC1 y los ICMP REPLY de PC1 a PC3.
+Si queremos tener una salida del comando en lugar de guardar el archivo, usaremos el parámetro -n. Aquí vemos cómo llegan los ICMP REQUEST de PC3 a PC1 y los ICMP REPLY de PC1 a PC3.
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.033.png)
 
