@@ -9,7 +9,7 @@ hero: images/base_de_datos/instalar_postgre/instalacion_postgree.png
 
 
 
-In this post, I will guide you through the process of installing PostgreSQL on Debian 12, creating a user with basic permissions, and how to create and query a database.
+In this post, I will guide you through the process of installing PostgreSQL on Debian 12, creating a user with basic permissions, and creating and querying a database.
 
 ## 1. PostgreSQL Installation
 
@@ -74,7 +74,7 @@ If you wish, you can change the password for the `postgres` database user with t
     GRANT ALL PRIVILEGES ON DATABASE nombre_base_de_datos TO nombre_usuario;
     ```
 
-Exit the console with `\\q`:
+Exit the console with `\q`:
 
     ```sql
     \q
