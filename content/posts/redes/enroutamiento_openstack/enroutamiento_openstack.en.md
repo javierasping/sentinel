@@ -6,35 +6,35 @@ tags: [Redes, Enrutamiento]
 hero: images/redes/enrutamiento_os/portada.png
 ---
 
-In this practice, we will explore the creation of a scenario through the OpenStack orchestration and then we will conduct the routing to ensure connectivity between the different virtual machines. This exercise will allow us to understand and apply the use of OpenStack to manage virtual environments, as well as to set up the network efficiently to facilitate communication between different devices on the stage.
+In this practice, we will explore the creation of a scenario through OpenStack orchestration and then conduct the routing to ensure connectivity between the different virtual machines. This exercise will allow us to understand and apply the use of OpenStack to manage virtual environments, as well as to set up the network efficiently to facilitate communication between different devices in the scenario.
 
-### Scenario to ride in OpenStack
+### Scenario to deploy in OpenStack
 
-In order to mount our OpenStack scenario due to the current situation of the images available, we will need to prepare an instance that has password access enabled. In addition, if you want to set up another one to enable the ssh password access for this user.
+To mount our OpenStack scenario, given the current state of the available images, we will need to prepare an instance with password access enabled. Additionally, if we want to configure another instance based on this one, we must enable SSH password access for this user.
 
-This will have to be created with the same flavour that we will generate the stage with to avoid errors.
+This must be created using the same flavour as the others in the scenario to avoid errors.
 
-As long as we get our instance ready, we'll check that you can log in from time to time:
+Once the instance is ready, we will verify that we can log in via Horizon:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.001.png)
 
-Now we'll create a snapshot:
+Now we will create a snapshot:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.002.png)
 
-We will copy the ID of the snapshot:
+We will copy the snapshot ID:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.003.png)
 
-And we'll add it to the file:
+And we will add it to the file:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.004.png)
 
-And we'll deploy it:
+And we will deploy it:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.005.png)
 
-We see that it has been created correctly:
+We can see that it has been created correctly:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.006.jpeg)
 

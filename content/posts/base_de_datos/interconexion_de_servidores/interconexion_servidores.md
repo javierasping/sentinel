@@ -56,7 +56,7 @@ Ahora configuraremos el fichero `tnsnames.ora` para que ORACLE1 sepa dónde est�
 
 ![Configuración de tnsnames.ora](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.007.jpeg)
 
-En este ejemplo, ORACLE2 está configurado bajo la IP `192.168.122.13` y escucha en el puerto `1521`. También es importante conocer el nombre del servicio remoto. Si no lo sabes, puedes ejecutarlo en ORACLE2 utilizando:
+En este ejemplo, ORACLE2 está configurado bajo la IP `192.168.122.13` y escucha en el puerto `1521`. También es importante conocer el nombre del servicio remoto. Si no lo sabes, puedes ejecutar el siguiente comando en ORACLE2:
 
 ![Consulta del nombre del servicio](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.008.png)
 
@@ -285,7 +285,7 @@ Podemos realizar una consulta sencilla hacia la base de datos MySQL:
 
 ![Consulta simple a MySQL](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.040.jpeg)
 
-También es posible realizar consultas utilizando ambas bases de datos simultáneamente. Es importante encerrar en comillas dobles los nombres de los campos y tablas de MySQL para que sean interpretados correctamente:
+También es posible realizar consultas utilizando ambas bases de datos simultáneamente. Es importante encerrar entre comillas dobles los nombres de los campos y tablas de MySQL para que sean interpretados correctamente:
 
 ![Consulta combinada entre Oracle y MySQL](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.041.jpeg)
 

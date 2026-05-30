@@ -6,7 +6,7 @@ tags: [Oracle, Mysql, PostgreSQL, Debian]
 hero: "images/base_de_datos/interconexion_de_servidores/interconexion_de_servidores.png"
 ---
 
-This post addresses how to configure and manage connections between different databases, both homogeneous and heterogeneous, to facilitate interoperability between various database systems. Throughout the article, different connection scenarios are explored, starting with configurations between databases of the same type, such as Oracle to Oracle or PostgreSQL to PostgreSQL, and then moving towards heterogeneous connections between different technologies, such as Oracle to MySQL, PostgreSQL to Oracle, and vice versa. It also covers the steps needed to configure links, create users, and modify key configuration files, allowing remote consultations.
+This post addresses how to configure and manage connections between different databases, both homogeneous and heterogeneous, to facilitate interoperability across various database systems. Throughout the article, different connection scenarios are explored, starting with configurations between databases of the same type, such as Oracle to Oracle or PostgreSQL to PostgreSQL, and then moving towards heterogeneous connections between different technologies, such as Oracle to MySQL, PostgreSQL to Oracle, and vice versa. It also covers the steps needed to configure links, create users, and modify key configuration files, allowing remote queries.
 
 ## Homogeneous Connections
 
@@ -30,11 +30,11 @@ To verify that the user has been created correctly, disconnect from the current 
 
 #### User Creation in Oracle2
 
-Repeat the steps made in Oracle1 to create a user in Oracle2 with appropriate permissions to remotely connect and create database links:
+Repeat the steps performed in Oracle1 to create a user in Oracle2 with appropriate permissions to remotely connect and create database links:
 
 ![User creation in Oracle2](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.003.png)
 
-Verify the connection to the new user created:
+Verify the connection with the newly created user:
 
 ![Connection verification in Oracle2](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.004.png)
 
@@ -54,7 +54,7 @@ Edit the `listener.ora` file so that ORACLE1 can listen to connections on the ne
 
 ##### Tnsnames.ora Configuration
 
-We will now set the file `tnsnames.ora` so that ORACLE1 knows where ORACLE2 is:
+We will now configure the file `tnsnames.ora` so that ORACLE1 knows where ORACLE2 is:
 
 ![Configuration of tnsnames.ora](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.007.jpeg)
 
@@ -200,9 +200,9 @@ We will use the dblink module to establish a connection to PostgreSQL2:
 
 ---
 
-#### Conduct Consultations Using dblink
+#### Perform queries using dblink
 
-Once the connection is created, we can conduct remote consultations from PostgreSQL1:
+Once the connection is created, we can perform remote queries from PostgreSQL1:
 
 ![Remote consultation using dblink](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.025.png)
 
@@ -228,21 +228,21 @@ We will activate the dblink extension and configure the connection to PostgreSQL
 
 ---
 
-#### Conduct Consultations Towards PostgreSQL1
+#### Perform queries towards PostgreSQL1
 
-Now, we can consult from PostgreSQL2 to PostgreSQL1:
+Now, we can perform queries from PostgreSQL2 to PostgreSQL1:
 
 ![Remote consultation from PostgreSQL2](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.028.jpeg)
 
 ---
 
-#### Simultaneous Consultations between PostgreSQL1 and PostgreSQL2
+#### Combined queries between PostgreSQL1 and PostgreSQL2
 
-To simplify remote consultations between the two databases, we can create views. This avoids the need to manually define the type of each field in the consultations:
+To simplify remote queries between the two databases, we can create views. This avoids the need to manually define the type of each field in the queries:
 
 ![Simultaneous remote consultation using views](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.029.jpeg)
 
-The same consultation can be made from PostgreSQL1 to PostgreSQL2:
+The same query can be made from PostgreSQL1 to PostgreSQL2:
 
 ![Simultaneous consultation from PostgreSQL1](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.030.jpeg)
 
@@ -312,13 +312,13 @@ We created the link in Oracle to connect to the MySQL database:
 
 ---
 
-#### Conducting Consultations between Oracle and MySQL
+#### Perform queries between Oracle and MySQL
 
-We can make a simple consultation to the MySQL database:
+We can make a simple query to the MySQL database:
 
 ![Simple consultation of MySQL](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.040.jpeg)
 
-It is also possible to consult using both databases simultaneously. It is important to lock in double quotes the names of MySQL fields and tables to be interpreted correctly:
+It is also possible to perform queries using both databases simultaneously. It is important to enclose in double quotes the names of MySQL fields and tables to be interpreted correctly:
 
 ![Combined consultation between Oracle and MySQL](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.041.jpeg)
 
@@ -417,9 +417,9 @@ We connect to Oracle and create the link to the PostgreSQL database. In the quer
 
 ---
 
-### Simultaneous Consultations between Oracle and PostgreSQL
+### Combined queries between Oracle and PostgreSQL
 
-We can conduct combined consultations between the two databases:
+We can conduct combined queries between the two databases:
 
 ![Combined consultation between Oracle and PostgreSQL](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.053.png)
 
@@ -491,7 +491,7 @@ Finally, we install the extension with the `make install` command:
 
 ---
 
-### Combined Consultations
+### Combined queries
 
 Finally, we can conduct consultations involving data from both databases (PostgreSQL and Oracle). This allows us to work with information distributed in an integrated manner:
 
