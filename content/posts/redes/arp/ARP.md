@@ -27,7 +27,7 @@ En la respuesta ARP, se puede observar que la dirección de destino es la del di
 
 ## Actualización de la caché ARP
 
-Cuando se realiza una operación de ping, tanto el emisor como el receptor se añaden mutuamente a su respectiva tabla ARP. Al consultar ambas tablas, se puede verificar que las correspondencias han sido registradas.
+Cuando se realiza una operación de ping, tanto el emisor como el receptor se agregan mutuamente a sus respectivas tablas ARP. Al consultar ambas tablas, se puede verificar que las correspondencias han sido registradas.
 
 El tiempo de permanencia de las entradas en la caché es, generalmente, de 120 segundos; una vez transcurrido este plazo, la entrada se elimina automáticamente.
 
