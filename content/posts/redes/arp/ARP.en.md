@@ -10,7 +10,7 @@ hero: /images/redes/arp/portada.png
 
 The Address Resolution Protocol (ARP) is fundamental in computer networks to map IP addresses to physical link layer addresses (MAC). Its main function is to find the MAC address associated with a specific IP address on a local network. When one device needs to communicate with another on the same network, it uses ARP to determine the MAC address of the destination before sending data.
 
-### Nature of ARP Requests
+## Nature of ARP Requests
 
 ARP requests are broadcast messages, as the destination address in the header is a broadcast address. This address has all its bits set to 1, which in MAC addresses is represented as `FF:FF:FF:FF:FF:FF`.
 
@@ -18,14 +18,14 @@ When the device with the requested IP address (for example, `192.168.1.1`) recei
 
 ![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.001.jpeg)
 
-### Nature of ARP Responses
+## Nature of ARP Responses
 
 In an ARP response, the destination address is that of the device that initiated the request. Therefore, the response is not a broadcast message, but a unicast (point-to-point) communication.
 
 ![](/redes/arp/img/Aspose.Words.239ce20f-0f3b-447a-b584-fd1166c210d0.002.jpeg)
 
 
-### ARP Cache Update Process
+## ARP Cache Update Process
 
 When a ping operation is performed, both the sender and the receiver add each other to their respective ARP tables. By consulting both tables, it can be verified that the correspondences have been registered.
 
@@ -33,7 +33,7 @@ The retention time for entries in the cache is generally 120 seconds; once this 
 
 Devices that did not participate in the communication do not store any information in their ARP cache regarding said transaction.
 
-### Using the `ip neigh` Command
+## Using the `ip neigh` Command
 
 The `ip neigh` command allows management of the ARP table, where IP-to-MAC address relationships are stored. This command can be used to view the table, add, delete, or modify entries, as well as adjust the lifetime of entries.
 
@@ -47,14 +47,14 @@ The `ip neigh` command allows management of the ARP table, where IP-to-MAC addre
 
 This command is the modern alternative and complement to the traditional `arp` command.
 
-### Gratuitous ARP
+## Gratuitous ARP
 
 A Gratuitous ARP is a request issued by a device to inform other devices on the network about its own IP and MAC address, thereby updating their ARP tables.
 
 Its primary purpose is to ensure that all devices have the most up-to-date information possible. One of its most common uses is the detection of IP address conflicts; if another device responds to a gratuitous ARP packet, it indicates that the IP address is already in use.
 
 
-### ARP Spoofing Attack
+## ARP Spoofing Attack
 
 ARP Spoofing consists of modifying the data flow between a victim device and its default gateway. The attacker sends fake ARP responses to associate their own MAC address with the IP address of the gateway on the victim's machine, thereby achieving a Man-in-the-Middle (MITM) attack.
 
@@ -73,7 +73,7 @@ This attack requires the attacker to have access to the local network. To preven
 - Employing encryption protocols such as IPsec and SSL/TLS.
 - Configuring static entries in the ARP table.
 
-### MAC Flooding and MAC Spoofing
+## MAC Flooding and MAC Spoofing
 
 **MAC Flooding**: Consists of saturating the MAC address table of a network device (such as a switch) by sending a massive amount of fake addresses. When the table is full, the switch begins to forward traffic to all its ports (acting like a hub), which can allow data interception or lead to a denial of service (DoS).
 
