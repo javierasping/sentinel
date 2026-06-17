@@ -1,44 +1,44 @@
 ---
 title: "Installation and Configuration of MariaDB in Debian 12"
 date: 2024-09-01T10:00:00+00:00
-Description: Install MariaDB in Debian
+description: Install MariaDB in Debian
 tags: [MariaDB,Debian]
 hero: images/base_de_datos/instalar_mariadb/instalar_mariadb.png
 ---
 
-## Installation and configuration of MariaDB in Debian 12
+## Installation and Configuration of MariaDB in Debian 12
 
 To install MariaDB in Debian 12, follow these steps:
 
 1. **Update the repositories and install the MariaDB package**:
 
- First, update your system repositories and install MariaDB:
+    First, update your system repositories and install MariaDB:
 
-   ```bash
+    ```bash
     javiercruces@jcruces:~$ sudo apt update
     javiercruces@jcruces:~$ sudo apt install mariadb-server
-   ```
+    ```
 
 2. **Enable and start the MariaDB service**:
 
- Once installed, set MariaDB to start automatically on boot and then start the service:
+    Once installed, set MariaDB to start automatically on boot and then start the service:
 
-   ```bash
+    ```bash
     javiercruces@jcruces:~$ sudo systemctl start mariadb
     javiercruces@jcruces:~$ sudo systemctl enable mariadb
-   ```
+    ```
 
 3. **Configure MariaDB**:
 
- Run the security script to make initial settings:
+    Run the security script to make initial settings:
 
-   ```bash
+    ```bash
     javiercruces@jcruces:~$ sudo mysql_secure_installation
-   ```
+    ```
 
-Then, answer the following questions from the assistant:
+    Then, answer the following questions from the assistant:
 
-   ```bash
+    ```bash
 # Enter the current password for root (press Enter if there is no password):
 Enter current password for root (enter for none):  
 `Enter`
@@ -62,39 +62,38 @@ Remove test database and access to it? [Y/n]:
 # Reload privilege tables now? [Y/n]:
 Reload privilege tables now? [Y/n]:  
 `Y`
-
-   ```
+    ```
 
 4. **Create a new user and assign permissions**:
 
- Connect to MariaDB as root:
+    Connect to MariaDB as root:
 
-   ```bash
+    ```bash
     javiercruces@jcruces:~$ sudo mysql -u root
-   ```
+    ```
 
-Then, create a new user and grant full permissions on the database:
+    Then, create a new user and grant full permissions on the database:
 
-   ```sql
-    CREATE USER 'javiercruces'@'localhost' IDENTIFIED BY 'tu_contraseña';
+    ```sql
+    CREATE USER 'javiercruces'@'localhost' IDENTIFIED BY 'your_password';
     GRANT ALL PRIVILEGES ON *.* TO 'javiercruces'@'localhost' WITH GRANT OPTION;
     FLUSH PRIVILEGES;
     EXIT;
-   ```
+    ```
 
 5. **Connect using the new user**:
 
- You can now connect to MariaDB with the newly created user:
+    You can now connect to MariaDB with the newly created user:
 
-   ```bash
+    ```bash
     javiercruces@jcruces:~$ mysql -u javiercruces -p
-   ```
+    ```
 
 6. **Create a new database, insert data, and query the table**:
 
- Create a database, a table, and add some data:
+    Create a database, a table, and add some data:
 
-   ```sql
+    ```sql
     CREATE DATABASE futbol;
     USE futbol;
 
@@ -107,21 +106,21 @@ Then, create a new user and grant full permissions on the database:
     INSERT INTO titulos_champions (equipo, campeonatos) VALUES
     ('Real Madrid', 15),
     ('Barcelona', 5);
-   ```
+    ```
 
-Then, perform a query to verify the data:
+    Then, perform a query to verify the data:
 
-   ```sql
-   SELECT * FROM titulos_champions;
-   ```
+    ```sql
+    SELECT * FROM titulos_champions;
+    ```
 
-The expected output should be:
+    The expected output should be:
 
-   ```sql
-   +----+--------------+--------------+
-   | id | equipo       | campeonatos  |
-   +----+--------------+--------------+
-   |  1 | Real Madrid |           15 |
-   |  2 | Barcelona    |            5 |
-   +----+--------------+--------------+
-   ```
+    ```plaintext
+    +----+--------------+--------------+
+    | id | equipo       | campeonatos  |
+    +----+--------------+--------------+
+    |  1 | Real Madrid |           15 |
+    |  2 | Barcelona    |            5 |
+    +----+--------------+--------------+
+    ```
