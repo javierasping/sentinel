@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Configuración de switches en GNS3"
 date: 2023-09-08T10:00:00+00:00
 description: Aprenderás a configurar los switches de GNS3 como los cisco 7200 como uno .
@@ -12,13 +12,13 @@ Aprenderás a configurar switches en GNS3, tanto dispositivos genéricos como sw
 
 ## Preparación escenario
 
-Lo primero que haré sera montar el escenario :
+Lo primero que haré será montar el escenario :
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.001.jpeg)
 
 ### Configuración de red de los clientes
 
-A continuación configurare las tarjetas de red de los clientes , aprovechando que la nube NAT incluye un servidor DHCP.
+A continuación configuraré las tarjetas de red de los clientes , aprovechando que la nube NAT incluye un servidor DHCP.
 
 Para hacer esto escribimos en los VPCS el siguiente comando :
 
@@ -36,7 +36,7 @@ Para hacer esto escribimos en los VPCS el siguiente comando :
 
 **1 PC1 y PC3 pertenecen a la VLAN 10, PC2 y PC4 pertenecen a la VLAN 20. Demuestra el funcionamiento correcto de ambas VLAN y que no hay conectividad entre PC2 y PC3. ¿Puedes hacerlo con los switches Ethernet que trae GNS3? ¿Encuentras alguna limitación? ¿Cuáles son las distintos tipos (types) que puede tener un puerto y en qué se diferencian?**
 
-Para configurar las VLANS en los switches , le damos clic derecho y a continuación realizamos la siguiente configuración :
+Para configurar las VLANs en los switches , le damos clic derecho y a continuación realizamos la siguiente configuración :
 
 Para el switch 3 (PC1 y PC2)
 
@@ -70,17 +70,17 @@ Tenemos que tener en cuenta que los dispositivos que no pertenecen a la VLAN 10 
 
 El ejercicio A podemos hacerlo perfectamente con los switches que trae GNS3 , encontraremos una limitación importante , ya que los switches solo permiten que las bocas pertenezcan a una VLAN . 
 
-Al realizar el ejercicio debemos de tener en cuenta los  types que puede tener un puerto , los que hemos utilizado son los dos primeros  :
+Al realizar el ejercicio debemos de tener en cuenta los tipos que puede tener un puerto , los que hemos utilizado son los dos primeros  :
 
 - Access: Este es el destinado para un equipo final , es decir un cliente ya que se encarga de eliminar el etiquetado que va en el encabezado.
 - Dot1q:Este es el encargado de interconectar dispositivos de red entre si , se encarga de añadir el etiquetado en el encabezado para mandar el paquete a otro dispositivo y que este sepa a que VLAN pertenece .
 - QinQ : Es similar a dot1q pero este además se encarga de añadir en el etiquetado , el tipo de paquete para identificarlos .
 
-Teniendo esto en cuenta podemos hacer una analogía con la practica de switches físicos : Los puertos untagged –> Access 
+Teniendo esto en cuenta podemos hacer una analogía con la práctica de switches físicos : Los puertos untagged –> Access 
 
 Los puertos tagged –> Dot1q 
 
-Al utilizar estos switches el protocolo 802.1Q pero “con menos funciones” no podemos indicar que VLANS queremos que utilice los puertos configurados como Dot1q , sino que este a través de la VLAN por defecto pasara los paquetes etiquetados de todas las VLANS . 
+Al utilizar estos switches el protocolo 802.1Q pero “con menos funciones” no podemos indicar que VLANs queremos que utilice los puertos configurados como Dot1q , sino que este a través de la VLAN por defecto pasará los paquetes etiquetados de todas las VLANs . 
 
 ## Ejercicio B
 
@@ -102,11 +102,11 @@ Como estos 2 PCS pertenecen a la misma VLAN que la nube NAT pueden comunicarse s
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.016.png)
 
-Con el servidor de datos nos toparemos con la limitación  ya que únicamente un puerto puede pertenecer a una VLAN , solo una pareja de nuestros PCs podrán comunicarse . Esto podríamos evitarlo configurando el servidor como una “maquina real” con 2 interfaces virtuales y diciéndole al switch que cada una pertenece a una VLAN distinta .  
+Con el servidor de datos nos toparemos con la limitación  ya que únicamente un puerto puede pertenecer a una VLAN , solo una pareja de nuestros PCs podrán comunicarse . Esto podríamos evitarlo configurando el servidor como una “máquina real” con 2 interfaces virtuales y diciéndole al switch que cada una pertenece a una VLAN distinta .  
 
 ### CISCO 3725
 
-Para comenzar a utilizar este dispositivo , tendremos que añadirle espacio al disco para que podamos  iniciarlo  ,  además  podemos  añadir  el  modulo  de  16  bocas  Ethernet  de  forma predeterminada así no tendremos que hacerlo a mano mas adelante .
+Para comenzar a utilizar este dispositivo , tendremos que añadirle espacio al disco para que podamos  iniciarlo  ,  además  podemos  añadir  el  módulo  de  16  bocas  Ethernet  de  forma predeterminada así no tendremos que hacerlo a mano mas adelante .
 
 Para realizar esta configuración deberemos de tener importado el router y acceder a Edit > preferences > IOS routers . 
 
@@ -116,7 +116,7 @@ Una  vez modificada la plantilla colocaremos los 3725 en el escenario y montarem
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.018.png)
 
-Debemos de tener en cuenta que las interfaces FastEthernet0/0 y FastEthernet0/1 funcionan como routers , es decir no podemos utilizarlos como switch . Los puertos que se comportan como switch son todos los de  FastEthernet1  así que sera los que utilicemos .
+Debemos de tener en cuenta que las interfaces FastEthernet0/0 y FastEthernet0/1 funcionan como routers , es decir no podemos utilizarlos como switch . Los puertos que se comportan como switch son todos los de  FastEthernet1  así que será los que utilicemos .
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.019.png)
 
@@ -128,7 +128,7 @@ A continuación le diremos a estos puertos que tienen que funcionar como si fues
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.022.png)
 
-Ahora crearemos las vlans usando los siguientes comandos , para cada uno de los switches : 
+Ahora crearemos las VLANs usando los siguientes comandos , para cada uno de los switches : 
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.023.png)
 
@@ -142,7 +142,7 @@ Ahora le asignaremos  a los puertos su VLAN correspondiente :
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.026.png)
 
-A continuación configuraremos el puerto que une a los dos 3725 , para esto lo ponemos en modo trunk  y permitimos el trafico encapsulado de todas las VLANS por este puerto .
+A continuación configuraremos el puerto que une a los dos 3725 , para esto lo ponemos en modo trunk  y permitimos el tráfico encapsulado de todas las VLANs por este puerto .
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.027.png)
 
@@ -152,9 +152,9 @@ Por ultimo guardaremos los cambios para que si se apaga el equipo mantenga las m
 
 Con esto habremos configurado el primer 3725 , su homologo a este , es decir el que conecta a PC3 y PC4 , tendríamos que hacer lo mismo adaptado a los puertos en los que estén conectado los dispositivos . 
 
-Continuaremos configurando el 3725 que une ambos “switches” y da salida al servidor de datos y a internet . Para ello crearemos las VLANS 10 y 20 :
+Continuaremos configurando el 3725 que une ambos “switches” y da salida al servidor de datos y a internet . Para ello crearemos las VLANs 10 y 20 :
 
-![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.029.png)Y le asignaremos al servidor de datos ambas VLANS mientras que a la salida a internet solo la VLAN 10:
+![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.029.png)Y le asignaremos al servidor de datos ambas VLANs mientras que a la salida a internet solo la VLAN 10:
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.030.png)
 
@@ -164,11 +164,11 @@ Ahora configuraremos las interfaces que interconectan los switches :
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.032.png)
 
-A continuación crearemos las dos subintrantes para permitir el trafico entre ellas y le asignaremos direcciones ip .
+A continuación crearemos las dos subinterfaces para permitir el tráfico entre ellas y le asignaremos direcciones ip .
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.033.png)
 
-Ahora el servidor de datos lo conectaremos al puerto Fe0/0 y en el crearemos dos subintrantes , yo utilizare una maquina debian . Esto lo haremos editando en network interfaces :
+Ahora el servidor de datos lo conectaremos al puerto Fe0/0 y en el crearemos dos subinterfaces , yo utilizare una máquina debian . Esto lo haremos editando en network interfaces :
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.034.png)
 
@@ -176,7 +176,7 @@ Comprobamos que las interfaces estén subidas  :
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.035.png)
 
-Ahora crearemos las rutas de enroutamiento:
+Ahora crearemos las rutas de enrutamiento:
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.036.png)
 
@@ -188,11 +188,11 @@ Podemos hacerle ping al servidor de datos y tendremos conectividad con el :
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.038.png)
 
-Vemos que el trafico es capaz de llegar al servidor de datos sin embargo este no es capaz de “hacer el camino de vuelta ”.
+Vemos que el tráfico es capaz de llegar al servidor de datos sin embargo este no es capaz de “hacer el camino de vuelta ”.
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.039.jpeg)
 
-También he configurado enroutamiento inter vlan , siguiendo los enlaces de la bibliografía sin embargo no me ha funcionado tampoco.
+También he configurado enrutamiento inter vlan , siguiendo los enlaces de la bibliografía sin embargo no me ha funcionado tampoco.
 
 
 ## Ejercicio C
@@ -201,28 +201,28 @@ Responde a las siguientes preguntas sobre los apartados anteriores:
 
 **C.1 ¿Qué pasa con el direccionamiento cuando añades la nube de NAT? ¿Cuál es el motivo de este cambio?** 
 
-Cuando ponemos la nube NAT , esta incluye un servidor DHCP el cual tiene la direccion ip 192.168.122.1 y asignas direcciones de la red 192.168.122.1/24 . A través de la configuración que nos proporciona este nos permitirá navegar por internet .
+Cuando ponemos la nube NAT , esta incluye un servidor DHCP el cual tiene la dirección IP 192.168.122.1 y asignas direcciones de la red 192.168.122.1/24 . A través de la configuración que nos proporciona este nos permitirá navegar por internet .
 
 **C.2¿Por qué es necesario asignar un disco duro a cada uno de los dispositivos y qué tamaño mínimo debe tener para que el escenario funcione?**
 
-Para los routers cisco 3725 , para que este inicie y supere el chequeo inicial este debe tener como mínimo un espacio de 1MB , además si queremos guardar las configuraciones esto sera necesario .Por ejemplo para guardar la información de las vlans sera necesario.
+Para los routers cisco 3725 , para que este inicie y supere el chequeo inicial este debe tener como mínimo un espacio de 1MB , además si queremos guardar las configuraciones esto será necesario .Por ejemplo para guardar la información de las VLANs será necesario.
 
 **C.3¿Qué diferencia hay entre configurar un puerto del switch en modo **access** y en modo **trunk** y cuándo hay que usar cada uno de ellos?**
 
 El modo access esta pensado para conectar un cliente final es decir , un pc . Es el equivalente a el “ puerto untagged “ , sin embargo este tiene una limitación el cual es que solo puede pertenecer a una vlan , este puerto se encarga además de eliminar el encabezado que añaden los puertos trunk para que los dispositivos finales puedan entender los paquetes .
 
-Por otro lado el modo trunk permite interconectar un dispositivo de red con otro , por ejemplo un switch con otro switch , seria el equivalente a un “puerto tagged” , este además permite el trafico de varios vlans , etiquetando las tramas para que los demás dispositivos puedan interpretar la VLAN a la que pertenece el paquete  .
+Por otro lado el modo trunk permite interconectar un dispositivo de red con otro , por ejemplo un switch con otro switch , seria el equivalente a un “puerto tagged” , este además permite el tráfico de varios VLANs , etiquetando las tramas para que los demás dispositivos puedan interpretar la VLAN a la que pertenece el paquete  .
 
 
 ## Ejercicio D
 
 **Sustituye ahora PC1 y PC3 por dos máquinas **Linux con Firefox** instalado (puedes encontrar las imágenes en el MarketPlace de GNS3) y comprueba que navegan correctamente.**
 
-Lo añadimos al escenario y los conectamos a las mismas bocas que teníamos nuestros VPCS para que mantengan la configuración anterior de las VLANS y tengamos acceso a la nube NAT .
+Lo añadimos al escenario y los conectamos a las mismas bocas que teníamos nuestros VPCS para que mantengan la configuración anterior de las VLANs y tengamos acceso a la nube NAT .
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.040.png)
 
-Una vez hecho esto accederemos a la interfaz de la maquina y configuraremos su tarjeta de red por DHCP , para ello accederemos al panel de control :
+Una vez hecho esto accederemos a la interfaz de la máquina y configuraremos su tarjeta de red por DHCP , para ello accederemos al panel de control :
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.041.png)
 
@@ -250,9 +250,9 @@ Aquí la prueba con el segundo tiny core :
 
 **Monta un Port Bonding entre el switch de cabecera y los otros dos. Demuestra su correcto funcionamiento y explica detalladamente como lo has configurado. Explica los flags que puede tener un portchannel.**
 
-A continuación deberemos de configurar los puertos extra que hemos añadido al escenario para que estén en modo trunk y se respete nuestro escenario con las VLANS , es repetir lo que hemos hecho anteriormente.
+A continuación deberemos de configurar los puertos extra que hemos añadido al escenario para que estén en modo trunk y se respete nuestro escenario con las VLANs , es repetir lo que hemos hecho anteriormente.
 
-Lo primero que deberemos de hacer sera crear las interfaces lógicas ,sin embargo  este paso lo podemos omitir ya que posteriormente si  no existe la interfaz la creara automáticamente .
+Lo primero que deberemos de hacer será crear las interfaces lógicas ,sin embargo  este paso lo podemos omitir ya que posteriormente si  no existe la interfaz la creara automáticamente .
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.047.png)
 
@@ -299,11 +299,11 @@ Estos tienen unas serie de  “modos ” en los cuales cambiara el comportamient
 
 **Port Mirroring: Conecta un PC5 al Switch1 y monitoriza el tráfico que sale de PC1. Realiza una captura con Wireshark en la boca correspondiente al PC5 y explica el tráfico capturado.**
 
-Lo primero que haremos sera configurar el port mirroring , en mi caso enviara el trafico de la boca 1/5 a la 1/4.
+Lo primero que haremos será configurar el port mirroring , en mi caso enviara el tráfico de la boca 1/5 a la 1/4.
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.056.png)
 
-Hare en el pc5 un ping a google y monitorizare el cable que va desde el router a pc4 , para comprobar que este funcionando el port mirroring :
+Hare en el pc5 un ping a google y monitorizare el cable que va desde el router a pc4 , para comprobar que esté funcionando el port mirroring :
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.057.png)
 
@@ -311,7 +311,7 @@ Vemos que hemos podido “interceptar ” un ping , proveniente de la dirección
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.058.png)
 
-Esto hará que el trafico entrante y saliente del puerto que hemos puesto como sniffer nos lo reenvié al puerto que escucha .
+Esto hará que el tráfico entrante y saliente del puerto que hemos puesto como sniffer nos lo reenvié al puerto que escucha .
 
 Podemos comprobar el estado de la sesión del port mirroring con este comando :
 
