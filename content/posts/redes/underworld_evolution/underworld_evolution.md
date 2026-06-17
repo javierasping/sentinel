@@ -171,7 +171,7 @@ Queda comprobado que tenemos conectividad entre todos los routers; los PC no pod
 
 Los licántropos por su parte, te contratan para que les asignes también por DHCP sus IPs, pero te indican que no pueden recibir las primeras 10 direcciones de su rango (sin contar la de red ni la de la puerta de enlace), ya que éstas, están reservadas para los jefes de su clan que están de viaje y volverán en unos días.
 
-Con la maquina conectada a la nube NAT y la tarjeta que este conectada configurada por DHCP nos descargaremos el servidor DHCP , para esto primero deberemos de hacer un apt update ya que la maquina no trae cargados los repositorios en memoria :
+Con la máquina conectada a la nube NAT y la tarjeta que esté conectada configurada por DHCP nos descargaremos el servidor DHCP , para esto primero deberemos de hacer un apt update ya que la máquina no trae cargados los repositorios en memoria :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.029.png)
 
@@ -189,7 +189,7 @@ Ahora configuraremos el ámbito con los requisitos que nos solicitan los licánt
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.033.png)
 
-Tendremos que tener en cuenta que la configuración que pongamos aquí sea coherente con la configuración de red que tenemos , tenemos que tener en cuenta que tenemos una /28 así que en este caso solo podremos tener 14 direcciónes asignables . 
+Tendremos que tener en cuenta que la configuración que pongamos aquí sea coherente con la configuración de red que tenemos , tenemos que tener en cuenta que tenemos una /28 así que en este caso solo podremos tener 14 direcciones asignables . 
 
 Pero si seguimos el enunciado las 10 primeras no las quieren por lo que solo podremos asignar 3 a nuestros clientes .
 
@@ -232,7 +232,7 @@ Ahora reiniciaremos el servicio :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.041.png)
 
-Comprobaremos el estado del mismo para comprobar que este funcionando correctamente : 
+Comprobaremos el estado del mismo para comprobar que esté funcionando correctamente : 
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.042.jpeg)
 
@@ -254,7 +254,7 @@ Para demostrar que funciona la regla , aquí vemos una captura entre el Router 1
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.045.png)
 
-Vemos que una vez fuera de la red entre R1 y MARCUS se ha aplicado SNAT :
+vimos que una vez fuera de la red entre R1 y MARCUS se ha aplicado SNAT :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.046.png)
 
@@ -265,11 +265,11 @@ Me he creado un archivo llamado iptables para guardar todas las reglas de la pra
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.047.png)
 
-Para demostrar que funciona la regla , aquí vemos una captura entre el Router 2 y el PC3. Vemos que el origen es una dirección ip privada :
+Para demostrar que funciona la regla , aquí vemos una captura entre el Router 2 y el PC3. Vemos que el origen es una dirección IP privada :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.048.png)
 
-Vemos que una vez fuera de la red entre R2 y MARCUS se ha aplicado SNAT , ya que el origen ahora es una dirección ip publica :
+Vemos que una vez fuera de la red entre R2 y MARCUS se ha aplicado SNAT , ya que el origen ahora es una dirección IP pública :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.049.png)
 
@@ -279,7 +279,7 @@ Me he creado un archivo llamado iptables para guardar todas las reglas de la pra
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.050.png)
 
-Para demostrar que funciona la regla , aquí vemos una captura entre el Router 3 y el PC5. Vemos que el origen es una dirección ip privada :
+Para demostrar que funciona la regla , aquí vemos una captura entre el Router 3 y el PC5. Vemos que el origen es una dirección IP privada :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.051.png)
 
@@ -297,11 +297,11 @@ Para demostrar que funciona la regla , aquí vemos una captura entre el Router 4
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.054.png)
 
-Vemos que una vez fuera de la red entre R4 y ALEXANDER se ha aplicado SNAT , ya que el origen ahora es una dirección ip publica :
+Vemos que una vez fuera de la red entre R4 y ALEXANDER se ha aplicado SNAT , ya que el origen ahora es una dirección IP pública :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.055.png)
 
-Con el escenario actual cualquier PC es capaz de llegar  a todas las direcciónes publicas de nuestra red :
+Con el escenario actual cualquier PC es capaz de llegar  a todas las direcciones públicas de nuestra red :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.056.png)
 
@@ -383,7 +383,7 @@ Comprobamos que la regla está funcionando y podemos conectarnos desde otra red:
 
 #### Los Vampiros no puedan comunicarse con el resto de especies
 
-Pondré una política por defecto DROP en la tabla FORWARD para que tire todo el trafico proveniente de la red de los vampiros :
+Pondré una política por defecto DROP en la tabla FORWARD para que tire todo el tráfico proveniente de la red de los vampiros :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.070.png)
 
@@ -689,7 +689,7 @@ R4 –> a los extremos
 
 ### Configuración DHCP Licántropos
 
-Los licántropos por su parte, te contratan para que les asignes también por DHCP sus IPs, pero te indican que no pueden recibir las primeras 10 direcciónes de su rango (sin contar la de red ni la de la puerta de enlace), ya que éstas, están reservadas para los jefes de su clan que están de viaje y volverán en unos días.
+Los licántropos por su parte, te contratan para que les asignes también por DHCP sus IPs, pero te indican que no pueden recibir las primeras 10 direcciones de su rango (sin contar la de red ni la de la puerta de enlace), ya que éstas, están reservadas para los jefes de su clan que están de viaje y volverán en unos días.
 
 Lo primero que haremos sera establecer el rango de IP´s excluidas del conjunto (pool) direcciónes que podrá asignar el servicio indicando la ip inicial y final del rango, ambas incluidas:
 
@@ -707,7 +707,7 @@ Incluimos la puerta de enlace que ofrecerá el servicio :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.139.png)
 
-Con esto ya tendríamos montado el servidor DHCP , con el siguiente comando podemos ver las estadísticas del servicio para ver si este esta funcionando :
+Con esto ya tendríamos montado el servidor DHCP , con el siguiente comando podemos ver las estadísticas del servicio para ver si este está funcionando :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.140.png)
 
@@ -733,7 +733,7 @@ Comprobaremos que esta funcionando :
 
 **Router 1:**
 
-Lo primero que haremos sera crear una acl para permitir el trafico que queremos hacer SNAT :
+Lo primero que haremos sera crear una acl para permitir el tráfico que queremos hacer SNAT :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.145.png)
 
@@ -768,7 +768,7 @@ Vemos que la regla tiene HITS:
 
 **Router 2:**
 
-Lo primero que haremos sera crear una acl para permitir el trafico que queremos hacer SNAT :
+Lo primero que haremos sera crear una acl para permitir el tráfico que queremos hacer SNAT :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.153.png)
 
@@ -799,7 +799,7 @@ El SNAT estaría funcionando , así que vamos a comprobarlo viendo si la regla t
 
 **Router 3:**
 
-Lo primero que haremos sera crear una acl para permitir el trafico que queremos hacer SNAT :
+Lo primero que haremos sera crear una acl para permitir el tráfico que queremos hacer SNAT :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.160.png)
 
@@ -830,7 +830,7 @@ El SNAT estaría funcionando , así que vamos a comprobarlo viendo si la regla t
 
 **Router 4:**
 
-Lo primero que haremos sera crear una acl para permitir el trafico que queremos hacer SNAT :
+Lo primero que haremos sera crear una acl para permitir el tráfico que queremos hacer SNAT :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.167.png)
 
@@ -904,7 +904,7 @@ Para ello vamos a borrar la regla existente que hay en la lista :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.182.png)
 
-Ahora denegaremos el trafico saliente de la red de los vampiros :
+Ahora denegaremos el tráfico saliente de la red de los vampiros :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.183.png)
 
@@ -982,6 +982,6 @@ Ahora  vamos a permitir que los vampiros puedan conectarse a los humanos usando 
 
 No sé por qué no funciona... solo va si no coloco ninguna regla, incluso permitiendo todo el tráfico SSH tampoco... También he permitido todo el ICMP, pero nada, sigue ocurriendo lo mismo. 
 
-El nat y el SNAT están funcionando bien pero a la hora de hacer las reglas ssh pasa lo siguiente en la red local al ser mandados de vuelta el router los corta a pesar de que el trafico esta permitido 
+Tanto el nat y el SNAT están funcionando bien pero a la hora de hacer las reglas ssh pasa lo siguiente en la red local al ser mandados de vuelta el router los corta a pesar de que el tráfico está permitido 
 
 [ref1]: /redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.031.jpeg
