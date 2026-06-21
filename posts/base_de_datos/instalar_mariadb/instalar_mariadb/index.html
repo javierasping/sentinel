@@ -17,27 +17,27 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>javiercruces@jcruces:~$ sudo systemctl enable mariadb
 </span></span></code></pre></div></li><li><p><strong>Configura MariaDB</strong>:</p><p>Ejecuta el script de seguridad para realizar configuraciones iniciales:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@jcruces:~$ sudo mysql_secure_installation
 </span></span></code></pre></div><p>A continuación, responde a las siguientes preguntas del asistente:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Ingresa la contraseña actual para root (presiona Enter si no hay contraseña):</span>
-</span></span><span style=display:flex><span>Enter current password <span style=color:#66d9ef>for</span> root <span style=color:#f92672>(</span>enter <span style=color:#66d9ef>for</span> none<span style=color:#f92672>)</span>:  
+</span></span><span style=display:flex><span>Enter current password <span style=color:#66d9ef>for</span> root <span style=color:#f92672>(</span>enter <span style=color:#66d9ef>for</span> none<span style=color:#f92672>)</span>:
 </span></span><span style=display:flex><span><span style=color:#e6db74>`</span>Enter<span style=color:#e6db74>`</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># ¿Establecer una nueva contraseña para root? [S/n]:</span>
-</span></span><span style=display:flex><span>Set root password? <span style=color:#f92672>[</span>Y/n<span style=color:#f92672>]</span>:  
+</span></span><span style=display:flex><span>Set root password? <span style=color:#f92672>[</span>Y/n<span style=color:#f92672>]</span>:
 </span></span><span style=display:flex><span><span style=color:#e6db74>`</span>Y<span style=color:#e6db74>`</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># ¿Eliminar usuarios anónimos? [S/n]:</span>
-</span></span><span style=display:flex><span>Remove anonymous users? <span style=color:#f92672>[</span>Y/n<span style=color:#f92672>]</span>:  
+</span></span><span style=display:flex><span>Remove anonymous users? <span style=color:#f92672>[</span>Y/n<span style=color:#f92672>]</span>:
 </span></span><span style=display:flex><span><span style=color:#e6db74>`</span>Y<span style=color:#e6db74>`</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># ¿Deshabilitar el inicio de sesión remoto para root? [S/n]:</span>
-</span></span><span style=display:flex><span>Disallow root login remotely? <span style=color:#f92672>[</span>Y/n<span style=color:#f92672>]</span>:  
+</span></span><span style=display:flex><span>Disallow root login remotely? <span style=color:#f92672>[</span>Y/n<span style=color:#f92672>]</span>:
 </span></span><span style=display:flex><span><span style=color:#e6db74>`</span>Y<span style=color:#e6db74>`</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># ¿Eliminar la base de datos de prueba y el acceso a ella? [S/n]:</span>
-</span></span><span style=display:flex><span>Remove test database and access to it? <span style=color:#f92672>[</span>Y/n<span style=color:#f92672>]</span>:  
+</span></span><span style=display:flex><span>Remove test database and access to it? <span style=color:#f92672>[</span>Y/n<span style=color:#f92672>]</span>:
 </span></span><span style=display:flex><span><span style=color:#e6db74>`</span>Y<span style=color:#e6db74>`</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># ¿Recargar las tablas de privilegios ahora? [S/n]:</span>
-</span></span><span style=display:flex><span>Reload privilege tables now? <span style=color:#f92672>[</span>Y/n<span style=color:#f92672>]</span>:  
+</span></span><span style=display:flex><span>Reload privilege tables now? <span style=color:#f92672>[</span>Y/n<span style=color:#f92672>]</span>:
 </span></span><span style=display:flex><span><span style=color:#e6db74>`</span>Y<span style=color:#e6db74>`</span>
 </span></span></code></pre></div></li><li><p><strong>Crea un nuevo usuario y asigna permisos</strong>:</p><p>Conéctate a MariaDB como root:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@jcruces:~$ sudo mysql -u root
 </span></span></code></pre></div><p>Luego, crea un nuevo usuario y dale permisos completos sobre la base de datos:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>USER</span> <span style=color:#e6db74>&#39;javiercruces&#39;</span><span style=color:#f92672>@</span><span style=color:#e6db74>&#39;localhost&#39;</span> IDENTIFIED <span style=color:#66d9ef>BY</span> <span style=color:#e6db74>&#39;tu_contraseña&#39;</span>;

@@ -36,7 +36,7 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>gS2ED2zfzMHBttMpFhH3MvRpr8D4ALEDTumNcib8A2g<span style=color:#f92672>=</span>
 </span></span></code></pre></div><p>Una vez generado las claves , vamos a proceder a configurar el servidor de acceso remoto Wireguard , en mi caso voy a llamar al fichero de configuración wg0.conf . Voy a añadirte en cada parámetro de la configuración un comentario para que sepas que tienes que poner en cada campo :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ sudo cat /etc/wireguard/wg0.conf
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>Interface<span style=color:#f92672>]</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># IP que tendrá el túnel VPN , en concreto la interfaz wg0 que es como has llamado el fichero de conf </span>
+</span></span><span style=display:flex><span><span style=color:#75715e># IP que tendrá el túnel VPN , en concreto la interfaz wg0 que es como has llamado el fichero de conf</span>
 </span></span><span style=display:flex><span>Address <span style=color:#f92672>=</span> 10.99.99.1
 </span></span><span style=display:flex><span><span style=color:#75715e>#Clave privada del servidor</span>
 </span></span><span style=display:flex><span>PrivateKey <span style=color:#f92672>=</span> 2Gg3EnKD+rdyMPEjMikZTwq2w0m78KrEcUsAJ/8icFA<span style=color:#f92672>=</span>
@@ -120,17 +120,17 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>    inet 10.99.99.2/24 scope global wg0
 </span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
 </span></span></code></pre></div><p>También comprobaremos las rutas que se nos ha creado en el servidor y en el cliente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ ip r
-</span></span><span style=display:flex><span>default via 90.0.0.1 dev ens3 onlink 
-</span></span><span style=display:flex><span>10.99.99.2 dev wg0 scope link 
-</span></span><span style=display:flex><span>10.99.99.4 dev wg0 scope link 
-</span></span><span style=display:flex><span>90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2 
-</span></span><span style=display:flex><span>192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1 
+</span></span><span style=display:flex><span>default via 90.0.0.1 dev ens3 onlink
+</span></span><span style=display:flex><span>10.99.99.2 dev wg0 scope link
+</span></span><span style=display:flex><span>10.99.99.4 dev wg0 scope link
+</span></span><span style=display:flex><span>90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2
+</span></span><span style=display:flex><span>192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>debian@servidor2:~$ ip r
-</span></span><span style=display:flex><span>default via 100.0.0.1 dev ens3 onlink 
-</span></span><span style=display:flex><span>10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2 
-</span></span><span style=display:flex><span>100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2 
-</span></span><span style=display:flex><span>192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1 
+</span></span><span style=display:flex><span>default via 100.0.0.1 dev ens3 onlink
+</span></span><span style=display:flex><span>10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2
+</span></span><span style=display:flex><span>100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2
+</span></span><span style=display:flex><span>192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1
 </span></span></code></pre></div><p>Vamos a comprobar que desde nuestro cliente (servidor2) tenemos acceso a las distintas maquinas de nuestra red :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>## Ping con el túnel del extremo servidor1</span>
 </span></span><span style=display:flex><span>debian@servidor2:~$ ping 10.99.99.1 -c <span style=color:#ae81ff>1</span>
 </span></span><span style=display:flex><span>PING 10.99.99.1 <span style=color:#f92672>(</span>10.99.99.1<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
@@ -171,16 +171,16 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span> <span style=color:#ae81ff>1</span>  10.99.99.1 <span style=color:#f92672>(</span>10.99.99.1<span style=color:#f92672>)</span>  18.692 ms  28.987 ms  28.951 ms
 </span></span><span style=display:flex><span> <span style=color:#ae81ff>2</span>  192.168.0.2 <span style=color:#f92672>(</span>192.168.0.2<span style=color:#f92672>)</span>  28.912 ms  28.877 ms  28.859 ms
 </span></span></code></pre></div><h4 id=configuración-cliente-android>Configuración cliente android</h4><p>La maquina virtual de android es bastante incomoda de controlar , así que voy a generarle las claves y su fichero de configuración en el servidor1 . Posteriormente se lo haremos llegar descargandonoslo de este con apache .</p><p>Nos generamos las claves para android :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ wg genkey | tee androidprivate | wg pubkey &gt; androidpublic
-</span></span><span style=display:flex><span>debian@servidor1:~$ cat androidprivate 
+</span></span><span style=display:flex><span>debian@servidor1:~$ cat androidprivate
 </span></span><span style=display:flex><span>CBY5o2iko7xXQrNAFcFDIKohOngawB1uvws7aDDgl0g<span style=color:#f92672>=</span>
-</span></span><span style=display:flex><span>debian@servidor1:~$ cat androidpublic 
+</span></span><span style=display:flex><span>debian@servidor1:~$ cat androidpublic
 </span></span><span style=display:flex><span>cBGl5QWOsbZyI2GN1MXDxUsfeMmI5sKnp3VkxW9lO3g<span style=color:#f92672>=</span>
-</span></span></code></pre></div><p>El fichero de configuración seria el siguiente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ sudo cat android.conf 
+</span></span></code></pre></div><p>El fichero de configuración seria el siguiente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ sudo cat android.conf
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>Interface<span style=color:#f92672>]</span>
 </span></span><span style=display:flex><span>Address <span style=color:#f92672>=</span> 10.99.99.4
 </span></span><span style=display:flex><span>PrivateKey <span style=color:#f92672>=</span> CBY5o2iko7xXQrNAFcFDIKohOngawB1uvws7aDDgl0g<span style=color:#f92672>=</span>
 </span></span><span style=display:flex><span>ListenPort <span style=color:#f92672>=</span> <span style=color:#ae81ff>51820</span>
-</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>Peer<span style=color:#f92672>]</span>
 </span></span><span style=display:flex><span>Publickey <span style=color:#f92672>=</span> 2/RjGUbiQuaFR7atYaQ8lcczz2wXxO9aIwfzZEMPXCQ<span style=color:#f92672>=</span>
 </span></span><span style=display:flex><span>AllowedIPs <span style=color:#f92672>=</span> 0.0.0.0/0
@@ -197,17 +197,17 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>debian@servidor1:~$ sudo wg-quick up wg0
 </span></span></code></pre></div><p>Ahora abre la aplicación de wireguard y dale a importar desde archivo y activa la conexión . Activa el túnel y asegúrate de que se produce el handshake :</p><p><img src=/vpn/acceso_remoto_wireguard/img/Pastedimage20240127123150.png alt></p><p>Si abrimos una terminal podremos hacerle pings a los clientes :</p><p><img src=/vpn/acceso_remoto_wireguard/img/Pastedimage20240127123551.png alt></p><h4 id=configuración-del-cliente-windows>Configuración del cliente Windows</h4><p>Vamos a repetir el proceso pero ahora con nuestro cliente Windows .</p><p>Para poder copiar y pegar voy a realizar la generación de claves de este cliente en la maquina servidor1 .</p><p>Comenzaremos generando el par de claves</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ wg genkey | tee winprivate | wg pubkey &gt; winpublic
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>debian@servidor1:~$ cat winprivate 
+</span></span><span style=display:flex><span>debian@servidor1:~$ cat winprivate
 </span></span><span style=display:flex><span>QKGQEdrB9FBYRZsLNgc3qr9m8/lx+uc9n5vvj67I9m8<span style=color:#f92672>=</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>debian@servidor1:~$ cat winpublic 
+</span></span><span style=display:flex><span>debian@servidor1:~$ cat winpublic
 </span></span><span style=display:flex><span>E8VdupsWJ7vCTO7SF3oXUciUrsRgJ3p6T+F5UbbLngo<span style=color:#f92672>=</span>
-</span></span></code></pre></div><p>Nos creamos el fichero de configuración para este cliente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ cat win.conf 
+</span></span></code></pre></div><p>Nos creamos el fichero de configuración para este cliente :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ cat win.conf
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>Interface<span style=color:#f92672>]</span>
 </span></span><span style=display:flex><span>Address <span style=color:#f92672>=</span> 10.99.99.5
 </span></span><span style=display:flex><span>PrivateKey <span style=color:#f92672>=</span> QKGQEdrB9FBYRZsLNgc3qr9m8/lx+uc9n5vvj67I9m8<span style=color:#f92672>=</span>
 </span></span><span style=display:flex><span>ListenPort <span style=color:#f92672>=</span> <span style=color:#ae81ff>51820</span>
-</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>Peer<span style=color:#f92672>]</span>
 </span></span><span style=display:flex><span>Publickey <span style=color:#f92672>=</span> 2/RjGUbiQuaFR7atYaQ8lcczz2wXxO9aIwfzZEMPXCQ<span style=color:#f92672>=</span>
 </span></span><span style=display:flex><span>AllowedIPs <span style=color:#f92672>=</span> 0.0.0.0/0

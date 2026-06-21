@@ -65,41 +65,47 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id="2-essential-commands-to-retrieve-vm-information"&gt;2. Essential commands to retrieve VM information&lt;/h2&gt;
-&lt;p&gt;Once the VM is created, you can use &lt;code&gt;virsh&lt;/code&gt; to inspect and manage all its details.&lt;/p&gt;</description></item><item><title>Installation and Configuration of MariaDB in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</guid><description>&lt;h2 id="installation-and-configuration-of-mariadb-in-debian-12"&gt;Installation and configuration of MariaDB in Debian 12&lt;/h2&gt;
+&lt;p&gt;Once the VM is created, you can use &lt;code&gt;virsh&lt;/code&gt; to inspect and manage all its details.&lt;/p&gt;</description></item><item><title>Installation and Configuration of MariaDB in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_mariadb/instalar_mariadb/</guid><description>&lt;h2 id="installation-and-configuration-of-mariadb-in-debian-12"&gt;Installation and Configuration of MariaDB in Debian 12&lt;/h2&gt;
 &lt;p&gt;To install MariaDB in Debian 12, follow these steps:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Update the repositories and install the MariaDB package&lt;/strong&gt;:&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Update the repositories and install the MariaDB package&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;First, update your system repositories and install MariaDB:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo apt update
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo apt install mariadb-server
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
-&lt;li&gt;&lt;strong&gt;Enable and start the MariaDB service&lt;/strong&gt;:&lt;/li&gt;
-&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@jcruces:~$ sudo apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@jcruces:~$ sudo apt install mariadb-server
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Enable and start the MariaDB service&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;Once installed, set MariaDB to start automatically on boot and then start the service:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo systemctl start mariadb
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; javiercruces@jcruces:~$ sudo systemctl enable mariadb
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
-&lt;li&gt;&lt;strong&gt;Configure MariaDB&lt;/strong&gt;:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Run the security script to make initial settings:&lt;/p&gt;</description></item><item><title>Interconnection of database servers</title><link>https://www.javiercd.es/en/posts/base_de_datos/interconexion_de_servidores/interconexion_servidores/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/interconexion_de_servidores/interconexion_servidores/</guid><description>&lt;p&gt;This post addresses how to configure and manage connections between different databases, both homogeneous and heterogeneous, to facilitate interoperability between various database systems. Throughout the article, different connection scenarios are explored, starting with configurations between databases of the same type, such as Oracle to Oracle or PostgreSQL to PostgreSQL, and then moving towards heterogeneous connections between different technologies, such as Oracle to MySQL, PostgreSQL to Oracle, and vice versa. It also covers the steps needed to configure links, create users, and modify key configuration files, allowing remote consultations.&lt;/p&gt;</description></item><item><title>Oracle installation 19c under Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalacion_oracle_19c_debian12/instalacion_oracle/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalacion_oracle_19c_debian12/instalacion_oracle/</guid><description>&lt;p&gt;Installing Oracle 19c on Debian 12 may seem complicated, but don&amp;rsquo;t worry, I&amp;rsquo;m here to guide you in every step. In this post, I will explain to you in a simple way how to prepare your system and make the installation of Oracle 19c in Debian 12.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@jcruces:~$ sudo systemctl start mariadb
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;javiercruces@jcruces:~$ sudo systemctl enable mariadb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Configure MariaDB&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Interconnection of database servers</title><link>https://www.javiercd.es/en/posts/base_de_datos/interconexion_de_servidores/interconexion_servidores/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/interconexion_de_servidores/interconexion_servidores/</guid><description>&lt;p&gt;This post addresses how to configure and manage connections between different databases, both homogeneous and heterogeneous, to facilitate interoperability across various database systems. Throughout the article, different connection scenarios are explored, starting with configurations between databases of the same type, such as Oracle to Oracle or PostgreSQL to PostgreSQL, and then moving towards heterogeneous connections between different technologies, such as Oracle to MySQL, PostgreSQL to Oracle, and vice versa. It also covers the steps needed to configure links, create users, and modify key configuration files, allowing remote queries.&lt;/p&gt;</description></item><item><title>Oracle installation 19c under Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalacion_oracle_19c_debian12/instalacion_oracle/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalacion_oracle_19c_debian12/instalacion_oracle/</guid><description>&lt;p&gt;Installing Oracle 19c on Debian 12 may seem complicated, but don&amp;rsquo;t worry, I&amp;rsquo;m here to guide you through every step. In this post, I will explain in a simple way how to prepare your system and install Oracle 19c on Debian 12.&lt;/p&gt;
 &lt;h3 id="update-the-repositories"&gt;Update the repositories&lt;/h3&gt;
-&lt;p&gt;The first thing is to update the repositories of our virtual machine and in case we don&amp;rsquo;t have any packages we update it:&lt;/p&gt;</description></item><item><title>PostgreSQL installation in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</guid><description>&lt;p&gt;In this post, I will guide you through the process of installing PostgreSQL on Debian 12, creating a user with basic permissions, and how to create and query a database.&lt;/p&gt;
-&lt;h2 id="1-postgresql-installation"&gt;1. PostgreSQL Installation&lt;/h2&gt;
+&lt;p&gt;The first step is to update the repositories of our virtual machine and update any missing packages:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.javiercd.es/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.001.png" alt=""&gt;&lt;/p&gt;
+&lt;h3 id="install-dependencies"&gt;Install dependencies&lt;/h3&gt;
+&lt;p&gt;Next, we will install the Oracle dependencies on our system:&lt;/p&gt;</description></item><item><title>PostgreSQL installation in Debian 12</title><link>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/instalar_postgresql/instalar_postgresql/</guid><description>&lt;h2 id="1-postgresql-installation"&gt;1. PostgreSQL Installation&lt;/h2&gt;
 &lt;p&gt;To install PostgreSQL on Debian 12, follow these steps:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Update the repositories and install PostgreSQL&lt;/strong&gt;:&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Update the repositories and install PostgreSQL&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;First, make sure your system is updated and install PostgreSQL:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```bash
-sudo apt update
-sudo apt install postgresql
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start="2"&gt;
-&lt;li&gt;&lt;strong&gt;Verify that the service is running&lt;/strong&gt;:&lt;/li&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo apt install postgresql
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Verify that the service is running&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;After installation, make sure that the PostgreSQL service is running:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo systemctl status postgresql
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should see a message indicating that the service is active (running).&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;After installation, make sure that the PostgreSQL service is running:&lt;/p&gt;</description></item><item><title>Remote access configuration in MariaDB</title><link>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</guid><description>&lt;p&gt;To allow remote access to your MariaDB server, follow these steps:&lt;/p&gt;
+&lt;h2 id="2-user-creation-and-permission-assignment"&gt;2. User Creation and Permission Assignment&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Access the &lt;code&gt;postgres&lt;/code&gt; user&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Remote access configuration in MariaDB</title><link>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</link><pubDate>Sun, 01 Sep 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/base_de_datos/acceso_remoto_mariadb/acceso_remoto_mariadb/</guid><description>&lt;p&gt;To allow remote access to your MariaDB server, follow these steps:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Configure the MariaDB configuration file&lt;/strong&gt;
@@ -137,7 +143,7 @@ To deploy the stage to perform these exercises you will need to deploy the .yaml
 • We must implement the firewall to work after a machine reboot.
 • You must show proof of operation of all rules.&lt;/p&gt;</description></item><item><title>Installation of android in GNS3 with KVM</title><link>https://www.javiercd.es/en/posts/redes/android_gns3/android/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/android_gns3/android/</guid><description>&lt;p&gt;To download the Android image, you can use the following page: &lt;a href="https://www.fosshub.com/Android-x86.html" target="_blank" rel="noopener"&gt;https://www.fosshub.com/Android-x86.html&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;wget https://www.fosshub.com/Android-x86.html?dwl&lt;span style="color:#f92672"&gt;=&lt;/span&gt;android-x86_64-9.0-r2.iso
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create a KVM machine similar to a Debian installation; it is recommended to assign 2 GB of RAM and 2 CPU cores:&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create a KVM machine similar to a Debian installation, it is recommended to assign 2 GB of RAM and 2 CPU cores:&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/redes/android_gns3/img/Pastedimage20240117194542.png" alt=""&gt;&lt;/p&gt;
 &lt;p&gt;In this case, an automatic installation can be initiated:&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/redes/android_gns3/img/Pastedimage20240117194647.png" alt=""&gt;&lt;/p&gt;
@@ -146,10 +152,10 @@ To deploy the stage to perform these exercises you will need to deploy the .yaml
 &lt;p&gt;[NOTE]
 I will start from the VPN post remote access with OpenVPN, so you may refer to this during this article. If you want to have the same scenario go first to this.&lt;/p&gt;</description></item><item><title>Remote access VPN with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</guid><description>&lt;ul&gt;
 &lt;li&gt;One of the two teams (which will act as a server) will be connected to two networks&lt;/li&gt;
-&lt;li&gt;For the authentication of the extremes, digital certificates shall be used, which shall be generated using openssl and stored in the / etc / openvpn directory, together with the Diffie- Helman parameters and the certificate of the Certification Authority itself.&lt;/li&gt;
+&lt;li&gt;For endpoint authentication, digital certificates shall be used. They will be generated using openssl and stored in the /etc/openvpn directory, together with the Diffie-Hellman parameters and the certificate of the Certification Authority itself.&lt;/li&gt;
 &lt;li&gt;Network addresses 10.99.99.0 / 24 will be used for VPN virtual addresses. The address 10.99.99.1 shall be assigned to the VPN server.&lt;/li&gt;
-&lt;li&gt;The server and client configuration files will be created in the / etc / openvpn directory of each machine, and will be called servor.conf and cliente.conf respectively.&lt;/li&gt;
-&lt;li&gt;After the establishment of the VPN, the client machine must be able to access a machine on the other network to which the server is connected.&lt;/li&gt;
+&lt;li&gt;The server and client configuration files will be created in the /etc/openvpn directory of each machine, and will be called &lt;code&gt;server.conf&lt;/code&gt; and &lt;code&gt;client.conf&lt;/code&gt; respectively.&lt;/li&gt;
+&lt;li&gt;After the VPN is established, the client machine must be able to access a machine on the other network to which the server is connected.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="riding-the-stage"&gt;Riding the stage&lt;/h3&gt;
 &lt;p&gt;To perform this exercise I have mounted the following scenario on GNS3:&lt;/p&gt;</description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
@@ -219,7 +225,7 @@ I will start from the VPN post remote access with Wireguard, so you may refer to
 &lt;p&gt;The first component of a LAMP server is Apache, represented by the &amp;ldquo;A.&amp;rdquo; To install Apache, run the following commands:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo apt install apache2
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo systemctl enable apache2 &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo systemctl start apache2
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With these commands, you will have installed and activated the Apache web server. You can verify its functionality by entering the server&amp;rsquo;s IP address in your favorite browser; it should display the default Apache home page.&lt;/p&gt;</description></item><item><title>LEMP Stack Installation in Debian 12 with PHP 8</title><link>https://www.javiercd.es/en/posts/iaw/lemp/lemp/</link><pubDate>Sat, 28 Oct 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/iaw/lemp/lemp/</guid><description>&lt;h2 id="lemp-stack-installation-in-debian-12-with-php-8"&gt;LEMP Stack Installation in Debian 12 with PHP 8&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With these commands, you will have installed and activated the Apache web server. You can verify its functionality by entering the server&amp;rsquo;s IP address in your favorite browser, it should display the default Apache home page.&lt;/p&gt;</description></item><item><title>LEMP Stack Installation in Debian 12 with PHP 8</title><link>https://www.javiercd.es/en/posts/iaw/lemp/lemp/</link><pubDate>Sat, 28 Oct 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/iaw/lemp/lemp/</guid><description>&lt;h2 id="lemp-stack-installation-in-debian-12-with-php-8"&gt;LEMP Stack Installation in Debian 12 with PHP 8&lt;/h2&gt;
 &lt;p&gt;In this guide, we will go through the steps to install a LEMP stack (Linux, Nginx, MariaDB, and PHP) on a Debian 12 server. The configuration includes PHP 8.2 as the main version. The LEMP stack is essential for hosting PHP-based websites and applications, such as WordPress or other dynamic applications. Follow the detailed steps below to configure your LEMP server with PHP 8.2.&lt;/p&gt;</description></item><item><title>WordPress installation in Debian 12 with LAMP PHP-8</title><link>https://www.javiercd.es/en/posts/iaw/wordpress/instalacion_wordpress/</link><pubDate>Sat, 28 Oct 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/iaw/wordpress/instalacion_wordpress/</guid><description>&lt;h1 id="wordpress-installation-on-debian-12-with-the-lamp-stack-and-php-8"&gt;WordPress Installation on Debian 12 with the LAMP Stack and PHP 8&lt;/h1&gt;
 &lt;p&gt;WordPress is a very popular open source content management system (CMS) that is used to create and manage websites and blogs. It was first released in 2003 and has since won a wide user base and an active community of developers and designers.&lt;/p&gt;
 &lt;h3 id="preparation"&gt;Preparation&lt;/h3&gt;
@@ -227,7 +233,7 @@ I will start from the VPN post remote access with Wireguard, so you may refer to
 &lt;p&gt;WordPress is a highly popular open-source content management system (CMS) used to create and manage websites and blogs. Since its release in 2003, it has built a massive user base and a vibrant community of developers and designers.&lt;/p&gt;
 &lt;h3 id="previous-requirements"&gt;Previous requirements&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Linux server:&lt;/strong&gt; You must have a server running Linux; this guide is specifically designed for Debian 12.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linux server:&lt;/strong&gt; You must have a server running Linux, this guide is specifically designed for Debian 12.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;User with superuser permissions:&lt;/strong&gt; You must have access to a user with sudo privileges on the server in order to perform the installation and configuration tasks.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Full Domain Name (FQDN):&lt;/strong&gt; If you want to access your WordPress site through a custom domain, make sure you have a full domain name (FQDN) set up and pointed to the server.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Internet access:&lt;/strong&gt; You need Internet access to download packages and make updates during the installation process.&lt;/li&gt;

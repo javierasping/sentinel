@@ -14,4 +14,4 @@
 &lt;li&gt;See current networks: &lt;code&gt;virsh net-list --all&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Persistent config paths: &lt;code&gt;/etc/libvirt/qemu/networks/&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Tip: avoid subnet conflicts; choose ranges that don&amp;rsquo;t collide with your physical LAN or other libvirt networks.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;Tip: avoid subnet conflicts, choose ranges that don&amp;rsquo;t collide with your physical LAN or other libvirt networks.&lt;/p&gt;</description></item></channel></rss>

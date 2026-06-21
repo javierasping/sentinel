@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VPN site to site with IPsec Fortinet on Atlas</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/</link><description>Recent content in VPN site to site with IPsec Fortinet on Atlas</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Mar 2024 10:00:00 +0000</lastBuildDate><atom:link href="https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/index.xml" rel="self" type="application/rss+xml"/><item><title>VPN site to site with IPsec Fortinet</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</guid><description>&lt;p&gt;In this post I will mount an IPSEC VPN using Fortinet firewalls, for which I will visualize them on GNS3.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_fortinet/img/Pastedimage20240330235321.png" alt=""&gt;&lt;/p&gt;
 &lt;h3 id="stage-preparation"&gt;Stage preparation&lt;/h3&gt;
-&lt;p&gt;To create the VPN I will add a new Fortigate to the stage.&lt;/p&gt;
+&lt;p&gt;To create the VPN I will add a new FortiGate to the stage.&lt;/p&gt;
 &lt;p&gt;So let&amp;rsquo;s proceed to set it up, the first thing will be to know the IP that the DHCP has given you:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FortiGate-VM64-KVM login: admin
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Password:
@@ -20,4 +20,4 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; speed: 1000Mbps &lt;span style="color:#f92672"&gt;(&lt;/span&gt;Duplex: full&lt;span style="color:#f92672"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; FEC: none
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; FEC_cap: none
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This IP you&amp;rsquo;ve given me for DHCP will be configured as static.&lt;/p&gt;</description></item></channel></rss>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This IP given to me for DHCP will be configured as static.&lt;/p&gt;</description></item></channel></rss>

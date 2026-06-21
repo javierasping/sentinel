@@ -55,18 +55,18 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; netmask 255.255.255.0
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="installing-the-isc-dhcp-server"&gt;Installing the isc-dhcp-server&lt;/h2&gt;
 &lt;p&gt;To install the DHCP server on Debian, run the following command:&lt;/p&gt;</description></item><item><title>NAT Cisco and Linux Configuration</title><link>https://www.javiercd.es/en/posts/redes/configuracion_de_nat/configuracion_de_nat/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/redes/configuracion_de_nat/configuracion_de_nat/</guid><description>&lt;p&gt;In this article, we will explore the configuration of SNAT (Source Network Address Translation) and DNAT (Destination Network Address Translation) in scenarios with public addresses, using routers in Linux environments and Cisco devices.&lt;/p&gt;
-&lt;h3 id="scenario-with-debian-machines"&gt;Scenario with debian machines&lt;/h3&gt;
+&lt;h3 id="scenario-with-debian-machines"&gt;Scenario with Debian machines&lt;/h3&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.001.jpeg" alt=""&gt;&lt;/p&gt;
 &lt;h3 id="preparation-of-the-environment"&gt;Preparation of the environment&lt;/h3&gt;
 &lt;h3 id="installation-of-packages"&gt;Installation of packages&lt;/h3&gt;
-&lt;p&gt;Once the machines are placed we must download Apache for the web servers, to do this we will connect both servers to a switch and this to the NAT cloud for Internet access.&lt;/p&gt;</description></item><item><title>NAT with iptables</title><link>https://www.javiercd.es/en/posts/servicios/nat_iptables/nat_iptables/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/nat_iptables/nat_iptables/</guid><description>&lt;h1 id="nat-with-iptables"&gt;NAT with iptables&lt;/h1&gt;
+&lt;p&gt;Once the machines are in place, we must download Apache for the web servers. To do this, we will connect both servers to a switch and this to the NAT cloud for Internet access.&lt;/p&gt;</description></item><item><title>NAT with iptables</title><link>https://www.javiercd.es/en/posts/servicios/nat_iptables/nat_iptables/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/nat_iptables/nat_iptables/</guid><description>&lt;h1 id="nat-with-iptables"&gt;NAT with iptables&lt;/h1&gt;
 &lt;p&gt;In this article you will learn to set up a small scenario in which you can set up a series of services. You will create the scenario described below, and you will make it through an internal network, using a Linux server, that you have access to the Internet by configuring SNAT in it by using iptables.&lt;/p&gt;
 &lt;h2 id="installation-of-the-test-environment"&gt;Installation of the test environment&lt;/h2&gt;
 &lt;p&gt;We will install the following environment:&lt;/p&gt;</description></item><item><title>SSH under debian</title><link>https://www.javiercd.es/en/posts/servicios/ssh/ssh/</link><pubDate>Fri, 08 Sep 2023 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/servicios/ssh/ssh/</guid><description>&lt;p&gt;#SSH server under debian&lt;/p&gt;
 &lt;h2 id="remote-management-using-ssh"&gt;Remote management using SSH&lt;/h2&gt;
 &lt;p&gt;The first thing we should do is install the package on the server and the client:&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.079.png" alt=""&gt;&lt;/p&gt;
-&lt;p&gt;For safety it is usually not allowed to connect the root to the server; for this, the /etc/ssh/sshd config file should be modified, and the following option is put:&lt;/p&gt;
+&lt;p&gt;For safety it is usually not allowed to connect the root to the server, for this, the /etc/ssh/sshd config file should be modified, and the following option is put:&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.080.png" alt=""&gt;&lt;/p&gt;
 &lt;p&gt;And we restart the service to apply the changes:&lt;/p&gt;
 &lt;h3 id="connect-to-ssh-server"&gt;Connect to ssh server&lt;/h3&gt;

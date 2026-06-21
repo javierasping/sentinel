@@ -10,10 +10,10 @@ The comparative part of the posts in this section in which we mount each type of
 &lt;p&gt;[NOTE]
 I will start from the VPN post remote access with OpenVPN, so you may refer to this during this article. If you want to have the same scenario go first to this.&lt;/p&gt;</description></item><item><title>Remote access VPN with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</guid><description>&lt;ul&gt;
 &lt;li&gt;One of the two teams (which will act as a server) will be connected to two networks&lt;/li&gt;
-&lt;li&gt;For the authentication of the extremes, digital certificates shall be used, which shall be generated using openssl and stored in the / etc / openvpn directory, together with the Diffie- Helman parameters and the certificate of the Certification Authority itself.&lt;/li&gt;
+&lt;li&gt;For endpoint authentication, digital certificates shall be used. They will be generated using openssl and stored in the /etc/openvpn directory, together with the Diffie-Hellman parameters and the certificate of the Certification Authority itself.&lt;/li&gt;
 &lt;li&gt;Network addresses 10.99.99.0 / 24 will be used for VPN virtual addresses. The address 10.99.99.1 shall be assigned to the VPN server.&lt;/li&gt;
-&lt;li&gt;The server and client configuration files will be created in the / etc / openvpn directory of each machine, and will be called servor.conf and cliente.conf respectively.&lt;/li&gt;
-&lt;li&gt;After the establishment of the VPN, the client machine must be able to access a machine on the other network to which the server is connected.&lt;/li&gt;
+&lt;li&gt;The server and client configuration files will be created in the /etc/openvpn directory of each machine, and will be called &lt;code&gt;server.conf&lt;/code&gt; and &lt;code&gt;client.conf&lt;/code&gt; respectively.&lt;/li&gt;
+&lt;li&gt;After the VPN is established, the client machine must be able to access a machine on the other network to which the server is connected.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="riding-the-stage"&gt;Riding the stage&lt;/h3&gt;
 &lt;p&gt;To perform this exercise I have mounted the following scenario on GNS3:&lt;/p&gt;</description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
@@ -35,7 +35,7 @@ This post details the configuration of R2 and R3 routers, however R1 is explaine
 &lt;p&gt;As I have changed stage, the 2 new routers have to be set up on the R2 and R3 network.&lt;/p&gt;</description></item><item><title>VPN site to site with IPsec Fortinet</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</guid><description>&lt;p&gt;In this post I will mount an IPSEC VPN using Fortinet firewalls, for which I will visualize them on GNS3.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_fortinet/img/Pastedimage20240330235321.png" alt=""&gt;&lt;/p&gt;
 &lt;h3 id="stage-preparation"&gt;Stage preparation&lt;/h3&gt;
-&lt;p&gt;To create the VPN I will add a new Fortigate to the stage.&lt;/p&gt;
+&lt;p&gt;To create the VPN I will add a new FortiGate to the stage.&lt;/p&gt;
 &lt;p&gt;So let&amp;rsquo;s proceed to set it up, the first thing will be to know the IP that the DHCP has given you:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;FortiGate-VM64-KVM login: admin
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Password:
@@ -54,7 +54,7 @@ This post details the configuration of R2 and R3 routers, however R1 is explaine
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; speed: 1000Mbps &lt;span style="color:#f92672"&gt;(&lt;/span&gt;Duplex: full&lt;span style="color:#f92672"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; FEC: none
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; FEC_cap: none
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This IP you&amp;rsquo;ve given me for DHCP will be configured as static.&lt;/p&gt;</description></item><item><title>VPN site to site with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</guid><description>&lt;h3 id="riding-the-stage"&gt;Riding the stage&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This IP given to me for DHCP will be configured as static.&lt;/p&gt;</description></item><item><title>VPN site to site with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_openvpn/site_to_site_openvpn/</guid><description>&lt;h3 id="riding-the-stage"&gt;Riding the stage&lt;/h3&gt;
 &lt;p&gt;To perform this exercise I have mounted the following scenario on GNS3:&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
 &lt;h3 id="swan-router-configuration"&gt;Swan router configuration&lt;/h3&gt;

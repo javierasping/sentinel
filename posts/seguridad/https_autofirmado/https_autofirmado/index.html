@@ -27,7 +27,7 @@ Además, necesitaremos en el directorio actual un fichero que actuará como base
 </span></span><span style=display:flex><span>└── <span style=color:#f92672>[</span>drwx------<span style=color:#f92672>]</span>  private
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#ae81ff>5</span> directories, <span style=color:#ae81ff>1</span> file
-</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$ 
+</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$
 </span></span></code></pre></div><h3 id=paso-2-fichero-de-configuración-de-openssl>Paso 2: Fichero de configuración de openssl</h3><p>Lo más probable es que quieras usar un fichero de configuración de openssl que no sea el de nuestra máquina, para así tratar de que la autoridad certificadora esté en todo momento lo más aislada posible de la misma, así que haz una copia de tu fichero de configuración nativo y adáptalo a tus necesidades. Dicho fichero se encuentra normalmente en /usr/lib/ssl/openssl.cnf, aunque también podría estar en /etc/openssl.cnf o en /usr/share/ssl/openssl.cnf, tendrás que copiarlo al directorio actual y modificarlo con un editor de textos.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:/CA$ sudo cp /usr/lib/ssl/openssl.cnf ./
 </span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$ ls -l
 </span></span><span style=display:flex><span>total <span style=color:#ae81ff>32</span>
@@ -59,7 +59,7 @@ organizationalUnitName_default = Informatica</p><div class=highlight><pre tabind
 </span></span><span style=display:flex><span>countryName_max                 <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>stateOrProvinceName             <span style=color:#f92672>=</span> State or Province Name <span style=color:#f92672>(</span>full name<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>stateOrProvinceName_default     <span style=color:#f92672>=</span> Sevilla   
+</span></span><span style=display:flex><span>stateOrProvinceName_default     <span style=color:#f92672>=</span> Sevilla
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>localityName                    <span style=color:#f92672>=</span> Dos Hermanas
 </span></span><span style=display:flex><span>
@@ -119,9 +119,9 @@ organizationalUnitName_default = Informatica</p><div class=highlight><pre tabind
 </span></span><span style=display:flex><span>            commonName                <span style=color:#f92672>=</span> javiercruces.iesgn.org
 </span></span><span style=display:flex><span>            emailAddress              <span style=color:#f92672>=</span> javierasping@gmail.com
 </span></span><span style=display:flex><span>        X509v3 extensions:
-</span></span><span style=display:flex><span>            X509v3 Subject Key Identifier: 
+</span></span><span style=display:flex><span>            X509v3 Subject Key Identifier:
 </span></span><span style=display:flex><span>                E3:9C:A3:CF:0E:33:EB:83:45:40:00:9B:04:4A:A9:9B:C8:8C:A9:62
-</span></span><span style=display:flex><span>            X509v3 Authority Key Identifier: 
+</span></span><span style=display:flex><span>            X509v3 Authority Key Identifier:
 </span></span><span style=display:flex><span>                E3:9C:A3:CF:0E:33:EB:83:45:40:00:9B:04:4A:A9:9B:C8:8C:A9:62
 </span></span><span style=display:flex><span>            X509v3 Basic Constraints: critical
 </span></span><span style=display:flex><span>                CA:TRUE
@@ -132,7 +132,7 @@ organizationalUnitName_default = Informatica</p><div class=highlight><pre tabind
 </span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> out of <span style=color:#ae81ff>1</span> certificate requests certified, commit? <span style=color:#f92672>[</span>y/n<span style=color:#f92672>]</span>y
 </span></span><span style=display:flex><span>Write out database with <span style=color:#ae81ff>1</span> new entries
 </span></span><span style=display:flex><span>Data Base Updated
-</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$ 
+</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$
 </span></span></code></pre></div><p>Donde:</p><ul><li>create_serial: Indicamos que genere un serial de 128 bits para comenzar. Gracias a dicha aleatoriedad, si tuviésemos que volver a empezar, no sobreescribiríamos los ya existentes. Es muy importante.</li><li>out: Especificamos dónde se va a almacenar el certificado firmado. En este caso, en el directorio actual, con nombre cacert.pem.</li><li>days: Especificamos la validez en días del certificado firmado. En este caso, 365 días.</li><li>keyfile: Indicamos la clave privada a usar para firmar dicho certificado. En este caso, la generada en el paso anterior, private/cakey.pem.</li><li>selfsign: Indicamos a openssl que vamos a autofirmarnos el certificado.</li><li>extensions: Indicamos a openssl la sección del fichero de configuración en el que se encuentran las extensiones a usar. En este caso, v3_ca.</li><li>config: Especificamos a openssl que utilice el fichero de configuración modificado, no el nativo, con nombre openssl.cnf.</li><li>infiles: Indicamos qué queremos firmar, en este caso, el CSR para nuestra nueva autoridad certificadora creado en el paso anterior, con nombre careq.pem.</li></ul><p>Como se puede apreciar en la salida del comando, se nos ha pedido la frase de paso previamente configurada, para así asegurarnos que aunque la clave privada llegase a malas manos, no puedan realizar firmas fraudulentas. Además, antes de firmar el certificado, se nos ha mostrado toda la información referente al mismo, y se nos ha pedido confirmación.
 Para verificar que el certificado de la autoridad certificadora se encuentra contenido en el directorio actual, lista el contenido del mismo y comprueba que, efectivamente, existe un fichero cacert.pem que es resultado de firmar el fichero de solicitud de firma de certificado careq.pem.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:/CA$ sudo tree
 </span></span><span style=display:flex><span>.
@@ -151,7 +151,7 @@ Para verificar que el certificado de la autoridad certificadora se encuentra con
 </span></span><span style=display:flex><span>└── serial
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#ae81ff>5</span> directories, <span style=color:#ae81ff>9</span> files
-</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$ 
+</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$
 </span></span></code></pre></div><h3 id=paso-4-firma-de-solicitudes-de-certificado>Paso 4: Firma de solicitudes de certificado</h3><p>Ya está todo listo para proceder a firmar el certificado para el servidor de tu compañero, así que debes situar su fichero de solicitud de firma de certificado dentro de certreqs/, que es donde deben ubicarse.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:~$ sudo ls -l /CA/certreqs/
 </span></span><span style=display:flex><span>total <span style=color:#ae81ff>4</span>
 </span></span><span style=display:flex><span>-rw-r--r-- <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>1785</span> Jan <span style=color:#ae81ff>11</span> 10:00 peperc.csr
@@ -173,9 +173,9 @@ Para verificar que el certificado de la autoridad certificadora se encuentra con
 </span></span><span style=display:flex><span>            commonName                <span style=color:#f92672>=</span> pfoter15
 </span></span><span style=display:flex><span>            emailAddress              <span style=color:#f92672>=</span> pepepfoter15@gmail.com
 </span></span><span style=display:flex><span>        X509v3 extensions:
-</span></span><span style=display:flex><span>            X509v3 Basic Constraints: 
+</span></span><span style=display:flex><span>            X509v3 Basic Constraints:
 </span></span><span style=display:flex><span>                CA:FALSE
-</span></span><span style=display:flex><span>            X509v3 Key Usage: 
+</span></span><span style=display:flex><span>            X509v3 Key Usage:
 </span></span><span style=display:flex><span>                Digital Signature, Non Repudiation, Key Encipherment
 </span></span><span style=display:flex><span>Certificate is to be certified <span style=color:#66d9ef>until</span> Jan  <span style=color:#ae81ff>8</span> 10:01:58 <span style=color:#ae81ff>2034</span> GMT <span style=color:#f92672>(</span><span style=color:#ae81ff>3650</span> days<span style=color:#f92672>)</span>
 </span></span><span style=display:flex><span>Sign the certificate? <span style=color:#f92672>[</span>y/n<span style=color:#f92672>]</span>:y
@@ -189,21 +189,21 @@ Para verificar que el certificado de la autoridad certificadora se encuentra con
 </span></span><span style=display:flex><span>-rw-r--r-- <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>7429</span> Jan  <span style=color:#ae81ff>8</span> 19:57 741E8AF82445149E28F183047C7D6C0F5F3BACF2.pem
 </span></span><span style=display:flex><span>-rw-r--r-- <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>2139</span> Jan <span style=color:#ae81ff>11</span> 10:02 741E8AF82445149E28F183047C7D6C0F5F3BACF3.pem
 </span></span><span style=display:flex><span>-rw-r--r-- <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>2139</span> Jan <span style=color:#ae81ff>11</span> 10:02 pepe.csr.pem
-</span></span></code></pre></div><h3 id=paso-5-envío-de-certificados-al-servidor-web>Paso 5: Envío de certificados al servidor web.</h3><p>Hasta aquí ha llegado tu parte, ya que únicamente quedaría hacerle llegar a tu compañero el fichero certsdb/nombre.crt, que es su certificado firmado, junto al propio certificado de la autoridad certificadora, el cuál contiene la clave pública, para así poder verificar dicha firma sobre su certificado, de nombre cacert.pem. Por último, vas a mostrar el contenido del fichero index.txt, que es una especie de base de datos en texto plano con información sobre los certificados firmados por la autoridad certificadora. Dentro del mismo, encontramos información básica correspondiente a los dos certificados firmados: el de la propia autoridad certificadora y el de nuestro compañero, además de su estado de validez actual.</p><p>Voy a enviar y a traerme de la instancia de pepe las diferentes ficheros , el ha configurado mi clave publica para que pueda conectarme :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/ 
-</span></span><span style=display:flex><span>javiercd.csr                          100% <span style=color:#ae81ff>1886</span>   839.4KB/s   00:00   
+</span></span></code></pre></div><h3 id=paso-5-envío-de-certificados-al-servidor-web>Paso 5: Envío de certificados al servidor web.</h3><p>Hasta aquí ha llegado tu parte, ya que únicamente quedaría hacerle llegar a tu compañero el fichero certsdb/nombre.crt, que es su certificado firmado, junto al propio certificado de la autoridad certificadora, el cuál contiene la clave pública, para así poder verificar dicha firma sobre su certificado, de nombre cacert.pem. Por último, vas a mostrar el contenido del fichero index.txt, que es una especie de base de datos en texto plano con información sobre los certificados firmados por la autoridad certificadora. Dentro del mismo, encontramos información básica correspondiente a los dos certificados firmados: el de la propia autoridad certificadora y el de nuestro compañero, además de su estado de validez actual.</p><p>Voy a enviar y a traerme de la instancia de pepe las diferentes ficheros , el ha configurado mi clave publica para que pueda conectarme :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/
+</span></span><span style=display:flex><span>javiercd.csr                          100% <span style=color:#ae81ff>1886</span>   839.4KB/s   00:00
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>debian@javiercrucesCA:~$ scp 172.22.200.113:/home/debian/peperc.csr ./ 
-</span></span><span style=display:flex><span>peperc.csr                            100% <span style=color:#ae81ff>1785</span>   432.6KB/s   00:00   
+</span></span><span style=display:flex><span>debian@javiercrucesCA:~$ scp 172.22.200.113:/home/debian/peperc.csr ./
+</span></span><span style=display:flex><span>peperc.csr                            100% <span style=color:#ae81ff>1785</span>   432.6KB/s   00:00
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>-- Le envio su certificado firmado
 </span></span><span style=display:flex><span>debian@javiercrucesCA:~$ scp 172.22.200.113:/CA/certsdb/pepe.csr.pem
 </span></span><span style=display:flex><span>pepe.csr.pem                           100% <span style=color:#ae81ff>1785</span>   432.6KB/s   00:00
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>debian@javiercrucesCA:~$ scp /CA/cacert.pem  172.22.200.113:/home/debian/pub_javi.pem 
-</span></span><span style=display:flex><span>cacert.pem                            100% <span style=color:#ae81ff>7429</span>   582.6KB/s   00:00    
+</span></span><span style=display:flex><span>debian@javiercrucesCA:~$ scp /CA/cacert.pem  172.22.200.113:/home/debian/pub_javi.pem
+</span></span><span style=display:flex><span>cacert.pem                            100% <span style=color:#ae81ff>7429</span>   582.6KB/s   00:00
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>debian@javiercrucesCA:~$ scp 172.22.200.113:/CA/cacert.pem ./pub_pepe.pem 
-</span></span><span style=display:flex><span>cacert.pem                            100% <span style=color:#ae81ff>7389</span>     1.2MB/s   00:00   
+</span></span><span style=display:flex><span>debian@javiercrucesCA:~$ scp 172.22.200.113:/CA/cacert.pem ./pub_pepe.pem
+</span></span><span style=display:flex><span>cacert.pem                            100% <span style=color:#ae81ff>7389</span>     1.2MB/s   00:00
 </span></span></code></pre></div><h2 id=tarea-2-configurar-https>Tarea 2: Configurar HTTPS</h2><h3 id=paso-1-creación-de-clave-y-solicitud-de-certificado>Paso 1: Creación de clave y solicitud de certificado.</h3><p>Lo primero que tendrás que hacer es crear una solicitud de firma de certificado (CSR o Certificate Signing Request) y hacérselo llegar a tu compañero. En este caso, vamos a hacerlo con openssl, pero se podría hacer con otras múltiples opciones de software.</p><p>Para crear una solicitud de firma de certificado, primero debemos tener una clave privada que se asociará al mismo, así que generaremos una clave privada RSA de 4096 bits, que será almacenada en /etc/ssl/private/, ejecutando para ello el comando:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:~$ sudo openssl genrsa <span style=color:#ae81ff>4096</span> &gt; javiercd.key
 </span></span><span style=display:flex><span>debian@javiercrucesCA:~$ sudo mv javiercd.key /etc/ssl/private/
 </span></span></code></pre></div><p>Una vez generada, cambiaremos los permisos de la misma a 400, de manera que únicamente el propietario pueda leer el contenido, pues se trata de una clave privada. Este paso no es obligatorio pero sí recomendable por seguridad. Escribe el comando necesario para ello.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:~$ sudo chmod <span style=color:#ae81ff>400</span> /etc/ssl/private/javiercd.key
@@ -225,9 +225,9 @@ Para verificar que el certificado de la autoridad certificadora se encuentra con
 </span></span><span style=display:flex><span>            commonName                <span style=color:#f92672>=</span> pfoter15
 </span></span><span style=display:flex><span>            emailAddress              <span style=color:#f92672>=</span> pepepfoter15@gmail.com
 </span></span><span style=display:flex><span>        X509v3 extensions:
-</span></span><span style=display:flex><span>            X509v3 Basic Constraints: 
+</span></span><span style=display:flex><span>            X509v3 Basic Constraints:
 </span></span><span style=display:flex><span>                CA:FALSE
-</span></span><span style=display:flex><span>            X509v3 Key Usage: 
+</span></span><span style=display:flex><span>            X509v3 Key Usage:
 </span></span><span style=display:flex><span>                Digital Signature, Non Repudiation, Key Encipherment
 </span></span><span style=display:flex><span>Certificate is to be certified <span style=color:#66d9ef>until</span> Jan  <span style=color:#ae81ff>8</span> 10:01:58 <span style=color:#ae81ff>2034</span> GMT <span style=color:#f92672>(</span><span style=color:#ae81ff>3650</span> days<span style=color:#f92672>)</span>
 </span></span><span style=display:flex><span>Sign the certificate? <span style=color:#f92672>[</span>y/n<span style=color:#f92672>]</span>:y
@@ -236,11 +236,11 @@ Para verificar que el certificado de la autoridad certificadora se encuentra con
 </span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> out of <span style=color:#ae81ff>1</span> certificate requests certified, commit? <span style=color:#f92672>[</span>y/n<span style=color:#f92672>]</span>y
 </span></span><span style=display:flex><span>Write out database with <span style=color:#ae81ff>1</span> new entries
 </span></span><span style=display:flex><span>Database updated
-</span></span></code></pre></div><p>Para verificar que el fichero de solicitud de firma ha sido correctamente generado, lista el contenido del directorio actual. Debe existir un fichero de nombre tunombre.csr que debes enviar a tu compañero, para que así sea firmado por la correspondiente autoridad certificadora que ha creado.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:~$ ls -l 
+</span></span></code></pre></div><p>Para verificar que el fichero de solicitud de firma ha sido correctamente generado, lista el contenido del directorio actual. Debe existir un fichero de nombre tunombre.csr que debes enviar a tu compañero, para que así sea firmado por la correspondiente autoridad certificadora que ha creado.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:~$ ls -l
 </span></span><span style=display:flex><span>total <span style=color:#ae81ff>16</span>
 </span></span><span style=display:flex><span>-rw-r--r-- <span style=color:#ae81ff>1</span> root   root   <span style=color:#ae81ff>1886</span> Jan <span style=color:#ae81ff>11</span> 09:40 javiercd.csr
-</span></span></code></pre></div><p>En mi caso se lo haré llegar usando SCP :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/ 
-</span></span><span style=display:flex><span>javiercd.csr                          100% <span style=color:#ae81ff>1886</span>   839.4KB/s   00:00   
+</span></span></code></pre></div><p>En mi caso se lo haré llegar usando SCP :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/
+</span></span><span style=display:flex><span>javiercd.csr                          100% <span style=color:#ae81ff>1886</span>   839.4KB/s   00:00
 </span></span></code></pre></div><p>Una vez firmado me lo traeré de su servidor</p><h3 id=paso-2-almacenamiento-de-certificados-en-el-servidor>Paso 2: Almacenamiento de certificados en el servidor</h3><p>Además de dicho certificado firmado, nos debe enviar la clave pública de la entidad certificadora, es decir, el certificado de la misma, para así poder verificar su firma sobre nuestro certificado.
 Almacena ambos ficheros en /etc/ssl/certs/ y lista el contenido de dicho directorio.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:~$ sudo mv javiercd.csr.pem /etc/ssl/certs/
 </span></span><span style=display:flex><span>debian@javiercrucesCA:~$ sudo mv pub_pepe.pem /etc/ssl/certs
@@ -248,15 +248,15 @@ Almacena ambos ficheros en /etc/ssl/certs/ y lista el contenido de dicho directo
 </span></span><span style=display:flex><span>-rw-r--r-- <span style=color:#ae81ff>1</span> debian debian   <span style=color:#ae81ff>2175</span> Jan <span style=color:#ae81ff>11</span> 10:05 javiercd.csr.pem
 </span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$ sudo ls -l /etc/ssl/certs | grep pepe
 </span></span><span style=display:flex><span>-rw-r--r-- <span style=color:#ae81ff>1</span> root   root     <span style=color:#ae81ff>7389</span> Jan <span style=color:#ae81ff>11</span> 11:24 pub_pepe.pem
-</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$ sudo ls -l /etc/ssl/private/ 
+</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$ sudo ls -l /etc/ssl/private/
 </span></span><span style=display:flex><span>total <span style=color:#ae81ff>8</span>
 </span></span><span style=display:flex><span>-r-------- <span style=color:#ae81ff>1</span> debian debian   <span style=color:#ae81ff>3272</span> Jan <span style=color:#ae81ff>11</span> 09:37 javiercd.key
 </span></span></code></pre></div><h3 id=paso-3-configuración-de-apache>Paso 3: Configuración de Apache</h3><p>Al igual que apache2 incluía un VirtualHost por defecto para las peticiones entrantes por el puerto 80 (HTTP), contiene otro por defecto para las peticiones entrantes por el puerto 443 (HTTPS), de nombre default-ssl, que por defecto viene deshabilitado, así que procederemos a modificarlo teniendo en cuenta las siguientes directivas:</p><ul><li>ServerName: Al igual que en el VirtualHost anterior, tendremos que indicar el nombre de dominio a través del cuál accederemos al servidor.</li><li>SSLEngine: Activa el motor SSL, necesario para hacer uso de HTTPS, por lo que su valor debe ser on.</li><li>SSLCertificateFile: Indicamos la ruta del certificado del servidor firmado por la CA. En este caso, /etc/ssl/certs/tunombre.crt.</li><li>SSLCertificateKeyFile: Indicamos la ruta de la clave privada asociada al certificado del servidor. En este caso, /etc/ssl/private/tunombre.key.</li><li>SSLCACertificateFile: Indicamos la ruta del certificado de la CA con el que comprobaremos la firma de nuestro certificado. En este caso, /etc/ssl/certs/cacert.pem.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$ sudo a2enmod ssl 
-</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$ sudo a2ensite default-ssl.conf 
+</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$ sudo a2enmod ssl
+</span></span><span style=display:flex><span>debian@javiercrucesCA:/CA$ sudo a2ensite default-ssl.conf
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>debian@javiercrucesCA:~$ sudo cat /etc/apache2/sites-available/default-ssl.conf 
-</span></span><span style=display:flex><span>&lt;VirtualHost *:80&gt; 
+</span></span><span style=display:flex><span>debian@javiercrucesCA:~$ sudo cat /etc/apache2/sites-available/default-ssl.conf
+</span></span><span style=display:flex><span>&lt;VirtualHost *:80&gt;
 </span></span><span style=display:flex><span>  ServerName javiercruces.iesgn.org
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  Redirect permanent / https://javiercruces.iesgn.org/
@@ -275,8 +275,8 @@ Almacena ambos ficheros en /etc/ssl/certs/ y lista el contenido de dicho directo
 </span></span><span style=display:flex><span>	SSLCertificateKeyFile   /etc/ssl/private/javiercd.key
 </span></span><span style=display:flex><span>&lt;/VirtualHost&gt;
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>debian@javiercrucesCA:~$ sudo systemctl reload apache2.service 
-</span></span></code></pre></div><p>Demostración :</p><p><img src=/seguridad/https_autofirmado/img/Pastedimage20240111115927.png alt></p><h3 id=paso-4-configuración-de-nginx>Paso 4: Configuración de Nginx</h3><p>Vamos a forzar la configuración de https en Nginx</p><p>Aquí te dejo la configuración del virtualhost :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:/var/www/sad$ sudo cat /etc/nginx/sites-available/default 
+</span></span><span style=display:flex><span>debian@javiercrucesCA:~$ sudo systemctl reload apache2.service
+</span></span></code></pre></div><p>Demostración :</p><p><img src=/seguridad/https_autofirmado/img/Pastedimage20240111115927.png alt></p><h3 id=paso-4-configuración-de-nginx>Paso 4: Configuración de Nginx</h3><p>Vamos a forzar la configuración de https en Nginx</p><p>Aquí te dejo la configuración del virtualhost :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@javiercrucesCA:/var/www/sad$ sudo cat /etc/nginx/sites-available/default
 </span></span><span style=display:flex><span>server <span style=color:#f92672>{</span>
 </span></span><span style=display:flex><span>    listen 80;
 </span></span><span style=display:flex><span>    listen <span style=color:#f92672>[</span>::<span style=color:#f92672>]</span>:80;

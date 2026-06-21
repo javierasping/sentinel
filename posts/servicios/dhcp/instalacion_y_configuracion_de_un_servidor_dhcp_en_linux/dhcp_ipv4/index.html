@@ -16,8 +16,8 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>iface ens4 inet dhcp
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># Red interna 1</span>
-</span></span><span style=display:flex><span>auto ens5 
-</span></span><span style=display:flex><span>iface ens5 inet static 
+</span></span><span style=display:flex><span>auto ens5
+</span></span><span style=display:flex><span>iface ens5 inet static
 </span></span><span style=display:flex><span>        address 192.168.10.1
 </span></span><span style=display:flex><span>        netmask 255.255.255.0
 </span></span><span style=display:flex><span>        <span style=color:#75715e># SNAT para la red ens5 , recuerda activar el bit de forwarding</span>
@@ -26,8 +26,8 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># Red interna 2</span>
-</span></span><span style=display:flex><span>auto ens6 
-</span></span><span style=display:flex><span>iface ens6 inet static 
+</span></span><span style=display:flex><span>auto ens6
+</span></span><span style=display:flex><span>iface ens6 inet static
 </span></span><span style=display:flex><span>        address 192.168.20.1
 </span></span><span style=display:flex><span>        netmask 255.255.255.0
 </span></span></code></pre></div><h2 id=instalación-del-servidor-isc-dhcp-server>Instalación del servidor isc-dhcp-server</h2><p>Para instalar el servidor DHCP en Debian, ejecutamos el siguiente comando:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt update <span style=color:#f92672>&amp;&amp;</span> sudo apt install isc-dhcp-server
@@ -43,8 +43,8 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>Con esta configuración, el servidor DHCP proporcionará direcciones dentro del rango indicado y asignará la puerta de enlace y el servidor DNS especificados.</p><p>Para aplicar los cambios, reiniciamos el servicio de DHCP:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo systemctl restart isc-dhcp-server
 </span></span></code></pre></div><h2 id=configuración-de-los-clientes-para-obtener-un-direccionamiento-dinámico>Configuración de los clientes para obtener un direccionamiento dinámico</h2><p>Para que los clientes obtengan direcciones IP de manera dinámica, debemos asegurarnos de que sus configuraciones de red estén configuradas para usar DHCP.</p><h3 id=en-un-cliente-debian>En un cliente Debian</h3><p>Editamos la configuración de red para usar DHCP. Primero, abrimos el archivo <code>/etc/network/interfaces</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo nano /etc/network/interfaces
-</span></span></code></pre></div><p>Asegúrate de que la configuración de la interfaz se vea de esta manera:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>auto ens4 
-</span></span><span style=display:flex><span>iface ens4 inet dhcp 
+</span></span></code></pre></div><p>Asegúrate de que la configuración de la interfaz se vea de esta manera:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>auto ens4
+</span></span><span style=display:flex><span>iface ens4 inet dhcp
 </span></span></code></pre></div><p>Reiniciamos la interfaz de red para aplicar los cambios:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@cliente1:~$ sudo ifdown ens4 <span style=color:#f92672>&amp;&amp;</span> sudo ifup ens4
 </span></span></code></pre></div><p>Veremos que al hacer esto , nos mostrara la salida del cliente DHCP del proceso que ha seguido para configurarse :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>ifdown: interface ens4 not configured
 </span></span><span style=display:flex><span>Internet Systems Consortium DHCP Client 4.4.3-P1
@@ -69,8 +69,10 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>    altname enp0s4
 </span></span><span style=display:flex><span>    inet 192.168.10.100/24 brd 192.168.10.255 scope global dynamic ens4
 </span></span><span style=display:flex><span>       valid_lft 3508sec preferred_lft 3508sec
-</span></span></code></pre></div><blockquote><p>💡 <strong>Tip:</strong><br>En el caso de que quieras modificar la configuración del DHCP o simplemente volver a solicitar la configuración al servidor DHCP estos comandos te serán de utilidad.
-En sistemas Windows, el comando <code>ipconfig /release</code> libera la concesión DHCP actual, mientras que <code>ipconfig /renew</code> solicita una nueva.<br>En sistemas Linux, la liberación se realiza con <code>dhclient -r</code> y la renovación con <code>dhclient</code>.</p></blockquote><h2 id=comprobación-de-las-concesiones-de-direcciones>Comprobación de las concesiones de direcciones</h2><p>Para ver las concesiones de direcciones en el servidor, abrimos el archivo de registros de DHCP, que normalmente se encuentra en:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@router:~$ sudo cat /var/lib/dhcp/dhcpd.leases
+</span></span></code></pre></div><blockquote><p>💡 <strong>Tip:</strong>
+En el caso de que quieras modificar la configuración del DHCP o simplemente volver a solicitar la configuración al servidor DHCP estos comandos te serán de utilidad.
+En sistemas Windows, el comando <code>ipconfig /release</code> libera la concesión DHCP actual, mientras que <code>ipconfig /renew</code> solicita una nueva.
+En sistemas Linux, la liberación se realiza con <code>dhclient -r</code> y la renovación con <code>dhclient</code>.</p></blockquote><h2 id=comprobación-de-las-concesiones-de-direcciones>Comprobación de las concesiones de direcciones</h2><p>Para ver las concesiones de direcciones en el servidor, abrimos el archivo de registros de DHCP, que normalmente se encuentra en:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@router:~$ sudo cat /var/lib/dhcp/dhcpd.leases
 </span></span><span style=display:flex><span><span style=color:#75715e># The format of this file is documented in the dhcpd.leases(5) manual page.</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># This lease file was written by isc-dhcp-4.4.3-P1</span>
 </span></span><span style=display:flex><span>

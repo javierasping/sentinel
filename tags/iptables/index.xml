@@ -28,7 +28,7 @@
 &lt;h2 id="gestión-remota-usando-ssh"&gt;Gestión remota usando SSH&lt;/h2&gt;
 &lt;p&gt;Lo primeros que deberemos de hacer sera instalarnos el paquete en el servidor y el cliente :&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.079.png" alt=""&gt;&lt;/p&gt;
-&lt;p&gt;Por seguridad se suele no permitir la conexión del root al servidor; para ello, se debe modificar el archivo /etc/ssh/sshd_config, y se pone la siguiente opción:&lt;/p&gt;
+&lt;p&gt;Por seguridad se suele no permitir la conexión del root al servidor, para ello, se debe modificar el archivo /etc/ssh/sshd_config, y se pone la siguiente opción:&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.080.png" alt=""&gt;&lt;/p&gt;
 &lt;p&gt;Y reiniciamos el servicio para que se apliquen los cambios :&lt;/p&gt;
 &lt;h3 id="conectarse-al-servidor-ssh"&gt;Conectarse al servidor ssh&lt;/h3&gt;

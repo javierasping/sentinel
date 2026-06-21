@@ -31,7 +31,7 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>    altname enp0s3
 </span></span><span style=display:flex><span>    inet 192.168.100.4/24 brd 192.168.100.255 scope global dynamic ens3
 </span></span><span style=display:flex><span>       valid_lft 604791sec preferred_lft 604791sec
-</span></span><span style=display:flex><span>debian@thor:~$ 
+</span></span><span style=display:flex><span>debian@thor:~$
 </span></span></code></pre></div><p>Loki machine:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@loki:~$ hostname -f
 </span></span><span style=display:flex><span>loki.javiercd.gonzalonazareno.org
 </span></span><span style=display:flex><span>debian@loki:~$ ip -4 a
@@ -53,7 +53,7 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>    inet 192.168.200.2/24 brd 192.168.200.255 scope global dynamic ens3
 </span></span><span style=display:flex><span>       valid_lft 604795sec preferred_lft 604795sec
 </span></span></code></pre></div><p>Now we will make a reservation on the DHCP server, we will access Dashborad > Networks > DHCP, once here we will right click on each client of the 4 we have on the stage and create a reservation:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329162616.png alt></p><p>We will have a similar menu to this to link the MAC address to the IP:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329162730.png alt></p><p>Once we do this with our customers will tell us that we have the reservation made:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329162855.png alt></p><h3 id=firewall-rules>Firewall rules</h3><p>We&rsquo;re going to start creating the rules, as I said earlier we started from the previous stage, so some rules for the minimum operation of the network are created.</p><p>I&rsquo;ll leave you a capture of how the rules stayed, so you can see the state we&rsquo;re going to:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329163530.png alt></p><p>Some of the following rules are already set from the previous exercise, such as the following rule &ndash; > * The Odin machine has a ssh server listening to port 22, but when you access from the outside you will have to connect to port 2222 *</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@HPOMEN15:~$ ssh osboxes@192.168.122.77 -p <span style=color:#ae81ff>2222</span>
-</span></span><span style=display:flex><span>osboxes@192.168.122.77<span style=color:#960050;background-color:#1e0010>&#39;</span>s password: 
+</span></span><span style=display:flex><span>osboxes@192.168.122.77<span style=color:#960050;background-color:#1e0010>&#39;</span>s password:
 </span></span><span style=display:flex><span>Welcome to Ubuntu 22.04 LTS <span style=color:#f92672>(</span>GNU/Linux 5.15.0-25-generic x86_64<span style=color:#f92672>)</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span> * Documentation:  https://help.ubuntu.com
@@ -68,7 +68,7 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>osboxes@odin:~$ hostname -f
 </span></span><span style=display:flex><span>odin.javiercd.gonzalonazareno.org
 </span></span></code></pre></div><p>Next you will see that there are some rules that I have removed or modified, as in the current scenario they cannot be done either by topology or because previously the Odin machine was the firewall. In any case I have maintained and explained some additional things.</p><h3 id=from-thor-and-hela-you-should-allow-the-ssh-connection-by-port-22-to-the-odin-machine>From Thor and Hela you should allow the ssh connection by port 22 to the Odin machine.</h3><p>This rule cannot be realized because by having a switch by interconnecting the devices, the traffic does not pass through the firewall so we cannot apply rules in the firewall to prevent local traffic.</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329170454.png alt></p><p>You see, even if he believes the rule, in the firewall, this one will not be immutated:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329170554.png alt></p><p>You see that for example if I connect from loki or thor I can get to odin:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@loki:~$ ssh osboxes@192.168.100.2
-</span></span><span style=display:flex><span>osboxes@192.168.100.2<span style=color:#960050;background-color:#1e0010>&#39;</span>s password: 
+</span></span><span style=display:flex><span>osboxes@192.168.100.2<span style=color:#960050;background-color:#1e0010>&#39;</span>s password:
 </span></span><span style=display:flex><span>Welcome to Ubuntu 22.04 LTS <span style=color:#f92672>(</span>GNU/Linux 5.15.0-25-generic x86_64<span style=color:#f92672>)</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span> * Documentation:  https://help.ubuntu.com
@@ -80,7 +80,7 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>To see these additional updates run: apt list --upgradable
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>Last login: Fri Mar <span style=color:#ae81ff>29</span> 11:42:43 <span style=color:#ae81ff>2024</span> from 192.168.100.3
-</span></span><span style=display:flex><span>osboxes@odin:~$ 
+</span></span><span style=display:flex><span>osboxes@odin:~$
 </span></span></code></pre></div><p>But I don&rsquo;t get it by the rule I&rsquo;ve created if not by the topology of the network itself, the rule has no hits:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329170725.png alt></p><p>The whole traffic is in charge of redirecting the swicht.</p><h3 id=the-odin-machine-can-be-ping-from-the-dmz-but-from-the-lan-the-connection-reject-must-be-rejected-and-from-the-outside-will-be-rejected-silently>The Odin machine can be ping from the DMZ, but from the LAN the connection (REJECT) must be rejected and from the outside will be rejected silently.</h3><p>To allow the DMZ network to do ping to Odin we will create the following rule:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329171345.png alt></p><p>Let&rsquo;s check that from the DMZ we can do the ping to Odin:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@hela:~$ ping 192.168.100.2 -c <span style=color:#ae81ff>1</span>
 </span></span><span style=display:flex><span>PING 192.168.100.2 <span style=color:#f92672>(</span>192.168.100.2<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
 </span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from 192.168.100.2: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>63</span> time<span style=color:#f92672>=</span>2.38 ms
@@ -146,26 +146,26 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> packets transmitted, <span style=color:#ae81ff>1</span> received, 0% packet loss, time 0ms
 </span></span><span style=display:flex><span>rtt min/avg/max/mdev <span style=color:#f92672>=</span> 0.998/0.998/0.998/0.000 ms
 </span></span></code></pre></div><p>Now let&rsquo;s check that we can connect by ssh from Hela to the LAN:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@hela:~$ ssh osboxes@192.168.100.2 <span style=color:#e6db74>&#39;hostname -f&#39;</span>
-</span></span><span style=display:flex><span>osboxes@192.168.100.2<span style=color:#e6db74>&#39;s password: 
+</span></span><span style=display:flex><span>osboxes@192.168.100.2<span style=color:#e6db74>&#39;s password:
 </span></span></span><span style=display:flex><span><span style=color:#e6db74>odin.javiercd.gonzalonazareno.org
 </span></span></span><span style=display:flex><span><span style=color:#e6db74>
 </span></span></span><span style=display:flex><span><span style=color:#e6db74>debian@hela:~$ ssh 192.168.100.3 &#39;</span>hostname -f<span style=color:#e6db74>&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>debian@192.168.100.3&#39;</span>s password: 
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>debian@192.168.100.3&#39;</span>s password:
 </span></span><span style=display:flex><span>loki.javiercd.gonzalonazareno.org
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>debian@hela:~$ ssh 192.168.100.4 <span style=color:#e6db74>&#39;hostname -f&#39;</span>
-</span></span><span style=display:flex><span>debian@192.168.100.4<span style=color:#960050;background-color:#1e0010>&#39;</span>s password: 
+</span></span><span style=display:flex><span>debian@192.168.100.4<span style=color:#960050;background-color:#1e0010>&#39;</span>s password:
 </span></span><span style=display:flex><span>thor.javiercd.gonzalonazareno.org
 </span></span></code></pre></div><p>The rule works properly, let&rsquo;s check that you&rsquo;ve uploaded the hits:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329174824.png alt></p><h3 id=from-any-lan-machine-you-can-connect-ssh-to-the-hela-machine>From any LAN machine you can connect ssh to the hela machine.</h3><p>For this we will create the following rule:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329175356.png alt></p><p>Now let&rsquo;s check the rule we just created:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>osboxes@odin:~$ ssh debian@192.168.200.2 <span style=color:#e6db74>&#39;hostname -f&#39;</span>
-</span></span><span style=display:flex><span>debian@192.168.200.2<span style=color:#e6db74>&#39;s password: 
+</span></span><span style=display:flex><span>debian@192.168.200.2<span style=color:#e6db74>&#39;s password:
 </span></span></span><span style=display:flex><span><span style=color:#e6db74>hela.javiercd.gonzalonazareno.org
 </span></span></span><span style=display:flex><span><span style=color:#e6db74>
 </span></span></span><span style=display:flex><span><span style=color:#e6db74>debian@loki:~$ ssh 192.168.200.2 &#39;</span>hostname -f<span style=color:#e6db74>&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>debian@192.168.200.2&#39;</span>s password: 
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>debian@192.168.200.2&#39;</span>s password:
 </span></span><span style=display:flex><span>hela.javiercd.gonzalonazareno.org
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>debian@thor:~$ ssh 192.168.200.2 <span style=color:#e6db74>&#39;hostname -f&#39;</span>
-</span></span><span style=display:flex><span>debian@192.168.200.2<span style=color:#960050;background-color:#1e0010>&#39;</span>s password: 
+</span></span><span style=display:flex><span>debian@192.168.200.2<span style=color:#960050;background-color:#1e0010>&#39;</span>s password:
 </span></span><span style=display:flex><span>hela.javiercd.gonzalonazareno.org
 </span></span></code></pre></div><p>Let&rsquo;s check that the rule hits have gone up:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329175844.png alt></p><h3 id=configure-the-odin-machine-so-that-lan-and-dmz-machines-can-access-the-outside>Configure the Odin machine so that LAN and DMZ machines can access the outside.</h3><p>The SNAT on this device can choose to activate it for each rule and not in general. If you have noticed throughout the practice all the rules that involve taking an interface jump I have marked the NAT box:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329180159.png alt></p><p>So this section is going to be done throughout practice as we create the rules.</p><h3 id=lan-machines-can-do-ping-outside-and-navigate>LAN machines can do ping outside and navigate.</h3><p>We&rsquo;re gonna have to create 3 rules:</p><ul><li>Allow HTTP / HTTPS traffic</li><li>Allow DNS queries</li><li>Allow to do ping</li></ul><p>Of these three rules the first two are previously created:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329184029.png alt></p><p>So we only have to add the ping rule, which would be the following:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329184222.png alt></p><p>Since I have a trial version I can have at most 10 entries, so I&rsquo;m going to remove the one that just lets Odin go outside.</p><p>Let&rsquo;s check the rules, from a LAN client:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>osboxes@odin:~$ dig @8.8.8.8 www.javiercd.es
 </span></span><span style=display:flex><span>
@@ -202,7 +202,7 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>rtt min/avg/max/mdev <span style=color:#f92672>=</span> 11.111/11.111/11.111/0.000 ms
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>osboxes@odin:~$ curl -I  https://www.javiercd.es/
-</span></span><span style=display:flex><span>HTTP/2 <span style=color:#ae81ff>200</span> 
+</span></span><span style=display:flex><span>HTTP/2 <span style=color:#ae81ff>200</span>
 </span></span><span style=display:flex><span>server: GitHub.com
 </span></span><span style=display:flex><span>content-type: text/html; charset<span style=color:#f92672>=</span>utf-8
 </span></span><span style=display:flex><span>last-modified: Mon, <span style=color:#ae81ff>11</span> Mar <span style=color:#ae81ff>2024</span> 23:21:37 GMT
@@ -229,7 +229,7 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>Connected to 192.168.122.77.
 </span></span><span style=display:flex><span><span style=color:#ae81ff>220</span> ProFTPD Server <span style=color:#f92672>(</span>Debian<span style=color:#f92672>)</span> <span style=color:#f92672>[</span>::ffff:192.168.200.2<span style=color:#f92672>]</span>
 </span></span><span style=display:flex><span><span style=color:#ae81ff>331</span> Password required <span style=color:#66d9ef>for</span> debian
-</span></span><span style=display:flex><span>Password: 
+</span></span><span style=display:flex><span>Password:
 </span></span><span style=display:flex><span><span style=color:#ae81ff>230</span> User debian logged in
 </span></span><span style=display:flex><span>Remote system type is UNIX.
 </span></span><span style=display:flex><span>Using binary mode to transfer files.
@@ -249,7 +249,7 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>Connected to 192.168.100.1.
 </span></span><span style=display:flex><span><span style=color:#ae81ff>220</span> ProFTPD Server <span style=color:#f92672>(</span>Debian<span style=color:#f92672>)</span> <span style=color:#f92672>[</span>::ffff:192.168.200.2<span style=color:#f92672>]</span>
 </span></span><span style=display:flex><span><span style=color:#ae81ff>331</span> Password required <span style=color:#66d9ef>for</span> debian
-</span></span><span style=display:flex><span>Password: 
+</span></span><span style=display:flex><span>Password:
 </span></span><span style=display:flex><span><span style=color:#ae81ff>230</span> User debian logged in
 </span></span><span style=display:flex><span>Remote system type is UNIX.
 </span></span><span style=display:flex><span>Using binary mode to transfer files.
@@ -262,7 +262,7 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span><span style=color:#ae81ff>221</span> 2.0.0 Bye
 </span></span><span style=display:flex><span>Connection closed by foreign host.
 </span></span></code></pre></div><p>We&rsquo;ll see that the hit of the rule has gone up:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329193822.png alt></p><h3 id=in-the-loki-machine-you-install-a-postgres-server-if-you-dont-have-it-yet-this-server-can-be-accessed-from-the-dmz-but-not-from-the-outside>In the Loki machine you install a Postgres server if you don&rsquo;t have it yet. This server can be accessed from the DMZ, but not from the outside.</h3><p>We will repeat the process of creating a new virtual IP for this service. In addition in this case I have had to create the service as it did not exist.</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329195211.png alt></p><p>Let&rsquo;s create the DNAT rule:</p><p><img src=/cortafuegos/fortinet_dos/img/Pastedimage20240329200331.png alt></p><p>Let&rsquo;s check that we have access to the pgsql server from the DMZ network:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@hela:~$ psql -h 192.168.200.1 -U postgres -W
-</span></span><span style=display:flex><span>Password: 
+</span></span><span style=display:flex><span>Password:
 </span></span><span style=display:flex><span>psql <span style=color:#f92672>(</span>15.6 <span style=color:#f92672>(</span>Debian 15.6-0+deb12u1<span style=color:#f92672>))</span>
 </span></span><span style=display:flex><span>SSL connection <span style=color:#f92672>(</span>protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, compression: off<span style=color:#f92672>)</span>
 </span></span><span style=display:flex><span>Type <span style=color:#e6db74>&#34;help&#34;</span> <span style=color:#66d9ef>for</span> help.

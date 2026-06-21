@@ -16,8 +16,8 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>iface ens4 inet dhcp
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># Internal network 1</span>
-</span></span><span style=display:flex><span>auto ens5 
-</span></span><span style=display:flex><span>iface ens5 inet static 
+</span></span><span style=display:flex><span>auto ens5
+</span></span><span style=display:flex><span>iface ens5 inet static
 </span></span><span style=display:flex><span>        address 192.168.10.1
 </span></span><span style=display:flex><span>        netmask 255.255.255.0
 </span></span><span style=display:flex><span>        <span style=color:#75715e># SNAT for ens5 network , ensure that bit of forwarding is activated.</span>
@@ -26,8 +26,8 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># Internal network 2</span>
-</span></span><span style=display:flex><span>auto ens6 
-</span></span><span style=display:flex><span>iface ens6 inet static 
+</span></span><span style=display:flex><span>auto ens6
+</span></span><span style=display:flex><span>iface ens6 inet static
 </span></span><span style=display:flex><span>        address 192.168.20.1
 </span></span><span style=display:flex><span>        netmask 255.255.255.0
 </span></span></code></pre></div><h2 id=installing-the-isc-dhcp-server>Installing the isc-dhcp-server</h2><p>To install the DHCP server on Debian, run the following command:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt update <span style=color:#f92672>&amp;&amp;</span> sudo apt install isc-dhcp-server
@@ -43,8 +43,8 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>With this configuration, the DHCP server will provide addresses within the specified range and assign the specified gateway and DNS server.</p><p>To apply the changes, restart the DHCP service:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo systemctl restart isc-dhcp-server
 </span></span></code></pre></div><h2 id=configuring-clients-to-obtain-dynamic-addresses>Configuring clients to obtain dynamic addresses</h2><p>To allow clients to receive IP addresses dynamically, ensure their network settings are set to use DHCP.</p><h3 id=on-a-debian-client>On a Debian client</h3><p>Edit the network configuration to use DHCP. Open the <code>/etc/network/interfaces</code> file:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo nano /etc/network/interfaces
-</span></span></code></pre></div><p>Ensure the interface is configured like this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>auto ens4 
-</span></span><span style=display:flex><span>iface ens4 inet dhcp 
+</span></span></code></pre></div><p>Ensure the interface is configured like this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>auto ens4
+</span></span><span style=display:flex><span>iface ens4 inet dhcp
 </span></span></code></pre></div><p>Restart the network interface to apply changes:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@client1:~$ sudo ifdown ens4 <span style=color:#f92672>&amp;&amp;</span> sudo ifup ens4
 </span></span></code></pre></div><p>You should see the DHCP client&rsquo;s output as it obtains its configuration:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>ifdown: interface ens4 not configured
 </span></span><span style=display:flex><span>Internet Systems Consortium DHCP Client 4.4.3-P1
@@ -55,7 +55,10 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>...
 </span></span><span style=display:flex><span>2: ens4: ...
 </span></span><span style=display:flex><span>    inet 192.168.10.100/24 brd 192.168.10.255 scope global dynamic ens4
-</span></span></code></pre></div><blockquote><p>💡 <strong>Tip:</strong><br>If you need to modify the DHCP client configuration or simply request a new one, these commands are helpful.<br>On Windows: <code>ipconfig /release</code> and then <code>ipconfig /renew</code><br>On Linux: <code>dhclient -r</code> to release and <code>dhclient</code> to renew.</p></blockquote><h2 id=checking-address-leases>Checking address leases</h2><p>To view the IP leases on the server, open the DHCP lease file, typically located at:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo cat /var/lib/dhcp/dhcpd.leases
+</span></span></code></pre></div><blockquote><p>💡 <strong>Tip:</strong>
+If you need to modify the DHCP client configuration or simply request a new one, these commands are helpful.
+On Windows: <code>ipconfig /release</code> and then <code>ipconfig /renew</code>
+On Linux: <code>dhclient -r</code> to release and <code>dhclient</code> to renew.</p></blockquote><h2 id=checking-address-leases>Checking address leases</h2><p>To view the IP leases on the server, open the DHCP lease file, typically located at:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo cat /var/lib/dhcp/dhcpd.leases
 </span></span></code></pre></div><p>Do not edit this file manually, as it may cause issues.</p><h2 id=reserving-an-ip-address>Reserving an IP address</h2><p>To reserve an IP address for a specific client, edit the DHCP server configuration:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo nano /etc/dhcp/dhcpd.conf
 </span></span></code></pre></div><p>Add the following to reserve based on the MAC address:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>host client_name <span style=color:#f92672>{</span>
 </span></span><span style=display:flex><span>  hardware ethernet 00:11:22:33:44:55;

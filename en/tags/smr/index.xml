@@ -71,7 +71,7 @@
 &lt;h2 id="remote-management-using-ssh"&gt;Remote management using SSH&lt;/h2&gt;
 &lt;p&gt;The first thing we should do is install the package on the server and the client:&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.079.png" alt=""&gt;&lt;/p&gt;
-&lt;p&gt;For safety it is usually not allowed to connect the root to the server; for this, the /etc/ssh/sshd config file should be modified, and the following option is put:&lt;/p&gt;
+&lt;p&gt;For safety it is usually not allowed to connect the root to the server, for this, the /etc/ssh/sshd config file should be modified, and the following option is put:&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.080.png" alt=""&gt;&lt;/p&gt;
 &lt;p&gt;And we restart the service to apply the changes:&lt;/p&gt;
 &lt;h3 id="connect-to-ssh-server"&gt;Connect to ssh server&lt;/h3&gt;

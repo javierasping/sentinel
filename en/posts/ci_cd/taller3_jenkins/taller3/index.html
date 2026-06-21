@@ -56,7 +56,7 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>FAILED <span style=color:#f92672>(</span>failures<span style=color:#f92672>=</span>2<span style=color:#f92672>)</span>
 </span></span></code></pre></div><p><strong>Remember:</strong> To make a test fail, you should not modify the <code>test.py</code> file. The tests fail because modifying the application code causes the conditions defined in the tests to no longer be met.</p><h2 id=pipeline-to-perform-an-automatic-test-permalink>Pipeline to Perform an Automatic Test <a href=https://fp.josedomingo.org/iaw/5_ic/taller3.html#pipeline-para-perform-a-test-autom%C3%A1tico target=_blank rel=noopener>Permalink</a></h2><p>Knowing how the tests are executed, we can create a pipeline to automate this process:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-groovy data-lang=groovy><span style=display:flex><span>pipeline <span style=color:#f92672>{</span>
 </span></span><span style=display:flex><span>    agent <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>        docker <span style=color:#f92672>{</span> 
+</span></span><span style=display:flex><span>        docker <span style=color:#f92672>{</span>
 </span></span><span style=display:flex><span>            image <span style=color:#e6db74>&#39;python:3&#39;</span>
 </span></span><span style=display:flex><span>            args <span style=color:#e6db74>&#39;-u root:root&#39;</span>
 </span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>

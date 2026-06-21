@@ -120,17 +120,17 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>    inet 10.99.99.2/24 scope global wg0
 </span></span><span style=display:flex><span>       valid_lft forever preferred_lft forever
 </span></span></code></pre></div><p>We will also check the routes that have been created on the server and on the client:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ ip r
-</span></span><span style=display:flex><span>default via 90.0.0.1 dev ens3 onlink 
-</span></span><span style=display:flex><span>10.99.99.2 dev wg0 scope link 
-</span></span><span style=display:flex><span>10.99.99.4 dev wg0 scope link 
-</span></span><span style=display:flex><span>90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2 
-</span></span><span style=display:flex><span>192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1 
+</span></span><span style=display:flex><span>default via 90.0.0.1 dev ens3 onlink
+</span></span><span style=display:flex><span>10.99.99.2 dev wg0 scope link
+</span></span><span style=display:flex><span>10.99.99.4 dev wg0 scope link
+</span></span><span style=display:flex><span>90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2
+</span></span><span style=display:flex><span>192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>debian@servidor2:~$ ip r
-</span></span><span style=display:flex><span>default via 100.0.0.1 dev ens3 onlink 
-</span></span><span style=display:flex><span>10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2 
-</span></span><span style=display:flex><span>100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2 
-</span></span><span style=display:flex><span>192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1 
+</span></span><span style=display:flex><span>default via 100.0.0.1 dev ens3 onlink
+</span></span><span style=display:flex><span>10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2
+</span></span><span style=display:flex><span>100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2
+</span></span><span style=display:flex><span>192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1
 </span></span></code></pre></div><p>Let&rsquo;s check that from our client (server 2) we have access to the different machines of our network:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>##Ping con el túnel del extremo servidor1</span>
 </span></span><span style=display:flex><span>debian@servidor2:~$ ping 10.99.99.1 -c <span style=color:#ae81ff>1</span>
 </span></span><span style=display:flex><span>PING 10.99.99.1 <span style=color:#f92672>(</span>10.99.99.1<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
@@ -171,16 +171,16 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span> <span style=color:#ae81ff>1</span>  10.99.99.1 <span style=color:#f92672>(</span>10.99.99.1<span style=color:#f92672>)</span>  18.692 ms  28.987 ms  28.951 ms
 </span></span><span style=display:flex><span> <span style=color:#ae81ff>2</span>  192.168.0.2 <span style=color:#f92672>(</span>192.168.0.2<span style=color:#f92672>)</span>  28.912 ms  28.877 ms  28.859 ms
 </span></span></code></pre></div><h3 id=android-client-configuration>android client configuration</h3><p>The virtual android machine is quite uncomfortable to control, so I&rsquo;m going to generate the keys and your configuration file on the server. Then we&rsquo;ll get him out of this with Apache.</p><p>We generate the keys to android:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ wg genkey | tee androidprivate | wg pubkey &gt; androidpublic
-</span></span><span style=display:flex><span>debian@servidor1:~$ cat androidprivate 
+</span></span><span style=display:flex><span>debian@servidor1:~$ cat androidprivate
 </span></span><span style=display:flex><span>CBY5o2iko7xXQrNAFcFDIKohOngawB1uvws7aDDgl0g<span style=color:#f92672>=</span>
-</span></span><span style=display:flex><span>debian@servidor1:~$ cat androidpublic 
+</span></span><span style=display:flex><span>debian@servidor1:~$ cat androidpublic
 </span></span><span style=display:flex><span>cBGl5QWOsbZyI2GN1MXDxUsfeMmI5sKnp3VkxW9lO3g<span style=color:#f92672>=</span>
-</span></span></code></pre></div><p>The configuration file would be as follows:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ sudo cat android.conf 
+</span></span></code></pre></div><p>The configuration file would be as follows:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ sudo cat android.conf
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>Interface<span style=color:#f92672>]</span>
 </span></span><span style=display:flex><span>Address <span style=color:#f92672>=</span> 10.99.99.4
 </span></span><span style=display:flex><span>PrivateKey <span style=color:#f92672>=</span> CBY5o2iko7xXQrNAFcFDIKohOngawB1uvws7aDDgl0g<span style=color:#f92672>=</span>
 </span></span><span style=display:flex><span>ListenPort <span style=color:#f92672>=</span> <span style=color:#ae81ff>51820</span>
-</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>Peer<span style=color:#f92672>]</span>
 </span></span><span style=display:flex><span>Publickey <span style=color:#f92672>=</span> 2/RjGUbiQuaFR7atYaQ8lcczz2wXxO9aIwfzZEMPXCQ<span style=color:#f92672>=</span>
 </span></span><span style=display:flex><span>AllowedIPs <span style=color:#f92672>=</span> 0.0.0.0/0
@@ -197,17 +197,17 @@ English</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-
 </span></span><span style=display:flex><span>debian@servidor1:~$ sudo wg-quick up wg0
 </span></span></code></pre></div><p>Now open the wireguard application and give it import from file and activate the connection. Activate the tunnel and make sure the handshake occurs:</p><p><img src=/vpn/acceso_remoto_wireguard/img/Pastedimage20240127123150.png alt></p><p>If we open a terminal we can pings the customers:</p><p><img src=/vpn/acceso_remoto_wireguard/img/Pastedimage20240127123551.png alt></p><p>Windows client configuration</p><p>We&rsquo;re going to repeat the process but now with our Windows client.</p><p>In order to copy and paste, I will make the key generation of this client in the service machine.</p><p>We&rsquo;ll start by generating the key pair.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ wg genkey | tee winprivate | wg pubkey &gt; winpublic
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>debian@servidor1:~$ cat winprivate 
+</span></span><span style=display:flex><span>debian@servidor1:~$ cat winprivate
 </span></span><span style=display:flex><span>QKGQEdrB9FBYRZsLNgc3qr9m8/lx+uc9n5vvj67I9m8<span style=color:#f92672>=</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>debian@servidor1:~$ cat winpublic 
+</span></span><span style=display:flex><span>debian@servidor1:~$ cat winpublic
 </span></span><span style=display:flex><span>E8VdupsWJ7vCTO7SF3oXUciUrsRgJ3p6T+F5UbbLngo<span style=color:#f92672>=</span>
-</span></span></code></pre></div><p>We create the configuration file for this client:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ cat win.conf 
+</span></span></code></pre></div><p>We create the configuration file for this client:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>debian@servidor1:~$ cat win.conf
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>Interface<span style=color:#f92672>]</span>
 </span></span><span style=display:flex><span>Address <span style=color:#f92672>=</span> 10.99.99.5
 </span></span><span style=display:flex><span>PrivateKey <span style=color:#f92672>=</span> QKGQEdrB9FBYRZsLNgc3qr9m8/lx+uc9n5vvj67I9m8<span style=color:#f92672>=</span>
 </span></span><span style=display:flex><span>ListenPort <span style=color:#f92672>=</span> <span style=color:#ae81ff>51820</span>
-</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>Peer<span style=color:#f92672>]</span>
 </span></span><span style=display:flex><span>Publickey <span style=color:#f92672>=</span> 2/RjGUbiQuaFR7atYaQ8lcczz2wXxO9aIwfzZEMPXCQ<span style=color:#f92672>=</span>
 </span></span><span style=display:flex><span>AllowedIPs <span style=color:#f92672>=</span> 0.0.0.0/0

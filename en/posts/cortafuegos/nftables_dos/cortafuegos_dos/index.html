@@ -99,7 +99,7 @@ The DMZ network corresponds to the helium network 172.16.0.0 / 16.</p><p>We cont
 </span></span><span style=display:flex><span><span style=color:#f92672>}</span>
 </span></span></code></pre></div><h2 id=-dnat-rules># DNAT rules</h2><p>The previous rules we had were as follows:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@odin:~$ sudo iptables -L -t nat
 </span></span><span style=display:flex><span>Chain PREROUTING <span style=color:#f92672>(</span>policy ACCEPT<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>target     prot opt source               destination         
+</span></span><span style=display:flex><span>target     prot opt source               destination
 </span></span><span style=display:flex><span>DNAT       tcp  --  anywhere             anywhere             tcp dpt:http to:172.16.0.200
 </span></span><span style=display:flex><span>DNAT       udp  --  anywhere             anywhere             udp dpt:domain to:192.168.0.2
 </span></span><span style=display:flex><span>DNAT       tcp  --  anywhere             anywhere             tcp dpt:smtp to:192.168.0.3
@@ -194,7 +194,7 @@ The DMZ network corresponds to the helium network 172.16.0.0 / 16.</p><p>We cont
 </span></span><span style=display:flex><span>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 </span></span><span style=display:flex><span>permitted by applicable law.
 </span></span><span style=display:flex><span>Last login: Sat Mar  <span style=color:#ae81ff>9</span> 13:49:09 <span style=color:#ae81ff>2024</span> from 172.29.0.58
-</span></span><span style=display:flex><span>javiercruces@odin:~$ 
+</span></span><span style=display:flex><span>javiercruces@odin:~$
 </span></span></code></pre></div><p>We checked the hits in the rules:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@odin:~$ sudo nft list ruleset
 </span></span><span style=display:flex><span><span style=color:#75715e>#IMPUT</span>
 </span></span><span style=display:flex><span>iifname <span style=color:#e6db74>&#34;ens4&#34;</span> tcp dport <span style=color:#ae81ff>22</span> ct state established,new counter packets <span style=color:#ae81ff>241918</span> bytes <span style=color:#ae81ff>13788652</span> accept
@@ -230,7 +230,7 @@ The DMZ network corresponds to the helium network 172.16.0.0 / 16.</p><p>We cont
 </span></span><span style=display:flex><span>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 </span></span><span style=display:flex><span>permitted by applicable law.
 </span></span><span style=display:flex><span>Last login: Sat Mar  <span style=color:#ae81ff>9</span> 19:49:28 <span style=color:#ae81ff>2024</span> from 192.168.0.2
-</span></span><span style=display:flex><span>javiercruces@odin:~$ 
+</span></span><span style=display:flex><span>javiercruces@odin:~$
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#Thor --&gt; Odin</span>
 </span></span><span style=display:flex><span>javiercruces@thor:~$ ssh 192.168.0.1
@@ -243,8 +243,8 @@ The DMZ network corresponds to the helium network 172.16.0.0 / 16.</p><p>We cont
 </span></span><span style=display:flex><span>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 </span></span><span style=display:flex><span>permitted by applicable law.
 </span></span><span style=display:flex><span>Last login: Sat Mar  <span style=color:#ae81ff>9</span> 19:46:12 <span style=color:#ae81ff>2024</span> from 192.168.0.2
-</span></span><span style=display:flex><span>javiercruces@odin:~$ 
-</span></span></code></pre></div><p>I&rsquo;ll leave you the rule hits at the end of practice.</p><h3 id=the-odin-machine-must-be-allowed-traffic-for-the-loopback-interface>The Odin machine must be allowed traffic for the loopback interface.</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo nft add rule inet filter input iifname <span style=color:#e6db74>&#34;lo&#34;</span> counter accept    
+</span></span><span style=display:flex><span>javiercruces@odin:~$
+</span></span></code></pre></div><p>I&rsquo;ll leave you the rule hits at the end of practice.</p><h3 id=the-odin-machine-must-be-allowed-traffic-for-the-loopback-interface>The Odin machine must be allowed traffic for the loopback interface.</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo nft add rule inet filter input iifname <span style=color:#e6db74>&#34;lo&#34;</span> counter accept
 </span></span><span style=display:flex><span>sudo nft add rule inet filter output oifname <span style=color:#e6db74>&#34;lo&#34;</span> counter accept
 </span></span></code></pre></div><p>Check:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@odin:~$ ping 127.0.0.1 -c <span style=color:#ae81ff>1</span>
 </span></span><span style=display:flex><span>PING 127.0.0.1 <span style=color:#f92672>(</span>127.0.0.1<span style=color:#f92672>)</span> 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
@@ -340,7 +340,7 @@ The DMZ network corresponds to the helium network 172.16.0.0 / 16.</p><p>We cont
 </span></span><span style=display:flex><span> * Management:     https://landscape.canonical.com
 </span></span><span style=display:flex><span> * Support:        https://ubuntu.com/advantage
 </span></span><span style=display:flex><span>Last login: Sun Mar <span style=color:#ae81ff>10</span> 14:52:57 <span style=color:#ae81ff>2024</span> from 192.168.0.1
-</span></span><span style=display:flex><span>javiercruces@thor:~$ 
+</span></span><span style=display:flex><span>javiercruces@thor:~$
 </span></span></code></pre></div><h3 id=from-any-lan-machine-you-can-connect-ssh-to-the-hela-machine>From any LAN machine you can connect ssh to the hela machine.</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>##Si no esta en la cadena forward no funciona</span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#sudo nft add rule inet filter LAN_DMZ iifname &#34;br-intra2&#34; oifname &#34;ens3&#34; ip daddr 172.16.0.200 tcp dport 22 counter accept</span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#sudo nft add rule inet filter DMZ_LAN iifname &#34;ens3&#34; oifname &#34;br-intra2&#34; ip saddr 172.16.0.200 tcp sport 22 counter accept</span>
@@ -349,7 +349,7 @@ The DMZ network corresponds to the helium network 172.16.0.0 / 16.</p><p>We cont
 </span></span><span style=display:flex><span>sudo nft add rule inet filter forward iifname <span style=color:#e6db74>&#34;ens3&#34;</span> oifname <span style=color:#e6db74>&#34;br-intra2&#34;</span> ip saddr 172.16.0.200 tcp sport <span style=color:#ae81ff>22</span> counter accept
 </span></span></code></pre></div><p>Check:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@thor:~$ ssh 172.16.0.200
 </span></span><span style=display:flex><span>Last login: Sun Mar <span style=color:#ae81ff>10</span> 14:53:12 <span style=color:#ae81ff>2024</span> from 192.168.0.2
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>javiercruces@hela ~<span style=color:#f92672>]</span>$ 
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>javiercruces@hela ~<span style=color:#f92672>]</span>$
 </span></span></code></pre></div><h3 id=configure-the-odin-machine-so-that-lan-and-dmz-machines-can-access-the-outside>Configure the Odin machine so that LAN and DMZ machines can access the outside.</h3><p>These rules were already indicated.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo nft add rule ip nat postrouting oifname <span style=color:#e6db74>&#34;ens4&#34;</span> ip saddr 192.168.0.0/24 counter masquerade
 </span></span><span style=display:flex><span>sudo nft add rule ip nat postrouting oifname <span style=color:#e6db74>&#34;ens4&#34;</span> ip saddr 172.16.0.0/16 counter masquerade
 </span></span></code></pre></div><h3 id=lan-machines-can-do-ping-outside-and-navigate>LAN machines can do ping outside and navigate.</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#Las máquinas de la LAN pueden hacer ping al exterior y navegar.</span>
@@ -360,7 +360,7 @@ The DMZ network corresponds to the helium network 172.16.0.0 / 16.</p><p>We cont
 </span></span><span style=display:flex><span>sudo nft add rule inet filter forward iifname <span style=color:#e6db74>&#34;br-intra2&#34;</span> oifname <span style=color:#e6db74>&#34;ens4&#34;</span> ip protocol icmp icmp type echo-request counter accept
 </span></span><span style=display:flex><span>sudo nft add rule inet filter forward iifname <span style=color:#e6db74>&#34;ens4&#34;</span> oifname <span style=color:#e6db74>&#34;br-intra2&#34;</span> ip protocol icmp icmp type echo-reply counter accept
 </span></span></code></pre></div><p>Check:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@thor:~$ curl -I https://www.javiercd.es
-</span></span><span style=display:flex><span>HTTP/2 <span style=color:#ae81ff>200</span> 
+</span></span><span style=display:flex><span>HTTP/2 <span style=color:#ae81ff>200</span>
 </span></span><span style=display:flex><span>server: GitHub.com
 </span></span><span style=display:flex><span>content-type: text/html; charset<span style=color:#f92672>=</span>utf-8
 </span></span><span style=display:flex><span>last-modified: Sat, <span style=color:#ae81ff>02</span> Mar <span style=color:#ae81ff>2024</span> 10:17:01 GMT
@@ -395,7 +395,7 @@ The DMZ network corresponds to the helium network 172.16.0.0 / 16.</p><p>We cont
 </span></span><span style=display:flex><span>sudo nft add rule inet filter forward iifname <span style=color:#e6db74>&#34;ens3&#34;</span> oifname <span style=color:#e6db74>&#34;ens4&#34;</span> tcp dport <span style=color:#f92672>{</span>80, 443<span style=color:#f92672>}</span> counter accept
 </span></span><span style=display:flex><span>sudo nft add rule inet filter forward iifname <span style=color:#e6db74>&#34;ens4&#34;</span> oifname <span style=color:#e6db74>&#34;ens3&#34;</span> tcp sport <span style=color:#f92672>{</span>80, 443<span style=color:#f92672>}</span> counter accept
 </span></span></code></pre></div><p>I check that I can navigate:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[</span>root@hela javiercruces<span style=color:#f92672>]</span><span style=color:#75715e># curl -I https://www.javiercd.es/</span>
-</span></span><span style=display:flex><span>HTTP/2 <span style=color:#ae81ff>200</span> 
+</span></span><span style=display:flex><span>HTTP/2 <span style=color:#ae81ff>200</span>
 </span></span><span style=display:flex><span>server: GitHub.com
 </span></span><span style=display:flex><span>content-type: text/html; charset<span style=color:#f92672>=</span>utf-8
 </span></span><span style=display:flex><span>last-modified: Sat, <span style=color:#ae81ff>02</span> Mar <span style=color:#ae81ff>2024</span> 10:17:01 GMT
@@ -459,23 +459,23 @@ The DMZ network corresponds to the helium network 172.16.0.0 / 16.</p><p>We cont
 </span></span><span style=display:flex><span>sudo nft add rule inet filter forward iifname <span style=color:#e6db74>&#34;ens3&#34;</span> oifname <span style=color:#e6db74>&#34;br-intra2&#34;</span> ip daddr 192.168.0.3 tcp dport <span style=color:#ae81ff>5432</span> ct state <span style=color:#f92672>{</span> new, established <span style=color:#f92672>}</span> counter accept
 </span></span><span style=display:flex><span>sudo nft add rule inet filter forward iifname <span style=color:#e6db74>&#34;br-intra2&#34;</span> oifname <span style=color:#e6db74>&#34;ens3&#34;</span> ip saddr 192.168.0.3 tcp sport <span style=color:#ae81ff>5432</span> ct state established,related counter accept
 </span></span></code></pre></div><p>We access the postwree server from hela:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[</span>root@hela javiercruces<span style=color:#f92672>]</span><span style=color:#75715e># psql -h 192.168.0.3 -U postgres</span>
-</span></span><span style=display:flex><span>Password <span style=color:#66d9ef>for</span> user postgres: 
+</span></span><span style=display:flex><span>Password <span style=color:#66d9ef>for</span> user postgres:
 </span></span><span style=display:flex><span>psql <span style=color:#f92672>(</span>13.14, server 14.11 <span style=color:#f92672>(</span>Ubuntu 14.11-0ubuntu0.22.04.1<span style=color:#f92672>))</span>
 </span></span><span style=display:flex><span>WARNING: psql major version 13, server major version 14.
 </span></span><span style=display:flex><span>         Some psql features might not work.
 </span></span><span style=display:flex><span>SSL connection <span style=color:#f92672>(</span>protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off<span style=color:#f92672>)</span>
 </span></span><span style=display:flex><span>Type <span style=color:#e6db74>&#34;help&#34;</span> <span style=color:#66d9ef>for</span> help.
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>postgres<span style=color:#f92672>=</span><span style=color:#75715e># </span>
+</span></span><span style=display:flex><span>postgres<span style=color:#f92672>=</span><span style=color:#75715e>#</span>
 </span></span></code></pre></div><h2 id=-avoid-dos-attacks-by-icmp-flood-limiting-the-number-of-requests-per-second-to-4-from-the-same-ip># Avoid DoS attacks by ICMP Flood, limiting the number of requests per second to 4 from the same IP.</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>sudo nft insert rule inet filter input icmp type echo-request limit rate 1/second burst <span style=color:#ae81ff>4</span> packets counter drop
-</span></span></code></pre></div><p>If we make a flood attack, this will cut the traffic:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[</span>root@hela javiercruces<span style=color:#f92672>]</span><span style=color:#75715e># hping3 --icmp --flood --rand-source 172.16.0.1 </span>
+</span></span></code></pre></div><p>If we make a flood attack, this will cut the traffic:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[</span>root@hela javiercruces<span style=color:#f92672>]</span><span style=color:#75715e># hping3 --icmp --flood --rand-source 172.16.0.1</span>
 </span></span><span style=display:flex><span>HPING 172.16.0.1 <span style=color:#f92672>(</span>eth0 172.16.0.1<span style=color:#f92672>)</span>: icmp mode set, <span style=color:#ae81ff>28</span> headers + <span style=color:#ae81ff>0</span> data bytes
 </span></span><span style=display:flex><span>hping in flood mode, no replies will be shown
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>icmp type echo-request limit rate 1/second burst <span style=color:#ae81ff>4</span> packets counter packets <span style=color:#ae81ff>46</span> bytes <span style=color:#ae81ff>2128</span> drop
 </span></span></code></pre></div><p>Avoid DoS attacks by SYN Flood.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#Evita ataques DoS por SYN Flood.</span>
 </span></span><span style=display:flex><span>sudo nft add rule inet filter input tcp flags <span style=color:#ae81ff>\&amp;</span> <span style=color:#e6db74>&#39;(fin|syn|rst|ack) == syn&#39;</span> counter limit rate over 25/second drop
-</span></span></code></pre></div><p>If we test the attack:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[</span>root@hela javiercruces<span style=color:#f92672>]</span><span style=color:#75715e># hping3  --flood --rand-source 172.16.0.1 </span>
+</span></span></code></pre></div><p>If we test the attack:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[</span>root@hela javiercruces<span style=color:#f92672>]</span><span style=color:#75715e># hping3  --flood --rand-source 172.16.0.1</span>
 </span></span><span style=display:flex><span>HPING 172.16.0.1 <span style=color:#f92672>(</span>eth0 172.16.0.1<span style=color:#f92672>)</span>: NO FLAGS are set, <span style=color:#ae81ff>40</span> headers + <span style=color:#ae81ff>0</span> data bytes
 </span></span><span style=display:flex><span>hping in flood mode, no replies will be shown
 </span></span><span style=display:flex><span>^C
@@ -727,7 +727,7 @@ The DMZ network corresponds to the helium network 172.16.0.0 / 16.</p><p>We cont
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#sudo nft add rule inet filter output udp dport 53 counter accept</span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#sudo nft add rule inet filter input udp sport 53 counter accept</span>
-</span></span></code></pre></div><h3 id=rules>Rules</h3><p>Every time I have executed the script the rules lose the counters but so would the scheme with all the rules at the end of the practice:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@odin:~$ sudo nft list ruleset  
+</span></span></code></pre></div><h3 id=rules>Rules</h3><p>Every time I have executed the script the rules lose the counters but so would the scheme with all the rules at the end of the practice:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>javiercruces@odin:~$ sudo nft list ruleset
 </span></span><span style=display:flex><span>table inet filter <span style=color:#f92672>{</span>
 </span></span><span style=display:flex><span>	chain forward <span style=color:#f92672>{</span>
 </span></span><span style=display:flex><span>		type filter hook forward priority filter + 10; policy drop;
