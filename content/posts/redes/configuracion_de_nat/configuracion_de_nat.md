@@ -80,7 +80,7 @@ Router R2:
 
 Así sería la relación de IPs que tienen las tarjetas de red de los routers. Para aplicar esta configuración a las tarjetas de red tendremos que reiniciar la misma como indiqué al principio de este apartado.
 
-Para que el escenario funcione, debemos activar el bit de forwarding para estos 4 routers. En este caso lo haré de forma permanente; para ello editamos el fichero `/etc/sysctl.conf` y descomentamos esta línea:
+Para que el escenario funcione, debemos activar el bit de forwarding para estos 4 routers. En este caso lo haré de forma permanente, para ello editamos el fichero `/etc/sysctl.conf` y descomentamos esta línea:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.014.png)
 
@@ -148,7 +148,7 @@ Por ejemplo, desde casa, si le hacemos `ping` a Google, se lo hacemos a la direc
 
 Retomando lo que habíamos hecho anteriormente en el apartado de instalación de paquetes, ya hemos descargado el servidor DHCP para Debian (`isc-dhcp-server`). Así que ahora vamos a configurarlo.
 
-Lo primero que necesitamos hacer es decirle a nuestro servidor a través de qué tarjeta de red queremos que reparta direcciones IP; en nuestro caso es la tarjeta `ens5`.
+Lo primero que necesitamos hacer es decirle a nuestro servidor a través de qué tarjeta de red queremos que reparta direcciones IP. En nuestro caso es la tarjeta `ens5`.
 
 Para ello editaremos el fichero `/etc/default/isc-dhcp-server` y añadiremos el nombre de la tarjeta en la sección de IPv4:
 
@@ -222,7 +222,7 @@ Vemos que, haciendo la captura, este me ha cambiado la dirección privada de la 
 
 #### Router R2
 
-Vamos a configurar SNAT y DNAT; para ello añadiré las reglas al `/etc/network/interfaces`:
+Vamos a configurar SNAT y DNAT, para ello añadiré las reglas al `/etc/network/interfaces`:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.039.png)
 
@@ -243,7 +243,7 @@ Ya que nos ha cambiado la dirección IP privada por la pública correspondiente 
 
 #### Router R1
 
-Para este router vamos a realizar la creación de las reglas de una forma diferente; para ello crearemos un servicio que se encargue de levantar las reglas de DNAT y SNAT cuando la máquina se reinicie para evitar añadirlas al fichero interfaces.
+Para este router vamos a realizar la creación de las reglas de una forma diferente. Para ello crearemos un servicio que se encargue de levantar las reglas de DNAT y SNAT cuando la máquina se reinicie para evitar añadirlas al fichero interfaces.
 
 Las reglas de DNAT y SNAT para esta máquina son:
 
@@ -263,7 +263,7 @@ Crearemos un archivo de servicio de Systemd. Este archivo debe tener permisos de
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.046.png)
 
-Dentro de este añadiremos el siguiente contenido; solo tendrás que añadir la ruta donde se encuentre tu script de `iptables` que restaura las reglas:
+Dentro de este añadiremos el siguiente contenido. Solo tendrás que añadir la ruta donde se encuentre tu script de `iptables` que restaura las reglas:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.047.png)
 
@@ -327,7 +327,7 @@ Ahora voy a interceptar una petición en la que se haga DNAT para comprobar que 
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.060.png)
 
-Podemos ver que el origen es una dirección IP pública, mientras que el destino es una dirección IP privada; podemos ver que el DNAT se ha realizado correctamente.
+Podemos ver que el origen es una dirección IP pública, mientras que el destino es una dirección IP privada. Podemos ver que el DNAT se ha realizado correctamente.
 
 Ahora voy a abrir Firefox y volveré a comprobar que podemos acceder a los servidores web solo usando su dirección IP pública:
 
@@ -364,7 +364,7 @@ Para borrar los contadores de todas las cadenas y reglas usaremos `iptables -Z`:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.066.png)
 
-Si nuestra cadena tiene hits, la regla estará funcionando correctamente; si, por el contrario, esta se mantiene en 0, la regla no se está aplicando, así que tendremos que revisarla.
+Si nuestra cadena tiene hits, la regla estará funcionando correctamente. Si, por el contrario, esta se mantiene en 0, la regla no se está aplicando, así que tendremos que revisarla.
 
 
 
@@ -516,7 +516,7 @@ Incluimos la puerta de enlace que ofrecerá el servicio :
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.100.png)
 
-Con esto ya estaría configurado el servidor DHCP del router de CASA, nos salimos y guardamos los cambios. Ahora encenderemos nuestras máquinas y veremos que recibirán automáticamente su configuración por DHCP; con el siguiente comando podemos ver las estadísticas del servicio:
+Con esto ya estaría configurado el servidor DHCP del router de CASA, nos salimos y guardamos los cambios. Ahora encenderemos nuestras máquinas y veremos que recibirán automáticamente su configuración por DHCP. Con el siguiente comando podemos ver las estadísticas del servicio:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.101.png)
 
@@ -709,7 +709,7 @@ El primer comando nos permite ver la tabla de traducciones de direcciones DNAT:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.135.png)
 
-Con este comando podremos ver cuántos hits tienen nuestras reglas; si no tiene ninguno, es que no está funcionando, salvo que nosotros hayamos inicializado este:
+Con este comando podremos ver cuántos hits tienen nuestras reglas. Si no tiene ninguno, es que no está funcionando, salvo que nosotros hayamos inicializado este:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.136.png)
 

@@ -22,7 +22,7 @@ Ej: sleep 10m –> esperar 10 min
 
 Por sí solo no tiene ninguna utilidad, sin embargo, es muy útil en scripts. Aquí un pequeño ejemplo:
 
-date +"%H:%M:%S",sleep 5,date +"%H:%M:%S"
+date +"%H:%M:%S"; sleep 5; date +"%H:%M:%S"
 
 ![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.001.png)
 
@@ -46,7 +46,7 @@ Si queremos eliminar el encabezado, es decir, que nos muestre cada cuánto tiemp
 
 Si queremos poner un mensaje de error en caso de que el comando no pueda ejecutarse, utilizamos el parámetro `-e` seguido del mensaje de error:
 
-watch -e ‘error’
+watch -e 'error'
 
 La opción `-b` de `watch` emite un pitido cada vez que el comando sale con un código de estado distinto de cero.
 
@@ -88,9 +88,9 @@ Podemos programar tareas desde la línea de comandos con `echo`:
 
 echo "sh copia-seguridad.sh" | at 10:00 PM
 
-A esta tarea se le asignará un número automáticamente, para listar las tareas que tenemos invocamos el comando `at` sin ningún parámetro.
+A esta tarea se le asignará un número automáticamente. Para listar las tareas que tenemos, invocamos el comando `atq`.
 
-Si queremos borrar una tarea programada, utilizamos el parámetro `-c` seguido del número de la tarea a eliminar.
+Si queremos borrar una tarea programada, utilizamos `atrm` seguido del número de la tarea a eliminar.
 
 Algunos ejemplos para programar tareas son :
 
@@ -140,7 +140,7 @@ También debemos conocer los usos de los parámetros:
 
 Cuando hagamos algún cambio deberemos reiniciar el servicio para asegurarnos de que nuestros cambios surtan efecto:
 
-service crond restart
+service cron restart
 
 Estos comandos nos darán la posibilidad de automatizar procesos, haciendo más cómoda y amena la administración de nuestros sistemas.
 
@@ -148,4 +148,3 @@ Estos comandos nos darán la posibilidad de automatizar procesos, haciendo más 
 
 - [Command watch ](https://ubunlog.com/comando-watch-algunas-formas-de-uso/)
 - [Command crontab](https://geekytheory.com/programar-tareas-en-linux-usando-crontab/)
-
