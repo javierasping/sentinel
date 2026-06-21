@@ -21,7 +21,7 @@ Mientras que el PC2 tiene –> fe80::e5f:61ff:feee:0/64
 
 ![](/redes/escenario_ipv6_basico/img/Aspose.Words.e7f0d3c3-3d56-4aa1-a556-ca7031f37ba4.002.png)
 
-Estas dos direcciones se denominan de enlace local y se asignan automáticamente a cada interfaz de red . Este tipo solo nos permitirá comunicarnos con los dispositivos de nuestra red local y tienen el prefijo –> FE80::/10 
+Estas dos direcciones se denominan de enlace local y se asignan automáticamente a cada interfaz de red . Este tipo solo nos permitirá comunicarnos con los dispositivos de nuestra red local y tienen el prefijo –> FE80::/10
 
 Si hacemos un ping desde uno de estos a otros con la dirección de enlace local podremos comunicarnos :
 
@@ -49,7 +49,7 @@ Reiniciamos al servicio y tendríamos una direccion global :
 
 SLAAC(Stateless Address Autoconfiuration) es un mecanismo de configuración único para IPV6 no existe un equivalente en IPV4. El cual nos permite  que  los nodos de nuestra red se configuren automáticamente .
 
-A partir de la dirección de enlace local que tienen todos los host , mediante el protocolo neighbour discovery solicita si hay algún router dentro de la red local le facilite los parámetros de configuración de la red  
+A partir de la dirección de enlace local que tienen todos los host , mediante el protocolo neighbour discovery solicita si hay algún router dentro de la red local le facilite los parámetros de configuración de la red
 
 Lo primero que haremos para configurar SLAAC sera instalar el paquete radvd :
 
@@ -117,10 +117,10 @@ Este proceso forma parte de la detección de vecinos ICMPv6 y se conoce como “
 
 ![](/redes/escenario_ipv6_basico/img/Aspose.Words.e7f0d3c3-3d56-4aa1-a556-ca7031f37ba4.016.png)
 
-Esta imagen explica la configuración de una interfaz por SLAAC. Ahora vamos a comprobar que los distintos clientes tienen conectividad entre si : 
+Esta imagen explica la configuración de una interfaz por SLAAC. Ahora vamos a comprobar que los distintos clientes tienen conectividad entre si :
 
 PC1  –> 3333:db7::ef7:42ff:fe92:0
-PC2 –> 3333:db7::e5f:61ff:feee:0   
+PC2 –> 3333:db7::e5f:61ff:feee:0
 R1  –> 3333:db7::e01:30ff:fea0:0
 
 Router 1 :
@@ -178,7 +178,7 @@ Como podemos ver el único parámetro que hemos especificado en el servidor DHCP
 Acabamos de configurar SLAAC y DHCPv6 sin estado , esto significa que :
 
 - Usa SLAAC para obtener una dirección IPV6 de tipo global unicast , además de la puerta de enlace .
-- Usa el servidor DHCPv6 sin estado, para el resto de parámetros de configuración de nuestra red . 
+- Usa el servidor DHCPv6 sin estado, para el resto de parámetros de configuración de nuestra red .
 
 Es decir hemos configurado la segunda opción  de la siguiente imagen :
 
@@ -233,7 +233,7 @@ En el caso de que creemos un virtualhost podemos especificar como queremos que t
 
 Vamos a acceder desde las maquinas de nuestra red en mi caso lo he montado en el router ya que es el único que tiene acceso a internet en este escenario .
 
-Me conectare a el utilizando la direccion global pero podríamos usar la local sin problema ya que pertenecemos a la misma red local  . 
+Me conectare a el utilizando la direccion global pero podríamos usar la local sin problema ya que pertenecemos a la misma red local  .
 
 Acceso desde PC2:
 
@@ -321,7 +321,7 @@ Para que el router nos configure a los clientes deberemos de introducir el sigui
 
 ![](/redes/escenario_ipv6_basico/img/Aspose.Words.e7f0d3c3-3d56-4aa1-a556-ca7031f37ba4.052.png)
 
-Una vez hecho esto nuestros clientes se habrán configurado correctamente : 
+Una vez hecho esto nuestros clientes se habrán configurado correctamente :
 
 PC1:
 

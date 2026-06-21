@@ -17,7 +17,7 @@ Components you'll see during installation:
 - Glance Store: manages backends where image files are stored (file, Swift, Ceph, ...).
 - Metadata / registry service: stores image metadata (in many deployments this functionality is integrated into the API and DB).
 
-Glance uses an SQL database for state; here we use MySQL/MariaDB on the controller. In this guide we use the `file` backend for simplicity.
+Glance uses an SQL database for state, here we use MySQL/MariaDB on the controller. In this guide we use the `file` backend for simplicity.
 
 ## Create the database
 

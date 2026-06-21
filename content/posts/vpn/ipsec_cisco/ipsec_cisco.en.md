@@ -31,10 +31,10 @@ R2(config)#interface FastEthernet1/0
 R2(config-if)# ip address 90.0.0.2 255.255.255.0
 R2(config-if)# no shutdown
 
-R2(config)#ip route 0.0.0.0 0.0.0.0 90.0.0.1     
+R2(config)#ip route 0.0.0.0 0.0.0.0 90.0.0.1
 
 #SNAT
-R2(config)#$ ip nat pool NAT-Pool 90.0.0.2 90.0.0.2 prefix-length 24                   
+R2(config)#$ ip nat pool NAT-Pool 90.0.0.2 90.0.0.2 prefix-length 24
 R2(config)#ip nat inside source list 1 pool NAT-Pool overload
 
 R2(config)#interface FastEthernet0/0
@@ -52,14 +52,14 @@ R3(config-if)#ip address 192.168.1.1 255.255.255.0
 R3(config-if)#no shut
 R3(config-if)#exit
 
-R3(config)#Interface FastEthernet1/0           
-R3(config-if)#ip address 100.0.0.2 255.255.255.0  
-R3(config-if)#no shut                           
-R3(config-if)#exit       
+R3(config)#Interface FastEthernet1/0
+R3(config-if)#ip address 100.0.0.2 255.255.255.0
+R3(config-if)#no shut
+R3(config-if)#exit
 
 R3(config)#ip route 0.0.0.0 0.0.0.0 100.0.0.1
 
-R3(config)#ip nat pool NAT-Pool 100.0.0.2 100.0.0.2 prefix-length 24      
+R3(config)#ip nat pool NAT-Pool 100.0.0.2 100.0.0.2 prefix-length 24
 R3(config)#ip nat inside source list 1 pool NAT-Pool overload
 
 R3(config)#interface FastEthernet0/0
@@ -90,7 +90,7 @@ R2(config)#crypto isakmp policy 10
 R2(config-isakmp)# encryption aes
 
 #Configuramos el algoritmo de hash SHA para la política ISAKMP.
-R2(config-isakmp)# hash sha   
+R2(config-isakmp)# hash sha
 
 #Configuramos la autenticación precompartida (pre-shared key) para la política ISAKMP.
 R2(config-isakmp)# authentication pre-share
@@ -102,10 +102,10 @@ R2(config-isakmp)# group 14
 R2(config-isakmp)#crypto isakmp key TuClavePrecompartida address 100.0.0.2
 
 #Creamos un conjunto de transformación para la fase 2 (IPsec) con cifrado AES y hash SHA.
-R2(config)#crypto ipsec transform-set myset esp-aes esp-sha-hmac 
+R2(config)#crypto ipsec transform-set myset esp-aes esp-sha-hmac
 
 #Creamos una lista de acceso (ACL) para especificar el tráfico a proteger con IPsec.
-R2(cfg-crypto-trans)# access-list 100 permit ip 192.168.1.0 0.0.0.255 192.168.0.0 0.0.0.255 
+R2(cfg-crypto-trans)# access-list 100 permit ip 192.168.1.0 0.0.0.255 192.168.0.0 0.0.0.255
 
 #Creamos un mapa criptográfico asociado a ISAKMP e IPsec con número de secuencia 10.
 R2(config)#crypto map mymap 10 ipsec-isakmp
@@ -120,7 +120,7 @@ R2(config-crypto-map)# set transform-set myset
 R2(config-crypto-map)# match address 100
 
 #Entramos a la interfaz FastEthernet1/0 (PUBLICA) y le asignamos el mapa criptografico para que envie por esta el trafico de la VPN .
-R2(config-crypto-map)#interface FastEthernet1/0 
+R2(config-crypto-map)#interface FastEthernet1/0
 R2(config-if)# crypto map mymap
 ```
 
@@ -139,7 +139,7 @@ R3(config)#crypto isakmp policy 10
 R3(config-isakmp)# encryption aes
 
 #Configuramos el algoritmo de hash SHA para la política ISAKMP.
-R3(config-isakmp)# hash sha   
+R3(config-isakmp)# hash sha
 
 #Configuramos la autenticación precompartida (pre-shared key) para la política ISAKMP.
 R3(config-isakmp)# authentication pre-share
@@ -151,10 +151,10 @@ R3(config-isakmp)# group 14
 R3(config-isakmp)#crypto isakmp key TuClavePrecompartida address 90.0.0.2
 
 #Creamos un conjunto de transformación para la fase 2 (IPsec) con cifrado AES y hash SHA.
-R3(config)#crypto ipsec transform-set myset esp-aes esp-sha-hmac 
+R3(config)#crypto ipsec transform-set myset esp-aes esp-sha-hmac
 
 #Creamos una lista de acceso (ACL) para especificar el tráfico a proteger con IPsec.
-R3(cfg-crypto-trans)#access-list 100 permit ip 192.168.1.0 0.0.0.255 192.168.0.0 0.0.0.255       
+R3(cfg-crypto-trans)#access-list 100 permit ip 192.168.1.0 0.0.0.255 192.168.0.0 0.0.0.255
 
 #Creamos un mapa criptográfico asociado a ISAKMP e IPsec con número de secuencia 10.
 R3(config)#crypto map mymap 10 ipsec-isakmp
@@ -182,20 +182,20 @@ R3#show crypto session
 Crypto session current status
 
 Interface: FastEthernet1/0
-Session status: UP-ACTIVE     
-Peer: 90.0.0.2 port 500 
-  IKE SA: local 100.0.0.2/500 remote 90.0.0.2/500 Active 
-  IPSEC FLOW: permit ip 192.168.1.0/255.255.255.0 192.168.0.0/255.255.255.0 
+Session status: UP-ACTIVE
+Peer: 90.0.0.2 port 500
+  IKE SA: local 100.0.0.2/500 remote 90.0.0.2/500 Active
+  IPSEC FLOW: permit ip 192.168.1.0/255.255.255.0 192.168.0.0/255.255.255.0
         Active SAs: 2, origin: crypto map
 
 R2#show crypto session
 Crypto session current status
 
 Interface: FastEthernet1/0
-Session status: UP-ACTIVE     
-Peer: 100.0.0.2 port 500 
-  IKE SA: local 90.0.0.2/500 remote 100.0.0.2/500 Active 
-  IPSEC FLOW: permit ip 192.168.0.0/255.255.255.0 192.168.1.0/255.255.255.0 
+Session status: UP-ACTIVE
+Peer: 100.0.0.2 port 500
+  IKE SA: local 90.0.0.2/500 remote 100.0.0.2/500 Active
+  IPSEC FLOW: permit ip 192.168.0.0/255.255.255.0 192.168.1.0/255.255.255.0
         Active SAs: 2, origin: crypto map
 ```
 

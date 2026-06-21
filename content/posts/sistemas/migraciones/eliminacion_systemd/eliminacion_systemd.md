@@ -1,7 +1,7 @@
 ﻿---
 title: "Eliminación de systemd"
 date: 2023-09-20T10:00:00+00:00
-description: 
+description:
 tags: [ASO,DEBIAN]
 hero: images/sistemas/eliminar_systemd/eliminar_systemd.jpg
 ---

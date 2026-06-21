@@ -257,7 +257,7 @@ We will ask PC1 from PC3 to be outside that local network, as we see no need to 
 
 I can even ping a host from another network:
 
-![](/redes/escenario_ipv6_basico/img/Aspose.Words.e7f0d3c3-3d56-4aa1-a556-ca7031f37ba4.041.png)Si analizamos estas peticiones con Wireshark podemos ver que en ningún momento se produce 
+![](/redes/escenario_ipv6_basico/img/Aspose.Words.e7f0d3c3-3d56-4aa1-a556-ca7031f37ba4.041.png)Si analizamos estas peticiones con Wireshark podemos ver que en ningún momento se produce
 
 NAT:
 

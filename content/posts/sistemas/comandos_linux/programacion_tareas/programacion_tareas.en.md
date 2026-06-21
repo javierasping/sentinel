@@ -22,7 +22,7 @@ Ej: sleep 10m - > wait 10 min
 
 In case it is not of any use, however it is very useful in Scripts. Here is a small example:
 
-date + "% H:% M:% S '; sleep 5; date +"% H:% M:% S'
+date +"%H:%M:%S"; sleep 5; date +"%H:%M:%S"
 
 ![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.001.png)
 
@@ -86,11 +86,11 @@ The main parameters are:
 
 We can program tasks from the command line, with echo:
 
-echo "sh copia-segurity.sh" ¦ 124; at 10: 00 PM
+echo "sh copia-segurity.sh" | at 10:00 PM
 
-Has this task will be assigned a number automatically, to list the tasks we have we invoke the at command without any parameter
+This task will be assigned a number automatically. To list the tasks, we invoke the `atq` command.
 
-If we want to delete a scheduled task, we use the -c parameter followed by the task number to be removed.
+If we want to delete a scheduled task, we use `atrm` followed by the task number to be removed.
 
 Examples to schedule tasks include:
 
@@ -132,20 +132,19 @@ We often have words reserved to facilitate the use of programming programs or la
 
 We must also know the uses of the parameters:
 
-crontab archivo.cron (set the file as the user's crontab)
+`crontab archivo.cron` (set the file as the user's crontab)
 
-crontab -e (will open the pre-established editor where you can create or edit the crontab file) crontab -l (list the current user crontab, your cron tasks)
+`crontab -e` (will open the pre-established editor where you can create or edit the crontab file) `crontab -l` (list the current user crontab, your cron tasks)
 
 crontab -r (removes current user crontab)
 
 When we make some change we must restart the service to make sure that our changes take effect:
 
-service crow restart
+service cron restart
 
 These commands will give us the possibility to automate processes, making the management of our systems more comfortable and friendly.
 
 ## Bibliography
 
-- [Watch command](https://ubunlog.com/comando-watch-some-formas-de-use/) 
+- [Watch command](https://ubunlog.com/comando-watch-some-formas-de-use/)
 - [Crontab command](https://geekytheory.com/programar-tareas-en-linux-using-crontab/)
-

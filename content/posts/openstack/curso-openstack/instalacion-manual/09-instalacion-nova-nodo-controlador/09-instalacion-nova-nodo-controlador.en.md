@@ -53,7 +53,7 @@ exit;
 Load the administrator environment variables to run Keystone commands:
 
 ```bash
-vagrant@controller01:~$ source admin-openrc 
+vagrant@controller01:~$ source admin-openrc
 ```
 
 Create the `nova` service user (use `NOVA_PASSWORDS` as an example password):

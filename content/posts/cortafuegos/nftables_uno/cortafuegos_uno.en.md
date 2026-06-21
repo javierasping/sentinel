@@ -18,7 +18,7 @@ With NFTABLES it does the exercise of the https://fp.josedomingo.org/seguridad/u
 The first thing we'll do is activate the forwarding bit. To do this, we will edit the file '/ etc / sysctl.conf' using the following command:
 
 ```bash
-javiercruces@router-fw:~$ sudo nano /etc/sysctl.conf 
+javiercruces@router-fw:~$ sudo nano /etc/sysctl.conf
 #Descomentamos la linea
 net.ipv4.ip_forward=1
 ```
@@ -206,7 +206,7 @@ As we can see the SNAT has hits, so the rule is working, but since we don't let 
 We add the rules, to allow traffic to the loopback interface:
 
 ```bash
-javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "lo" counter accept    
+javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "lo" counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter output oifname "lo" counter accept
 ```
 
@@ -349,14 +349,14 @@ javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens3" o
 To verify this point, we will need to modify the / etc / nsSwitch.conf file, which determines the priority of DNS resolution. We will make this modification to prioritize DNS consultation to the system DNS service, which is included in Debian and Ubuntu. This will allow the queries to be carried out first on the machine itself and, if necessary, will be sent to the configured DNS server as in this scenario the applications do not solve us if we do not make this modification.
 
 ```bash
-debian@lan:~$ sudo nano /etc/nsswitch.conf 
+debian@lan:~$ sudo nano /etc/nsswitch.conf
 hosts:          files dns resolve [!UNAVAIL=return]
 ```
 
 We'll also change the machine's dns server and instead of us, we'll put the high school server:
 
 ```bash
-debian@lan:~$ sudo cat /etc/resolv.conf 
+debian@lan:~$ sudo cat /etc/resolv.conf
 nameserver 172.22.0.1
 ```
 
@@ -364,7 +364,7 @@ Once the changes are applied, we will order a web by the domain name, so we will
 
 ```bash
 debian@lan:~$ curl -I https://www.javiercd.es/
-HTTP/2 200 
+HTTP/2 200
 server: GitHub.com
 content-type: text/html; charset=utf-8
 last-modified: Sun, 25 Feb 2024 23:03:49 GMT
@@ -415,7 +415,7 @@ Connection: close
 As we already have dns resolution and web navigation, we can update our repositories and install packages:
 
 ```bash
-debian@lan:~$ sudo apt update -y && sudo apt install apache2 -y 
+debian@lan:~$ sudo apt update -y && sudo apt install apache2 -y
 ```
 
 Once apache is installed we will perform the DNAT rule:
@@ -523,13 +523,13 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Wed Feb 28 10:35:56 2024 from 172.22.201.120
-javiercruces@odin:~$ 
+javiercruces@odin:~$
 ```
 
 Let's check the hits in the rules:
 
 ```bash
-javiercruces@router-fw:~$ sudo nft list ruleset 
+javiercruces@router-fw:~$ sudo nft list ruleset
 iifname "ens3" tcp sport 22 ct state established counter packets 66 bytes 18624 accept
 oifname "ens3" tcp dport 22 ct state established,new counter packets 89 bytes 16572 accept
 
@@ -588,7 +588,7 @@ javierasping.github.io.	3600	IN	A	185.199.111.153
 Let's see the hits of the rules:
 
 ```bash
-javiercruces@router-fw:~$ sudo nft list ruleset 
+javiercruces@router-fw:~$ sudo nft list ruleset
 iifname "ens3" ip saddr 8.8.8.8 udp sport 53 ct state established counter packets 314 bytes 36448 accept
 oifname "ens3" ip daddr 8.8.8.8 udp dport 53 ct state established,new counter packets 314 bytes 21912 accept
 ```
@@ -606,7 +606,7 @@ Let's check that by asking the headers, which is similar to browsing we can see 
 
 ```bash
 javiercruces@router-fw:~$ curl -I https://www.javiercd.es/
-HTTP/2 200 
+HTTP/2 200
 server: GitHub.com
 content-type: text/html; charset=utf-8
 last-modified: Sun, 25 Feb 2024 23:03:49 GMT
@@ -688,7 +688,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Wed Feb 28 10:36:26 2024 from 172.22.201.120
-javiercruces@odin:~$ 
+javiercruces@odin:~$
 ```
 
 Let's see the hits of these rules:
@@ -762,7 +762,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Wed Feb 28 14:12:18 2024 from 192.168.100.2
-debian@lan:~$ 
+debian@lan:~$
 ```
 
 Let's check the hits of the rules:
@@ -884,7 +884,7 @@ realbetisbalompie.es.
 We will add it to the beginning of the chain instead of add the word insert:
 
 ```bash
-javiercruces@router-fw:~$ sudo nft insert rule inet filter forward ip daddr 51.255.76.196 tcp dport {80, 443} iifname "ens4" oifname "ens3" counter drop 
+javiercruces@router-fw:~$ sudo nft insert rule inet filter forward ip daddr 51.255.76.196 tcp dport {80, 443} iifname "ens4" oifname "ens3" counter drop
 ```
 
 And now we won't be able to navigate the evil one's page:

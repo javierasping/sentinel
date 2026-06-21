@@ -82,17 +82,17 @@ It is a all-in-one program: simultaneously it performs the functions of ps and k
 
 Within this we can control it using the following keys:
 
-**-k**: This command is used to send a signal to a process. Then top will ask you about the process PID, followed by the number of the signal to be sent (predetermined TERM - or 15);
+**-k**: This command is used to send a signal to a process. Then top will ask you about the process PID, followed by the number of the signal to be sent (predetermined TERM - or 15),
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.016.png)
 
-**-M**: this command is used to order the listing of the processes according to the memory they use (field% MEM);
+**-M**: this command is used to order the listing of the processes according to the memory they use (field% MEM),
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.017.png)
 
 **-P**: this command is used for
 
-order the list of processes according to the CPU time they consume (field% CPU; this is the default method of ordering);
+order the list of processes according to the CPU time they consume (field% CPU, this is the default method of ordering),
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.018.png)
 
@@ -100,7 +100,7 @@ order the list of processes according to the CPU time they consume (field% CPU; 
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.019.png)
 
-**-i**: this command acts as a switch; predetermined all processes, even those that are asleep, are displayed; this command ensures that only the processes that are in the course of execution are shown:
+**-i**: this command acts as a switch, predetermined all processes, even those that are asleep, are displayed, this command ensures that only the processes that are in the course of execution are shown:
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.020.png)
 

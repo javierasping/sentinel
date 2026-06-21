@@ -15,7 +15,7 @@ hero: images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3
 
 ## 1. **Introducción**
 
-Wireshark es un analizador de protocolos utilizado para realizar análisis y solucionar problemas en redes de comunicaciones, para análisis de datos y protocolos, y como una herramienta didáctica. 
+Wireshark es un analizador de protocolos utilizado para realizar análisis y solucionar problemas en redes de comunicaciones, para análisis de datos y protocolos, y como una herramienta didáctica.
 
 Añade una interfaz gráfica y muchas opciones de organización y filtrado de información. Así, permite ver todo el tráfico que pasa a través de una red estableciendo la configuración en modo promiscuo de nuestra tarjeta de red . También incluye una versión basada en texto llamada tshark.
 
@@ -31,11 +31,11 @@ Los requisitos mínimos para utilizar este software son :
 - Cualquier pantalla moderna. Se recomienda una resolución de 1280 × 1024 o superior. Wireshark utilizará resoluciones HiDPI o Retina si están disponibles. Los usuarios avanzados encontrarán útiles varios monitores.
 - Una tarjeta de red compatible para capturar
 
-### 1.1 **Descarga del paquete en debían** 
+### 1.1 **Descarga del paquete en debían**
 
-Para descargar el paquete en nuestro equipo deberemos de mirar en la [pagina oficial](https://www.wireshark.org/download.html) de descargas si incluye soporte para nuestro sistema operativo . 
+Para descargar el paquete en nuestro equipo deberemos de mirar en la [pagina oficial](https://www.wireshark.org/download.html) de descargas si incluye soporte para nuestro sistema operativo .
 
-Vemos que no aparece en la lista ningún sistema operativo GNU/Linux , esto es porque Wireshark está disponible a través del sistema de empaquetado predeterminado en la mayoría de estas plataformas . Es decir esta presente en los repositorios de nuestra distribución , en el caso de que no estuviese tenemos el código fuente al ser un software libre y podríamos compilarlo . 
+Vemos que no aparece en la lista ningún sistema operativo GNU/Linux , esto es porque Wireshark está disponible a través del sistema de empaquetado predeterminado en la mayoría de estas plataformas . Es decir esta presente en los repositorios de nuestra distribución , en el caso de que no estuviese tenemos el código fuente al ser un software libre y podríamos compilarlo .
 
 Podemos comprobar si esta disponible en nuestro sistema operativo visitando la [pagina oficial](https://www.wireshark.org/download.html)  :
 
@@ -44,11 +44,11 @@ Podemos comprobar si esta disponible en nuestro sistema operativo visitando la [
 
 Vemos que Debian aparece en la lista esto quiere decir que el paquete esta en los repositorios oficiales de debían.
 
-En Debian contamos con el gestor de paquetes apt , así que podemos comprobar la versión del paquete disponible para la instalación y comprobar desde que repositorios se nos descargara con el siguiente comando : 
+En Debian contamos con el gestor de paquetes apt , así que podemos comprobar la versión del paquete disponible para la instalación y comprobar desde que repositorios se nos descargara con el siguiente comando :
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.004.png)
 
-Para realizar la instalación de wireshark introduciremos el siguiente comando : 
+Para realizar la instalación de wireshark introduciremos el siguiente comando :
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.005.jpeg)
 
@@ -56,11 +56,11 @@ A continuación para hacer capturas de red  en el equipo necesitaremos permisos 
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.006.png)
 
-### 1.2 **Comprobación de funcionamiento** 
+### 1.2 **Comprobación de funcionamiento**
 
 Ahora abriremos el programa para comprobar que todo funciona correctamente :
 
-Ahora iniciaremos una captura de paquetes para ello si queremos hacerla sobre un interfaz en concreta pulsamos sobre ella , en mi caso usare la tarjeta de red inalámbrica wlo1  y haré una petición web  a la pagina  jagger.es . 
+Ahora iniciaremos una captura de paquetes para ello si queremos hacerla sobre un interfaz en concreta pulsamos sobre ella , en mi caso usare la tarjeta de red inalámbrica wlo1  y haré una petición web  a la pagina  jagger.es .
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.007.jpeg)
 
@@ -78,7 +78,7 @@ Aquí te muestro la petición DNS que ha viajado desde  mi portátil hasta el ro
 - **Complementos y extensiones :** extras para los motores de disección Wireshark y TShark
 - **Complementos Dissector :** complementos con algunas disecciones extendidas.
 - **Complementos de estadísticas de árbol** -:Estadísticas extendidas.
-- **Mate:** motor de seguimiento y meta análisis : extensiones configurables por el usuario del motor de filtro de pantalla; consulte el Capítulo 12, MATE para obtener más detalles.
+- **Mate:** motor de seguimiento y meta análisis : extensiones configurables por el usuario del motor de filtro de pantalla, consulte el Capítulo 12, MATE para obtener más detalles.
 - **MIB** de **SNMP**: MIB de SNMP para una disección de SNMP más detallada.
 - **Herramientas :** herramientas de línea de comandos adicionales para trabajar con archivos de captura
 - **Editcap :** lee un archivo de captura y escribe algunos o todos los paquetes en otro archivo de captura.
@@ -91,7 +91,7 @@ Aquí te muestro la petición DNS que ha viajado desde  mi portátil hasta el ro
 
 ## 2 **Instalación de GNS3 en Debian 11**
 
-### 2.1 **Introducción** 
+### 2.1 **Introducción**
 
 GNS3 es un simulador gráfico de red lanzado en 2008, que te permite diseñar topologías de red complejas y poner en marcha simulaciones sobre ellos,permitiendo la combinación de dispositivos tanto reales como virtuales.
 
@@ -259,7 +259,7 @@ Ahora abriremos una terminal en todos nuestros VPCS , con el siguiente botón :
 
 A través de estas terminales le asignaremos direcciones ips a nuestros dispositivos con el siguiente comando :
 
-![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.037.png) 
+![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.037.png)
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.038.png)
 
@@ -295,7 +295,7 @@ La manera mas fácil de conseguir acceso a internet es a través de la nube NAT 
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.047.png)
 
-Esta cuenta con acceso a internet , así como un servicio DHCP corriendo con IPV4 .Para hacer uso de ella , la pondremos en nuestro escenario y la conectaremos en un swicht . 
+Esta cuenta con acceso a internet , así como un servicio DHCP corriendo con IPV4 .Para hacer uso de ella , la pondremos en nuestro escenario y la conectaremos en un swicht .
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.048.png)
 
@@ -309,11 +309,11 @@ Probaremos a hacer un ping a google.es para comprobar la conectividad :
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.050.png)
 
-## 3 **Problemas comunes en la instalación** 
+## 3 **Problemas comunes en la instalación**
 
 ### 3.1 **Error VPCS executable version must be >=0.6.1 but not 0.8**
 
-Este error viene al hacer la instalación de los VPCS , se descarga de los repositorios una versión que no admite actualmente el programa . 
+Este error viene al hacer la instalación de los VPCS , se descarga de los repositorios una versión que no admite actualmente el programa .
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.051.png)
 
@@ -321,7 +321,7 @@ Por suerte es muy fácil de solucionar , accederemos al [repositorio](https://gi
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.052.jpeg)
 
-Una vez descargado lo descomprimiremos usando el siguiente comando : 
+Una vez descargado lo descomprimiremos usando el siguiente comando :
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.053.png)
 
@@ -417,7 +417,7 @@ Ahora haremos una pequeña prueba de funcionamiento , lo añadiremos a nuestro e
 
 ### 5.1 **Paquetes necesarios para Windows**
 
-Aunque tengamos instalado el software de GNS3 este hará uso de paquetes adicionales para realizar algunas  funciones  o  incluso  añadir  nuevas  funcionalidades  como  emular  enrutadores  de determinados fabricantes . 
+Aunque tengamos instalado el software de GNS3 este hará uso de paquetes adicionales para realizar algunas  funciones  o  incluso  añadir  nuevas  funcionalidades  como  emular  enrutadores  de determinados fabricantes .
 
 
 
@@ -436,7 +436,7 @@ Aunque tengamos instalado el software de GNS3 este hará uso de paquetes adicion
 |Virt-viewer|Recomendado|Visualizador alternativo de máquinas virtuales de escritorio Qemu que tienen qemu-spice preinstalado.|
 |Intel Hardware Acceleration Manager (HAXM)|Opcional|Solo disponible en sistemas con CPU Intel (y VT-X habilitado), que *no* usan Hyper-V. Se utiliza para la aceleración de hardware de la emulación de Android, así como para QEMU.|
 
-### 5.2. **Requisitos mínimos** 
+### 5.2. **Requisitos mínimos**
 
 Para entornos pequeños en Windows  los desarrolladores exigen  tener como mínimo las siguientes características  :
 
@@ -496,7 +496,7 @@ Aceptamos la licencia de términos y uso :
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.083.png)
 
-Marcamos la opción para que arranque automáticamente el driver y le damos a instalar 
+Marcamos la opción para que arranque automáticamente el driver y le damos a instalar
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.084.png)
 
@@ -504,7 +504,7 @@ Nos informa de que la instalación a sido correcta y cerramos la ventana :
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.085.png)
 
-**Instalación Ncap** 
+**Instalación Ncap**
 
 El reemplazo moderno de WinPCAP sabe solucionar problemas  pero está menos probado que WinPCAP.Instale Npcap con la opción "Modo compatible con la API de WinPcap" seleccionada, si se usa sin WinPcap.Npcap puede coexistir con WinPcap, si esa opción no está seleccionada.
 
@@ -512,7 +512,7 @@ Otra vez el mismo proceso , aceptamos los términos y licencias de uso .
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.086.png)
 
-Dejamos la opción marcada por defecto y le damos a install 
+Dejamos la opción marcada por defecto y le damos a install
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.087.png)
 
@@ -528,7 +528,7 @@ Volvemos a GNS3 ya que el proceso de instalación ha quedado detenido mientras h
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.090.png)
 
-Una vez finalice la instalación  , le damos a siguiente 
+Una vez finalice la instalación  , le damos a siguiente
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.091.png)
 
@@ -544,7 +544,7 @@ Abriremos el programa y seleccionaremos correr los dispositivos en nuestra maqui
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.094.png)
 
-Aquí configuraremos nuestro servidor local de GNS3 
+Aquí configuraremos nuestro servidor local de GNS3
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.095.png)
 
@@ -556,7 +556,7 @@ Nos mostrara un resumen de la configuración dada anteriormente :
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.097.png)
 
-### 5.4 **Prueba de funcionamiento** 
+### 5.4 **Prueba de funcionamiento**
 
 Montaremos el mismo escenario que en debian para comprobar su funcionamiento , el proceso es el mismo .
 
@@ -588,7 +588,7 @@ Cuando abramos el instalador nos pedirá permisos de administrador , se lo conce
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.102.png)
 
-Si al igual que yo lo has instalado con GNS3 nos detectara que ya existe una instalaron , así que yo la cancelare . 
+Si al igual que yo lo has instalado con GNS3 nos detectara que ya existe una instalaron , así que yo la cancelare .
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.103.png)
 
@@ -604,7 +604,7 @@ Seleccionaremos los productos que deseemos instalar en mi caso todos :
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.106.png)
 
-Además nos preguntara que accesos directos y donde los queremos crear 
+Además nos preguntara que accesos directos y donde los queremos crear
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.107.png)
 
@@ -634,11 +634,11 @@ Nos informara de que la instalación ha sido realizada correctamente :
 
 He realizado una petición DNS a [www.sevillafc.es](http://www.sevillafc.es/) y aquí podemos ver la consulta DNS :
 
-## 7 **GNS VM** 
+## 7 **GNS VM**
 
 Si queremos desplegar maquinas virtuales en una instancia virtual desplegaremos la maquina virtual que nos da GNS3 para que este lleve la carga de la Virtualización .
 
-Nos descargaremos la OVA desde la pagina web oficial 
+Nos descargaremos la OVA desde la pagina web oficial
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.114.png)
 
@@ -646,27 +646,27 @@ Una vez descargada la importaremos en Vmware y le daremos las características h
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.115.png)
 
-Una  vez echo esto abriremos GNS3 y editaremos las preferencias de GNS VM y seleccionaremos la maquina virtual que acabamos de importar :
+Una vez hecho esto abriremos GNS3 y editaremos las preferencias de GNS VM y seleccionaremos la máquina virtual que acabamos de importar:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.116.jpeg)
 
-Se  nos iniciara la maquina virtual y podremos ver los datos de la misma en la pestaña info :
+Se nos iniciará la máquina virtual y podremos ver los datos de la misma en la pestaña info:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.117.png)
 
-Lanzaremos el set-up wizard desde la pestaña help de GNS3 y seleccionaremos la opción de ejecutar las apilances en una maquina virtual :
+Lanzaremos el set-up wizard desde la pestaña help de GNS3 y seleccionaremos la opción de ejecutar las appliances en una máquina virtual:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.118.png)
 
-Seleccionaremos la configuración de nuestra maquina virtual :
+Seleccionaremos la configuración de nuestra máquina virtual:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.119.png)
 
-Seleccionaremos de nuevo nuestra maquina virtual y las características hardware que deseemos  :
+Seleccionaremos de nuevo nuestra máquina virtual y las características hardware que deseemos:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.120.jpeg)
 
-Solo nos quedara importar los dispositivos en la maquina virtual , esto se hace igual que hemos echo anteriormente cambiando el sitio donde lo importamos :
+Solo nos quedará importar los dispositivos en la máquina virtual, esto se hace igual que hemos hecho anteriormente cambiando el sitio donde lo importamos:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.121.jpeg)
 
@@ -678,13 +678,13 @@ Además podemos ver en apartado servers sumarry el consumo de recursos de nuestr
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.123.png)
 
-## 8 **Conclusión** 
+## 8 **Conclusión**
 
 Podemos ver que la instalación es infinitamente mas cómoda en Windows  ya que automáticamente te instala las dependencias, siendo la típica instalación de “siguiente a siguiente ” .
 
 Además en Windows al acabar la instalación el producto estaba listo para usarse y  no he sufrido ningún error  al iniciar el programa ni al usar sus características como si me ha pasado en Debian .
 
-## 9 **Bibliografía** 
+## 9 **Bibliografía**
 
 [Documentacion oficial wireshark](https://www.wireshark.org/docs/wsug_html_chunked/ChBuildInstallWinInstall.html)
 

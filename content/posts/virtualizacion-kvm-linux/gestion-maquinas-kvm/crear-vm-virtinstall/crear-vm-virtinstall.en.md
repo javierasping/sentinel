@@ -23,8 +23,8 @@ If no machines exist, the list will be empty.
 
 The `virt-install` command allows you to specify all the VM’s properties. For example:
 
-> [!NOTE]  
-> Remember to download the ISO of the operating system you want to install.  
+> [!NOTE]
+> Remember to download the ISO of the operating system you want to install.
 > It’s recommended to store it in `/var/lib/libvirt/images/`, which is the default directory for disks and images.
 
 ```bash
@@ -35,43 +35,43 @@ virt-install --connect qemu:///system     --name ubuntu-24.04-vm     --virt-type
 
 ### Parameter Explanation
 
-- `--name vm-test`  
+- `--name vm-test`
   Name of the virtual machine.
 
-- `--virt-type kvm`  
+- `--virt-type kvm`
   Defines that KVM will be used as the hypervisor.
 
-- `--hvm`  
+- `--hvm`
   Enables full hardware-assisted virtualization (HVM).
 
-- `--os-variant=ubuntu25.04`  
+- `--os-variant=ubuntu25.04`
   Optimizes the VM configuration according to the OS variant.
 
-> [!NOTE]  
+> [!NOTE]
 > You can get the full list using the command `osinfo-query os`.
 
-- `--ram 2048`  
+- `--ram 2048`
   Assigns 2048 MB of RAM to the VM.
 
-- `--vcpus 2`  
+- `--vcpus 2`
   Defines 2 virtual CPUs for the VM.
 
-- `--network network=default`  
+- `--network network=default`
   Connects the VM to the default network (NAT) managed by libvirt.
 
-- `--graphics vnc,password=remotevnc,listen=0.0.0.0`  
+- `--graphics vnc,password=remotevnc,listen=0.0.0.0`
   Configures VNC graphical console access with a password and listens on all interfaces.
 
-- `--disk pool=default,size=20,bus=virtio,format=qcow2`  
+- `--disk pool=default,size=20,bus=virtio,format=qcow2`
   Creates a 20 GB disk in the default storage pool using the `virtio` bus and `QCOW2` format.
 
-- `--cdrom /home/$USER/isos/ubuntu-25.04-server.iso`  
+- `--cdrom /home/$USER/isos/ubuntu-25.04-server.iso`
   Specifies the ISO file for the operating system installation.
 
-- `--noautoconsole`  
+- `--noautoconsole`
   Prevents the console from automatically opening after VM creation.
 
-- `--boot cdrom,hd`  
+- `--boot cdrom,hd`
   Sets the boot order   first CD-ROM, then hard disk.
 
 ## Validate the VM creation

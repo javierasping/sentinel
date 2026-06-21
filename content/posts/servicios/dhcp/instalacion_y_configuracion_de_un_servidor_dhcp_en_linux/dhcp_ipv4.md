@@ -18,8 +18,8 @@ auto ens4
 iface ens4 inet dhcp
 
 # Red interna 1
-auto ens5 
-iface ens5 inet static 
+auto ens5
+iface ens5 inet static
         address 192.168.10.1
         netmask 255.255.255.0
         # SNAT para la red ens5 , recuerda activar el bit de forwarding
@@ -28,8 +28,8 @@ iface ens5 inet static
 
 
 # Red interna 2
-auto ens6 
-iface ens6 inet static 
+auto ens6
+iface ens6 inet static
         address 192.168.20.1
         netmask 255.255.255.0
 
@@ -118,8 +118,8 @@ sudo nano /etc/network/interfaces
 Asegúrate de que la configuración de la interfaz se vea de esta manera:
 
 ```bash
-auto ens4 
-iface ens4 inet dhcp 
+auto ens4
+iface ens4 inet dhcp
 ```
 
 Reiniciamos la interfaz de red para aplicar los cambios:
@@ -162,9 +162,9 @@ debian@cliente1:~$ ip -4 a
 ```
 
 
-> 💡 **Tip:**  
+> 💡 **Tip:**
 > En el caso de que quieras modificar la configuración del DHCP o simplemente volver a solicitar la configuración al servidor DHCP estos comandos te serán de utilidad.
-> En sistemas Windows, el comando `ipconfig /release` libera la concesión DHCP actual, mientras que `ipconfig /renew` solicita una nueva.  
+> En sistemas Windows, el comando `ipconfig /release` libera la concesión DHCP actual, mientras que `ipconfig /renew` solicita una nueva.
 > En sistemas Linux, la liberación se realiza con `dhclient -r` y la renovación con `dhclient`.
 
 ## Comprobación de las concesiones de direcciones

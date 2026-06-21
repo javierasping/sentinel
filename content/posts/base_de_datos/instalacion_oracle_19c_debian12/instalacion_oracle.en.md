@@ -7,162 +7,160 @@ hero: images/base_de_datos/instalar_oracle/instalacion_oracle.png
 ---
 
 
-Installing Oracle 19c on Debian 12 may seem complicated, but don't worry, I'm here to guide you in every step. In this post, I will explain to you in a simple way how to prepare your system and make the installation of Oracle 19c in Debian 12.
+Installing Oracle 19c on Debian 12 may seem complicated, but don't worry, I'm here to guide you through every step. In this post, I will explain in a simple way how to prepare your system and install Oracle 19c on Debian 12.
 
 ### Update the repositories
 
-The first thing is to update the repositories of our virtual machine and in case we don't have any packages we update it:
+The first step is to update the repositories of our virtual machine and update any missing packages:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.001.png)
 
 ### Install dependencies
 
-The following will be to install the Oracle units in our system:
+Next, we will install the Oracle dependencies on our system:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.002.png)
 
-- * * libaio1 * *: Provides asynchronous access to E / S.
-- * * Unixodbc * *: It is an ODBC controller for database connectivity.
-- * * Bc * *: It's an arbitrary precision calculator.
-- * * Ksh * *: It's the Korn shell for scripts.
-- * * Gawk * *: It's an improved version of Awk for text and data processing.
+- * * libaio1 * *: Provides asynchronous access to I/O.
+- * * Unixodbc * *: It is an ODBC driver for database connectivity.
+- * * Bc * *: It is an arbitrary precision calculator.
+- * * Ksh * *: It is the Korn shell for scripts.
+- * * Gawk * *: It is an improved version of Awk for text and data processing.
 
 ### Add oracle user
 
-We will create the dba group and create the oracle user:
+We will create the dba group and the oracle user:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.003.png)
 
-We check that we can access the oracle user:
+Check that you can access the oracle user:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.004.png)
 
 ### Network configuration
 
-We have to have a static ip set up:
+A static IP must be set up:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.005.png)
 
-We also have to have an entry in the hosts file of our private address:
+We also need an entry for our private address in the hosts file:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.006.png)
 
 ### Download the Oracle website installation file
 
-Once we have checked that we can install it in our system or virtual machine we will download it from your official website.
+Once we have verified that we can install it on our system or virtual machine, we will download it from the official website.
 
-We will quickly realize that Oracle does not support Debian as we will find the package in .rpm format this means that it is prepared to be installed in network-based distributions hat.
+We will quickly realize that Oracle does not support Debian, as the package is in .rpm format. This means it is designed for Red Hat-based distributions.
 
-For us to use this package we will have to transform it to .deb for it there is a tool called alien that will convert the package to us so that we can use it.
+To use this package, we must convert it to .deb. For this, there is a tool called 'alien' that will convert the package for us.
 
-We install the tool:
+Install the tool:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.007.png)
 
-Now using wget we'll download the Oracle meta-package:
+Now, using wget, we will download the Oracle meta-package:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.008.png)
 
-Once downloaded we will use the alien utility to transform us, this will take approximately a step to lighten the process I have transformed it into my physical machine:
+Once downloaded, we will use the alien utility to transform it. This will take some time, to speed up the process, I have transformed it on my physical machine:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.009.png)
 
-We passed it to our virtual machine using scp.
+We transferred it to our virtual machine using scp.
 
-Now that we have our package transformed to .deb we install it using dpkg in our virtual machine
+Now that the package has been converted to .deb, we install it using dpkg on our virtual machine:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.010.jpeg)
 
-We'll start the installation, it'll take a while, so you have to be patient:
+Start the installation, it will take a while, so please be patient:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.011.jpeg)
 
-Once finished in our user's bashrc we will add the oracle environment variables, ORACLE\ _ SID will tell us at the end of the installation, the others will depend on the directory we have put in previous steps:
+Once finished, we will add the Oracle environment variables to our user's .bashrc. The ORACLE_SID will be provided at the end of the installation, the others will depend on the directories used in the previous steps:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.012.png)
 
-## Error solution
+## Troubleshooting
 
 ## Error [FATAL] [DBT-50000] Unable to check available memory
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.013.png)
 
-It returns an error, it tells us that you cannot check the available memory, this error can be solved by deactivating the check of configuration parameters for it in line 164 of the → / etc / init.d / oracledb\ _ ORCLCDB-19c file
+An error occurs stating that it cannot check the available memory. This error can be solved by disabling the configuration parameter check on line 164 of the /etc/init.d/oracledb_ORCLCDB-19c file:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.014.jpeg)
 
-We will change it to the following (complete line 164):
+Change it to the following (complete line 164):
 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-\ * I highlight the content you should add, you can also replace the entire line.
+\* I have highlighted the content you should add, you can also replace the entire line.
 
-Another mistake you can give us is that you can't find netstat:
+Another error that may occur is that netstat cannot be found:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.015.png)
 
-It is easily solved by installing net- tools.
+This is easily solved by installing net-tools.
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.016.png)
 
-## # ORA-65096: unvalid username or common role
+## ORA-65096: invalid username or common role
 
-If you don't let us create a user:
+If you are unable to create a user:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.017.png)
 
-With this modification let us create users
+This modification allows us to create users:
 
 ### First steps with Oracle
 
-We will connect as administrators in the database:
+Connect as an administrator to the database:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/conn_oracle.png)
 
-The first thing we have to do is create a user, give him permissions we need and check that we can connect with the:
+The first step is to create a user, grant the necessary permissions, and verify the connection:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.018.png)
 
-And we give him the permits we consider to him:
+Then, grant the necessary permissions:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.019.png)
 
-Then we try to connect with it:
+Then, try to connect with the user:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.020.png)
 
-With this we will have completed the basic installation of Oracle 19c on Debian 12. It is recommended that if you are using the database you be installed by a client like SQLplus or SQLdeveloped.
+This completes the basic installation of Oracle 19c on Debian 12. It is recommended to use a client such as SQL*Plus or SQL Developer to interact with the database.
 
-## SQLplus installation
+## SQL*Plus Installation
 
-We download the basic SQLplus package for Linux, it's a .zip:
+Download the basic SQL*Plus package for Linux (it is a .zip file):
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.021.jpeg)
 
-We download the second SQLplus package:
+Download the second SQL*Plus package:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.022.jpeg)
 
-We create the /opt/oracle directory:
+Create the /opt/oracle directory:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.023.png)
 
-We uncompress the zip files in the directory we just created:
+Uncompress the zip files into the directory we just created:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.024.png)
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.025.png)
 
-We get into the directory and list the content:
+Enter the directory and list its contents:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.026.jpeg)
 
-And then we export the SQLplus bookstore variable and run the changes:
+Then, export the SQL*Plus binary variable and apply the changes:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.027.png)
 
-If we want it to be maintained we will add it to the bashrc:
+To make this permanent, add it to the .bashrc file:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.028.png)
-
-

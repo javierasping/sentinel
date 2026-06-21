@@ -13,7 +13,7 @@ Storage Spaces es una característica de almacenamiento definido por software en
 
 Los siguientes cmdlets de Windows PowerShell realizan la misma función que el procedimiento anterior. Escriba cada cmdlet en una sola línea, aunque aquí pueden aparecer con saltos de línea entre varias líneas aquí debido a restricciones de formato.
 
-El siguiente ejemplo muestra qué discos físicos están disponibles en el grupo primordial. 
+El siguiente ejemplo muestra qué discos físicos están disponibles en el grupo primordial.
 
 ```ps
 Get-StoragePool -IsPrimordial $true | Get-PhysicalDisk -CanPool $True
@@ -24,7 +24,7 @@ Get-StoragePool -IsPrimordial $true | Get-PhysicalDisk -CanPool $True
 El siguiente ejemplo crea un nuevo grupo de almacenamiento denominado StoragePool1 que usa todos los discos disponibles:
 
 ```ps
-New-StoragePool –FriendlyName StoragePool1 –StorageSubsystemFriendlyName "Windows Storage\*" –PhysicalDisks (Get-PhysicalDisk –CanPool $True) 
+New-StoragePool –FriendlyName StoragePool1 –StorageSubsystemFriendlyName "Windows Storage\*" –PhysicalDisks (Get-PhysicalDisk –CanPool $True)
 ```
 
 ![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.002.png)
@@ -65,5 +65,5 @@ A la forma de almacenar los datos en ya sea en stripes o guardando el espacio co
 
 ## Bibliografía
 
-- [Documentación oficial](https://learn.microsoft.com/es-es/windows-server/storage/storage-spaces/deploy-standalone-storage-spaces) 
+- [Documentación oficial](https://learn.microsoft.com/es-es/windows-server/storage/storage-spaces/deploy-standalone-storage-spaces)
 

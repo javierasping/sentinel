@@ -64,7 +64,7 @@ Parámetros comúnmente utilizados :
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.012.png)
 
-**-s**:Muestra los procesos padres  
+**-s**:Muestra los procesos padres
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.013.png)
 
@@ -76,31 +76,31 @@ Este comando se utiliza para ver el estado en el que se encuentra un servicio , 
 
 ## TOP
 
-Es un programa todo en uno: simultáneamente cumple las funciones de ps y kill. Es un comando de modo consola, por lo que debe iniciarlo desde una terminal . 
+Es un programa todo en uno: simultáneamente cumple las funciones de ps y kill. Es un comando de modo consola, por lo que debe iniciarlo desde una terminal .
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.015.png)
 
 Dentro de este podemos controlarlo usando las siguientes teclas:
 
-**-k**: este comando se usa para enviar una señal a un proceso. Luego, top le preguntará por el PID del proceso, seguido del número de la señal a enviar (predeterminadamente TERM   o 15);
+**-k**: este comando se usa para enviar una señal a un proceso. Luego, top le preguntará por el PID del proceso, seguido del número de la señal a enviar (predeterminadamente TERM   o 15),
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.016.png)
 
-**-M**: este comando se usa para ordenar el listado de los procesos de acuerdo a la memoria que usan (campo %MEM);
+**-M**: este comando se usa para ordenar el listado de los procesos de acuerdo a la memoria que usan (campo %MEM),
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.017.png)
 
-**-P**: este comando se usa para 
+**-P**: este comando se usa para
 
-ordenar el listado de procesos de acuerdo al tiempo de CPU que consumen(campo %CPU; este es el método de ordenamiento predeterminado);
+ordenar el listado de procesos de acuerdo al tiempo de CPU que consumen(campo %CPU, este es el método de ordenamiento predeterminado),
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.018.png)
 
-**-u**: este comando se usa para mostrar los procesos de un usuario en particular, top le preguntará de cual. Debe ingresar el nombre del usuario. 
+**-u**: este comando se usa para mostrar los procesos de un usuario en particular, top le preguntará de cual. Debe ingresar el nombre del usuario.
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.019.png)
 
-**-i**: este comando actúa como un interruptor; predeterminadamente se muestran todos los procesos, incluso los que están dormidos; este comando asegura que se muestran sólo los procesos que están en curso de ejecución :
+**-i**: este comando actúa como un interruptor, predeterminadamente se muestran todos los procesos, incluso los que están dormidos, este comando asegura que se muestran sólo los procesos que están en curso de ejecución :
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.020.png)
 
@@ -116,7 +116,7 @@ También puede ver el código de colores proporcionado por htop para identificar
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.021.png)
 
-- Rojo: porcentaje ocupado por procesos del sistema 
+- Rojo: porcentaje ocupado por procesos del sistema
 - Azul: porcentaje ocupado por proceso de baja prioridad
 - Verde: porcentaje ocupado por procesos de usuario
 
@@ -130,8 +130,8 @@ Las líneas de memoria también usan códigos de colores, esta vez para represen
 
 El panel central muestra todos los procesos en ejecución con sus estadísticas asociadas según la utilización de la CPU. Muestra la siguiente información para cada proceso:
 
-- ID de proceso (PID) 
-- El propietario (Usuario) 
+- ID de proceso (PID)
+- El propietario (Usuario)
 - Consumo de memoria virtual porcentaje de procesador memoria física
 
 ![](/sistemas/comandos_linux/comandos_procesos/img/Aspose.Words.cdf0ee61-4f6a-42ca-bc2e-28e5236ec493.023.png)

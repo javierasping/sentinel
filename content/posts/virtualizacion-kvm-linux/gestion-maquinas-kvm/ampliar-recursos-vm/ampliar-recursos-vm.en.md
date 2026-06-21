@@ -227,8 +227,8 @@ df -h
 
 - CPU/Memory hotplug: depends on the guest (kernel, drivers, ACPI, virtio). If it fails on `--live`, make the change with `--config` and restart.
 - Maximum limit: if `setvcpus`/`setmem` fail due to limit, first adjust the maximum with `--maximum` (CPU) or `setmaxmem` (memory).
-- growpart not available: use `parted` or `fdisk` carefully; make sure to align correctly and not overwrite data.
-- xfs doesn't shrink: it only grows. To shrink xfs you have to recreate; plan accordingly.
+- growpart not available: use `parted` or `fdisk` carefully, make sure to align correctly and not overwrite data.
+- xfs doesn't shrink: it only grows. To shrink xfs you have to recreate, plan accordingly.
 
 ---
 

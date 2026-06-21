@@ -22,7 +22,7 @@ A continuación, te guiaré por los pasos para instalarlo en Debian. ¡Vamos a e
 
 ### Instalación de EnvyControl
 
-Debido a la adopción del PEP 668, ya no es posible instalar paquetes pip fuera de un entorno virtual. En su lugar, utilizaremos el paquete `.deb` proporcionado en el repositorio. 
+Debido a la adopción del PEP 668, ya no es posible instalar paquetes pip fuera de un entorno virtual. En su lugar, utilizaremos el paquete `.deb` proporcionado en el repositorio.
 
 1. Encuentra la versión más reciente en el siguiente enlace: [Releases - EnvyControl](https://github.com/bayasdev/envycontrol/releases/latest).
 2. En esa página, selecciona y descarga el paquete .deb correspondiente. También puedes utilizar la herramienta wget para descargarlo desde la terminal.
@@ -57,7 +57,7 @@ Si prefieres utilizar únicamente la gráfica dedicada (que es la única configu
  sudo envycontrol -s nvidia --force-comp --coolbits 24
 ```
 
-Insisto nuevamente: **RECUERDA REINICIAR EL SISTEMA PARA QUE SE APLIQUEN LOS CAMBIOS**. 
+Insisto nuevamente: **RECUERDA REINICIAR EL SISTEMA PARA QUE SE APLIQUEN LOS CAMBIOS**.
 
 En este punto, te he proporcionado los comandos que he utilizado, pero el programa cuenta con su propio manual. Además, en el repositorio del autor, puedes encontrar información útil adicional.
 

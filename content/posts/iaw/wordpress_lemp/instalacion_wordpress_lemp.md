@@ -14,7 +14,7 @@ WordPress es un sistema de gestión de contenidos (CMS, por sus siglas en inglé
 
 ## Requisitos previos
 
-1. **Servidor con Linux:** Debes disponer de un servidor que ejecute Linux; esta guía está diseñada para Debian 12.
+1. **Servidor con Linux:** Debes disponer de un servidor que ejecute Linux, esta guía está diseñada para Debian 12.
 2. **Usuario con permisos de superusuario:** Debes tener acceso a un usuario con privilegios sudo en el servidor para poder llevar a cabo las tareas de instalación y configuración.
 3. **Nombre de Dominio Completo (FQDN):** Si deseas acceder a tu sitio WordPress a través de un dominio personalizado, asegúrate de tener configurado y apuntando un nombre de dominio completo (FQDN) al servidor.
 4. **Acceso a Internet:** Necesitas acceso a Internet para descargar paquetes y realizar actualizaciones durante el proceso de instalación.
@@ -28,26 +28,26 @@ Si no tienes instalada la pila LEMP, puedes hacerlo a través de [este enlace](h
 
 La creación de un VirtualHost en Nginx te permite configurar múltiples sitios web en un único servidor. Sigue estos pasos para crear un VirtualHost en Nginx.
 
-Copiaremos el archivo de configuración predeterminado de Nginx para usarlo como ejemplo y lo nombraremos como `wordpress`; ten en cuenta que este nombre es meramente informativo.
+Copiaremos el archivo de configuración predeterminado de Nginx para usarlo como ejemplo y lo nombraremos como `wordpress`, ten en cuenta que este nombre es meramente informativo.
 
 ```bash
 javiercruces@IWEB:~$ sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/wordpress
 ```
 
-Editaremos el contenido del archivo con el siguiente comando: 
+Editaremos el contenido del archivo con el siguiente comando:
 
 ```bash
 javiercruces@IWEB:~$ sudo nano /etc/nginx/sites-available/wordpress
 ```
 
-A continuación, presento un ejemplo del archivo de configuración; asegúrate de definir el nombre del servidor (tu dominio) y el directorio raíz del sitio.
+A continuación, presento un ejemplo del archivo de configuración, asegúrate de definir el nombre del servidor (tu dominio) y el directorio raíz del sitio.
 
 ```bash
 server {
     listen 80;
     root /var/www/wordpress;  # Cambia esta linea por la ubicación del directorio root de tu wordpress
     index  index.php index.html index.htm;
-    server_name  wordpress.fjcd.es; # Cambia esta linea y pon el FQDN , a traves de este accederás a tu wordpress 
+    server_name  wordpress.fjcd.es; # Cambia esta linea y pon el FQDN , a traves de este accederás a tu wordpress
 
     client_max_body_size 500M;
 
@@ -97,7 +97,7 @@ javiercruces@IWEB:~$ sudo systemctl reload nginx
 Para acceder a este VirtualHost desde la máquina cliente, dado que no disponemos de un servidor DNS, recuerda añadir la IP del servidor y el `ServerName` correspondiente al archivo `/etc/hosts`:
 
 ```bash
-javiercruces@HPOMEN15:~$ cat /etc/hosts 
+javiercruces@HPOMEN15:~$ cat /etc/hosts
 #Añade la IP de tu servidor y el ServerName correspondiente (wordpress.fjcd.es)
 #Ponlo al final del fichero y no modifiques las lineas existentes en tu fichero
 192.168.125.27 wordpress.fjcd.es
@@ -109,7 +109,7 @@ Te recomiendo **anotar** los datos introducidos a continuación, ya que los nece
 Nos conectaremos a la base de datos:
 ```bash
 javiercruces@IWEB:~$ sudo mysql -u root -p
-Enter password: 
+Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 31
 Server version: 10.11.4-MariaDB-1~deb12u1 Debian 12
@@ -152,7 +152,7 @@ Petición HTTP enviada, esperando respuesta... 200 OK
 Longitud: 23465047 (22M) [application/octet-stream]
 Grabando a: «latest.tar.gz»
 
-latest.tar.gz             100%[=====================================>]  22,38M  14,8MB/s    en 1,5s    
+latest.tar.gz             100%[=====================================>]  22,38M  14,8MB/s    en 1,5s
 
 2023-10-27 12:33:19 (14,8 MB/s) - «latest.tar.gz» guardado [23465047/23465047]
 ```
@@ -198,7 +198,7 @@ A continuación, se mostrará una breve explicación sobre el CMS WordPress:
 
 ![Untitled](/iaw/wordpress_lemp/img/Untitled%201.png)
 
-Ahora deberás introducir los datos del usuario y el nombre de la base de datos creada anteriormente: 
+Ahora deberás introducir los datos del usuario y el nombre de la base de datos creada anteriormente:
 
 ![Untitled](/iaw/wordpress_lemp/img/Untitled%202.png)
 

@@ -85,7 +85,7 @@ vagrant@controller01:~$ openstack service create --name placement --description 
 Crearemos los endpoints públicos, internos y de administración, apuntando al puerto 8778:
 
 ```bash
-vagrant@controller01:~$ openstack endpoint create --region RegionOne placement public http://controller01:8778 
+vagrant@controller01:~$ openstack endpoint create --region RegionOne placement public http://controller01:8778
 +--------------+----------------------------------+
 | Field        | Value                            |
 +--------------+----------------------------------+

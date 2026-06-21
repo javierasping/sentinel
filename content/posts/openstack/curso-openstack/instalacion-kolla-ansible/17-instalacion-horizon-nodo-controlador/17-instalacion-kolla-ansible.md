@@ -47,7 +47,7 @@ Si utilizas mi repositorio podrás encontrar debajo del directorio `kolla-ansibl
 
 ## 2. Nodos del laboratorio
 
-A continuación se describen las características de los nodos que se utilizarán en el laboratorio.  
+A continuación se describen las características de los nodos que se utilizarán en el laboratorio.
 Esta configuración está definida en el **Vagrantfile del repositorio**, por lo que no es necesario crearlos manualmente.
 
 Puedes modificar estos valores fácilmente (CPU, RAM, discos, etc.) directamente en el Vagrantfile según los recursos de tu máquina o tus necesidades.
@@ -66,17 +66,17 @@ Puedes modificar estos valores fácilmente (CPU, RAM, discos, etc.) directamente
 
 ---
 
-💡 **Nota:**  
+💡 **Nota:**
 El modo promiscuo no es necesario en KVM/libvirt (a diferencia de VirtualBox), ya que el networking se gestiona de forma nativa.
 
 Además, puedes:
-- Reducir recursos si tu máquina es limitada  
-- Añadir más nodos compute  
-- Separar roles en distintos nodos para entornos más avanzados  
+- Reducir recursos si tu máquina es limitada
+- Añadir más nodos compute
+- Separar roles en distintos nodos para entornos más avanzados
 
 Este laboratorio está pensado como una base flexible para experimentar con OpenStack.
 
-Puedes crear las redes a mano usando los siguientes comandos , encontraras las definiciones en el repositorio. Aunque el Vagrantfile las creara automáticamente. 
+Puedes crear las redes a mano usando los siguientes comandos , encontraras las definiciones en el repositorio. Aunque el Vagrantfile las creara automáticamente.
 
 ```bash
 virsh net-define provider.xml
@@ -278,7 +278,7 @@ cinder_volume_group: "cinder-volumes"
 nova_compute_virt_type: "qemu"
 
 ```
-<!-- 
+<!--
 config_strategy: "COPY_ALWAYS"
 
 kolla_internal_vip_address: "10.0.0.10"
@@ -387,11 +387,11 @@ Asegúrate de que no ha aparecido ningún error en la ejecución :
 
 ```bash
 PLAY RECAP *********************************************************************************************************************************************************************************************************************************************************************
-block1                     : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0   
-compute1                   : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0   
-compute2                   : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0   
-controller                 : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0   
-deployment                 : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
+block1                     : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0
+compute1                   : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0
+compute2                   : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0
+controller                 : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0
+deployment                 : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 **Paso 12: Pre-chequeos**
@@ -407,11 +407,11 @@ Asegúrate de que no ha aparecido ningún error en la ejecución :
 
 ```bash
 PLAY RECAP *********************************************************************************************************************************************************************************************************************************************************************
-block1                     : ok=33   changed=0    unreachable=0    failed=0    skipped=21   rescued=0    ignored=0   
-compute1                   : ok=41   changed=0    unreachable=0    failed=0    skipped=29   rescued=0    ignored=0   
-compute2                   : ok=41   changed=0    unreachable=0    failed=0    skipped=29   rescued=0    ignored=0   
-controller                 : ok=113  changed=0    unreachable=0    failed=0    skipped=146  rescued=0    ignored=0   
-deployment                 : ok=14   changed=0    unreachable=0    failed=0    skipped=13   rescued=0    ignored=0   
+block1                     : ok=33   changed=0    unreachable=0    failed=0    skipped=21   rescued=0    ignored=0
+compute1                   : ok=41   changed=0    unreachable=0    failed=0    skipped=29   rescued=0    ignored=0
+compute2                   : ok=41   changed=0    unreachable=0    failed=0    skipped=29   rescued=0    ignored=0
+controller                 : ok=113  changed=0    unreachable=0    failed=0    skipped=146  rescued=0    ignored=0
+deployment                 : ok=14   changed=0    unreachable=0    failed=0    skipped=13   rescued=0    ignored=0
 ```
 
 **Paso 13: Despliegue de OpenStack**:
@@ -425,11 +425,11 @@ kolla-ansible deploy -i multinode
 
 ```bash
 PLAY RECAP *********************************************************************************************************************************************************************************************************************************************************************
-block1                     : ok=50   changed=18   unreachable=0    failed=0    skipped=20   rescued=0    ignored=0   
-compute1                   : ok=97   changed=37   unreachable=0    failed=0    skipped=70   rescued=0    ignored=0   
-compute2                   : ok=85   changed=36   unreachable=0    failed=0    skipped=65   rescued=0    ignored=0   
-controller                 : ok=423  changed=156  unreachable=0    failed=0    skipped=300  rescued=0    ignored=1   
-deployment                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
+block1                     : ok=50   changed=18   unreachable=0    failed=0    skipped=20   rescued=0    ignored=0
+compute1                   : ok=97   changed=37   unreachable=0    failed=0    skipped=70   rescued=0    ignored=0
+compute2                   : ok=85   changed=36   unreachable=0    failed=0    skipped=65   rescued=0    ignored=0
+controller                 : ok=423  changed=156  unreachable=0    failed=0    skipped=300  rescued=0    ignored=1
+deployment                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 **Paso 14: Verificar contenedores**
@@ -689,7 +689,7 @@ A continuación se ejecuta todo el flujo para verificar que OpenStack quedó ope
 +----------------------+--------------------------------------+
 ```
 
-**5. Crear router (duplicado por error de nombre)** — se creó dos veces `router1`; el duplicado causó ambigüedad al asociar la subred:
+**5. Crear router (duplicado por error de nombre)** — se creó dos veces `router1`, el duplicado causó ambigüedad al asociar la subred:
 
 ```bash
 (kolla-venv) root@deployment:/home/vagrant# openstack router create router1
@@ -884,7 +884,7 @@ Salidas completas de las reglas:
 	--key-name mykey
 ```
 
-Una vez acabe de crearse la instancia deberiamos ver algo asi :
+Una vez acabe de crearse la instancia deberíamos ver algo así:
 
 ```bash
 (kolla-venv) root@deployment:/home/vagrant# openstack server list
@@ -897,21 +897,21 @@ Una vez acabe de crearse la instancia deberiamos ver algo asi :
 
 ## 14. Validacion utilizando horizon
 
-Esto mismo que hemos realizado usando la CLI , podemos comproabarlo usando la interfaz grafica.
+Esto mismo que hemos realizado usando la CLI, podemos comprobarlo usando la interfaz gráfica.
 
-Lo primero es loguearnos , recuerda que en neuestro caso puedes sacar la contraseña y el usuario del fichero `/etc/kolla/admin-openrc.sh`.
+Lo primero es loguearnos, recuerda que en nuestro caso puedes sacar la contraseña y el usuario del fichero `/etc/kolla/admin-openrc.sh`.
 
 ![](/images/openstack/instalacion-manual/login_openstack.png)
 
-Una vez dentro , podemos ver una vista de los recursos de nuestro cluster de openstack que se estan utilizando:
+Una vez dentro, podemos ver una vista de los recursos de nuestro clúster de OpenStack que se están utilizando:
 
-![](/images/openstack/instalacion-manual/general_vieuw.png) 
+![](/images/openstack/instalacion-manual/general_vieuw.png)
 
 Podemos listar la instancia que hemos creado y ver su estado:
 
 ![](/images/openstack/instalacion-manual/instances.png)
 
-Por supuesto tambien podemos ver los servicios que hemos instalado:
+Por supuesto, también podemos ver los servicios que hemos instalado:
 
 ![](/images/openstack/instalacion-manual/services.png)
 

@@ -7,7 +7,7 @@ hero: images/openstack/instalacion-manual/instalar-keystone-nodo-controlador.png
 weight: 5
 ---
 
-OpenStack está compuesto por múltiples servicios; Keystone (Identity) es el encargado de la autenticación, la autorización y la gestión del catálogo de servicios. En este post, instalaremos Keystone en el nodo `controller01`, analizaremos los archivos principales y verificaremos su funcionamiento.
+OpenStack está compuesto por múltiples servicios, Keystone (Identity) es el encargado de la autenticación, la autorización y la gestión del catálogo de servicios. En este post, instalaremos Keystone en el nodo `controller01`, analizaremos los archivos principales y verificaremos su funcionamiento.
 
 Recuerda que es imprescindible haber completado los pasos detallados en el post anterior.
 
@@ -46,7 +46,7 @@ Bye
 
 ## Configuración de Keystone
 
-En este caso, utilizamos Apache con `mod_wsgi` para servir Keystone en el puerto 5000. Generalmente, el paquete crea la configuración necesaria en Apache de forma automática; aun así, es recomendable verificar que la configuración sea correcta.
+En este caso, utilizamos Apache con `mod_wsgi` para servir Keystone en el puerto 5000. Generalmente, el paquete crea la configuración necesaria en Apache de forma automática, aun así, es recomendable verificar que la configuración sea correcta.
 
 Instalaremos los paquetes necesarios mediante el siguiente comando:
 
@@ -76,7 +76,7 @@ Actualizaremos la base de datos de Keystone mediante las migraciones del servici
 vagrant@controller01:~$ sudo su -s /bin/sh -c "keystone-manage db_sync" keystone
 ```
 
-Nota: las opciones `--keystone-user` y `--keystone-group` permiten ejecutar Keystone con un usuario o grupo distinto al predeterminado; en este caso, utilizamos `keystone`.
+Nota: las opciones `--keystone-user` y `--keystone-group` permiten ejecutar Keystone con un usuario o grupo distinto al predeterminado, en este caso, utilizamos `keystone`.
 
 Inicializaremos las claves Fernet y las credenciales protegidas:
 

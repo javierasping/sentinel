@@ -101,7 +101,7 @@ In order to log into MariaDB to secure it, we'll need the current
 password for the root user. If you've just installed MariaDB, and
 haven't set the root password yet, you should just press enter here.
 
-Enter current password for root (enter for none): 
+Enter current password for root (enter for none):
 OK, successfully used password, moving on...
 
 Setting the root password or using the unix_socket ensures that nobody

@@ -40,7 +40,7 @@ tar -cvzf sampleArchive.tar.gz /home/sampleArchive
 The additional option * * z * * represents gzip compression. Alternatively, you can create a .tgz file that is similar to tar.gz. We show you an example of the latter:
 
 ```bash
-tar -cvzf sampleArchive.tgz /home/sampleArchive 
+tar -cvzf sampleArchive.tgz /home/sampleArchive
 ```
 
 ### Create a .tar.bz2 file
@@ -139,13 +139,13 @@ tar --extract --file= sampleArchive.tar.bz2 example.sh
 In case you want to extract several files, use the following command format:
 
 ```bash
-tar -xvf sampleArchive.tar "file1" "file2" 
+tar -xvf sampleArchive.tar "file1" "file2"
 ```
 
 For .tar.gz you can use:
 
 ```bash
-tar -zxvf sampleArchive.tar.gz "file1" "file2" 
+tar -zxvf sampleArchive.tar.gz "file1" "file2"
 ```
 
 For .tar.bz2 you can use:
@@ -157,13 +157,13 @@ tar -jxvf sampleArchive.tar.bz2 "file1" "file2"
 
 If you want to remove from the tablet specific file patterns like only .jpg, use the wildcards command. A sample of this command is shown below:
 ```bash
-tar -xvf sampleArchive.tar --wildcards '\*.jpg' 
+tar -xvf sampleArchive.tar --wildcards '\*.jpg'
 ```
 
 For .tar.gz you can use:
 
 ```bash
-tar -zxvf sampleArchive.tar.gz --wildcards '\*.jpg' 
+tar -zxvf sampleArchive.tar.gz --wildcards '\*.jpg'
 ```
 
 For .tar.bz2 you can use:
@@ -263,7 +263,7 @@ As I said, the use of bzip2 is almost the same as gzip. We will simply have to r
 
 * * To compress a file using bzip2, replacing it with a compressed version, we will run: * *
 ```bash
-bzip2 prueba.txt # Nos creara un archivo prueba.txt.bz2 
+bzip2 prueba.txt # Nos creara un archivo prueba.txt.bz2
 ```
 * * Compress files without removing the original file * *
 
@@ -337,7 +337,7 @@ This tool supports different pre-established compression levels (0 to 9. With a 
 
 ```bash
 xz -k -8 deb.iso
-xz -k --best deb.iso 
+xz -k --best deb.iso
 ```
 
 * * Limit memory * *
@@ -442,7 +442,7 @@ The package to install it is rar.
 To compress a file or all of a folder:
 
 ```bash
-rar a nombre_fichero_comprimido.rar nombre_fichero_a_comprimir rar a nombre_fichero_comprimido.rar 
+rar a nombre_fichero_comprimido.rar nombre_fichero_a_comprimir rar a nombre_fichero_comprimido.rar
 ```
 * * How to decompress RAR in Linux * *
 

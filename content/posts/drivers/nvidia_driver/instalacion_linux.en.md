@@ -39,7 +39,7 @@ deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmwa
 Remember that every time you modify this file, you must run an update for the changes to take effect.
 
 ```bash
-javiercruces@HPOMEN15:~$ sudo apt update -y 
+javiercruces@HPOMEN15:~$ sudo apt update -y
 ```
 
 With our properly updated repositories, we will proceed to install the NVIDIA detection script with the following command:
@@ -48,10 +48,10 @@ With our properly updated repositories, we will proceed to install the NVIDIA de
 javiercruces@HPOMEN15:~$ sudo apt install  nvidia-detect
 ```
 
-We will now run the NVIDIA script; as you can see, it will provide us with detailed information about our NVIDIA graphics card, as well as the various compatible drivers and the recommended Debian package for installation:
+We will now run the NVIDIA script, as you can see, it will provide us with detailed information about our NVIDIA graphics card, as well as the various compatible drivers and the recommended Debian package for installation:
 
 ```bash
-javiercruces@HPOMEN15:~$ nvidia-detect 
+javiercruces@HPOMEN15:~$ nvidia-detect
 Detected NVIDIA GPUs:
 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA106M [GeForce RTX 3060 Mobile / Max-Q] [10de:2520] (rev a1)
 
@@ -112,7 +112,7 @@ In addition if you want to see from the command line information of your GPU NVI
 
 ```bash
 javiercruces@HPOMEN15:~$ nvidia-smi
-Fri Dec 29 02:04:58 2023       
+Fri Dec 29 02:04:58 2023
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 525.125.06   Driver Version: 525.125.06   CUDA Version: 12.0     |
 |-------------------------------+----------------------+----------------------+
@@ -124,7 +124,7 @@ Fri Dec 29 02:04:58 2023
 | N/A   42C    P5    10W /  80W |    296MiB /  6144MiB |     12%      Default |
 |                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
-                                                                               
+
 +-----------------------------------------------------------------------------+
 | Processes:                                                                  |
 |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
@@ -135,12 +135,12 @@ Fri Dec 29 02:04:58 2023
 |    0   N/A  N/A      4807      G   ...on=20231218-080113.411000      104MiB |
 |    0   N/A  N/A      5802      G   ...RendererForSitePerProcess       38MiB |
 +-----------------------------------------------------------------------------+
-javiercruces@HPOMEN15:~$ 
+javiercruces@HPOMEN15:~$
 
 ```
 
 
-Congratulations, Master of NVIDIA Drivers! You've unlocked an epic achievement in computing. Not everyone makes it this far; I hate to be the bearer of bad news, but have you checked if the HDMI and DisplayPort ports on your machine actually work?
+Congratulations, Master of NVIDIA Drivers! You've unlocked an epic achievement in computing. Not everyone makes it this far, I hate to be the bearer of bad news, but have you checked if the HDMI and DisplayPort ports on your machine actually work?
 
 At this point, two possible paths are opened:
 

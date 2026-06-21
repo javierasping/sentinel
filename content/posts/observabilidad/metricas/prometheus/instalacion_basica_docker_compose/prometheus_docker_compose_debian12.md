@@ -10,24 +10,24 @@ Esta guía es un tutorial introductorio que muestra cómo instalar, configurar y
 
 ## Requisitos previos
 
-- Tener instalado Docker y Docker compose
-- Tener un equipo Linux con el que cuentes con permisos de administrador 
+- Tener instalados Docker y Docker Compose
+- Tener un equipo Linux con permisos de administrador
 
 ## Creación de ficheros
 
 ### Creación del docker-compose
 
-Todos los ficheros utilizados en este post los podrás encontrar en mi [github](https://github.com/javierasping/learn_observability) . 
+Todos los archivos utilizados en este post los podrás encontrar en mi [GitHub](https://github.com/javierasping/learn_observability).
 
 Lo primero que haremos será crear nuestro archivo `docker-compose.yaml`.
 
 En este archivo destacaremos dos puntos:
 
-- El puerto de Prometheus es el 9090; en mi caso, lo mantendré sin cambios.
-- El archivo de configuración que añadiremos al contenedor, lo cual facilitará la modificación de su configuración.
+- El puerto de Prometheus es el 9090, en mi caso, lo mantendré sin cambios.
+- Añadiremos el archivo de configuración al contenedor, lo cual facilitará su modificación.
 
 ```bash
-javiercruces@HPOMEN15:~/learn_observability/exercise1$ cat docker-compose.yaml 
+javiercruces@HPOMEN15:~/learn_observability/exercise1$ cat docker-compose.yaml
 version: '3.8'
 
 services:
@@ -53,21 +53,21 @@ Para más detalles sobre todas las opciones disponibles, consulta la [documentac
 
 ```yaml
 global:
-  scrape_interval: 15s  
+  scrape_interval: 15s
 
   external_labels:
     monitor: 'javiercd-metrics'
 
-# En esta sección configuraremos todos los targets de los cual vamos a extraer métricas
+# En esta sección configuraremos todos los targets de los cuales vamos a extraer métricas
 scrape_configs:
     # Scrape del propio Prometheus
-  - job_name: 'prometheus'        
-    scrape_interval: 5s           
+  - job_name: 'prometheus'
+    scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9090']
-    
+
     # Monitorización del sistema Debian 12
-  - job_name: 'node-exporter-debian12' 
+  - job_name: 'node-exporter-debian12'
     scrape_interval: 5s
     static_configs:
       - targets: ['172.17.0.1:9100']
@@ -139,7 +139,7 @@ Una vez levantado, accederemos a través del navegador al puerto expuesto de Pro
 
 ![](/observabilidad/metricas/prometheus/acceso_prometheus.png)
 
-Comprobaremos que Prometheus recibe las métricas de Debian 12 accediendo a `http://localhost:9090/targets`; en mi caso, ambos servicios están activos y recibiendo métricas:
+Comprobaremos que Prometheus recibe las métricas de Debian 12 accediendo a `http://localhost:9090/targets`, en mi caso, ambos servicios están activos y recibiendo métricas:
 
 ![](/observabilidad/metricas/prometheus/targets_prometheus.png)
 
@@ -149,7 +149,7 @@ Por último, consultaremos un par de métricas:
 
 ![](/observabilidad/metricas/prometheus/memory_metric.png)
 
-## Bibliografia 
+## Bibliografía
 
 - [Getting started Prometheus](https://prometheus.io/docs/prometheus/latest/getting_started/)
 - [Prometheus configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)

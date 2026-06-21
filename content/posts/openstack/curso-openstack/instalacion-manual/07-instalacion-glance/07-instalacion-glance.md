@@ -7,7 +7,7 @@ hero: images/openstack/instalacion-manual/instalar-configurar-glance.png
 weight: 7
 ---
 
-A primera vista, Glance puede parecer un servicio sencillo; su función principal es almacenar, gestionar y servir imágenes al servicio de cómputo (Nova). En este post, instalaremos y configuraremos Glance en el nodo `controller01`, analizaremos sus componentes clave y estableceremos un flujo básico para cargar una imagen de prueba.
+A primera vista, Glance puede parecer un servicio sencillo, su función principal es almacenar, gestionar y servir imágenes al servicio de cómputo (Nova). En este post, instalaremos y configuraremos Glance en el nodo `controller01`, analizaremos sus componentes clave y estableceremos un flujo básico para cargar una imagen de prueba.
 
 ## Arquitectura de Glance
 
@@ -156,7 +156,7 @@ Si quieres activar límites de cuota para Glance, debes registrar los recursos e
 Instala el paquete `glance` en el controlador:
 
 ```bash
-vagrant@controller01:~$ sudo apt install glance -y 
+vagrant@controller01:~$ sudo apt install glance -y
 ```
 
 Edita el fichero de configuración principal:

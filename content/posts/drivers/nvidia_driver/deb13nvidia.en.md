@@ -26,7 +26,7 @@ javiercruces@HPOMEN15:~$ lspci -nn | egrep -i "3d|display|vga"
 Once the hardware has been identified, we can check which driver is currently being used by the system:
 
 ```bash
-javiercruces@HPOMEN15:~$ lspci -knn 
+javiercruces@HPOMEN15:~$ lspci -knn
 
 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA106M [GeForce RTX 3060 Mobile / Max-Q] [10de:2520] (rev a1)
     DeviceName: NVIDIA Graphics Device
@@ -71,7 +71,7 @@ javiercruces@HPOMEN15:~$ sudo apt install nvidia-detect -y
 Run the utility:
 
 ```bash
-javiercruces@HPOMEN15:~$ nvidia-detect 
+javiercruces@HPOMEN15:~$ nvidia-detect
 Detected NVIDIA GPUs:
 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA106M [GeForce RTX 3060 Mobile / Max-Q] [10de:2520] (rev a1)
 
@@ -97,12 +97,12 @@ Now, we can install the recommended NVIDIA driver:
 javiercruces@HPOMEN15:~$ sudo apt install nvidia-driver -y
 ```
 
-During installation, you may see a warning about the **nouveau** driver, since it will be loaded and will conflict with the NVIDIA driver. This is just a warning; after rebooting the system, the NVIDIA driver will load and the issue will be resolved. Select "OK" and continue.
+During installation, you may see a warning about the **nouveau** driver, since it will be loaded and will conflict with the NVIDIA driver. This is just a warning, after rebooting the system, the NVIDIA driver will load and the issue will be resolved. Select "OK" and continue.
 
 After rebooting the system, we can check that the NVIDIA module is loaded:
 
 ```bash
-javiercruces@HPOMEN15:~$ lspci -knn 
+javiercruces@HPOMEN15:~$ lspci -knn
 
 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA106M [GeForce RTX 3060 Mobile / Max-Q] [10de:2520] (rev a1)
     DeviceName: NVIDIA Graphics Device
@@ -117,7 +117,7 @@ Once installation is complete, we can use the `nvidia-smi` tool to verify the GP
 
 ```bash
 javiercruces@HPOMEN15:~$ nvidia-smi
-Sun Aug 24 21:55:26 2025       
+Sun Aug 24 21:55:26 2025
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 550.163.01             Driver Version: 550.163.01     CUDA Version: 12.4     |
 |-----------------------------------------+------------------------+----------------------|
@@ -129,7 +129,7 @@ Sun Aug 24 21:55:26 2025
 | N/A   42C    P5             10W /   25W |       9MiB /   6144MiB |      0%      Default |
 |                                         |                        |                  N/A |
 +-----------------------------------------+------------------------+----------------------|
-                                                                                         
+
 +-----------------------------------------------------------------------------------------+
 | Processes:                                                                              |
 |  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
@@ -145,8 +145,8 @@ If everything works correctly, you now have your NVIDIA GPU running with the off
 
 On some laptops, even though the NVIDIA graphics card is installed and detected correctly, external ports may not output video. If this is your case, the solution is to use the **NVIDIA Optimus** tool.
 
-I have prepared a specific article explaining this process. You can read it here:  
-👉 [Configuring NVIDIA Optimus on Debian](https://www.javiercd.es/en/posts/drivers/nvidia_optimus/nvidia_optimus/)  
+I have prepared a specific article explaining this process. You can read it here:
+👉 [Configuring NVIDIA Optimus on Debian](https://www.javiercd.es/en/posts/drivers/nvidia_optimus/nvidia_optimus/)
 
 ---
 

@@ -7,7 +7,7 @@ hero: images/openstack/instalacion-manual/instalar-configurar-nova-computo.png
 weight: 10
 ---
 
-En esta guía, configuraremos un nodo de cómputo (por ejemplo, `compute01`) para que sea capaz de ejecutar instancias mediante Nova. Utilizaremos QEMU/KVM siempre que el hardware lo permita; en caso contrario, dejaremos configurado QEMU puro.
+En esta guía, configuraremos un nodo de cómputo (por ejemplo, `compute01`) para que sea capaz de ejecutar instancias mediante Nova. Utilizaremos QEMU/KVM siempre que el hardware lo permita, en caso contrario, dejaremos configurado QEMU puro.
 
 Antes de comenzar, asegúrate de cumplir los siguientes requisitos:
 
@@ -53,7 +53,7 @@ username = nova
 password = NOVA_PASS
 ```
 
-Definiremos la IP de gestión del nodo en el parámetro `my_ip` (sustituye `IP_GESTION_NODO_COMPUTO` por la IP correspondiente; en mi ejemplo es `10.0.0.3`):
+Definiremos la IP de gestión del nodo en el parámetro `my_ip` (sustituye `IP_GESTION_NODO_COMPUTO` por la IP correspondiente, en mi ejemplo es `10.0.0.3`):
 
 ```ini
 [DEFAULT]
@@ -132,7 +132,7 @@ vagrant@compute01:~$ sudo service nova-compute restart
 Cargaremos las credenciales de administrador en el nodo controlador y buscaremos los hosts que no hayan sido mapeados:
 
 ```bash
-vagrant@controller01:~$ source admin-openrc 
+vagrant@controller01:~$ source admin-openrc
 ```
 
 Verificaremos si el controlador detecta nodos de cómputo pendientes de añadir:

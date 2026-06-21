@@ -11,7 +11,7 @@ Breve: ejemplos de uso de la API de libvirt (`virsh vol-*`) para gestionar volú
 
 ## Gestión de volúmenes de almacenamiento con virsh
 
-En este apartado vamos a estudiar la gestión de volúmenes de almacenamiento usando la API de libvirt (herramienta `virsh`). Trabajaremos sobre pools de tipo `dir` (ficheros de imagen en disco), aunque muchas de las operaciones son compatibles con otros backends; donde existan diferencias, se indicará.
+En este apartado vamos a estudiar la gestión de volúmenes de almacenamiento usando la API de libvirt (herramienta `virsh`). Trabajaremos sobre pools de tipo `dir` (ficheros de imagen en disco), aunque muchas de las operaciones son compatibles con otros backends, donde existan diferencias, se indicará.
 
 ### Pools y volúmenes: concepto rápido
 
@@ -220,7 +220,7 @@ Subir el contenido desde un fichero local a un volumen (sobrescribe):
 javiercruces@FJCD-PC:~$ virsh vol-upload --pool default vdisk-20G.qcow2 /tmp/vdisk-20G.qcow2
 ```
 
-Estas operaciones pueden ser lentas para ficheros grandes; en muchos casos `qemu-img convert` o herramientas del propio backend (rbd, gluster) son más eficientes.
+Estas operaciones pueden ser lentas para ficheros grandes, en muchos casos `qemu-img convert` o herramientas del propio backend (rbd, gluster) son más eficientes.
 
 
 ### Asignar un volumen como disco a una VM
@@ -240,7 +240,7 @@ javiercruces@FJCD-PC:~$ virsh attach-disk --live --config testguest1 /var/lib/li
 
 Explicación y notas:
 - `attach-disk` recibe la ruta al fichero de imagen (o al dispositivo del pool) y el nombre del dispositivo objetivo dentro del invitado (p. ej. `vdb`).
-- `--live` realiza la operación en caliente en la VM en ejecución; `--config` escribe la entrada en la definición de la VM para que sea persistente al reinicio. Puedes combinar ambas.
+- `--live` realiza la operación en caliente en la VM en ejecución, `--config` escribe la entrada en la definición de la VM para que sea persistente al reinicio. Puedes combinar ambas.
 - Estos comandos son prácticos cuando conoces la ruta del volumen en el host y el nombre del dispositivo que quieres usar dentro del invitado.
 
 Alternativa: adjuntar mediante un fragmento XML
@@ -261,7 +261,7 @@ Y adjuntar persistentemente en la configuración:
 javiercruces@FJCD-PC:~$ virsh attach-device --config testguest1 ~/vdisk-20G.xml
 ```
 
-Dependiendo del tipo de pool, el XML cambia; para operaciones sencillas `attach-disk` suele ser la forma más directa.
+Dependiendo del tipo de pool, el XML cambia, para operaciones sencillas `attach-disk` suele ser la forma más directa.
 
 Quitar (desasignar) un disco
 

@@ -33,7 +33,7 @@ Once the VM is created, install all the components you want this template to hav
 To do this, I'll check that it's running and start with the installation:
 
 ```bash
-$ virsh list 
+$ virsh list
  Id   Name            State
 -------------------------------
  1    debian13-base   running
@@ -58,7 +58,7 @@ ED25519 key fingerprint is SHA256:RvOdKE4i1eQNHJ8bdK6RoYl9GckeGN2xY6X/IsPvMHI.
 This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 Warning: Permanently added '192.168.122.202' (ED25519) to the list of known hosts.
-javiercruces@192.168.122.202's password: 
+javiercruces@192.168.122.202's password:
 Linux debian13-base 6.12.48+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.48-1 (2025-09-20) x86_64
 
 The programs included with the Debian GNU/Linux system are free software;
@@ -69,7 +69,7 @@ Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 
 
-javiercruces@debian13-base:~$ 
+javiercruces@debian13-base:~$
 ```
 
 
@@ -87,7 +87,7 @@ javiercruces@debian13-base:~$ chmod 700 ~/.ssh
 javiercruces@debian13-base:~$ chmod 600 ~/.ssh/authorized_keys
 
 # With this command we add the public key we want to use on the VM
-javiercruces@FJCD-PC:~$ ssh-copy-id -i ~/.ssh/jcruces.pub javiercruces@192.168.122.202   
+javiercruces@FJCD-PC:~$ ssh-copy-id -i ~/.ssh/jcruces.pub javiercruces@192.168.122.202
 
 # Finally, I verify I can connect using the SSH key. Remember to disable password authentication in the SSH service.
 javiercruces@FJCD-PC:~ [prd-eu-central|]
@@ -158,7 +158,7 @@ sudo virt-sparsify --compress \
   /var/lib/libvirt/images/plantilla-debian13-comprimida.qcow2
 ```
 
-Keep in mind that before replacing the real image with the compressed one, you should test that a machine can boot using this new disk. 
+Keep in mind that before replacing the real image with the compressed one, you should test that a machine can boot using this new disk.
 ```bash
 # Replace the image with the compacted one
 sudo mv /var/lib/libvirt/images/plantilla-debian13-comprimida.qcow2 \
@@ -194,8 +194,8 @@ virsh domrename debian13-base plantilla-debian13
 
 You have two main ways:
 
-- Full clone: independent image; takes as much space as the original.
-- Linked clone: creates an overlay layer on top of the template (read-only); takes less space, depends on the base.
+- Full clone: independent image, takes as much space as the original.
+- Linked clone: creates an overlay layer on top of the template (read-only), takes less space, depends on the base.
 
 ### 5.1 Full clone
 
@@ -208,7 +208,7 @@ sudo virt-clone --original debian13-base --name debian13-clonacion-completa \
 
 With this command we'll have a new virtual machine with the same components as the template.
 
-Before starting the full clone as a non-root user, make sure to set the correct owner and permissions on the newly created disk file. On many distributions the QEMU/libvirt process runs as `libvirt-qemu:libvirt-qemu` or `qemu:qemu`; if permissions are not corrected, starting the VM as a non-root user may fail.
+Before starting the full clone as a non-root user, make sure to set the correct owner and permissions on the newly created disk file. On many distributions the QEMU/libvirt process runs as `libvirt-qemu:libvirt-qemu` or `qemu:qemu`, if permissions are not corrected, starting the VM as a non-root user may fail.
 
 ```bash
 javiercruces@FJCD-PC:~$ sudo chown libvirt-qemu:libvirt-qemu /var/lib/libvirt/images/debian13-clonacion-completa.qcow2

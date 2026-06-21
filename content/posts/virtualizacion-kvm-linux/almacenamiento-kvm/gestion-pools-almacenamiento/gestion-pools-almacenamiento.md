@@ -1,7 +1,7 @@
 ---
 title: "Cómo gestionar pools de almacenamiento"
 date: 2025-10-25T09:00:00+00:00
-description: "Cómo crear, iniciar, configurar (autostart) y destruir pools usando virsh y archivos XML; listar y obtener información. Diferencias entre tipos: dir, disk, logical, iSCSI, ZFS, NFS."
+description: "Cómo crear, iniciar, configurar (autostart) y destruir pools usando virsh y archivos XML, listar y obtener información. Diferencias entre tipos: dir, disk, logical, iSCSI, ZFS, NFS."
 tags: [KVM,Virtualizacion,Libvirt,Almacenamiento,Pools]
 hero: images/virtualizacion-kvm-linux/almacenamiento/pools.png
 weight: 2
@@ -9,8 +9,8 @@ weight: 2
 
 Tienes que incluir y responder a las siguientes preguntas en este post .
 
-Que es un pool 
-Como se crea y que formas utilizan 
+Que es un pool
+Como se crea y que formas utilizan
 
 El almacenamiento en KVM/libvirt se organiza en "storage pools" y "storage volumes". En este artículo explicaremos qué es un pool, por qué se usan, y cómo gestionarlos con `virsh` o mediante ficheros XML. Incluiremos ejemplos y recomendaciones prácticas, así como notas sobre pools basados en LVM.
 
@@ -119,7 +119,7 @@ Ejemplo mínimo de XML para un pool `dir`:
 
 Después de ejecutar `virsh pool-define`, libvirt guarda la definición persistente del pool como un fichero XML en `/etc/libvirt/storage/`. Cada XML en ese directorio representa una definición de pool que libvirt puede arrancar y controlar con `virsh`.
 
-Las entradas que deben arrancarse automáticamente se marcan en el subdirectorio `/etc/libvirt/storage/autostart/`. En la práctica este subdirectorio contiene normalmente enlaces simbólicos que apuntan a los XML de definición originales; su presencia indica que el pool se iniciará al arrancar el servicio libvirt o el sistema.
+Las entradas que deben arrancarse automáticamente se marcan en el subdirectorio `/etc/libvirt/storage/autostart/`. En la práctica este subdirectorio contiene normalmente enlaces simbólicos que apuntan a los XML de definición originales, su presencia indica que el pool se iniciará al arrancar el servicio libvirt o el sistema.
 
 ```bash
 javiercruces@FJCD-PC:~$ ls -l /etc/libvirt/storage/
@@ -198,7 +198,7 @@ javiercruces@FJCD-PC:~$ virsh pool-autostart guest_images_logical
 Recomendaciones:
 
 - Haz copia de seguridad antes de manipular particiones o dispositivos físicos.
-- Si usas un VG existente, no debería borrar datos; si creas uno nuevo basado en una partición se formateará.
+- Si usas un VG existente, no debería borrar datos, si creas uno nuevo basado en una partición se formateará.
 - Verifica `virsh pool-info <pool>` para comprobar capacidad, allocation y estado.
 
 ## Buenas prácticas y recomendaciones
@@ -217,4 +217,4 @@ En el próximo artículo cubriremos cómo crear y gestionar volúmenes dentro de
 
 ## Fuentes
 
-- [Documentación oficial libvirt: Storage management; Storage pool and volume XML format](https://libvirt.org/storage.html)
+- [Documentación oficial libvirt: Storage management, Storage pool and volume XML format](https://libvirt.org/storage.html)

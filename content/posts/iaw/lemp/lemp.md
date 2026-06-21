@@ -32,7 +32,7 @@ Además, asegúrate de que los siguientes paquetes estén instalados en tu siste
 javiercruces@IWEB:~$ sudo apt install wget nano unzip tar -y
 ```
 
-## Instalación PHP  
+## Instalación PHP
 
 Debian 12 incluye PHP 8.2 por defecto. Puedes instalarlo ejecutando el siguiente comando:
 
@@ -52,7 +52,7 @@ javiercruces@IWEB:~$
 ```
 ## Instalación MariaDB
 
-Puedes utilizar indistintamente MariaDB o MySQL; en mi caso, utilizaremos MariaDB:
+Puedes utilizar indistintamente MariaDB o MySQL, en mi caso, utilizaremos MariaDB:
 
 ```bash
 javiercruces@IWEB:~$ sudo apt install mariadb-server
@@ -73,7 +73,7 @@ Si te has saltado lanzar el script de la instalación segura , el usuario root d
 
 ```bash
 javiercruces@IWEB:~$ sudo mysql -u root -p
-Enter password: 
+Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 32
 Server version: 10.11.4-MariaDB-1~deb12u1 Debian 12
@@ -82,7 +82,7 @@ Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB [(none)]> 
+MariaDB [(none)]>
 ```
 
 ## Instalar Nginx
@@ -123,7 +123,7 @@ listen = 127.0.0.1:9000
 
 Guarda los cambios y cierra el archivo.
 
-Ahora editaremos la configuración del sitio virtual por defecto para que funcione con PHP-FPM. 
+Ahora editaremos la configuración del sitio virtual por defecto para que funcione con PHP-FPM.
 
 Para lograrlo, vamos a modificar el contenido dentro de la sección `location` en la configuración del servidor. Aquí te proporciono un ejemplo de archivo de configuración que puedes utilizar:
 
@@ -144,7 +144,7 @@ server {
 
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
-            fastcgi_pass 127.0.0.1:9000; 
+            fastcgi_pass 127.0.0.1:9000;
             #fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
             # fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             include fastcgi_params;
@@ -175,7 +175,7 @@ Una vez que ambos comandos confirmen que no hay errores, reiniciaremos los servi
 javiercruces@IWEB:/etc/nginx$ sudo systemctl restart php8.2-fpm nginx.service
 ```
 
-## Comprobación de funcionamiento  
+## Comprobación de funcionamiento
 Para asegurarnos de que el servidor está funcionando correctamente con PHP-FPM, vamos a crear un archivo llamado info.php que mostrará información sobre la configuración de PHP en el servidor. A continuación, te mostraré cómo crear el archivo:
 
 ```bash

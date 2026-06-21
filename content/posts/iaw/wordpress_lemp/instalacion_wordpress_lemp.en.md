@@ -14,7 +14,7 @@ WordPress is a highly popular open-source content management system (CMS) used t
 
 ### Previous requirements
 
-1. **Linux server:** You must have a server running Linux; this guide is specifically designed for Debian 12.
+1. **Linux server:** You must have a server running Linux, this guide is specifically designed for Debian 12.
 2. **User with superuser permissions:** You must have access to a user with sudo privileges on the server in order to perform the installation and configuration tasks.
 3. **Full Domain Name (FQDN):** If you want to access your WordPress site through a custom domain, make sure you have a full domain name (FQDN) set up and pointed to the server.
 4. **Internet access:** You need Internet access to download packages and make updates during the installation process.
@@ -28,7 +28,7 @@ If the LEMP stack is not installed, you can do so via [this link](https://www.ja
 
 The creation of a VirtualHost in Nginx allows you to configure multiple websites on a single server. Follow these steps to create a VirtualHost in Nginx.
 
-Copy the default Nginx configuration file to use as a template and name it as you prefer. In this example, we will name it `wordpress`; please note that this name is purely informative.
+Copy the default Nginx configuration file to use as a template and name it as you prefer. In this example, we will name it `wordpress`, please note that this name is purely informative.
 
 ```bash
 javiercruces@IWEB:~$ sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/wordpress
@@ -47,7 +47,7 @@ server {
     listen 80;
     root /var/www/wordpress;  # Cambia esta linea por la ubicación del directorio root de tu wordpress
     index  index.php index.html index.htm;
-    server_name  wordpress.fjcd.es; # Cambia esta linea y pon el FQDN , a traves de este accederás a tu wordpress 
+    server_name  wordpress.fjcd.es; # Cambia esta linea y pon el FQDN , a traves de este accederás a tu wordpress
 
     client_max_body_size 500M;
 
@@ -97,7 +97,7 @@ javiercruces@IWEB:~$ sudo systemctl reload nginx
 To access this VirtualHost from the client machine, since there is no DNS server, remember to add the server's IP and the `ServerName` to the `/etc/hosts` file:
 
 ```bash
-javiercruces@HPOMEN15:~$ cat /etc/hosts 
+javiercruces@HPOMEN15:~$ cat /etc/hosts
 #Añade la IP de tu servidor y el ServerName correspondiente (wordpress.fjcd.es)
 #Ponlo al final del fichero y no modifiques las lineas existentes en tu fichero
 192.168.125.27 wordpress.fjcd.es
@@ -109,7 +109,7 @@ I recommend **noting down** the data entered below, as you will need them later.
 We will connect to the database:
 ```bash
 javiercruces@IWEB:~$ sudo mysql -u root -p
-Enter password: 
+Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 31
 Server version: 10.11.4-MariaDB-1~deb12u1 Debian 12
@@ -152,7 +152,7 @@ Petición HTTP enviada, esperando respuesta... 200 OK
 Longitud: 23465047 (22M) [application/octet-stream]
 Grabando a: «latest.tar.gz»
 
-latest.tar.gz             100%[=====================================>]  22,38M  14,8MB/s    en 1,5s    
+latest.tar.gz             100%[=====================================>]  22,38M  14,8MB/s    en 1,5s
 
 2023-10-27 12:33:19 (14,8 MB/s) - «latest.tar.gz» guardado [23465047/23465047]
 ```
@@ -182,7 +182,7 @@ And we put the right permissions to WordPress:
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
 
-``` 
+```
 
 Once all this is configured, we can access our domain via a browser to start the **WordPress** installation.
 

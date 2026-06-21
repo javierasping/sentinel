@@ -10,7 +10,7 @@ weight: 6
 Los snapshots (instantáneas) permiten capturar el estado de una máquina virtual en un momento concreto para poder volver atrás si algo sale mal (actualizaciones, cambios arriesgados, pruebas). En KVM con libvirt tenemos dos familias principales:
 
 - Snapshots internos: el contenido del snapshot se almacena dentro del propio fichero qcow2. Suelen requerir la VM apagada y sólo funcionan con almacenamiento qcow2 (no raw, LVM, etc.).
-- Snapshots externos: crean ficheros overlay (qcow2) aparte; son los más usados para snapshots en caliente (VM encendida). Permiten flujos más flexibles y se pueden consolidar después (blockcommit).
+- Snapshots externos: crean ficheros overlay (qcow2) aparte, son los más usados para snapshots en caliente (VM encendida). Permiten flujos más flexibles y se pueden consolidar después (blockcommit).
 
 Además, un snapshot puede ser:
 
@@ -20,7 +20,7 @@ Además, un snapshot puede ser:
 Recomendación general:
 
 - Para snapshots en caliente, usa snapshots externos con `--disk-only` y, si es posible, `--quiesce` con qemu-guest-agent.
-- Limita la profundidad de la cadena de overlays; consolida pronto con blockcommit para evitar degradación de rendimiento.
+- Limita la profundidad de la cadena de overlays, consolida pronto con blockcommit para evitar degradación de rendimiento.
 - No uses snapshots como sustituto de copias de seguridad completas.
 
 ---
@@ -125,7 +125,7 @@ virsh snapshot-current debian13
 
 ## Revertir a un snapshot
 
-Con snapshots con memoria puedes reanudar exactamente el estado; con snapshots sólo de disco es más seguro revertir con la VM apagada.
+Con snapshots con memoria puedes reanudar exactamente el estado, con snapshots sólo de disco es más seguro revertir con la VM apagada.
 
 ```bash
 # Opción conservadora para snapshots de disco: apagar, revertir y arrancar
@@ -245,10 +245,10 @@ virsh snapshot-create-as \
 ## Problemas comunes y cómo resolverlos
 
 - Falla `--quiesce`: instala y habilita qemu-guest-agent dentro del invitado y comprueba `virsh domfsinfo`.
-- Almacenamiento no compatible: snapshots internos requieren qcow2; en raw/LVM/ceph usa externos.
-- Snapshots con memoria muy pesados: pueden tardar y ocupar mucho; evalúa si realmente necesitas memoria.
-- Cadena de overlays profunda: impacto en I/O; consolida con blockcommit pronto.
-- Revertir en caliente un snapshot de sólo disco: puede corromper datos; apaga antes de revertir.
+- Almacenamiento no compatible: snapshots internos requieren qcow2, en raw/LVM/ceph usa externos.
+- Snapshots con memoria muy pesados: pueden tardar y ocupar mucho, evalúa si realmente necesitas memoria.
+- Cadena de overlays profunda: impacto en I/O, consolida con blockcommit pronto.
+- Revertir en caliente un snapshot de sólo disco: puede corromper datos, apaga antes de revertir.
 - No sustituyen backups: los snapshots no protegen contra fallos del host o corrupción silenciosa prolongada.
 
 ---

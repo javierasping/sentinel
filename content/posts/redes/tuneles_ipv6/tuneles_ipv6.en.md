@@ -16,9 +16,9 @@ In this detailed post, we explore the process of configuring IPv6 to IPv4 tunnel
 
 #### R1
 
-- **FastEthernet 0/0**  
-  - Network Prefix: `3333:db7::/64`  
-  - Link: `FE80::C801:20FF:FE69:0`  
+- **FastEthernet 0/0**
+  - Network Prefix: `3333:db7::/64`
+  - Link: `FE80::C801:20FF:FE69:0`
   - Global: `3333:DB7::C801:20FF:FE69:0`
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.002.png)
@@ -37,9 +37,9 @@ For R1 router clients, we will configure SLAAC:
 
 #### R2
 
-- **FastEthernet 0/0**  
-  - Network Prefix: `3333:db7:1::/64`  
-  - Link: `FE80::C802:20FF:FE79:0`  
+- **FastEthernet 0/0**
+  - Network Prefix: `3333:db7:1::/64`
+  - Link: `FE80::C802:20FF:FE79:0`
   - Global: `3333:DB7:1:0:C802:20FF:FE79:0`
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.007.png)
@@ -58,9 +58,9 @@ For R2 router clients, we will configure SLAAC:
 
 #### R3
 
-- **FastEthernet 0/0**  
-  - Network Prefix: `3333:db7:2::/64`  
-  - Link: `FE80::C803:20FF:FE89:0`  
+- **FastEthernet 0/0**
+  - Network Prefix: `3333:db7:2::/64`
+  - Link: `FE80::C803:20FF:FE89:0`
   - Global: `3333:DB7:2:0:C803:20FF:FE89:0`
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.012.png)
@@ -435,7 +435,7 @@ Finally, we can see in the IPv6 header that it is indistinguishable from one tha
 
 We see that, once it reaches the destination (i.e., after traversing the IPv4 segment and re-entering the IPv6 network), the router will remove the IPv4 header and leave the IPv6 header so the packet can reach its destination.
 
-We see that the IPv6 header remains intact; it is the same throughout the packet's journey:
+We see that the IPv6 header remains intact, it is the same throughout the packet's journey:
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.091.jpeg)
 
@@ -534,7 +534,7 @@ We will verify that the interfaces have been created correctly:
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.104.jpeg)
 
-![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.105.jpeg)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.105.png)
 
 ---
 
@@ -546,11 +546,11 @@ This is what the "script" for R3 tunnels would look like:
 
 Once the script is created, we will give it permissions and execute it:
 
-![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.107.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.107.jpeg)
 
 We will verify that the interfaces have been created correctly:
 
-![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.108.jpeg)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.108.png)
 
 ---
 
@@ -564,7 +564,7 @@ We will verify that the interfaces have been created correctly:
 
 **PC1 → PC2**
 
-![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.109.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.109.jpeg)
 
 **PC1 → PC3**
 
@@ -626,7 +626,7 @@ A packet traveling from PC1 to PC2.
 
 We can see that, since it has not yet passed through the tunnel, it does not have IPv4 headers, only IPv6. We can see that the source is PC1 and the destination is PC3:
 
-<!-- ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.121.jpeg) -->
+<!-- ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.121.png) -->
 
 We will see how, in the next segment, once it passes through the tunnel, the router will add an IPv4 header so it can traverse that segment.
 
@@ -650,7 +650,7 @@ Finally, we can see in the IPv6 header that it is indistinguishable from one tha
 
 We see that, once it reaches the destination (i.e., after traversing the IPv4 segment and re-entering the IPv6 network), the router will remove the IPv4 header and leave the IPv6 header so the packet can reach its destination.
 
-We see that the IPv6 header remains intact; it is the same throughout the packet's journey:
+We see that the IPv6 header remains intact, it is the same throughout the packet's journey:
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.124.jpeg)
 

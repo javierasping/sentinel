@@ -6,7 +6,7 @@ tags: [Servicios,NAT,SMR,DHCP,SNAT,DNS,DNSMASQ]
 hero: images/servicios/dns/dnsmasq.png
 ---
 
-# Configuración servidor DNS en Debian    
+# Configuración servidor DNS en Debian
 
 ## Dnsmasq
 

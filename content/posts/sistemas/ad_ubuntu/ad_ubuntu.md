@@ -80,7 +80,7 @@ Podemos comprobar que se han añadido con el siguiente comando :
 
 ![](/sistemas/ad_ubuntu/img/Aspose.Words.2fdbf265-b3ba-4503-a174-3e0534a81c76.013.png)
 
-- Usuarios del grupo alumnos: erik, manu, oliver, sandra, fabio y domi. 
+- Usuarios del grupo alumnos: erik, manu, oliver, sandra, fabio y domi.
 
 Los añadimos :
 
@@ -131,8 +131,8 @@ Nombre del controlador de dominio de *Active Directory*: FJCD
 - Nombre DNS del dominio de *Active Directory*: javiercruces.local
 - Nombre del Reino Kerberos: javiercruces.local
 - Nombre NetBIOS del dominio: javiercruces
-- Dirección IP fija del servidor: 192.168.0.1 
-- Rol del servidor: Domain Controller (DC) 
+- Dirección IP fija del servidor: 192.168.0.1
+- Rol del servidor: Domain Controller (DC)
 - Reenviador DNS:192.168.0.1
 
 Una vez con estos datos claros comenzaremos con la instalación , lo primero será actualizar el sistema :
@@ -193,7 +193,7 @@ Aquí volveremos a introducir el nombre de nuestro servidor :
 Después de esto, la instalación continuará un poco más, pero sin necesitar que aportemos más información:
 
 
-![](/sistemas/ad_ubuntu/img/Aspose.Words.2fdbf265-b3ba-4503-a174-3e0534a81c76.034.jpeg) 
+![](/sistemas/ad_ubuntu/img/Aspose.Words.2fdbf265-b3ba-4503-a174-3e0534a81c76.034.jpeg)
 
 Ahora configuraremos samba , pero antes de hacerlo le cambiaremos el nombre al archivo de configuración *smb.conf* para que no lo use mientras que lo configuramos y así además tendremos una copia del archivo original :
 
@@ -287,7 +287,7 @@ Ya hemos verificado todo así que podemos empezar a unir clientes a nuestro domi
 
 ## Unir clientes al dominio
 
-### 6. Integra al menos un cliente con Windows en el dominio Samba. 
+### 6. Integra al menos un cliente con Windows en el dominio Samba.
 
 #### Cliente Windows
 
@@ -328,7 +328,7 @@ Y para que se apliquen los cambios deberemos de reiniciar :
 
 ![](/sistemas/ad_ubuntu/img/Aspose.Words.2fdbf265-b3ba-4503-a174-3e0534a81c76.057.png)
 
-Una vez reiniciado podremos iniciar sesión con los diferentes usuarios de nuestro dominio : 
+Una vez reiniciado podremos iniciar sesión con los diferentes usuarios de nuestro dominio :
 
 ![](/sistemas/ad_ubuntu/img/Aspose.Words.2fdbf265-b3ba-4503-a174-3e0534a81c76.058.jpeg)
 
@@ -510,7 +510,7 @@ Vemos que se ha realizado correctamente el perfil móvil .
 
 ## NFS
 
-### 10. Mediante NFS, se compartirán en el servidor las carpetas: proyectos, documentación, programas_y_drivers. De la primera solo se podrá leer; en las dos últimas también se podrá escribir. Los equipos Linux montarán las carpetas automáticamente en el arranque.
+### 10. Mediante NFS, se compartirán en el servidor las carpetas: proyectos, documentación, programas_y_drivers. De la primera solo se podrá leer, en las dos últimas también se podrá escribir. Los equipos Linux montarán las carpetas automáticamente en el arranque.
 
 Lo primero que haremos será instalarnos los siguientes paquetes :
 
@@ -675,7 +675,7 @@ Lo primero que veremos en la interfaz web será un monitor de recursos, así com
 Podremos ver un histórico del monitor de recursos, el cual nos mostrara las horas y el porcentaje de uso de nuestro hardware, así como información del sistema :
 
 
-![](/sistemas/ad_ubuntu/img/Aspose.Words.2fdbf265-b3ba-4503-a174-3e0534a81c76.135.jpeg) 
+![](/sistemas/ad_ubuntu/img/Aspose.Words.2fdbf265-b3ba-4503-a174-3e0534a81c76.135.jpeg)
 
 Tenemos más apartados como el de logins recientes o interfaces de red , el cual nos dará información de quien se ha conectado y las configuraciones de las mismas respectivamente :
 

@@ -26,7 +26,7 @@ javiercruces@HPOMEN15:~$ lspci -nn | egrep -i "3d|display|vga"
 Una vez identificado el hardware, podemos comprobar qué controlador está usando actualmente el sistema:
 
 ```bash
-javiercruces@HPOMEN15:~$ lspci -knn 
+javiercruces@HPOMEN15:~$ lspci -knn
 
 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA106M [GeForce RTX 3060 Mobile / Max-Q] [10de:2520] (rev a1)
     DeviceName: NVIDIA Graphics Device
@@ -71,7 +71,7 @@ javiercruces@HPOMEN15:~$ sudo apt install nvidia-detect -y
 Ejecutamos la utilidad:
 
 ```bash
-javiercruces@HPOMEN15:~$ nvidia-detect 
+javiercruces@HPOMEN15:~$ nvidia-detect
 Detected NVIDIA GPUs:
 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA106M [GeForce RTX 3060 Mobile / Max-Q] [10de:2520] (rev a1)
 
@@ -102,7 +102,7 @@ Durante la instalación, puede que aparezca un aviso sobre el driver **nouveau**
 Tras reiniciar el sistema, podemos comprobar que el módulo de NVIDIA está cargado:
 
 ```bash
-javiercruces@HPOMEN15:~$ lspci -knn 
+javiercruces@HPOMEN15:~$ lspci -knn
 
 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA106M [GeForce RTX 3060 Mobile / Max-Q] [10de:2520] (rev a1)
     DeviceName: NVIDIA Graphics Device
@@ -117,7 +117,7 @@ Una vez completada la instalación, podemos utilizar la herramienta `nvidia-smi`
 
 ```bash
 javiercruces@HPOMEN15:~$ nvidia-smi
-Sun Aug 24 21:55:26 2025       
+Sun Aug 24 21:55:26 2025
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 550.163.01             Driver Version: 550.163.01     CUDA Version: 12.4     |
 |-----------------------------------------+------------------------+----------------------|
@@ -129,7 +129,7 @@ Sun Aug 24 21:55:26 2025
 | N/A   42C    P5             10W /   25W |       9MiB /   6144MiB |      0%      Default |
 |                                         |                        |                  N/A |
 +-----------------------------------------+------------------------+----------------------|
-                                                                                         
+
 +-----------------------------------------------------------------------------------------+
 | Processes:                                                                              |
 |  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
@@ -145,8 +145,8 @@ Si todo funciona correctamente, ya tendrás tu GPU NVIDIA funcionando con los dr
 
 En algunos portátiles, a pesar de que la tarjeta gráfica NVIDIA se instala y detecta correctamente, los puertos externos no emiten video. Si este es tu caso, la solución pasa por utilizar la herramienta **NVIDIA Optimus**.
 
-He preparado un artículo específico explicando este proceso. Puedes leerlo aquí:  
-👉 [Configurar NVIDIA Optimus en Debian](https://www.javiercd.es/posts/drivers/nvidia_optimus/nvidia_optimus/)  
+He preparado un artículo específico explicando este proceso. Puedes leerlo aquí:
+👉 [Configurar NVIDIA Optimus en Debian](https://www.javiercd.es/posts/drivers/nvidia_optimus/nvidia_optimus/)
 
 ---
 

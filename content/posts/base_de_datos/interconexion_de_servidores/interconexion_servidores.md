@@ -8,7 +8,7 @@ hero: images/base_de_datos/interconexion_de_servidores/interconexion_de_servidor
 
 Este post aborda cómo configurar y gestionar conexiones entre diferentes bases de datos, tanto homogéneas como heterogéneas, para facilitar la interoperabilidad entre sistemas de bases de datos diversos. A lo largo del artículo, se exploran distintos escenarios de conexión, comenzando con configuraciones entre bases de datos del mismo tipo, como Oracle a Oracle o PostgreSQL a PostgreSQL, y luego avanzando hacia conexiones heterogéneas entre diferentes tecnologías, como Oracle a MySQL, PostgreSQL a Oracle, y viceversa. También se cubren los pasos necesarios para configurar enlaces, crear usuarios, y modificar archivos de configuración clave, permitiendo así realizar consultas remotas entre servidores.
 
-## Conexiones homogéneas 
+## Conexiones homogéneas
 
 ### Oracle a Oracle
 
@@ -56,7 +56,7 @@ Ahora configuraremos el fichero `tnsnames.ora` para que ORACLE1 sepa dónde est�
 
 ![Configuración de tnsnames.ora](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.007.jpeg)
 
-En este ejemplo, ORACLE2 está configurado bajo la IP `192.168.122.13` y escucha en el puerto `1521`. También es importante conocer el nombre del servicio remoto. Si no lo sabes, puedes ejecutarlo en ORACLE2 utilizando:
+En este ejemplo, ORACLE2 está configurado bajo la IP `192.168.122.13` y escucha en el puerto `1521`. También es importante conocer el nombre del servicio remoto. Si no lo sabes, puedes ejecutar el siguiente comando en ORACLE2:
 
 ![Consulta del nombre del servicio](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.008.png)
 
@@ -285,7 +285,7 @@ Podemos realizar una consulta sencilla hacia la base de datos MySQL:
 
 ![Consulta simple a MySQL](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.040.jpeg)
 
-También es posible realizar consultas utilizando ambas bases de datos simultáneamente. Es importante encerrar en comillas dobles los nombres de los campos y tablas de MySQL para que sean interpretados correctamente:
+También es posible realizar consultas utilizando ambas bases de datos simultáneamente. Es importante encerrar entre comillas dobles los nombres de los campos y tablas de MySQL para que sean interpretados correctamente:
 
 ![Consulta combinada entre Oracle y MySQL](/base_de_datos/interconexion_de_servidores/img/Aspose.Words.d88df54c-5805-4503-951a-502ec2dae267.041.jpeg)
 
@@ -294,7 +294,7 @@ También es posible realizar consultas utilizando ambas bases de datos simultán
 
 <!-- ![](/base_de_datos/interconexion_de_servidores/img/when-i-think-i_ve-found-all-the-issues-in-our-infrastructure-but-then-find-something-that-shows-me-it-was-all-just-the-tip-of-the-iceberg.webp) -->
 
-<img src="../img/when-i-think-i_ve-found-all-the-issues-in-our-infrastructure-but-then-find-something-that-shows-me-it-was-all-just-the-tip-of-the-iceberg.webp" style="width: 75%; height: auto; max-height: 100vh; object-fit: contain;">
+<img src="../img/when-i-think-i_ve-found-all-the-issues-in-our-infrastructure-but-then-find-something-that-shows-me-it-was-all-just-the-tip-of-the-iceberg.webp" style="width: 75%, height: auto, max-height: 100vh, object-fit: contain,">
 
 ---
 

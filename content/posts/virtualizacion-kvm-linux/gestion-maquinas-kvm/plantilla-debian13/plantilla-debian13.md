@@ -33,7 +33,7 @@ Una vez creada la VM, instala todos los componentes que quieres que tenga esta p
 Para ello comprobaré que está corriendo y comenzaré con la instalación:
 
 ```bash
-$ virsh list 
+$ virsh list
  Id   Name            State
 -------------------------------
  1    debian13-base   running
@@ -56,7 +56,7 @@ ED25519 key fingerprint is SHA256:RvOdKE4i1eQNHJ8bdK6RoYl9GckeGN2xY6X/IsPvMHI.
 This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 Warning: Permanently added '192.168.122.202' (ED25519) to the list of known hosts.
-javiercruces@192.168.122.202's password: 
+javiercruces@192.168.122.202's password:
 Linux debian13-base 6.12.48+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.48-1 (2025-09-20) x86_64
 
 The programs included with the Debian GNU/Linux system are free software;
@@ -67,7 +67,7 @@ Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 
 
-javiercruces@debian13-base:~$ 
+javiercruces@debian13-base:~$
 ```
 
 
@@ -85,7 +85,7 @@ javiercruces@debian13-base:~$ chmod 700 ~/.ssh
 javiercruces@debian13-base:~$ chmod 600 ~/.ssh/authorized_keys
 
 # Con este comando añadimos la clave pública que queremos utilizar en la VM
-javiercruces@FJCD-PC:~$ ssh-copy-id -i ~/.ssh/jcruces.pub javiercruces@192.168.122.202   
+javiercruces@FJCD-PC:~$ ssh-copy-id -i ~/.ssh/jcruces.pub javiercruces@192.168.122.202
 
 # Por último, compruebo que puedo conectarme usando la clave SSH. Recuerda desactivar en el servicio SSH la autenticación por contraseña.
 javiercruces@FJCD-PC:~ [prd-eu-central|]
@@ -156,7 +156,7 @@ sudo virt-sparsify --compress \
   /var/lib/libvirt/images/plantilla-debian13-comprimida.qcow2
 ```
 
-Ten en cuenta que antes de reemplazar la imagen real por la comprimida, debes probar que una máquina es capaz de arrancar usando este nuevo disco. 
+Ten en cuenta que antes de reemplazar la imagen real por la comprimida, debes probar que una máquina es capaz de arrancar usando este nuevo disco.
 ```bash
 # Reemplazar la imagen por la compactada
 sudo mv /var/lib/libvirt/images/plantilla-debian13-comprimida.qcow2 \
@@ -192,8 +192,8 @@ virsh domrename debian13-base plantilla-debian13
 
 Tienes dos formas principales:
 
-- Clonación completa (full): imagen independiente; ocupa tanto como el original.
-- Clonación enlazada (linked): crea una capa overlay sobre la plantilla (sólo lectura); ocupa menos, depende de la base.
+- Clonación completa (full): imagen independiente, ocupa tanto como el original.
+- Clonación enlazada (linked): crea una capa overlay sobre la plantilla (sólo lectura), ocupa menos, depende de la base.
 
 ### 5.1 Clonación completa
 

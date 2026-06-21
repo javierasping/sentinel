@@ -23,7 +23,7 @@ javiercruces@IWEB:~$ sudo systemctl enable apache2 && sudo systemctl start apach
 
 Con estos comandos, habrás instalado y activado el servidor web Apache. Puedes verificarlo escribiendo la IP del servidor en tu navegador favorito y debería mostrarte la página de inicio de Apache por defecto.
 
-## Instalación de PHP 
+## Instalación de PHP
 
 Por lo general, necesitarás instalar algunos paquetes específicos para PHP, llamados módulos en función de la base de datos que utilices. Puedes instalarlos con el siguiente comando:
 
@@ -42,7 +42,7 @@ javiercruces@IWEB:~$ sudo systemctl restart apache2
 
 ## Instalación y configuración de MariaDB
 
-Puedes utilizar indistintamente MariaDB o MySQL; en este caso, utilizaremos MariaDB:
+Puedes utilizar indistintamente MariaDB o MySQL, en este caso, utilizaremos MariaDB:
 
 ```bash
 javiercruces@IWEB:~$ sudo apt install mariadb-server
@@ -61,7 +61,7 @@ Después de completar estos pasos, habrás configurado MariaDB y podrás conecta
 
 ```bash
 javiercruces@IWEB:~$ sudo mysql -u root -p
-Enter password: 
+Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 32
 Server version: 10.11.4-MariaDB-1~deb12u1 Debian 12
@@ -70,7 +70,7 @@ Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB [(none)]> 
+MariaDB [(none)]>
 ```
 
-Con esto, ya tendrías instalada la pila LAMP en Debian 12. 
+Con esto, ya tendrías instalada la pila LAMP en Debian 12.

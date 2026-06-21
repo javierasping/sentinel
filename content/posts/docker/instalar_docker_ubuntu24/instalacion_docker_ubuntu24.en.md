@@ -93,7 +93,7 @@ This command downloads a test image and runs it in a container. When the contain
 
 You have now correctly installed and started Docker Engine.
 
-**Tip:**  
+**Tip:**
 If you encounter errors trying to run without root, make sure to allow non-privileged users to run Docker commands. See the following steps for installation on Linux to allow this.
 
 ### Update Docker Engine

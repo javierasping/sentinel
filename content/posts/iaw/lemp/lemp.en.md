@@ -65,7 +65,7 @@ To verify MariaDB, log in via the terminal:
 
 ```bash
 sudo mysql -u root -p
-Enter password: 
+Enter password:
 ```
 
 ## Nginx Installation

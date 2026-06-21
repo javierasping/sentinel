@@ -1,19 +1,19 @@
 ---
 title: "SSH bajo debian "
 date: 2023-09-08T10:00:00+00:00
-description: Configuración del servicio ssh 
+description: Configuración del servicio ssh
 tags: [Servicios,NAT,SMR,IPTABLES,SNAT,SSH,FORWARDING]
 hero: images/servicios/ssh/portada-ssh.png
 ---
 
 
-# servidor SSH bajo debian 
+# servidor SSH bajo debian
 ## Gestión remota usando SSH
 Lo primeros que deberemos de hacer sera instalarnos el paquete  en el servidor y el cliente :
 
 ![](/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.079.png)
 
-Por seguridad se suele no permitir la conexión del root al servidor; para ello, se debe modificar el archivo /etc/ssh/sshd\_config, y se pone la siguiente opción:
+Por seguridad se suele no permitir la conexión del root al servidor, para ello, se debe modificar el archivo /etc/ssh/sshd\_config, y se pone la siguiente opción:
 
 ![](/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.080.png)
 

@@ -8,7 +8,7 @@ hero: images/ci_cd/jenkins/taller2.png
 ---
 
 
-En este ejercicio queremos desplegar una página HTML5 en el servicio _surge.sh_; además, queremos comprobar si el código HTML5 es válido. Estas dos operaciones: comprobar si el HTML5 es válido (test) y el despliegue en surge.sh (deploy), las realizaremos con Jenkins de forma automática (IC y DC). Recuerda que el repositorio es [https://github.com/josedom24/ic-html5](https://github.com/josedom24/ic-html5).
+En este ejercicio queremos desplegar una página HTML5 en el servicio _surge.sh_, además, queremos comprobar si el código HTML5 es válido. Estas dos operaciones: comprobar si el HTML5 es válido (test) y el despliegue en surge.sh (deploy), las realizaremos con Jenkins de forma automática (IC y DC). Recuerda que el repositorio es [https://github.com/josedom24/ic-html5](https://github.com/josedom24/ic-html5).
 
 Como vimos en el ejemplo 2, para realizar el despliegue necesitamos guardar el token obtenido de surge para autentificarnos. Veamos cómo trabajar con credenciales en Jenkins.
 
@@ -28,7 +28,7 @@ debian@jenkins:~$ surge token
    Login (or create surge account) by entering email & password.
 
           email: javierasping@gmail.com
-       password: 
+       password:
 ```
 
 ![](/ci_cd/taller2_jenkins/img/Pasted_image_20240229092356.png)
@@ -50,7 +50,7 @@ pipeline {
                 git branch:'master',url:'https://github.com/javierasping/taller2_ic-html5.git'
             }
         }
-        
+
         stage('Install surge')
         {
             steps {
@@ -63,7 +63,7 @@ pipeline {
                 sh 'surge ./_build/ josedom24.surge.sh --token $TOKEN'
             }
         }
-        
+
     }
 }
 ```

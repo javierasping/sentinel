@@ -20,16 +20,16 @@ Los dispositivos FortiGate vienen configurados de fábrica con la IP 192.168.1.9
 
 Por defecto, a través de ese puerto está habilitada la administración por HTTP, HTTPS, SSH y Telnet.
 
-En mi caso me conectaré desde la consola, le cambiaré el hostname y configuraré el puerto 1 para que obtenga una IP por DHCP. 
+En mi caso me conectaré desde la consola, le cambiaré el hostname y configuraré el puerto 1 para que obtenga una IP por DHCP.
 
 El usuario por defecto es `admin` y la contraseña está en blanco. Al iniciar sesión por primera vez, el sistema obligará a cambiarla:
 
 ```bash
 FortiGate-VM64-KVM login: admin
-Password: 
+Password:
 You are forced to change your password. Please input a new password.
-New Password: 
-Confirm Password: 
+New Password:
+Confirm Password:
 Welcome!
 ```
 
@@ -59,9 +59,9 @@ end
 Ahora veremos la IP que el DHCP le ha asignado con el siguiente comando:
 
 ```bash
-FGT # get system interface 
+FGT # get system interface
 == [ port1 ]
-name: port1   mode: dhcp    ip: 192.168.122.77 255.255.255.0   status: up    netbios-forward: disable    type: physical   ring-rx: 0   ring-tx: 0   netflow-sampler: disable    sflow-sampler: disable    src-check: enable    explicit-web-proxy: disable    explicit-ftp-proxy: disable    proxy-captive-portal: disable    mtu-override: disable    wccp: disable    drop-overlapped-fragment: disable    drop-fragment: disable  
+name: port1   mode: dhcp    ip: 192.168.122.77 255.255.255.0   status: up    netbios-forward: disable    type: physical   ring-rx: 0   ring-tx: 0   netflow-sampler: disable    sflow-sampler: disable    src-check: enable    explicit-web-proxy: disable    explicit-ftp-proxy: disable    proxy-captive-portal: disable    mtu-override: disable    wccp: disable    drop-overlapped-fragment: disable    drop-fragment: disable
 ```
 
 Ahora, desde cualquier máquina que tenga acceso a la red 'externa', podremos conectarnos al firewall:
@@ -179,7 +179,7 @@ Para ello, crearemos dos reglas para la red LAN: una que permita las consultas D
 
 ![](/cortafuegos/fortinet_uno/img/fw_4_a_https.png)
 
-Como habéis notado, no he indicado el número de puerto; esto es porque estos dispositivos utilizan objetos llamados "servicios", donde se almacenan los puertos. Podemos crear nuestros propios objetos o personalizar los existentes.
+Como habéis notado, no he indicado el número de puerto, esto es porque estos dispositivos utilizan objetos llamados "servicios", donde se almacenan los puertos. Podemos crear nuestros propios objetos o personalizar los existentes.
 
 Comprobemos que podemos navegar desde el Cliente 1:
 
@@ -196,7 +196,7 @@ Verifiquemos que las reglas tienen hits:
 
 #### Instalar un servidor de correo en la máquina de la LAN. Permitir el acceso desde el exterior y desde el cortafuegos al servidor de correos. Para probarlo, se puede ejecutar un telnet al puerto 25 TCP.
 
-Como actualmente solo permitimos la navegación por HTTPS, es fundamental configurar los repositorios de la máquina para poder instalar paquetes en nuestro cliente; así que instalaremos Postfix:
+Como actualmente solo permitimos la navegación por HTTPS, es fundamental configurar los repositorios de la máquina para poder instalar paquetes en nuestro cliente, así que instalaremos Postfix:
 
 ```bash
 sudo apt update && sudo apt install postfix -y
@@ -248,11 +248,11 @@ Ahora modificaremos nuestra IP virtual, cambiando el servicio por el nuevo (puer
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322205425.png)
 
 
-Una vez hecho esto, podremos acceder por SSH utilizando el puerto 2222, el cual nos redirigirá al 22. No es necesario modificar las reglas; con este cambio ya es posible acceder:
+Una vez hecho esto, podremos acceder por SSH utilizando el puerto 2222, el cual nos redirigirá al 22. No es necesario modificar las reglas, con este cambio ya es posible acceder:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322205611.png)
 
-Verifiquemos los hits de las reglas; además, en el apartado de Virtual IP también tenemos un contador de hits:
+Verifiquemos los hits de las reglas, además, en el apartado de Virtual IP también tenemos un contador de hits:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322205747.png)
 
@@ -282,7 +282,7 @@ Verifiquemos que los hits han aumentado:
 
 #### Permitir que los equipos de la LAN naveguen por Internet, excepto a la página www.realbetisbalompie.es
 
-Estos cortafuegos de nueva generación incluyen servicios que filtran en la capa de aplicación, permitiendo detectar palabras clave para filtrar el contenido (drogas, pornografía, armas, etc.). En este equipo, el filtrado por palabras clave es un servicio de pago; sin embargo, la creación de filtros para bloquear páginas web específicas es gratuita.
+Estos cortafuegos de nueva generación incluyen servicios que filtran en la capa de aplicación, permitiendo detectar palabras clave para filtrar el contenido (drogas, pornografía, armas, etc.). En este equipo, el filtrado por palabras clave es un servicio de pago, sin embargo, la creación de filtros para bloquear páginas web específicas es gratuita.
 
 Primero, crearemos nuestra política de filtro web:
 

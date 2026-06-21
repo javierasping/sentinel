@@ -28,7 +28,7 @@ Lo siguiente será instalar las dependencias de Oracle en nuestro sistema:
 - **Ksh** : Es el shell Korn para scripts.
 - **Gawk** : Es una versión mejorada de Awk para procesamiento de texto y datos.
 
-## Añadir usuario oracle
+## Creación del usuario oracle
 
 Crearemos el grupo dba y el usuario oracle:
 
@@ -40,11 +40,11 @@ Comprobamos que podemos acceder al usuario oracle:
 
 ## Configuración de red
 
-Tenemos que tener configurada una IP estática:
+Es necesario configurar una IP estática:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.005.png)
 
-Además tenemos que tener una entrada en el fichero hosts con nuestra dirección privada:
+Asimismo, se debe añadir una entrada en el archivo hosts con nuestra dirección privada:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.006.png)
 
@@ -52,7 +52,7 @@ Además tenemos que tener una entrada en el fichero hosts con nuestra dirección
 
 Una vez comprobado que podemos instalarlo en nuestro sistema o máquina virtual, procederemos a descargarlo desde su página web oficial.
 
-Rápidamente nos daremos cuenta de que Oracle no da soporte oficial a Debian; el paquete se encuentra en formato .rpm, lo que significa que está preparado para distribuciones basadas en Red Hat. 
+Rápidamente nos daremos cuenta de que Oracle no da soporte oficial a Debian, el paquete se encuentra en formato .rpm, lo que significa que está preparado para distribuciones basadas en Red Hat.
 
 Para que nosotros podamos usar este paquete, debemos transformarlo a .deb. Para ello, utilizaremos la herramienta `alien`, que convierte el paquete para que sea compatible.
 
@@ -68,7 +68,7 @@ Una vez descargado, usaremos la utilidad `alien` para transformarlo. Este proces
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.009.png)
 
-Nos lo pasamos a nuestra máquina virtual usando `scp`.
+Transferimos el archivo a nuestra máquina virtual usando `scp`.
 
 Ahora ya que tenemos nuestro paquete transformado a .deb, lo instalaremos usando `dpkg` en nuestra máquina virtual:
 
@@ -78,7 +78,7 @@ Comenzaremos la instalación. Este proceso tardará un buen rato, así que es ne
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.011.jpeg)
 
-Una vez finalice, en el bashrc de nuestro usuario añadiremos las variables de entorno de Oracle. `ORACLE_SID` se nos indicará al final de la instalación; las demás dependerán de los directorios configurados en los pasos anteriores:
+Una vez finalice, en el archivo .bashrc de nuestro usuario añadiremos las variables de entorno de Oracle. `ORACLE_SID` se nos indicará al final de la instalación, las demás dependerán de los directorios configurados en los pasos anteriores:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.012.png)
 
@@ -92,11 +92,11 @@ Se produce un error que indica que no se puede comprobar la memoria disponible. 
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.014.jpeg)
 
-Sustituimos la línea por la siguiente (línea 164 completa):     
+Sustituimos la línea 164 por la siguiente:
 
 `    `$SU -s /bin/bash  $ORACLE\_OWNER -c "$DBCA -silent -createDatabase -gdbName $ORACLE\_SID  -templateName  $TEMPLATE\_NAME  -characterSet  $CHARSET  - createAsContainerDatabase  $CREATE\_AS\_CDB  -numberOfPDBs  $NUMBER\_OF\_PDBS  - pdbName  $PDB\_NAME  -createListener  $LISTENER\_NAME:$LISTENER\_PORT  - datafileDestination $ORACLE\_DATA\_LOCATION -sid $ORACLE\_SID -autoGeneratePasswords -emConfiguration DBEXPRESS -emExpressPort $EM\_EXPRESS\_PORT -J- Doracle.assistants.dbca.validate.ConfigurationParams=false"
 
-He subrayado el contenido que debes añadir; también puedes sustituir la línea entera.
+Se ha resaltado el contenido que debe añadirse, también puede sustituir la línea entera.
 
 Otro error común es que no se encuentre el comando `netstat`:
 
@@ -140,11 +140,11 @@ Nos descargamos el paquete básico de SQL*Plus para Linux (archivo .zip):
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.021.jpeg)
 
-Nos descargamos el segundo paquete de SQL*Plus:
+Descargamos el segundo paquete de SQL*Plus:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.022.jpeg)
 
-Nos creamos el directorio `/opt/oracle`:
+Creamos el directorio `/opt/oracle`:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.023.png)
 
@@ -154,7 +154,7 @@ Descomprimimos los archivos zip en el directorio recién creado:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.025.png)
 
-Nos metemos en el directorio y listamos su contenido:
+Accedemos al directorio y listamos su contenido:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.026.jpeg)
 

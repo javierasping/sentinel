@@ -31,7 +31,7 @@ Networking in OpenStack is provided by Neutron, which allows you to create virtu
 
 For interaction and administration, Horizon provides a web dashboard from which operators and users can manage resources, monitor infrastructure, and launch instances without needing to use the command line.
 
-All these services are designed to work together. Nova uses images from Glance to create instances; Cinder supplies volumes that can be mounted on those machines; Neutron connects nodes to each other and to the outside; Keystone controls access; and Swift serves data in a distributed and reliable way. Horizon provides a complete view of all this, making cloud administration possible from a browser.
+All these services are designed to work together. Nova uses images from Glance to create instances, Cinder supplies volumes that can be mounted on those machines, Neutron connects nodes to each other and to the outside, Keystone controls access, and Swift serves data in a distributed and reliable way. Horizon provides a complete view of all this, making cloud administration possible from a browser.
 
 In addition to these main services, OpenStack includes many other specialized components to expand functionality, such as:
 

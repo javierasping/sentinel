@@ -18,7 +18,7 @@ Para descargarnos el código fuente usaremos apt source :
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_kernel/img/Aspose.Words.4794869c-382a-4c20-b046-83b787e9bd0a.002.png)
 
-Nos creara un directorio con el código fuente 
+Nos creara un directorio con el código fuente
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_kernel/img/Aspose.Words.4794869c-382a-4c20-b046-83b787e9bd0a.003.png)
 
@@ -59,11 +59,11 @@ Voy a quitar algunos componentes manualmente usando la herramienta make xconfig 
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_kernel/img/Aspose.Words.4794869c-382a-4c20-b046-83b787e9bd0a.011.jpeg)
 
-Después de eliminar varios puntos del .config se me ha quedado con : 
+Después de eliminar varios puntos del .config se me ha quedado con :
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_kernel/img/Aspose.Words.4794869c-382a-4c20-b046-83b787e9bd0a.012.png)
 
-Ahora vamos a usar un método para compilar el cual nos hará paquetes .deb y utilizaremos 15 núcleos para ello : 
+Ahora vamos a usar un método para compilar el cual nos hará paquetes .deb y utilizaremos 15 núcleos para ello :
 
 ![ref1]
 
@@ -83,7 +83,7 @@ Por ultimo vamos a asegurarnos de que el kernel se ha instalado :
 
 ## Firmar un kernel
 
-Como tengo el arranque seguro activado en el portátil sera necesario que firme el kernel para poder arrancarlo . 
+Como tengo el arranque seguro activado en el portátil sera necesario que firme el kernel para poder arrancarlo .
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_kernel/img/Aspose.Words.4794869c-382a-4c20-b046-83b787e9bd0a.016.png)
 
@@ -125,7 +125,7 @@ Y nos pedirá que pongamos la contraseña que hemos indicado de un solo uso :
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_kernel/img/Aspose.Words.4794869c-382a-4c20-b046-83b787e9bd0a.024.jpeg)
 
-Una vez hecho esto  reiniciamos el equipo : 
+Una vez hecho esto  reiniciamos el equipo :
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_kernel/img/Aspose.Words.4794869c-382a-4c20-b046-83b787e9bd0a.025.jpeg)
 
@@ -133,7 +133,7 @@ Una vez añadida la llave podemos comprobarlo con el siguiente comando :
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_kernel/img/Aspose.Words.4794869c-382a-4c20-b046-83b787e9bd0a.026.png)
 
-Para que DKMS (Dynamic Kernel Module Support) firme automáticamente los módulos del kernel, es necesario indicarle con qué clave debe firmar el módulo. Esto se realiza añadiendo dos valores de configuración al archivo "/etc/dkms/framework.conf", ajustando las rutas según sea necesario. 
+Para que DKMS (Dynamic Kernel Module Support) firme automáticamente los módulos del kernel, es necesario indicarle con qué clave debe firmar el módulo. Esto se realiza añadiendo dos valores de configuración al archivo "/etc/dkms/framework.conf", ajustando las rutas según sea necesario.
 
 Además añadiremos el siguiente script :
 
@@ -143,7 +143,7 @@ El script tendrá el siguiente contenido :
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_kernel/img/Aspose.Words.4794869c-382a-4c20-b046-83b787e9bd0a.028.png)
 
-Ahora vamos a definir las variables necesarios para proceder a firmar el kernel , la de versión la hace con uname -r en la documentación de debian pero mis módulos tienen el prefijo 6.4.4 . Puedes comprobarlo en la ruta ls /lib/modules/ . 
+Ahora vamos a definir las variables necesarios para proceder a firmar el kernel , la de versión la hace con uname -r en la documentación de debian pero mis módulos tienen el prefijo 6.4.4 . Puedes comprobarlo en la ruta ls /lib/modules/ .
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_kernel/img/Aspose.Words.4794869c-382a-4c20-b046-83b787e9bd0a.029.png)
 

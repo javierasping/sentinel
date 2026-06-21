@@ -8,22 +8,22 @@ hero: images/sistemas/ejercicios_de_manejo_de_modulos/ejercicios_de_manejo_de_mo
 
 ## Trabajo con apt, aptitude, dpkg
 
-### Ejercicio 1 Que acciones consigo al realizar apt update y apt upgrade. Explica detalladamente.
+### Ejercicio 1 Qué acciones consigo al realizar `apt update` y `apt upgrade`. Explica detalladamente.
 
 El comando apt update es el primer paso fundamental en la actualización de paquetes. Realiza las siguientes acciones:
 
-- **Recupera Metadatos Remotos:** apt update se comunica con los repositorios de software en línea y recupera los metadatos relacionados con los paquetes disponibles. Estos metadatos incluyen información sobre las últimas versiones de los paquetes, sus dependencias y otra información esencial.
-- **Actualiza la Copia Local de Metadatos:** Luego, apt reconstruye y actualiza la copia local de estos metadatos. Esto permite que el sistema acceda rápidamente a información sobre los paquetes sin necesidad de descargarla repetidamente.
+- **Recupera metadatos remotos:** `apt update` se comunica con los repositorios de software en línea y recupera los metadatos relacionados con los paquetes disponibles. Estos metadatos incluyen información sobre las últimas versiones de los paquetes, sus dependencias y otra información esencial.
+- **Actualiza la copia local de metadatos:** luego, `apt` reconstruye y actualiza la copia local de estos metadatos. Esto permite que el sistema acceda rápidamente a información sobre los paquetes sin necesidad de descargarla repetidamente.
 
 Una vez que apt update ha actualizado la información sobre los paquetes disponibles, el siguiente paso es utilizar el comando apt upgrade. Este comando realiza una serie de pasos importantes:
 
-- **Selección de Versiones Candidatas**: apt selecciona las versiones candidatas de los paquetes disponibles. Estas versiones suelen ser las más recientes, aunque hay excepciones.
+- **Selección de versiones candidatas:** `apt` selecciona las versiones candidatas de los paquetes disponibles. Estas versiones suelen ser las más recientes, aunque hay excepciones.
 - **Resolución de Dependencias:** apt verifica y resuelve las dependencias entre los paquetes para garantizar que la actualización se realice de manera coherente y que todas las dependencias estén satisfechas.
 - **Descarga de Paquetes:** Si se encuentran nuevas versiones de paquetes, apt descarga estas versiones desde los repositorios en línea a la caché local del sistema.
 - **Desempaquetado de Paquetes:** apt desempaqueta los paquetes binarios recuperados.
-- **Ejecución de Órdenes Preinst:**  Durante la actualización, se ejecutan los archivos de órdenes preinstalación, que pueden contener configuraciones y ajustes necesarios antes de la instalación.
+- **Ejecución de órdenes preinst:** durante la actualización, se ejecutan los archivos de órdenes de preinstalación, que pueden contener configuraciones y ajustes necesarios antes de la instalación.
 - **Instalación de Archivos Binarios:** Los archivos binarios de las nuevas versiones de los paquetes se instalan en el sistema.
-- **Ejecución  de  Órdenes  Postinst:**  Finalmente,  se  ejecutan  los  archivos  de  órdenes postinstalación, que pueden realizar configuraciones adicionales después de la instalación.
+- **Ejecución de órdenes postinst:** finalmente, se ejecutan los archivos de órdenes de postinstalación, que pueden realizar configuraciones adicionales después de la instalación.
 
 
 ### Ejercicio 2 Lista la relación de paquetes que pueden ser actualizados. ¿Qué información puedes sacar a tenor de lo mostrado en el listado?
@@ -43,11 +43,11 @@ Puedes verificar la lista de paquetes que pueden ser actualizados utilizando el 
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.002.png)
 
-## Ejercicio 4 ¿Cómo puedes sacar información de un paquete oficial instalado o que no este instalado?** Podemos usar el comando apt show para paquetes instalados como para no instalados .
+## Ejercicio 4 ¿Cómo puedes sacar información de un paquete oficial instalado o que no esté instalado? Podemos usar el comando `apt show` tanto para paquetes instalados como para no instalados.
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.003.jpeg)
 
-También podemos hacerlo con dpkg pero el paquete tiene que estar instalado → dpkg -s :
+También podemos hacerlo con `dpkg`, pero el paquete tiene que estar instalado → `dpkg -s`:
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.004.jpeg)
 
@@ -72,9 +72,9 @@ Usando apt :
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.008.png)
 
 
-### Ejercicio 8 Listar el contenido de un paquete sin la necesidad de instalarlo o descargarlo. 
+### Ejercicio 8 Listar el contenido de un paquete sin la necesidad de instalarlo o descargarlo.
 
-Podemos usar apt file  :
+Podemos usar `apt-file`:
 
 - apt-file list [paquete]
 
@@ -108,7 +108,7 @@ Mientras que con este las dependencias indirectas :
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.015.png)
 
-### Ejercicio 13 ¿Cómo procederías para encontrar el paquete al que pertenece un determinado fichero? 
+### Ejercicio 13 ¿Cómo procederías para encontrar el paquete al que pertenece un determinado fichero?
 
 Podemos usar dpkg :
 
@@ -118,13 +118,13 @@ Podemos usar apt-file :
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.017.png)
 
-### Ejercicio 14 ¿Que procedimientos emplearías para liberar la caché en cuanto a descargas de paquetería? 
+### Ejercicio 14 ¿Qué procedimientos emplearías para liberar la caché en cuanto a descargas de paquetería?
 
 Para limpiar la caché de descargas :
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.018.png)
 
-Para eliminarlos paquetes descargados que ya no están en uso:
+Para eliminar los paquetes descargados que ya no están en uso:
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.019.png)
 
@@ -134,41 +134,41 @@ O podemos hacer las dos cosas a la vez con apt clean :
 
 ### Ejercicio 15 Realiza la instalación del paquete keyboard-configuration pasando previamente los valores de los parámetros de configuración como variables de entorno.
 
-Nos aseguramos de que tenemos instalado el paquete :
+Nos aseguramos de que tenemos instalado el paquete:
 
-Para ello nos instalamos debconfs-utils:
+Para ello instalamos `debconf-utils`:
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.021.png)
 
-En un fichero declaramos las variables que queramos configurar en el teclado :
+En un fichero declaramos las variables que queramos configurar en el teclado:
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.022.png)
 
-Y se las proporcionamos al debconf:
+Y se las proporcionamos a `debconf`:
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.023.png)
 
-Y comprobaremos que se han aplicado los cambios :
+Y comprobaremos que se han aplicado los cambios:
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.024.jpeg)
 
 ### Ejercicio 16 Reconfigura el paquete locales de tu equipo, añadiendo una localización que no exista previamente. Comprueba a modificar las variables de entorno correspondientes para que la sesión del usuario utilice otra localización.
 
-Si queremos almacenar nuestra configuración para cada usuario exportaremos nuestras variables y las pondremos en el bashrc :
+Si queremos almacenar nuestra configuración para cada usuario, exportaremos nuestras variables y las pondremos en el `bashrc`:
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.025.png)
 
-A continuación ejecutaremos dpkg-reconfigure y observaremos que tendremos seleccionado el valor de la variable :
+A continuación ejecutaremos `dpkg-reconfigure` y observaremos que tendremos seleccionado el valor de la variable:
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.026.jpeg)
 
 ### Ejercicio 17 Interrumpe la configuración de un paquete y explica los pasos a dar para continuar la instalación
 
-Una vez irrumpamos la instalación de un paquete , para continuar la instalación del mismo podemos usar el comando dpkg:
+Una vez interrumpamos la instalación de un paquete, para continuar la instalación del mismo podemos usar el comando `dpkg`:
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.027.png)
 
-Podemos usar el parámetro -a para todos los paquetes o especificar el nombre para continuar su instalación :
+Podemos usar el parámetro `-a` para todos los paquetes o especificar el nombre para continuar su instalación:
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.028.png)
 
@@ -184,7 +184,7 @@ Lo marcamos para evitar las actualizaciones y listamos los marcados para comprob
 
 
 
-## Trabajo con ficheros .deb 
+## Trabajo con ficheros .deb
 
 ### Ejercicio 1 Descarga un paquete sin instalarlo, es decir, descarga el fichero .deb correspondiente. Indica diferentes formas de hacerlo.
 
@@ -192,7 +192,7 @@ Podemos usar el comando apt :
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.031.png)
 
-Podemos usar wget y descargarlo desde los repositorios de debían :
+Podemos usar `wget` y descargarlo desde los repositorios de Debian:
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.032.jpeg)
 
@@ -201,7 +201,7 @@ Podemos usar wget y descargarlo desde los repositorios de debían :
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.033.png)
 
 
-### Ejercicio 3 Sobre el fichero .deb descargado, utiliza el comando ar. ar permite extraer el contenido de una paquete deb. Indica el procedimiento para visualizar con ar el contenido del paquete deb. Con el paquete que has descargado y utilizando el comando ar, descomprime el paquete. ¿Qué información dispones después de la extracción?. Indica la finalidad de lo extraído.
+### Ejercicio 3 Sobre el fichero `.deb` descargado, utiliza el comando `ar`. `ar` permite extraer el contenido de un paquete `.deb`. Indica el procedimiento para visualizar con `ar` el contenido del paquete `.deb`. Con el paquete que has descargado y utilizando el comando `ar`, descomprime el paquete. ¿Qué información dispones después de la extracción? Indica la finalidad de lo extraído.
 
 Para visualizar el contenido :
 
@@ -212,9 +212,9 @@ Para descomprimir el directorio :
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.035.png)
 Hemos extraído 3 archivos del paquete :
 
-1. control.tar.xz : Contiene scripts que dpkg utiliza para instalar el paquete 
-2. data.tar.xz : contiene los archivos del paquete 
-3. debian-binary : indica la version del paquete 
+1. `control.tar.xz`: contiene scripts que `dpkg` utiliza para instalar el paquete.
+2. `data.tar.xz`: contiene los archivos del paquete.
+3. `debian-binary`: indica la versión del paquete.
 
 Indica el procedimiento para descomprimir lo extraído por ar del punto anterior. ¿Qué información contiene?
 
@@ -266,7 +266,7 @@ Para eliminarla :
 
 ### Ejercicio 6 Indica el procedimiento para descargar un paquete del repositorio stable.
 
-Tal y como lo tenemos configurado los paquetes por prioridad se descargaran del repositorio estable . Pero podemos indicárselo : 
+Tal y como lo tenemos configurado los paquetes por prioridad se descargaran del repositorio estable . Pero podemos indicárselo :
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.043.png)
 
@@ -288,7 +288,7 @@ Igual que el ejercicio anterior solo que aquí indicamos sid ya que tenemos indi
 
 
 
-## Trabajo con directorios 
+## Trabajo con directorios
 
 Que cometidos tienen
 
@@ -296,7 +296,7 @@ Que cometidos tienen
 
 **/var/lib/dpkg/available:** Este archivo contiene información sobre los paquetes instalados y sus versiones. Es utilizado por mi sistema de gestión de paquetes dpkg para mantener un registro de los paquetes  que  tengo instalados y sus  estados.  Proporciona información  sobre  los  paquetes disponibles y sus dependencias.
 
-**/var/lib/dpkg/status:** Este archivo también contiene información sobre los paquetes instalados en mi sistema, pero proporciona una vista más detallada que /var/lib/dpkg/available. Contiene información sobre el estado de los paquetes, como si están instalados, desinstalados o si hay problemas con su configuración. 
+**/var/lib/dpkg/status:** Este archivo también contiene información sobre los paquetes instalados en mi sistema, pero proporciona una vista más detallada que /var/lib/dpkg/available. Contiene información sobre el estado de los paquetes, como si están instalados, desinstalados o si hay problemas con su configuración.
 
 **/var/cache/apt/archives/:** Este directorio almacena los archivos de paquetes que descargo antes de que sean instalados en mi sistema. Cuando ejecuto comandos como apt-get install o apt-get upgrade, los paquetes se descargan primero en este directorio y luego se instalan. Mantener una copia de los paquetes descargados en este directorio puede ser útil si deseo reinstalar o desinstalar un paquete sin volver a descargarlo desde los repositorios, lo que ayuda a ahorrar tiempo y ancho de banda.
 

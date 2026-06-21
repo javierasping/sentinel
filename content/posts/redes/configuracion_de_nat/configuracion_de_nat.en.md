@@ -1,14 +1,14 @@
 ﻿---
 title: "NAT Cisco and Linux Configuration"
 date: 2023-09-08T10:00:00+00:00
-Description: The routing of a scenario with public addresses, we configure SNAT and DNAT in Linux and cisco machines.
+Description: Routing of a scenario with public addresses, configuring SNAT and DNAT on Linux and Cisco machines.
 tags: [Redes, Enrutamiento,NAT,SNAT,DNAT,Cisco,Linux]
-hero: images/redes/configuracion_nat/portada.png
+hero: /images/redes/configuracion_nat/portada.png
 ---
 
 In this article, we will explore the configuration of SNAT (Source Network Address Translation) and DNAT (Destination Network Address Translation) in scenarios with public addresses, using routers in Linux environments and Cisco devices.
 
-### Scenario with debian machines
+### Scenario with Debian machines
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.001.jpeg)
 
@@ -17,29 +17,29 @@ In this article, we will explore the configuration of SNAT (Source Network Addre
 
 ### Installation of packages
 
-Once the machines are placed we must download Apache for the web servers, to do this we will connect both servers to a switch and this to the NAT cloud for Internet access.
+Once the machines are in place, we must download Apache for the web servers. To do this, we will connect both servers to a switch and this to the NAT cloud for Internet access.
 
-We will now update the repositories by making an apt update:
+We will now update the repositories by running an apt update:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.002.png)
 
-Then we can download the packages, for the servers we will install apache:
+Then we can download the packages. For the servers, we will install Apache:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.003.png)
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.004.png)
 
-And for the home router we will download the DHCP server:
+And for the home router, we will download the DHCP server:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.005.png)
 
-When the installation is finished, a similar error code will jump, because there is no valid configuration in the service:
+When the installation is finished, a similar error code will appear because there is no valid configuration in the service:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.006.jpeg)
 
-For now we will ignore this and then configure the DHCP server.
+For now, we will ignore this and later configure the DHCP server.
 
-With this we would have installed all the packages needed to install the practice so we can mount the stage.
+With this, we would have installed all the packages needed for the practice, so we can set up the scenario.
 
 ### Network card configuration
 
@@ -78,9 +78,9 @@ Router R2:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.013.jpeg)
 
-So it would be the relationship of ips that have the routers' network cards. To apply this configuration to the network cards we will have to restart it as indicated at the beginning of this paragraph.
+So this would be the relationship of IP addresses for the routers' network interfaces. To apply this configuration, we will have to restart the networking service, as indicated at the beginning of this section.
 
-For the stage to work we must activate the forwarding bit for these 4 routers, in this case I will do it permanently for it we edit the / etc / sysctl.conf file and discomment this line:
+For the scenario to work, we must activate the forwarding bit for these 4 routers. In this case, I will do it permanently by editing the /etc/sysctl.conf file and uncommenting this line:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.014.png)
 
@@ -154,21 +154,21 @@ To do this we will edit the /etc/default/isch-dhcp-server file and add the card 
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.025.jpeg)
 
-Now let's tell our DHCP server that we want to be assigned to our customers for this we edit the /etc/dhcp/dhcpd.conf file, we can take advantage of one of the examples that are commented on and apply our configuration:
+Now let's tell our DHCP server which configuration we want to assign to our clients. For this, we edit the /etc/dhcp/dhcpd.conf file. We can use one of the commented examples and apply our configuration:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.026.png)
 
-This is a very simple example of a dhcp server but with this is enough for our stage.
+This is a very simple example of a DHCP server, but it is sufficient for our scenario.
 
 The fields mean:
 
-- subnet: network address from which we want to distribute ip addresses with this service.
-- netmask: Network mask of the network which we want to set up the devices.
-- range: range of addresses from which we want to distribute ips being the first the initial and the last the final.
-- option routers: It would be the gateway of our network
+- subnet: network address from which we want to distribute IP addresses with this service.
+- netmask: Network mask of the network for which we want to set up the devices.
+- range: range of addresses to be distributed, with the first being the start and the last being the end.
+- option routers: This would be the gateway of our network.
 - option broadcast-address: broadcast address of our network.
 
-Once configured with the parameters of our network we will restart the service:
+Once configured with our network parameters, we will restart the service:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.027.png)
 
@@ -176,11 +176,11 @@ And we'll check that the service is active:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.028.jpeg)
 
-Now for customers to receive an address using this service, we will have to set the PC1 and PC2 network cards as follows:
+Now, for clients to receive an address using this service, we must configure the PC1 and PC2 network interfaces as follows:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.029.png)
 
-We restart the service to be applied and the server automatically assign the network configuration to us:
+We restart the service to apply the changes, and the server will automatically assign the network configuration to us:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.030.png)
 
@@ -188,11 +188,11 @@ We check that we have actually been assigned the network configuration:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.031.jpeg)
 
-We can also track who we have assigned the ip through the server by viewing the following file /var/lib/dhcp/dhcpd.leases which saves the concessions we have made.
+We can also track who has been assigned an IP through the server by viewing the following file /var/lib/dhcp/dhcpd.leases, which saves the leases we have made.
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.032.png)
 
-We can see when it starts as well as who has been assigned by looking at their MAC address.
+We can see when it starts, as well as who has been assigned, by looking at their MAC address.
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.033.jpeg)
 
@@ -356,15 +356,15 @@ It works properly as we have managed to get our Linux routers to be able to make
 
 ### NAT Debugging
 
-To see how many hits you have had a rule or to see how much information you have "used" each rule will use the following command:
+To see how many hits a rule has had, or to see how much information each rule has processed, use the following command:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.065.jpeg)
 
-To delete the counters from all the chains and rules we will use iptables -Z:
+To delete the counters from all chains and rules, use `iptables -Z`:
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.066.png)
 
-If our chain has hits the rule will be working properly if on the contrary it is kept in 0, the rule is not being applied so we will have to review it.
+If our chain has hits, the rule is working properly. If, on the contrary, it remains at 0, the rule is not being applied, and we will have to review it.
 
 
 
@@ -542,7 +542,7 @@ We will assign to the internal interface of our network this rule:
 Now we will create a pool with public ips, the command would be this does not come full in the terminal:
 
 ```bash
-ip nat pool ip_publica 102.168.0.2 102.168.0.2 netmask 255.255.255.0 
+ip nat pool ip_publica 102.168.0.2 102.168.0.2 netmask 255.255.255.0
 ```
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.105.png)
@@ -578,7 +578,7 @@ We will assign to the internal interface of our network this rule:
 Now we will create a pool with public ips, the command would be this does not come full in the terminal:
 
 ```bash
-ip nat pool ip_publica 101.168.0.2 101.168.0.2 netmask 255.255.255.0 
+ip nat pool ip_publica 101.168.0.2 101.168.0.2 netmask 255.255.255.0
 ```
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.112.png)
@@ -627,7 +627,7 @@ We will assign to the internal interface of our network this rule:
 Now we will create a pool with public ips, the command would be this does not come full in the terminal:
 
 ```bash
-ip nat pool ip_publica 103.168.0.2 103.168.0.2 netmask 255.255.255.0 
+ip nat pool ip_publica 103.168.0.2 103.168.0.2 netmask 255.255.255.0
 ```
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.121.png)

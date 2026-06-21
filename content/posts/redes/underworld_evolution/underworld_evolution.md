@@ -1,20 +1,20 @@
 ﻿---
 title: "Underworld evolution"
 date: 2023-09-08T10:00:00+00:00
-description: Escenario en el cual configuraremos el enrutamiento , SNAT , DNAT y cortafuegos con dispositivos Linux y Windows .
-tags: [Redes, SNAT ,DNAT , Cisco , Linux]
+description: Escenario en el cual configuraremos el enrutamiento, SNAT, DNAT y cortafuegos con dispositivos Linux y Windows.
+tags: [Redes, SNAT, DNAT, Cisco, Linux]
 hero: images/redes/underworld_evolution/portada.jpeg
 ---
 
 El mundo de UNDERWORLD ha evolucionado mucho en los últimos meses, así que debes realizar tareas de administración de la red para afrontar la nueva situación.
 
-Por un lado, se ha descubierto Internet en el Inframundo, de forma que cada uno de los submundos (recuerda: vampiros, licántropos, hombres lobo y humanos) se conecta a un router que, a su vez, les conecta a uno de los dos grandes routers que forman la Internet de Underworld, llamados Marcus (para humanos y vampiros) y Alexander (para hombres lobo y licántropos). Marcus y Alexander están conectados entre sí.
+Por un lado, se ha descubierto Internet en el Inframundo, de forma que cada uno de los submundos (recuerda: vampiros, licántropos, hombres lobo y humanos) se conecta a un router que, a su vez, los conecta a uno de los dos grandes routers que forman la Internet de Underworld, llamados Marcus (para humanos y vampiros) y Alexander (para hombres lobo y licántropos). Marcus y Alexander están conectados entre sí.
 
 El esquema sería el siguiente:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.001.jpeg)
 
-Por otro lado, los seres del inframundo han descubierto una vulnerabilidad en los routers CISCO que les permite saltarse las listas de control de acceso, volviendo al caos que lograste impedir en su día con las ACL.
+Por otro lado, los seres del inframundo han descubierto una vulnerabilidad en los routers Cisco que les permite saltarse las listas de control de acceso, volviendo al caos que lograste impedir en su día con las ACL.
 
 Tu tarea consistirá entonces en:
 
@@ -22,9 +22,9 @@ Tu tarea consistirá entonces en:
 2. Configurar adecuadamente las máquinas Linux para que funcionen como routers.
 3. Crear las tablas de enrutamiento necesarias para que todas las máquinas se comuniquen con todas en principio, teniendo en cuenta que las redes internas tendrán direcciones privadas y en Internet tendremos direcciones públicas.
 4. Configurar los cortafuegos necesarios en los routers para que:
-- Los VAMPIROS no puedan comunicarse con el resto de especies. 
+- Los VAMPIROS no puedan comunicarse con el resto de especies.
 - Los HOMBRES LOBO y los LICÁNTROPOS, dado que no son tan repulsivos cuando se cruzan, podrán comunicarse entre sí. Con el resto de especies no tendrán comunicación.
-- HUMANOS tampoco podrán comunicarse con el resto de especies. 
+- HUMANOS tampoco podrán comunicarse con el resto de especies.
 5. Configurar el servicio DHCP que tenían los hombres lobo y los licántropos en las mismas condiciones que tenían cuando se usaban routers CISCO.
 6. Configurar en los cortafuegos las reglas necesarias para que, desde HUMANLAND, IT KNIGHT siga comunicándose con sus dos vampiras favoritas (SONJA Y SELENE).
 7. Realiza las configuraciones necesarias para montar en HUMANLAND un servidor web accesible desde cualquier parte de UNDERWORLD.
@@ -35,15 +35,15 @@ Tu tarea consistirá entonces en:
 
 ### Configuración de las tarjetas de red
 
-Lo primero que haremos sera añadir las tarjetas de red necesarias a cada router , para ello con la maquina apagada hacemos sobre la misma clic derecho > configuración > network y añadimos los slots que sean necesarios para cada maquina :
+Lo primero que haremos será añadir las tarjetas de red necesarias a cada router, para ello con la máquina apagada hacemos sobre la misma clic derecho > configuración > network y añadimos los slots que sean necesarios para cada máquina:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.003.png)
 
-Necesitaremos el siguiente numero de tarjetas de red por cada dispositivo :
+Necesitaremos el siguiente número de tarjetas de red por cada dispositivo:
 
-- Router 1 , 2 ,3 y 4 : Necesitaran 2 tarjetas de red 
-- MARCUS y ALEXANDER  : Necesitaran 3 tarjetas de red
-- PCs : Necesitaran 1 tarjeta de red 
+- Router 1, 2, 3 y 4: Necesitarán 2 tarjetas de red
+- MARCUS y ALEXANDER: Necesitarán 3 tarjetas de red
+- PCs: Necesitarán 1 tarjeta de red
 
 Una vez hecho esto editaremos el fichero /etc/network/interfaces para realizar nuestra configuración de red .
 
@@ -75,13 +75,13 @@ Configuración de la tarjeta de red Router ALEXANDER :
 
 #### Activar el bit de forwarding
 
-Si queremos hacer que una maquina Linux actué como router , es decir que enroute los paquetes que no tienen como destino esta deberemos de activar el bit de forwarding .
+Si queremos hacer que una máquina Linux actúe como router, es decir que enrute los paquetes que no tienen como destino esta, deberemos de activar el bit de forwarding.
 
-Además aprovecharemos para activar el bit de forwarding permanentemente en los routers del escenario para  ello editamos el fichero /etc/sysctl.conf y descomentamos esta linea :
+Además aprovecharemos para activar el bit de forwarding permanentemente en los routers del escenario, para ello, editamos el fichero /etc/sysctl.conf y descomentamos esta línea:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.010.png)
 
-Esto mismo repetiremos para los 6 routers que tenemos en el escenario : 
+Esto mismo repetiremos para los 6 routers que tenemos en el escenario :
 
 **Router 1:**
 
@@ -107,11 +107,11 @@ Esto mismo repetiremos para los 6 routers que tenemos en el escenario :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.016.png)
 
-Ahora todas nuestras maquinas están configuradas para actuar como routers y encaminaran los paquetes que le lleguen y no sean para esta .
+Ahora todas nuestras máquinas están configuradas para actuar como routers y encaminarán los paquetes que le lleguen y no sean para esta.
 
 #### Configuración de rutas
 
-Aquí te mostrare si he añadido alguna ruta manualmente y las tablas de enrutamiento de los dispositivos .
+Aquí te mostraré si he añadido alguna ruta manualmente y las tablas de enrutamiento de los dispositivos.
 
 **Router MARCUS:**
 
@@ -139,13 +139,13 @@ Aquí te mostrare si he añadido alguna ruta manualmente y las tablas de enrutam
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.024.png)
 
-Teniendo la configuración de red que tengo en las tarjetas solo he añadido 2 rutas manuales , en los routers de MARCUS y ALEXANDER en el resto no ha sido necesario ya que esta se genera automáticamente con la puerta de enlace que hayamos colocado al configurar las interfaces de red .
+Teniendo la configuración de red que tengo en las tarjetas solo he añadido 2 rutas manuales, en los routers de MARCUS y ALEXANDER, en el resto no ha sido necesario ya que esta se genera automáticamente con la puerta de enlace que hayamos colocado al configurar las interfaces de red.
 
-Podría haberme ahorrado escribirlas si les hubiese colocado en las interfaz que esta configurada en la red 100.X.X.X la dirección ip del otro como puerta de enlace .
+Podría haberme ahorrado escribirlas si les hubiese colocado en la interfaz que está configurada en la red 100.X.X.X la dirección IP del otro como puerta de enlace.
 
 #### Prueba de conectividad
 
-Vamos a comprobar que hemos realizado el enrutamiento correctamente así que voy a lanzar un ping desde cada router a cada uno de los extremos del escenario . 
+Vamos a comprobar que hemos realizado el enrutamiento correctamente así que voy a lanzar un ping desde cada router a cada uno de los extremos del escenario .
 
 **Router 1 :**
 
@@ -163,21 +163,21 @@ Vamos a comprobar que hemos realizado el enrutamiento correctamente así que voy
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.028.png)
 
-Queda comprobado que tenemos conectividad entre todos los routers , los PCS no podrán tener “conectividad” hasta que configuremos el SNAT .
+Queda comprobado que tenemos conectividad entre todos los routers, los PC no podrán tener “conectividad” hasta que configuremos el SNAT.
 
-### Configuración DHCP 
+### Configuración DHCP
 
 #### Licántropos
 
-Los licántropos por su parte, te contratan para que les asignes también por DHCP sus IPs, pero te indican que no pueden recibir las primeras 10 direcciónes de su rango (sin contar la de red ni la de la puerta de enlace), ya que éstas, están reservadas para los jefes de su clan que están de viaje y volverán en unos días.
+Los licántropos por su parte, te contratan para que les asignes también por DHCP sus IPs, pero te indican que no pueden recibir las primeras 10 direcciones de su rango (sin contar la de red ni la de la puerta de enlace), ya que éstas, están reservadas para los jefes de su clan que están de viaje y volverán en unos días.
 
-Con la maquina conectada a la nube NAT y la tarjeta que este conectada configurada por DHCP nos descargaremos el servidor DHCP , para esto primero deberemos de hacer un apt update ya que la maquina no trae cargados los repositorios en memoria :
+Con la máquina conectada a la nube NAT y la tarjeta que esté conectada configurada por DHCP nos descargaremos el servidor DHCP , para esto primero deberemos de hacer un apt update ya que la máquina no trae cargados los repositorios en memoria :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.029.png)
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.030.png)
 
-Cuando acabe de instalarse nos dará un error , este es debido a que no esta configurado el servicio y no sabe  por que interfaz tiene que repartir direcciónes el servidor :
+Cuando acabe de instalarse nos dará un error, este es debido a que no está configurado el servicio y no sabe por qué interfaz tiene que repartir direcciones el servidor:
 
 ![ref1]
 
@@ -189,33 +189,33 @@ Ahora configuraremos el ámbito con los requisitos que nos solicitan los licánt
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.033.png)
 
-Tendremos que tener en cuenta que la configuración que pongamos aquí sea coherente con la configuración de red que tenemos , tenemos que tener en cuenta que tenemos una /28 así que en este caso solo podremos tener 14 direcciónes asignables . 
+Tendremos que tener en cuenta que la configuración que pongamos aquí sea coherente con la configuración de red que tenemos , tenemos que tener en cuenta que tenemos una /28 así que en este caso solo podremos tener 14 direcciones asignables .
 
 Pero si seguimos el enunciado las 10 primeras no las quieren por lo que solo podremos asignar 3 a nuestros clientes .
 
-Una vez hecho esto reiniciaremos el servicio :
+Una vez hecho esto reiniciaremos el servicio:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.034.png)
 
-Y veremos si esta funcionando , viendo el estado :
+Y veremos si está funcionando, viendo el estado:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.035.jpeg)
 
-Le asignaremos ip a un PC para comprobar que funciona :
+Le asignaremos IP a un PC para comprobar que funciona:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.036.png)
 
 #### Hombres lobo
 
-Los hombres lobo que son bastante burros metiendo direcciónes IP a sus máquinas, te piden que les configures el servicio DHCP para que todas sus máquinas reciban automáticamente una IP libre.
+Los hombres lobo que son bastante burros metiendo direcciones IP a sus máquinas, te piden que les configures el servicio DHCP para que todas sus máquinas reciban automáticamente una IP libre.
 
-Con la maquina conectada a la nube NAT y la tarjeta que este conectada configurada por DHCP nos descargaremos el servidor DHCP , para esto primero deberemos de hacer un apt update ya que la maquina no trae cargados los repositorios en memoria :
+Con la máquina conectada a la nube NAT y la tarjeta que esté conectada configurada por DHCP nos descargaremos el servidor DHCP, para esto primero deberemos de hacer un apt update ya que la máquina no trae cargados los repositorios en memoria:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.037.png)
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.038.png)
 
-Cuando acabe de instalarse nos dará un error , este es debido a que no esta configurado el servicio y no sabe  por que interfaz tiene que repartir direcciónes el servidor :
+Cuando acabe de instalarse nos dará un error, este es debido a que no está configurado el servicio y no sabe por qué interfaz tiene que repartir direcciones el servidor:
 
 ![ref1]
 
@@ -224,7 +224,7 @@ Para ello editaremos el fichero /etc/default/isc-dhcp-server y añadiremos el no
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.039.png)
 
 
-Por suerte los hombres lobo son menos exigentes y ellos quieres que se reparta su rango de direcciónes completo así que para ello editaremos el fichero /etc/dhcp/dhcpd.conf :
+Por suerte los hombres lobo son menos exigentes y ellos quieren que se reparta su rango de direcciones completo así que para ello editaremos el fichero /etc/dhcp/dhcpd.conf:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.040.png)
 
@@ -232,7 +232,7 @@ Ahora reiniciaremos el servicio :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.041.png)
 
-Comprobaremos el estado del mismo para comprobar que este funcionando correctamente : 
+Comprobaremos el estado del mismo para comprobar que esté funcionando correctamente :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.042.jpeg)
 
@@ -254,7 +254,7 @@ Para demostrar que funciona la regla , aquí vemos una captura entre el Router 1
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.045.png)
 
-Vemos que una vez fuera de la red entre R1 y MARCUS se ha aplicado SNAT :
+vimos que una vez fuera de la red entre R1 y MARCUS se ha aplicado SNAT :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.046.png)
 
@@ -265,11 +265,11 @@ Me he creado un archivo llamado iptables para guardar todas las reglas de la pra
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.047.png)
 
-Para demostrar que funciona la regla , aquí vemos una captura entre el Router 2 y el PC3. Vemos que el origen es una dirección ip privada :
+Para demostrar que funciona la regla , aquí vemos una captura entre el Router 2 y el PC3. Vemos que el origen es una dirección IP privada :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.048.png)
 
-Vemos que una vez fuera de la red entre R2 y MARCUS se ha aplicado SNAT , ya que el origen ahora es una dirección ip publica :
+Vemos que una vez fuera de la red entre R2 y MARCUS se ha aplicado SNAT , ya que el origen ahora es una dirección IP pública :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.049.png)
 
@@ -279,7 +279,7 @@ Me he creado un archivo llamado iptables para guardar todas las reglas de la pra
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.050.png)
 
-Para demostrar que funciona la regla , aquí vemos una captura entre el Router 3 y el PC5. Vemos que el origen es una dirección ip privada :
+Para demostrar que funciona la regla , aquí vemos una captura entre el Router 3 y el PC5. Vemos que el origen es una dirección IP privada :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.051.png)
 
@@ -297,25 +297,25 @@ Para demostrar que funciona la regla , aquí vemos una captura entre el Router 4
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.054.png)
 
-Vemos que una vez fuera de la red entre R4 y ALEXANDER se ha aplicado SNAT , ya que el origen ahora es una dirección ip publica :
+Vemos que una vez fuera de la red entre R4 y ALEXANDER se ha aplicado SNAT , ya que el origen ahora es una dirección IP pública :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.055.png)
 
-Con el escenario actual cualquier PC es capaz de llegar  a todas las direcciónes publicas de nuestra red :
+Con el escenario actual cualquier PC es capaz de llegar  a todas las direcciones públicas de nuestra red :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.056.png)
 
 ### Configuración DNAT
 
-Para que las maquinas puedan comunicarse entre si se les ha instalado ssh , así que tendremos que configurar el DNAT . 
+Para que las maquinas puedan comunicarse entre si se les ha instalado ssh , así que tendremos que configurar el DNAT .
 
 **R1**
 
-Para esta red como tenemos dos clientes le he cambiado el puerto que usa el ssh :
+Para esta red, como tenemos dos clientes, le he cambiado el puerto que usa el SSH:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.057.png)
 
-Comprobamos que puedo conectarme a ambos host desde otra red , así vemos que funciona el DNAT.
+Comprobamos que puedo conectarme a ambos host desde otra red, así vemos que funciona el DNAT.
 
 Sonja:
 
@@ -327,7 +327,7 @@ Selene:
 
 **R2**
 
-En esta red solo tenemos un cliente que queremos que se pueda acceder desde el exterior así que solo tendremos una regla de DNAT :
+En esta red solo tenemos un cliente al que queremos que se pueda acceder desde el exterior, así que solo tendremos una regla de DNAT:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.060.png)
 
@@ -362,7 +362,7 @@ Ahora vamos a comprobar que me puedo conectar a este host:
 
 **R4**
 
-En esta red también le configuraremos una reserva en el servidor para que nuestras reglas se mantengan activas , en este caso le asignare la dirección 192.168.4.5.
+En esta red también le configuraremos una reserva en el servidor para que nuestras reglas se mantengan activas, en este caso le asignaré la dirección 192.168.4.5.
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.066.png)
 
@@ -374,7 +374,7 @@ Ahora añadiremos la regla de DNAT para que se pueda llegar al servidor ssh :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.068.png)
 
-Comprobamos que la regla esta funcionando y podemos conectarnos desde otra red :
+Comprobamos que la regla está funcionando y podemos conectarnos desde otra red:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.069.jpeg)
 
@@ -383,7 +383,7 @@ Comprobamos que la regla esta funcionando y podemos conectarnos desde otra red :
 
 #### Los Vampiros no puedan comunicarse con el resto de especies
 
-Pondré una política por defecto DROP en la tabla FORWARD para que tire todo el trafico proveniente de la red de los vampiros :
+Pondré una política por defecto DROP en la tabla FORWARD para que tire todo el tráfico proveniente de la red de los vampiros :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.070.png)
 
@@ -438,10 +438,10 @@ Veremos los hits en la política por defecto :
 Las ips de estas maquinas son :
 
 - IT KNIGHT (SSH)–>  192.168.2.3:22
-- SONJA   (SSH)      –>  192.168.1.4:22    
-- SELENE (SSH)     –>  192.168.1.5:2222 
+- SONJA   (SSH)      –>  192.168.1.4:22
+- SELENE (SSH)     –>  192.168.1.5:2222
 
-En el router 1 las reglas necesarias para poder permitir esta comunicación son : 
+En el router 1 las reglas necesarias para poder permitir esta comunicación son :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.081.jpeg)
 
@@ -450,7 +450,7 @@ En el router 2 las reglas necesarias para poder permitir esta comunicación son 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.082.jpeg)
 
 
-Vamos a ir comprobando acción a acción para asegurarnos de que estas reglas realizan su cometido. 
+Vamos a ir comprobando acción a acción para asegurarnos de que estas reglas realizan su cometido.
 
 **SELENE –> ITKNIGHT**
 
@@ -465,7 +465,7 @@ En el router 2:
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.085.jpeg)
 
 
-**SONJA –> ITKNIGHT** 
+**SONJA –> ITKNIGHT**
 
 Hacemos ssh :
 
@@ -479,7 +479,7 @@ Vemos los hits del router 2(Misma regla que el apartado anterior) :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.088.jpeg)
 
-**ITKNIGHT –> SONJA** 
+**ITKNIGHT –> SONJA**
 
 Hacemos ssh :
 
@@ -495,7 +495,7 @@ Vemos los hits del router 2 :
 
 
 **ITKNIGHT –> SELENE**
- 
+
 Lanzamos el ssh :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.092.png)
@@ -530,7 +530,7 @@ Para terminar en ALEXANDER permitimos que puedan atravesar peticiones web :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.098.png)
 
-Vamos a comprobar que se pueden acceder desde todas las redes . 
+Vamos a comprobar que se pueden acceder desde todas las redes .
 
 **VAMPIROS :**
 
@@ -540,7 +540,7 @@ Comprobamos los hits en router 1 :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.100.png)
 
-**HOMBRES LOBO Y LICÁNTROPOS** 
+**HOMBRES LOBO Y LICÁNTROPOS**
 
 Hacemos la petición web desde ambas redes  :
 
@@ -552,7 +552,7 @@ Comprobamos los hits en router ALEXANDER :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.103.jpeg)
 
-Por ultimo vemos los hits en el Router 2 (HUMANOS) de la regla DNAT 
+Por ultimo vemos los hits en el Router 2 (HUMANOS) de la regla DNAT
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.104.png)
 
@@ -560,7 +560,7 @@ Por ultimo vemos los hits en el Router 2 (HUMANOS) de la regla DNAT
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.105.jpeg)
 
-### Configuración de las interfaces 
+### Configuración de las interfaces
 
 **R1**
 
@@ -594,7 +594,7 @@ Por ultimo vemos los hits en el Router 2 (HUMANOS) de la regla DNAT
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.116.png)
 
-**ALEXANDER** 
+**ALEXANDER**
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.117.png)
 
@@ -668,7 +668,7 @@ Así quedaría la tabla de enrutamiento de ALEXANDER:
 
 #### Prueba de conectividad
 
-Vamos a comprobar que hemos realizado el enrutamiento correctamente así que voy a lanzar un ping desde cada router a cada uno de los extremos del escenario . 
+Vamos a comprobar que hemos realizado el enrutamiento correctamente así que voy a lanzar un ping desde cada router a cada uno de los extremos del escenario .
 
 R1 → A los extremos :
 
@@ -682,14 +682,14 @@ R3 –> a los extremos:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.134.jpeg)
 
-R4 –> a los extremos 
+R4 –> a los extremos
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.135.png)
 
 
 ### Configuración DHCP Licántropos
 
-Los licántropos por su parte, te contratan para que les asignes también por DHCP sus IPs, pero te indican que no pueden recibir las primeras 10 direcciónes de su rango (sin contar la de red ni la de la puerta de enlace), ya que éstas, están reservadas para los jefes de su clan que están de viaje y volverán en unos días.
+Los licántropos por su parte, te contratan para que les asignes también por DHCP sus IPs, pero te indican que no pueden recibir las primeras 10 direcciones de su rango (sin contar la de red ni la de la puerta de enlace), ya que éstas, están reservadas para los jefes de su clan que están de viaje y volverán en unos días.
 
 Lo primero que haremos sera establecer el rango de IP´s excluidas del conjunto (pool) direcciónes que podrá asignar el servicio indicando la ip inicial y final del rango, ambas incluidas:
 
@@ -707,7 +707,7 @@ Incluimos la puerta de enlace que ofrecerá el servicio :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.139.png)
 
-Con esto ya tendríamos montado el servidor DHCP , con el siguiente comando podemos ver las estadísticas del servicio para ver si este esta funcionando :
+Con esto ya tendríamos montado el servidor DHCP , con el siguiente comando podemos ver las estadísticas del servicio para ver si este está funcionando :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.140.png)
 
@@ -733,7 +733,7 @@ Comprobaremos que esta funcionando :
 
 **Router 1:**
 
-Lo primero que haremos sera crear una acl para permitir el trafico que queremos hacer SNAT :
+Lo primero que haremos sera crear una acl para permitir el tráfico que queremos hacer SNAT :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.145.png)
 
@@ -757,7 +757,7 @@ Indicamos la interfaz de “fuera”:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.150.png)
 
-El SNAT estaría funcionando , así que vamos a comprobarlo : 
+El SNAT estaría funcionando , así que vamos a comprobarlo :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.151.png)
 
@@ -768,7 +768,7 @@ Vemos que la regla tiene HITS:
 
 **Router 2:**
 
-Lo primero que haremos sera crear una acl para permitir el trafico que queremos hacer SNAT :
+Lo primero que haremos sera crear una acl para permitir el tráfico que queremos hacer SNAT :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.153.png)
 
@@ -799,7 +799,7 @@ El SNAT estaría funcionando , así que vamos a comprobarlo viendo si la regla t
 
 **Router 3:**
 
-Lo primero que haremos sera crear una acl para permitir el trafico que queremos hacer SNAT :
+Lo primero que haremos sera crear una acl para permitir el tráfico que queremos hacer SNAT :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.160.png)
 
@@ -830,7 +830,7 @@ El SNAT estaría funcionando , así que vamos a comprobarlo viendo si la regla t
 
 **Router 4:**
 
-Lo primero que haremos sera crear una acl para permitir el trafico que queremos hacer SNAT :
+Lo primero que haremos sera crear una acl para permitir el tráfico que queremos hacer SNAT :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.167.png)
 
@@ -860,7 +860,7 @@ El SNAT estaría funcionando , así que vamos a comprobarlo viendo si la regla t
 
 
 
-### Configuración de DNAT 
+### Configuración de DNAT
 
 **R1**
 
@@ -904,7 +904,7 @@ Para ello vamos a borrar la regla existente que hay en la lista :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.182.png)
 
-Ahora denegaremos el trafico saliente de la red de los vampiros :
+Ahora denegaremos el tráfico saliente de la red de los vampiros :
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.183.png)
 
@@ -923,7 +923,7 @@ Los HOMBRES LOBO y los LICÁNTROPOS, dado que no son tan repulsivos cuando se cr
 
 Con estas dos reglas permitimos a cualquier host de nuestra redes locales salir cuando el destino es los hombres lobos o los licántropos :
 
-- R3-→ 180.0.0.1   
+- R3-→ 180.0.0.1
 - R4 –> 190.0.0.1
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.186.png)
@@ -959,8 +959,8 @@ Miramos los hits :
 Las ips de estas maquinas son :
 
 - IT KNIGHT (SSH)  -–>  192.168.2.3:22
-- SONJA     (SSH)  -–>  192.168.1.4:22    
-- SELENE    (SSH)  -–>  192.168.1.5:2222 
+- SONJA     (SSH)  -–>  192.168.1.4:22
+- SELENE    (SSH)  -–>  192.168.1.5:2222
 
 Para permitir que los vampiros puedan salir a comunicarse con los humanos  :
 
@@ -980,8 +980,8 @@ Ahora  vamos a permitir que los vampiros puedan conectarse a los humanos usando 
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.199.jpeg)
 
-No se porque no funciona .. solo va si no coloco ninguna regla incluso permitiendo TODO el trafico ssh tampoco … También he permitido todo el ICMP pero nada sigue ocurriendo lo mismo . 
+No sé por qué no funciona... solo va si no coloco ninguna regla, incluso permitiendo todo el tráfico SSH tampoco... También he permitido todo el ICMP, pero nada, sigue ocurriendo lo mismo.
 
-El nat y el SNAT están funcionando bien pero a la hora de hacer las reglas ssh pasa lo siguiente en la red local al ser mandados de vuelta el router los corta a pesar de que el trafico esta permitido 
+Tanto el nat y el SNAT están funcionando bien pero a la hora de hacer las reglas ssh pasa lo siguiente en la red local al ser mandados de vuelta el router los corta a pesar de que el tráfico está permitido
 
 [ref1]: /redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.031.jpeg

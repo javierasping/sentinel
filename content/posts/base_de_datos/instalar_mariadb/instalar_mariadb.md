@@ -42,27 +42,27 @@ Para instalar MariaDB en Debian 12, sigue estos pasos:
 
     ```bash
     # Ingresa la contraseña actual para root (presiona Enter si no hay contraseña):
-    Enter current password for root (enter for none):  
+    Enter current password for root (enter for none):
     `Enter`
 
     # ¿Establecer una nueva contraseña para root? [S/n]:
-    Set root password? [Y/n]:  
+    Set root password? [Y/n]:
     `Y`
 
     # ¿Eliminar usuarios anónimos? [S/n]:
-    Remove anonymous users? [Y/n]:  
+    Remove anonymous users? [Y/n]:
     `Y`
 
     # ¿Deshabilitar el inicio de sesión remoto para root? [S/n]:
-    Disallow root login remotely? [Y/n]:  
+    Disallow root login remotely? [Y/n]:
     `Y`
 
     # ¿Eliminar la base de datos de prueba y el acceso a ella? [S/n]:
-    Remove test database and access to it? [Y/n]:  
+    Remove test database and access to it? [Y/n]:
     `Y`
 
     # ¿Recargar las tablas de privilegios ahora? [S/n]:
-    Reload privilege tables now? [Y/n]:  
+    Reload privilege tables now? [Y/n]:
     `Y`
     ```
 

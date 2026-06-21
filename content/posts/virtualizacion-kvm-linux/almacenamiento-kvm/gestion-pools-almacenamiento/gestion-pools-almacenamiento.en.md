@@ -1,7 +1,7 @@
 ---
 title: "How to manage storage pools"
 date: 2025-10-25T09:00:00+00:00
-description: "How to create, start, configure (autostart) and destroy pools using virsh and XML files; list and inspect pools; differences between types: dir, disk, logical, iSCSI, ZFS, NFS."
+description: "How to create, start, configure (autostart) and destroy pools using virsh and XML files, list and inspect pools, differences between types: dir, disk, logical, iSCSI, ZFS, NFS."
 tags: [KVM,Virtualization,Libvirt,Storage,Pools]
 hero: images/virtualizacion-kvm-linux/almacenamiento/pools.png
 weight: 2
@@ -119,7 +119,7 @@ Minimal XML example for a `dir` pool:
 
 After `virsh pool-define`, libvirt stores the persistent pool definition as an XML file under `/etc/libvirt/storage/`. Each XML in that directory represents a pool definition that libvirt can start and control with `virsh`.
 
-Entries that should start automatically are represented under `/etc/libvirt/storage/autostart/`. That directory normally contains symlinks pointing to the original XML files; their presence indicates the pool will be started when libvirt or the system boots.
+Entries that should start automatically are represented under `/etc/libvirt/storage/autostart/`. That directory normally contains symlinks pointing to the original XML files, their presence indicates the pool will be started when libvirt or the system boots.
 
 ```bash
 javiercruces@FJCD-PC:~$ ls -l /etc/libvirt/storage/
@@ -198,7 +198,7 @@ javiercruces@FJCD-PC:~$ virsh pool-autostart guest_images_logical
 Recommendations:
 
 - Back up before manipulating partitions or physical devices.
-- If you use an existing VG, it should not destroy data; creating a new VG based on a partition will format it.
+- If you use an existing VG, it should not destroy data, creating a new VG based on a partition will format it.
 - Check `virsh pool-info <pool>` to verify capacity, allocation and state.
 
 ## Best practices and recommendations
@@ -217,4 +217,4 @@ The next article will cover how to create and manage volumes inside a pool and h
 
 ## Sources
 
-- [Official libvirt documentation: Storage management; Storage pool and volume XML format](https://libvirt.org/storage.html)
+- [Official libvirt documentation: Storage management, Storage pool and volume XML format](https://libvirt.org/storage.html)

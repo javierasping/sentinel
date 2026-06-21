@@ -36,7 +36,7 @@ Comenzaremos actualizando los paquetes necesarios para configurar samba y nfs :
 ```
 
 
-## Samba 
+## Samba
 
 Un recurso compartido de samba es esencialmente un directorio que se compartirá entre los sistemas cliente de la red. Por lo tanto, crearemos un directorio como se muestra. Yo lo hare en el directorio home de mi usuario :
 
@@ -55,7 +55,7 @@ Le daremos los permisos y la propiedad correspondientes al directorio que acabam
 Ahora vamos a crear un recurso compartido dentro de la configuración de samba , lo añadiré al final del fichero :
 
 ```bash
-[rocky@rocky-javiercruces ~]$ sudo vim /etc/samba/smb.conf 
+[rocky@rocky-javiercruces ~]$ sudo vim /etc/samba/smb.conf
 
 [sambashare]
         path = /home/rocky/sambashare
@@ -74,7 +74,7 @@ Para verificar el archivo de configuración, ejecuta el siguiente comando :
 Con la configuración actual podremos acceder al recurso de forma anónima , aunque podemos configurar usuarios samba :
 
 ```bash
-[rocky@rocky-javiercruces ~]$ sudo smbpasswd -a rocky     
+[rocky@rocky-javiercruces ~]$ sudo smbpasswd -a rocky
 ```
 
 Luego añade al fichero de configuración la linea "valid users = usuario" al final de cada declaración de recurso , te dejo un ejemplo :
@@ -90,7 +90,7 @@ Luego añade al fichero de configuración la linea "valid users = usuario" al fi
         valid users = rocky
 ```
 
-Ahora vamos a arrancar el servicio : 
+Ahora vamos a arrancar el servicio :
 
 ```bash
 [rocky@rocky-javiercruces ~]$ sudo systemctl start smb
@@ -147,9 +147,9 @@ Feb 05 11:22:49 rocky-javiercruces.novalocal nmbd[49065]:   Copyright Andrew Tri
 Feb 05 11:22:49 rocky-javiercruces.novalocal systemd[1]: Started Samba NMB Daemon.
 Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]: [2024/02/05 11:23:12.157234,  0] ../../source3/nmbd/nmbd_become_lmb.c:398(become_local_master_stage2)
 Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]:   *****
-Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]: 
+Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]:
 Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]:   Samba name server ROCKY-JAVIERCRUCES is now a local master browser for workgroup SAMBA on subnet 10.0.0.150
-Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]: 
+Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]:
 Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]:   *****
 ```
 
@@ -177,7 +177,7 @@ smb: \> ls
   fichero_prueba                      N        0  Mon Feb 12 09:42:09 2024
 
 		9286656 blocks of size 1024. 7952516 blocks available
-smb: \> 
+smb: \>
 ```
 
 Comprobaremos que en ambos extremos tenemos los mismos ficheros :
@@ -196,7 +196,7 @@ Nos instalamos el servidor nfs en rocky :
 [rocky@rocky-javiercruces ~]$ sudo dnf install nfs-utils
 ```
 
-En el cliente debian , en este caso odin nos descargamos "el cliente" 
+En el cliente debian , en este caso odin nos descargamos "el cliente"
 
 ```bash
 javiercruces@odin:~$ sudo apt install nfs-common
@@ -221,7 +221,7 @@ Mostramos la configuración actual de los servicios permitidos a través del fir
   services: cockpit dhcpv6-client samba ssh
 ```
 
-Como no tenemos permitido nfs , lo permitiremos haciendo uso del servicio : 
+Como no tenemos permitido nfs , lo permitiremos haciendo uso del servicio :
 
 ```bash
 [rocky@rocky-javiercruces ~]$ sudo firewall-cmd --permanent --add-service=nfs
@@ -253,7 +253,7 @@ Y montaremos el nuevo directorio :
 javiercruces@odin:~$ sudo mount 172.22.201.86:/var/nfs/general /nfs/general
 ```
 
-Comprobamos que se ha montado : 
+Comprobamos que se ha montado :
 
 ```bash
 javiercruces@odin:~$ df -h

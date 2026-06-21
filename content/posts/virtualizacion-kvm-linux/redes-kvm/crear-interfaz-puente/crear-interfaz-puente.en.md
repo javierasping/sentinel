@@ -133,7 +133,7 @@ iface br0 inet static
 
 Notes for ifupdown:
 - The physical interface (`enp1s0`) is set to `manual` (no IP). The IP is assigned to `br0`.
-- `bridge_stp on` enables STP on the bridge; `bridge_fd 0` minimizes forwarding delay (adjust as needed).
+- `bridge_stp on` enables STP on the bridge, `bridge_fd 0` minimizes forwarding delay (adjust as needed).
 - If you use VLANs you can enable `bridge_vlan_aware yes` on distributions that support it or manage VLANs inside the VMs.
 
 Apply changes carefully (you can lose SSH). Options:
@@ -308,7 +308,7 @@ ping 192.168.100.127
 
 - Losing network when applying changes: happens when moving IP/gateway to the bridge over SSH. Use local console or schedule a maintenance window.
 - Double network managers: avoid NetworkManager and netplan/networkd both managing the same interface.
-- STP and switches: STP adds a small delay when ports come up; use `forward-delay 0` only if you understand the implications.
+- STP and switches: STP adds a small delay when ports come up, use `forward-delay 0` only if you understand the implications.
 - VLANs: if the physical port is a trunk, configure VLANs on the bridge or tag inside the VMs (virtio VLAN tag support).
 - Firewall: check rules when applying strict policies — bridged traffic flows at L2.
 - Persistence: ensure your chosen method (Netplan/NM/networkd/interfaces) is applied at boot.

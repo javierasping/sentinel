@@ -25,8 +25,8 @@ ip -br addr
 2) Haz copia de tus ficheros de red antes de cambiar nada , usa el comando que aplique para tu caso:
 
 ```bash
-sudo cp -a /etc/netplan /etc/netplan.bak.$(date +%F) 2>/dev/null 
-sudo cp -a /etc/network/interfaces /etc/network/interfaces.bak.$(date +%F) 2>/dev/null 
+sudo cp -a /etc/netplan /etc/netplan.bak.$(date +%F) 2>/dev/null
+sudo cp -a /etc/network/interfaces /etc/network/interfaces.bak.$(date +%F) 2>/dev/null
 ```
 
 3) Nota importante: la IP debe vivir en el bridge (br0), no en la interfaz física. La física quedará sin IP y “esclavada” al bridge.
@@ -133,7 +133,7 @@ iface br0 inet static
 
 Notas ifupdown:
 - La interfaz física (`enp1s0`) queda en modo `manual` (sin IP). La IP pasa a `br0`.
-- `bridge_stp on` habilita STP en el bridge; `bridge_fd 0` minimiza el retardo de reenvío (ajústalo a tus necesidades de red).
+- `bridge_stp on` habilita STP en el bridge, `bridge_fd 0` minimiza el retardo de reenvío (ajústalo a tus necesidades de red).
 - Si usas VLANs, puedes usar `bridge_vlan_aware yes` en distros que lo soporten o gestionar VLANs en las VMs.
 
 Aplicar cambios con cuidado (puedes perder SSH). Opciones:
@@ -143,8 +143,8 @@ Aplicar cambios con cuidado (puedes perder SSH). Opciones:
 sudo systemctl restart networking.service
 
 # O de forma granular (si tienes acceso local/TTY):
-sudo ifdown enp1s0 
-sudo ifdown br0 
+sudo ifdown enp1s0
+sudo ifdown br0
 sudo ifup br0
 ```
 
@@ -311,9 +311,9 @@ ping 192.168.100.127
 
 - Te quedas sin red al aplicar cambios: puede pasar si migras IP/gateway al bridge estando por SSH. Usa consola local o programa una ventana de mantenimiento.
 - Doble gestor de red: evita que NetworkManager y netplan/networkd gestionen la misma interfaz.
-- STP y switches: el STP puede introducir pequeña latencia al levantar puertos; usa `forward-delay 0` si sabes lo que haces.
+- STP y switches: el STP puede introducir pequeña latencia al levantar puertos, usa `forward-delay 0` si sabes lo que haces.
 - VLANs: si tu puerto físico es trunk, necesitarás configurar VLANs en el bridge o en las VMs (virtio con VLAN tag, etc.).
-- Firewall: revisa reglas si aplicas políticas estrictas; el tráfico bridged pasa a L2.
+- Firewall: revisa reglas si aplicas políticas estrictas, el tráfico bridged pasa a L2.
 - Persistencia: asegúrate de que tu método (Netplan/NM/networkd) aplica al arranque.
 
 ---

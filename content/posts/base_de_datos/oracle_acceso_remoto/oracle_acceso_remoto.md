@@ -12,7 +12,7 @@ Para configurar el acceso remoto en Oracle, es fundamental ajustar correctamente
 
 ## Configuración del acceso remoto
 
-La configuración de Oracle con respecto a la red se guarda en el directorio definido como home de Oracle: `$ORACLE_HOME/network/admin` :
+La configuración de Oracle con respecto a la red se guarda en el directorio definido como home de Oracle: `$ORACLE_HOME/network/admin`:
 
 ![](/base_de_datos/oracle_acceso_remoto/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.029.png)
 
@@ -30,7 +30,7 @@ Una vez hecho esto, iniciaremos sesión con el usuario `oracle` y arrancaremos e
 
 ![](/base_de_datos/oracle_acceso_remoto/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.031.jpeg)
 
-*Ten en cuenta que debes añadir las variables de Oracle en el `.bashrc` del usuario `oracle` para poder iniciar el servicio; de lo contrario, el sistema no encontrará el comando.
+*Ten en cuenta que debes añadir las variables de Oracle en el `.bashrc` del usuario `oracle` para poder iniciar el servicio, de lo contrario, el sistema no encontrará el comando.*
 
 En el equipo cliente donde vayamos a realizar la conexión, deberemos editar el fichero `tnsnames.ora` y añadir la dirección y el puerto donde está alojado nuestro servidor:
 
@@ -42,6 +42,6 @@ Una vez hecho esto, el comando para conectarnos es el siguiente:
 
 La sintaxis es `usuario/contraseña@//IP:PUERTO/SID`.
 
-Podemos consultar tablas; he añadido el esquema del proyecto del año anterior:
+Podemos consultar tablas, he añadido el esquema del proyecto del año anterior:
 
 ![](/base_de_datos/oracle_acceso_remoto/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.034.png)

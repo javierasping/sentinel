@@ -14,12 +14,12 @@ En esta guía aprenderás a instalar y configurar un servidor DNS en Linux utili
 
 ### Crear la máquina DNS
 
-Crea una máquina y configúrala con el nombre `dns1.tunombre.org`. 
+Crea una máquina y configúrala con el nombre `dns1.tunombre.org`.
 
 Para ello edita el fichero `/etc/hostname`:
 
 ```bash
-javiercruces@dns1:~$ sudo cat /etc/hostname 
+javiercruces@dns1:~$ sudo cat /etc/hostname
 dns1
 ```
 
@@ -29,7 +29,7 @@ Luego añade al fichero `/etc/hosts` la resolución estática de este nombre y e
 javiercruces@dns1:~$ sudo nano /etc/hosts
 ```
 
-En mi caso llamare a la maquina `dns1.javiercruces.org`
+En mi caso llamaré a la máquina `dns1.javiercruces.org`
 
 ```bash
 127.0.1.1       dns1.javiercruces.org dns1
@@ -190,11 +190,11 @@ $ORIGIN 10.168.192.in-addr.arpa.
 
 ## 6. Comprobaciones
 
-Con la configuracion realizada en los otros apartados tendremos funcionado nuestro servidor DNS.
+Con la configuración realizada en los otros apartados tendremos funcionando nuestro servidor DNS.
 
 ### Consultas básicas con `dig`
 
-Si no indicamos el servidor DNS al usar la consulta con el parámetro `@` utilizara el configurado en el fichero `etc/resolv.conf` . Recuerda modificar la configuración de tu DHCP para que este le asigne la dirección de tu servidor DNS local a tus clientes .
+Si no indicamos el servidor DNS al usar la consulta con el parámetro `@`, utilizará el configurado en el fichero `etc/resolv.conf`. Recuerda modificar la configuración de tu DHCP para que este le asigne la dirección de tu servidor DNS local a tus clientes.
 
 ```bash
 # Consulta del registro A para hela.javiercruces.org
@@ -212,7 +212,7 @@ dig @192.168.10.1 javiercruces.org NS
 
 Observa los tiempos y los registros utilizados para resolver nombres. La segunda consulta debería ser más rápida por el uso de caché.
 
-En el caso de que quieras limpiar la cache de la resolución de tu servidor dns utiliza el siguiente comando :
+En el caso de que quieras limpiar la caché de la resolución de tu servidor DNS utiliza el siguiente comando:
 
 ```bash
 sudo rndc flush

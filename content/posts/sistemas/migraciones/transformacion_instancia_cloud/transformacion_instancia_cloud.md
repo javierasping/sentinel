@@ -25,7 +25,7 @@ Creamos los volúmenes raíz y home :
 
 ![](/sistemas/migraciones/transformacion_instancia_cloud/img/Aspose.Words.1d1b77d6-c571-465c-8927-e55061548549.004.png)
 
-La particiones tienes que tener el siguiente formato : 
+La particiones tienes que tener el siguiente formato :
 
 -vdb2 etx4
 

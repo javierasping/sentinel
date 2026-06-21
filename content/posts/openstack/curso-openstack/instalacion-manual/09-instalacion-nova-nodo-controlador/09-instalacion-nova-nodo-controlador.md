@@ -53,7 +53,7 @@ exit;
 Cargaremos las variables de entorno del administrador para ejecutar los comandos de Keystone:
 
 ```bash
-vagrant@controller01:~$ source admin-openrc 
+vagrant@controller01:~$ source admin-openrc
 ```
 
 Crearemos el usuario de servicio `nova` (utiliza `NOVA_PASSWORDS` como contraseña de ejemplo):

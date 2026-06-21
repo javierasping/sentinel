@@ -1,7 +1,7 @@
 ---
 title: "Tipos de redes en KVM (NAT, aisladas y puenteadas)"
 date: 2025-10-18T09:00:00+00:00
-description: "Descripción teórica de los tipos de redes disponibles en KVM/libvirt: NAT, aisladas, muy aisladas, bridge externo y macvtap; diferencias, conectividad y casos de uso."
+description: "Descripción teórica de los tipos de redes disponibles en KVM/libvirt: NAT, aisladas, muy aisladas, bridge externo y macvtap, diferencias, conectividad y casos de uso."
 tags: [KVM,Virtualizacion,Libvirt,Redes,Linux]
 hero: images/virtualizacion-kvm-linux/redes/tipos-de-redes.png
 weight: 1
@@ -73,7 +73,7 @@ Permite conectar las VM directamente a la interfaz física del host sin pasar po
 * No existe comunicación directa entre host y VM por defecto (limitación conocida de macvtap en la mayoría de modos).
 * Útil para entornos donde se requiere un acceso directo a la red física sin configuración adicional de bridges.
 
-Nota: en ciertos escenarios avanzados se puede habilitar comunicación host↔VM creando una interfaz auxiliar (macvlan) en el host; no obstante, no es el comportamiento por defecto.
+Nota: en ciertos escenarios avanzados se puede habilitar comunicación host↔VM creando una interfaz auxiliar (macvlan) en el host, no obstante, no es el comportamiento por defecto.
 
 ---
 

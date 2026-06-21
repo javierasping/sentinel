@@ -7,7 +7,7 @@ hero: images/sistemas/recoleccion_logs_journald/journal.jpg
 ---
 
 
-## Paso 1 Instalar systemd-journal-remote 
+## Paso 1 Instalar systemd-journal-remote
 
 En nuestro entorno, el primer paso consistirá en instalar el paquete systemd-journal-remote, que nos permitirá acceder a estas máquinas de forma remota. Para llevar a cabo la instalación en las máquinas de nuestro escenario, utilizaremos el gestor de paquetes apt en Odin, que ejecuta Debian 12. Asimismo, instalaremos el mismo paquete en Thor y Loki, que son contenedores alojados dentro de Odin. En cuanto a Hela, un sistema operativo Rocky, requerirá el uso de dnf para la instalación.
 
@@ -31,16 +31,16 @@ En el cliente, habilita el componente que systemd utiliza para enviar los mensaj
 [javiercruces@hela ~]$ sudo systemctl enable systemd-journal-upload.service
 ```
 
-A continuación, en el servidor, abre los puertos 19532 y 80 en el firewall . Esto permitirá al servidor recibir los mensajes de registro del cliente. El puerto 80 es el puerto que certbot utilizará para generar el certificado TLS.  En nuestro caso no hay ningun cortafuegos asi que no sera necesario . 
+A continuación, en el servidor, abre los puertos 19532 y 80 en el firewall . Esto permitirá al servidor recibir los mensajes de registro del cliente. El puerto 80 es el puerto que certbot utilizará para generar el certificado TLS.  En nuestro caso no hay ningun cortafuegos asi que no sera necesario .
 
-## Paso 2: Generación de claves y certificados 
+## Paso 2: Generación de claves y certificados
 
 Dado que utilizaremos el servicio con cifrado para garantizar que nadie pueda acceder a nuestros registros, procederé a generar los certificados mediante OpenSSL.
 
 Podemos generar los certificados manualmente, pero existe una herramienta llamada Easy RSA que automatiza este proceso. Yo generare en Odin todos los certificados de las maquinas y posteriormente los llevare a las maquinas correspondientes .
 
 ```bash
-javiercruces@odin:~$ sudo apt install easy-rsa openssl -y 
+javiercruces@odin:~$ sudo apt install easy-rsa openssl -y
 ```
 
 Esta utilidad trae un fichero de ejemplo para que nos sea mas facil generar los certificados , dentro de este cambiaremos los siguientes valores :
@@ -142,7 +142,7 @@ key: /usr/share/easy-rsa/pki/private/hela.key
 
 ```
 
-Una vez generado las claves privadas y las peticiones de firma de los certificados toca firmarlos , para no hacerlo repetitivo mostrare la firma de odin , los demás se hacen de la misma forma : 
+Una vez generado las claves privadas y las peticiones de firma de los certificados toca firmarlos , para no hacerlo repetitivo mostrare la firma de odin , los demás se hacen de la misma forma :
 
 ```bash
 javiercruces@odin:/usr/share/easy-rsa$ sudo ./easyrsa sign-req server odin
@@ -186,7 +186,7 @@ Certificate created at: /usr/share/easy-rsa/pki/issued/odin.crt
 
 ```
 
-### Llevar los certificados a las maquinas correspondientes 
+### Llevar los certificados a las maquinas correspondientes
 
 Ahora tendremos que hacerle llegar a las distintas maquinas haciendo uso de ssh .
 Para cada uno de ellos nos llevaremos el certificado firmado que los hemos generado en /usr/share/easy-rsa/pki/issued/ y su clave privada que esta en  /usr/share/easy-rsa/pki/private/ .
@@ -202,7 +202,7 @@ total 60
 -rw-r-----. 1 systemd-journal-upload systemd-journal-upload  1294 Jan 31 18:59 ca.crt
 -rw-r-----. 1 systemd-journal-upload systemd-journal-upload  4841 Jan 25 11:17 hela.crt
 -rw-r-----. 1 systemd-journal-upload systemd-journal-upload  1704 Jan 25 11:17 hela.key
-# Servidor Odin 
+# Servidor Odin
 javiercruces@odin:~$ sudo ls -l /etc/letsencrypt/live/javiercd.es/
 total 20
 -rw-r--r-- 1 root systemd-journal-remote 7840 Jan 31 18:39 combined.pem
@@ -210,7 +210,7 @@ total 20
 -rw-r----- 1 root systemd-journal-remote 1704 Jan 31 18:35 odin.key
 ```
 
-Como habrás notado en odin hay un fichero llamado combined.pem , para conseguir este tendrás que concatenar tu certificado con tu clave privada en un solo archivo 
+Como habrás notado en odin hay un fichero llamado combined.pem , para conseguir este tendrás que concatenar tu certificado con tu clave privada en un solo archivo
 
 ```bash
 javiercruces@odin:~$ sudo cat /etc/letsencrypt/live/javiercd.es/odin.crt /etc/letsencrypt/live/javiercd.es/odin.key > /etc/letsencrypt/live/javiercd.es/combined.pem
@@ -231,11 +231,11 @@ ServerCertificateFile=/etc/letsencrypt/live/javiercd.es/odin.crt
 TrustedCertificateFile=/etc/letsencrypt/live/javiercd.es/combined.pem
 ```
 
-Una vez configurado reiniciamos el servicio y comprobamos que este levantado : 
+Una vez configurado reiniciamos el servicio y comprobamos que este levantado :
 
 ```bash
-javiercruces@odin:~$ sudo systemctl restart systemd-journal-remote.service 
-javiercruces@odin:~$ sudo systemctl status systemd-journal-remote.service 
+javiercruces@odin:~$ sudo systemctl restart systemd-journal-remote.service
+javiercruces@odin:~$ sudo systemctl status systemd-journal-remote.service
 ● systemd-journal-remote.service - Journal Remote Sink Service
      Loaded: loaded (/lib/systemd/system/systemd-journal-remote.service; indirect; preset: disabled)
      Active: active (running) since Wed 2024-01-31 18:46:25 UTC; 49min ago
@@ -257,7 +257,7 @@ TriggeredBy: ● systemd-journal-remote.socket
 Añadiremos los ficheros correspondientes a la configuración , tu clave privada y tu certificado correspondiente así como el certificado de la CA con el que hayas generado estos :
 
 ```bash
-[javiercruces@hela ~]$ sudo cat /etc/systemd/journal-upload.conf 
+[javiercruces@hela ~]$ sudo cat /etc/systemd/journal-upload.conf
 [Upload]
 URL=https://odin.javiercd.gonzalonazareno.org/
 ServerKeyFile=/etc/letsencrypt/live/hela.javiercd.es/odin.key
@@ -265,7 +265,7 @@ ServerCertificateFile=/etc/letsencrypt/live/hela.javiercd.es/odin.crt
 TrustedCertificateFile=/etc/letsencrypt/live/hela.javiercd.es/ca.crt
 ```
 
-Reiniciamos el servicio y comprobamos el estado del mismo : 
+Reiniciamos el servicio y comprobamos el estado del mismo :
 
 ```bash
 [javiercruces@hela ~]$ sudo systemctl restart systemd-journal-upload.service
@@ -285,7 +285,7 @@ Reiniciamos el servicio y comprobamos el estado del mismo :
 Jan 31 19:38:53 hela.javiercd.gonzalonazareno.org systemd[1]: Started Journal Remote Upload Service.
 ```
 
-## Paso 5 : Comprobación de funcionamiento 
+## Paso 5 : Comprobación de funcionamiento
 
 Una vez estén los dos servicios levantados , se nos guardaran en el servidor un fichero con los logs de nuestro cliente :
 

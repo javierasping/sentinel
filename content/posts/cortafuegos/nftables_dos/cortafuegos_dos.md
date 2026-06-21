@@ -164,7 +164,7 @@ Las reglas que teníamos anteriormente eran las siguientes:
 ```bash
 javiercruces@odin:~$ sudo iptables -L -t nat
 Chain PREROUTING (policy ACCEPT)
-target     prot opt source               destination         
+target     prot opt source               destination
 DNAT       tcp  --  anywhere             anywhere             tcp dpt:http to:172.16.0.200
 DNAT       udp  --  anywhere             anywhere             udp dpt:domain to:192.168.0.2
 DNAT       tcp  --  anywhere             anywhere             tcp dpt:smtp to:192.168.0.3
@@ -254,9 +254,9 @@ sudo nft add rule inet filter DMZ_LAN iifname "br-intra2" oifname "ens3" tcp spo
 
 ## Ejercicios
 
-El cortafuegos debe cumplir al menos estas reglas: 
+El cortafuegos debe cumplir al menos estas reglas:
 
-### La máquina Odin tiene un servidor SSH escuchando en el puerto 22, pero al acceder desde el exterior se deberá conectar al puerto 2222. 
+### La máquina Odin tiene un servidor SSH escuchando en el puerto 22, pero al acceder desde el exterior se deberá conectar al puerto 2222.
 
 Para realizar este ejercicio, haré un DNAT hacia la interfaz de DMZ de Odin (`192.168.0.1`), permitiendo la conexión SSH a dicha interfaz. Posteriormente, habilitaremos el tráfico desde la `ens4` hacia la `ens3`.
 
@@ -295,7 +295,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Sat Mar  9 13:49:09 2024 from 172.29.0.58
-javiercruces@odin:~$ 
+javiercruces@odin:~$
 ```
 
 Comprobaremos los hits en las reglas:
@@ -350,7 +350,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Sat Mar  9 19:49:28 2024 from 192.168.0.2
-javiercruces@odin:~$ 
+javiercruces@odin:~$
 
 # Thor --> Odin
 javiercruces@thor:~$ ssh 192.168.0.1
@@ -363,16 +363,16 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Sat Mar  9 19:46:12 2024 from 192.168.0.2
-javiercruces@odin:~$ 
+javiercruces@odin:~$
 
 ```
 
 Te dejare los hits de las reglas al final de la practica .
 
-### La máquina Odin debe tener permitido el tráfico para la interfaz loopback. 
+### La máquina Odin debe tener permitido el tráfico para la interfaz loopback.
 
 ```bash
-sudo nft add rule inet filter input iifname "lo" counter accept    
+sudo nft add rule inet filter input iifname "lo" counter accept
 sudo nft add rule inet filter output oifname "lo" counter accept
 ```
 
@@ -389,14 +389,14 @@ rtt min/avg/max/mdev = 0.100/0.100/0.100/0.000 ms
 
 ```
 
-### A la máquina Odin se le puede hacer ping desde la DMZ, pero desde la LAN se le debe rechazar la conexión (REJECT) y desde el exterior se rechazará de manera silenciosa. 
+### A la máquina Odin se le puede hacer ping desde la DMZ, pero desde la LAN se le debe rechazar la conexión (REJECT) y desde el exterior se rechazará de manera silenciosa.
 
 ```bash
 # DMZ
 sudo nft add rule inet filter input iifname "ens4" ip protocol icmp icmp type echo-request counter accept
 sudo nft add rule inet filter output oifname "ens4" ip protocol icmp icmp type echo-reply counter accept
 # Las siguientes 2 reglas , no funcionaran como esperamos ya que hacen lo mismo que la politica por defecto , ademas no se permite este trafico .
-# LAN 
+# LAN
 sudo nft add rule inet filter input iifname "br-intra2" ip protocol icmp counter reject
 # Exterior
 sudo nft add rule inet filter input iifname "ens3" ip protocol icmp counter drop
@@ -429,7 +429,7 @@ PING 172.22.200.47 (172.22.200.47) 56(84) bytes of data.
 
 Al final de la practica te dejare todos los hits de las reglas .
 
-### La máquina Odin puede hacer ping a la LAN, la DMZ y al exterior. 
+### La máquina Odin puede hacer ping a la LAN, la DMZ y al exterior.
 
 ```bash
 # PERMITIR PING A DMZ
@@ -473,7 +473,7 @@ PING 172.16.0.200 (172.16.0.200) 56(84) bytes of data.
 rtt min/avg/max/mdev = 59.052/59.052/59.052/0.000 ms
 ```
 
-### Desde la máquina Hela se puede hacer ping y conexión ssh a las máquinas de la LAN. 
+### Desde la máquina Hela se puede hacer ping y conexión ssh a las máquinas de la LAN.
 
 ```bash
 ## Si no estan en la cadena forward no funciona
@@ -507,11 +507,11 @@ Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.1.0-18-amd64 x86_64)
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
 Last login: Sun Mar 10 14:52:57 2024 from 192.168.0.1
-javiercruces@thor:~$ 
+javiercruces@thor:~$
 
 ```
 
-### Desde cualquier máquina de la LAN se puede conectar por ssh a la máquina Hela. 
+### Desde cualquier máquina de la LAN se puede conectar por ssh a la máquina Hela.
 
 ```bash
 ## Si no esta en la cadena forward no funciona
@@ -527,10 +527,10 @@ Comprobación :
 ```bash
 javiercruces@thor:~$ ssh 172.16.0.200
 Last login: Sun Mar 10 14:53:12 2024 from 192.168.0.2
-[javiercruces@hela ~]$ 
+[javiercruces@hela ~]$
 ```
 
-### Configura la máquina Odin para que las máquinas de LAN y DMZ puedan acceder al exterior. 
+### Configura la máquina Odin para que las máquinas de LAN y DMZ puedan acceder al exterior.
 
 Estas reglas ya estaban indicadas previamente .
 
@@ -539,10 +539,10 @@ sudo nft add rule ip nat postrouting oifname "ens4" ip saddr 192.168.0.0/24 coun
 sudo nft add rule ip nat postrouting oifname "ens4" ip saddr 172.16.0.0/16 counter masquerade
 ```
 
-### Las máquinas de la LAN pueden hacer ping al exterior y navegar. 
+### Las máquinas de la LAN pueden hacer ping al exterior y navegar.
 
 ```bash
-# Las máquinas de la LAN pueden hacer ping al exterior y navegar. 
+# Las máquinas de la LAN pueden hacer ping al exterior y navegar.
 ## Si no estan en la cadena forward no funciona
 #sudo nft add rule inet filter LAN_WAN iifname "br-intra2" oifname "ens4" ip protocol icmp icmp type echo-request counter accept
 #sudo nft add rule inet filter WAN_LAN iifname "ens4" oifname "br-intra2" ip protocol icmp icmp type echo-reply counter accept
@@ -555,7 +555,7 @@ Comprobación :
 
 ```bash
 javiercruces@thor:~$ curl -I https://www.javiercd.es
-HTTP/2 200 
+HTTP/2 200
 server: GitHub.com
 content-type: text/html; charset=utf-8
 last-modified: Sat, 02 Mar 2024 10:17:01 GMT
@@ -588,10 +588,10 @@ rtt min/avg/max/mdev = 38.451/38.451/38.451/0.000 ms
 ```
 
 
-### La máquina Hela puede navegar. Instala un servidor web, un servidor ftp y un servidor de correos si no los tienes aún. 
+### La máquina Hela puede navegar. Instala un servidor web, un servidor ftp y un servidor de correos si no los tienes aún.
 
 ```bash
-# La máquina Hela puede navegar. Instala un servidor web, un servidor ftp y un servidor de correos si no los tienes aún. 
+# La máquina Hela puede navegar. Instala un servidor web, un servidor ftp y un servidor de correos si no los tienes aún.
 # Hela ya tiene permitido hacer consultas dns a thor
 sudo nft add rule inet filter forward iifname "ens3" oifname "ens4" tcp dport {80, 443} counter accept
 sudo nft add rule inet filter forward iifname "ens4" oifname "ens3" tcp sport {80, 443} counter accept
@@ -601,7 +601,7 @@ Compruebo que puedo navegar :
 
 ```bash
 [root@hela javiercruces]# curl -I https://www.javiercd.es/
-HTTP/2 200 
+HTTP/2 200
 server: GitHub.com
 content-type: text/html; charset=utf-8
 last-modified: Sat, 02 Mar 2024 10:17:01 GMT
@@ -625,15 +625,15 @@ x-fastly-request-id: 2d2811893898abf05bebd96c6bd5a09ed7abfe5b
 content-length: 26459
 ```
 
-Entiendo que quieres que instale estos 3 servicios en hela . En nuestro escenario son las otras maquinas quien alberga estos servicios . 
+Entiendo que quieres que instale estos 3 servicios en hela . En nuestro escenario son las otras maquinas quien alberga estos servicios .
 
-### Configura la máquina Odin para que los servicios web y ftp sean accesibles desde el exterior. 
+### Configura la máquina Odin para que los servicios web y ftp sean accesibles desde el exterior.
 
 El servidor web ya esta configurado previamente en la migración del escenario .
 
 ```bash
 sudo nft add rule ip nat prerouting tcp dport 21 counter dnat to 172.16.0.200
-# No funcionan en cadenas separadas 
+# No funcionan en cadenas separadas
 #sudo nft add rule inet filter WAN_DMZ iifname "ens4" oifname "ens3" ip daddr 172.16.0.200 tcp dport 21 ct state { new, established } counter accept
 #sudo nft add rule inet filter DMZ_WAN iifname "ens3" oifname "ens4" ip saddr 172.16.0.200 tcp sport 21 ct state established,related counter accept
 
@@ -641,7 +641,7 @@ sudo nft add rule inet filter forward iifname "ens4" oifname "ens3" ip daddr 172
 sudo nft add rule inet filter forward iifname "ens3" oifname "ens4" ip saddr 172.16.0.200 tcp sport 21 ct state established,related counter accept
 ```
 
-### El servidor web y el servidor ftp deben ser accesibles desde la LAN y desde el exterior. 
+### El servidor web y el servidor ftp deben ser accesibles desde la LAN y desde el exterior.
 
 El servidor FTP esta en la LAN así que ya es accesible , voy a hacer que sea accesible desde la DMZ . Desde el exterior ambos , ya son accesibles.
 
@@ -670,7 +670,7 @@ Connected to 172.16.0.200.
 220 (vsFTPd 3.0.5)
 ```
 
-### El servidor de correos sólo debe ser accesible desde la LAN. 
+### El servidor de correos sólo debe ser accesible desde la LAN.
 
 Comentamos las lineas de la preparación del escenario que permito el acceso a este y añadimos :
 
@@ -711,14 +711,14 @@ Accedemos al servidor postgree desde hela :
 
 ```bash
 [root@hela javiercruces]# psql -h 192.168.0.3 -U postgres
-Password for user postgres: 
+Password for user postgres:
 psql (13.14, server 14.11 (Ubuntu 14.11-0ubuntu0.22.04.1))
 WARNING: psql major version 13, server major version 14.
          Some psql features might not work.
 SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
 Type "help" for help.
 
-postgres=# 
+postgres=#
 ```
 
 ### Evita ataques DoS por ICMP Flood, limitando a 4 el número de peticiones por segundo desde una misma IP.
@@ -731,7 +731,7 @@ sudo nft insert rule inet filter input icmp type echo-request limit rate 1/secon
 Si le hacemos un ataque de flood , este cortara el trafico :
 
 ```bash
-[root@hela javiercruces]# hping3 --icmp --flood --rand-source 172.16.0.1 
+[root@hela javiercruces]# hping3 --icmp --flood --rand-source 172.16.0.1
 HPING 172.16.0.1 (eth0 172.16.0.1): icmp mode set, 28 headers + 0 data bytes
 hping in flood mode, no replies will be shown
 
@@ -749,7 +749,7 @@ sudo nft add rule inet filter input tcp flags \& '(fin|syn|rst|ack) == syn' coun
 Si probamos el ataque :
 
 ```bash
-[root@hela javiercruces]# hping3  --flood --rand-source 172.16.0.1 
+[root@hela javiercruces]# hping3  --flood --rand-source 172.16.0.1
 HPING 172.16.0.1 (eth0 172.16.0.1): NO FLAGS are set, 40 headers + 0 data bytes
 hping in flood mode, no replies will be shown
 ^C
@@ -891,7 +891,7 @@ sudo nft add rule inet filter output oifname "br-intra2" ip daddr 192.168.0.2 tc
 sudo nft add rule inet filter input iifname "lo" counter accept
 sudo nft add rule inet filter output oifname "lo" counter accept
 
-# A la máquina Odin se le puede hacer ping desde la DMZ, pero desde la LAN se le debe rechazar la conexión (REJECT) y desde el exterior se rechazará de manera silenciosa. 
+# A la máquina Odin se le puede hacer ping desde la DMZ, pero desde la LAN se le debe rechazar la conexión (REJECT) y desde el exterior se rechazará de manera silenciosa.
 sudo nft add rule inet filter input iifname "ens3" ip protocol icmp icmp type echo-request counter accept
 sudo nft add rule inet filter output oifname "ens3" ip protocol icmp icmp type echo-reply counter accept
 ## Denegar la conexion desde LAN REJECT
@@ -923,7 +923,7 @@ sudo nft add rule inet filter forward iifname "br-intra2" oifname "ens3" ip dadd
 #sudo nft add rule inet filter LAN_DMZ iifname "ens3" oifname "br-intra2" ip saddr 172.16.0.200 tcp dport 22 counter accept
 #sudo nft add rule inet filter DMZ_LAN iifname "br-intra2" oifname "ens3" ip daddr 172.16.0.200 tcp sport 22 counter accept
 
-# Desde cualquier máquina de la LAN se puede conectar por ssh a la máquina Hela. 
+# Desde cualquier máquina de la LAN se puede conectar por ssh a la máquina Hela.
 
 sudo nft add rule inet filter forward iifname "br-intra2" oifname "ens3" ip daddr 172.16.0.200 tcp dport 22 counter accept
 sudo nft add rule inet filter forward iifname "ens3" oifname "br-intra2" ip saddr 172.16.0.200 tcp sport 22 counter accept
@@ -936,7 +936,7 @@ sudo nft add rule inet filter forward iifname "ens3" oifname "br-intra2" ip sadd
 # Configura la máquina Odin para que las máquinas de LAN y DMZ puedan acceder al exterior.
 ## SNAT hecho anteriormente
 
-# Las máquinas de la LAN pueden hacer ping al exterior y navegar. 
+# Las máquinas de la LAN pueden hacer ping al exterior y navegar.
 ## Si no estan en la cadena forward no funciona
 #sudo nft add rule inet filter LAN_WAN iifname "br-intra2" oifname "ens4" ip protocol icmp icmp type echo-request counter accept
 #sudo nft add rule inet filter WAN_LAN iifname "ens4" oifname "br-intra2" ip protocol icmp icmp type echo-reply counter accept
@@ -948,17 +948,17 @@ sudo nft add rule inet filter forward iifname "br-intra2" oifname "ens4" tcp dpo
 sudo nft add rule inet filter forward iifname "ens4" oifname "br-intra2" tcp sport {80, 443} counter accept
 
 
-# La máquina Hela puede navegar. Instala un servidor web, un servidor ftp y un servidor de correos si no los tienes aún. 
+# La máquina Hela puede navegar. Instala un servidor web, un servidor ftp y un servidor de correos si no los tienes aún.
 # Hela ya tiene permitido hacer consultas dns a thor
 sudo nft add rule inet filter forward iifname "ens3" oifname "ens4" tcp dport {80, 443} counter accept
 sudo nft add rule inet filter forward iifname "ens4" oifname "ens3" tcp sport {80, 443} counter accept
 
 
 
-# ### Configura la máquina Odin para que los servicios web y ftp sean accesibles desde el exterior. 
+# ### Configura la máquina Odin para que los servicios web y ftp sean accesibles desde el exterior.
 sudo nft add rule ip nat prerouting tcp dport 21 counter dnat to 172.16.0.200
 
-# No funcionan en cadenas separadas 
+# No funcionan en cadenas separadas
 #sudo nft add rule inet filter WAN_DMZ iifname "ens4" oifname "ens3" ip daddr 172.16.0.200 tcp dport 21 ct state { new, established } counter accept
 #sudo nft add rule inet filter DMZ_WAN iifname "ens3" oifname "ens4" ip saddr 172.16.0.200 tcp sport 21 ct state established,related counter accept
 
@@ -966,7 +966,7 @@ sudo nft add rule inet filter forward iifname "ens4" oifname "ens3" ip daddr 172
 sudo nft add rule inet filter forward iifname "ens3" oifname "ens4" ip saddr 172.16.0.200 tcp sport 21 ct state established,related counter accept
 
 
-# ### El servidor web y el servidor ftp deben ser accesibles desde la LAN y desde el exterior. 
+# ### El servidor web y el servidor ftp deben ser accesibles desde la LAN y desde el exterior.
 ## No funcionan las reglass en cadenas separadas
 #sudo nft add rule inet filter DMZ_LAN iifname "br-intra2" oifname "ens3" ip daddr 172.16.0.200 tcp dport 21 ct state { new, established } counter accept
 #sudo nft add rule inet filter LAN_DMZ iifname "ens3" oifname "br-intra2" ip saddr 172.16.0.200 tcp sport 21 ct state established,related counter accept
@@ -979,7 +979,7 @@ sudo nft add rule inet filter forward iifname "br-intra2" oifname "ens3" ip dadd
 sudo nft add rule inet filter forward iifname "ens3" oifname "br-intra2" ip saddr 172.16.0.200 tcp sport 80 ct state established,related counter accept
 
 
-# ### El servidor de correos sólo debe ser accesible desde la LAN. 
+# ### El servidor de correos sólo debe ser accesible desde la LAN.
 # no funciona en cadenas separadas
 #sudo nft add rule inet filter DMZ_LAN iifname "ens3" oifname "br-intra2" ip daddr 192.168.0.3 tcp dport 25 ct state { new, established } counter accept
 #sudo nft add rule inet filter LAN_DMZ iifname "br-intra2" oifname "ens3" ip saddr 192.168.0.3 tcp sport 25 ct state established,related counter accept
@@ -1017,7 +1017,7 @@ sudo nft insert rule inet filter input icmp type echo-request limit rate 1/secon
 Cada vez que he ejecutado el script las reglas pierden los contadores pero así seria el esquema con todas las reglas al finalizar la practica :
 
 ```bash
-javiercruces@odin:~$ sudo nft list ruleset  
+javiercruces@odin:~$ sudo nft list ruleset
 table inet filter {
 	chain forward {
 		type filter hook forward priority filter + 10; policy drop;
@@ -1151,7 +1151,7 @@ table ip nat {
 
 ```
 
-## Hacer las reglas persistentes 
+## Hacer las reglas persistentes
 
 Vamos a guardar las reglas con :
 
@@ -1159,7 +1159,7 @@ Vamos a guardar las reglas con :
 root@odin:/home/javiercruces# nft list ruleset > /etc/nftables.conf
 ```
 
-Si las queremos restaurar  : 
+Si las queremos restaurar  :
 
 ```bash
 javiercruces@odin:~$ sudo nft -f /etc/nftables.conf
@@ -1181,7 +1181,7 @@ ExecStart=/usr/sbin/nft -f /etc/nftables/nftables.rules
 [Install]
 WantedBy=multi-user.target
 
-# Activa el servicio para que al reiniciar se apliquen los cambios 
+# Activa el servicio para que al reiniciar se apliquen los cambios
 javiercruces@odin:~$ sudo systemctl enable nftables-persistent.service
 ```
 
