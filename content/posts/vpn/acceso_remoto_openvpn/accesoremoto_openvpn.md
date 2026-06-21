@@ -9,13 +9,13 @@ hero: /images/vpn/remoteaccess.png
 
 
 
-- Uno de los dos equipos (el que actuará como servidor) estará conectado a dos redes 
+- Uno de los dos equipos (el que actuará como servidor) estará conectado a dos redes
     - Para la autenticación de los extremos se usarán obligatoriamente certificados digitales, que se generarán utilizando openssl y se almacenarán en el directorio /etc/openvpn, junto con los parámetros Diffie-Hellman y el certificado de la propia Autoridad de Certificación.
-    - Se utilizarán direcciones de la red 10.99.99.0/24 para las direcciones virtuales de la VPN. La dirección 10.99.99.1 se asignará al servidor VPN. 
+    - Se utilizarán direcciones de la red 10.99.99.0/24 para las direcciones virtuales de la VPN. La dirección 10.99.99.1 se asignará al servidor VPN.
     - Los ficheros de configuración del servidor y del cliente se crearán en el directorio /etc/openvpn de cada máquina, y se llamarán `server.conf` y `client.conf` respectivamente.
-    - Tras el establecimiento de la VPN, la máquina cliente debe ser capaz de acceder a una máquina que esté en la otra red a la que está conectado el servidor. 
+    - Tras el establecimiento de la VPN, la máquina cliente debe ser capaz de acceder a una máquina que esté en la otra red a la que está conectado el servidor.
 
-## Montando el escenario 
+## Montando el escenario
 
 Para realizar este ejercicio he montado el siguiente escenario en GNS3 :
 
@@ -25,20 +25,20 @@ Para realizar este ejercicio he montado el siguiente escenario en GNS3 :
 Vamos a darle a cada interfaz la configuración de red correspondiente :
 
 ```bash
-# Interfaz que nos dará internet 
-R1#configure terminal 
+# Interfaz que nos dará internet
+R1#configure terminal
 R1(config)#interface fastEthernet 0/0
 R1(config-if)#ip add dhcp
 R1(config-if)#no shut
 R1(config-if)#exit
 
-# Interfaz red Servidor 1 
+# Interfaz red Servidor 1
 R1(config)#interface fastEthernet 1/0
 R1(config-if)#ip add 90.0.0.1 255.255.255.0
 R1(config-if)#no shut
 R1(config-if)#exit
 
-# Interfaz red Servidor 2 
+# Interfaz red Servidor 2
 R1(config)#interface fastEthernet 1/1
 R1(config-if)#ip add 100.0.0.1 255.255.255.0
 R1(config-if)#no shut
@@ -71,7 +71,7 @@ R1(config-if)#ip nat inside
 
 #### Configuración del Servidor 1
 
-Configuración de red servidor 1 : 
+Configuración de red servidor 1 :
 
 ```bash
 debian@servidor1:~$ cat /etc/network/interfaces
@@ -95,19 +95,19 @@ iface ens4 inet static
 Ademas configuraremos el SNAT :
 
 ```bash
-#Activa el bit de forwarding 
-debian@servidor1:~$ sudo nano /etc/sysctl.conf 
-net.ipv4.ip_forward=1 
+#Activa el bit de forwarding
+debian@servidor1:~$ sudo nano /etc/sysctl.conf
+net.ipv4.ip_forward=1
 
 # Regla SNAT
 debian@servidor1:~$ sudo iptables -t nat -A POSTROUTING -o ens3 -s 192.168.0.0/24 -j MASQUERADE
 
 # Te recomiendo que lo hagas permanente , configura iptables-persistent
-debian@servidor1:~$ sudo apt install iptables-persistent 
+debian@servidor1:~$ sudo apt install iptables-persistent
 ```
 #### Configuración del Servidor 2
 
-Configuración de red servidor 2 : 
+Configuración de red servidor 2 :
 
 ```bash
 debian@servidor2:~$ cat /etc/network/interfaces
@@ -131,17 +131,17 @@ iface ens4 inet static
 Ademas configuraremos el SNAT :
 
 ```bash
-#Activa el bit de forwarding 
-debian@servidor2:~$ sudo nano /etc/sysctl.conf 
-net.ipv4.ip_forward=1 
+#Activa el bit de forwarding
+debian@servidor2:~$ sudo nano /etc/sysctl.conf
+net.ipv4.ip_forward=1
 
 # Regla SNAT
 debian@servidor2:~$ sudo iptables -t nat -A POSTROUTING -o ens3 -s 192.168.1.0/24 -j MASQUERADE
 
 # Te recomiendo que lo hagas permanente , configura iptables-persistent
-debian@servidor2:~$ sudo apt install iptables-persistent 
+debian@servidor2:~$ sudo apt install iptables-persistent
 ```
-#### Comprobación enroutamiento 
+#### Comprobación enroutamiento
 Vamos a comprobar que hemos enroutado bien nuestro escenario , para ello desde los servidores haremos un ping al contrario y ha Internet .
 
 Desde servidor 1 :
@@ -154,7 +154,7 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 --- 8.8.8.8 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 37.374/37.374/37.374/0.000 ms
-debian@servidor1:~$ 
+debian@servidor1:~$
 
 debian@servidor1:~$ ping 100.0.0.2 -c 1
 PING 100.0.0.2 (100.0.0.2) 56(84) bytes of data.
@@ -163,7 +163,7 @@ PING 100.0.0.2 (100.0.0.2) 56(84) bytes of data.
 --- 100.0.0.2 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 18.567/18.567/18.567/0.000 ms
-debian@servidor1:~$ 
+debian@servidor1:~$
 ```
 
 
@@ -184,7 +184,7 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 --- 8.8.8.8 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 160.147/160.147/160.147/0.000 ms
-debian@servidor2:~$ 
+debian@servidor2:~$
 ```
 
 También comprobaremos desde los clientes ya que hay configurado un snat .
@@ -231,14 +231,14 @@ rtt min/avg/max/mdev = 45.760/45.760/45.760/0.000 ms
 
 Instalaremos en ambos servidores el paquete openvpn
 ```bash
-# Servidor 1 
+# Servidor 1
 debian@servidor1:~$ sudo apt install -y openvpn
 # Servidor 2
-debian@servidor2:~$ sudo apt install -y openvpn 
+debian@servidor2:~$ sudo apt install -y openvpn
 ```
 
-### Generación de claves y certificados 
-Podemos generar los certificados manualmente, pero existe una herramienta llamada Easy RSA que automatiza este proceso. Además, Easy RSA facilita la generación de los módulos Diffie-Hellman, que son esenciales para el funcionamiento del servidor OpenVPN. 
+### Generación de claves y certificados
+Podemos generar los certificados manualmente, pero existe una herramienta llamada Easy RSA que automatiza este proceso. Además, Easy RSA facilita la generación de los módulos Diffie-Hellman, que son esenciales para el funcionamiento del servidor OpenVPN.
 
 No es necesario que nos la descarguemos ya que esta viene con el paquete openvpn .
 
@@ -267,7 +267,7 @@ set_var EASYRSA_REQ_EMAIL       "contacto@javiercd.es"
 set_var EASYRSA_REQ_OU          "Informatica"
 ```
 
-Una vez cambiado los valores por defecto por los nuestros , vamos a iniciar la infraestructura de clave pública (PKI) utilizando el script EasyRSA. Al ejecutar este comando, se crea un nuevo directorio PKI con la estructura necesaria para gestionar las claves y certificados. 
+Una vez cambiado los valores por defecto por los nuestros , vamos a iniciar la infraestructura de clave pública (PKI) utilizando el script EasyRSA. Al ejecutar este comando, se crea un nuevo directorio PKI con la estructura necesaria para gestionar las claves y certificados.
 ```bash
 debian@servidor1:/usr/share/easy-rsa$ sudo ./easyrsa init-pki
 * Notice:
@@ -280,7 +280,7 @@ debian@servidor1:/usr/share/easy-rsa$ sudo ./easyrsa init-pki
 
 ### Generación de los parámetros Diffie-Hellman
 
-La clave de intercambio de Diffie-Hellman, es un método criptográfico que permite a dos partes acordar de forma segura una clave de sesión compartida sobre un canal no seguro. Así que vamos a generarla haciedo uso del siguiente comando : 
+La clave de intercambio de Diffie-Hellman, es un método criptográfico que permite a dos partes acordar de forma segura una clave de sesión compartida sobre un canal no seguro. Así que vamos a generarla haciedo uso del siguiente comando :
 
 ```bash
 debian@servidor1:/usr/share/easy-rsa$ sudo  ./easyrsa gen-dh
@@ -341,9 +341,9 @@ Your new CA certificate file for publishing is at:
 
 Se nos habrá generado en /usr/share/easy-rsa/pki/ca.crt
 
-### Generación del certificado del servidor 1 
+### Generación del certificado del servidor 1
 Con el siguiente comando generaremos los certificados para el servidor 1 . Se generaran varios archivos :
-- servidor1.req : Este archivo contiene la solicitud de certificado generada para el servidor 
+- servidor1.req : Este archivo contiene la solicitud de certificado generada para el servidor
 - servidor1.key : Este archivo contiene la clave privada
 
 ```bash
@@ -368,7 +368,7 @@ There are quite a few fields but you can leave some blank
 For some fields there will be a default value,
 If you enter '.', the field will be left blank.
 -----
-Common Name (eg: your user, host, or server name) [servidor1]:          
+Common Name (eg: your user, host, or server name) [servidor1]:
 * Notice:
 
 Keypair and certificate request completed. Your files are:
@@ -430,7 +430,7 @@ debian@servidor1:/usr/share/easy-rsa$ sudo ls -la pki/issued | grep servidor1
 debian@servidor1:/usr/share/easy-rsa$ sudo ls -la pki/private | grep servidor1
 -rw------- 1 root root 1704 Jan 14 16:09 servidor1.key
 
-# Solicitud de firma del certificado 
+# Solicitud de firma del certificado
 debian@servidor1:/usr/share/easy-rsa$ sudo ls -la pki/reqs | grep servidor1
 -rw------- 1 root root  891 Jan 14 16:09 servidor1.req
 ```
@@ -530,7 +530,7 @@ Ahora tenemos que hacer llegar cada clave a su lugar correspondiente .
 En el servidor 1 crearemos el directorio /etc/openvpn/keys y guardaremos los siguientes ficheros :
 
 ```bash
-# Creamos el directorio donde guardaremos las claves 
+# Creamos el directorio donde guardaremos las claves
 debian@servidor1:/usr/share/easy-rsa$ sudo mkdir /etc/openvpn/keys
 
 # Nos la copiamos al directorio creado
@@ -553,10 +553,10 @@ total 24
 Ahora haremos lo mismo para el servidor2 , pero tendremos que llevarnos las claves haciendo uso de SCP
 
 ```bash
-# Creamos el directorio donde guardaremos las claves 
+# Creamos el directorio donde guardaremos las claves
 debian@servidor2:~$ sudo mkdir /etc/openvpn/keys
 
-# Desde servidor1 pasare a servidor2 las claves 
+# Desde servidor1 pasare a servidor2 las claves
 
 debian@servidor1:~$ sudo scp /usr/share/easy-rsa/pki/ca.crt debian@100.0.0.2:/home/debian
 debian@servidor1:~$ sudo scp /usr/share/easy-rsa/ta.key debian@100.0.0.2:/home/debian
@@ -577,7 +577,7 @@ total 20
 
 ## Configuración de OpenVPN
 
-### Configuración de OpenVPN en el  servidor 1 
+### Configuración de OpenVPN en el  servidor 1
 
 Asegúrate de tener activado el bit de forwarding en tu servidor :
 
@@ -617,7 +617,7 @@ cert /etc/openvpn/keys/servidor1.crt
 key /etc/openvpn/keys/servidor1.key
 # Use fast LZO compression
 comp-lzo
-# Ping the remote every 10 seconds and restart after 60 seconds 
+# Ping the remote every 10 seconds and restart after 60 seconds
 keepalive 10 60
 # Set output verbosity to normal usage range
 verb 3
@@ -626,7 +626,7 @@ verb 3
 Ahora reinicia el servicio para que se apliquen los cambios y se levante la interfaz. Es posible que necesites reiniciar la máquina:
 
 ```bash
-debian@servidor1:~$ sudo systemctl restart openvpn.service 
+debian@servidor1:~$ sudo systemctl restart openvpn.service
 ```
 
 Y veremos que se ha levantado la interfaz tun0 :
@@ -637,27 +637,27 @@ debian@servidor1:~$ ip a
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute 
+    inet6 ::1/128 scope host noprefixroute
        valid_lft forever preferred_lft forever
 2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 0c:21:18:28:00:00 brd ff:ff:ff:ff:ff:ff
     altname enp0s3
     inet 90.0.0.2/24 brd 90.0.0.255 scope global ens3
        valid_lft forever preferred_lft forever
-    inet6 fe80::e21:18ff:fe28:0/64 scope link 
+    inet6 fe80::e21:18ff:fe28:0/64 scope link
        valid_lft forever preferred_lft forever
 3: ens4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 0c:21:18:28:00:01 brd ff:ff:ff:ff:ff:ff
     altname enp0s4
     inet 192.168.0.1/24 brd 192.168.0.255 scope global ens4
        valid_lft forever preferred_lft forever
-    inet6 fe80::e21:18ff:fe28:1/64 scope link 
+    inet6 fe80::e21:18ff:fe28:1/64 scope link
        valid_lft forever preferred_lft forever
 4: tun0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 500
-    link/none 
+    link/none
     inet 10.99.99.1 peer 10.99.99.2/32 scope global tun0
        valid_lft forever preferred_lft forever
-    inet6 fe80::8491:9eb9:104e:6bf7/64 scope link stable-privacy 
+    inet6 fe80::8491:9eb9:104e:6bf7/64 scope link stable-privacy
        valid_lft forever preferred_lft forever
 ```
 
@@ -701,7 +701,7 @@ key /etc/openvpn/keys/servidor2.key
 comp-lzo
 # Ping remote every 10sg and restart after 60sg passed without sign of life from remote
 keepalive 10 60
-# Set output verbosity to normal usage range 
+# Set output verbosity to normal usage range
 verb 3
 # Output logging messages to openvpn.log file
 log /var/log/openvpn.log
@@ -710,7 +710,7 @@ log /var/log/openvpn.log
 Ahora reinicia el servicio para que se apliquen los cambios y se levante la interfaz. Es posible que necesites reiniciar la máquina:
 
 ```bash
-debian@servidor2:~$ sudo systemctl restart openvpn.service 
+debian@servidor2:~$ sudo systemctl restart openvpn.service
 ```
 
 Y veremos que se ha levantado la interfaz tun0 :
@@ -721,42 +721,42 @@ debian@servidor2:~$ ip a
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute 
+    inet6 ::1/128 scope host noprefixroute
        valid_lft forever preferred_lft forever
 2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 0c:82:67:88:00:00 brd ff:ff:ff:ff:ff:ff
     altname enp0s3
     inet 100.0.0.2/24 brd 100.0.0.255 scope global ens3
        valid_lft forever preferred_lft forever
-    inet6 fe80::e82:67ff:fe88:0/64 scope link 
+    inet6 fe80::e82:67ff:fe88:0/64 scope link
        valid_lft forever preferred_lft forever
 3: ens4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 0c:82:67:88:00:01 brd ff:ff:ff:ff:ff:ff
     altname enp0s4
     inet 192.168.1.1/24 brd 192.168.1.255 scope global ens4
        valid_lft forever preferred_lft forever
-    inet6 fe80::e82:67ff:fe88:1/64 scope link 
+    inet6 fe80::e82:67ff:fe88:1/64 scope link
        valid_lft forever preferred_lft forever
 4: tun0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 500
-    link/none 
+    link/none
     inet 10.99.99.6 peer 10.99.99.5/32 scope global tun0
        valid_lft forever preferred_lft forever
-    inet6 fe80::67f5:fd86:d948:132a/64 scope link stable-privacy 
+    inet6 fe80::67f5:fd86:d948:132a/64 scope link stable-privacy
        valid_lft forever preferred_lft forever
 ```
 
-### Comprobación de funcionamiento 
+### Comprobación de funcionamiento
 
 Ahora vamos a comprobar que desde servidor2 podemos acceder a las máquinas cliente de la red 192.168.0.0/24.
 
 ```bash
 debian@servidor2:~$ ip r
-default via 100.0.0.1 dev ens3 onlink 
-10.99.99.1 via 10.99.99.5 dev tun0 
-10.99.99.5 dev tun0 proto kernel scope link src 10.99.99.6 
-100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2 
-192.168.0.0/24 via 10.99.99.5 dev tun0 
-192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1 
+default via 100.0.0.1 dev ens3 onlink
+10.99.99.1 via 10.99.99.5 dev tun0
+10.99.99.5 dev tun0 proto kernel scope link src 10.99.99.6
+100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2
+192.168.0.0/24 via 10.99.99.5 dev tun0
+192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1
 ```
 
 Como puedes ver tendremos conectividad desde el servidor hacia los equipos de la otra red.
@@ -773,7 +773,7 @@ PING 192.168.0.2 (192.168.0.2) 56(84) bytes of data.
 rtt min/avg/max/mdev = 14.308/16.582/19.060/1.945 ms
 ```
 
-También podremos conectarnos por ssh , me conectare hacia el cliente 1 : 
+También podremos conectarnos por ssh , me conectare hacia el cliente 1 :
 
 ```bash
 debian@servidor2:~$ ssh debian@192.168.0.2
@@ -782,7 +782,7 @@ ED25519 key fingerprint is SHA256:zn2i5rAyilMi1i+Kqb6ys8GhldKuHKYZCDKbD1aXqjQ.
 This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 Warning: Permanently added '192.168.0.2' (ED25519) to the list of known hosts.
-debian@192.168.0.2's password: 
+debian@192.168.0.2's password:
 Linux cliente1 6.1.0-15-cloud-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.66-1 (2023-12-09) x86_64
 
 The programs included with the Debian GNU/Linux system are free software;

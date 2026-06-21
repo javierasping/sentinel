@@ -93,7 +93,7 @@ Este comando descarga una imagen de prueba y la ejecuta en un contenedor. Cuando
 
 Ahora has instalado y arrancado Docker Engine correctamente.
 
-**Consejo:**  
+**Consejo:**
 Si tienes errores al intentar ejecutar sin root, asegúrate de permitir que usuarios no privilegiados ejecuten comandos de Docker. Consulta los pasos posteriores para la instalación en Linux para permitirlo.
 
 ### Actualizar Docker Engine

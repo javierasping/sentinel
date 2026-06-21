@@ -7,7 +7,7 @@ hero: images/openstack/instalacion-manual/instalar-configurar-nova-computo.png
 weight: 10
 ---
 
-On this page I configure a compute node (for example `compute01`) so it can run instances with Nova. I use QEMU/KVM when the hardware supports it; if not, I configure pure QEMU.
+On this page I configure a compute node (for example `compute01`) so it can run instances with Nova. I use QEMU/KVM when the hardware supports it, if not, I configure pure QEMU.
 
 Before starting, make sure you have:
 
@@ -103,7 +103,7 @@ vagrant@compute01:~$ sudo service nova-compute restart
 ## Add the compute node to cell DB (run on controller)
 
 ```bash
-vagrant@controller01:~$ source admin-openrc 
+vagrant@controller01:~$ source admin-openrc
 vagrant@controller01:~$ sudo su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
 Found 2 cell mappings.
 Skipping cell0 since it does not contain hosts.

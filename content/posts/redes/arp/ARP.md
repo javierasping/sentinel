@@ -29,7 +29,7 @@ En la respuesta ARP, se puede observar que la dirección de destino es la del di
 
 Cuando se realiza una operación de ping, tanto el emisor como el receptor se agregan mutuamente a sus respectivas tablas ARP. Al consultar ambas tablas, se puede verificar que las correspondencias han sido registradas.
 
-El tiempo de permanencia de las entradas en la caché es, generalmente, de 120 segundos; una vez transcurrido este plazo, la entrada se elimina automáticamente.
+El tiempo de permanencia de las entradas en la caché es, generalmente, de 120 segundos, una vez transcurrido este plazo, la entrada se elimina automáticamente.
 
 Los dispositivos que no han participado en la comunicación no almacenan ninguna información en su caché ARP sobre dicha transacción.
 
@@ -51,7 +51,7 @@ Este comando es la alternativa moderna y complementaria al comando tradicional `
 
 Un ARP gratuito es una solicitud emitida por un dispositivo para informar a los demás equipos de la red sobre su propia dirección IP y MAC, actualizando así sus tablas ARP.
 
-Su propósito principal es garantizar que todos los dispositivos tengan la información más actualizada posible. Una de sus utilidades más comunes es la detección de conflictos de direcciones IP; si otro equipo responde a un paquete ARP gratuito, indica que la dirección IP ya está siendo utilizada.
+Su propósito principal es garantizar que todos los dispositivos tengan la información más actualizada posible. Una de sus utilidades más comunes es la detección de conflictos de direcciones IP, si otro equipo responde a un paquete ARP gratuito, indica que la dirección IP ya está siendo utilizada.
 
 
 ## Ataque de ARP Spoofing

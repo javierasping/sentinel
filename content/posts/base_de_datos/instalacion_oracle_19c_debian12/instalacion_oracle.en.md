@@ -7,7 +7,7 @@ hero: images/base_de_datos/instalar_oracle/instalacion_oracle.png
 ---
 
 
-Installing Oracle 19c on Debian 12 may seem complicated, but don't worry; I'm here to guide you through every step. In this post, I will explain in a simple way how to prepare your system and install Oracle 19c on Debian 12.
+Installing Oracle 19c on Debian 12 may seem complicated, but don't worry, I'm here to guide you through every step. In this post, I will explain in a simple way how to prepare your system and install Oracle 19c on Debian 12.
 
 ### Update the repositories
 
@@ -63,7 +63,7 @@ Now, using wget, we will download the Oracle meta-package:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.008.png)
 
-Once downloaded, we will use the alien utility to transform it. This will take some time; to speed up the process, I have transformed it on my physical machine:
+Once downloaded, we will use the alien utility to transform it. This will take some time, to speed up the process, I have transformed it on my physical machine:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.009.png)
 
@@ -73,11 +73,11 @@ Now that the package has been converted to .deb, we install it using dpkg on our
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.010.jpeg)
 
-Start the installation; it will take a while, so please be patient:
+Start the installation, it will take a while, so please be patient:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.011.jpeg)
 
-Once finished, we will add the Oracle environment variables to our user's .bashrc. The ORACLE_SID will be provided at the end of the installation; the others will depend on the directories used in the previous steps:
+Once finished, we will add the Oracle environment variables to our user's .bashrc. The ORACLE_SID will be provided at the end of the installation, the others will depend on the directories used in the previous steps:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.012.png)
 
@@ -95,7 +95,7 @@ Change it to the following (complete line 164):
 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-\* I have highlighted the content you should add; you can also replace the entire line.
+\* I have highlighted the content you should add, you can also replace the entire line.
 
 Another error that may occur is that netstat cannot be found:
 

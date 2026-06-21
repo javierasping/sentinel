@@ -11,7 +11,7 @@ En este artículo, te presento una actualización del proceso de instalación de
 Actualizamos los repositorios e instalamos las actualizaciones disponibles del sistema.
 
 ```bash
-javiercruces@HPOMEN15:~$ sudo apt update -y && sudo apt upgrade -y 
+javiercruces@HPOMEN15:~$ sudo apt update -y && sudo apt upgrade -y
 ```
 
 Instalamos las dependencias necesarias para GNS3, incluyendo Python, herramientas de virtualización (KVM,QEMU,libvirt), bibliotecas adicionales (PyQt5,dynamips) y otras utilidades.
@@ -56,7 +56,7 @@ La red default ha sido marcada para iniciarse automáticamente
 Reiniciamos el sistema para aplicar los cambios, como la configuración de grupos y PATH.
 
 ```bash
-javiercruces@HPOMEN15:~$ sudo reboot 
+javiercruces@HPOMEN15:~$ sudo reboot
 ```
 
 Ahora podremos iniciar gns3 , pero te recomiendo que configures los siguientes apartados que tienes en el post .
@@ -65,7 +65,7 @@ Ahora podremos iniciar gns3 , pero te recomiendo que configures los siguientes a
 javiercruces@HPOMEN15:~$ gns3
 ```
 
-## Instalación ubridge 
+## Instalación ubridge
 
 Clonamos el repositorio de ubridge desde GitHub. Ubridge es una herramienta necesaria para GNS3, que permite gestionar el tráfico entre las interfaces de red virtualizadas.
 
@@ -82,7 +82,7 @@ javiercruces@HPOMEN15:~$ cd ubridge/
 Compilamos el código fuente de ubridge utilizando "make" .
 
 ```bash
-javiercruces@HPOMEN15:~/ubridge$ make 
+javiercruces@HPOMEN15:~/ubridge$ make
 ```
 
 Instalamos el binario de ubridge en el sistema para que esté disponible globalmente.
@@ -144,8 +144,8 @@ En mi caso configure VMware Workstation puedes descargarlo desde este [enlace](h
 Una vez descaargado los ficheros los comandos para instalarlo son los siguientes .
 
 Le damos permiso de ejecucion al fichero .
-```bash 
-javiercruces@HPOMEN15:~/Descargas/VMware-Player-17.6.1-24319023.x86_64.bundle$ chmod + VMware-Player-17.6.1-24319023.x86_64.bundle 
+```bash
+javiercruces@HPOMEN15:~/Descargas/VMware-Player-17.6.1-24319023.x86_64.bundle$ chmod + VMware-Player-17.6.1-24319023.x86_64.bundle
 
 ```
 
@@ -161,7 +161,7 @@ Installation was successful.
 ``` -->
 
 
-<!-- Errores 
+<!-- Errores
 
 ```bash
 Could not start Telnet console with command 'xterm -T "PC1" -e "telnet localhost 5001"': [Errno 2] No existe el fichero o el directorio: 'xterm'

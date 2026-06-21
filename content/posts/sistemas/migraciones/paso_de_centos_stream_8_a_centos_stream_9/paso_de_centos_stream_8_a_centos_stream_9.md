@@ -10,17 +10,17 @@ hero: images/sistemas/paso_de_centos_stream_8_a_centos_stream_9/paso_de_centos_s
 
 ## Actualizar los paquetes
 
-Antes de migrar, asegúrate de que tu sistema CentOS Stream 8 tenga todos los paquetes y actualizaciones más recientes. 
+Antes de migrar, asegúrate de que tu sistema CentOS Stream 8 tenga todos los paquetes y actualizaciones más recientes.
 
 ![](/sistemas/migraciones/paso_de_centos_stream_8_a_centos_stream_9/img/Aspose.Words.64b29d49-eb3e-49be-9751-9727b0deafb9.001.jpeg)
 
-Elimina los paquetes innecesarios que nos aparezcan al utilizar el siguiente comando ya que son paquetes huérfanos 
+Elimina los paquetes innecesarios que nos aparezcan al utilizar el siguiente comando ya que son paquetes huérfanos
 
 ![](/sistemas/migraciones/paso_de_centos_stream_8_a_centos_stream_9/img/Aspose.Words.64b29d49-eb3e-49be-9751-9727b0deafb9.002.png)
 
 ## Actualización a CentOS9
 
-Instala los repositorios de CentOS 9 : 
+Instala los repositorios de CentOS 9 :
 
 ![](/sistemas/migraciones/paso_de_centos_stream_8_a_centos_stream_9/img/Aspose.Words.64b29d49-eb3e-49be-9751-9727b0deafb9.003.jpeg)
 
@@ -84,5 +84,5 @@ Una vez hecho podremos reiniciar y comprobar  que tenemos la entrada de recupera
 
 ## Bibliografía
 
-Guía para migrar de CentOS 8 stream a CenOS 9 stream 
+Guía para migrar de CentOS 8 stream a CenOS 9 stream
 

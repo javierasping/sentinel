@@ -50,16 +50,16 @@ Having the following relation of IPS:
 
 | Machine | IP             | Interface |
 | ------- | -------------- | -------- |
-| PC1     | 10.0.100.144   | &nbsp; ens3     |
-| R1-PC1  | 10.0.100.68    | &nbsp; ens3     |
-| R1-R2   | 10.0.110.78    | &nbsp; ens4     |
-| R2-R1   | 10.0.110.30    | &nbsp; ens3     |
-| R2-PC2  | 10.0.120.191   | &nbsp; ens4     |
-| PC2     | 10.0.120.203   | &nbsp; ens3     |
-| R2-R3   | 10.0.130.146   | &nbsp; ens5     |
-| R3-R2   | 10.0.130.36    | &nbsp; ens3     |
-| R3-PC3  | 10.0.140.127   | &nbsp; ens4     |
-| PC3     | 10.0.140.158   | &nbsp; ens3     |
+| PC1     | 10.0.100.144   | &nbsp, ens3     |
+| R1-PC1  | 10.0.100.68    | &nbsp, ens3     |
+| R1-R2   | 10.0.110.78    | &nbsp, ens4     |
+| R2-R1   | 10.0.110.30    | &nbsp, ens3     |
+| R2-PC2  | 10.0.120.191   | &nbsp, ens4     |
+| PC2     | 10.0.120.203   | &nbsp, ens3     |
+| R2-R3   | 10.0.130.146   | &nbsp, ens5     |
+| R3-R2   | 10.0.130.36    | &nbsp, ens3     |
+| R3-PC3  | 10.0.140.127   | &nbsp, ens4     |
+| PC3     | 10.0.140.158   | &nbsp, ens3     |
 
 
 
@@ -71,12 +71,12 @@ Having the following relation of IPS:
 
 | R1          |          |          |
 | ----------- | :------: | :------: |
-| 10.0.100.0/24 &nbsp; | 0.0.0.0 | &nbsp;  ens3    &nbsp;|
-| 10.0.110.0/24 &nbsp; | 0.0.0.0 |  &nbsp; ens4    &nbsp;|
-| 10.0.120.0/24 &nbsp; | 10.0.110.30 | &nbsp; ens4 &nbsp;|
-| 10.0.130.0/24 &nbsp; | 10.0.110.30 | &nbsp; ens4 &nbsp;|
-| 10.0.140.0/24 &nbsp; | 10.0.110.30 | &nbsp; ens4 &nbsp;|
-| 0.0.0.0/0   &nbsp; | 10.0.110.30 | &nbsp; ens4   &nbsp;|
+| 10.0.100.0/24 &nbsp, | 0.0.0.0 | &nbsp,  ens3    &nbsp,|
+| 10.0.110.0/24 &nbsp, | 0.0.0.0 |  &nbsp, ens4    &nbsp,|
+| 10.0.120.0/24 &nbsp, | 10.0.110.30 | &nbsp, ens4 &nbsp,|
+| 10.0.130.0/24 &nbsp, | 10.0.110.30 | &nbsp, ens4 &nbsp,|
+| 10.0.140.0/24 &nbsp, | 10.0.110.30 | &nbsp, ens4 &nbsp,|
+| 0.0.0.0/0   &nbsp, | 10.0.110.30 | &nbsp, ens4   &nbsp,|
 
 **Note:** Networks to which we are directly connected will automatically create the routes.
 
@@ -86,12 +86,12 @@ Having the following relation of IPS:
 
 | R2          |          |           |
 | ----------- | :------: | :-------: |
-| 10.0.100.0/24 &nbsp; | 10.0.110.178 | &nbsp; ens3 &nbsp;|
-| 10.0.110.0/24 &nbsp; | 0.0.0.0 |  &nbsp;     ens3 &nbsp;|
-| 10.0.120.0/24 &nbsp; | 0.0.0.0 |    &nbsp;   ens4 &nbsp;|
-| 10.0.130.0/24 &nbsp; | 0.0.0.0 |    &nbsp;   ens5 &nbsp;|
-| 10.0.140.0/24 &nbsp; | 10.0.130.36 |&nbsp; ens5   &nbsp;|
-| 0.0.0.0/0  &nbsp;  | 10.0.130.36 | &nbsp; ens5    &nbsp;|
+| 10.0.100.0/24 &nbsp, | 10.0.110.178 | &nbsp, ens3 &nbsp,|
+| 10.0.110.0/24 &nbsp, | 0.0.0.0 |  &nbsp,     ens3 &nbsp,|
+| 10.0.120.0/24 &nbsp, | 0.0.0.0 |    &nbsp,   ens4 &nbsp,|
+| 10.0.130.0/24 &nbsp, | 0.0.0.0 |    &nbsp,   ens5 &nbsp,|
+| 10.0.140.0/24 &nbsp, | 10.0.130.36 |&nbsp, ens5   &nbsp,|
+| 0.0.0.0/0  &nbsp,  | 10.0.130.36 | &nbsp, ens5    &nbsp,|
 
 **Note:** Networks to which we are directly connected will automatically create the routes.
 
@@ -101,12 +101,12 @@ Having the following relation of IPS:
 
 |R3|||
 | - | :- | :- |
-|10\.0.100.0/24 &nbsp;|10\.0.130.146|&nbsp; ens3 &nbsp;|
-|10\.0.110.0/24 &nbsp;|10\.0.130.146|&nbsp; ens3 &nbsp;|
-|10\.0.120.0/24 &nbsp;|10\.0.130.146|&nbsp; ens3 &nbsp;|
-|10\.0.130.0/24 &nbsp;|0\.0.0.0|&nbsp; ens3 &nbsp;|
-|10\.0.140.0/24 &nbsp;|0\.0.0.0|&nbsp; ens4 &nbsp;|
-|0\.0.0.0/0 &nbsp; |10\.0.130.146|&nbsp; ens4 &nbsp;|
+|10\.0.100.0/24 &nbsp,|10\.0.130.146|&nbsp, ens3 &nbsp,|
+|10\.0.110.0/24 &nbsp,|10\.0.130.146|&nbsp, ens3 &nbsp,|
+|10\.0.120.0/24 &nbsp,|10\.0.130.146|&nbsp, ens3 &nbsp,|
+|10\.0.130.0/24 &nbsp,|0\.0.0.0|&nbsp, ens3 &nbsp,|
+|10\.0.140.0/24 &nbsp,|0\.0.0.0|&nbsp, ens4 &nbsp,|
+|0\.0.0.0/0 &nbsp, |10\.0.130.146|&nbsp, ens4 &nbsp,|
 
 **Note:** Networks to which we are directly connected will automatically create the routes.
 
@@ -174,7 +174,7 @@ It would be like this:
 
 ### P2
 
-As we did before, we will remove the default route and add the new one: 
+As we did before, we will remove the default route and add the new one:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.017.png)
 
@@ -252,7 +252,7 @@ PC1-PC3
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.027.png)
 
 ### P2
- 
+
 PC2-PC1
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.028.png)

@@ -14,7 +14,7 @@ Para descargar la imagen de Android, puede utilizar la siguiente página: https:
 wget https://www.fosshub.com/Android-x86.html?dwl=android-x86_64-9.0-r2.iso
 ```
 
-Cree una máquina virtual en KVM siguiendo un proceso similar al de una instalación de Debian; se recomienda asignar 2 GB de RAM y 2 núcleos de CPU:
+Cree una máquina virtual en KVM siguiendo un proceso similar al de una instalación de Debian, se recomienda asignar 2 GB de RAM y 2 núcleos de CPU:
 
 ![](/redes/android_gns3/Pastedimage20240117194542.png)
 
@@ -27,14 +27,14 @@ Una vez instalada la máquina, apáguela para proceder con la importación en GN
 ```bash
 cp /var/lib/libvirt/images/android-wireguard.qcow2 /home/javiercruces/GNS3/images/QEMU/
 
-javiercruces@HPOMEN15:~$ sudo chown javiercruces:javiercruces /home/javiercruces/GNS3/images/QEMU/android-wireguard.qcow2 
+javiercruces@HPOMEN15:~$ sudo chown javiercruces:javiercruces /home/javiercruces/GNS3/images/QEMU/android-wireguard.qcow2
 ```
 
 Ahora, acceda a GNS3 y, en el menú de Preferencias, añada una nueva máquina virtual QEMU:
 
 ![](/redes/android_gns3/Pastedimage20240117195338.png)
 
-Seleccione el binario de emulación x86_64 y asigne la memoria RAM adecuada; 2 GB son suficientes para un funcionamiento correcto: 
+Seleccione el binario de emulación x86_64 y asigne la memoria RAM adecuada, 2 GB son suficientes para un funcionamiento correcto:
 
 ![](/redes/android_gns3/Pastedimage20240117195434.png)
 

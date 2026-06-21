@@ -13,7 +13,7 @@ The first thing we should do is install the package on the server and the client
 
 ![](/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.079.png)
 
-For safety it is usually not allowed to connect the root to the server; for this, the /etc/ssh/sshd config file should be modified, and the following option is put:
+For safety it is usually not allowed to connect the root to the server, for this, the /etc/ssh/sshd config file should be modified, and the following option is put:
 
 ![](/servicios/ssh/img/Aspose.Words.5fca9cc1-3c81-4853-a5ed-a70b0122341b.080.png)
 

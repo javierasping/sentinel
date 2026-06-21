@@ -17,7 +17,7 @@ Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH\*'
 
 ![](/sistemas/ssh_windows/img/Aspose.Words.abd631a7-a62e-4d27-bef0-1d38f74ce102.001.jpeg)
 
-En el caso de que tengamos la característica la instalaremos : 
+En el caso de que tengamos la característica la instalaremos :
 
 ```ps
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0

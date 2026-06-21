@@ -136,7 +136,7 @@ javiercruces@debian13:~$ sudo growpart /dev/vdb 1
 javiercruces@debian13:~$ sudo resize2fs /dev/vdb1
 ```
 
-- XFS (online, debe estar montado; crece en el punto de montaje)
+- XFS (online, debe estar montado, crece en el punto de montaje)
 
 ```bash
 javiercruces@debian13:~$ sudo mount /dev/vdb1 /mnt/vdb1    # si no está ya montado

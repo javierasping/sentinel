@@ -97,7 +97,7 @@ sudo mysql_secure_installation
 
 ## Install message queue (RabbitMQ)
 
-OpenStack uses a message queue to coordinate operations and state exchange among services. The message queue service typically runs on the controller node. OpenStack supports several queue engines, such as RabbitMQ and Qpid, but most distributions that package OpenStack tend to support one in particular. This guide implements RabbitMQ because it is the most commonly supported; if you prefer another engine, consult its documentation.
+OpenStack uses a message queue to coordinate operations and state exchange among services. The message queue service typically runs on the controller node. OpenStack supports several queue engines, such as RabbitMQ and Qpid, but most distributions that package OpenStack tend to support one in particular. This guide implements RabbitMQ because it is the most commonly supported, if you prefer another engine, consult its documentation.
 
 Install RabbitMQ on the controller node:
 

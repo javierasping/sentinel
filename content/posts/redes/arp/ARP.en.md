@@ -29,7 +29,7 @@ In an ARP response, the destination address is that of the device that initiated
 
 When a ping operation is performed, both the sender and the receiver add each other to their respective ARP tables. By consulting both tables, it can be verified that the correspondences have been registered.
 
-The retention time for entries in the cache is generally 120 seconds; once this period expires, the entry is automatically deleted.
+The retention time for entries in the cache is generally 120 seconds, once this period expires, the entry is automatically deleted.
 
 Devices that did not participate in the communication do not store any information in their ARP cache regarding said transaction.
 
@@ -51,7 +51,7 @@ This command is the modern alternative and complement to the traditional `arp` c
 
 A Gratuitous ARP is a request issued by a device to inform other devices on the network about its own IP and MAC address, thereby updating their ARP tables.
 
-Its primary purpose is to ensure that all devices have the most up-to-date information possible. One of its most common uses is the detection of IP address conflicts; if another device responds to a gratuitous ARP packet, it indicates that the IP address is already in use.
+Its primary purpose is to ensure that all devices have the most up-to-date information possible. One of its most common uses is the detection of IP address conflicts, if another device responds to a gratuitous ARP packet, it indicates that the IP address is already in use.
 
 
 ## ARP Spoofing Attack

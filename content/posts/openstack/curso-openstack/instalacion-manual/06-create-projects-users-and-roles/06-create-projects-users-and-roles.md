@@ -11,7 +11,7 @@ Identity (Keystone) es el servicio de autenticación y autorización de OpenStac
 
 Aunque el dominio `default` ya existe tras el `keystone-manage bootstrap`, crearé de forma explícita los proyectos y usuarios que usamos en las guías: `service` (para los usuarios de servicio) y `demo` (para pruebas de usuarios no administrativos). También crearé un rol de ejemplo y lo asignaré al usuario `demo`.
 
-Cuando muestro contraseñas en los ejemplos lo hago por claridad; si prefieres, usa `--password-prompt` para introducir la contraseña de forma interactiva y segura.
+Cuando muestro contraseñas en los ejemplos lo hago por claridad, si prefieres, usa `--password-prompt` para introducir la contraseña de forma interactiva y segura.
 
 ## Crear el proyecto `service`
 

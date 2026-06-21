@@ -91,7 +91,7 @@ Normal pipeline execution:
 The Nginx configuration and the running containers:
 
 ```bash
-javiercruces@atlas:~$ sudo cat /etc/nginx/sites-available/django_docker 
+javiercruces@atlas:~$ sudo cat /etc/nginx/sites-available/django_docker
 server {
     listen 80;
     server_name djangodocker.javiercd.es;

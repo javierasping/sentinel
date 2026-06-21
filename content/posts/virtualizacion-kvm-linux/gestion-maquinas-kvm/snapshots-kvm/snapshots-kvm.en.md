@@ -9,7 +9,7 @@ hero: images/virtualizacion-kvm-linux/gestion-vm/snapshots.png
 Snapshots let you capture a VM's state at a specific moment so you can roll back if something goes wrong (updates, risky changes, tests). In KVM with libvirt there are two main families:
 
 - Internal snapshots: the snapshot content is stored inside the qcow2 file itself. They usually require the VM to be powered off and only work with qcow2 storage (not raw, LVM, etc.).
-- External snapshots: they create separate overlay files (qcow2); these are the most used for hot snapshots (running VM). They allow more flexible flows and can be consolidated later (blockcommit).
+- External snapshots: they create separate overlay files (qcow2), these are the most used for hot snapshots (running VM). They allow more flexible flows and can be consolidated later (blockcommit).
 
 Additionally, a snapshot can be:
 
@@ -19,7 +19,7 @@ Additionally, a snapshot can be:
 General recommendations:
 
 - For hot snapshots, use external snapshots with `--disk-only` and, if possible, `--quiesce` with qemu-guest-agent.
-- Limit the overlay chain depth; consolidate early with blockcommit to avoid performance degradation.
+- Limit the overlay chain depth, consolidate early with blockcommit to avoid performance degradation.
 - Do not use snapshots as a replacement for full backups.
 
 ---
@@ -124,7 +124,7 @@ virsh snapshot-current debian13
 
 ## Revert to a snapshot
 
-With snapshots that include memory you can resume the exact state; with disk-only snapshots it's safer to revert with the VM powered off.
+With snapshots that include memory you can resume the exact state, with disk-only snapshots it's safer to revert with the VM powered off.
 
 ```bash
 # Conservative option for disk-only snapshots: power off, revert, and start
@@ -244,10 +244,10 @@ virsh snapshot-create-as \
 ## Common problems and how to solve them
 
 - `--quiesce` fails: install and enable qemu-guest-agent inside the guest and check `virsh domfsinfo`.
-- Unsupported storage: internal snapshots require qcow2; for raw/LVM/ceph use external snapshots.
-- Snapshots with memory are heavy: they can take time and consume a lot; assess whether you really need memory.
-- Deep overlay chain: I/O impact; consolidate with blockcommit early.
-- Reverting a disk-only snapshot hot: may corrupt data; power off before reverting.
+- Unsupported storage: internal snapshots require qcow2, for raw/LVM/ceph use external snapshots.
+- Snapshots with memory are heavy: they can take time and consume a lot, assess whether you really need memory.
+- Deep overlay chain: I/O impact, consolidate with blockcommit early.
+- Reverting a disk-only snapshot hot: may corrupt data, power off before reverting.
 - Not a replacement for backups: snapshots do not protect against host failures or long-standing silent corruption.
 
 ---

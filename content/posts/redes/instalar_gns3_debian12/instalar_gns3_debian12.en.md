@@ -11,7 +11,7 @@ In this article, I present an update of the process of installing GNS3 in Debian
 We update the repositories and install the available system updates.
 
 ```bash
-javiercruces@HPOMEN15:~$ sudo apt update -y && sudo apt upgrade -y 
+javiercruces@HPOMEN15:~$ sudo apt update -y && sudo apt upgrade -y
 ```
 
 We install the necessary dependencies for GNS3, including Python, virtualization tools (KVM, QEMU, libvirt), additional libraries (PyQt5, dynamipes) and other utilities.
@@ -56,7 +56,7 @@ La red default ha sido marcada para iniciarse automáticamente
 We restart the system to apply changes, such as group settings and PATH.
 
 ```bash
-javiercruces@HPOMEN15:~$ sudo reboot 
+javiercruces@HPOMEN15:~$ sudo reboot
 ```
 
 Now we can start gns3, but I recommend you set up the following sections you have in the post.
@@ -82,7 +82,7 @@ javiercruces@HPOMEN15:~$ cd ubridge/
 We compile the ubridge source code using "make."
 
 ```bash
-javiercruces@HPOMEN15:~/ubridge$ make 
+javiercruces@HPOMEN15:~/ubridge$ make
 ```
 
 We install the ubridge binary in the system to make it available globally.

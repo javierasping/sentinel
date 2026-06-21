@@ -40,7 +40,7 @@ Nos instalaremos el siguiente paquete :
 
 ![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.005.png)
 
-La montamos en nuestro cliente : 
+La montamos en nuestro cliente :
 
 ![](/sistemas/nfs_debian/img/Aspose.Words.11ce2099-f519-43cd-a00b-9a47a367ade4.006.png)
 

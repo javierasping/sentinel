@@ -201,7 +201,7 @@ openstack flavor create --id m1.tiny --ram 512 --disk 1 --vcpus 1 m1.tiny
 ```
 
 
-Lanzamos la instancia `test-vm` en la red interna (el `net-id` corresponde a la red `test-net`; puede diferir en tu entorno):
+Lanzamos la instancia `test-vm` en la red interna (el `net-id` corresponde a la red `test-net`, puede diferir en tu entorno):
 
 ```bash
 vagrant@controller01:~$ openstack server create --flavor m1.tiny --image cirros --nic net-id=9d446c54-f58c-4301-a515-428598f460ca --security-group default --key-name testkey test-vm
@@ -216,7 +216,7 @@ openstack server show test-vm | grep -E "status|addresses|flavor|image"
 
 Si se queda en BUILD/ERROR revisamos `openstack console log show test-vm` y los logs de Nova.
 
-Si necesitamos acceso SSH/ICMP desde fuera, añadimos reglas al security group `default` (solo para laboratorio; en producción usar reglas mínimas necesarias):
+Si necesitamos acceso SSH/ICMP desde fuera, añadimos reglas al security group `default` (solo para laboratorio, en producción usar reglas mínimas necesarias):
 
 ```bash
 openstack security group rule create --proto tcp --dst-port 22 default
@@ -293,6 +293,6 @@ PING 192.168.50.225 (192.168.50.225) 56(84) bytes of data.
 1 packets transmitted, 0 received, 100% packet loss, time 0ms
 ```
 
-Nota: la IP interna (192.168.50.x) está aislada por Neutron; solo la IP flotante es alcanzable desde fuera.
+Nota: la IP interna (192.168.50.x) está aislada por Neutron, solo la IP flotante es alcanzable desde fuera.
 
 Con esto hemos comprobado que todos los componentes que hemos instalado funcionan perfectamente.

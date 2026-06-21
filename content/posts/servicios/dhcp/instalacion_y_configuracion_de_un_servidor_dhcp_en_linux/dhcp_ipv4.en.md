@@ -18,8 +18,8 @@ auto ens4
 iface ens4 inet dhcp
 
 # Internal network 1
-auto ens5 
-iface ens5 inet static 
+auto ens5
+iface ens5 inet static
         address 192.168.10.1
         netmask 255.255.255.0
         # SNAT for ens5 network , ensure that bit of forwarding is activated.
@@ -28,8 +28,8 @@ iface ens5 inet static
 
 
 # Internal network 2
-auto ens6 
-iface ens6 inet static 
+auto ens6
+iface ens6 inet static
         address 192.168.20.1
         netmask 255.255.255.0
 ```
@@ -117,8 +117,8 @@ sudo nano /etc/network/interfaces
 Ensure the interface is configured like this:
 
 ```bash
-auto ens4 
-iface ens4 inet dhcp 
+auto ens4
+iface ens4 inet dhcp
 ```
 
 Restart the network interface to apply changes:
@@ -146,9 +146,9 @@ debian@client1:~$ ip -4 a
     inet 192.168.10.100/24 brd 192.168.10.255 scope global dynamic ens4
 ```
 
-> 💡 **Tip:**  
-> If you need to modify the DHCP client configuration or simply request a new one, these commands are helpful.  
-> On Windows: `ipconfig /release` and then `ipconfig /renew`  
+> 💡 **Tip:**
+> If you need to modify the DHCP client configuration or simply request a new one, these commands are helpful.
+> On Windows: `ipconfig /release` and then `ipconfig /renew`
 > On Linux: `dhclient -r` to release and `dhclient` to renew.
 
 ## Checking address leases

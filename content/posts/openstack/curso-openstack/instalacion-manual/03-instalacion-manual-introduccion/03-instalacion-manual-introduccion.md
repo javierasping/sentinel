@@ -26,7 +26,7 @@ Los posts están pensados para leerse en orden y he incluido los comandos listos
 
 Para el laboratorio de OpenStack utilizamos Vagrant con la imagen base bento/ubuntu-24.04, que proporciona un Ubuntu 24.04 limpio y listo para instalar todos los componentes de OpenStack. Hemos definido el dominio de ejemplo openstack.javiercd.es para facilitar la resolución de nombres y el uso de FQDN en todos los servicios. La red de gestión se llama mgmt-net y cada máquina virtual recibe una IP estática en esta red.
 
-El laboratorio está compuesto por tres nodos, cada uno con su propio rol. 
+El laboratorio está compuesto por tres nodos, cada uno con su propio rol.
 
 El nodo controller01 actúa como controlador y aloja los servicios principales de OpenStack: Keystone, Glance API, Nova API, Cinder API y Horizon, con 2 vCPU y 6 GiB de RAM.
 

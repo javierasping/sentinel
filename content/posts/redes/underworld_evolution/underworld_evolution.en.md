@@ -139,7 +139,7 @@ Here I will show if I have added any routes manually and the routing tables of t
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.024.png)
 
-With the network configuration I have on the interfaces, I have only added 2 manual routes on the routers of MARCUS and ALEXANDER; in the rest it was not necessary since it is generated automatically with the gateway we placed when configuring the network interfaces.
+With the network configuration I have on the interfaces, I have only added 2 manual routes on the routers of MARCUS and ALEXANDER, in the rest it was not necessary since it is generated automatically with the gateway we placed when configuring the network interfaces.
 
 I could have saved writing them if I had placed the IP of the other as the gateway on the interface configured in the network 100.X.X.X.
 
@@ -163,7 +163,7 @@ We are going to check if we have routed correctly, so I will ping from each rout
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.028.png)
 
-It is confirmed that we have connectivity between all routers; the PCs will not have “connectivity” until we configure the SNAT.
+It is confirmed that we have connectivity between all routers, the PCs will not have “connectivity” until we configure the SNAT.
 
 ### DHCP Configuration
 
@@ -171,13 +171,13 @@ It is confirmed that we have connectivity between all routers; the PCs will not 
 
 The lycanthropes, on their part, hire you to assign their IPs via DHCP as well, but they indicate that they cannot receive the first 10 addresses of their range (not counting the network one or the gateway), as these are reserved for the leaders of their clan who are traveling and will return in a few days.
 
-With the machine connected to the NAT cloud and the interface that is connected configured via DHCP, we will download the DHCP server; to do this, we must first run an apt update because the machine does not have the repositories loaded in memory:
+With the machine connected to the NAT cloud and the interface that is connected configured via DHCP, we will download the DHCP server, to do this, we must first run an apt update because the machine does not have the repositories loaded in memory:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.029.png)
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.030.png)
 
-When it finishes installing, it will give us an error; this is because the service is not configured and does not know which interface the server should assign addresses to:
+When it finishes installing, it will give us an error, this is because the service is not configured and does not know which interface the server should assign addresses to:
 
 ![ref1]
 
@@ -189,7 +189,7 @@ Now we will configure the scope with the requirements requested by the lycanthro
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.033.png)
 
-We must keep in mind that the configuration we put here is consistent with the network configuration we have; we need to consider that we have a /28, so in this case, we can only have 14 assignable addresses.
+We must keep in mind that the configuration we put here is consistent with the network configuration we have, we need to consider that we have a /28, so in this case, we can only have 14 assignable addresses.
 
 But if we follow the statement, they do not want the first 10, so we can only assign 3 to our clients.
 
@@ -209,13 +209,13 @@ We will assign an IP to a PC to check that it works:
 
 The werewolves, who are quite clumsy at entering IP addresses into their machines, ask you to configure the DHCP service for all their machines to receive an IP automatically.
 
-With the machine connected to the NAT cloud and the interface that is connected configured via DHCP, we will download the DHCP server; to do this, we must first run an apt update because the machine does not have the repositories loaded in memory:
+With the machine connected to the NAT cloud and the interface that is connected configured via DHCP, we will download the DHCP server, to do this, we must first run an apt update because the machine does not have the repositories loaded in memory:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.037.png)
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.038.png)
 
-When it finishes installing, it will give us an error; this is because the service is not configured and does not know which interface the server should assign addresses to:
+When it finishes installing, it will give us an error, this is because the service is not configured and does not know which interface the server should assign addresses to:
 
 ![ref1]
 
@@ -360,11 +360,11 @@ Now let's check that I can connect to this host:
 
 **R4**
 
-In this network, we will also configure a reservation on the server to keep our rules active; in this case, I will assign the address 192.168.4.5.
+In this network, we will also configure a reservation on the server to keep our rules active, in this case, I will assign the address 192.168.4.5.
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.066.png)
 
-We will restart the service and check that our host has been assigned the reserved IP; if not, we will request another with dhclient:
+We will restart the service and check that our host has been assigned the reserved IP, if not, we will request another with dhclient:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.067.png)
 
@@ -400,7 +400,7 @@ I will set a default DROP policy in the FORWARD table, then allow traffic that c
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.073.png)
 
-We see that they can communicate with each other; however, they cannot access Humans or Vampires:
+We see that they can communicate with each other, however, they cannot access Humans or Vampires:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.074.jpeg)
 
@@ -412,7 +412,7 @@ We will check that the rules have hits:
 
 #### HUMANS will also not be able to communicate with the other species
 
-With the rules we currently have, communication between Humans and other species is not possible; we can see that in R2 without any additional rules, we cannot connect:
+With the rules we currently have, communication between Humans and other species is not possible, we can see that in R2 without any additional rules, we cannot connect:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.077.png)
 
@@ -433,8 +433,8 @@ We will see the hits in the default policy:
 The IPs of these machines are:
 
 - IT KNIGHT (SSH) –> 192.168.2.3:22
-- SONJA (SSH) –> 192.168.1.4:22    
-- SELENE (SSH) –> 192.168.1.5:2222 
+- SONJA (SSH) –> 192.168.1.4:22
+- SELENE (SSH) –> 192.168.1.5:2222
 
 In router 1, the necessary rules to allow this communication are:
 
@@ -656,7 +656,7 @@ Thus, ALEXANDER's routing table will look like:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.131.png)
 
-#### Connectivity Test 
+#### Connectivity Test
 
 We will check that we have routed correctly, so I will ping from each router to each of the edges of the scenario.
 
@@ -711,7 +711,7 @@ We will also confirm that the lease has been granted to our host:
 
 The werewolves, who are quite clumsy at entering IP addresses into their machines, ask you to configure the DHCP service for all their machines to receive an available IP automatically.
 
-In the previous section, I detailed each part of the configuration of a DHCP server in Cisco; here I show you the configuration for the Werewolf network:
+In the previous section, I detailed each part of the configuration of a DHCP server in Cisco, here I show you the configuration for the Werewolf network:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.143.png)
 
@@ -731,7 +731,7 @@ We will assign this rule to the internal interface of our network:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.146.png)
 
-Now we will create a pool with the public IPs; the command would be this, but it does not show completely in the terminal:
+Now we will create a pool with the public IPs, the command would be this, but it does not show completely in the terminal:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.147.png)
 
@@ -766,7 +766,7 @@ We will assign this rule to the internal interface of our network:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.154.png)
 
-Now we will create a pool with the public IPs; the command would be this, but it does not show completely in the terminal:
+Now we will create a pool with the public IPs, the command would be this, but it does not show completely in the terminal:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.155.png)
 
@@ -797,7 +797,7 @@ We will assign this rule to the internal interface of our network:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.161.png)
 
-Now we will create a pool with the public IPs; the command would be this, but it does not show completely in the terminal:
+Now we will create a pool with the public IPs, the command would be this, but it does not show completely in the terminal:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.162.png)
 
@@ -828,7 +828,7 @@ We will assign this rule to the internal interface of our network:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.168.png)
 
-Now we will create a pool with the public IPs; the command would be this, but it does not show completely in the terminal:
+Now we will create a pool with the public IPs, the command would be this, but it does not show completely in the terminal:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.169.png)
 
@@ -908,7 +908,7 @@ WEREWOLVES and LYCANTHROPES, since they are not so repulsive when they cross pat
 
 With these two rules, we allow any host from our local networks to exit when the destination is werewolves or lycanthropes:
 
-- R3 → 180.0.0.1   
+- R3 → 180.0.0.1
 - R4 → 190.0.0.1
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.186.png)
@@ -923,7 +923,7 @@ We see that it blocks the packets that are not from HL to LC or from LC to HL:
 
 #### HUMANS will also not be able to communicate with the other species
 
-With the rules we currently have, communication with other species by humans is not possible; we can see that in R2 without any additional rules, we cannot connect since our packets will reach the networks.
+With the rules we currently have, communication with other species by humans is not possible, we can see that in R2 without any additional rules, we cannot connect since our packets will reach the networks.
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.190.png)
 
@@ -944,8 +944,8 @@ We look at the hits:
 The IPs of these machines are:
 
 - IT KNIGHT (SSH) –> 192.168.2.3:22
-- SONJA (SSH) –> 192.168.1.4:22    
-- SELENE (SSH) –> 192.168.1.5:2222 
+- SONJA (SSH) –> 192.168.1.4:22
+- SELENE (SSH) –> 192.168.1.5:2222
 
 To allow the vampires to communicate with humans:
 
@@ -965,7 +965,7 @@ Now we will allow the vampires to connect to the humans using port 22:
 
 ![](/redes/underworld_evolution/img/Aspose.Words.04ad4cb2-a1f8-43f3-8027-b24afbf6f8f8.199.jpeg)
 
-I don’t know why it’s not working... it only goes through if I don’t place any rules; even allowing ALL SSH traffic doesn’t help... I have also allowed all ICMP, but it still occurs. 
+I don’t know why it’s not working... it only goes through if I don’t place any rules, even allowing ALL SSH traffic doesn’t help... I have also allowed all ICMP, but it still occurs.
 
 The nat and SNAT are working fine, but when it comes to making the ssh rules, the following happens in the local network. Since the router drops them back despite the traffic being allowed.
 

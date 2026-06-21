@@ -276,7 +276,7 @@ cinder_volume_group: "cinder-volumes"
 nova_compute_virt_type: "qemu"
 
 ```
-<!-- 
+<!--
 config_strategy: "COPY_ALWAYS"
 
 kolla_internal_vip_address: "10.0.0.10"
@@ -358,7 +358,7 @@ ansible -i multinode all -m ping
 
 ## 10. Deploy with Kolla-Ansible
 
-The following commands run on the `deployment` VM (with the virtualenv active; enable it if you have not already).
+The following commands run on the `deployment` VM (with the virtualenv active, enable it if you have not already).
 
 **Step 10: Generate passwords**
 
@@ -385,11 +385,11 @@ Make sure no errors appeared:
 
 ```bash
 PLAY RECAP *********************************************************************************************************************************************************************************************************************************************************************
-block1                     : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0   
-compute1                   : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0   
-compute2                   : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0   
-controller                 : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0   
-deployment                 : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
+block1                     : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0
+compute1                   : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0
+compute2                   : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0
+controller                 : ok=42   changed=2    unreachable=0    failed=0    skipped=30   rescued=0    ignored=0
+deployment                 : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 **Step 12: Pre-checks**
@@ -405,11 +405,11 @@ Make sure no errors appeared:
 
 ```bash
 PLAY RECAP *********************************************************************************************************************************************************************************************************************************************************************
-block1                     : ok=33   changed=0    unreachable=0    failed=0    skipped=21   rescued=0    ignored=0   
-compute1                   : ok=41   changed=0    unreachable=0    failed=0    skipped=29   rescued=0    ignored=0   
-compute2                   : ok=41   changed=0    unreachable=0    failed=0    skipped=29   rescued=0    ignored=0   
-controller                 : ok=113  changed=0    unreachable=0    failed=0    skipped=146  rescued=0    ignored=0   
-deployment                 : ok=14   changed=0    unreachable=0    failed=0    skipped=13   rescued=0    ignored=0   
+block1                     : ok=33   changed=0    unreachable=0    failed=0    skipped=21   rescued=0    ignored=0
+compute1                   : ok=41   changed=0    unreachable=0    failed=0    skipped=29   rescued=0    ignored=0
+compute2                   : ok=41   changed=0    unreachable=0    failed=0    skipped=29   rescued=0    ignored=0
+controller                 : ok=113  changed=0    unreachable=0    failed=0    skipped=146  rescued=0    ignored=0
+deployment                 : ok=14   changed=0    unreachable=0    failed=0    skipped=13   rescued=0    ignored=0
 ```
 
 **Step 13: Deploy OpenStack**
@@ -423,11 +423,11 @@ kolla-ansible deploy -i multinode
 
 ```bash
 PLAY RECAP *********************************************************************************************************************************************************************************************************************************************************************
-block1                     : ok=50   changed=18   unreachable=0    failed=0    skipped=20   rescued=0    ignored=0   
-compute1                   : ok=97   changed=37   unreachable=0    failed=0    skipped=70   rescued=0    ignored=0   
-compute2                   : ok=85   changed=36   unreachable=0    failed=0    skipped=65   rescued=0    ignored=0   
-controller                 : ok=423  changed=156  unreachable=0    failed=0    skipped=300  rescued=0    ignored=1   
-deployment                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
+block1                     : ok=50   changed=18   unreachable=0    failed=0    skipped=20   rescued=0    ignored=0
+compute1                   : ok=97   changed=37   unreachable=0    failed=0    skipped=70   rescued=0    ignored=0
+compute2                   : ok=85   changed=36   unreachable=0    failed=0    skipped=65   rescued=0    ignored=0
+controller                 : ok=423  changed=156  unreachable=0    failed=0    skipped=300  rescued=0    ignored=1
+deployment                 : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 **Step 14: Verify containers**
@@ -687,7 +687,7 @@ Below is the full flow to verify OpenStack is operational: create public/private
 +----------------------+--------------------------------------+
 ```
 
-**5. Create router (duplicate name mistake)** — router1 was created twice; the duplicate caused ambiguity when attaching the subnet:
+**5. Create router (duplicate name mistake)** — router1 was created twice, the duplicate caused ambiguity when attaching the subnet:
 
 ```bash
 (kolla-venv) root@deployment:/home/vagrant# openstack router create router1
@@ -897,7 +897,7 @@ After creation you should see something like:
 
 We can validate the same steps via the GUI.
 
-First log in; in our case you can get the username and password from `/etc/kolla/admin-openrc.sh`.
+First log in, in our case you can get the username and password from `/etc/kolla/admin-openrc.sh`.
 
 ![](/images/openstack/instalacion-manual/login_openstack.png)
 

@@ -123,7 +123,7 @@ Vamos a desplegar la aplicación Nextcloud con una base de datos (**Nota: para e
 1. Crea una red de tipo bridge.
 
 ```bash
-javiercruces@docker:~$ docker network create taller1          
+javiercruces@docker:~$ docker network create taller1
 a1f8faf5a100ad01013bc147e7c2a9577a5a4376d7e33c7d961c5aaca93000b0
 
 ```

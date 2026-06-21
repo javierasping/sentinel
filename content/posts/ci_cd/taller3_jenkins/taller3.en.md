@@ -82,7 +82,7 @@ Knowing how the tests are executed, we can create a pipeline to automate this pr
 ```groovy
 pipeline {
     agent {
-        docker { 
+        docker {
             image 'python:3'
             args '-u root:root'
         }

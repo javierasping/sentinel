@@ -292,6 +292,6 @@ PING 192.168.50.225 (192.168.50.225) 56(84) bytes of data.
 1 packets transmitted, 0 received, 100% packet loss, time 0ms
 ```
 
-Note: the internal IP (192.168.50.x) is isolated by Neutron; only the floating IP is reachable from outside.
+Note: the internal IP (192.168.50.x) is isolated by Neutron, only the floating IP is reachable from outside.
 
 With this we have verified the installed components are working as expected.

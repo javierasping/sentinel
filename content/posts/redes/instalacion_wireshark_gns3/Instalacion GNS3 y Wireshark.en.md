@@ -70,7 +70,7 @@ Here I show you the DNS request that has traveled from my laptop to the router.
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.008.jpeg)
 
 
-### 1.3 General wireshark components 
+### 1.3 General wireshark components
 
 **Wireshark makes use of certain packages:**
 
@@ -79,7 +79,7 @@ Here I show you the DNS request that has traveled from my laptop to the router.
 - **Supplements and extensions:**extras for Wireshark and TShark dissection engines
 - **Dissector supplements:**supplements with some extended dissections.
 - **Complements of tree statistics**: Extended statistics.
-- **Mate:**monitoring engine and meta analysis: user-configurable extensions of the screen filter engine; see Chapter 12, MATE for more details.
+- **Mate:**monitoring engine and meta analysis: user-configurable extensions of the screen filter engine, see Chapter 12, MATE for more details.
 - **MIB **of **SNMP**: SNMP MIB for a more detailed SNMP dissection.
 - **Tools:**additional command line tools to work with capture files
 - **Editcap:**reads a capture file and writes some or all of the packages in another capture file.
@@ -92,7 +92,7 @@ Here I show you the DNS request that has traveled from my laptop to the router.
 
 ## 2 **Installation of GNS3 in Debian 11**
 
-### 2.1  Introduction 
+### 2.1  Introduction
 
 GNS3 is a graphical network simulator launched in 2008, which allows you to design complex network topologies and launch simulations on them, allowing the combination of both real and virtual devices.
 
@@ -259,7 +259,7 @@ We will now open a terminal on all of our VPCS with the following button:
 
 Through these terminals we will assign ips addresses to our devices with the following command:
 
-![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.037.png) 
+![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.037.png)
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.038.png)
 
@@ -577,7 +577,7 @@ We can see that both teams have connectivity across the stage.
 
 ## 6 **Wireshark installation on Windows**
 
-### 6.1  Installation 
+### 6.1  Installation
 
 The installation of this product is very simple, if we have installed GNS3 previously and marked the box of this, we will have been installed automatically.
 

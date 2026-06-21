@@ -11,11 +11,11 @@ Short: examples of using the libvirt API (`virsh vol-*`) to manage volumes insid
 
 ## Managing storage volumes with virsh
 
-In this section we'll look at storage volume management using libvirt's API (the `virsh` tool). We will use pools of type `dir` (image files on disk), although many operations are applicable to other backends; differences are noted where relevant.
+In this section we'll look at storage volume management using libvirt's API (the `virsh` tool). We will use pools of type `dir` (image files on disk), although many operations are applicable to other backends, differences are noted where relevant.
 
 ### Pools and volumes: quick concept
 
-A "volume" in libvirt is the storage unit created inside a pool. In `dir` and `fs` pools volumes are files (for example `qcow2`, `raw`); in `logical` pools they are LVM logical volumes; in `disk` pools they can map to partitions; and in networked backends (Gluster, RBD, iSCSI) creation and management may require backend-specific tools.
+A "volume" in libvirt is the storage unit created inside a pool. In `dir` and `fs` pools volumes are files (for example `qcow2`, `raw`), in `logical` pools they are LVM logical volumes, in `disk` pools they can map to partitions, and in networked backends (Gluster, RBD, iSCSI) creation and management may require backend-specific tools.
 
 ### Check available space in pools (pre-requisite)
 
@@ -199,12 +199,12 @@ Upload content from a local file to a volume (overwrite):
 javiercruces@FJCD-PC:~$ virsh vol-upload --pool default vdisk-20G.qcow2 /tmp/vdisk-20G.qcow2
 ```
 
-These operations can be slow for large files; often `qemu-img convert` or backend-specific tools (rbd, gluster) are more efficient.
+These operations can be slow for large files, often `qemu-img convert` or backend-specific tools (rbd, gluster) are more efficient.
 
 ### Limitations by pool type
 
 - `dir`/`fs` (files): `vol-create-as`, `vol-clone`, `vol-delete`, `vol-resize`, `vol-download` and `vol-upload` work naturally.
-- `logical` (LVM): `vol-create-as` can create LVM volumes if libvirt/config allows; alternatively create LVs with `lvcreate` and then define the volume.
+- `logical` (LVM): `vol-create-as` can create LVM volumes if libvirt/config allows, alternatively create LVs with `lvcreate` and then define the volume.
 - `disk` (partitions): `vol-create-as` may create partitions on a physical device — be careful and backup.
 - `iscsi`/`multipath`/`vHBA`: typically managed externally (iSCSI server, multipathd, SAN admin). Not all `virsh vol-*` commands apply.
 - `gluster`/`rbd`: sometimes you must use `qemu-img` or backend tools to create/manage images.
@@ -226,8 +226,8 @@ javiercruces@FJCD-PC:~$ virsh attach-disk --live --config testguest1 /var/lib/li
 
 Notes and explanation:
 - `attach-disk` takes the host-side image path (or pool device) and the target device name inside the guest (e.g., `vdb`).
-- `--live` makes the change on a running VM; `--config` writes the entry into the VM config so it survives reboots. Combine them when you want both.
-- Use this approach when you know the image path and the guest device name; it's the most direct for simple cases.
+- `--live` makes the change on a running VM, `--config` writes the entry into the VM config so it survives reboots. Combine them when you want both.
+- Use this approach when you know the image path and the guest device name, it's the most direct for simple cases.
 
 Alternative: attach using an XML fragment
 
@@ -247,7 +247,7 @@ Then attach persistently:
 javiercruces@FJCD-PC:~$ virsh attach-device --config testguest1 ~/vdisk-20G.xml
 ```
 
-The XML varies by pool type; for simple attach operations `attach-disk` is usually easier.
+The XML varies by pool type, for simple attach operations `attach-disk` is usually easier.
 
 Detach a disk by device name
 

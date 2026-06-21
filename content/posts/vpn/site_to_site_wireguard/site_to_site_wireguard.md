@@ -10,7 +10,7 @@ hero: /images/vpn/wireguard_site_to_site.png
 
 ![](/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png)
 
-> [!NOTE]  
+> [!NOTE]
 > Voy a partir del post de VPN acceso remoto con Wireguard , asi que es posible que haga referencia a este durante este articulo .
 
 ## Generación de claves
@@ -90,7 +90,7 @@ Endpoint = 90.0.0.2:51820
 PersistentKeepalive = 25
 ```
 
-Como yo tengo levantado los túneles del ejercicio anterior los bajaremos y los subiremos para que se aplique la nueva configuración : 
+Como yo tengo levantado los túneles del ejercicio anterior los bajaremos y los subiremos para que se aplique la nueva configuración :
 
 ```bash
 debian@servidor1:~$ sudo wg-quick down wg0
@@ -100,38 +100,38 @@ debian@servidor1:~$ sudo wg-quick up wg0
 debian@servidor1:~$ sudo wg-quick up wg0
 ```
 
-Comprobaremos que en ambos servidores se ha creado la interfaz wg0 , que es la que nos corresponde por el nombre del fichero de configuración : 
+Comprobaremos que en ambos servidores se ha creado la interfaz wg0 , que es la que nos corresponde por el nombre del fichero de configuración :
 
 ```bash
 debian@servidor1:~$ sudo ip link show wg0
 11: wg0: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1420 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
-    link/none 
-    
+    link/none
+
 debian@servidor2:~$ sudo ip link show wg0
 11: wg0: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1420 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
-    link/none 
+    link/none
 ```
 
-A continuación voy a mostrarte las tablas de enroutamiento de los 2 servidores para que veas que se han creado rutas para llegar a ambas redes privadas por la interfaz wg0: 
+A continuación voy a mostrarte las tablas de enroutamiento de los 2 servidores para que veas que se han creado rutas para llegar a ambas redes privadas por la interfaz wg0:
 
 ```bash
 debian@servidor1:~$ ip r
-default via 90.0.0.1 dev ens3 onlink 
-10.99.99.2 dev wg0 scope link 
-90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2 
-192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1 
-192.168.1.0/24 dev wg0 scope link 
+default via 90.0.0.1 dev ens3 onlink
+10.99.99.2 dev wg0 scope link
+90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2
+192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1
+192.168.1.0/24 dev wg0 scope link
 
 debian@servidor2:~$ ip r
-default via 100.0.0.1 dev ens3 onlink 
-10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2 
-100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2 
-192.168.0.0/24 dev wg0 scope link 
-192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1 
+default via 100.0.0.1 dev ens3 onlink
+10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2
+100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2
+192.168.0.0/24 dev wg0 scope link
+192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1
 ```
 
 ### Comprobación de funcionamiento
-  
+
 Ahora, ambas redes privadas están completamente conectadas, lo que nos permite acceder desde cualquiera de las dos a la otra. Vamos a llevar a cabo algunas pruebas desde los clientes para asegurarnos de que la conexión esté funcionando correctamente.
 
 Voy a hacer un ping desde la red 192.168.0.0 a la 192.168.1.0 con cliente1 :
@@ -225,7 +225,7 @@ traceroute to 192.168.1.2 (192.168.1.2), 30 hops max, 60 byte packets
 Desde la red 192.168.1.0 a la 192.168.0.0 :
 
 ```bash
-debian@cliente3:~$ traceroute 192.168.0.3 
+debian@cliente3:~$ traceroute 192.168.0.3
 traceroute to 192.168.0.3 (192.168.0.3), 30 hops max, 60 byte packets
  1  192.168.1.1 (192.168.1.1)  0.430 ms  0.399 ms  0.393 ms
  2  10.99.99.1 (10.99.99.1)  19.343 ms  19.337 ms  19.329 ms

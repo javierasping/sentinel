@@ -9,12 +9,12 @@ hero: /images/redes/underworld/portada_underwolrd.webp
 ## Introducción
 Vives en UNDERWORLD. En tu mundo, se presentan diferentes tipos de especies con un único fin, “cruzarse” entre sí. Estas criaturas son:
 
-- VAMPIROS 
+- VAMPIROS
 - LICÁNTROPOS: hombres lobo con la capacidad de regresar a su estado humano.
 - HOMBRES LOBO: hombres lobo que tras su primera conversión a lobo, no pudieron regresar a su estado humano.
 
 - HUMANOS: unos mierdecillas.
-- TÚ: un guerrero informático con superpoderes como darse la vuelta a un juego que todavía no ha salido al mercado o poseer la facultad de volverse invisible cuando sale de fiesta y trata de cortejar a una fémina diciéndole frases del tipo: ¿quieres que te compile el kernel nena? 
+- TÚ: un guerrero informático con superpoderes como darse la vuelta a un juego que todavía no ha salido al mercado o poseer la facultad de volverse invisible cuando sale de fiesta y trata de cortejar a una fémina diciéndole frases del tipo: ¿quieres que te compile el kernel nena?
 
 El aspecto de UNDERWORLD es el siguiente:
 
@@ -74,9 +74,9 @@ El aspecto de UNDERWORLD es el siguiente:
 |192\.168.7.0/24|0\.0.0.0|F0/0|
 |0\.0.0.0/0|192\.168.6.1|F1/0|
 
-## 2.Configuración direcciones Ips interfaces 
+## 2.Configuración direcciones Ips interfaces
 
-### Router humanos 
+### Router humanos
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.002.png)
 
@@ -86,7 +86,7 @@ Guardamos la configuración:
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.004.png)
 
-### Router vampiros 
+### Router vampiros
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.005.jpeg)
 
@@ -96,7 +96,7 @@ Guardamos la configuración:
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.007.png)
 
-### Router licántropos 
+### Router licántropos
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.008.jpeg)
 
@@ -106,7 +106,7 @@ Guardamos la configuración:
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.010.png)
 
-### Router vampiros 
+### Router vampiros
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.011.png)
 
@@ -132,7 +132,7 @@ Guardamos la configuración:
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.016.png)
 
-### Router vampiros 
+### Router vampiros
 
 Añadiremos las siguientes rutas:
 
@@ -184,7 +184,7 @@ Para no hacer muy extenso este apartado, comprobaré que desde PC1 llego a todos
 
 Todo el mundo utiliza la red para mandarse mensajitos y ligar (por lo que deberás configurar la red para que esto sea posible en un principio, es decir, que todos los equipos tengan conexión entre sí). Tú, que ya estás hasta la \*#%?! de tanto bicho raro como consecuencia de los cruces que se producen cuando un vampiro se cruza por ejemplo con un licántropo y el hijo de éstos con un hombre lobo y así sucesivamente, decides ponerle fin a la historia haciendo lo siguiente, metiéndole unas cuantas ACLs a los routers que los comunican:
 
-1. **Los  VAMPIROS no podrán comunicarse con el resto de especies.** 
+1. **Los  VAMPIROS no podrán comunicarse con el resto de especies.**
 
 Creamos la regla para denegar el tráfico de la red 192.168.3.0:
 
@@ -230,7 +230,7 @@ Desde PC1 vemos que no obtenemos respuesta ya que solo estamos cortando el trafi
 
 **HUMANOS tampoco podrán comunicarse con el resto de especies**
 
-Con el esquema actual de ACLs no sería necesario implementar una nueva regla, ya que con la configuración actual no es posible la comunicación con ellos. Aunque los mensajes que PC1 envíe lleguen a su destino, este no recibirá ninguna respuesta.  
+Con el esquema actual de ACLs no sería necesario implementar una nueva regla, ya que con la configuración actual no es posible la comunicación con ellos. Aunque los mensajes que PC1 envíe lleguen a su destino, este no recibirá ninguna respuesta.
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.038.png)
 
@@ -244,7 +244,7 @@ Ahora estamos cortando los mensajes de los humanos desde el Router 1:
 
 ## 6.Servidor DHCP
 
-Al final decides hacer negocio con las especies raras porque no tienen ni pajolera idea de informática y eres contratado por estos entes malignos para que lleves a cabo las siguientes tareas: 
+Al final decides hacer negocio con las especies raras porque no tienen ni pajolera idea de informática y eres contratado por estos entes malignos para que lleves a cabo las siguientes tareas:
 
 **Hombres lobo**
 
@@ -254,9 +254,9 @@ Tendremos que seguir estos pasos:
 
 1. El comando  indica las direcciones que no queremos que se repartan por DHCP, es decir, las exclusiones.
 1. Con el comando  nombramos al rango de direcciones que estamos repartiendo.
-1. Nos meterá a la configuración del rango, ahora le decimos la red que queremos que reparta las direcciones network 192.168.7.0 255.255.255.0 
-1. Ahora indicaremos la puerta de enlace que queremos que asigne: 
-1. Si quisiéramos configurar un servidor DNS, por ejemplo el de Google, sería así: 
+1. Nos meterá a la configuración del rango, ahora le decimos la red que queremos que reparta las direcciones network 192.168.7.0 255.255.255.0
+1. Ahora indicaremos la puerta de enlace que queremos que asigne:
+1. Si quisiéramos configurar un servidor DNS, por ejemplo el de Google, sería así:
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.041.png)
 
@@ -290,7 +290,7 @@ Comprobaremos que el servidor DHCP está funcionando:
 
 ## 7.Modificación ACLs
 
-**Permitir ligar con las vampiros** 
+**Permitir ligar con las vampiros**
 
 De tanto hacer negocio con los vampiros, te fijas en un par de vampiritas que están de muy buen ver y  te  gustaría  poder  enviarles  mensajitos  desde  el  chalet  que  te  acabas  de  comprar  en HUMANLAND con el pastizal que les estás sacando a las pobres “criaturicas”. Tu IP es la 192.168.1.4 y la de SELENE y SONJA son la 192.168.3.4 y 192.168.3.5 respectivamente. Añade una máquina a HUMANLAND para tu equipo denominado IT KNIGHT y 2 máquinas denominadas SELENE y SONJA con las mencionadas IPs en TRANSILVANIA.
 
@@ -328,7 +328,7 @@ Vemos que solo nos permite el tráfico hacia estos dos hosts específicos, tal y
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.053.png)
 
-**SONJA–> IT KNIGHT** 
+**SONJA–> IT KNIGHT**
 
 Vemos que solo nos permite el tráfico hacia estos dos hosts específicos, tal y como hemos indicado en nuestras ACLs. , si intentamos comunicarnos con otro host cortara el trafico la ACL:
 
@@ -344,7 +344,7 @@ Aunque en ninguna de las listas hemos especificado un , no sería necesario ya q
 
 ## 8. Servidor web
 
-Desde que no se puede ligar en UNDERWORLD, están todos más aburridos que un ajo, así que decides ponerles un servidor WEB interno a UNDERWORLD. Añade al router PUENTE 1, un servidor denominado FICHEROS que tendrá la IP 192.168.8.2/24, creando las ACLs necesarias para que la comunidad entera de UNDERWORLD, pueda entretenerse viendo algunas web chulas. 
+Desde que no se puede ligar en UNDERWORLD, están todos más aburridos que un ajo, así que decides ponerles un servidor WEB interno a UNDERWORLD. Añade al router PUENTE 1, un servidor denominado FICHEROS que tendrá la IP 192.168.8.2/24, creando las ACLs necesarias para que la comunidad entera de UNDERWORLD, pueda entretenerse viendo algunas web chulas.
 
 Lo primero será configurar la nueva interfaz del router de los HUMANOS:
 

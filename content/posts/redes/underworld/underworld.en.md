@@ -321,7 +321,7 @@ We will apply it to the inbound interface on each network, both are FastEthernet
 
 ![](/redes/underworld/images/Aspose.Words.0cb93ef6-f4fa-4538-a812-68ecd45de766.051.png)
 
-**\***We must have previously removed the list assigned to the interface; otherwise, it will throw an error. To remove it, use the same command as to assign it, but add a `no` in front.
+**\***We must have previously removed the list assigned to the interface, otherwise, it will throw an error. To remove it, use the same command as to assign it, but add a `no` in front.
 
 Now we will verify the effectiveness of these rules we have implemented:
 

@@ -68,7 +68,7 @@ PC4 , solo tendrá conectividad con los PCs que pertenecen a su VLAN:
 
 Tenemos que tener en cuenta que los dispositivos que no pertenecen a la VLAN 10 deberemos de configurados manualmente ya que estos no tienen conectividad con el servidor DHCP.
 
-El ejercicio A podemos hacerlo perfectamente con los switches que trae GNS3 , encontraremos una limitación importante , ya que los switches solo permiten que las bocas pertenezcan a una VLAN . 
+El ejercicio A podemos hacerlo perfectamente con los switches que trae GNS3 , encontraremos una limitación importante , ya que los switches solo permiten que las bocas pertenezcan a una VLAN .
 
 Al realizar el ejercicio debemos de tener en cuenta los tipos que puede tener un puerto , los que hemos utilizado son los dos primeros  :
 
@@ -76,11 +76,11 @@ Al realizar el ejercicio debemos de tener en cuenta los tipos que puede tener un
 - Dot1q:Este es el encargado de interconectar dispositivos de red entre si , se encarga de añadir el etiquetado en el encabezado para mandar el paquete a otro dispositivo y que este sepa a que VLAN pertenece .
 - QinQ : Es similar a dot1q pero este además se encarga de añadir en el etiquetado , el tipo de paquete para identificarlos .
 
-Teniendo esto en cuenta podemos hacer una analogía con la práctica de switches físicos : Los puertos untagged –> Access 
+Teniendo esto en cuenta podemos hacer una analogía con la práctica de switches físicos : Los puertos untagged –> Access
 
-Los puertos tagged –> Dot1q 
+Los puertos tagged –> Dot1q
 
-Al utilizar estos switches el protocolo 802.1Q pero “con menos funciones” no podemos indicar que VLANs queremos que utilice los puertos configurados como Dot1q , sino que este a través de la VLAN por defecto pasará los paquetes etiquetados de todas las VLANs . 
+Al utilizar estos switches el protocolo 802.1Q pero “con menos funciones” no podemos indicar que VLANs queremos que utilice los puertos configurados como Dot1q , sino que este a través de la VLAN por defecto pasará los paquetes etiquetados de todas las VLANs .
 
 ## Ejercicio B
 
@@ -102,13 +102,13 @@ Como estos 2 PCS pertenecen a la misma VLAN que la nube NAT pueden comunicarse s
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.016.png)
 
-Con el servidor de datos nos toparemos con la limitación  ya que únicamente un puerto puede pertenecer a una VLAN , solo una pareja de nuestros PCs podrán comunicarse . Esto podríamos evitarlo configurando el servidor como una “máquina real” con 2 interfaces virtuales y diciéndole al switch que cada una pertenece a una VLAN distinta .  
+Con el servidor de datos nos toparemos con la limitación  ya que únicamente un puerto puede pertenecer a una VLAN , solo una pareja de nuestros PCs podrán comunicarse . Esto podríamos evitarlo configurando el servidor como una “máquina real” con 2 interfaces virtuales y diciéndole al switch que cada una pertenece a una VLAN distinta .
 
 ### CISCO 3725
 
 Para comenzar a utilizar este dispositivo , tendremos que añadirle espacio al disco para que podamos  iniciarlo  ,  además  podemos  añadir  el  módulo  de  16  bocas  Ethernet  de  forma predeterminada así no tendremos que hacerlo a mano mas adelante .
 
-Para realizar esta configuración deberemos de tener importado el router y acceder a Edit > preferences > IOS routers . 
+Para realizar esta configuración deberemos de tener importado el router y acceder a Edit > preferences > IOS routers .
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.017.jpeg)
 
@@ -128,7 +128,7 @@ A continuación le diremos a estos puertos que tienen que funcionar como si fues
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.022.png)
 
-Ahora crearemos las VLANs usando los siguientes comandos , para cada uno de los switches : 
+Ahora crearemos las VLANs usando los siguientes comandos , para cada uno de los switches :
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.023.png)
 
@@ -150,7 +150,7 @@ Por ultimo guardaremos los cambios para que si se apaga el equipo mantenga las m
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.028.png)
 
-Con esto habremos configurado el primer 3725 , su homologo a este , es decir el que conecta a PC3 y PC4 , tendríamos que hacer lo mismo adaptado a los puertos en los que estén conectado los dispositivos . 
+Con esto habremos configurado el primer 3725 , su homologo a este , es decir el que conecta a PC3 y PC4 , tendríamos que hacer lo mismo adaptado a los puertos en los que estén conectado los dispositivos .
 
 Continuaremos configurando el 3725 que une ambos “switches” y da salida al servidor de datos y a internet . Para ello crearemos las VLANs 10 y 20 :
 
@@ -199,7 +199,7 @@ También he configurado enrutamiento inter vlan , siguiendo los enlaces de la bi
 
 Responde a las siguientes preguntas sobre los apartados anteriores:
 
-**C.1 ¿Qué pasa con el direccionamiento cuando añades la nube de NAT? ¿Cuál es el motivo de este cambio?** 
+**C.1 ¿Qué pasa con el direccionamiento cuando añades la nube de NAT? ¿Cuál es el motivo de este cambio?**
 
 Cuando ponemos la nube NAT , esta incluye un servidor DHCP el cual tiene la dirección IP 192.168.122.1 y asignas direcciones de la red 192.168.122.1/24 . A través de la configuración que nos proporciona este nos permitirá navegar por internet .
 
@@ -234,7 +234,7 @@ En el panel de network diremos que use DHCP y guardamos la configuración :
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.043.png)
 
-En la terminal podemos cerciorarnos de que la configuración de red se ha realizado correctamente . 
+En la terminal podemos cerciorarnos de que la configuración de red se ha realizado correctamente .
 
 ![](/redes/switches_gns3/img/Aspose.Words.1880b7c0-3050-4e53-a32a-505911fdf872.044.png)
 

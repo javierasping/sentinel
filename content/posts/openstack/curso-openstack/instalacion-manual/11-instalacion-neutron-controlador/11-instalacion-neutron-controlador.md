@@ -24,7 +24,7 @@ Nos conectaremos al servidor de la base de datos como `root` para crear la base 
 1. Accedo al cliente SQL:
 
 ```bash
-vagrant@controller01:~$ sudo mysql           
+vagrant@controller01:~$ sudo mysql
 ```
 
 2. Creación de la base de datos `neutron`:
@@ -51,7 +51,7 @@ Cargaremos las credenciales de administrador para trabajar con la CLI de OpenSta
 1. Cargo las variables de entorno:
 
 ```bash
-vagrant@controller01:~$ source admin-openrc 
+vagrant@controller01:~$ source admin-openrc
 ```
 
 2. Crearemos el usuario `neutron` en Keystone (utiliza `NEUTRON_PASSWORD` como contraseña de ejemplo):
@@ -111,7 +111,7 @@ vagrant@controller01:~$ openstack endpoint create --region RegionOne network pub
 | service_type | network                          |
 | url          | http://controller01:9696           |
 +--------------+----------------------------------+
-vagrant@controller01:~$ openstack endpoint create --region RegionOne network internal http://controller01:9696 
+vagrant@controller01:~$ openstack endpoint create --region RegionOne network internal http://controller01:9696
 +--------------+----------------------------------+
 | Field        | Value                            |
 +--------------+----------------------------------+

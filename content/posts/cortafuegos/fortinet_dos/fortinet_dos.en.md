@@ -56,7 +56,7 @@ debian@thor:~$ ip -4 a
     altname enp0s3
     inet 192.168.100.4/24 brd 192.168.100.255 scope global dynamic ens3
        valid_lft 604791sec preferred_lft 604791sec
-debian@thor:~$ 
+debian@thor:~$
 ```
 
 Loki machine:
@@ -115,7 +115,7 @@ Some of the following rules are already set from the previous exercise, such as 
 
 ```bash
 javiercruces@HPOMEN15:~$ ssh osboxes@192.168.122.77 -p 2222
-osboxes@192.168.122.77's password: 
+osboxes@192.168.122.77's password:
 Welcome to Ubuntu 22.04 LTS (GNU/Linux 5.15.0-25-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -148,7 +148,7 @@ You see that for example if I connect from loki or thor I can get to odin:
 
 ```bash
 debian@loki:~$ ssh osboxes@192.168.100.2
-osboxes@192.168.100.2's password: 
+osboxes@192.168.100.2's password:
 Welcome to Ubuntu 22.04 LTS (GNU/Linux 5.15.0-25-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -160,7 +160,7 @@ Welcome to Ubuntu 22.04 LTS (GNU/Linux 5.15.0-25-generic x86_64)
 To see these additional updates run: apt list --upgradable
 
 Last login: Fri Mar 29 11:42:43 2024 from 192.168.100.3
-osboxes@odin:~$ 
+osboxes@odin:~$
 ```
 
 But I don't get it by the rule I've created if not by the topology of the network itself, the rule has no hits:
@@ -293,15 +293,15 @@ Now let's check that we can connect by ssh from Hela to the LAN:
 
 ```bash
 debian@hela:~$ ssh osboxes@192.168.100.2 'hostname -f'
-osboxes@192.168.100.2's password: 
+osboxes@192.168.100.2's password:
 odin.javiercd.gonzalonazareno.org
 
 debian@hela:~$ ssh 192.168.100.3 'hostname -f'
-debian@192.168.100.3's password: 
+debian@192.168.100.3's password:
 loki.javiercd.gonzalonazareno.org
 
 debian@hela:~$ ssh 192.168.100.4 'hostname -f'
-debian@192.168.100.4's password: 
+debian@192.168.100.4's password:
 thor.javiercd.gonzalonazareno.org
 ```
 
@@ -319,15 +319,15 @@ Now let's check the rule we just created:
 
 ```bash
 osboxes@odin:~$ ssh debian@192.168.200.2 'hostname -f'
-debian@192.168.200.2's password: 
+debian@192.168.200.2's password:
 hela.javiercd.gonzalonazareno.org
 
 debian@loki:~$ ssh 192.168.200.2 'hostname -f'
-debian@192.168.200.2's password: 
+debian@192.168.200.2's password:
 hela.javiercd.gonzalonazareno.org
 
 debian@thor:~$ ssh 192.168.200.2 'hostname -f'
-debian@192.168.200.2's password: 
+debian@192.168.200.2's password:
 hela.javiercd.gonzalonazareno.org
 ```
 
@@ -397,7 +397,7 @@ PING javierasping.github.io (185.199.108.153) 56(84) bytes of data.
 rtt min/avg/max/mdev = 11.111/11.111/11.111/0.000 ms
 
 osboxes@odin:~$ curl -I  https://www.javiercd.es/
-HTTP/2 200 
+HTTP/2 200
 server: GitHub.com
 content-type: text/html; charset=utf-8
 last-modified: Mon, 11 Mar 2024 23:21:37 GMT
@@ -470,7 +470,7 @@ javiercruces@HPOMEN15:~$ ftp debian@192.168.122.77
 Connected to 192.168.122.77.
 220 ProFTPD Server (Debian) [::ffff:192.168.200.2]
 331 Password required for debian
-Password: 
+Password:
 230 User debian logged in
 Remote system type is UNIX.
 Using binary mode to transfer files.
@@ -522,7 +522,7 @@ osboxes@odin:~$ ftp debian@192.168.100.1
 Connected to 192.168.100.1.
 220 ProFTPD Server (Debian) [::ffff:192.168.200.2]
 331 Password required for debian
-Password: 
+Password:
 230 User debian logged in
 Remote system type is UNIX.
 Using binary mode to transfer files.
@@ -573,7 +573,7 @@ Let's check that we have access to the pgsql server from the DMZ network:
 
 ```bash
 debian@hela:~$ psql -h 192.168.200.1 -U postgres -W
-Password: 
+Password:
 psql (15.6 (Debian 15.6-0+deb12u1))
 SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, compression: off)
 Type "help" for help.

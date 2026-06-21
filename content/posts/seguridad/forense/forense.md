@@ -12,7 +12,7 @@ La informática forense es el conjunto de técnicas que nos permite obtener la m
 En esta práctica, realizarás la fase de toma de evidencias y análisis de las mismas sobre una máquina Linux y otra Windows. Supondremos que pillamos al delincuente 'in fraganti' y las máquinas se encontraban encendidas. Opcionalmente, podéis realizar el análisis de un dispositivo Android.
 Sobre cada una de las máquinas debes realizar un volcado de memoria y otro de disco duro, tomando las medidas necesarias para certificar posteriormente la cadena de custodia.
 
-  
+
 
 ## Volcado de las imágenes y memoria
 
@@ -22,7 +22,7 @@ Me voy a preparar el disco en el cual contiene las herramientas :
 
 ```bash
 javiercruces@HPOMEN15:~$ sudo guestmount -a /var/lib/libvirt/images/win_foresense-1.qcow2 -m /dev/sda1 /mnt/vdb/
-javiercruces@HPOMEN15:~/Descargas$ sudo cp AccessData_FTK_Imager_4.7.1.exe /mnt/vdb 
+javiercruces@HPOMEN15:~/Descargas$ sudo cp AccessData_FTK_Imager_4.7.1.exe /mnt/vdb
 ```
 
 Este lo pinchare en la maquina ya que le he instalado el FTK :
@@ -125,23 +125,23 @@ fb321d3671cf9f911f933e29fc9a099cd6834838c40d01fe6404b6975990c041  /mnt/vdb/regis
 ```
 
 ### Linux
-#### Volcado de disco 
+#### Volcado de disco
 
 ```bash
 javiercruces@debian:~/LiME/src$ lsblk -f
 NAME  FSTYPE FSVER LABEL                 UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
-sda                                                                                          
+sda
 └─sda1
-      crypto 2                           9fc1bfa7-9224-4e8e-896a-09516d4fd613                
-sr0   iso966 Jolie Debian 12.1.0 amd64 n 2023-07-22-10-52-30-00                              
-vda                                                                                          
+      crypto 2                           9fc1bfa7-9224-4e8e-896a-09516d4fd613
+sr0   iso966 Jolie Debian 12.1.0 amd64 n 2023-07-22-10-52-30-00
+vda
 ├─vda1
 │     vfat   FAT32                       DB79-1C75                             597,9M    37% /boot
 ├─vda2
 │     ext4   1.0                         6666d9d8-9a41-46e5-a370-0730f713d3a7    7,6G    52% /
 └─vda3
       swap   1                           e24babe0-340c-4b09-836e-dd5f447bcecc                [SWAP]
-vdb                                                                                          
+vdb
 └─vdb1
       ext4   1.0                         f79f0d79-209b-42b9-9087-5c72ee1595ee     54G     3% /mnt
 
@@ -149,12 +149,12 @@ javiercruces@debian:~/LiME/src$ sudo dd if=/dev/vda2 of=/mnt/discoLinux.raw bs=6
 296784+0 records in
 296784+0 records out
 19450036224 bytes (19 GB, 18 GiB) copied, 27,2778 s, 713 MB/s
-javiercruces@debian:~/LiME/src$ 
+javiercruces@debian:~/LiME/src$
 
 ```
 
 
-#### Volcado de memoria 
+#### Volcado de memoria
 
 ```bash
 javiercruces@debian:~$ git clone https://github.com/504ensicsLabs/LiME.git
@@ -187,7 +187,7 @@ b419ec819114f21a10bc5146a0b28183165c8b2cf77b2fe160e3044b1b5e04a0  /mnt/vdb/vdb
 ```
 
 
-### Análisis de la maquina Windows 
+### Análisis de la maquina Windows
 
 Lo primero que haré sera crear un caso en autopsy (Esta documentación esta hecha en debian , los ejercicios los he respondido en Windows ).
 
@@ -202,7 +202,7 @@ Esperamos a que autopsy procese la imagen de disco :
 
 ![](/seguridad/forense/img/Pastedimage20240205205353.png)
 
-### Instalación volatility 
+### Instalación volatility
 
 ```bash
 javiercruces@HPOMEN15:~$ git clone https://github.com/volatilityfoundation/volatility3.git
@@ -229,7 +229,7 @@ javiercruces@HPOMEN15:~/volatility3$ source volatility/bin/activate
 
 ## Máquina Windows
 
-  
+
 
 ### 1. Procesos en ejecución
 
@@ -336,9 +336,9 @@ PID	PPID	ImageFileName	Offset(V)	Threads	Handles	SessionId	Wow64	CreateTime	Exit
 ### 2. Servicios en ejecución
 
 ```bash
-(volatility) javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f "/mnt/vdb/memoria/memdump.mem" windows.getservicesids.GetServiceSIDs 
+(volatility) javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f "/mnt/vdb/memoria/memdump.mem" windows.getservicesids.GetServiceSIDs
 Volatility 3 Framework 2.5.2
-Progress:  100.00		PDB scanning finished                        
+Progress:  100.00		PDB scanning finished
 SID	Service
 
 S-1-5-80-4151353957-356578678-4163131872-800126167-2037860865	.NET CLR Networking 4.0.0.0
@@ -722,10 +722,10 @@ S-1-5-80-1281037624-1782002805-990284447-3522102690-2853398433	xinputhid
 
 ![](/seguridad/forense/img/Pastedimage20240206211730.png)
 
-Volatility parece ser que no tiene soporte para esta funcionalidad para Windows 10/11 , así que lo haré desde la propia powershell de la maquina : 
+Volatility parece ser que no tiene soporte para esta funcionalidad para Windows 10/11 , así que lo haré desde la propia powershell de la maquina :
 
   ```bash
-(volatility) javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f "/mnt/vdb/memoria/memdump.mem" windows.netstat 
+(volatility) javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f "/mnt/vdb/memoria/memdump.mem" windows.netstat
 Volatility 3 Framework 2.5.2
 
 PS C:\Windows\system32> Get-NetTCPConnection | Where-Object {$_.State -eq 'Listen'} | Select-Object LocalAddress, LocalPort
@@ -796,102 +796,102 @@ State         : Established
   ```bash
 (volatility) javiercruces@HPOMEN15:~/volatility3$ sudo python3 vol.py -f "/mnt/vdb/memoria/memdump.mem" windows.sessions.Sessions
 Volatility 3 Framework 2.5.2
-Progress:  100.00		PDB scanning finished                        
+Progress:  100.00		PDB scanning finished
 Session ID	Session Type	Process ID	Process	User Name	Create Time
 
-N/A	-	4	System	-	2024-02-05 19:30:59.000000 
-N/A	-	92	Registry	-	2024-02-05 19:30:56.000000 
-N/A	-	344	smss.exe	-	2024-02-05 19:30:59.000000 
-0	-	448	csrss.exe	/SYSTEM	2024-02-05 19:31:15.000000 
-0	-	516	wininit.exe	/SYSTEM	2024-02-05 19:31:15.000000 
-0	-	648	services.exe	/SYSTEM	2024-02-05 19:31:15.000000 
-0	-	668	lsass.exe	/SYSTEM	2024-02-05 19:31:15.000000 
-0	-	768	fontdrvhost.ex	Font Driver Host/UMFD-0	2024-02-05 19:31:15.000000 
-0	-	788	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:15.000000 
-0	-	880	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:15.000000 
-0	-	400	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
-0	-	444	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
-0	-	584	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
-0	-	1032	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
-0	-	1040	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
-0	-	1244	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
-0	-	1460	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
-0	-	1520	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
-0	-	1572	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
-0	-	1924	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
-0	-	1956	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
-0	-	1052	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
-0	-	1068	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
-0	-	1232	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
-0	-	1568	spoolsv.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000 
-0	-	2052	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000 
-0	-	2300	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:17.000000 
-0	-	2412	MsMpEng.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:17.000000 
-0	-	2868	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:18.000000 
-0	-	3044	dasHost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:18.000000 
-0	-	664	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:19.000000 
-0	-	3868	WUDFHost.exe	/SYSTEM	2024-02-05 19:31:38.000000 
-0	-	3068	NisSrv.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:39.000000 
-0	-	4452	SearchIndexer.	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:40.000000 
-0	-	5828	WmiPrvSE.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:44.000000 
-0	-	6028	GoogleCrashHan	-	2024-02-05 19:31:45.000000 
-0	-	6092	GoogleCrashHan	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:45.000000 
-0	-	3236	SecurityHealth	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:54.000000 
-0	-	7020	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:33:17.000000 
-0	-	4788	SgrmBroker.exe	-	2024-02-05 19:33:18.000000 
-0	-	760	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:33:18.000000 
-1	-	528	csrss.exe	/SYSTEM	2024-02-05 19:31:15.000000 
-1	-	612	winlogon.exe	/SYSTEM	2024-02-05 19:31:15.000000 
-1	-	776	fontdrvhost.ex	Font Driver Host/UMFD-1	2024-02-05 19:31:15.000000 
-1	-	988	dwm.exe	/SYSTEM	2024-02-05 19:31:15.000000 
-1	-	996	LogonUI.exe	/SYSTEM	2024-02-05 19:31:15.000000 
-N/A	-	1768	MemCompression	-	2024-02-05 19:31:16.000000 
-2	-	3792	csrss.exe	/SYSTEM	2024-02-05 19:31:38.000000 
-2	-	3840	winlogon.exe	/SYSTEM	2024-02-05 19:31:38.000000 
-2	-	3960	fontdrvhost.ex	Font Driver Host/UMFD-2	2024-02-05 19:31:38.000000 
-2	-	4020	dwm.exe	/SYSTEM	2024-02-05 19:31:38.000000 
-2	-	3456	rdpclip.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000 
-2	-	3616	sihost.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000 
-2	-	3400	svchost.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000 
-2	-	3188	taskhostw.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000 
-2	-	3344	ctfmon.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000 
-2	-	4208	userinit.exe	-	2024-02-05 19:31:40.000000 
-2	RDP-Tcp#1	4236	explorer.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:40.000000 
-2	-	4388	svchost.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:40.000000 
-2	-	4876	StartMenuExper	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:41.000000 
-2	-	5096	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:42.000000 
-2	-	4732	SearchApp.exe	-	2024-02-05 19:31:42.000000 
-2	-	5184	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:42.000000 
-2	-	3740	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:52.000000 
-2	-	1912	smartscreen.ex	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:54.000000 
-2	RDP-Tcp#1	3524	SecurityHealth	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:54.000000 
-2	RDP-Tcp#1	820	OneDrive.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:55.000000 
-2	RDP-Tcp#1	6128	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:56.000000 
-2	-	2040	chrome.exe	-	2024-02-05 19:31:57.000000 
-2	RDP-Tcp#1	5404	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000 
-2	RDP-Tcp#1	5392	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000 
-2	RDP-Tcp#1	5348	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000 
-2	-	5496	chrome.exe	-	2024-02-05 19:31:57.000000 
-2	-	6184	chrome.exe	-	2024-02-05 19:31:57.000000 
-2	-	6200	chrome.exe	-	2024-02-05 19:31:57.000000 
-2	-	6380	TextInputHost.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000 
-2	-	6556	dllhost.exe	-	2024-02-05 19:31:58.000000 
-2	-	6156	chrome.exe	-	2024-02-05 19:33:00.000000 
-2	-	5284	chrome.exe	-	2024-02-05 19:33:00.000000 
-2	-	4036	chrome.exe	-	2024-02-05 19:33:05.000000 
-2	-	6916	FTK Imager.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:11.000000 
-2	-	6044	ApplicationFra	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:14.000000 
-2	-	6104	Calculator.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:14.000000 
-2	-	5864	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:14.000000 
-2	-	7348	HxCalendarAppI	-	2024-02-05 19:33:20.000000 
-2	-	7412	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:20.000000 
-2	-	7476	HxTsr.exe	-	2024-02-05 19:33:20.000000 
-2	-	7816	Taskmgr.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:22.000000 
-2	-	8072	explorer.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:34.000000 
-2	-	7256	PaintStudio.Vi	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:39.000000 
-2	-	7796	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:40.000000 
-2	-	900	Time.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:42.000000 
-2	-	2132	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:43.000000 
+N/A	-	4	System	-	2024-02-05 19:30:59.000000
+N/A	-	92	Registry	-	2024-02-05 19:30:56.000000
+N/A	-	344	smss.exe	-	2024-02-05 19:30:59.000000
+0	-	448	csrss.exe	/SYSTEM	2024-02-05 19:31:15.000000
+0	-	516	wininit.exe	/SYSTEM	2024-02-05 19:31:15.000000
+0	-	648	services.exe	/SYSTEM	2024-02-05 19:31:15.000000
+0	-	668	lsass.exe	/SYSTEM	2024-02-05 19:31:15.000000
+0	-	768	fontdrvhost.ex	Font Driver Host/UMFD-0	2024-02-05 19:31:15.000000
+0	-	788	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:15.000000
+0	-	880	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:15.000000
+0	-	400	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000
+0	-	444	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000
+0	-	584	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000
+0	-	1032	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000
+0	-	1040	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000
+0	-	1244	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000
+0	-	1460	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000
+0	-	1520	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000
+0	-	1572	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000
+0	-	1924	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000
+0	-	1956	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000
+0	-	1052	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000
+0	-	1068	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000
+0	-	1232	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000
+0	-	1568	spoolsv.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:16.000000
+0	-	2052	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:16.000000
+0	-	2300	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:17.000000
+0	-	2412	MsMpEng.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:17.000000
+0	-	2868	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:18.000000
+0	-	3044	dasHost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:18.000000
+0	-	664	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:19.000000
+0	-	3868	WUDFHost.exe	/SYSTEM	2024-02-05 19:31:38.000000
+0	-	3068	NisSrv.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:31:39.000000
+0	-	4452	SearchIndexer.	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:40.000000
+0	-	5828	WmiPrvSE.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:44.000000
+0	-	6028	GoogleCrashHan	-	2024-02-05 19:31:45.000000
+0	-	6092	GoogleCrashHan	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:45.000000
+0	-	3236	SecurityHealth	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:31:54.000000
+0	-	7020	svchost.exe	WORKGROUP/DESKTOP-KG80ESU$	2024-02-05 19:33:17.000000
+0	-	4788	SgrmBroker.exe	-	2024-02-05 19:33:18.000000
+0	-	760	svchost.exe	NT AUTHORITY/SERVICIO LOCAL	2024-02-05 19:33:18.000000
+1	-	528	csrss.exe	/SYSTEM	2024-02-05 19:31:15.000000
+1	-	612	winlogon.exe	/SYSTEM	2024-02-05 19:31:15.000000
+1	-	776	fontdrvhost.ex	Font Driver Host/UMFD-1	2024-02-05 19:31:15.000000
+1	-	988	dwm.exe	/SYSTEM	2024-02-05 19:31:15.000000
+1	-	996	LogonUI.exe	/SYSTEM	2024-02-05 19:31:15.000000
+N/A	-	1768	MemCompression	-	2024-02-05 19:31:16.000000
+2	-	3792	csrss.exe	/SYSTEM	2024-02-05 19:31:38.000000
+2	-	3840	winlogon.exe	/SYSTEM	2024-02-05 19:31:38.000000
+2	-	3960	fontdrvhost.ex	Font Driver Host/UMFD-2	2024-02-05 19:31:38.000000
+2	-	4020	dwm.exe	/SYSTEM	2024-02-05 19:31:38.000000
+2	-	3456	rdpclip.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000
+2	-	3616	sihost.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000
+2	-	3400	svchost.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000
+2	-	3188	taskhostw.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000
+2	-	3344	ctfmon.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:39.000000
+2	-	4208	userinit.exe	-	2024-02-05 19:31:40.000000
+2	RDP-Tcp#1	4236	explorer.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:40.000000
+2	-	4388	svchost.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:40.000000
+2	-	4876	StartMenuExper	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:41.000000
+2	-	5096	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:42.000000
+2	-	4732	SearchApp.exe	-	2024-02-05 19:31:42.000000
+2	-	5184	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:42.000000
+2	-	3740	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:52.000000
+2	-	1912	smartscreen.ex	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:54.000000
+2	RDP-Tcp#1	3524	SecurityHealth	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:54.000000
+2	RDP-Tcp#1	820	OneDrive.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:55.000000
+2	RDP-Tcp#1	6128	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:56.000000
+2	-	2040	chrome.exe	-	2024-02-05 19:31:57.000000
+2	RDP-Tcp#1	5404	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000
+2	RDP-Tcp#1	5392	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000
+2	RDP-Tcp#1	5348	chrome.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000
+2	-	5496	chrome.exe	-	2024-02-05 19:31:57.000000
+2	-	6184	chrome.exe	-	2024-02-05 19:31:57.000000
+2	-	6200	chrome.exe	-	2024-02-05 19:31:57.000000
+2	-	6380	TextInputHost.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:31:57.000000
+2	-	6556	dllhost.exe	-	2024-02-05 19:31:58.000000
+2	-	6156	chrome.exe	-	2024-02-05 19:33:00.000000
+2	-	5284	chrome.exe	-	2024-02-05 19:33:00.000000
+2	-	4036	chrome.exe	-	2024-02-05 19:33:05.000000
+2	-	6916	FTK Imager.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:11.000000
+2	-	6044	ApplicationFra	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:14.000000
+2	-	6104	Calculator.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:14.000000
+2	-	5864	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:14.000000
+2	-	7348	HxCalendarAppI	-	2024-02-05 19:33:20.000000
+2	-	7412	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:20.000000
+2	-	7476	HxTsr.exe	-	2024-02-05 19:33:20.000000
+2	-	7816	Taskmgr.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:22.000000
+2	-	8072	explorer.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:34.000000
+2	-	7256	PaintStudio.Vi	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:39.000000
+2	-	7796	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:40.000000
+2	-	900	Time.exe	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:42.000000
+2	-	2132	RuntimeBroker.	DESKTOP-KG80ESU/javiercruces	2024-02-05 19:33:43.000000
 
 ```
 
@@ -899,7 +899,7 @@ N/A	-	1768	MemCompression	-	2024-02-05 19:31:16.000000
 
 Volatility no tiene soporte para esta función :
 
-Al estar en una red aislada sin ningún otro Windows , no se han transferido ficheros usando este protocolo 
+Al estar en una red aislada sin ningún otro Windows , no se han transferido ficheros usando este protocolo
 
   ```ps
 PS C:\Windows\system32> Get-WinEvent -LogName Security | Where-Object {$_.Message -match "EventID: 5140"} | Select-Object TimeCreated, @{Name="File";Expression={$_.Properties[8].Value}}
@@ -962,7 +962,7 @@ Configuración IP de Windows
 
 ### Analizando el Registro de Windows
 
-Para esto nos descargamos el Registry Viewer 2.0.0 https://www.exterro.com/ftk-product-downloads/registry-viewer-2-0-0 
+Para esto nos descargamos el Registry Viewer 2.0.0 https://www.exterro.com/ftk-product-downloads/registry-viewer-2-0-0
 
 Abrimos el fichero system que es el registro de Windows :
 
@@ -1008,7 +1008,7 @@ system\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy
 
 #### 13. Asociación de extensiones de ficheros y aplicaciones.
 
-Esta debajo de este directorio --> software\Classes 
+Esta debajo de este directorio --> software\Classes
 
 ![](/seguridad/forense/img/Pastedimage20240206205941.png)
 
@@ -1063,17 +1063,17 @@ Te muestra los FICHEROS cifrados :
 
 ![](/seguridad/forense/img/Pastedimage20240206195321.png)
 
-  
+
 
 ### Sobre la imagen del disco:
 
-  
+
 
 #### 21. Archivos con extensión cambiada
 
 Nos fijaremos en que el tipo MIME coincida con la extensión :
   ![](/seguridad/forense/img/Pastedimage20240206192803.png)
-  
+
   También hay un artefacto que nos permite ver los ficheros que están con otra extensión  :
 
 ![](/seguridad/forense/img/Pastedimage20240217191651.png)
@@ -1085,14 +1085,14 @@ Tienes un apartado en especifico que te dice los ficheros borrados :
   ![](/seguridad/forense/img/Pastedimage20240206185456.png)
 
   Pero si navegas por los directorios , te informara si hay algún fichero borrado en el mismo :
-  
+
   ![](/seguridad/forense/img/Pastedimage20240206185709.png)
-  
+
 
 #### 23. Archivos Ocultos
 
 ![](/seguridad/forense/img/Pastedimage20240206193134.png)
-  
+
 
 #### 24. Archivos que contienen una cadena determinada
 
@@ -1124,8 +1124,8 @@ Intenta realizar las mismas operaciones en una máquina Linux para aquellos apar
 Al utilizar volatility para esta parte , no me reconoce los plugins para la versión especifica de Debian , los he generado siguiendo este tutorial :
 https://markuta.com/live-memory-acquisition-on-linux-systems/
 
-Sin embargo no me los reconoce y he utilizado tanto volatility 2 como la versión 3 . 
-Me conectare a la maquina y te indicare con comandos como mostrar cada ejercicio , no me queda otra . 
+Sin embargo no me los reconoce y he utilizado tanto volatility 2 como la versión 3 .
+Me conectare a la maquina y te indicare con comandos como mostrar cada ejercicio , no me queda otra .
 Lo que haré sera redirigir la salida de los comandos a un fichero en el dispositivo en el que he almacenado los volcados .
 
 ### 1. Procesos en ejecución
@@ -1147,7 +1147,7 @@ root           3  0.0  0.0      0     0 ?        I<   16:44   0:00 [rcu_gp]
 root@debian:~# systemctl list-units --type=service --state=running > /mnt/servicios_corriendo
 
 root@debian:~# systemctl list-units --type=service --state=running
-  UNIT                          LOAD   ACTIVE SUB     DESCRIPTION                                   
+  UNIT                          LOAD   ACTIVE SUB     DESCRIPTION
   accounts-daemon.service       loaded active running Accounts Service
   avahi-daemon.service          loaded active running Avahi mDNS/DNS-SD Stack
   colord.service                loaded active running Manage, Install and Generate Color Profiles
@@ -1158,10 +1158,10 @@ root@debian:~# systemctl list-units --type=service --state=running
 
 ```bash
 root@debian:~# ss -tuln > /mnt/puertos_abiertos
-root@debian:~# ss -tuln 
-Netid    State     Recv-Q    Send-Q         Local Address:Port          Peer Address:Port    Process    
-udp      UNCONN    0         0                    0.0.0.0:631                0.0.0.0:*                  
-udp      UNCONN    0         0                    0.0.0.0:42925              0.0.0.0:*        
+root@debian:~# ss -tuln
+Netid    State     Recv-Q    Send-Q         Local Address:Port          Peer Address:Port    Process
+udp      UNCONN    0         0                    0.0.0.0:631                0.0.0.0:*
+udp      UNCONN    0         0                    0.0.0.0:42925              0.0.0.0:*
 ```
 
 ### 4. Conexiones establecidas por la máquina
@@ -1169,10 +1169,10 @@ udp      UNCONN    0         0                    0.0.0.0:42925              0.0
 ```bash
 root@debian:~# ss -an > /mnt/conexiones_establecidas
 root@debian:~# ss -an
-u_dgr ESTAB  0      0                                               * 19629                   * 19630       
-u_str ESTAB  0      0                        /run/user/112/pipewire-0 19262                   * 19261       
-u_str ESTAB  0      0                                               * 18971                   * 18972       
-u_str ESTAB  0      0                                               * 18439                   * 18440  
+u_dgr ESTAB  0      0                                               * 19629                   * 19630
+u_str ESTAB  0      0                        /run/user/112/pipewire-0 19262                   * 19261
+u_str ESTAB  0      0                                               * 18971                   * 18972
+u_str ESTAB  0      0                                               * 18439                   * 18440
 ```
 
 ### 5. Sesiones de usuario establecidas remotamente
@@ -1220,13 +1220,13 @@ Al ser un MV no tenemos historial de redes wifi
 ```bash
 root@debian:~# sudo iptables -L
 Chain INPUT (policy ACCEPT)
-target     prot opt source               destination         
+target     prot opt source               destination
 
 Chain FORWARD (policy ACCEPT)
-target     prot opt source               destination         
+target     prot opt source               destination
 
 Chain OUTPUT (policy ACCEPT)
-target     prot opt source               destination         
+target     prot opt source               destination
 DROP       tcp  --  anywhere             anywhere             tcp dpt:9999
 root@debian:~# sudo iptables -L > /mnt/firewall_nodo
 
@@ -1236,8 +1236,8 @@ root@debian:~# sudo iptables -L > /mnt/firewall_nodo
 
 ```bash
 root@debian:~# systemctl list-unit-files --type=service > /mnt/servicios_incio
-netfilter-persistent.service               enabled         enabled 
-networking.service                         enabled         enabled 
+netfilter-persistent.service               enabled         enabled
+networking.service                         enabled         enabled
 
 ```
 
@@ -1302,12 +1302,12 @@ root@debian:~# ls -l /home/*/Descargas > /mnt/descargas_usuarios
 
 ```bash
 root@debian:~# lsblk -f | grep crypt
-└─sda1 crypto_LUKS 2                                      9fc1bfa7-9224-4e8e-896a-09516d4fd613     
+└─sda1 crypto_LUKS 2                                      9fc1bfa7-9224-4e8e-896a-09516d4fd613
 ```
 
 ### 21. Archivos con extensión cambiada
 
-*No me carga el artefacto de Mismatch Detector , pero podemos verlo fijandonos en los metadatos : 
+*No me carga el artefacto de Mismatch Detector , pero podemos verlo fijandonos en los metadatos :
 
 ![](/seguridad/forense/img/Pastedimage20240218190705.png)
 
@@ -1318,7 +1318,7 @@ root@debian:~# lsblk -f | grep crypt
 
 ### 23. Archivos Ocultos
 
-En Linux , todos los que empiezan por . 
+En Linux , todos los que empiezan por .
 
 ```bash
 root@debian:~# find / -type f -name ".*" > /mnt/ficheros_ocultos
@@ -1365,7 +1365,7 @@ b419ec819114f21a10bc5146a0b28183165c8b2cf77b2fe160e3044b1b5e04a0  /mnt/vdb
 ```
 
 
-## Bibliografía 
+## Bibliografía
 https://cibersec.iescampanillas.com/archivos/3046
 https://markuta.com/live-memory-acquisition-on-linux-systems/
 https://cpuu.hashnode.dev/how-to-perform-memory-forensic-analysis-in-linux-using-volatility-3
@@ -1373,8 +1373,8 @@ https://isf-server.techanarchy.net/
 https://github.com/volatilityfoundation/volatility3?tab=readme-ov-file
 https://github.com/volatilityfoundation/dwarf2json
 
-  
 
 
-  
-  
+
+
+

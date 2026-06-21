@@ -145,7 +145,7 @@ Output:
  -    debian-template     shut off
 ```
 
-> **Note:** The `virsh domrename` command only changes the VM name in libvirt; it does **not** rename the disk file. If you also want to rename the disk, do it manually and then edit the XML configuration with `virsh edit`.
+> **Note:** The `virsh domrename` command only changes the VM name in libvirt, it does **not** rename the disk file. If you also want to rename the disk, do it manually and then edit the XML configuration with `virsh edit`.
 
 ---
 

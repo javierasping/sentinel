@@ -8,66 +8,67 @@ hero: images/redes/comando_de_supervision_de_redes/comando_de_supervision_de_red
 
 A document in which the main commands are detailed when it comes to detecting and solving network incidents.
 
-### Windows Commands
+### Windows Command
 
-### Explanation of the different parameters to be configured in the TCP/IP Properties in Windows
+### Explains the meaning of the different parameters to be configured in the TCP / IP Properties in Windows
 
-We must keep in mind that each configuration we make is independent for each of our network adapters.
+We have to keep in mind that every configuration we make is independent for each of our network adapters.
 
-To access these parameters, follow this path in our system:
+To access these parameters we will follow the following route in our system:
 
 Control Panel > Network and Internet > Network and Sharing Center > Change adapter settings:
 
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.001.png)
 
-Once here, right-click on the adapter, select **Properties**, and then choose **Internet Protocol Version 4 (TCP/IPv4)**:
+Once here we will right-click on the adapter, select **Properties**, and then choose **Internet Protocol Version 4 (TCP/IPv4)**:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.002.png)
 
-Once here, we will see two tabs that can be used to configure our card; in the General tab, we can see the following sections:
+Once here we will see two tabs to which we can turn to configure our card; in the General tab we can see the following sections:
 
 The first subsection (General) relates to our IP address:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.003.png)
 
-- **Obtain an IP address automatically**: This option uses the DHCP service to dynamically assign the IP address, subnet mask, and default gateway.
-- **Use the following IP address**: Allows manual entry of the desired network configuration:
-- **IP address**: A numerical label that uniquely identifies our machine on the network; it cannot be repeated.
-- **Subnet mask**: A numerical set whose function is to indicate which part of the IP address is the network (including the subnet) and which part is the host.
-- **Default gateway**: The default IP address assigned to a device to send packets to other networks.
+- * * Obtain an IP address automatically: * * This option uses the DHCP service to dynamically assign the IP address, subnet mask, and default gateway.
+- * * Use the following IP address: * * Here we will manually enter the desired network configuration:
+- * * IP address: * * is a numerical label that identifies our machine in a unique way on our network, it cannot be repeated.
+- * * Subnetwork mask: * * numerical set whose function is to indicate to devices which part of the IP address is the network number including the subnetwork, and which part is the host.
+- * * Default link door: * * It is the default IP address that is assigned to a team to send the packets to other networks.
 
-In the second section of this tab, we will configure the DNS servers, which allow us to translate domain names into IP addresses to enable web browsing.
+In the second section of this tab we will make the configuration concerning DNS servers, which will allow us to translate names into IP addresses to be able to navigate.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.004.png)
 
-- **Obtain the DNS server address automatically**: The address is obtained from the DHCP server configured on our network.
-- **Use the following DNS server addresses**: Allows manual selection of the IP addresses of our DNS servers:
-- **Preferred DNS server**: The first server consulted for name resolution.
-- **Alternate DNS server**: A backup server used if the primary server is unavailable.
+- * * Get the DNS server address automatically: * * This option will make the address come from the DHCP server we have configured on our network.
+- * * Use the following DNS server addresses: * * This option serves us to manually select the IP address of our DNS servers:
+- * * Preferred DNS server: * * The address we put here will be the first to consult in case you need to make a resolution.
+- * * Alternative DNS server: * * If the primary server failed or was down at that time, we would go on to use the secondary.
 
-The alternative configuration tab is designed for equipment that needs to be used in more than one network, which is common in professional environments:
+In the alternative configuration tab, it is designed for equipment that needs to be used in more than one network, usually seen in professional environments:
 
-- **Automatic Private IP Addressing (APIPA)**: Uses the DHCP server for configuration.
+- * * Automatic private IP address: * * will make use of the DHCP server to configure.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.005.png)
-- **User-configured**: Allows manual entry of the configuration (omitting the fields explained above):
-- **Preferred/Alternate WINS**: Microsoft name servers for NetBIOS, which maintain a table correlating IP addresses and NetBIOS computer names.
+- * * User-configured: * * Let us manually enter the configuration (I will omit the fields explained above):
+- * * Preferred WINS: * * is a Microsoft name server for NetBIOS, which maintains a table with the correspondence between IP addresses and NetBIOS computer names.
+- * * Alternate WINS: * * If the primary server failed or was down at that time, we would go on to use the secondary.
 
 
-## Utility of the `ping` Command
+## Utility of the ping command
 
-`ping` is a fundamental diagnostic tool that verifies connectivity between a local host and a remote computer on a TCP/IP network; it is the most well-known network diagnostic tool.
+Ping is a command or diagnostic tool that allows a state-of-the-art verification of a particular connection of a local host with at least a remote computer in a TCP/IP type network; it is the most well-known network diagnostic tool.
 
-The most common uses of this tool include:
+The most common uses of this tool are:
 
-- Checking network connectivity.
-- Measuring the latency between two points.
-- Finding the IP address associated with a domain name.
-- Implementing scripts to monitor server availability.
-- Implementing scripts to detect connectivity to a computer.
+- Check network connectivity.
+- Measure the latency that takes two points to communicate.
+- Know the IP address used by a domain name.
+- Scripts that allow you to keep a record of the availability of a remote server.
+- Scripts that allow you to know when there is connection on a computer.
 
-To use it, open a command prompt (`cmd`) by pressing `Win + R` and typing `cmd`.
+To make use of this we will open a cmd, press WIN + R and write cmd.
 
 ### General use of Ping
 
@@ -85,41 +86,41 @@ If we look at the command output we see that it allows us to know:
 
 ### PING -T
 
-This parameter allows for an infinite ping that does not end until the process is manually stopped; by default, only 4 packets are sent. To stop the execution of this command, press `Ctrl + C`.
+This parameter will allow us to do an infinite ping that is not to end until we kill the process, if we did not put it by default only 4 traces were sent. To complete this execution of this command we will press CTRL + C.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.007.png)
 
-Once the execution is stopped, the collected statistics are shown: packets sent, received, lost, and the average round-trip times.
+When we stop the execution you will show us the statistics you have collected, packages sent, packages received and packages lost as well as the average back and forth times.
 
 ### PING -A
 
-This parameter is used to resolve an IP to a hostname, printing a line indicating the hostname to which the packets are being directed, making it easier to identify the machines:
+This parameter serves to solve an ip in a host name, printing a line indicating the host name to which the tracks are being directed, allowing us to identify the machines more easily:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.008.png)
 
 
 ### PING -N
 
-This parameter specifies the number of requests to send, using a value between 1 and 4,294,967,295.
+This parameter is used to specify the number of requests that we want when sending packages, this will indicate it with a number between 1 - 4294967295.
 
-For example, if we want to send 10 packets, the command would be:
+For example if we want to send 10 traces the command would be as follows:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.009.png)
 
-We can verify at the bottom that the requested number of packets was sent.
+We can check at the bottom that you have sent in number that we have indicated.
 
 ### PING -L
 
-This allows us to change the byte size of the sent packets; a value between 0 and 65,000 must be specified.
+It allows us to change the byte size of the packages sent, we will need to specify a number between 0 and 65000.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.010.png)
 
 
 ### PING -F
 
-This parameter prevents packets from fragmenting; the maximum unfragmented packet size is 1472 bytes.
+This parameter serves to prevent packages from fragmenting, the maximum size of unfragmented packages is 1472 bytes.
 
-If this limit is exceeded, an error will be returned indicating that the packet must be fragmented:
+We can see that if we get over this number, it will give us a mistake by informing us that it is necessary to fragment the package:
 
 ### PING-I
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.011.png)
@@ -134,175 +135,193 @@ When we specify a TTL this sets the maximum number of jumps, by passing through 
 
 
 
-### PING -4 and -6
+### PING -4 -6
 
-Ping -4: Forces a response from a host specified with an IPv4 address. Both the source and destination must have a correct IPv4 configuration.
+Ping -4: Force the host response specified with an IPv4 address. It is necessary that both the equipment that launches the ping and the destination have a correct IPv4 configuration.
 
-Ping -6: Forces a response from a host specified with an IPv6 address. Both the source and destination must have a correct IPv6 configuration.
+Ping -6: Force the host response specified with an IPv6 address. It is necessary that both the equipment that launches the ping and the destination have a correct IPv6 configuration.
 
-## Connectivity Check in a Network
+## Check connectivity in a network
 
-We will perform a series of tests to verify operation and detect errors. First, we will ping the local machine:
+We will perform a series of tests to check the operation and find errors. The first thing will be to make ourselves ping for it:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.014.png)
 
-If the output is correct, it shows that the network adapter is functioning properly.
+If the output is correct this shows that our network adapter works properly.
 
-Next, we will ping a machine on our local network to confirm that physical connections are correct:
+We're going to ping a machine on our local network, so we'll show that the physical connections are correct:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.015.png)
 
-Then, we will ping the gateway to confirm there is connectivity to the device providing Internet access:
+We are going to do ping to the gateway, if successful it shows that there is connection to the computer that provides the Internet:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.016.png)
 
-Next, we will ping an external IP (Internet) to check for internet connectivity without relying on name resolution:
+We will ping to an Internet site using ip, to check that we have Internet connection:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.017.png)
 
 
 
-Finally, pinging an external domain verifies that the internet connection is correct and that the DNS servers are resolving names properly:
+Finally, doing ping to an Internet domain, if successful, shows that there is Internet connection and the DNS servers configured in the connection work correctly:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.018.png)
 
 
-### General Use of the `ipconfig` Command
+### General use of the `ipconfig` command
 
-The `ipconfig` command is used to view and manage the current configuration of the computer's network adapters. An example of general command use is as follows:
+This command is used to view the current configuration of our computer's network adapters, an example of general command use is as follows:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.019.png)
 
-**Information provided:**
+This shows us the following information:
 
-- **Adapter Description**: Name of the network card used in the connection.
-- **IPv4 Address**: The IP address assigned to the computer on the local network.
-- **Default Gateway**: The IP address of the device providing internet access.
-- **DNS Servers**: IP addresses of the servers responsible for resolving domain names to IP addresses. Usually, there are two: primary and secondary.
-- **DHCP State**: Indicates if the configuration is dynamic (enabled) or static.
+- * * Description of the adapter * *: Name of the adapter or network card used in the connection.
+- * * IPv4 address: * * It's the IP address assigned to the team on the local network.
+- * * Default link door: * * It is the IP address of the computer provides Internet access.
+- * * DNS servers: * * IP addresses of the servers responsible for resolving domain names to IP addresses. There are usually two, the main and the secondary.
+- * * DHCP State: * * Dynamic host configuration, in the case of the equipment shown is enabled, that means that an IP address assigned by this service will always be used.
 
-From these parameters, we can consult adapter information or identify configuration inconsistencies.
+From these parameters we can consult the adapter information or identify an inconsistency in its configuration.
 
-#### Advanced `ipconfig` Parameters
+### IPCONFIG / ALL
 
-- **`/all`**: Displays detailed output, including MAC addresses and DNS servers.
+It will return all available information from the network adapters, it is a more detailed output than if we omitted this parameter, with this we can consult DNS servers and MAC addresses.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.020.png)
 
-- **`/release`**: Releases the current IP address assigned by the DHCP server.
+### IPCONFIG / RELEASE
+
+It is used to release an IP address in the DHCP service; we will not be reassigned one until we run `ipconfig /release`
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.021.png)
 
 We can specify the adapter from which we want to release the ip by writing it then, if we omit the name apply them to all.
 
-*Example: `ipconfig /release Ethernet0` to release a specific adapter.*
+EJ: `ipconfig /release Ethernet0` -> Only release the IP from the Ethernet0 adapter. If we want to release an IPv6 address we will use the parameter `/release6`.
 
-- **`/renew`**: Requests a new IP address lease from the DHCP server.
+### IPCONFIG / RENEW
+
+Once the previous command has been executed, we will have to run this to ask the DHCP server for a new IP address.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.022.png)
 
 We can specify the adapter from which we want the DHCP offer to be renewed by writing it below.
 
-*Example: `ipconfig /renew Ethernet0` to renew only the Ethernet0 adapter. To renew an IPv6 address, use `/renew6`.*
+EJ: `ipconfig /renew Ethernet0` -> It will only renew the Ethernet0 adapter. If we want to renew an IPv6 address we will use the parameter `/renew6`.
 
-- **`/flushdns`**: Clears the local computer's DNS resolution cache, which is useful for forcing the update of DNS record changes.
+### IPCONFIG / FLUSHDNS
+
+It is used to empty the DNS resolution cache from our local team, usually used when we want to check the proper operation of the DNS server.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.023.png)
 
-- **`/registerdns`**: Updates DHCP leases and re-registers DNS names on the server. This command is intended for domain environments.
+### IPCONFIG / REGISTERDNS
+
+Update all DHCP concessions and re-register DNS names. This command is oriented to work in domain environments and to updating the dynamic records of the DNS server in which it is running, taking into account that if it is blocked in some way the dynamic update will not be done.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.024.png)
 
-- **`/displaydns`**: Shows all entries currently stored in the DNS cache, including IPv4 and IPv6 protocol records.
+### IPCONFIG / DISPLAYDNS
+
+This command simply shows us the DNS queries that are stored in the cache of our system as shown in the image, show data from IPv4 and IPv6 protocol records.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.025.png)
 
-- **`/showclassid`**: Displays the user classes configured on the DHCP server and available to different customers.
+### IPCONFIG / SHOWCLASSID
+
+This command allows us to check the user classes configured on our DHCP server and that will be available to different customers.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.026.png)
 
-*Use the `/showclass6` parameter to check for IPv6.*
+\ * If we want to check for IPv6 we will use the / showclass6 parameter.
 
 
-### General Use of the `arp` Command
+### General use ARP
 
-The `arp` command is used to view and modify the mapping table between IP addresses and MAC addresses (link layer).
+The arp command shows and modifies the IP address conversion tables in directions
 
-#### Parameter `arp -a`
+MAC using the address resolution protocol (ARP).
 
-Displays current protocol data and ARP entries. If `inet_addr` is specified, only the IP and physical addresses of the specified equipment are shown. If there is more than one network interface using ARP, the entries of each ARP table are shown.
+### ARP-A
+
+Ask for current protocol data and show current ARP entries. If inet\ _ addr is specified, only the IP and physical addresses of the specified equipment are shown. If there is more than one network interface using ARP, the entries of each ARP table are shown.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.027.png)
 
-*Note: The `-g` option performs the same function as `-a`.*
+##### The -g option does the same function:
 
-As shown in the screen capture, the `arp -a` command lists all devices currently in the host's ARP cache, including the IPv4 address, physical address (MAC), and addressing type (static/dynamic) for each device.
+As shown in the screen capture, the arp-a command lists all the devices currently in the host ARP cache, including the IPv4 address, the physical direction and the type of direction (static / dynamic) for each device.
 
-To delete the ARP cache, use the `-d` option followed by a wildcard (`*`) to delete all entries, or specify an IP address to remove a specific entry.
+If we want to delete the cache arp we will use the -d option followed by the\ * wildcard to delete all the entries in this table, if we would just want to remove a query we would put the IP address.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.028.png)
 
-You can request the MAC of an address using `arp [IP]` and then verify it in the table with `arp -a`.
+We can request the MAC of an address using arp + IP of the device and then see it on our table with arp -a.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.029.png)
 
 
-### General Use of the `netstat` Command
+### General use netstat
 
-The `netstat` command generates visualizations that show the state of the network and protocol statistics. The status of TCP, SCTP, and UDP endpoints can be viewed in table format. Information about the routing table and interface information can also be viewed.
+The netstat command generates visualizations that show the state of the network and protocol statistics. The status of TCP, SCTP and UDP final points can be viewed in table format. Information about the routing table and interface information can also be viewed.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.030.png)
 
-#### NETSTAT -A
+### NETSTAT -A
 
-Shows all connections and listening ports on the computer, as well as the port state and the remote address currently using it:
+It shows all the connections and listening ports of our team, as well as the state of the port and the remote direction which is using the same:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.031.png)
 
 
-#### NETSTAT -B
+### NETSTAT -B
 
-Shows the executable file involved in creating each connection or listening port.
+It shows the executable file involved in creating each connection or listening port.
 
-#### NETSTAT -E
+### NETSTAT -E
 
-It shows statistics for the network interfaces, allowing you to see the activity of each one:
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.032.png)
+
+![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.033.png)
+
+It shows us statistics on network interfaces, it serves to see the activity that has had this:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.034.png)
 
-#### NETSTAT -R
+### NETSTAT -R
 
-Shows the routing table, allowing us to see which sites our computer can reach through the network:
+It shows us the routing table, so we can see the sites our team is able to reach through the network:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.035.png)
 
 
-#### NETSTAT -N
+### NETSTAT -N
 
-Shows active connections in a table format, similar to the previous parameter, but it indicates the port number instead of the name.
+It shows us the active connections with a table format, similar to the parameter - only that it indicates the port number instead of the name.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.036.png)
 
-#### NETSTAT -O
+### NETSTAT -O
 
-Similar to the above, but it also adds the process PID:
+Similar to the above parameter but this one adds the process PID:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.037.png)
 
-#### NETSTAT -P
+### NETSTAT -P
 
-Allows filtering connections according to the protocol (TCP, UDP, tcpv6, tcpv4, etc.):
+It allows us to filter connections according to protocol (TCP, UDP, tcpv6 or tcpv4...)
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.038.png)
 
 
-#### NETSTAT -T
+### NETSTAT -T
 
 Shows the current connection's download status:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.039.png)
 
-Netstat is very useful for viewing statistical data on a connection and for analyzing open ports to identify problems. It is essential for certain applications and for achieving optimal performance.
+Netstat is very interesting to see statistical data on the connection, but it will also be very useful to analyze the open ports at a given time and thus identify problems. It is essential for certain applications and to achieve optimal performance.
 
 ### General use nslookup
 
@@ -444,13 +463,13 @@ Another way to change the DNS servers used is through the `/etc/resolv.conf` fil
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.062.png)
 
-Here, following `nameserver`, we will put the IP address or name of our DNS server
+Here followed by nameserver we will put the address ip or name of our DNS server
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.063.png)
 
 ### General use ifconfig
 
-<a name="_page26_x56.70_y84.70"></a>* * Explains the usefulness of the ifconfig command from a real capture. Is there any information from which ipconfig / all is obtained that does not appear? Try to get it another way. * *
+<a name="_page26_x56.70_y84.70"></a>* * Explains the usefulness of the ifconfig command from a real capture. Is there any information from which `ipconfig /all` is obtained that does not appear? Try to get it another way. * *
 
 It is similar to ifconfig and is focused on the same functions, this command is also used to view, change and manage all current computer network configurations.
 
@@ -458,7 +477,7 @@ This is installed with the net-tools package, to install it:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.064.png)
 
-To use this tool we will need to do it as a superuser, with its simplest use it will show us the basic TCP/IP configuration of our network card as well as statistics of it:
+To use this tool we will need to do it as a superuser, with its simplest use it will show us the basic TCP / IP configuration of our network card as well as statistics of it:
 
 For example, with `ipconfig /all` we can see the configured DNS servers, which with `ifconfig` we can't see.
 
@@ -529,7 +548,7 @@ The utility of this is still the same, solving problems of accessibility of host
 
 Dig is a command that allows you to consult DNS servers for information related to this service. To install it in our system, we will make an apt install dnsutils.
 
-We can do a DNS consultation, for example to the institute, to check if we are able to get its IP address:
+We can do a dns consultation, for example to the institute to check if we are able to get your address ip:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.074.jpeg)
 
@@ -555,7 +574,7 @@ These are used to detect where the error is when accessing a particular computer
 Some parameters that may interest us are:
 
 - -f,: Set the distance between the first jump and the next jump.
-- -g,: allows us to indicate the link door.
+- -g,: allows us to indicate the gateway.
 - I: Use ICMP ECHO
 - -m,: Set the number of jumps; the default value is 64.
 - -M,: the follow-up routes are carried out with ICMP or UDP; the default method is UDP.
@@ -576,7 +595,7 @@ An example is to download files, for example an iso. We would put the command fo
 
 This will download the file to us in the current work directory.
 
-We can use the command `-O` to indicate a different name when downloading the file:
+We can use the command -or to indicate a different name when downloading the file:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.079.png)
 
@@ -670,7 +689,7 @@ This is added a "second command" to indicate your function, are as follows:
 - tuntap: manages TUN / TAP interfaces, oriented to VPN such as OpenVPN or WireGuard.
 - maddress: configuration of the multicast addresses
 - xfrm: manages IPsec policies.
-- netns: manage network name spaces
+- netns: manage network namespaces
 - l2tp: L2TP configuration
 - tcp\ _ metrics: manages TCP metrics.
 - token: manages the identifiers with token of the interfaces.

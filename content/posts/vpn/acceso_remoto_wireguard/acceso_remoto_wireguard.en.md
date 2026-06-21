@@ -176,17 +176,17 @@ We will also check the routes that have been created on the server and on the cl
 
 ```bash
 debian@servidor1:~$ ip r
-default via 90.0.0.1 dev ens3 onlink 
-10.99.99.2 dev wg0 scope link 
-10.99.99.4 dev wg0 scope link 
-90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2 
-192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1 
+default via 90.0.0.1 dev ens3 onlink
+10.99.99.2 dev wg0 scope link
+10.99.99.4 dev wg0 scope link
+90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2
+192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1
 
 debian@servidor2:~$ ip r
-default via 100.0.0.1 dev ens3 onlink 
-10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2 
-100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2 
-192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1 
+default via 100.0.0.1 dev ens3 onlink
+10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2
+100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2
+192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1
 ```
 
 
@@ -248,21 +248,21 @@ We generate the keys to android:
 
 ```bash
 debian@servidor1:~$ wg genkey | tee androidprivate | wg pubkey > androidpublic
-debian@servidor1:~$ cat androidprivate 
+debian@servidor1:~$ cat androidprivate
 CBY5o2iko7xXQrNAFcFDIKohOngawB1uvws7aDDgl0g=
-debian@servidor1:~$ cat androidpublic 
+debian@servidor1:~$ cat androidpublic
 cBGl5QWOsbZyI2GN1MXDxUsfeMmI5sKnp3VkxW9lO3g=
 ```
 
 The configuration file would be as follows:
 
 ```bash
-debian@servidor1:~$ sudo cat android.conf 
+debian@servidor1:~$ sudo cat android.conf
 [Interface]
 Address = 10.99.99.4
 PrivateKey = CBY5o2iko7xXQrNAFcFDIKohOngawB1uvws7aDDgl0g=
 ListenPort = 51820
-  
+
 [Peer]
 Publickey = 2/RjGUbiQuaFR7atYaQ8lcczz2wXxO9aIwfzZEMPXCQ=
 AllowedIPs = 0.0.0.0/0
@@ -315,22 +315,22 @@ We'll start by generating the key pair.
 ```bash
 debian@servidor1:~$ wg genkey | tee winprivate | wg pubkey > winpublic
 
-debian@servidor1:~$ cat winprivate 
+debian@servidor1:~$ cat winprivate
 QKGQEdrB9FBYRZsLNgc3qr9m8/lx+uc9n5vvj67I9m8=
 
-debian@servidor1:~$ cat winpublic 
+debian@servidor1:~$ cat winpublic
 E8VdupsWJ7vCTO7SF3oXUciUrsRgJ3p6T+F5UbbLngo=
 ```
 
 We create the configuration file for this client:
 
 ```bash
-debian@servidor1:~$ cat win.conf 
+debian@servidor1:~$ cat win.conf
 [Interface]
 Address = 10.99.99.5
 PrivateKey = QKGQEdrB9FBYRZsLNgc3qr9m8/lx+uc9n5vvj67I9m8=
 ListenPort = 51820
-  
+
 [Peer]
 Publickey = 2/RjGUbiQuaFR7atYaQ8lcczz2wXxO9aIwfzZEMPXCQ=
 AllowedIPs = 0.0.0.0/0

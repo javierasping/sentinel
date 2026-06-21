@@ -11,7 +11,7 @@ Identity (Keystone) is OpenStack's authentication and authorization service. In 
 
 Although the `default` domain already exists after `keystone-manage bootstrap`, I explicitly create the projects and users we use in the guides: `service` (for service users) and `demo` (for non‑admin user tests). I also create an example role and assign it to the `demo` user.
 
-When I show passwords in examples it's for clarity; if you prefer, use `--password-prompt` to enter the password interactively and securely.
+When I show passwords in examples it's for clarity, if you prefer, use `--password-prompt` to enter the password interactively and securely.
 
 ## Create the `service` project
 

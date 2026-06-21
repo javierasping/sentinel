@@ -12,7 +12,7 @@ En esta práctica, exploraremos la creación de un escenario mediante la orquest
 
 ## Escenario a montar en OpenStack
 
-Para poder montar nuestro escenario en OpenStack, debido a la situación actual de las imágenes disponibles, necesitaremos preparar una instancia que tenga habilitado el acceso por contraseña. Además, si posteriormente queremos configurar otra a partir de una existente, debemos habilitar el acceso SSH por contraseña para este usuario. 
+Para poder montar nuestro escenario en OpenStack, debido a la situación actual de las imágenes disponibles, necesitaremos preparar una instancia que tenga habilitado el acceso por contraseña. Además, si posteriormente queremos configurar otra a partir de una existente, debemos habilitar el acceso SSH por contraseña para este usuario.
 
 Esta debe crearse con el mismo flavour que el resto del escenario para evitar errores.
 
@@ -42,7 +42,7 @@ Vemos que se ha creado correctamente:
 
 ## Esquema gráfico de la configuración
 
-El esquema quedaría de la siguiente manera: 
+El esquema quedaría de la siguiente manera:
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.007.png)
 
@@ -50,16 +50,16 @@ Teniendo la siguiente relación de IPs:
 
 | MAQUINA | IP             | INTERFAZ |
 | ------- | -------------- | -------- |
-| PC1     | 10.0.100.144   | &nbsp; ens3     |
-| R1-PC1  | 10.0.100.68    | &nbsp; ens3     |
-| R1-R2   | 10.0.110.78    | &nbsp; ens4     |
-| R2-R1   | 10.0.110.30    | &nbsp; ens3     |
-| R2-PC2  | 10.0.120.191   | &nbsp; ens4     |
-| PC2     | 10.0.120.203   | &nbsp; ens3     |
-| R2-R3   | 10.0.130.146   | &nbsp; ens5     |
-| R3-R2   | 10.0.130.36    | &nbsp; ens3     |
-| R3-PC3  | 10.0.140.127   | &nbsp; ens4     |
-| PC3     | 10.0.140.158   | &nbsp; ens3     |
+| PC1     | 10.0.100.144   | &nbsp, ens3     |
+| R1-PC1  | 10.0.100.68    | &nbsp, ens3     |
+| R1-R2   | 10.0.110.78    | &nbsp, ens4     |
+| R2-R1   | 10.0.110.30    | &nbsp, ens3     |
+| R2-PC2  | 10.0.120.191   | &nbsp, ens4     |
+| PC2     | 10.0.120.203   | &nbsp, ens3     |
+| R2-R3   | 10.0.130.146   | &nbsp, ens5     |
+| R3-R2   | 10.0.130.36    | &nbsp, ens3     |
+| R3-PC3  | 10.0.140.127   | &nbsp, ens4     |
+| PC3     | 10.0.140.158   | &nbsp, ens3     |
 
 
 
@@ -69,12 +69,12 @@ Teniendo la siguiente relación de IPs:
 
 | R1          |          |          |
 | ----------- | :------: | :------: |
-| 10.0.100.0/24 &nbsp; | 0.0.0.0 | &nbsp;  ens3    &nbsp;|
-| 10.0.110.0/24 &nbsp; | 0.0.0.0 |  &nbsp; ens4    &nbsp;|
-| 10.0.120.0/24 &nbsp; | 10.0.110.30 | &nbsp; ens4 &nbsp;|
-| 10.0.130.0/24 &nbsp; | 10.0.110.30 | &nbsp; ens4 &nbsp;|
-| 10.0.140.0/24 &nbsp; | 10.0.110.30 | &nbsp; ens4 &nbsp;|
-| 0.0.0.0/0   &nbsp; | 10.0.110.30 | &nbsp; ens4   &nbsp;|
+| 10.0.100.0/24 &nbsp, | 0.0.0.0 | &nbsp,  ens3    &nbsp,|
+| 10.0.110.0/24 &nbsp, | 0.0.0.0 |  &nbsp, ens4    &nbsp,|
+| 10.0.120.0/24 &nbsp, | 10.0.110.30 | &nbsp, ens4 &nbsp,|
+| 10.0.130.0/24 &nbsp, | 10.0.110.30 | &nbsp, ens4 &nbsp,|
+| 10.0.140.0/24 &nbsp, | 10.0.110.30 | &nbsp, ens4 &nbsp,|
+| 0.0.0.0/0   &nbsp, | 10.0.110.30 | &nbsp, ens4   &nbsp,|
 
 
 \*Para las redes en las que estamos directamente conectados, las rutas se crearán automáticamente.
@@ -82,24 +82,24 @@ Teniendo la siguiente relación de IPs:
 
 | R2          |          |           |
 | ----------- | :------: | :-------: |
-| 10.0.100.0/24 &nbsp; | 10.0.110.178 | &nbsp; ens3 &nbsp;|
-| 10.0.110.0/24 &nbsp; | 0.0.0.0 |  &nbsp;     ens3 &nbsp;|
-| 10.0.120.0/24 &nbsp; | 0.0.0.0 |    &nbsp;   ens4 &nbsp;|
-| 10.0.130.0/24 &nbsp; | 0.0.0.0 |    &nbsp;   ens5 &nbsp;|
-| 10.0.140.0/24 &nbsp; | 10.0.130.36 |&nbsp; ens5   &nbsp;|
-| 0.0.0.0/0  &nbsp;  | 10.0.130.36 | &nbsp; ens5    &nbsp;|
+| 10.0.100.0/24 &nbsp, | 10.0.110.178 | &nbsp, ens3 &nbsp,|
+| 10.0.110.0/24 &nbsp, | 0.0.0.0 |  &nbsp,     ens3 &nbsp,|
+| 10.0.120.0/24 &nbsp, | 0.0.0.0 |    &nbsp,   ens4 &nbsp,|
+| 10.0.130.0/24 &nbsp, | 0.0.0.0 |    &nbsp,   ens5 &nbsp,|
+| 10.0.140.0/24 &nbsp, | 10.0.130.36 |&nbsp, ens5   &nbsp,|
+| 0.0.0.0/0  &nbsp,  | 10.0.130.36 | &nbsp, ens5    &nbsp,|
 
 
 *Para las redes en las que estamos directamente conectados, las rutas se crearán automáticamente.
 
 |R3|||
 | - | :- | :- |
-|10\.0.100.0/24 &nbsp;|10\.0.130.146|&nbsp; ens3 &nbsp;|
-|10\.0.110.0/24 &nbsp;|10\.0.130.146|&nbsp; ens3 &nbsp;|
-|10\.0.120.0/24 &nbsp;|10\.0.130.146|&nbsp; ens3 &nbsp;|
-|10\.0.130.0/24 &nbsp;|0\.0.0.0|&nbsp; ens3 &nbsp;|
-|10\.0.140.0/24 &nbsp;|0\.0.0.0|&nbsp; ens4 &nbsp;|
-|0\.0.0.0/0 &nbsp; |10\.0.130.146|&nbsp; ens4 &nbsp;|
+|10\.0.100.0/24 &nbsp,|10\.0.130.146|&nbsp, ens3 &nbsp,|
+|10\.0.110.0/24 &nbsp,|10\.0.130.146|&nbsp, ens3 &nbsp,|
+|10\.0.120.0/24 &nbsp,|10\.0.130.146|&nbsp, ens3 &nbsp,|
+|10\.0.130.0/24 &nbsp,|0\.0.0.0|&nbsp, ens3 &nbsp,|
+|10\.0.140.0/24 &nbsp,|0\.0.0.0|&nbsp, ens4 &nbsp,|
+|0\.0.0.0/0 &nbsp, |10\.0.130.146|&nbsp, ens4 &nbsp,|
 
 ## Comandos de configuración de cada nodo
 
@@ -195,15 +195,15 @@ Al igual que con los demás, deberemos cambiar la ruta por defecto por la IP del
 
 
 
-## Resumen de configuración y aclaraciones 
+## Resumen de configuración y aclaraciones
 
-### Para los routers 
+### Para los routers
 
-1. Activar el bit de forwarding 
+1. Activar el bit de forwarding
 2. Crear las tablas de enrutamiento
 3. Modificar la ruta por defecto
 
-### Para los PCs 
+### Para los PCs
 
 1. Modificar la ruta por defecto
 
@@ -243,7 +243,7 @@ PC1-PC3
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.027.png)
 
 ### PC2
- 
+
 PC2-PC1
 
 ![](/redes/enroutamiento_openstack/img/Aspose.Words.05e5a583-273a-4a61-9aa6-cb58c3b88bac.028.png)

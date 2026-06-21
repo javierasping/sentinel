@@ -27,7 +27,7 @@ Here we highlight two aspects:
 - Adding the configuration file to the container makes it easier to modify.
 
 ```bash
-javiercruces@HPOMEN15:~/learn_observability/exercise1$ cat docker-compose.yaml 
+javiercruces@HPOMEN15:~/learn_observability/exercise1$ cat docker-compose.yaml
 version: '3.8'
 
 services:
@@ -50,18 +50,18 @@ For more details on all available options, see the [official Prometheus document
 
 ```yaml
 global:
-  scrape_interval: 15s  
+  scrape_interval: 15s
 
   external_labels:
     monitor: 'javiercd-metrics'
 
 scrape_configs:
-  - job_name: 'prometheus'        
-    scrape_interval: 5s           
+  - job_name: 'prometheus'
+    scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: 'node-exporter-debian12' 
+  - job_name: 'node-exporter-debian12'
     scrape_interval: 5s
     static_configs:
       - targets: ['172.17.0.1:9100']

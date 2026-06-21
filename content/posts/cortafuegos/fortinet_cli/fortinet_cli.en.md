@@ -8,7 +8,7 @@ hero: /images/cortafuegos/fortinet_cli.png
 
 ## Equivalence from GUI to CLI
 
-Initially, I started the practice using the command line (CLI); however, I found it more convenient to do it from the graphical interface. Therefore, I decided to establish an equivalence between the different actions I have carried out during the practice and compare them with their counterpart in the terminal.
+Initially, I started the practice using the command line (CLI), however, I found it more convenient to do it from the graphical interface. Therefore, I decided to establish an equivalence between the different actions I have carried out during the practice and compare them with their counterpart in the terminal.
 
 > [NOTE]
 > In this post I do a small summary of the equivalencies between the GUI and the CLI of Fortinet that I have used in the 2 Fortinet firewall posts.
@@ -32,7 +32,7 @@ show system interface port1
 If we look at the configuration of the three interfaces I have set up during the practice, we can note that the syntax is very simple. Virtually, even without prior knowledge of the subject, it is easy to understand.
 
 ```bash
-FTG # show system interface 
+FTG # show system interface
 config system interface
     edit "port1"
         set vdom "root"
@@ -65,13 +65,13 @@ config system interface
         set lldp-transmission enable
         set role lan
         set snmp-index 3
-    next 
+    next
 
 ```
 
 As you can see in the port 1 interface, which corresponds to the WAN, I previously disabled access to avoid configuring it from this interface, but for convenience, I have left it enabled to use my laptop's browser.
 
-A configuration that may interest us is setting up a DHCP interface; in my case, I will do it on port 4:
+A configuration that may interest us is setting up a DHCP interface, in my case, I will do it on port 4:
 
 ```bash
 #Accedemos al modo de configuración
@@ -86,7 +86,7 @@ FTG (port4) # end
 
 Now, if we list the interface configuration, we can see that the change has been applied:
 
-```bash 
+```bash
 FTG # show system interface port4
 config system interface
     edit "port4"
@@ -153,7 +153,7 @@ config firewall policy
         set ssl-ssh-profile "certificate-inspection"
         set ips-sensor "block_xmas"
         set nat enable
-    next 
+    next
 ```
 
 The output is quite clear. If we look at the common parameters:
@@ -165,7 +165,7 @@ The output is quite clear. If we look at the common parameters:
 - action: Action the rule should take (`accept` | `deny`).
 - srcaddr: Source address.
 - dstaddr: Destination address.
-- schedule: Rule scheduling; if it is a temporary rule, it will only be active for a certain period.
+- schedule: Rule scheduling, if it is a temporary rule, it will only be active for a certain period.
 - service: Service name (associated with a port number).
 - nat: Whether the rule should apply SNAT.
 
@@ -202,7 +202,7 @@ FTG (12) # next
 FTG (policy) # end
 ```
 
-There are many more options that were not necessary to use during the practice; I leave you a [link](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/323620/config-firewall-policy) to the official documentation where all the different options are detailed.
+There are many more options that were not necessary to use during the practice, I leave you a [link](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/323620/config-firewall-policy) to the official documentation where all the different options are detailed.
 
 ### Services
 
@@ -227,7 +227,7 @@ config firewall service custom
         set tcp-portrange 443
     next
 
-FTG # show firewall service custom SSH_2222 
+FTG # show firewall service custom SSH_2222
 config firewall service custom
     edit "SSH_2222"
         set category "Remote Access"
@@ -272,7 +272,7 @@ Static Virtual IPs (VIPs) are used to map external IP addresses to internal IP a
 
 Static VIPs are commonly used to map public IP addresses to internal resources that use private IP addresses. A one-to-one static VIP is when the entire range of ports is mapped. A port forwarding VIP is when the mapping is set up for a specific port or range of ports.
 
-If we want to list the configured virtual IPs, we will use the following command; if we only want to view one in particular, we will indicate its name:
+If we want to list the configured virtual IPs, we will use the following command, if we only want to view one in particular, we will indicate its name:
 
 ```bash
 FTG # show firewall vip
@@ -337,11 +337,11 @@ FTG (DNAT_HELA_WEB) # next
 FTG (vip) # end
 ```
 
-Virtual IPs have more configuration parameters that were not necessary during the practice; I leave you a [link](https://docs.fortinet.com/document/fortigate/7.0.9/administration-guide/510402/static-virtual-ips) to the official documentation where all the available configuration is detailed.
+Virtual IPs have more configuration parameters that were not necessary during the practice, I leave you a [link](https://docs.fortinet.com/document/fortigate/7.0.9/administration-guide/510402/static-virtual-ips) to the official documentation where all the available configuration is detailed.
 
 ### Static routes
 
-The device needs to know the destination of the traffic; for this, static routes exist.
+The device needs to know the destination of the traffic, for this, static routes exist.
 
 To list the routes configured on the firewall, we will use the following command:
 

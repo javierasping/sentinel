@@ -30,7 +30,7 @@ Copiaremos el archivo de configuración predeterminado de Apache y lo renombrare
 javiercruces@IWEB:/etc/apache2/sites-available$ sudo cp 000-default.conf wordpress.conf
 ```
 
-Configuraremos el sitio virtual; recuerda modificar el `ServerName` y el `DocumentRoot`
+Configuraremos el sitio virtual, recuerda modificar el `ServerName` y el `DocumentRoot`
 
 ```bash
 <VirtualHost *:80>
@@ -67,7 +67,7 @@ Configuraremos el sitio virtual; recuerda modificar el `ServerName` y el `Docume
 Habilitaremos el sitio virtual `wordpress.conf`
 
 ```bash
-javiercruces@IWEB:/etc/apache2/sites-available$ sudo a2ensite wordpress.conf 
+javiercruces@IWEB:/etc/apache2/sites-available$ sudo a2ensite wordpress.conf
 Enabling site wordpress.
 To activate the new configuration, you need to run:
   systemctl reload apache2
@@ -83,7 +83,7 @@ javiercruces@IWEB:/etc/apache2/sites-available$ sudo systemctl reload apache2
 Para acceder a este VirtualHost desde la máquina cliente, dado que no disponemos de un servidor DNS, recuerda añadir la IP del servidor y el `ServerName` correspondiente al archivo `/etc/hosts` :
 
 ```bash
-javiercruces@HPOMEN15:~$ cat /etc/hosts 
+javiercruces@HPOMEN15:~$ cat /etc/hosts
 #Añade la IP de tu servidor y el ServerName correspondiente (wordpress.fjcd.es)
 #Ponlo al final del fichero y no modifiques las lineas existentes en tu fichero
 192.168.125.27 wordpress.fjcd.es
@@ -95,7 +95,7 @@ Te recomiendo **anotar** los datos introducidos a continuación, ya que los nece
 Nos conectaremos a la base de datos:
 ```bash
 javiercruces@IWEB:~$ sudo mysql -u root -p
-Enter password: 
+Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 31
 Server version: 10.11.4-MariaDB-1~deb12u1 Debian 12
@@ -138,7 +138,7 @@ Petición HTTP enviada, esperando respuesta... 200 OK
 Longitud: 23465047 (22M) [application/octet-stream]
 Grabando a: «latest.tar.gz»
 
-latest.tar.gz             100%[=====================================>]  22,38M  14,8MB/s    en 1,5s    
+latest.tar.gz             100%[=====================================>]  22,38M  14,8MB/s    en 1,5s
 
 2023-10-27 12:33:19 (14,8 MB/s) - «latest.tar.gz» guardado [23465047/23465047]
 ```
@@ -184,7 +184,7 @@ A continuación, se mostrará una breve explicación sobre el CMS WordPress:
 
 ![Untitled](/iaw/wordpress/img/Untitled%201.png)
 
-Ahora deberás introducir los datos del usuario y el nombre de la base de datos creada anteriormente: 
+Ahora deberás introducir los datos del usuario y el nombre de la base de datos creada anteriormente:
 
 ![Untitled](/iaw/wordpress/img/Untitled%202.png)
 

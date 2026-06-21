@@ -19,7 +19,7 @@ sudo apt install apache2
 sudo systemctl enable apache2 && sudo systemctl start apache2
 ```
 
-With these commands, you will have installed and activated the Apache web server. You can verify its functionality by entering the server's IP address in your favorite browser; it should display the default Apache home page.
+With these commands, you will have installed and activated the Apache web server. You can verify its functionality by entering the server's IP address in your favorite browser, it should display the default Apache home page.
 
 ## PHP Installation
 
@@ -58,7 +58,7 @@ After completing these steps, you will have configured MariaDB and can connect t
 
 ```bash
 sudo mysql -u root -p
-Enter password: 
+Enter password:
 Welcome to the MariaDB monitor. Commands end with ; or \g.
 Your MariaDB connection id is 32
 Server version: 10.11.4-MariaDB-1~deb12u1 Debian 12
@@ -67,7 +67,7 @@ Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB [(none)]> 
+MariaDB [(none)]>
 ```
 
 With this, you now have a fully installed LAMP stack on Debian 12.

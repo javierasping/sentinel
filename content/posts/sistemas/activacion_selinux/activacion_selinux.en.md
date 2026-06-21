@@ -54,7 +54,7 @@ We will give you the permissions and property corresponding to the directory we 
 Now we will create a shared resource within the samba configuration, I will add it at the end of the file:
 
 ```bash
-[rocky@rocky-javiercruces ~]$ sudo vim /etc/samba/smb.conf 
+[rocky@rocky-javiercruces ~]$ sudo vim /etc/samba/smb.conf
 
 [sambashare]
         path = /home/rocky/sambashare
@@ -73,7 +73,7 @@ To verify the configuration file, run the following command:
 With the current configuration we can access the resource anonymously, although we can configure samba users:
 
 ```bash
-[rocky@rocky-javiercruces ~]$ sudo smbpasswd -a rocky     
+[rocky@rocky-javiercruces ~]$ sudo smbpasswd -a rocky
 ```
 
 Then add to the configuration file the "valid users = user" line at the end of each resource statement, leaving you an example:
@@ -146,9 +146,9 @@ Feb 05 11:22:49 rocky-javiercruces.novalocal nmbd[49065]:   Copyright Andrew Tri
 Feb 05 11:22:49 rocky-javiercruces.novalocal systemd[1]: Started Samba NMB Daemon.
 Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]: [2024/02/05 11:23:12.157234,  0] ../../source3/nmbd/nmbd_become_lmb.c:398(become_local_master_stage2)
 Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]:   *****
-Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]: 
+Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]:
 Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]:   Samba name server ROCKY-JAVIERCRUCES is now a local master browser for workgroup SAMBA on subnet 10.0.0.150
-Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]: 
+Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]:
 Feb 05 11:23:12 rocky-javiercruces.novalocal nmbd[49065]:   *****
 ```
 
@@ -176,7 +176,7 @@ smb: \> ls
   fichero_prueba                      N        0  Mon Feb 12 09:42:09 2024
 
 		9286656 blocks of size 1024. 7952516 blocks available
-smb: \> 
+smb: \>
 ```
 
 We'll check that at both ends we have the same files:

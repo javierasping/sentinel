@@ -24,7 +24,7 @@ A medida que avanzamos en este trabajo, ganaremos una comprensión más profunda
 
 ## Compilación de un programa en C utilizando un Makefile
 
-Lo primero que vamos a instalar son fundamentales para la compilación de paquetes en C en Debian. 
+Lo primero que vamos a instalar son fundamentales para la compilación de paquetes en C en Debian.
 
 El paquete build-essential proporciona las herramientas de compilación necesarias, y dpkg-dev facilita la gestión de paquetes y la obtención del código fuente. Puedes instalar otros paquetes de desarrollo específicos según tus necesidades, pero estos dos son los más esenciales para comenzar a compilar software en C en Debian.
 
@@ -50,7 +50,7 @@ Vamos a meternos en el directorio principal y podemos ver el código fuente del 
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.004.png)
 
-Lo primero que haremos sera instalar las dependencias del paquete que queremos compilar en mi caso samba  : 
+Lo primero que haremos sera instalar las dependencias del paquete que queremos compilar en mi caso samba  :
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.005.png)
 
@@ -66,7 +66,7 @@ Este tardara en función del tamaño del paquete en mi caso me ha tardado 8 min 
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.008.png)
 
-Una vez compilado el código para instalarlo vamos a usar make install : 
+Una vez compilado el código para instalarlo vamos a usar make install :
 
 ![](/sistemas/compilaciones_linux/compilacion_de_un_programa_en_c_utilizando_un_makefile/img/Aspose.Words.8ff888af-0a68-4078-abc5-23793c63b7ef.009.png)
 

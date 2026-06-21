@@ -15,7 +15,7 @@ Es un empaquetador de archivos que como su propio nombre indica utiliza el forma
 
 El nombre del paquete es tar .
 
-### Crear un archivo .tar 
+### Crear un archivo .tar
 
 Puedes crear compresiones .tar tanto para un archivo como para directorios. Un ejemplo de este tipo de archivo es:
 
@@ -40,10 +40,10 @@ tar -cvzf sampleArchive.tar.gz /home/sampleArchive
 La opción adicional **z** representa la compresión gzip. Alternativamente, puedes crear un archivo .tgz que sea similar a tar.gz. Te mostramos un ejemplo de esto último a continuación:
 
 ```bash
-tar -cvzf sampleArchive.tgz /home/sampleArchive 
+tar -cvzf sampleArchive.tgz /home/sampleArchive
 ```
 
-### Crear un archivo .tar.bz2 
+### Crear un archivo .tar.bz2
 
 El archivo .bz2 proporciona más compresión en comparación con gzip. Sin embargo, esta alternativa tomará mas tiempo para comprimir y descomprimir. Para usarla, debes usar la opción -j. Un ejemplo de cómo se vería la operación es el siguiente:
 
@@ -123,7 +123,7 @@ O alternativamente:
 ```bash
 tar --extract --file= sampleArchive.tar.gz example.sh
 ```
-Para extraer un solo archivo de un comprimido .tar.bz2 puedes usar un comando como este: 
+Para extraer un solo archivo de un comprimido .tar.bz2 puedes usar un comando como este:
 
 ```bash
 tar -jxvf sampleArchive.tar.bz2 example.sh
@@ -139,13 +139,13 @@ tar --extract --file= sampleArchive.tar.bz2 example.sh
 En caso de que desees extraer varios archivos, usa el siguiente formato del comando:
 
 ```bash
-tar -xvf sampleArchive.tar "file1" "file2" 
+tar -xvf sampleArchive.tar "file1" "file2"
 ```
 
 Para .tar.gz puedes usar:
 
 ```bash
-tar -zxvf sampleArchive.tar.gz "file1" "file2" 
+tar -zxvf sampleArchive.tar.gz "file1" "file2"
 ```
 
 Para .tar.bz2 puedes usar:
@@ -157,13 +157,13 @@ tar -jxvf sampleArchive.tar.bz2 "file1" "file2"
 
 Si deseas extraer del comprimido patrones específicos de archivos como solo los .jpg, usa el comando wildcards. Una muestra de dicho comando se muestra a continuación:
 ```bash
-tar -xvf sampleArchive.tar --wildcards '\*.jpg' 
+tar -xvf sampleArchive.tar --wildcards '\*.jpg'
 ```
 
 Para .tar.gz puedes usar:
 
 ```bash
-tar -zxvf sampleArchive.tar.gz --wildcards '\*.jpg' 
+tar -zxvf sampleArchive.tar.gz --wildcards '\*.jpg'
 ```
 
 Para .tar.bz2 puedes usar:
@@ -190,7 +190,7 @@ tar -rvf sampleArchive.tar image\_dir
 
 No puedes agregar archivos o carpetas a comprimidos .tar.gz o .tar.bz2.
 
-### Cómo verificar un archivo .tar 
+### Cómo verificar un archivo .tar
 
 Usando Tar puedes verificar un archivo. Esta es una de las formas en que puedes hacerlo:
 
@@ -223,7 +223,7 @@ Esto comprimirá el archivo y agregará un .gz extensión a ella. Se elimina el 
 gzip -c filename > filename.gz
 ```
 
-los -c La opción especifica que la salida irá al flujo de salida estándar, dejando el archivo original intacto o puede usar el -k opción: 
+los -c La opción especifica que la salida irá al flujo de salida estándar, dejando el archivo original intacto o puede usar el -k opción:
 
 ```bash
 gzip -k filename
@@ -243,13 +243,13 @@ Puede comprimir varios archivos enumerándolos:
 gzip filename1 filename2
 ```
 
-Puede comprimir todos los archivos de un directorio, de forma recursiva, utilizando el -r : 
+Puede comprimir todos los archivos de un directorio, de forma recursiva, utilizando el -r :
 
 ```bash
 gzip -r folder
 ```
 
-gziptambién se puede utilizar para descomprimir un archivo, utilizando el -d opción: 
+gziptambién se puede utilizar para descomprimir un archivo, utilizando el -d opción:
 
 ```bash
 gzip -d filename.gz
@@ -263,7 +263,7 @@ Como dije, el uso de bzip2 es casi lo mismo que gzip. Simplemente tendremos que 
 
 **Para comprimir un archivo usando bzip2, reemplazándolo por una versión comprimida, ejecutaremos:**
 ```bash
-bzip2 prueba.txt # Nos creara un archivo prueba.txt.bz2 
+bzip2 prueba.txt # Nos creara un archivo prueba.txt.bz2
 ```
 **Comprimir los archivos sin eliminar el archivo original**
 
@@ -275,7 +275,7 @@ Bzip2 -c prueba.txt  # prueba.txt.bz2
 
 **Descomprimir archivos**
 
-Para descomprimir un archivo comprimido utilizaremos alguna de las dos siguientes posibilidades: 
+Para descomprimir un archivo comprimido utilizaremos alguna de las dos siguientes posibilidades:
 
 ```bash
 bzip2 -d prueba.txt.bz2
@@ -316,7 +316,7 @@ xz -k deb.iso
 
 **Descomprimir**
 
-Para descomprimir un archivo, vamos a poder utilizar la opción -d: 
+Para descomprimir un archivo, vamos a poder utilizar la opción -d:
 
 ```bash
 xz -d deb.iso
@@ -337,7 +337,7 @@ Esta herramienta admite diferentes niveles preestablecidos de compresión (de 0 
 
 ```bash
 xz -k -8 deb.iso
-xz -k --best deb.iso 
+xz -k --best deb.iso
 ```
 
 **Limitar la memoria**
@@ -360,7 +360,7 @@ xz -k -qv deb.iso
 
 **Crear un archivo tar.xz**
 
-El siguiente es un ejemplo del uso para conseguir un archivo con la extensión tar.xz. 
+El siguiente es un ejemplo del uso para conseguir un archivo con la extensión tar.xz.
 
 ```bash
 tar -cf *.txt | xz -7 > deb.tar.xz
@@ -385,7 +385,7 @@ xz -t deb.tar.xz xz -l deb.tar.xz
 Este compresor cuenta con dos paquetes :
 
 - p7zip ofrece soporte para 7zr (una versión ligera de 7z y 7za). Permite comprimir y descomprimir paquetes en estos formatos mediante la herramienta gráfica de tu sistema (file-roller en Ubuntu y Debian) pero no dispone de la funcionalidad de cifrado.
-- p7zip-full es, por decirlo de algún modo, la versión más completa. Soporta los formatos 7z y 7za e incorpora la funcionalidad de cifrado, además de las herramientas para la compresión 
+- p7zip-full es, por decirlo de algún modo, la versión más completa. Soporta los formatos 7z y 7za e incorpora la funcionalidad de cifrado, además de las herramientas para la compresión
 
 ## ZIP
 
@@ -397,7 +397,7 @@ El formato es siempre es la misma, consiste en colocar 7z, seguido de la opción
 7z a paquete-comprimido archivo-a-comprimir 7z a paquete-comprimido archivo-1 archivo-2
 ```
 
-Si queremos ponerle contraseña utilizamos el parámetro -p : 
+Si queremos ponerle contraseña utilizamos el parámetro -p :
 
 ```bash
 7z  a -p paquete-comprimido archivo-a-comprimir
@@ -442,11 +442,11 @@ El paquete para instalarlo es rar .
 Para comprimir un fichero o todos los de una carpeta:
 
 ```bash
-rar a nombre_fichero_comprimido.rar nombre_fichero_a_comprimir rar a nombre_fichero_comprimido.rar 
+rar a nombre_fichero_comprimido.rar nombre_fichero_a_comprimir rar a nombre_fichero_comprimido.rar
 ```
 **Cómo descomprimir RAR en Linux**
 
-Y para descomprimir en el mismo directorio o en otro diferente: 
+Y para descomprimir en el mismo directorio o en otro diferente:
 
 ```bash
 unrar x nombre\_del\_rar.rar
@@ -459,13 +459,13 @@ unrar x nombre\_del\_rar.rar /ruta/destino/descomprimido
 
 El nombre del paquete es zip.
 
-Para comprimir archivos : 
+Para comprimir archivos :
 
 ```bash
 zip archivo.zip archivos
 ```
 
-Para descomprimir archivos : 
+Para descomprimir archivos :
 
 ```bash
 unzip archivo.zip

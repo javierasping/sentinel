@@ -23,10 +23,10 @@ The default user is admin and the blank password. When we first log in, it will 
 
 ```bash
 FortiGate-VM64-KVM login: admin
-Password: 
+Password:
 You are forced to change your password. Please input a new password.
-New Password: 
-Confirm Password: 
+New Password:
+Confirm Password:
 Welcome!
 ```
 
@@ -56,9 +56,9 @@ end
 Now let's see the IP that the DHCP has assigned you with the following command:
 
 ```bash
-FGT # get system interface 
+FGT # get system interface
 == [ port1 ]
-name: port1   mode: dhcp    ip: 192.168.122.77 255.255.255.0   status: up    netbios-forward: disable    type: physical   ring-rx: 0   ring-tx: 0   netflow-sampler: disable    sflow-sampler: disable    src-check: enable    explicit-web-proxy: disable    explicit-ftp-proxy: disable    proxy-captive-portal: disable    mtu-override: disable    wccp: disable    drop-overlapped-fragment: disable    drop-fragment: disable  
+name: port1   mode: dhcp    ip: 192.168.122.77 255.255.255.0   status: up    netbios-forward: disable    type: physical   ring-rx: 0   ring-tx: 0   netflow-sampler: disable    sflow-sampler: disable    src-check: enable    explicit-web-proxy: disable    explicit-ftp-proxy: disable    proxy-captive-portal: disable    mtu-override: disable    wccp: disable    drop-overlapped-fragment: disable    drop-fragment: disable
 ```
 
 Now from any machine that has access to the 'external' network we can connect to the FW:

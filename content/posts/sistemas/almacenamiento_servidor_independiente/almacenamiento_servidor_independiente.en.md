@@ -24,7 +24,7 @@ Get-StoragePool -IsPrimordial $true | Get-PhysicalDisk -CanPool $True
 The following example creates a new storage group called StoragePool1 that uses all available disks:
 
 ```ps
-New-StoragePool –FriendlyName StoragePool1 –StorageSubsystemFriendlyName "Windows Storage\*" –PhysicalDisks (Get-PhysicalDisk –CanPool $True) 
+New-StoragePool –FriendlyName StoragePool1 –StorageSubsystemFriendlyName "Windows Storage\*" –PhysicalDisks (Get-PhysicalDisk –CanPool $True)
 ```
 
 ![](/sistemas/almacenamiento_servidor_independiente/img/Aspose.Words.2ccae554-4864-4939-8439-3bfaf64ead92.002.png)

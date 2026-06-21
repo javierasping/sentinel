@@ -23,7 +23,7 @@ Si no hay máquinas, la lista estará vacía.
 
 El comando `virt-install` permite especificar todas las propiedades de la VM. Por ejemplo:
 
-> [!NOTE]  
+> [!NOTE]
 > Recuerda descargar la iso del sistema operativo que quieres instalar , te recomiendo que la guardes en /var/lib/libvirt/images/
 que es el directorio por defecto donde se guardan discos e imágenes.
 
@@ -42,43 +42,43 @@ virt-install --connect qemu:///system \
 
 ### Explicación de los parámetros
 
-- `--name vm-test`  
+- `--name vm-test`
   Nombre de la máquina virtual.
 
-- `--virt-type kvm`  
+- `--virt-type kvm`
   Define que se utilizará KVM como hypervisor.
 
-- `--hvm`  
+- `--hvm`
   Habilita la funcionalidad completa de hardware-assisted virtualization (HVM).
 
-- `--os-variant=ubuntu25.04`  
+- `--os-variant=ubuntu25.04`
   Optimiza la configuración de la VM según la variante del sistema operativo.
 
-> [!NOTE]  
+> [!NOTE]
 > Se puede obtener la lista completa usando el comando `osinfo-query os`.
 
-- `--ram 2048`  
+- `--ram 2048`
   Asigna 2048 MB de memoria RAM a la VM.
 
-- `--vcpus 2`  
+- `--vcpus 2`
   Define 2 núcleos virtuales para la VM.
 
-- `--network network=default`  
+- `--network network=default`
   Conecta la VM a la red por defecto del host (NAT) usando libvirt.
 
-- `--graphics vnc,password=remotevnc,listen=0.0.0.0`  
+- `--graphics vnc,password=remotevnc,listen=0.0.0.0`
   Configura la consola gráfica vía VNC con contraseña y escucha en todas las interfaces de red.
 
-- `--disk pool=default,size=20,bus=virtio,format=qcow2`  
+- `--disk pool=default,size=20,bus=virtio,format=qcow2`
   Crea un disco de 20 GB en el pool de almacenamiento por defecto usando el bus `virtio` y el formato `QCOW2`.
 
-- `--cdrom /home/$USER/isos/ubuntu-25.04-server.iso`  
+- `--cdrom /home/$USER/isos/ubuntu-25.04-server.iso`
   Especifica la ISO del sistema operativo que se va a instalar.
 
-- `--noautoconsole`  
+- `--noautoconsole`
   Evita que se abra automáticamente la consola de la VM tras la creación.
 
-- `--boot cdrom,hd`  
+- `--boot cdrom,hd`
   Establece el orden de arranque, primero desde CD-ROM y luego desde disco duro.
 
 

@@ -52,7 +52,7 @@ Asimismo, se debe añadir una entrada en el archivo hosts con nuestra dirección
 
 Una vez comprobado que podemos instalarlo en nuestro sistema o máquina virtual, procederemos a descargarlo desde su página web oficial.
 
-Rápidamente nos daremos cuenta de que Oracle no da soporte oficial a Debian; el paquete se encuentra en formato .rpm, lo que significa que está preparado para distribuciones basadas en Red Hat. 
+Rápidamente nos daremos cuenta de que Oracle no da soporte oficial a Debian, el paquete se encuentra en formato .rpm, lo que significa que está preparado para distribuciones basadas en Red Hat.
 
 Para que nosotros podamos usar este paquete, debemos transformarlo a .deb. Para ello, utilizaremos la herramienta `alien`, que convierte el paquete para que sea compatible.
 
@@ -78,7 +78,7 @@ Comenzaremos la instalación. Este proceso tardará un buen rato, así que es ne
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.011.jpeg)
 
-Una vez finalice, en el archivo .bashrc de nuestro usuario añadiremos las variables de entorno de Oracle. `ORACLE_SID` se nos indicará al final de la instalación; las demás dependerán de los directorios configurados en los pasos anteriores:
+Una vez finalice, en el archivo .bashrc de nuestro usuario añadiremos las variables de entorno de Oracle. `ORACLE_SID` se nos indicará al final de la instalación, las demás dependerán de los directorios configurados en los pasos anteriores:
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.012.png)
 
@@ -92,11 +92,11 @@ Se produce un error que indica que no se puede comprobar la memoria disponible. 
 
 ![](/base_de_datos/instalacion_oracle_19c_debian12/img/Aspose.Words.55b57132-3c19-4447-864b-0b88f1173a10.014.jpeg)
 
-Sustituimos la línea 164 por la siguiente:     
+Sustituimos la línea 164 por la siguiente:
 
 `    `$SU -s /bin/bash  $ORACLE\_OWNER -c "$DBCA -silent -createDatabase -gdbName $ORACLE\_SID  -templateName  $TEMPLATE\_NAME  -characterSet  $CHARSET  - createAsContainerDatabase  $CREATE\_AS\_CDB  -numberOfPDBs  $NUMBER\_OF\_PDBS  - pdbName  $PDB\_NAME  -createListener  $LISTENER\_NAME:$LISTENER\_PORT  - datafileDestination $ORACLE\_DATA\_LOCATION -sid $ORACLE\_SID -autoGeneratePasswords -emConfiguration DBEXPRESS -emExpressPort $EM\_EXPRESS\_PORT -J- Doracle.assistants.dbca.validate.ConfigurationParams=false"
 
-Se ha resaltado el contenido que debe añadirse; también puede sustituir la línea entera.
+Se ha resaltado el contenido que debe añadirse, también puede sustituir la línea entera.
 
 Otro error común es que no se encuentre el comando `netstat`:
 

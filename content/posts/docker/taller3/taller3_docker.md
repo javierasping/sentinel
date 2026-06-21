@@ -20,7 +20,7 @@ hero: images/docker/taller3.png
 2. Crea un archivo `Dockerfile` para generar una imagen con un servidor web que sirva dicha página. Puedes utilizar una imagen base de Debian o Ubuntu, o una imagen que ya incluya un servicio web, como vimos en el apartado 'Ejemplo 1: Construcción de imágenes con una página estática'.
 
 ```bash
-javiercruces@docker:~/taller3$ cat Dockerfile 
+javiercruces@docker:~/taller3$ cat Dockerfile
 # syntax=docker/dockerfile:1
 FROM httpd:2.4
 COPY ./public_html/ /usr/local/apache2/htdocs/
@@ -58,20 +58,20 @@ javiercruces@docker:~/taller3$ docker run -d -p 8081:80 javiersaping/mi_servidor
 javiercruces@docker:~/taller3$ docker login
 javiercruces@docker:~/taller3$ docker push javiersaping/mi_servidor_web:v1
 The push refers to repository [docker.io/javiersaping/mi_servidor_web]
-c2a1a8df6153: Pushed 
-daede99f9966: Mounted from library/httpd 
-a7eff924c5ac: Mounted from library/httpd 
-24282ddb8cca: Mounted from library/httpd 
-5f70bf18a086: Mounted from library/httpd 
-8ba5f6d45106: Mounted from library/httpd 
-571ade696b26: Mounted from library/nextcloud 
+c2a1a8df6153: Pushed
+daede99f9966: Mounted from library/httpd
+a7eff924c5ac: Mounted from library/httpd
+24282ddb8cca: Mounted from library/httpd
+5f70bf18a086: Mounted from library/httpd
+8ba5f6d45106: Mounted from library/httpd
+571ade696b26: Mounted from library/nextcloud
 v1: digest: sha256:85a8e341e3fd89b313a263a45c91ad846d673f198301e482c4f07352aef8bd42 size: 1779
 ```
 
 5. Descarga la imagen en otro ordenador que tenga Docker instalado y crea un contenedor a partir de ella. (Si no dispones de otro equipo, elimina la imagen de tu ordenador y descárgala nuevamente desde Docker Hub).
 
 ```bash
-javiercruces@docker:~/taller3$ docker image ls 
+javiercruces@docker:~/taller3$ docker image ls
 REPOSITORY                     TAG          IMAGE ID       CREATED         SIZE
 javiersaping/mi_servidor_web   v1           3078183767ef   7 minutes ago   167MB
 nextcloud                      latest       142b11cc42d8   3 weeks ago     1.21GB
@@ -90,13 +90,13 @@ Deleted: sha256:5f245addf2a19a8f2d9314dc1283ab53d0f85ae6a6a73aa5d264f070f0d71e01
 
 javiercruces@docker:~/taller3$ docker pull javiersaping/mi_servidor_web:v1
 v1: Pulling from javiersaping/mi_servidor_web
-2f44b7a888fa: Already exists 
-5abb3599da34: Already exists 
-4f4fb700ef54: Already exists 
-fa608a886227: Already exists 
-afe6bbf00437: Already exists 
-fd0ef2a49677: Already exists 
-6d9a1035e41b: Pull complete 
+2f44b7a888fa: Already exists
+5abb3599da34: Already exists
+4f4fb700ef54: Already exists
+fa608a886227: Already exists
+afe6bbf00437: Already exists
+fd0ef2a49677: Already exists
+6d9a1035e41b: Pull complete
 Digest: sha256:85a8e341e3fd89b313a263a45c91ad846d673f198301e482c4f07352aef8bd42
 Status: Downloaded newer image for javiersaping/mi_servidor_web:v1
 docker.io/javiersaping/mi_servidor_web:v1
@@ -126,13 +126,13 @@ Successfully built 2e68e7708285
 Successfully tagged javiersaping/mi_servidor_web:v2
 javiercruces@docker:~/taller3$ docker push javiersaping/mi_servidor_web:v2
 The push refers to repository [docker.io/javiersaping/mi_servidor_web]
-1f5b52d08ce0: Pushed 
-daede99f9966: Layer already exists 
-a7eff924c5ac: Layer already exists 
-24282ddb8cca: Layer already exists 
-5f70bf18a086: Layer already exists 
-8ba5f6d45106: Layer already exists 
-571ade696b26: Layer already exists 
+1f5b52d08ce0: Pushed
+daede99f9966: Layer already exists
+a7eff924c5ac: Layer already exists
+24282ddb8cca: Layer already exists
+5f70bf18a086: Layer already exists
+8ba5f6d45106: Layer already exists
+571ade696b26: Layer already exists
 v2: digest: sha256:a2af8396c3dfaa8d0312868161bff238c17b742cd46d57296ed304a9495b2a7a size: 1779
 
 ```

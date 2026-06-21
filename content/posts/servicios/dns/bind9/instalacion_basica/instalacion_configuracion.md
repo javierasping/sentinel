@@ -14,12 +14,12 @@ En esta guía aprenderás a instalar y configurar un servidor DNS en Linux utili
 
 ### Crear la máquina DNS
 
-Crea una máquina y configúrala con el nombre `dns1.tunombre.org`. 
+Crea una máquina y configúrala con el nombre `dns1.tunombre.org`.
 
 Para ello edita el fichero `/etc/hostname`:
 
 ```bash
-javiercruces@dns1:~$ sudo cat /etc/hostname 
+javiercruces@dns1:~$ sudo cat /etc/hostname
 dns1
 ```
 

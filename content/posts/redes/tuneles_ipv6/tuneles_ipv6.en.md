@@ -16,9 +16,9 @@ In this detailed post, we explore the process of configuring IPv6 to IPv4 tunnel
 
 #### R1
 
-- **FastEthernet 0/0**  
-  - Network Prefix: `3333:db7::/64`  
-  - Link: `FE80::C801:20FF:FE69:0`  
+- **FastEthernet 0/0**
+  - Network Prefix: `3333:db7::/64`
+  - Link: `FE80::C801:20FF:FE69:0`
   - Global: `3333:DB7::C801:20FF:FE69:0`
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.002.png)
@@ -37,9 +37,9 @@ For R1 router clients, we will configure SLAAC:
 
 #### R2
 
-- **FastEthernet 0/0**  
-  - Network Prefix: `3333:db7:1::/64`  
-  - Link: `FE80::C802:20FF:FE79:0`  
+- **FastEthernet 0/0**
+  - Network Prefix: `3333:db7:1::/64`
+  - Link: `FE80::C802:20FF:FE79:0`
   - Global: `3333:DB7:1:0:C802:20FF:FE79:0`
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.007.png)
@@ -58,9 +58,9 @@ For R2 router clients, we will configure SLAAC:
 
 #### R3
 
-- **FastEthernet 0/0**  
-  - Network Prefix: `3333:db7:2::/64`  
-  - Link: `FE80::C803:20FF:FE89:0`  
+- **FastEthernet 0/0**
+  - Network Prefix: `3333:db7:2::/64`
+  - Link: `FE80::C803:20FF:FE89:0`
   - Global: `3333:DB7:2:0:C803:20FF:FE89:0`
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.012.png)
@@ -435,7 +435,7 @@ Finally, we can see in the IPv6 header that it is indistinguishable from one tha
 
 We see that, once it reaches the destination (i.e., after traversing the IPv4 segment and re-entering the IPv6 network), the router will remove the IPv4 header and leave the IPv6 header so the packet can reach its destination.
 
-We see that the IPv6 header remains intact; it is the same throughout the packet's journey:
+We see that the IPv6 header remains intact, it is the same throughout the packet's journey:
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.091.jpeg)
 
@@ -650,7 +650,7 @@ Finally, we can see in the IPv6 header that it is indistinguishable from one tha
 
 We see that, once it reaches the destination (i.e., after traversing the IPv4 segment and re-entering the IPv6 network), the router will remove the IPv4 header and leave the IPv6 header so the packet can reach its destination.
 
-We see that the IPv6 header remains intact; it is the same throughout the packet's journey:
+We see that the IPv6 header remains intact, it is the same throughout the packet's journey:
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.124.jpeg)
 

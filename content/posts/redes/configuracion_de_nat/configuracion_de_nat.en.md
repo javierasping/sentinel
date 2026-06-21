@@ -542,7 +542,7 @@ We will assign to the internal interface of our network this rule:
 Now we will create a pool with public ips, the command would be this does not come full in the terminal:
 
 ```bash
-ip nat pool ip_publica 102.168.0.2 102.168.0.2 netmask 255.255.255.0 
+ip nat pool ip_publica 102.168.0.2 102.168.0.2 netmask 255.255.255.0
 ```
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.105.png)
@@ -578,7 +578,7 @@ We will assign to the internal interface of our network this rule:
 Now we will create a pool with public ips, the command would be this does not come full in the terminal:
 
 ```bash
-ip nat pool ip_publica 101.168.0.2 101.168.0.2 netmask 255.255.255.0 
+ip nat pool ip_publica 101.168.0.2 101.168.0.2 netmask 255.255.255.0
 ```
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.112.png)
@@ -627,7 +627,7 @@ We will assign to the internal interface of our network this rule:
 Now we will create a pool with public ips, the command would be this does not come full in the terminal:
 
 ```bash
-ip nat pool ip_publica 103.168.0.2 103.168.0.2 netmask 255.255.255.0 
+ip nat pool ip_publica 103.168.0.2 103.168.0.2 netmask 255.255.255.0
 ```
 
 ![](/redes/configuracion_de_nat/img/Aspose.Words.5d96acd8-9177-4bad-9621-78ead201ec37.121.png)

@@ -26,7 +26,7 @@ Let's give each interface the corresponding network configuration:
 
 ```bash
 #Interfaz que nos dará internet
-R1#configure terminal 
+R1#configure terminal
 R1(config)#interface fastEthernet 0/0
 R1(config-if)#ip add dhcp
 R1(config-if)#no shut
@@ -96,14 +96,14 @@ We will also configure the SNAT:
 
 ```bash
 #Activa el bit de forwarding
-debian@servidor1:~$ sudo nano /etc/sysctl.conf 
-net.ipv4.ip_forward=1 
+debian@servidor1:~$ sudo nano /etc/sysctl.conf
+net.ipv4.ip_forward=1
 
 #Regla SNAT
 debian@servidor1:~$ sudo iptables -t nat -A POSTROUTING -o ens3 -s 192.168.0.0/24 -j MASQUERADE
 
 #Te recomiendo que lo hagas permanente , configura iptables-persistent
-debian@servidor1:~$ sudo apt install iptables-persistent 
+debian@servidor1:~$ sudo apt install iptables-persistent
 ```
 Server Configuration 2
 
@@ -132,14 +132,14 @@ We will also configure the SNAT:
 
 ```bash
 #Activa el bit de forwarding
-debian@servidor2:~$ sudo nano /etc/sysctl.conf 
-net.ipv4.ip_forward=1 
+debian@servidor2:~$ sudo nano /etc/sysctl.conf
+net.ipv4.ip_forward=1
 
 #Regla SNAT
 debian@servidor2:~$ sudo iptables -t nat -A POSTROUTING -o ens3 -s 192.168.1.0/24 -j MASQUERADE
 
 #Te recomiendo que lo hagas permanente , configura iptables-persistent
-debian@servidor2:~$ sudo apt install iptables-persistent 
+debian@servidor2:~$ sudo apt install iptables-persistent
 ```
 ### Roulting check
 We will check that we have routed our stage well, for that from the servers we will do a ping on the contrary and has the Internet.
@@ -154,7 +154,7 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 --- 8.8.8.8 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 37.374/37.374/37.374/0.000 ms
-debian@servidor1:~$ 
+debian@servidor1:~$
 
 debian@servidor1:~$ ping 100.0.0.2 -c 1
 PING 100.0.0.2 (100.0.0.2) 56(84) bytes of data.
@@ -163,7 +163,7 @@ PING 100.0.0.2 (100.0.0.2) 56(84) bytes of data.
 --- 100.0.0.2 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 18.567/18.567/18.567/0.000 ms
-debian@servidor1:~$ 
+debian@servidor1:~$
 ```
 
 
@@ -184,7 +184,7 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 --- 8.8.8.8 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 160.147/160.147/160.147/0.000 ms
-debian@servidor2:~$ 
+debian@servidor2:~$
 ```
 
 We will also check from the customers as you have set up a snack.
@@ -234,7 +234,7 @@ We will install the openvpn package on both servers
 #Servidor 1
 debian@servidor1:~$ sudo apt install -y openvpn
 #Servidor 2
-debian@servidor2:~$ sudo apt install -y openvpn 
+debian@servidor2:~$ sudo apt install -y openvpn
 ```
 
 ## # Key and certificate generation
@@ -368,7 +368,7 @@ There are quite a few fields but you can leave some blank
 For some fields there will be a default value,
 If you enter '.', the field will be left blank.
 -----
-Common Name (eg: your user, host, or server name) [servidor1]:          
+Common Name (eg: your user, host, or server name) [servidor1]:
 * Notice:
 
 Keypair and certificate request completed. Your files are:
@@ -626,7 +626,7 @@ verb 3
 Now restart the service to apply the changes and lift the interface. You may need to restart the machine:
 
 ```bash
-debian@servidor1:~$ sudo systemctl restart openvpn.service 
+debian@servidor1:~$ sudo systemctl restart openvpn.service
 ```
 
 And we'll see that the tun0 interface is up:
@@ -637,27 +637,27 @@ debian@servidor1:~$ ip a
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute 
+    inet6 ::1/128 scope host noprefixroute
        valid_lft forever preferred_lft forever
 2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 0c:21:18:28:00:00 brd ff:ff:ff:ff:ff:ff
     altname enp0s3
     inet 90.0.0.2/24 brd 90.0.0.255 scope global ens3
        valid_lft forever preferred_lft forever
-    inet6 fe80::e21:18ff:fe28:0/64 scope link 
+    inet6 fe80::e21:18ff:fe28:0/64 scope link
        valid_lft forever preferred_lft forever
 3: ens4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 0c:21:18:28:00:01 brd ff:ff:ff:ff:ff:ff
     altname enp0s4
     inet 192.168.0.1/24 brd 192.168.0.255 scope global ens4
        valid_lft forever preferred_lft forever
-    inet6 fe80::e21:18ff:fe28:1/64 scope link 
+    inet6 fe80::e21:18ff:fe28:1/64 scope link
        valid_lft forever preferred_lft forever
 4: tun0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 500
-    link/none 
+    link/none
     inet 10.99.99.1 peer 10.99.99.2/32 scope global tun0
        valid_lft forever preferred_lft forever
-    inet6 fe80::8491:9eb9:104e:6bf7/64 scope link stable-privacy 
+    inet6 fe80::8491:9eb9:104e:6bf7/64 scope link stable-privacy
        valid_lft forever preferred_lft forever
 ```
 
@@ -710,7 +710,7 @@ log /var/log/openvpn.log
 Now restart the service to apply the changes and lift the interface. You may need to restart the machine:
 
 ```bash
-debian@servidor2:~$ sudo systemctl restart openvpn.service 
+debian@servidor2:~$ sudo systemctl restart openvpn.service
 ```
 
 And we'll see that the tun0 interface is up:
@@ -721,27 +721,27 @@ debian@servidor2:~$ ip a
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute 
+    inet6 ::1/128 scope host noprefixroute
        valid_lft forever preferred_lft forever
 2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 0c:82:67:88:00:00 brd ff:ff:ff:ff:ff:ff
     altname enp0s3
     inet 100.0.0.2/24 brd 100.0.0.255 scope global ens3
        valid_lft forever preferred_lft forever
-    inet6 fe80::e82:67ff:fe88:0/64 scope link 
+    inet6 fe80::e82:67ff:fe88:0/64 scope link
        valid_lft forever preferred_lft forever
 3: ens4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 0c:82:67:88:00:01 brd ff:ff:ff:ff:ff:ff
     altname enp0s4
     inet 192.168.1.1/24 brd 192.168.1.255 scope global ens4
        valid_lft forever preferred_lft forever
-    inet6 fe80::e82:67ff:fe88:1/64 scope link 
+    inet6 fe80::e82:67ff:fe88:1/64 scope link
        valid_lft forever preferred_lft forever
 4: tun0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 500
-    link/none 
+    link/none
     inet 10.99.99.6 peer 10.99.99.5/32 scope global tun0
        valid_lft forever preferred_lft forever
-    inet6 fe80::67f5:fd86:d948:132a/64 scope link stable-privacy 
+    inet6 fe80::67f5:fd86:d948:132a/64 scope link stable-privacy
        valid_lft forever preferred_lft forever
 ```
 
@@ -751,12 +751,12 @@ Now let's check that from server 2 we can access the client machines of the netw
 
 ```bash
 debian@servidor2:~$ ip r
-default via 100.0.0.1 dev ens3 onlink 
-10.99.99.1 via 10.99.99.5 dev tun0 
-10.99.99.5 dev tun0 proto kernel scope link src 10.99.99.6 
-100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2 
-192.168.0.0/24 via 10.99.99.5 dev tun0 
-192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1 
+default via 100.0.0.1 dev ens3 onlink
+10.99.99.1 via 10.99.99.5 dev tun0
+10.99.99.5 dev tun0 proto kernel scope link src 10.99.99.6
+100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2
+192.168.0.0/24 via 10.99.99.5 dev tun0
+192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1
 ```
 
 As you can see, we will have connectivity from the server to the other network equipment.
@@ -782,7 +782,7 @@ ED25519 key fingerprint is SHA256:zn2i5rAyilMi1i+Kqb6ys8GhldKuHKYZCDKbD1aXqjQ.
 This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 Warning: Permanently added '192.168.0.2' (ED25519) to the list of known hosts.
-debian@192.168.0.2's password: 
+debian@192.168.0.2's password:
 Linux cliente1 6.1.0-15-cloud-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.66-1 (2023-12-09) x86_64
 
 The programs included with the Debian GNU/Linux system are free software;

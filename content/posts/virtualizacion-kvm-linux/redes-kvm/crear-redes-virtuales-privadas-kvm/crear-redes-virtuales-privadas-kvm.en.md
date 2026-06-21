@@ -25,7 +25,7 @@ We'll use `virsh` and XML definitions (you can do the same with `virt-manager`, 
 - See current networks: `virsh net-list --all`
 - Persistent config paths: `/etc/libvirt/qemu/networks/`
 
-Tip: avoid subnet conflicts; choose ranges that don't collide with your physical LAN or other libvirt networks.
+Tip: avoid subnet conflicts, choose ranges that don't collide with your physical LAN or other libvirt networks.
 
 ---
 

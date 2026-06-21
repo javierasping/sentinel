@@ -22,7 +22,7 @@ Ej: sleep 10m - > wait 10 min
 
 In case it is not of any use, however it is very useful in Scripts. Here is a small example:
 
-date + "% H:% M:% S '; sleep 5; date +"% H:% M:% S'
+date + "% H:% M:% S ', sleep 5, date +"% H:% M:% S'
 
 ![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.001.png)
 
@@ -86,7 +86,7 @@ The main parameters are:
 
 We can program tasks from the command line, with echo:
 
-echo "sh copia-segurity.sh" ¦ 124; at 10: 00 PM
+echo "sh copia-segurity.sh" ¦ 124, at 10: 00 PM
 
 Has this task will be assigned a number automatically, to list the tasks we have we invoke the at command without any parameter
 
@@ -146,6 +146,6 @@ These commands will give us the possibility to automate processes, making the ma
 
 ## Bibliography
 
-- [Watch command](https://ubunlog.com/comando-watch-some-formas-de-use/) 
+- [Watch command](https://ubunlog.com/comando-watch-some-formas-de-use/)
 - [Crontab command](https://geekytheory.com/programar-tareas-en-linux-using-crontab/)
 

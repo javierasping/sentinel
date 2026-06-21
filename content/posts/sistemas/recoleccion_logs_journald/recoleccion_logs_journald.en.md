@@ -40,7 +40,7 @@ Since we will use the encrypted service to ensure that no one can access our rec
 We can generate the certificates manually, but there is a tool called Easy RSA that automates this process. I will generate in Odin all the certificates of the machines and then take them to the corresponding machines.
 
 ```bash
-javiercruces@odin:~$ sudo apt install easy-rsa openssl -y 
+javiercruces@odin:~$ sudo apt install easy-rsa openssl -y
 ```
 
 This utility brings an example file to make it easier for us to generate the certificates, within this we will change the following values:
@@ -234,8 +234,8 @@ TrustedCertificateFile=/etc/letsencrypt/live/javiercd.es/combined.pem
 Once configured, we restart the service and check that it is up:
 
 ```bash
-javiercruces@odin:~$ sudo systemctl restart systemd-journal-remote.service 
-javiercruces@odin:~$ sudo systemctl status systemd-journal-remote.service 
+javiercruces@odin:~$ sudo systemctl restart systemd-journal-remote.service
+javiercruces@odin:~$ sudo systemctl status systemd-journal-remote.service
 ● systemd-journal-remote.service - Journal Remote Sink Service
      Loaded: loaded (/lib/systemd/system/systemd-journal-remote.service; indirect; preset: disabled)
      Active: active (running) since Wed 2024-01-31 18:46:25 UTC; 49min ago
@@ -257,7 +257,7 @@ Step 4: Configure the client
 We will add the files corresponding to the configuration, your private key and your corresponding certificate as well as the CA certificate with which you have generated these:
 
 ```bash
-[javiercruces@hela ~]$ sudo cat /etc/systemd/journal-upload.conf 
+[javiercruces@hela ~]$ sudo cat /etc/systemd/journal-upload.conf
 [Upload]
 URL=https://odin.javiercd.gonzalonazareno.org/
 ServerKeyFile=/etc/letsencrypt/live/hela.javiercd.es/odin.key

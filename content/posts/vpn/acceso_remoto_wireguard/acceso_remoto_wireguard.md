@@ -10,7 +10,7 @@ hero: /images/vpn/wireguard_acceso_remoto.png
 
 ![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240114150833.png)
 
-En primer lugar configurare la maquina servidor1  como servidor VPN de acceso remoto y servidor2 como cliente VPN . Posteriormente configurare un cliente Windows y Android . 
+En primer lugar configurare la maquina servidor1  como servidor VPN de acceso remoto y servidor2 como cliente VPN . Posteriormente configurare un cliente Windows y Android .
 
 Lo primero que haremos sera instalarnos tanto en ambas maquinas el paquete Wireguard :
 
@@ -53,12 +53,12 @@ debian@servidor2:~$ sudo cat /etc/wireguard/client_public.key
 gS2ED2zfzMHBttMpFhH3MvRpr8D4ALEDTumNcib8A2g=
 ```
 
-Una vez generado las claves , vamos a proceder a configurar el servidor de acceso remoto Wireguard , en mi caso voy a llamar al fichero de configuración wg0.conf . Voy a añadirte en cada parámetro de la configuración un comentario para que sepas que tienes que poner en cada campo : 
+Una vez generado las claves , vamos a proceder a configurar el servidor de acceso remoto Wireguard , en mi caso voy a llamar al fichero de configuración wg0.conf . Voy a añadirte en cada parámetro de la configuración un comentario para que sepas que tienes que poner en cada campo :
 
 ```bash
 debian@servidor1:~$ sudo cat /etc/wireguard/wg0.conf
 [Interface]
-# IP que tendrá el túnel VPN , en concreto la interfaz wg0 que es como has llamado el fichero de conf 
+# IP que tendrá el túnel VPN , en concreto la interfaz wg0 que es como has llamado el fichero de conf
 Address = 10.99.99.1
 #Clave privada del servidor
 PrivateKey = 2Gg3EnKD+rdyMPEjMikZTwq2w0m78KrEcUsAJ/8icFA=
@@ -172,21 +172,21 @@ debian@servidor2:~$ ip -4 a
        valid_lft forever preferred_lft forever
 ```
 
-También comprobaremos las rutas que se nos ha creado en el servidor y en el cliente : 
+También comprobaremos las rutas que se nos ha creado en el servidor y en el cliente :
 
 ```bash
 debian@servidor1:~$ ip r
-default via 90.0.0.1 dev ens3 onlink 
-10.99.99.2 dev wg0 scope link 
-10.99.99.4 dev wg0 scope link 
-90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2 
-192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1 
+default via 90.0.0.1 dev ens3 onlink
+10.99.99.2 dev wg0 scope link
+10.99.99.4 dev wg0 scope link
+90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2
+192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1
 
 debian@servidor2:~$ ip r
-default via 100.0.0.1 dev ens3 onlink 
-10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2 
-100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2 
-192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1 
+default via 100.0.0.1 dev ens3 onlink
+10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2
+100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2
+192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1
 ```
 
 
@@ -230,7 +230,7 @@ PING 192.168.0.1 (192.168.0.1) 56(84) bytes of data.
 rtt min/avg/max/mdev = 20.272/20.272/20.272/0.000 ms
 ```
 
-Aunque como esta montado mi escenario , las direcciones IP privadas no están erutadas vamos a comprobar que el trafico va por el túnel , haciendo uso de traceroute : 
+Aunque como esta montado mi escenario , las direcciones IP privadas no están erutadas vamos a comprobar que el trafico va por el túnel , haciendo uso de traceroute :
 
 ```bash
 debian@servidor2:~$ traceroute 192.168.0.2
@@ -240,7 +240,7 @@ traceroute to 192.168.0.2 (192.168.0.2), 30 hops max, 60 byte packets
 ```
 
 
-#### Configuración cliente android 
+#### Configuración cliente android
 
 La maquina virtual de android es bastante incomoda de controlar , así que voy a generarle las claves y su fichero de configuración en el servidor1 . Posteriormente se lo haremos llegar descargandonoslo de este con apache .
 
@@ -248,28 +248,28 @@ Nos generamos las claves para android :
 
 ```bash
 debian@servidor1:~$ wg genkey | tee androidprivate | wg pubkey > androidpublic
-debian@servidor1:~$ cat androidprivate 
+debian@servidor1:~$ cat androidprivate
 CBY5o2iko7xXQrNAFcFDIKohOngawB1uvws7aDDgl0g=
-debian@servidor1:~$ cat androidpublic 
+debian@servidor1:~$ cat androidpublic
 cBGl5QWOsbZyI2GN1MXDxUsfeMmI5sKnp3VkxW9lO3g=
 ```
 
 El fichero de configuración seria el siguiente :
 
 ```bash
-debian@servidor1:~$ sudo cat android.conf 
+debian@servidor1:~$ sudo cat android.conf
 [Interface]
 Address = 10.99.99.4
 PrivateKey = CBY5o2iko7xXQrNAFcFDIKohOngawB1uvws7aDDgl0g=
 ListenPort = 51820
-  
+
 [Peer]
 Publickey = 2/RjGUbiQuaFR7atYaQ8lcczz2wXxO9aIwfzZEMPXCQ=
 AllowedIPs = 0.0.0.0/0
 Endpoint = 90.0.0.2:51820
 ```
 
-Me he instalado apache y copiare este archivo al document root para hacerlo llegar a la maquina android . Uso este medio ya que es un escenario ficticio . 
+Me he instalado apache y copiare este archivo al document root para hacerlo llegar a la maquina android . Uso este medio ya que es un escenario ficticio .
 
 ```bash
 debian@servidor1:~$ sudo cp android.conf /var/www/html/
@@ -296,7 +296,7 @@ debian@servidor1:~$ sudo wg-quick down wg0
 debian@servidor1:~$ sudo wg-quick up wg0
 ```
 
-Ahora abre la aplicación de wireguard y dale a importar desde archivo y activa la conexión . Activa el túnel y asegúrate de que se produce el handshake : 
+Ahora abre la aplicación de wireguard y dale a importar desde archivo y activa la conexión . Activa el túnel y asegúrate de que se produce el handshake :
 
 ![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127123150.png)
 
@@ -306,31 +306,31 @@ Si abrimos una terminal podremos hacerle pings a los clientes :
 
 #### Configuración del cliente Windows
 
-Vamos a repetir el proceso pero ahora con nuestro cliente Windows . 
+Vamos a repetir el proceso pero ahora con nuestro cliente Windows .
 
-Para poder copiar y pegar voy a realizar la generación de claves de este cliente en la maquina servidor1 . 
+Para poder copiar y pegar voy a realizar la generación de claves de este cliente en la maquina servidor1 .
 
 Comenzaremos generando el par de claves
 
 ```bash
 debian@servidor1:~$ wg genkey | tee winprivate | wg pubkey > winpublic
 
-debian@servidor1:~$ cat winprivate 
+debian@servidor1:~$ cat winprivate
 QKGQEdrB9FBYRZsLNgc3qr9m8/lx+uc9n5vvj67I9m8=
 
-debian@servidor1:~$ cat winpublic 
+debian@servidor1:~$ cat winpublic
 E8VdupsWJ7vCTO7SF3oXUciUrsRgJ3p6T+F5UbbLngo=
 ```
 
 Nos creamos el fichero de configuración para este cliente :
 
 ```bash
-debian@servidor1:~$ cat win.conf 
+debian@servidor1:~$ cat win.conf
 [Interface]
 Address = 10.99.99.5
 PrivateKey = QKGQEdrB9FBYRZsLNgc3qr9m8/lx+uc9n5vvj67I9m8=
 ListenPort = 51820
-  
+
 [Peer]
 Publickey = 2/RjGUbiQuaFR7atYaQ8lcczz2wXxO9aIwfzZEMPXCQ=
 AllowedIPs = 0.0.0.0/0
@@ -361,7 +361,7 @@ debian@servidor1:~$ sudo wg-quick down wg0
 debian@servidor1:~$ sudo wg-quick up wg0
 ```
 
-Una vez tenemos todo configurado , accede a la maquina Windows y descargate el fichero de configuración : 
+Una vez tenemos todo configurado , accede a la maquina Windows y descargate el fichero de configuración :
 
 ![](/vpn/acceso_remoto_wireguard/img/Pastedimage20240127124840.png)
 

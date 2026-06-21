@@ -161,7 +161,7 @@ The previous rules we had were as follows:
 ```bash
 javiercruces@odin:~$ sudo iptables -L -t nat
 Chain PREROUTING (policy ACCEPT)
-target     prot opt source               destination         
+target     prot opt source               destination
 DNAT       tcp  --  anywhere             anywhere             tcp dpt:http to:172.16.0.200
 DNAT       udp  --  anywhere             anywhere             udp dpt:domain to:192.168.0.2
 DNAT       tcp  --  anywhere             anywhere             tcp dpt:smtp to:192.168.0.3
@@ -292,7 +292,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Sat Mar  9 13:49:09 2024 from 172.29.0.58
-javiercruces@odin:~$ 
+javiercruces@odin:~$
 ```
 
 We checked the hits in the rules:
@@ -345,7 +345,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Sat Mar  9 19:49:28 2024 from 192.168.0.2
-javiercruces@odin:~$ 
+javiercruces@odin:~$
 
 #Thor --> Odin
 javiercruces@thor:~$ ssh 192.168.0.1
@@ -358,7 +358,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Sat Mar  9 19:46:12 2024 from 192.168.0.2
-javiercruces@odin:~$ 
+javiercruces@odin:~$
 
 ```
 
@@ -367,7 +367,7 @@ I'll leave you the rule hits at the end of practice.
 ### The Odin machine must be allowed traffic for the loopback interface.
 
 ```bash
-sudo nft add rule inet filter input iifname "lo" counter accept    
+sudo nft add rule inet filter input iifname "lo" counter accept
 sudo nft add rule inet filter output oifname "lo" counter accept
 ```
 
@@ -502,7 +502,7 @@ Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.1.0-18-amd64 x86_64)
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
 Last login: Sun Mar 10 14:52:57 2024 from 192.168.0.1
-javiercruces@thor:~$ 
+javiercruces@thor:~$
 
 ```
 
@@ -522,7 +522,7 @@ Check:
 ```bash
 javiercruces@thor:~$ ssh 172.16.0.200
 Last login: Sun Mar 10 14:53:12 2024 from 192.168.0.2
-[javiercruces@hela ~]$ 
+[javiercruces@hela ~]$
 ```
 
 ### Configure the Odin machine so that LAN and DMZ machines can access the outside.
@@ -550,7 +550,7 @@ Check:
 
 ```bash
 javiercruces@thor:~$ curl -I https://www.javiercd.es
-HTTP/2 200 
+HTTP/2 200
 server: GitHub.com
 content-type: text/html; charset=utf-8
 last-modified: Sat, 02 Mar 2024 10:17:01 GMT
@@ -596,7 +596,7 @@ I check that I can navigate:
 
 ```bash
 [root@hela javiercruces]# curl -I https://www.javiercd.es/
-HTTP/2 200 
+HTTP/2 200
 server: GitHub.com
 content-type: text/html; charset=utf-8
 last-modified: Sat, 02 Mar 2024 10:17:01 GMT
@@ -706,14 +706,14 @@ We access the postwree server from hela:
 
 ```bash
 [root@hela javiercruces]# psql -h 192.168.0.3 -U postgres
-Password for user postgres: 
+Password for user postgres:
 psql (13.14, server 14.11 (Ubuntu 14.11-0ubuntu0.22.04.1))
 WARNING: psql major version 13, server major version 14.
          Some psql features might not work.
 SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
 Type "help" for help.
 
-postgres=# 
+postgres=#
 ```
 
 ## # Avoid DoS attacks by ICMP Flood, limiting the number of requests per second to 4 from the same IP.
@@ -726,7 +726,7 @@ sudo nft insert rule inet filter input icmp type echo-request limit rate 1/secon
 If we make a flood attack, this will cut the traffic:
 
 ```bash
-[root@hela javiercruces]# hping3 --icmp --flood --rand-source 172.16.0.1 
+[root@hela javiercruces]# hping3 --icmp --flood --rand-source 172.16.0.1
 HPING 172.16.0.1 (eth0 172.16.0.1): icmp mode set, 28 headers + 0 data bytes
 hping in flood mode, no replies will be shown
 
@@ -744,7 +744,7 @@ sudo nft add rule inet filter input tcp flags \& '(fin|syn|rst|ack) == syn' coun
 If we test the attack:
 
 ```bash
-[root@hela javiercruces]# hping3  --flood --rand-source 172.16.0.1 
+[root@hela javiercruces]# hping3  --flood --rand-source 172.16.0.1
 HPING 172.16.0.1 (eth0 172.16.0.1): NO FLAGS are set, 40 headers + 0 data bytes
 hping in flood mode, no replies will be shown
 ^C
@@ -1012,7 +1012,7 @@ sudo nft insert rule inet filter input icmp type echo-request limit rate 1/secon
 Every time I have executed the script the rules lose the counters but so would the scheme with all the rules at the end of the practice:
 
 ```bash
-javiercruces@odin:~$ sudo nft list ruleset  
+javiercruces@odin:~$ sudo nft list ruleset
 table inet filter {
 	chain forward {
 		type filter hook forward priority filter + 10; policy drop;

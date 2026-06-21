@@ -72,7 +72,7 @@ Usando apt :
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.008.png)
 
 
-### Ejercicio 8 Listar el contenido de un paquete sin la necesidad de instalarlo o descargarlo. 
+### Ejercicio 8 Listar el contenido de un paquete sin la necesidad de instalarlo o descargarlo.
 
 Podemos usar `apt-file`:
 
@@ -108,7 +108,7 @@ Mientras que con este las dependencias indirectas :
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.015.png)
 
-### Ejercicio 13 ¿Cómo procederías para encontrar el paquete al que pertenece un determinado fichero? 
+### Ejercicio 13 ¿Cómo procederías para encontrar el paquete al que pertenece un determinado fichero?
 
 Podemos usar dpkg :
 
@@ -184,7 +184,7 @@ Lo marcamos para evitar las actualizaciones y listamos los marcados para comprob
 
 
 
-## Trabajo con ficheros .deb 
+## Trabajo con ficheros .deb
 
 ### Ejercicio 1 Descarga un paquete sin instalarlo, es decir, descarga el fichero .deb correspondiente. Indica diferentes formas de hacerlo.
 
@@ -266,7 +266,7 @@ Para eliminarla :
 
 ### Ejercicio 6 Indica el procedimiento para descargar un paquete del repositorio stable.
 
-Tal y como lo tenemos configurado los paquetes por prioridad se descargaran del repositorio estable . Pero podemos indicárselo : 
+Tal y como lo tenemos configurado los paquetes por prioridad se descargaran del repositorio estable . Pero podemos indicárselo :
 
 ![](/sistemas/comandos_linux/ejercicios_gestion_de_paqueteria/img/Aspose.Words.92111ab6-0138-481e-ad62-570c3a0b923e.043.png)
 
@@ -288,7 +288,7 @@ Igual que el ejercicio anterior solo que aquí indicamos sid ya que tenemos indi
 
 
 
-## Trabajo con directorios 
+## Trabajo con directorios
 
 Que cometidos tienen
 
@@ -296,7 +296,7 @@ Que cometidos tienen
 
 **/var/lib/dpkg/available:** Este archivo contiene información sobre los paquetes instalados y sus versiones. Es utilizado por mi sistema de gestión de paquetes dpkg para mantener un registro de los paquetes  que  tengo instalados y sus  estados.  Proporciona información  sobre  los  paquetes disponibles y sus dependencias.
 
-**/var/lib/dpkg/status:** Este archivo también contiene información sobre los paquetes instalados en mi sistema, pero proporciona una vista más detallada que /var/lib/dpkg/available. Contiene información sobre el estado de los paquetes, como si están instalados, desinstalados o si hay problemas con su configuración. 
+**/var/lib/dpkg/status:** Este archivo también contiene información sobre los paquetes instalados en mi sistema, pero proporciona una vista más detallada que /var/lib/dpkg/available. Contiene información sobre el estado de los paquetes, como si están instalados, desinstalados o si hay problemas con su configuración.
 
 **/var/cache/apt/archives/:** Este directorio almacena los archivos de paquetes que descargo antes de que sean instalados en mi sistema. Cuando ejecuto comandos como apt-get install o apt-get upgrade, los paquetes se descargan primero en este directorio y luego se instalan. Mantener una copia de los paquetes descargados en este directorio puede ser útil si deseo reinstalar o desinstalar un paquete sin volver a descargarlo desde los repositorios, lo que ayuda a ahorrar tiempo y ancho de banda.
 

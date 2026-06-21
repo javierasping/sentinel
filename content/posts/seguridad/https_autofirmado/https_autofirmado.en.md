@@ -39,7 +39,7 @@ debian@javiercrucesCA:/CA$ sudo tree -p
 └── [drwx------]  private
 
 5 directories, 1 file
-debian@javiercrucesCA:/CA$ 
+debian@javiercrucesCA:/CA$
 ```
 
 ### Step 2: Openssl configuration file
@@ -91,7 +91,7 @@ countryName_min                 = 2
 countryName_max                 = 2
 
 stateOrProvinceName             = State or Province Name (full name)
-stateOrProvinceName_default     = Sevilla   
+stateOrProvinceName_default     = Sevilla
 
 localityName                    = Dos Hermanas
 
@@ -171,9 +171,9 @@ Certificate Details:
             commonName                = javiercruces.iesgn.org
             emailAddress              = javierasping@gmail.com
         X509v3 extensions:
-            X509v3 Subject Key Identifier: 
+            X509v3 Subject Key Identifier:
                 E3:9C:A3:CF:0E:33:EB:83:45:40:00:9B:04:4A:A9:9B:C8:8C:A9:62
-            X509v3 Authority Key Identifier: 
+            X509v3 Authority Key Identifier:
                 E3:9C:A3:CF:0E:33:EB:83:45:40:00:9B:04:4A:A9:9B:C8:8C:A9:62
             X509v3 Basic Constraints: critical
                 CA:TRUE
@@ -184,7 +184,7 @@ Sign the certificate? [y/n]:y
 1 out of 1 certificate requests certified, commit? [y/n]y
 Write out database with 1 new entries
 Data Base Updated
-debian@javiercrucesCA:/CA$ 
+debian@javiercrucesCA:/CA$
 
 ```
 
@@ -219,7 +219,7 @@ debian@javiercrucesCA:/CA$ sudo tree
 └── serial
 
 5 directories, 9 files
-debian@javiercrucesCA:/CA$ 
+debian@javiercrucesCA:/CA$
 
 
 ```
@@ -255,9 +255,9 @@ Certificate Details:
             commonName                = pfoter15
             emailAddress              = pepepfoter15@gmail.com
         X509v3 extensions:
-            X509v3 Basic Constraints: 
+            X509v3 Basic Constraints:
                 CA:FALSE
-            X509v3 Key Usage: 
+            X509v3 Key Usage:
                 Digital Signature, Non Repudiation, Key Encipherment
 Certificate is to be certified until Jan  8 10:01:58 2034 GMT (3650 days)
 Sign the certificate? [y/n]:y
@@ -294,21 +294,21 @@ So far your share has come, as only the certsdb / nombre.crt file, which is its 
 I'm going to send and bring me from the instance of pepe the different files, he has configured my public key so that I can connect:
 
 ```bash
-debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/ 
-javiercd.csr                          100% 1886   839.4KB/s   00:00   
+debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/
+javiercd.csr                          100% 1886   839.4KB/s   00:00
 
-debian@javiercrucesCA:~$ scp 172.22.200.113:/home/debian/peperc.csr ./ 
-peperc.csr                            100% 1785   432.6KB/s   00:00   
+debian@javiercrucesCA:~$ scp 172.22.200.113:/home/debian/peperc.csr ./
+peperc.csr                            100% 1785   432.6KB/s   00:00
 
 -- Le envio su certificado firmado
 debian@javiercrucesCA:~$ scp 172.22.200.113:/CA/certsdb/pepe.csr.pem
 pepe.csr.pem                           100% 1785   432.6KB/s   00:00
 
-debian@javiercrucesCA:~$ scp /CA/cacert.pem  172.22.200.113:/home/debian/pub_javi.pem 
-cacert.pem                            100% 7429   582.6KB/s   00:00    
+debian@javiercrucesCA:~$ scp /CA/cacert.pem  172.22.200.113:/home/debian/pub_javi.pem
+cacert.pem                            100% 7429   582.6KB/s   00:00
 
-debian@javiercrucesCA:~$ scp 172.22.200.113:/CA/cacert.pem ./pub_pepe.pem 
-cacert.pem                            100% 7389     1.2MB/s   00:00   
+debian@javiercrucesCA:~$ scp 172.22.200.113:/CA/cacert.pem ./pub_pepe.pem
+cacert.pem                            100% 7389     1.2MB/s   00:00
 
 
 ```
@@ -361,9 +361,9 @@ Certificate Details:
             commonName                = pfoter15
             emailAddress              = pepepfoter15@gmail.com
         X509v3 extensions:
-            X509v3 Basic Constraints: 
+            X509v3 Basic Constraints:
                 CA:FALSE
-            X509v3 Key Usage: 
+            X509v3 Key Usage:
                 Digital Signature, Non Repudiation, Key Encipherment
 Certificate is to be certified until Jan  8 10:01:58 2034 GMT (3650 days)
 Sign the certificate? [y/n]:y
@@ -378,7 +378,7 @@ Database updated
 To verify that the signature request file has been correctly generated, list the content of the current directory. There must be a file named tunombre.csr that you must send to your partner, so that it is signed by the corresponding certifying authority that you have created.
 
 ```bash
-debian@javiercrucesCA:~$ ls -l 
+debian@javiercrucesCA:~$ ls -l
 total 16
 -rw-r--r-- 1 root   root   1886 Jan 11 09:40 javiercd.csr
 
@@ -387,8 +387,8 @@ total 16
 In my case I'll get it to you using SCP:
 
 ```bash
-debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/ 
-javiercd.csr                          100% 1886   839.4KB/s   00:00   
+debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/
+javiercd.csr                          100% 1886   839.4KB/s   00:00
 ```
 
 Once signed, I'll get it from your server.
@@ -411,7 +411,7 @@ debian@javiercrucesCA:/CA$ sudo ls -l /etc/ssl/certs | grep javi
 -rw-r--r-- 1 debian debian   2175 Jan 11 10:05 javiercd.csr.pem
 debian@javiercrucesCA:/CA$ sudo ls -l /etc/ssl/certs | grep pepe
 -rw-r--r-- 1 root   root     7389 Jan 11 11:24 pub_pepe.pem
-debian@javiercrucesCA:/CA$ sudo ls -l /etc/ssl/private/ 
+debian@javiercrucesCA:/CA$ sudo ls -l /etc/ssl/private/
 total 8
 -r-------- 1 debian debian   3272 Jan 11 09:37 javiercd.key
 
@@ -429,11 +429,11 @@ As apache2 included a default VirtualHost for incoming requests by port 80 (HTTP
 
 ```bash
 
-debian@javiercrucesCA:/CA$ sudo a2enmod ssl 
-debian@javiercrucesCA:/CA$ sudo a2ensite default-ssl.conf 
+debian@javiercrucesCA:/CA$ sudo a2enmod ssl
+debian@javiercrucesCA:/CA$ sudo a2ensite default-ssl.conf
 
-debian@javiercrucesCA:~$ sudo cat /etc/apache2/sites-available/default-ssl.conf 
-<VirtualHost *:80> 
+debian@javiercrucesCA:~$ sudo cat /etc/apache2/sites-available/default-ssl.conf
+<VirtualHost *:80>
   ServerName javiercruces.iesgn.org
 
   Redirect permanent / https://javiercruces.iesgn.org/
@@ -452,7 +452,7 @@ debian@javiercrucesCA:~$ sudo cat /etc/apache2/sites-available/default-ssl.conf
 	SSLCertificateKeyFile   /etc/ssl/private/javiercd.key
 </VirtualHost>
 
-debian@javiercrucesCA:~$ sudo systemctl reload apache2.service 
+debian@javiercrucesCA:~$ sudo systemctl reload apache2.service
 
 
 ```
@@ -469,7 +469,7 @@ Let's force the https configuration on Nginx
 Here's the virtualhost configuration:
 
 ```bash
-debian@javiercrucesCA:/var/www/sad$ sudo cat /etc/nginx/sites-available/default 
+debian@javiercrucesCA:/var/www/sad$ sudo cat /etc/nginx/sites-available/default
 server {
     listen 80;
     listen [::]:80;

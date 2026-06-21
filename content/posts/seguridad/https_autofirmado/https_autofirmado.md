@@ -40,7 +40,7 @@ debian@javiercrucesCA:/CA$ sudo tree -p
 └── [drwx------]  private
 
 5 directories, 1 file
-debian@javiercrucesCA:/CA$ 
+debian@javiercrucesCA:/CA$
 
 
 ```
@@ -94,7 +94,7 @@ countryName_min                 = 2
 countryName_max                 = 2
 
 stateOrProvinceName             = State or Province Name (full name)
-stateOrProvinceName_default     = Sevilla   
+stateOrProvinceName_default     = Sevilla
 
 localityName                    = Dos Hermanas
 
@@ -174,9 +174,9 @@ Certificate Details:
             commonName                = javiercruces.iesgn.org
             emailAddress              = javierasping@gmail.com
         X509v3 extensions:
-            X509v3 Subject Key Identifier: 
+            X509v3 Subject Key Identifier:
                 E3:9C:A3:CF:0E:33:EB:83:45:40:00:9B:04:4A:A9:9B:C8:8C:A9:62
-            X509v3 Authority Key Identifier: 
+            X509v3 Authority Key Identifier:
                 E3:9C:A3:CF:0E:33:EB:83:45:40:00:9B:04:4A:A9:9B:C8:8C:A9:62
             X509v3 Basic Constraints: critical
                 CA:TRUE
@@ -187,7 +187,7 @@ Sign the certificate? [y/n]:y
 1 out of 1 certificate requests certified, commit? [y/n]y
 Write out database with 1 new entries
 Data Base Updated
-debian@javiercrucesCA:/CA$ 
+debian@javiercrucesCA:/CA$
 
 ```
 
@@ -201,7 +201,7 @@ Donde:
  - config: Especificamos a openssl que utilice el fichero de configuración modificado, no el nativo, con nombre openssl.cnf.
  - infiles: Indicamos qué queremos firmar, en este caso, el CSR para nuestra nueva autoridad certificadora creado en el paso anterior, con nombre careq.pem.
 
-Como se puede apreciar en la salida del comando, se nos ha pedido la frase de paso previamente configurada, para así asegurarnos que aunque la clave privada llegase a malas manos, no puedan realizar firmas fraudulentas. Además, antes de firmar el certificado, se nos ha mostrado toda la información referente al mismo, y se nos ha pedido confirmación. 
+Como se puede apreciar en la salida del comando, se nos ha pedido la frase de paso previamente configurada, para así asegurarnos que aunque la clave privada llegase a malas manos, no puedan realizar firmas fraudulentas. Además, antes de firmar el certificado, se nos ha mostrado toda la información referente al mismo, y se nos ha pedido confirmación.
 Para verificar que el certificado de la autoridad certificadora se encuentra contenido en el directorio actual, lista el contenido del mismo y comprueba que, efectivamente, existe un fichero cacert.pem que es resultado de firmar el fichero de solicitud de firma de certificado careq.pem.
 
 ```bash
@@ -222,7 +222,7 @@ debian@javiercrucesCA:/CA$ sudo tree
 └── serial
 
 5 directories, 9 files
-debian@javiercrucesCA:/CA$ 
+debian@javiercrucesCA:/CA$
 
 
 ```
@@ -258,9 +258,9 @@ Certificate Details:
             commonName                = pfoter15
             emailAddress              = pepepfoter15@gmail.com
         X509v3 extensions:
-            X509v3 Basic Constraints: 
+            X509v3 Basic Constraints:
                 CA:FALSE
-            X509v3 Key Usage: 
+            X509v3 Key Usage:
                 Digital Signature, Non Repudiation, Key Encipherment
 Certificate is to be certified until Jan  8 10:01:58 2034 GMT (3650 days)
 Sign the certificate? [y/n]:y
@@ -297,21 +297,21 @@ Hasta aquí ha llegado tu parte, ya que únicamente quedaría hacerle llegar a t
 Voy a enviar y a traerme de la instancia de pepe las diferentes ficheros , el ha configurado mi clave publica para que pueda conectarme  :
 
 ```bash
-debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/ 
-javiercd.csr                          100% 1886   839.4KB/s   00:00   
+debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/
+javiercd.csr                          100% 1886   839.4KB/s   00:00
 
-debian@javiercrucesCA:~$ scp 172.22.200.113:/home/debian/peperc.csr ./ 
-peperc.csr                            100% 1785   432.6KB/s   00:00   
+debian@javiercrucesCA:~$ scp 172.22.200.113:/home/debian/peperc.csr ./
+peperc.csr                            100% 1785   432.6KB/s   00:00
 
 -- Le envio su certificado firmado
 debian@javiercrucesCA:~$ scp 172.22.200.113:/CA/certsdb/pepe.csr.pem
 pepe.csr.pem                           100% 1785   432.6KB/s   00:00
 
-debian@javiercrucesCA:~$ scp /CA/cacert.pem  172.22.200.113:/home/debian/pub_javi.pem 
-cacert.pem                            100% 7429   582.6KB/s   00:00    
+debian@javiercrucesCA:~$ scp /CA/cacert.pem  172.22.200.113:/home/debian/pub_javi.pem
+cacert.pem                            100% 7429   582.6KB/s   00:00
 
-debian@javiercrucesCA:~$ scp 172.22.200.113:/CA/cacert.pem ./pub_pepe.pem 
-cacert.pem                            100% 7389     1.2MB/s   00:00   
+debian@javiercrucesCA:~$ scp 172.22.200.113:/CA/cacert.pem ./pub_pepe.pem
+cacert.pem                            100% 7389     1.2MB/s   00:00
 
 
 ```
@@ -323,7 +323,7 @@ cacert.pem                            100% 7389     1.2MB/s   00:00
 
 ### Paso 1: Creación de clave y solicitud de certificado.
 
-Lo primero que tendrás que hacer es crear una solicitud de firma de certificado (CSR o Certificate Signing Request) y hacérselo llegar a tu compañero. En este caso, vamos a hacerlo con openssl, pero se podría hacer con otras múltiples opciones de software. 
+Lo primero que tendrás que hacer es crear una solicitud de firma de certificado (CSR o Certificate Signing Request) y hacérselo llegar a tu compañero. En este caso, vamos a hacerlo con openssl, pero se podría hacer con otras múltiples opciones de software.
 
 Para crear una solicitud de firma de certificado, primero debemos tener una clave privada que se asociará al mismo, así que generaremos una clave privada RSA de 4096 bits, que será almacenada en /etc/ssl/private/, ejecutando para ello el comando:
 
@@ -367,9 +367,9 @@ Certificate Details:
             commonName                = pfoter15
             emailAddress              = pepepfoter15@gmail.com
         X509v3 extensions:
-            X509v3 Basic Constraints: 
+            X509v3 Basic Constraints:
                 CA:FALSE
-            X509v3 Key Usage: 
+            X509v3 Key Usage:
                 Digital Signature, Non Repudiation, Key Encipherment
 Certificate is to be certified until Jan  8 10:01:58 2034 GMT (3650 days)
 Sign the certificate? [y/n]:y
@@ -384,7 +384,7 @@ Database updated
 Para verificar que el fichero de solicitud de firma ha sido correctamente generado, lista el contenido del directorio actual. Debe existir un fichero de nombre tunombre.csr que debes enviar a tu compañero, para que así sea firmado por la correspondiente autoridad certificadora que ha creado.
 
 ```bash
-debian@javiercrucesCA:~$ ls -l 
+debian@javiercrucesCA:~$ ls -l
 total 16
 -rw-r--r-- 1 root   root   1886 Jan 11 09:40 javiercd.csr
 
@@ -393,11 +393,11 @@ total 16
 En mi caso se lo haré llegar usando SCP :
 
 ```bash
-debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/ 
-javiercd.csr                          100% 1886   839.4KB/s   00:00   
+debian@javiercrucesCA:~$ scp javiercd.csr 172.22.200.113:/home/debian/
+javiercd.csr                          100% 1886   839.4KB/s   00:00
 ```
 
-Una vez firmado me lo traeré de su servidor 
+Una vez firmado me lo traeré de su servidor
 ### Paso 2: Almacenamiento de certificados en el servidor
 
 Además de dicho certificado firmado, nos debe enviar la clave pública de la entidad certificadora, es decir, el certificado de la misma, para así poder verificar su firma sobre nuestro certificado.
@@ -417,7 +417,7 @@ debian@javiercrucesCA:/CA$ sudo ls -l /etc/ssl/certs | grep javi
 -rw-r--r-- 1 debian debian   2175 Jan 11 10:05 javiercd.csr.pem
 debian@javiercrucesCA:/CA$ sudo ls -l /etc/ssl/certs | grep pepe
 -rw-r--r-- 1 root   root     7389 Jan 11 11:24 pub_pepe.pem
-debian@javiercrucesCA:/CA$ sudo ls -l /etc/ssl/private/ 
+debian@javiercrucesCA:/CA$ sudo ls -l /etc/ssl/private/
 total 8
 -r-------- 1 debian debian   3272 Jan 11 09:37 javiercd.key
 
@@ -436,11 +436,11 @@ Al igual que apache2 incluía un VirtualHost por defecto para las peticiones ent
 
 ```bash
 
-debian@javiercrucesCA:/CA$ sudo a2enmod ssl 
-debian@javiercrucesCA:/CA$ sudo a2ensite default-ssl.conf 
+debian@javiercrucesCA:/CA$ sudo a2enmod ssl
+debian@javiercrucesCA:/CA$ sudo a2ensite default-ssl.conf
 
-debian@javiercrucesCA:~$ sudo cat /etc/apache2/sites-available/default-ssl.conf 
-<VirtualHost *:80> 
+debian@javiercrucesCA:~$ sudo cat /etc/apache2/sites-available/default-ssl.conf
+<VirtualHost *:80>
   ServerName javiercruces.iesgn.org
 
   Redirect permanent / https://javiercruces.iesgn.org/
@@ -459,7 +459,7 @@ debian@javiercrucesCA:~$ sudo cat /etc/apache2/sites-available/default-ssl.conf
 	SSLCertificateKeyFile   /etc/ssl/private/javiercd.key
 </VirtualHost>
 
-debian@javiercrucesCA:~$ sudo systemctl reload apache2.service 
+debian@javiercrucesCA:~$ sudo systemctl reload apache2.service
 
 
 ```
@@ -476,7 +476,7 @@ Vamos a forzar la configuración de https en Nginx
 Aquí te dejo la configuración del virtualhost :
 
 ```bash
-debian@javiercrucesCA:/var/www/sad$ sudo cat /etc/nginx/sites-available/default 
+debian@javiercrucesCA:/var/www/sad$ sudo cat /etc/nginx/sites-available/default
 server {
     listen 80;
     listen [::]:80;

@@ -16,7 +16,7 @@ To install PostgreSQL on Debian 12, follow these steps:
 
     ```bash
     sudo apt update
-    sudo apt install postgresql 
+    sudo apt install postgresql
     ```
 
 2. **Verify that the service is running**:

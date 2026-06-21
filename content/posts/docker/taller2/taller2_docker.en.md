@@ -20,7 +20,7 @@ We will deploy the Nextcloud application with a database (you can choose MariaDB
 2. Within a directory, create a `docker-compose.yml` file to deploy Nextcloud with a database. Remember to configure the environment variables and data persistence.
 
 ```bash
-javiercruces@docker:~/taller2$ cat docker-compose.yaml 
+javiercruces@docker:~/taller2$ cat docker-compose.yaml
 version: '2'
 
 volumes:
@@ -60,9 +60,9 @@ services:
 3. Start the scenario using `docker compose up -d`.
 
 ```bash
-javiercruces@docker:~/taller2$ docker compose up -d 
+javiercruces@docker:~/taller2$ docker compose up -d
 [+] Running 2/2
- ✔ Container taller2-db-1   Started                                                                0.0s 
+ ✔ Container taller2-db-1   Started                                                                0.0s
  ✔ Container taller2-app-1  Started                                                                0.0s
 ```
 
@@ -114,11 +114,11 @@ local     taller2_nextcloud
 ```bash
 javiercruces@docker:~/taller2$ docker compose rm -sf
 [+] Stopping 2/2
- ✔ Container taller2-app-1  Stopped                                                                                                                                                                           3.6s 
- ✔ Container taller2-db-1   Stopped                                                                                                                                                                           6.1s 
+ ✔ Container taller2-app-1  Stopped                                                                                                                                                                           3.6s
+ ✔ Container taller2-db-1   Stopped                                                                                                                                                                           6.1s
 Going to remove taller2-app-1, taller2-db-1
 [+] Removing 2/0
- ✔ Container taller2-db-1   Removed                                                                                                                                                                           0.1s 
- ✔ Container taller2-app-1  Removed               
+ ✔ Container taller2-db-1   Removed                                                                                                                                                                           0.1s
+ ✔ Container taller2-app-1  Removed
 ```
 

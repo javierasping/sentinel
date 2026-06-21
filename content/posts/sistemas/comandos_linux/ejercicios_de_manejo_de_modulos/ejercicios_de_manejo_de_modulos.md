@@ -62,9 +62,9 @@ Si queremos limitar que haya 12 dispositivos loop , creamos el siguiente fichero
 
 ![](/sistemas/comandos_linux/ejercicios_de_manejo_de_modulos/img/Aspose.Words.46ea1f3d-268a-4705-a64e-142fcc81092a.012.png)
 
-Tendremos que actualizar el initframes sudo update-initramfs -u , para que se apliquen los cambios , además tendremos que reiniciar . 
+Tendremos que actualizar el initframes sudo update-initramfs -u , para que se apliquen los cambios , además tendremos que reiniciar .
 
-Una vez reiniciamos , si vemos el contenido del parámetro max_loops . Veremos que este se ha aplicado : 
+Una vez reiniciamos , si vemos el contenido del parámetro max_loops . Veremos que este se ha aplicado :
 
 ![](/sistemas/comandos_linux/ejercicios_de_manejo_de_modulos/img/Aspose.Words.46ea1f3d-268a-4705-a64e-142fcc81092a.013.png)
 

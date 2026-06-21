@@ -7,7 +7,7 @@ hero: images/sistemas/programacion_tareas/portada.png
 ---
 
 
-La gestión eficiente de tareas programadas es esencial para los administradores de sistemas, ya que facilita la ejecución automática de procesos rutinarios. En este contexto, contar con un conjunto sólido de comandos en Linux para programar y controlar tareas se convierte en una herramienta fundamental. 
+La gestión eficiente de tareas programadas es esencial para los administradores de sistemas, ya que facilita la ejecución automática de procesos rutinarios. En este contexto, contar con un conjunto sólido de comandos en Linux para programar y controlar tareas se convierte en una herramienta fundamental.
 
 ## Command sleep
 
@@ -18,11 +18,11 @@ El comando sleep pausa la ejecución en la terminal durante un intervalo de tiem
 - h : horas
 - d : días
 
-Ej: sleep 10m –> esperar 10 min 
+Ej: sleep 10m –> esperar 10 min
 
-Por sí solo no tiene ninguna utilidad; sin embargo, es muy útil en scripts. Aquí un pequeño ejemplo:
+Por sí solo no tiene ninguna utilidad, sin embargo, es muy útil en scripts. Aquí un pequeño ejemplo:
 
-date +"%H:%M:%S";sleep 5;date +"%H:%M:%S"
+date +"%H:%M:%S",sleep 5,date +"%H:%M:%S"
 
 ![](/sistemas/comandos_linux/programacion_tareas/img/Aspose.Words.cdeb5ac3-4737-4a2f-b87a-694716c02a3b.001.png)
 
@@ -38,7 +38,7 @@ Cuando se usa sin argumentos, esta utilidad ejecutará el comando especificado c
 
 Podemos especificar el tiempo de repetición utilizando el parámetro `-n`, indicando el intervalo en segundos:
 
-watch -n 5 date –> Cada 5 segundos 
+watch -n 5 date –> Cada 5 segundos
 
 Si queremos eliminar el encabezado, es decir, que nos muestre cada cuánto tiempo se repite, utilizamos el parámetro `-t`:
 
@@ -58,9 +58,9 @@ Con el parámetro `-d` nos señala los cambios que han ocurrido en la ejecución
 
 ## Command at
 
-Este comando se usa para ejecutar comandos a una determinada hora; principalmente se usa para programar tareas periódicas como pueden ser las copias de seguridad.
+Este comando se usa para ejecutar comandos a una determinada hora, principalmente se usa para programar tareas periódicas como pueden ser las copias de seguridad.
 
-Los principales parámetros son : 
+Los principales parámetros son :
 
 - **V** :imprime el número de versión en el error estándar y sale con éxito.
 
@@ -88,7 +88,7 @@ Podemos programar tareas desde la línea de comandos con `echo`:
 
 echo "sh copia-seguridad.sh" | at 10:00 PM
 
-A esta tarea se le asignará un número automáticamente; para listar las tareas que tenemos invocamos el comando `at` sin ningún parámetro.
+A esta tarea se le asignará un número automáticamente, para listar las tareas que tenemos invocamos el comando `at` sin ningún parámetro.
 
 Si queremos borrar una tarea programada, utilizamos el parámetro `-c` seguido del número de la tarea a eliminar.
 

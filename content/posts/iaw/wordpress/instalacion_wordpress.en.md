@@ -29,7 +29,7 @@ We will copy Apache's default configuration file and rename it as `wordpress.con
 javiercruces@IWEB:/etc/apache2/sites-available$ sudo cp 000-default.conf wordpress.conf
 ```
 
-We will configure the virtual site; remember to modify the `ServerName` and `DocumentRoot`.
+We will configure the virtual site, remember to modify the `ServerName` and `DocumentRoot`.
 
 ```bash
 <VirtualHost *:80>
@@ -66,7 +66,7 @@ We will configure the virtual site; remember to modify the `ServerName` and `Doc
 Enable the virtual site `wordpress.conf`.
 
 ```bash
-javiercruces@IWEB:/etc/apache2/sites-available$ sudo a2ensite wordpress.conf 
+javiercruces@IWEB:/etc/apache2/sites-available$ sudo a2ensite wordpress.conf
 Enabling site wordpress.
 To activate the new configuration, you need to run:
   systemctl reload apache2
@@ -81,7 +81,7 @@ javiercruces@IWEB:/etc/apache2/sites-available$ sudo systemctl reload apache2
 To access this VirtualHost from the client machine, since there is no DNS server, remember to add the server's IP and the `ServerName` to the `/etc/hosts` file:
 
 ```bash
-javiercruces@HPOMEN15:~$ cat /etc/hosts 
+javiercruces@HPOMEN15:~$ cat /etc/hosts
 # Añade la IP de tu servidor y el ServerName correspondiente (wordpress.fjcd.es)
 # Ponlo al final del fichero y no modifiques las líneas existentes en tu fichero
 192.168.125.27 wordpress.fjcd.es
@@ -89,12 +89,12 @@ javiercruces@HPOMEN15:~$ cat /etc/hosts
 
 ### Creating the database with a user
 
-I recommend **noting down** the data entered below, as you will need them later.  
+I recommend **noting down** the data entered below, as you will need them later.
 We will connect to the database:
 
 ```bash
 javiercruces@IWEB:~$ sudo mysql -u root -p
-Enter password: 
+Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 31
 Server version: 10.11.4-MariaDB-1~deb12u1 Debian 12
@@ -152,7 +152,7 @@ Petición HTTP enviada, esperando respuesta... 200 OK
 Longitud: 23465047 (22M) [application/octet-stream]
 Grabando a: «latest.tar.gz»
 
-latest.tar.gz             100%[=====================================>]  22,38M  14,8MB/s    en 1,5s    
+latest.tar.gz             100%[=====================================>]  22,38M  14,8MB/s    en 1,5s
 
 2023-10-27 12:33:19 (14,8 MB/s) - «latest.tar.gz» guardado [23465047/23465047]
 ```

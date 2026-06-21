@@ -99,11 +99,11 @@ cXPeOAcKIVszFHp68CcGX6dLXcWcbrIl
 Now in the / etc / ipsec.secrets file we will configure the PSK key, which at both ends has to be the same:
 
 ```bash
-debian@servidor1:~$ sudo cat /etc/ipsec.secrets 
+debian@servidor1:~$ sudo cat /etc/ipsec.secrets
 # Public IP address of server 1
 90.0.0.2 : PSK "cXPeOAcKIVszFHp68CcGX6dLXcWcbrIl"
 
-debian@servidor2:~$ sudo cat /etc/ipsec.secrets 
+debian@servidor2:~$ sudo cat /etc/ipsec.secrets
 # Public IP address of server 2
 100.0.0.2 : PSK "cXPeOAcKIVszFHp68CcGX6dLXcWcbrIl"
 ```
@@ -111,8 +111,8 @@ debian@servidor2:~$ sudo cat /etc/ipsec.secrets
 Once configured, we will restart the service at both ends:
 
 ```bash
-debian@servidor1:~$ sudo ipsec restart 
-debian@servidor2:~$ sudo ipsec restart 
+debian@servidor1:~$ sudo ipsec restart
+debian@servidor2:~$ sudo ipsec restart
 ```
 
 ### Operating check
@@ -141,10 +141,10 @@ We can see these routes as follows. They are stored in table 220:
 
 ```bash
 debian@servidor1:~$ ip r show table 220
-192.168.1.0/24 via 90.0.0.1 dev ens3 proto static src 192.168.0.1 
+192.168.1.0/24 via 90.0.0.1 dev ens3 proto static src 192.168.0.1
 
 debian@servidor2:~$ ip route list table 220
-192.168.0.0/24 via 100.0.0.1 dev ens3 proto static src 192.168.1.1 
+192.168.0.0/24 via 100.0.0.1 dev ens3 proto static src 192.168.1.1
 ```
 
 ### Connectivity check
@@ -174,7 +174,7 @@ rtt min/avg/max/mdev = 11.485/11.485/11.485/0.000 ms
 If you want to see whether the traffic has passed through the tunnel, you can run `statusall` and see the statistics:
 
 ```bash
-debian@servidor1:~$ sudo ipsec statusall 
+debian@servidor1:~$ sudo ipsec statusall
 Status of IKE charon daemon (strongSwan 5.9.8, Linux 6.1.0-17-cloud-amd64, x86_64):
   uptime: 9 minutes, since Jan 28 10:44:01 2024
   malloc: sbrk 2166784, mmap 0, used 1242160, free 924624
@@ -190,7 +190,7 @@ Connections:
  servidor1a2:   child:  192.168.0.0/24 === 192.168.1.0/24 TUNNEL
 Security Associations (1 up, 0 connecting):
  servidor1a2[1]: ESTABLISHED 9 minutes ago, 90.0.0.2[90.0.0.2]...100.0.0.2[100.0.0.2]
- servidor1a2[1]: IKEv2 SPIs: 80b3e1894dc769f5_i* 92c50ec8c2dedde7_r, pre-shared key reauthentication in 
+ servidor1a2[1]: IKEv2 SPIs: 80b3e1894dc769f5_i* 92c50ec8c2dedde7_r, pre-shared key reauthentication in
 43 minutes
  servidor1a2[1]: IKE proposal: AES_CBC_256/HMAC_SHA1_96/PRF_HMAC_SHA1/MODP_1024
  servidor1a2{1}:  INSTALLED, TUNNEL, reqid 1, ESP SPIs: ccb4e51d_i c186cf93_o

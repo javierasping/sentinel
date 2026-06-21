@@ -22,11 +22,11 @@ Libvirt soporta múltiples tipos de pool. A modo de resumen práctico:
 - Basados en bloque: `disk`, `logical` (LVM), `zfs` (ofrecen mayor control y rendimiento para I/O intensivo).
 - Red y distribuidos: `iscsi`, `rbd` (Ceph), `gluster` (ofrecen escalabilidad y tolerancia a fallos, pero requieren más operación).
 
-Cada tipo tiene ventajas y limitaciones; elegir uno u otro depende de requisitos de rendimiento, resiliencia y operativa.
+Cada tipo tiene ventajas y limitaciones, elegir uno u otro depende de requisitos de rendimiento, resiliencia y operativa.
 
 ### Pools basados en ficheros
 
-Los **pools basados en ficheros** (`dir`, `fs`, `netfs`) almacenan los discos virtuales como **ficheros dentro de un sistema de archivos**, ya sea local o remoto.  
+Los **pools basados en ficheros** (`dir`, `fs`, `netfs`) almacenan los discos virtuales como **ficheros dentro de un sistema de archivos**, ya sea local o remoto.
 Son los más sencillos de configurar y los más utilizados en entornos de laboratorio, desarrollo o despliegues de pequeña escala.
 
 - **`dir`**: almacena las imágenes de disco como ficheros en un directorio local, normalmente en rutas como `/var/lib/libvirt/images`. Es el tipo de pool más sencillo y el más común en entornos de laboratorio o desarrollo.
@@ -47,32 +47,32 @@ Son los más sencillos de configurar y los más utilizados en entornos de labora
 
 ### Pools basados en bloques
 
-Los **pools basados en bloques** (`disk`, `logical`, `zfs`) operan directamente sobre **dispositivos de bloque físicos o virtuales**, ofreciendo una gestión más cercana al hardware.  
+Los **pools basados en bloques** (`disk`, `logical`, `zfs`) operan directamente sobre **dispositivos de bloque físicos o virtuales**, ofreciendo una gestión más cercana al hardware.
 Son apropiados para entornos donde se priorizan el rendimiento, la consistencia y el control fino sobre el almacenamiento.
 
-- **`disk`**: representa un dispositivo de bloque o disco físico completo. Los volúmenes se corresponden con particiones creadas dentro del dispositivo.  
+- **`disk`**: representa un dispositivo de bloque o disco físico completo. Los volúmenes se corresponden con particiones creadas dentro del dispositivo.
   Este tipo de pool es útil cuando se desea exponer discos dedicados a las máquinas virtuales sin intermediarios, o gestionar particiones específicas desde libvirt.
 
-- **`logical`**: usa **LVM (Logical Volume Manager)** como backend. Los volúmenes se crean dentro de un grupo de volúmenes (VG) y se administran como volúmenes lógicos (LV).  
+- **`logical`**: usa **LVM (Logical Volume Manager)** como backend. Los volúmenes se crean dentro de un grupo de volúmenes (VG) y se administran como volúmenes lógicos (LV).
   Es uno de los métodos más flexibles: permite redimensionar, tomar snapshots, y gestionar espacio de manera granular sin depender de sistemas de archivos intermedios.
 
-- **`zfs`**: se basa en **ZFS**, creando datasets y volúmenes (zvols) que pueden exportarse como bloques o como sistemas de archivos.  
+- **`zfs`**: se basa en **ZFS**, creando datasets y volúmenes (zvols) que pueden exportarse como bloques o como sistemas de archivos.
   Ofrece funciones avanzadas como snapshots, clonación instantánea, compresión y verificación de integridad integrada.
 
 ---
 
 ### Pools basados en red y distribuidos
 
-Los **pools basados en red y distribuidos** proporcionan acceso a almacenamiento remoto o replicado a través de la red.  
+Los **pools basados en red y distribuidos** proporcionan acceso a almacenamiento remoto o replicado a través de la red.
 Se emplean cuando varios hosts KVM deben compartir los mismos volúmenes, como en entornos de alta disponibilidad o clusters de virtualización.
 
-- **`iscsi`** y **`iscsi-direct`**: conectan a destinos iSCSI que exponen LUNs.  
-  El tipo `iscsi` monta los dispositivos como bloques locales, mientras que `iscsi-direct` permite un acceso más directo sin necesidad de un dispositivo persistente.  
+- **`iscsi`** y **`iscsi-direct`**: conectan a destinos iSCSI que exponen LUNs.
+  El tipo `iscsi` monta los dispositivos como bloques locales, mientras que `iscsi-direct` permite un acceso más directo sin necesidad de un dispositivo persistente.
 
-- **`rbd` (Ceph)**: usa el backend de **Ceph RADOS Block Device**, que ofrece almacenamiento distribuido y redundante.  
-  Los volúmenes se almacenan como objetos en el clúster Ceph, con replicación y recuperación automática.  
+- **`rbd` (Ceph)**: usa el backend de **Ceph RADOS Block Device**, que ofrece almacenamiento distribuido y redundante.
+  Los volúmenes se almacenan como objetos en el clúster Ceph, con replicación y recuperación automática.
 
-- **`gluster`**: integra **GlusterFS** como sistema de archivos distribuido.  
+- **`gluster`**: integra **GlusterFS** como sistema de archivos distribuido.
   Permite que varios hosts accedan simultáneamente a un mismo conjunto de imágenes, ideal para infraestructuras de virtualización compartidas.
 
 
@@ -95,12 +95,12 @@ En contraste, la preallocación reserva el espacio completo en el momento de la 
 
 ### Backing files y clones
 
-Los formatos que soportan backing files (por ejemplo `qcow2`) permiten crear imágenes base inmutables y múltiples imágenes derivadas ligeras. Esto acelera despliegues, pero complica backups y restauraciones cuando las cadenas son largas; a menudo es recomendable consolidar o convertir a imágenes planas antes de operaciones críticas.
+Los formatos que soportan backing files (por ejemplo `qcow2`) permiten crear imágenes base inmutables y múltiples imágenes derivadas ligeras. Esto acelera despliegues, pero complica backups y restauraciones cuando las cadenas son largas, a menudo es recomendable consolidar o convertir a imágenes planas antes de operaciones críticas.
 
 ## Fuentes y lectura recomendada
 
- 
-- [Libvirt — Storage management; Storage pool and volume XML format](https://libvirt.org/storage.html)
+
+- [Libvirt — Storage management, Storage pool and volume XML format](https://libvirt.org/storage.html)
 - [Libvirt — Storage pool and volume XML format (detalles de formato)](https://libvirt.org/formatstorage.html)
 - [QEMU — Disk images, formats y qemu-img](https://qemu.org/docs/master/system/images.html)
 - [Ceph — RBD (uso con libvirt)](https://docs.ceph.com/en/latest/rbd/)

@@ -105,33 +105,33 @@ We will check that both servers have created the wg0 interface, which is the one
 ```bash
 debian@servidor1:~$ sudo ip link show wg0
 11: wg0: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1420 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
-    link/none 
-    
+    link/none
+
 debian@servidor2:~$ sudo ip link show wg0
 11: wg0: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1420 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
-    link/none 
+    link/none
 ```
 
 Below I will show you the routing tables of the 2 servers to see that routes have been created to reach both private networks through the wg0 interface:
 
 ```bash
 debian@servidor1:~$ ip r
-default via 90.0.0.1 dev ens3 onlink 
-10.99.99.2 dev wg0 scope link 
-90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2 
-192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1 
-192.168.1.0/24 dev wg0 scope link 
+default via 90.0.0.1 dev ens3 onlink
+10.99.99.2 dev wg0 scope link
+90.0.0.0/24 dev ens3 proto kernel scope link src 90.0.0.2
+192.168.0.0/24 dev ens4 proto kernel scope link src 192.168.0.1
+192.168.1.0/24 dev wg0 scope link
 
 debian@servidor2:~$ ip r
-default via 100.0.0.1 dev ens3 onlink 
-10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2 
-100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2 
-192.168.0.0/24 dev wg0 scope link 
-192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1 
+default via 100.0.0.1 dev ens3 onlink
+10.99.99.0/24 dev wg0 proto kernel scope link src 10.99.99.2
+100.0.0.0/24 dev ens3 proto kernel scope link src 100.0.0.2
+192.168.0.0/24 dev wg0 scope link
+192.168.1.0/24 dev ens4 proto kernel scope link src 192.168.1.1
 ```
 
 ### Operating check
-  
+
 Now, both private networks are fully connected, allowing us to access from either one to the other. We will conduct some tests from the customers to make sure the connection is working properly.
 
 I will do a ping from the network 192.168.0.0 to the 192.168.1.0 with client1:
@@ -225,7 +225,7 @@ traceroute to 192.168.1.2 (192.168.1.2), 30 hops max, 60 byte packets
 From the network 192.168.1.0 to the 192.168.0.0:
 
 ```bash
-debian@cliente3:~$ traceroute 192.168.0.3 
+debian@cliente3:~$ traceroute 192.168.0.3
 traceroute to 192.168.0.3 (192.168.0.3), 30 hops max, 60 byte packets
  1  192.168.1.1 (192.168.1.1)  0.430 ms  0.399 ms  0.393 ms
  2  10.99.99.1 (10.99.99.1)  19.343 ms  19.337 ms  19.329 ms

@@ -1,7 +1,7 @@
 ---
 title: "Network types in KVM (NAT, isolated and bridged)"
 date: 2025-10-18T09:00:00+00:00
-description: "Theoretical overview of the network types available in KVM/libvirt: NAT, isolated, very isolated, external bridge and macvtap; differences, connectivity and use cases."
+description: "Theoretical overview of the network types available in KVM/libvirt: NAT, isolated, very isolated, external bridge and macvtap, differences, connectivity and use cases."
 tags: [KVM,Virtualization,Libvirt,Networking,Linux]
 hero: images/virtualizacion-kvm-linux/redes/tipos-de-redes.png
 weight: 1
@@ -71,7 +71,7 @@ Allows VMs to connect directly to the host's physical interface without a bridge
 - There is no direct host↔VM communication by default (a known limitation of macvtap in most modes).
 - Useful when direct access to the physical network is needed without additional bridge configuration.
 
-Note: in certain advanced scenarios, host↔VM communication can be enabled by creating an auxiliary interface (macvlan) on the host; however, this is not the default behavior.
+Note: in certain advanced scenarios, host↔VM communication can be enabled by creating an auxiliary interface (macvlan) on the host, however, this is not the default behavior.
 
 ---
 

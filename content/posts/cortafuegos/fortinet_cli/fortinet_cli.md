@@ -8,12 +8,12 @@ hero: /images/cortafuegos/fortinet_cli.png
 
 
 
-## Equivalencia de la GUI a la CLI 
+## Equivalencia de la GUI a la CLI
 
-Inicialmente, empecé la práctica utilizando la línea de comandos (CLI); sin embargo, encontré que resulta más cómodo realizarla desde la interfaz gráfica. Por eso, decidí establecer una equivalencia entre las diferentes acciones que he llevado a cabo durante la práctica y compararlas con su equivalente en la terminal.
+Inicialmente, empecé la práctica utilizando la línea de comandos (CLI), sin embargo, encontré que resulta más cómodo realizarla desde la interfaz gráfica. Por eso, decidí establecer una equivalencia entre las diferentes acciones que he llevado a cabo durante la práctica y compararlas con su equivalente en la terminal.
 
 
-> [!NOTE]  
+> [!NOTE]
 > En este post hago un pequeño resumen de las equivalencias entre la GUI y la CLI de Fortinet que he utilizado en los 2 post de cortafuegos Fortinet.
 
 ### Configuración de una interfaz
@@ -26,7 +26,7 @@ Ver la configuración de todas las interfaces:
 show system interface
 ```
 
-O especificar una en particular: 
+O especificar una en particular:
 
 ```bash
 show system interface port1
@@ -35,7 +35,7 @@ show system interface port1
 Si observamos la configuración de las tres interfaces que he configurado durante la práctica, podemos notar que la sintaxis es muy sencilla. Prácticamente, incluso sin tener conocimientos previos sobre el tema, es fácil de comprender.
 
 ```bash
-FTG # show system interface 
+FTG # show system interface
 config system interface
     edit "port1"
         set vdom "root"
@@ -68,13 +68,13 @@ config system interface
         set lldp-transmission enable
         set role lan
         set snmp-index 3
-    next 
+    next
 
 ```
 
-Como puedes ver en la interfaz del puerto 1, que corresponde a la WAN, anteriormente desactivé el acceso para evitar configurarlo desde esta interfaz, pero por comodidad lo he dejado activado para utilizar el navegador de mi portátil. 
+Como puedes ver en la interfaz del puerto 1, que corresponde a la WAN, anteriormente desactivé el acceso para evitar configurarlo desde esta interfaz, pero por comodidad lo he dejado activado para utilizar el navegador de mi portátil.
 
-Una configuración que nos puede interesar es configurar una interfaz mediante DHCP; en mi caso, lo haré en el puerto 4:
+Una configuración que nos puede interesar es configurar una interfaz mediante DHCP, en mi caso, lo haré en el puerto 4:
 
 ```bash
 # Accedemos al modo de configuración
@@ -89,7 +89,7 @@ FTG (port4) # end
 
 Ahora, si listamos la configuración de la interfaz, veremos que se ha aplicado el cambio:
 
-```bash 
+```bash
 FTG # show system interface port4
 config system interface
     edit "port4"
@@ -119,7 +119,7 @@ FTG # get system interface physical port4
 ```
 
 
-Esto es lo básico que necesitamos para comenzar a configurar las interfaces. Te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/10620/config-system-interface) a la documentación oficial donde se explican todos los detalles. 
+Esto es lo básico que necesitamos para comenzar a configurar las interfaces. Te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/10620/config-system-interface) a la documentación oficial donde se explican todos los detalles.
 
 ### Políticas
 
@@ -156,7 +156,7 @@ config firewall policy
         set ssl-ssh-profile "certificate-inspection"
         set ips-sensor "block_xmas"
         set nat enable
-    next 
+    next
 ```
 
 Vemos que la salida es bastante clara. Si nos fijamos en los parámetros comunes:
@@ -168,7 +168,7 @@ Vemos que la salida es bastante clara. Si nos fijamos en los parámetros comunes
 - action: Acción que queremos que realice la regla (`accept` | `deny`).
 - srcaddr: Dirección de origen.
 - dstaddr: Dirección de destino.
-- schedule: Programación de la regla; si es una regla temporal, solo estará activa durante cierto periodo.
+- schedule: Programación de la regla, si es una regla temporal, solo estará activa durante cierto periodo.
 - service: Nombre del servicio (asociado a un número de puerto).
 - nat: Si queremos que la regla aplique SNAT.
 
@@ -205,7 +205,7 @@ FTG (12) # next
 FTG (policy) # end
 ```
 
-Hay muchísimas más opciones que no han sido necesarias utilizar durante la práctica; te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/323620/config-firewall-policy) a la documentación oficial donde se detallan todas las opciones.
+Hay muchísimas más opciones que no han sido necesarias utilizar durante la práctica, te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.0/cli-reference/323620/config-firewall-policy) a la documentación oficial donde se detallan todas las opciones.
 
 ### Servicios
 
@@ -230,7 +230,7 @@ config firewall service custom
         set tcp-portrange 443
     next
 
-FTG # show firewall service custom SSH_2222 
+FTG # show firewall service custom SSH_2222
 config firewall service custom
     edit "SSH_2222"
         set category "Remote Access"
@@ -275,7 +275,7 @@ Las IPs Virtuales Estáticas (VIP) se utilizan para mapear direcciones IP extern
 
 Las VIP estáticas se utilizan comúnmente para mapear direcciones IP públicas a recursos internos que utilizan direcciones IP privadas. Una VIP estática uno a uno es cuando se mapea todo el rango de puertos. Una VIP de reenvío de puertos es cuando el mapeo se configura en un puerto o rango de puertos específicos.
 
-Si queremos listar las IPs virtuales configuradas, utilizaremos el siguiente comando; si solo queremos ver una en particular, indicaremos su nombre:
+Si queremos listar las IPs virtuales configuradas, utilizaremos el siguiente comando, si solo queremos ver una en particular, indicaremos su nombre:
 
 ```bash
 FTG # show firewall vip
@@ -340,11 +340,11 @@ FTG (DNAT_HELA_WEB) # next
 FTG (vip) # end
 ```
 
-Las IPs virtuales cuentan con más parámetros de configuración que no han sido necesarios durante la práctica; te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.9/administration-guide/510402/static-virtual-ips) a la documentación oficial donde se detalla toda la configuración disponible.
+Las IPs virtuales cuentan con más parámetros de configuración que no han sido necesarios durante la práctica, te dejo un [enlace](https://docs.fortinet.com/document/fortigate/7.0.9/administration-guide/510402/static-virtual-ips) a la documentación oficial donde se detalla toda la configuración disponible.
 
-### Rutas estáticas 
+### Rutas estáticas
 
-El dispositivo necesita conocer el destino del tráfico; para ello existen las rutas estáticas.
+El dispositivo necesita conocer el destino del tráfico, para ello existen las rutas estáticas.
 
 Para listar las rutas configuradas en el cortafuegos, usaremos el siguiente comando:
 
@@ -371,7 +371,7 @@ Para añadir una ruta, puedes utilizar el siguiente ejemplo:
 ```bash
 FTG # config router static
 FTG (static) # edit 1
-# El siguiente salto o puerta de enlace: 
+# El siguiente salto o puerta de enlace:
 FTG (1) # set gateway 192.168.122.1
 # La interfaz por la que saldrá el tráfico:
 FTG (1) # set device "port1"

@@ -39,7 +39,7 @@ deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmwa
 Recuerda que cada vez que modifiques este archivo debes ejecutar la actualización de los repositorios para que los cambios surtan efecto.
 
 ```bash
-javiercruces@HPOMEN15:~$ sudo apt update -y 
+javiercruces@HPOMEN15:~$ sudo apt update -y
 ```
 
 Con nuestros repositorios debidamente actualizados, procederemos a instalar el script de detección de NVIDIA con el siguiente comando:
@@ -48,10 +48,10 @@ Con nuestros repositorios debidamente actualizados, procederemos a instalar el s
 javiercruces@HPOMEN15:~$ sudo apt install  nvidia-detect
 ```
 
-Ahora ejecutaremos el script de NVIDIA; como podrás observar, nos proporcionará información detallada sobre nuestra tarjeta gráfica NVIDIA, así como los diversos controladores compatibles y el paquete de Debian recomendado para la instalación:
+Ahora ejecutaremos el script de NVIDIA, como podrás observar, nos proporcionará información detallada sobre nuestra tarjeta gráfica NVIDIA, así como los diversos controladores compatibles y el paquete de Debian recomendado para la instalación:
 
 ```bash
-javiercruces@HPOMEN15:~$ nvidia-detect 
+javiercruces@HPOMEN15:~$ nvidia-detect
 Detected NVIDIA GPUs:
 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA106M [GeForce RTX 3060 Mobile / Max-Q] [10de:2520] (rev a1)
 
@@ -92,7 +92,7 @@ Durante la instalación, es probable que encuentres una pantalla típicamente az
 
 Al concluir la instalación, será necesario reiniciar tu equipo para cargar el módulo de NVIDIA. Después de reiniciar, puedes verificar si se ha cargado correctamente utilizando el siguiente comando. Utilizando la barra inclinada (/), puedes filtrar la salida escribiendo la palabra "nvidia", lo que te llevará directamente a la información relevante de tu tarjeta gráfica, permitiéndote confirmar que el módulo de NVIDIA está cargado.
 
-Debes comprobar que en la línea "Kernel driver in use" aparezca el módulo `nvidia`. 
+Debes comprobar que en la línea "Kernel driver in use" aparezca el módulo `nvidia`.
 
 ```bash
 javiercruces@HPOMEN15:~$ lspci -knn | less
@@ -112,7 +112,7 @@ Ademas si quieres ver desde la linea de comandos información de tu GPU NVIDIA t
 
 ```bash
 javiercruces@HPOMEN15:~$ nvidia-smi
-Fri Dec 29 02:04:58 2023       
+Fri Dec 29 02:04:58 2023
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 525.125.06   Driver Version: 525.125.06   CUDA Version: 12.0     |
 |-------------------------------+----------------------+----------------------+
@@ -124,7 +124,7 @@ Fri Dec 29 02:04:58 2023
 | N/A   42C    P5    10W /  80W |    296MiB /  6144MiB |     12%      Default |
 |                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
-                                                                               
+
 +-----------------------------------------------------------------------------+
 | Processes:                                                                  |
 |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
@@ -135,19 +135,19 @@ Fri Dec 29 02:04:58 2023
 |    0   N/A  N/A      4807      G   ...on=20231218-080113.411000      104MiB |
 |    0   N/A  N/A      5802      G   ...RendererForSitePerProcess       38MiB |
 +-----------------------------------------------------------------------------+
-javiercruces@HPOMEN15:~$ 
+javiercruces@HPOMEN15:~$
 
 ```
 
 
-¡Felicidades, Maestro de los Drivers NVIDIA! Has desbloqueado un logro épico en el reino de la informática. No cualquiera llega hasta aquí; no quiero desilusionarte, pero ¿has verificado que los puertos HDMI y DisplayPort de tu equipo funcionan correctamente?
+¡Felicidades, Maestro de los Drivers NVIDIA! Has desbloqueado un logro épico en el reino de la informática. No cualquiera llega hasta aquí, no quiero desilusionarte, pero ¿has verificado que los puertos HDMI y DisplayPort de tu equipo funcionan correctamente?
 
 En este punto, se abren dos posibles caminos:
 
 En el primer escenario, tus puertos funcionan a la perfección sin requerir intervención adicional. Si este es tu caso, felicidades, parece que Dios tiene favoritos.
 
-Si, por el contrario, al igual que yo no eres uno de ellos y has comprobado que los puertos no emiten video (el monitor no recibe señal a pesar de que Debian lo detecte), 
+Si, por el contrario, al igual que yo no eres uno de ellos y has comprobado que los puertos no emiten video (el monitor no recibe señal a pesar de que Debian lo detecte),
 
-Si te ocurre este problema puedes encontrar un post en esta misma pagina explicando una posible solución , para ello haremos uso de la herramienta nvidia optimus . Te dejo el enlace a continuación https://www.javiercd.es/posts/drivers/nvidia_optimus/nvidia_optimus/ 
+Si te ocurre este problema puedes encontrar un post en esta misma pagina explicando una posible solución , para ello haremos uso de la herramienta nvidia optimus . Te dejo el enlace a continuación https://www.javiercd.es/posts/drivers/nvidia_optimus/nvidia_optimus/
 
 

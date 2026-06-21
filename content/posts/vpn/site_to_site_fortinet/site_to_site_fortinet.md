@@ -10,7 +10,7 @@ En este post voy a montar una VPN IPSEC usando cortafuegos Fortinet, para ello l
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240330235321.png)
 
-## Preparación del escenario 
+## Preparación del escenario
 
 Para crear la VPN añadiré al escenario un nuevo FortiGate.
 
@@ -18,10 +18,10 @@ Así que vamos a proceder a configurarlo, lo primero será conocer la IP que le 
 
 ```bash
 FortiGate-VM64-KVM login: admin
-Password: 
+Password:
 You are forced to change your password. Please input a new password.
-New Password: 
-Confirm Password: 
+New Password:
+Confirm Password:
 Welcome!
 
 FortiGate-VM64-KVM # get system interface physical port1

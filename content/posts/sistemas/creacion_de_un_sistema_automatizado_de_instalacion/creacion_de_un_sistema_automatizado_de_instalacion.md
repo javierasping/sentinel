@@ -10,7 +10,7 @@ hero: images/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/creacio
 
 ## Instalación automática de una iso
 
-En la página oficial de Debian nos descargaremos una imagen de Debian; en mi caso he seleccionado una netinstall:
+En la página oficial de Debian nos descargaremos una imagen de Debian, en mi caso he seleccionado una netinstall:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.001.png)
 
@@ -22,7 +22,7 @@ Una vez montada podremos ver su contenido :
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.003.jpeg)
 
-Vamos a hacernos una copia de los ficheros que vamos a utilizar en un directorio nuestro para poder realizar cambios en ellos; una vez hagamos esto podemos desmontar la imagen:
+Vamos a hacernos una copia de los ficheros que vamos a utilizar en un directorio nuestro para poder realizar cambios en ellos, una vez hagamos esto podemos desmontar la imagen:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.004.png)
 
@@ -30,7 +30,7 @@ Una vez copiados los ficheros vamos a movernos al directorio para crear el archi
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.005.png)
 
-Dentro del mismo copiaremos el fichero de plantilla de Bookworm que nos proporciona Debian; lo puedes encontrar en su página oficial → https://www.debian.org/releases/bookworm/example-preseed.txt. Yo meteré este fichero dentro de la carpeta fjcd\_auto.
+Dentro del mismo copiaremos el fichero de plantilla de Bookworm que nos proporciona Debian, lo puedes encontrar en su página oficial → https://www.debian.org/releases/bookworm/example-preseed.txt. Yo meteré este fichero dentro de la carpeta fjcd\_auto.
 
 Procederemos a editar la plantilla y seleccionaremos las distintas opciones :
 
@@ -70,11 +70,11 @@ Resultado :
 
 ## Servidor PXE
 
-Ahora vamos a preparar el servidor PXE para que hagamos una instalación en red; para ello configuraré SNAT en el mismo para que los clientes tengan internet:
+Ahora vamos a preparar el servidor PXE para que hagamos una instalación en red, para ello configuraré SNAT en el mismo para que los clientes tengan internet:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.015.png)
 
-Para que el cambio sea permanente, tengo instalado y configurado `iptables-persistent`; además, recuerda activar el bit del forwarding.
+Para que el cambio sea permanente, tengo instalado y configurado `iptables-persistent`, además, recuerda activar el bit del forwarding.
 
 Ahora vamos a instalar `dnsmasq`:
 
@@ -100,11 +100,11 @@ Una vez descomprimido el fichero crearemos enlaces simbólicos a los siguientes 
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.021.png)
 
-Ahora nos queda configurar el servidor web para pasar el fichero `preseed.cfg`; yo lo he puesto en el `DocumentRoot` del virtual host por defecto:
+Ahora nos queda configurar el servidor web para pasar el fichero `preseed.cfg`, yo lo he puesto en el `DocumentRoot` del virtual host por defecto:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.022.png)
 
-Por último, nos queda configurar la entrada del menú de la ISO que hemos descargado; indicamos que el archivo `preseed.cfg` está en la siguiente URL:
+Por último, nos queda configurar la entrada del menú de la ISO que hemos descargado, indicamos que el archivo `preseed.cfg` está en la siguiente URL:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.023.jpeg)
 

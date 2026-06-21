@@ -193,7 +193,7 @@ Here we will re-enter the name of our server:
 After this, the installation will continue a little further, but without need for more information:
 
 
-![](/sistemas/ad_ubuntu/img/Aspose.Words.2fdbf265-b3ba-4503-a174-3e0534a81c76.034.jpeg) 
+![](/sistemas/ad_ubuntu/img/Aspose.Words.2fdbf265-b3ba-4503-a174-3e0534a81c76.034.jpeg)
 
 We will now configure samba, but before we do so we will change the name to the * smb.conf * configuration file so that you do not use it while we configure it and so we will also have a copy of the original file:
 
@@ -510,7 +510,7 @@ We see that the mobile profile has been properly performed.
 
 ## NFS
 
-## 10. Through NFS, folders: projects, documentation, programs _ and _ drivers will be shared on the server. The first can only be read; the last two can also be written. Linux equipment will automatically mount the folders in the boot.
+## 10. Through NFS, folders: projects, documentation, programs _ and _ drivers will be shared on the server. The first can only be read, the last two can also be written. Linux equipment will automatically mount the folders in the boot.
 
 The first thing we will do is install the following packages:
 
@@ -675,7 +675,7 @@ The first thing we will see on the web interface will be a resource monitor, as 
 We will see a resource monitor history, which will show us the hours and percentage of use of our hardware, as well as system information:
 
 
-![](/sistemas/ad_ubuntu/img/Aspose.Words.2fdbf265-b3ba-4503-a174-3e0534a81c76.135.jpeg) 
+![](/sistemas/ad_ubuntu/img/Aspose.Words.2fdbf265-b3ba-4503-a174-3e0534a81c76.135.jpeg)
 
 We have more sections such as recent login or network interfaces, which will give us information about who has connected and their settings respectively:
 

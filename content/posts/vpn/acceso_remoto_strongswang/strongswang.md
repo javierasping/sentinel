@@ -11,7 +11,7 @@ hero: /images/vpn/strongswan.png
 
 StrongSwan es una implementación de VPN (Red Privada Virtual) basada en IPsec, de código abierto, multiplataforma, completa y ampliamente utilizada. Funciona en sistemas operativos como Linux, FreeBSD, OS X, Windows, Android e iOS. Principalmente, es un demonio de intercambio de claves que admite los protocolos de Intercambio de Claves de Internet (IKEv1 e IKEv2) para establecer asociaciones de seguridad (SA) entre dos pares.
 
-> [!NOTE]  
+> [!NOTE]
 > Voy a partir del post de VPN acceso remoto con OpenVPN , asi que es posible que haga referencia a este durante este articulo . Si quieres tener el mismo escenario ve primero a este .
 
 Recuerda que, para la configuración que vamos a hacer, tienes que activar el bit de forwarding en las máquinas Servidor1 y Servidor2.
@@ -30,8 +30,8 @@ debian@servidor2:~$ sudo apt install strongswan -y
 
 ## Configuración de StrongSwan
 
-### Servidor 1 
-A continuación configuraremos el servidor 1; voy a ponerte un comentario para que sepas qué significa cada opción:
+### Servidor 1
+A continuación configuraremos el servidor 1, voy a ponerte un comentario para que sepas qué significa cada opción:
 
 ```bash
 debian@servidor1:~$  sudo cat /etc/ipsec.conf
@@ -58,7 +58,7 @@ conn servidor2a1
        auto=start                  # Iniciar la conexión automáticamente al arrancar strongSwan.
 ```
 
-### Servidor 2 
+### Servidor 2
 
 A continuación configuraremos el servidor 2 , voy a ponerte un comentario para que sepas que significada cada opción :
 
@@ -99,11 +99,11 @@ cXPeOAcKIVszFHp68CcGX6dLXcWcbrIl
 Ahora en el fichero /etc/ipsec.secrets configuraremos la clave PSK , que en ambos extremos tiene que ser la misma  :
 
 ```bash
-debian@servidor1:~$ sudo cat /etc/ipsec.secrets 
+debian@servidor1:~$ sudo cat /etc/ipsec.secrets
 # IP pública de la máquina servidor 1
 90.0.0.2 : PSK "cXPeOAcKIVszFHp68CcGX6dLXcWcbrIl"
 
-debian@servidor2:~$ sudo cat /etc/ipsec.secrets 
+debian@servidor2:~$ sudo cat /etc/ipsec.secrets
 # IP pública de la máquina servidor 2
 100.0.0.2 : PSK "cXPeOAcKIVszFHp68CcGX6dLXcWcbrIl"
 ```
@@ -111,8 +111,8 @@ debian@servidor2:~$ sudo cat /etc/ipsec.secrets
 Una vez configurado, reiniciaremos el servicio en ambos extremos:
 
 ```bash
-debian@servidor1:~$ sudo ipsec restart 
-debian@servidor2:~$ sudo ipsec restart 
+debian@servidor1:~$ sudo ipsec restart
+debian@servidor2:~$ sudo ipsec restart
 ```
 
 ## Comprobación de funcionamiento
@@ -133,7 +133,7 @@ Security Associations (1 up, 0 connecting):
  servidor2a1{2}:   192.168.1.0/24 === 192.168.0.0/24
 ```
 
-Es cierto que, a diferencia de OpenVPN y WireGuard, StrongSwan no crea automáticamente una interfaz virtual para la conexión VPN. En lugar de ello, utiliza las rutas del sistema operativo para dirigir el tráfico a través del túnel IPSec. 
+Es cierto que, a diferencia de OpenVPN y WireGuard, StrongSwan no crea automáticamente una interfaz virtual para la conexión VPN. En lugar de ello, utiliza las rutas del sistema operativo para dirigir el tráfico a través del túnel IPSec.
 
 ### Tablas de enrutamiento
 
@@ -141,10 +141,10 @@ Podemos ver estas rutas de la siguiente manera  , estas están guardadas en la t
 
 ```bash
 debian@servidor1:~$ ip r show table 220
-192.168.1.0/24 via 90.0.0.1 dev ens3 proto static src 192.168.0.1 
+192.168.1.0/24 via 90.0.0.1 dev ens3 proto static src 192.168.0.1
 
 debian@servidor2:~$ ip route list table 220
-192.168.0.0/24 via 100.0.0.1 dev ens3 proto static src 192.168.1.1 
+192.168.0.0/24 via 100.0.0.1 dev ens3 proto static src 192.168.1.1
 ```
 
 ### Comprobación de conectividad
@@ -171,10 +171,10 @@ rtt min/avg/max/mdev = 11.485/11.485/11.485/0.000 ms
 
 ### Estadísticas de los túneles
 
-Si quieres ver si el trafico ha pasado por el "túnel" , puedes hacer un statusall y ver las estadísticas :  
+Si quieres ver si el trafico ha pasado por el "túnel" , puedes hacer un statusall y ver las estadísticas :
 
 ```bash
-debian@servidor1:~$ sudo ipsec statusall 
+debian@servidor1:~$ sudo ipsec statusall
 Status of IKE charon daemon (strongSwan 5.9.8, Linux 6.1.0-17-cloud-amd64, x86_64):
   uptime: 9 minutes, since Jan 28 10:44:01 2024
   malloc: sbrk 2166784, mmap 0, used 1242160, free 924624
@@ -190,7 +190,7 @@ Connections:
  servidor1a2:   child:  192.168.0.0/24 === 192.168.1.0/24 TUNNEL
 Security Associations (1 up, 0 connecting):
  servidor1a2[1]: ESTABLISHED 9 minutes ago, 90.0.0.2[90.0.0.2]...100.0.0.2[100.0.0.2]
- servidor1a2[1]: IKEv2 SPIs: 80b3e1894dc769f5_i* 92c50ec8c2dedde7_r, pre-shared key reauthentication in 
+ servidor1a2[1]: IKEv2 SPIs: 80b3e1894dc769f5_i* 92c50ec8c2dedde7_r, pre-shared key reauthentication in
 43 minutes
  servidor1a2[1]: IKE proposal: AES_CBC_256/HMAC_SHA1_96/PRF_HMAC_SHA1/MODP_1024
  servidor1a2{1}:  INSTALLED, TUNNEL, reqid 1, ESP SPIs: ccb4e51d_i c186cf93_o

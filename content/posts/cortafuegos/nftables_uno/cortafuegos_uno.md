@@ -12,7 +12,7 @@ En este post, utilizando un escenario con máquinas Debian, aplicaremos reglas c
 
 
 
-> [!NOTE]  
+> [!NOTE]
 > Para desplegar el escenario necesario para realizar estos ejercicios, deberás desplegar el fichero `.yaml` que encontrarás en el enlace del párrafo siguiente. Este se encargará de desplegar dos máquinas: una que actuará como cortafuegos y otra que simulará un cliente conectado a la primera para representar una red local.
 
 Realiza con NFTABLES el ejercicio de la página https://fp.josedomingo.org/seguridadgs/u03/perimetral_iptables.html documentando las pruebas de funcionamiento realizadas.
@@ -22,7 +22,7 @@ Realiza con NFTABLES el ejercicio de la página https://fp.josedomingo.org/segur
 Lo primero que haremos es activar el bit de forwarding. Para ello, editaremos el archivo `/etc/sysctl.conf` utilizando el siguiente comando:
 
 ```bash
-javiercruces@router-fw:~$ sudo nano /etc/sysctl.conf 
+javiercruces@router-fw:~$ sudo nano /etc/sysctl.conf
 # Descomentamos la linea
 net.ipv4.ip_forward=1
 ```
@@ -166,7 +166,7 @@ PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
 2 packets transmitted, 0 received, 100% packet loss, time 1002ms
 ```
 
-Veremos que podemos conectarnos por SSH; sin embargo, el ping no está permitido, pero lo he ejecutado para que la regla de SNAT registre hits.
+Veremos que podemos conectarnos por SSH, sin embargo, el ping no está permitido, pero lo he ejecutado para que la regla de SNAT registre hits.
 
 Verificaremos que las reglas tienen hits:
 
@@ -210,7 +210,7 @@ Como podemos ver, el SNAT tiene hits, por lo que la regla está funcionando, per
 Añadiremos las reglas para permitir el tráfico hacia la interfaz loopback:
 
 ```bash
-javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "lo" counter accept    
+javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "lo" counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter output oifname "lo" counter accept
 ```
 
@@ -353,22 +353,22 @@ javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens3" o
 Para verificar este punto, necesitaremos modificar el archivo `/etc/nsswitch.conf`, el cual determina la prioridad de la resolución DNS. Realizaremos esta modificación para priorizar la consulta DNS al servicio de DNS de `systemd`, el cual está incluido en Debian y Ubuntu. Esto permitirá que las consultas se realicen primero en la propia máquina y, en caso necesario, sean enviadas al servidor DNS configurado, ya que en este escenario las aplicaciones no resuelven si no realizamos esta modificación.
 
 ```bash
-debian@lan:~$ sudo nano /etc/nsswitch.conf 
+debian@lan:~$ sudo nano /etc/nsswitch.conf
 hosts:          files dns resolve [!UNAVAIL=return]
 ```
 
 Además, cambiaremos el servidor DNS de la máquina y, en lugar de ser nosotros, pondremos el del instituto:
 
 ```bash
-debian@lan:~$ sudo cat /etc/resolv.conf 
+debian@lan:~$ sudo cat /etc/resolv.conf
 nameserver 172.22.0.1
 ```
 
-Una vez aplicados los cambios, vamos a solicitar una web por el nombre de dominio, así comprobaremos el funcionamiento de los dos puntos anteriores. Pediré solo las cabeceras para que la salida sea más legible; un código 200 sería correcto. En la parte de HTTP nos da una redirección, ya que el servidor te redirige a HTTPS:
+Una vez aplicados los cambios, vamos a solicitar una web por el nombre de dominio, así comprobaremos el funcionamiento de los dos puntos anteriores. Pediré solo las cabeceras para que la salida sea más legible, un código 200 sería correcto. En la parte de HTTP nos da una redirección, ya que el servidor te redirige a HTTPS:
 
 ```bash
 debian@lan:~$ curl -I https://www.javiercd.es/
-HTTP/2 200 
+HTTP/2 200
 server: GitHub.com
 content-type: text/html; charset=utf-8
 last-modified: Sun, 25 Feb 2024 23:03:49 GMT
@@ -418,10 +418,10 @@ Connection: close
 
 
 
-Como ya tenemos resolución DNS y navegación web, podremos actualizar nuestros repositorios e instalar paquetes: 
+Como ya tenemos resolución DNS y navegación web, podremos actualizar nuestros repositorios e instalar paquetes:
 
 ```bash
-debian@lan:~$ sudo apt update -y && sudo apt install apache2 -y 
+debian@lan:~$ sudo apt update -y && sudo apt install apache2 -y
 ```
 
 Una vez instalado Apache, vamos a realizar la regla de DNAT:
@@ -529,13 +529,13 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Wed Feb 28 10:35:56 2024 from 172.22.201.120
-javiercruces@odin:~$ 
+javiercruces@odin:~$
 ```
 
 Vamos a comprobar los hits en las reglas:
 
 ```bash
-javiercruces@router-fw:~$ sudo nft list ruleset 
+javiercruces@router-fw:~$ sudo nft list ruleset
 iifname "ens3" tcp sport 22 ct state established counter packets 66 bytes 18624 accept
 oifname "ens3" tcp dport 22 ct state established,new counter packets 89 bytes 16572 accept
 
@@ -550,7 +550,7 @@ javiercruces@router-fw:~$ sudo nft add rule inet filter output oifname "ens3" ip
 javiercruces@router-fw:~$ sudo nft add rule inet filter input iifname "ens3" ip saddr 8.8.8.8 udp sport 53 ct state established counter accept
 ```
 
-Ahora comprobaremos que, a través de la 1.1.1.1, no podemos resolver nombres, pero con la 8.8.8.8 sí: 
+Ahora comprobaremos que, a través de la 1.1.1.1, no podemos resolver nombres, pero con la 8.8.8.8 sí:
 
 ```bash
 javiercruces@router-fw:~$ dig @1.1.1.1 www.javiercd.es
@@ -594,7 +594,7 @@ javierasping.github.io.	3600	IN	A	185.199.111.153
 Vamos a ver los hits de las reglas:
 
 ```bash
-javiercruces@router-fw:~$ sudo nft list ruleset 
+javiercruces@router-fw:~$ sudo nft list ruleset
 iifname "ens3" ip saddr 8.8.8.8 udp sport 53 ct state established counter packets 314 bytes 36448 accept
 oifname "ens3" ip daddr 8.8.8.8 udp dport 53 ct state established,new counter packets 314 bytes 21912 accept
 ```
@@ -612,7 +612,7 @@ Comprobaremos que, pidiendo las cabeceras (lo cual es similar a navegar), vemos 
 
 ```bash
 javiercruces@router-fw:~$ curl -I https://www.javiercd.es/
-HTTP/2 200 
+HTTP/2 200
 server: GitHub.com
 content-type: text/html; charset=utf-8
 last-modified: Sun, 25 Feb 2024 23:03:49 GMT
@@ -694,7 +694,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Wed Feb 28 10:36:26 2024 from 172.22.201.120
-javiercruces@odin:~$ 
+javiercruces@odin:~$
 ```
 
 Vamos a ver los hits de estas reglas :
@@ -713,7 +713,7 @@ Con estas reglas permitimos conectarnos desde fuera de la red al servidor de cor
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens3" oifname "ens4" ip daddr 192.168.100.0/24 tcp dport 25 ct state new,established counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens4" oifname "ens3" ip saddr 192.168.100.0/24 tcp sport 25 ct state established counter accept
 
-# Regla DNAT puerto 25 
+# Regla DNAT puerto 25
 javiercruces@router-fw:~$ sudo nft add rule ip nat prerouting iifname "ens3" tcp dport 25 counter dnat to 192.168.100.10
 ```
 
@@ -750,7 +750,7 @@ Para ello voy a hacer un DNAT al puerto 2222 y a permitir ese trafico
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens3" oifname "ens4" ip daddr 192.168.100.0/24 tcp dport 2222 ct state new,established counter accept
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens4" oifname "ens3" ip saddr 192.168.100.0/24 tcp sport 2222 ct state established counter accept
 
-# Regla DNAT puerto 2222 para ssh 
+# Regla DNAT puerto 2222 para ssh
 sudo nft add rule ip nat prerouting iifname "ens3" tcp dport 2222 counter dnat to 192.168.100.10
 ```
 
@@ -768,7 +768,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Wed Feb 28 14:12:18 2024 from 192.168.100.2
-debian@lan:~$ 
+debian@lan:~$
 ```
 
 Vamos a comprobar los hits de las reglas :
@@ -875,9 +875,9 @@ iifname "ens4" oifname "ens3" ip saddr 192.168.100.0/24 udp dport 53 ip daddr 8.
 
 ### Permite que los equipos de la LAN puedan navegar por internet, excepto a la página www.realbetisbalompie.es
 
-Tenemos un problema y es que nftables solo filtra hasta el nivel de transporte , es decir por puerto . Así que no podemos leer el dominio ya que este viaja en una cabecera del nivel de aplicación . 
+Tenemos un problema y es que nftables solo filtra hasta el nivel de transporte , es decir por puerto . Así que no podemos leer el dominio ya que este viaja en una cabecera del nivel de aplicación .
 
-Para prohibirlo , tendremos que bloquear esa IP en su totalidad para un determinado puerto , en mi caso van a ser el 80 y 443. 
+Para prohibirlo , tendremos que bloquear esa IP en su totalidad para un determinado puerto , en mi caso van a ser el 80 y 443.
 
 Vamos a averiguar las IPS del dominio que queremos bloquear :
 
@@ -887,10 +887,10 @@ realbetisbalompie.es.
 51.255.76.196
 ```
 
-La añadiremos al principio de la cadena en lugar de add añadimos la palabra insert : 
+La añadiremos al principio de la cadena en lugar de add añadimos la palabra insert :
 
 ```bash
-javiercruces@router-fw:~$ sudo nft insert rule inet filter forward ip daddr 51.255.76.196 tcp dport {80, 443} iifname "ens4" oifname "ens3" counter drop 
+javiercruces@router-fw:~$ sudo nft insert rule inet filter forward ip daddr 51.255.76.196 tcp dport {80, 443} iifname "ens4" oifname "ens3" counter drop
 ```
 
 Y ahora no podremos navegar en la pagina del maligno :
@@ -908,7 +908,7 @@ ip daddr 51.255.76.196 tcp dport { 80, 443 } iifname "ens4" oifname "ens3" count
 ```
 
 
-## Hacer las reglas persistentes 
+## Hacer las reglas persistentes
 
 Vamos a guardar las reglas con :
 
@@ -916,7 +916,7 @@ Vamos a guardar las reglas con :
 rott@router-fw:/home/javiercruces# nft list ruleset > /etc/nftables.conf
 ```
 
-Si las queremos restaurar  : 
+Si las queremos restaurar  :
 
 ```bash
 javiercruces@router-fw:~$ sudo nft -f /etc/nftables.conf
@@ -938,7 +938,7 @@ ExecStart=/usr/sbin/nft -f /etc/nftables/nftables.rules
 [Install]
 WantedBy=multi-user.target
 
-# Activa el servicio para que al reiniciar se apliquen los cambios 
+# Activa el servicio para que al reiniciar se apliquen los cambios
 javiercruces@router-fw:~$ sudo systemctl enable nftables-persistent.service
 ```
 

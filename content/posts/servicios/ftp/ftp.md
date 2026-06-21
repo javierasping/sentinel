@@ -1,7 +1,7 @@
 ---
 title: "FTP bajo debian "
 date: 2023-09-08T10:00:00+00:00
-description: Configuración del servidor FTP 
+description: Configuración del servidor FTP
 tags: [Servicios,NAT,SMR,IPTABLES,SNAT,SSH,FORWARDING,APACHE,FTP]
 hero: images/servicios/ftp/portada-ftp.png
 ---

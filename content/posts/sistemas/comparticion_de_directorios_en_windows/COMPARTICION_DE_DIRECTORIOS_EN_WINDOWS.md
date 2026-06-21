@@ -57,7 +57,7 @@ Si queremos cambiar los permisos de un recurso compartido podemos usar los coman
 
 ## Comandos powershell
 
-Crearemos el recurso compartido 
+Crearemos el recurso compartido
 
 ```ps
 New-SmbShare -Name JCD\_comp -Path "C:\compartir\" -FullAccess "Administrador"
@@ -65,7 +65,7 @@ New-SmbShare -Name JCD\_comp -Path "C:\compartir\" -FullAccess "Administrador"
 
 ![](/sistemas/comparticion_de_directorios_en_windows/img/Aspose.Words.2ac587b0-02fe-41e0-b2ab-82492960a464.011.png)
 
-Si queremos añadir permisos específicos a un grupo a la hora de crear el recurso compartido seria : 
+Si queremos añadir permisos específicos a un grupo a la hora de crear el recurso compartido seria :
 
 ```ps
 New-SmbShare -Name <Nombre-de-la-carpeta> -Path <Ruta-de-la-carpeta> -ReadAccess "<Grupo-o-usuario-que-tiene-acceso-de-lectura>" -FullAccess "<Grupo-o-usuario-que-tiene- acceso-total>"

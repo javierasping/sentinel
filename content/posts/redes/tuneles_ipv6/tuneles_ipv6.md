@@ -16,9 +16,9 @@ En este post detallado, exploramos el proceso de configuración de túneles IPv6
 
 #### R1
 
-- **FastEthernet 0/0**  
-  - Prefijo de red: `3333:db7::/64`  
-  - Enlace: `FE80::C801:20FF:FE69:0`  
+- **FastEthernet 0/0**
+  - Prefijo de red: `3333:db7::/64`
+  - Enlace: `FE80::C801:20FF:FE69:0`
   - Global: `3333:DB7::C801:20FF:FE69:0`
 
 ![Imagen](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.002.png)
@@ -37,9 +37,9 @@ Para los clientes del router R1, configuraremos SLAAC:
 
 #### R2
 
-- **FastEthernet 0/0**  
-  - Prefijo de red: `3333:db7:1::/64`  
-  - Enlace: `FE80::C802:20FF:FE79:0`  
+- **FastEthernet 0/0**
+  - Prefijo de red: `3333:db7:1::/64`
+  - Enlace: `FE80::C802:20FF:FE79:0`
   - Global: `3333:DB7:1:0:C802:20FF:FE79:0`
 
 ![Imagen](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.007.png)
@@ -58,9 +58,9 @@ Para los clientes del router R2, configuraremos SLAAC:
 
 #### R3
 
-- **FastEthernet 0/0**  
-  - Prefijo de red: `3333:db7:2::/64`  
-  - Enlace: `FE80::C803:20FF:FE89:0`  
+- **FastEthernet 0/0**
+  - Prefijo de red: `3333:db7:2::/64`
+  - Enlace: `FE80::C803:20FF:FE89:0`
   - Global: `3333:DB7:2:0:C803:20FF:FE89:0`
 
 ![Imagen](../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.012.png)
@@ -654,7 +654,7 @@ Vemos que la cabecera IPv6 sigue intacta, es la misma durante todo el trayecto d
 - [Túneles automáticos 6to4 ](https://community.cisco.com/t5/blogs-general/t%C3%BAneles-autom%C3%A1ticos-6to4/ba-p/4822594)
 - [Túneles Automáticos Para Ipv6 ](https://educacionadistancia.juntadeandalucia.es/centros/sevilla/pluginfile.php/347162/mod_resource/content/1/52470-Tuneles%20Automaticos%20para%20IPv6\(1\).pdf)
 - [Túneles GRE](https://ccnadesdecero.es/tuneles-gre-caracteristicas-y-configuracion/)
-- [Túneles SIT 6to4 Linux](https://juncotic.com/tunel-ipv6-montando-tunel-ipv6/) 
+- [Túneles SIT 6to4 Linux](https://juncotic.com/tunel-ipv6-montando-tunel-ipv6/)
 
 
 [ref1]: ../img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.027.png

@@ -227,8 +227,8 @@ df -h
 
 - Hotplug de CPU/Memoria: depende del invitado (kernel, drivers, ACPI, virtio). Si falla en `--live`, haz el cambio con `--config` y reinicia.
 - Límite máximo: si `setvcpus`/`setmem` fallan por límite, ajusta primero el máximo con `--maximum` (CPU) o `setmaxmem` (memoria).
-- growpart no disponible: usa `parted` o `fdisk` con cuidado; asegúrate de alinear correctamente y no sobrescribir datos.
-- xfs no reduce tamaño: solo crece. Para reducir xfs hay que recrear; planifica en consecuencia.
+- growpart no disponible: usa `parted` o `fdisk` con cuidado, asegúrate de alinear correctamente y no sobrescribir datos.
+- xfs no reduce tamaño: solo crece. Para reducir xfs hay que recrear, planifica en consecuencia.
 
 ---
 

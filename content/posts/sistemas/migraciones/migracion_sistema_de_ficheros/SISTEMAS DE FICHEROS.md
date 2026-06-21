@@ -35,7 +35,7 @@ swap: el resto de espacio sobrante.
 
 No se instalará ningún entorno de escritorio.
 
-Una vez instalado el sistema, nos damos cuenta que estaríamos muy justos de espacio. 
+Una vez instalado el sistema, nos damos cuenta que estaríamos muy justos de espacio.
 
 ## Ampliación del disco
 
