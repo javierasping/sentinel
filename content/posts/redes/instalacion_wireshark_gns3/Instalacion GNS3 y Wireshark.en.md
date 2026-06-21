@@ -11,7 +11,7 @@ hero: images/redes/instalacion_wireshark_gns3/portada_instalacion_wireshark_gns3
 
 <!-- <! --! [2] (/ images / networks / installation _ wireshark _ gns3 / cover _ installation _ wireshark _ gns3.jpeg) -->
 
-![](/images/redes/instalacion_wireshark_gns3/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.003.jpeg) -->
+![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.003.jpeg) -->
 
 ## 1. **Introduction**
 

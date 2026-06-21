@@ -534,7 +534,7 @@ We will verify that the interfaces have been created correctly:
 
 ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.104.jpeg)
 
-![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.105.jpeg)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.105.png)
 
 ---
 
@@ -546,11 +546,11 @@ This is what the "script" for R3 tunnels would look like:
 
 Once the script is created, we will give it permissions and execute it:
 
-![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.107.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.107.jpeg)
 
 We will verify that the interfaces have been created correctly:
 
-![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.108.jpeg)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.108.png)
 
 ---
 
@@ -564,7 +564,7 @@ We will verify that the interfaces have been created correctly:
 
 **PC1 → PC2**
 
-![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.109.png)
+![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.109.jpeg)
 
 **PC1 → PC3**
 
@@ -626,7 +626,7 @@ A packet traveling from PC1 to PC2.
 
 We can see that, since it has not yet passed through the tunnel, it does not have IPv4 headers, only IPv6. We can see that the source is PC1 and the destination is PC3:
 
-<!-- ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.121.jpeg) -->
+<!-- ![](/redes/tuneles_ipv6/img/Aspose.Words.c9ccb3e7-b0e3-4eb4-b70b-2432dbadc7d8.121.png) -->
 
 We will see how, in the next segment, once it passes through the tunnel, the router will add an IPv4 header so it can traverse that segment.
 

@@ -3,7 +3,7 @@ title: "NAT Cisco and Linux Configuration"
 date: 2023-09-08T10:00:00+00:00
 Description: Routing of a scenario with public addresses, configuring SNAT and DNAT on Linux and Cisco machines.
 tags: [Redes, Enrutamiento,NAT,SNAT,DNAT,Cisco,Linux]
-hero: images/redes/configuracion_nat/portada.png
+hero: /images/redes/configuracion_nat/portada.png
 ---
 
 In this article, we will explore the configuration of SNAT (Source Network Address Translation) and DNAT (Destination Network Address Translation) in scenarios with public addresses, using routers in Linux environments and Cisco devices.

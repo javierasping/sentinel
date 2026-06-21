@@ -454,7 +454,7 @@ Content-Type: text/html
 
 Desde un navegador :
 
-![](../img/Pastedimage20240228112558.png)
+![](/cortafuegos/nftables_uno/img/Pastedimage20240228112558.png)
 
 Por último, vamos a comprobar que las reglas involucradas tienen hits y te dejo el listado completo para que veas las reglas hasta este punto:
 
