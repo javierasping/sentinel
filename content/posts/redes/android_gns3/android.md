@@ -1,5 +1,5 @@
 ---
-title: "Instalación de Android en GNS3 con KVM"
+title: "Instalación de android en GNS3 con KVM"
 date: 2024-03-28T10:00:00+00:00
 description: Instalación de Android en GNS3 con KVM
 tags: [GNS3,ANDROID,LINUX,DEBIAN,KVM]

@@ -2,7 +2,7 @@
 title: "Network monitoring commands"
 date: 2023-09-08T10:00:00+00:00
 Description: A document in which the main commands are detailed when it comes to detecting and solving network incidents.
-tags: [Network, comands]
+tags: [Network, commands]
 hero: images/redes/comando_de_supervision_de_redes/comando_de_supervision_de_redes.png
 ---
 
@@ -361,7 +361,7 @@ We have some interesting parameters such as:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.047.png)
 
-- -4 or -6: Force using IPV4 or IPV6:
+- -4 or -6: Force using IPv4 or IPv6:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.048.png)
 
@@ -378,7 +378,7 @@ So we can specify the way to reach a network or device.
 
 The syntax is as follows: route [-f] [-p] [command [destination]] [MASK network mask]
 
-Rute print command without parameters to show all the contents of the routing table:
+Route print command without parameters to show all the contents of the routing table:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.050.png)
 
@@ -440,11 +440,11 @@ Once we have configured our interfaces the changes will not be applied automatic
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.061.png)
 
-Another way to change the DNS servers used is through the / etc / resolf.conf file
+Another way to change the DNS servers used is through the `/etc/resolv.conf` file
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.062.png)
 
-Here followed by nameserver we will put the address ip or name of our DNS server
+Here, following `nameserver`, we will put the IP address or name of our DNS server
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.063.png)
 
@@ -458,13 +458,13 @@ This is installed with the net-tools package, to install it:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.064.png)
 
-To use this tool we will need to do it as a superuser, with its simplest use it will show us the basic TCP / IP configuration of our network card as well as statistics of it:
+To use this tool we will need to do it as a superuser, with its simplest use it will show us the basic TCP/IP configuration of our network card as well as statistics of it:
 
-For example with ipconfig / all we can see the configured DNS servers which with ifconfig we can't see.
+For example, with `ipconfig /all` we can see the configured DNS servers, which with `ifconfig` we can't see.
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.065.png)
 
-So we'll have to see the / etc / resolf.conf file
+So we'll have to see the `/etc/resolv.conf` file
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.066.png)
 
@@ -496,7 +496,7 @@ Mainly this command is used for this, to solve problems with DHCP service config
 
 Some parameters that I have not mentioned and may be useful are:
 
-- -6: Serve to indicate you want IPV6
+- -6: Serve to indicate you want IPv6
 - -p: Serves to indicate another port to do the consultation
 - -s: Serves to indicate the DHCP server address
 
@@ -525,15 +525,15 @@ In this the parameters with respect to Windows change their "letter," here would
 
 The utility of this is still the same, solving problems of accessibility of hosts in a network. This helps us understand why a website is not loaded.
 
-### General use command dig
+### General use of the `dig` command
 
 Dig is a command that allows you to consult DNS servers for information related to this service. To install it in our system, we will make an apt install dnsutils.
 
-We can do a dns consultation, for example to the institute to check if we are able to get your address ip:
+We can do a DNS consultation, for example to the institute, to check if we are able to get its IP address:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.074.jpeg)
 
-Using the + trace option, it does iterative consultations to solve the search for names. It will consult the server names from the root and then cross the name space tree through iterative consultations following the references on the way:
+Using the `+trace` option, it does iterative consultations to solve the search for names. It will consult the server names from the root and then cross the namespace tree through iterative consultations following the references on the way:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.075.png)
 
@@ -576,7 +576,7 @@ An example is to download files, for example an iso. We would put the command fo
 
 This will download the file to us in the current work directory.
 
-We can use the command -or to indicate a different name when downloading the file:
+We can use the command `-O` to indicate a different name when downloading the file:
 
 ![](/redes/comandos_de_supervision_de_redes/images/Aspose.Words.fb3cd5be-2e97-40e8-b21b-cbe3724f86ed.079.png)
 
@@ -588,7 +588,7 @@ Some interesting parameters are:
 - -b: Make the download in the background
 - -c to indicate that a discharge is resumed
 
-If we wanted to download files from a ftp server we would use the following syntax: wget -ftp-user = usario--ftp-password = password
+If we wanted to download files from an FTP server we would use the following syntax: `wget --ftp-user=user --ftp-password=password`
 
 ### General use of tcpdump
 
@@ -670,7 +670,7 @@ This is added a "second command" to indicate your function, are as follows:
 - tuntap: manages TUN / TAP interfaces, oriented to VPN such as OpenVPN or WireGuard.
 - maddress: configuration of the multicast addresses
 - xfrm: manages IPsec policies.
-- netgs: manage network name spaces
+- netns: manage network name spaces
 - l2tp: L2TP configuration
 - tcp\ _ metrics: manages TCP metrics.
 - token: manages the identifiers with token of the interfaces.
@@ -688,4 +688,3 @@ This is added a "second command" to indicate your function, are as follows:
 [ifconfig command] (http: / / somebooks.es / comando-ifconfig-ubuntu /)
 
 [ip command] (https: / / www.redeszone.net / tutorials / servers / configure -linux-comand-ip-iproute2-suite /)
-
