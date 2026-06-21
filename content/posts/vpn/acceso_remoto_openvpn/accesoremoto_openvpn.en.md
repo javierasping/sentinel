@@ -10,10 +10,10 @@ hero: /images/vpn/remoteaccess.png
 
 
 - One of the two teams (which will act as a server) will be connected to two networks
- - For the authentication of the extremes, digital certificates shall be used, which shall be generated using openssl and stored in the / etc / openvpn directory, together with the Diffie- Helman parameters and the certificate of the Certification Authority itself.
+ - For endpoint authentication, digital certificates shall be used. They will be generated using openssl and stored in the /etc/openvpn directory, together with the Diffie-Hellman parameters and the certificate of the Certification Authority itself.
  - Network addresses 10.99.99.0 / 24 will be used for VPN virtual addresses. The address 10.99.99.1 shall be assigned to the VPN server.
- - The server and client configuration files will be created in the / etc / openvpn directory of each machine, and will be called servor.conf and cliente.conf respectively.
- - After the establishment of the VPN, the client machine must be able to access a machine on the other network to which the server is connected.
+ - The server and client configuration files will be created in the /etc/openvpn directory of each machine, and will be called `server.conf` and `client.conf` respectively.
+ - After the VPN is established, the client machine must be able to access a machine on the other network to which the server is connected.
 
 ### Riding the stage
 
@@ -343,8 +343,8 @@ We will have been generated in / usr / share / easy-rsa / pki / ca.crt
 
 ## server certificate generation 1
 With the following command we will generate the certificates for server 1. Several files will be generated:
-- servor1.req: This file contains the certificate application generated for the server
-- servor1.key: This file contains the private key
+- server1.req: This file contains the certificate request generated for the server
+- server1.key: This file contains the private key
 
 ```bash
 debian@servidor1:/usr/share/easy-rsa$ sudo ./easyrsa gen-req servidor1 nopass

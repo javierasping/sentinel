@@ -681,7 +681,7 @@ javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens4" o
 javiercruces@router-fw:~$ sudo nft add rule inet filter forward iifname "ens3" oifname "ens4" ip protocol tcp ip daddr 192.168.100.0/24 tcp sport 22 ct state established counter accept
 ```
 
-Vamos a conectarnos por ssh a una maquina fuera de la lan :
+Vamos a conectarnos por ssh a una máquina fuera de la LAN:
 
 ```bash
 debian@lan:~$ ssh javiercruces@172.22.200.47

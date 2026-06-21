@@ -14,14 +14,14 @@ StrongSwan es una implementación de VPN (Red Privada Virtual) basada en IPsec, 
 > [!NOTE]  
 > Voy a partir del post de VPN acceso remoto con OpenVPN , asi que es posible que haga referencia a este durante este articulo . Si quieres tener el mismo escenario ve primero a este .
 
-Recuerda que para la configuración que vamos a hacer tienes que activar el bit de forwarding en las maquinas Servidor1 y Servidor2 . 
+Recuerda que, para la configuración que vamos a hacer, tienes que activar el bit de forwarding en las máquinas Servidor1 y Servidor2.
 
 ![](/vpn/acceso_remoto_strongswang/img/Pastedimage20240128105821.png)
 
 
 ## Instalación de StrongSwan
 
-Comenzaremos instalando el paquete StrongSwan en ambas maquinas :
+Comenzaremos instalando el paquete StrongSwan en ambas máquinas:
 
 ```bash
 debian@servidor1:~$ sudo apt install strongswan -y
@@ -31,7 +31,7 @@ debian@servidor2:~$ sudo apt install strongswan -y
 ## Configuración de StrongSwan
 
 ### Servidor 1 
-A continuación configuraremos el servidor 1 , voy a ponerte un comentario para que sepas que significada cada opción :
+A continuación configuraremos el servidor 1; voy a ponerte un comentario para que sepas qué significa cada opción:
 
 ```bash
 debian@servidor1:~$  sudo cat /etc/ipsec.conf
@@ -51,9 +51,9 @@ conn %default
        esp=aes256-sha1           # Configuración de algoritmos para la fase ESP.
 
 conn servidor2a1
-       left=90.0.0.2              # Dirección IP publica de la maquina (servidor1).
-       leftsubnet=192.168.0.0/24   # Subred privada de la maquina servidor 1.
-       right=100.0.0.2             # Dirección IP publica del otro extremo (servidor2).
+       left=90.0.0.2              # Dirección IP pública de la máquina (servidor1).
+       leftsubnet=192.168.0.0/24   # Subred privada de la máquina servidor 1.
+       right=100.0.0.2             # Dirección IP pública del otro extremo (servidor2).
        rightsubnet=192.168.1.0/24  # Subred privada del otro extremo (servidor 2).
        auto=start                  # Iniciar la conexión automáticamente al arrancar strongSwan.
 ```
@@ -80,9 +80,9 @@ conn %default
        esp=aes256-sha1           # Configuración de algoritmos para la fase ESP.
 
 conn servidor2a1
-       left=100.0.0.2            # Dirección IP publica de la maquina.
-       leftsubnet=192.168.1.0/24  # Subred privada de la maquina.
-       right=90.0.0.2            # Dirección IP publica del servidor1.
+       left=100.0.0.2            # Dirección IP pública de la máquina.
+       leftsubnet=192.168.1.0/24  # Subred privada de la máquina.
+       right=90.0.0.2            # Dirección IP pública del servidor1.
        rightsubnet=192.168.0.0/24 # Subred privada del servidor 1.
        auto=start                # Iniciar la conexión automáticamente al arrancar strongSwan.
 ```
@@ -100,15 +100,15 @@ Ahora en el fichero /etc/ipsec.secrets configuraremos la clave PSK , que en ambo
 
 ```bash
 debian@servidor1:~$ sudo cat /etc/ipsec.secrets 
-# Ip publica de la maquina servidor 1
+# IP pública de la máquina servidor 1
 90.0.0.2 : PSK "cXPeOAcKIVszFHp68CcGX6dLXcWcbrIl"
 
 debian@servidor2:~$ sudo cat /etc/ipsec.secrets 
-# Ip publica de la maquina servidor 2
+# IP pública de la máquina servidor 2
 100.0.0.2 : PSK "cXPeOAcKIVszFHp68CcGX6dLXcWcbrIl"
 ```
 
-Una vez configurado , reiniciaremos el servicio en ambos extremos :
+Una vez configurado, reiniciaremos el servicio en ambos extremos:
 
 ```bash
 debian@servidor1:~$ sudo ipsec restart 
@@ -149,7 +149,7 @@ debian@servidor2:~$ ip route list table 220
 
 ### Comprobación de conectividad
 
-Una vez hecho esto vamos a comprobar que la maquina servidor2 puede llegar a las maquinas de la red 192.168.0.0/24 :
+Una vez hecho esto vamos a comprobar que la máquina servidor2 puede llegar a las máquinas de la red 192.168.0.0/24:
 
 ```bash
 debian@servidor2:~$ ping -c 1 192.168.0.1
@@ -201,13 +201,13 @@ o), rekeying in 41 minutes
 
 ### Captura con Wireshark
 
-Ademas puedes hacer una captura del trafico y asegurarte de que los mensajes van cifrados : 
+Además, puedes hacer una captura del tráfico y asegurarte de que los mensajes van cifrados:
 
 ![](/vpn/acceso_remoto_strongswang/img/Pastedimage20240128112552.png)
 
 ### Comprobación con traceroute
 
-Ademas es curioso porque si haces un traceroute el primer salto que da es a la interfaz 192.168.0.1 del servidor1 :
+Además, es curioso porque si haces un traceroute el primer salto que da es a la interfaz 192.168.0.1 del servidor1:
 
 ```bash
 debian@servidor2:~$ traceroute 192.168.0.2

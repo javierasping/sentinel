@@ -10,9 +10,9 @@ hero: /images/vpn/remoteaccess.png
 
 
 - Uno de los dos equipos (el que actuará como servidor) estará conectado a dos redes 
-    - Para la autenticación de los extremos se usarán obligatoriamente certificados digitales, que se generarán utilizando openssl y se almacenarán en el directorio /etc/openvpn, junto con  los parámetros Diffie-Helman y el certificado de la propia Autoridad de Certificación. 
+    - Para la autenticación de los extremos se usarán obligatoriamente certificados digitales, que se generarán utilizando openssl y se almacenarán en el directorio /etc/openvpn, junto con los parámetros Diffie-Hellman y el certificado de la propia Autoridad de Certificación.
     - Se utilizarán direcciones de la red 10.99.99.0/24 para las direcciones virtuales de la VPN. La dirección 10.99.99.1 se asignará al servidor VPN. 
-    - Los ficheros de configuración del servidor y del cliente se crearán en el directorio /etc/openvpn de cada máquina, y se llamarán servidor.conf y cliente.conf respectivamente. 
+    - Los ficheros de configuración del servidor y del cliente se crearán en el directorio /etc/openvpn de cada máquina, y se llamarán `server.conf` y `client.conf` respectivamente.
     - Tras el establecimiento de la VPN, la máquina cliente debe ser capaz de acceder a una máquina que esté en la otra red a la que está conectado el servidor. 
 
 ## Montando el escenario 
@@ -586,7 +586,7 @@ debian@servidor1:~$ sudo sysctl net.ipv4.ip_forward
 net.ipv4.ip_forward = 1
 ```
 
-Vamos a editar el fichero /etc/default/openvpn y descomentaremos la siguiente linea para indicar que se inicien automaticamente todos los túneles vpn :
+Vamos a editar el fichero `/etc/default/openvpn` y descomentaremos la siguiente línea para indicar que se inicien automáticamente todos los túneles VPN:
 
 ```bash
 AUTOSTART="all"
@@ -623,7 +623,7 @@ keepalive 10 60
 verb 3
 ```
 
-Ahora reinicia el servicio para que se apliquen los cambios y se levante la interfaz . Es posible que necesites reiniciar la maquina :
+Ahora reinicia el servicio para que se apliquen los cambios y se levante la interfaz. Es posible que necesites reiniciar la máquina:
 
 ```bash
 debian@servidor1:~$ sudo systemctl restart openvpn.service 
@@ -670,7 +670,7 @@ debian@servidor2:~$ sudo sysctl net.ipv4.ip_forward
 net.ipv4.ip_forward = 1
 ```
 
-Vamos a editar el fichero /etc/default/openvpn y descomentaremos la siguiente linea para indicar que se inicien automaticamente todos los túneles vpn :
+Vamos a editar el fichero `/etc/default/openvpn` y descomentaremos la siguiente línea para indicar que se inicien automáticamente todos los túneles VPN:
 
 ```bash
 AUTOSTART="all"
@@ -707,7 +707,7 @@ verb 3
 log /var/log/openvpn.log
 ```
 
-Ahora reinicia el servicio para que se apliquen los cambios y se levante la interfaz . Es posible que necesites reiniciar la maquina :
+Ahora reinicia el servicio para que se apliquen los cambios y se levante la interfaz. Es posible que necesites reiniciar la máquina:
 
 ```bash
 debian@servidor2:~$ sudo systemctl restart openvpn.service 
@@ -747,7 +747,7 @@ debian@servidor2:~$ ip a
 
 ### Comprobación de funcionamiento 
 
-Ahora vamos a comprobar que desde servidor2 podemos acceder a las maquinas clientes de la red 192.168.0.0/24 .
+Ahora vamos a comprobar que desde servidor2 podemos acceder a las máquinas cliente de la red 192.168.0.0/24.
 
 ```bash
 debian@servidor2:~$ ip r

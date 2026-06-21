@@ -646,27 +646,27 @@ Una vez descargada la importaremos en Vmware y le daremos las características h
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.115.png)
 
-Una  vez echo esto abriremos GNS3 y editaremos las preferencias de GNS VM y seleccionaremos la maquina virtual que acabamos de importar :
+Una vez hecho esto abriremos GNS3 y editaremos las preferencias de GNS VM y seleccionaremos la máquina virtual que acabamos de importar:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.116.jpeg)
 
-Se  nos iniciara la maquina virtual y podremos ver los datos de la misma en la pestaña info :
+Se nos iniciará la máquina virtual y podremos ver los datos de la misma en la pestaña info:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.117.png)
 
-Lanzaremos el set-up wizard desde la pestaña help de GNS3 y seleccionaremos la opción de ejecutar las apilances en una maquina virtual :
+Lanzaremos el set-up wizard desde la pestaña help de GNS3 y seleccionaremos la opción de ejecutar las appliances en una máquina virtual:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.118.png)
 
-Seleccionaremos la configuración de nuestra maquina virtual :
+Seleccionaremos la configuración de nuestra máquina virtual:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.119.png)
 
-Seleccionaremos de nuevo nuestra maquina virtual y las características hardware que deseemos  :
+Seleccionaremos de nuevo nuestra máquina virtual y las características hardware que deseemos:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.120.jpeg)
 
-Solo nos quedara importar los dispositivos en la maquina virtual , esto se hace igual que hemos echo anteriormente cambiando el sitio donde lo importamos :
+Solo nos quedará importar los dispositivos en la máquina virtual; esto se hace igual que hemos hecho anteriormente cambiando el sitio donde lo importamos:
 
 ![](/redes/instalacion_wireshark_gns3/images/Aspose.Words.7be2264a-b643-4cb1-9a61-896b263a0d52.121.jpeg)
 

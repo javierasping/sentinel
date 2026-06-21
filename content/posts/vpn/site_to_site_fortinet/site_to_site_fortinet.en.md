@@ -6,16 +6,13 @@ tags: [VPN,LINUX,FORTINET]
 hero: /images/vpn/fortinet_site_to_site.png
 ---
 
-
-
 In this post I will mount an IPSEC VPN using Fortinet firewalls, for which I will visualize them on GNS3.
-
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240330235321.png)
 
 ### Stage preparation
 
-To create the VPN I will add a new Fortigate to the stage.
+To create the VPN I will add a new FortiGate to the stage.
 
 So let's proceed to set it up, the first thing will be to know the IP that the DHCP has given you:
 
@@ -40,9 +37,9 @@ FortiGate-VM64-KVM # get system interface physical port1
 
 ```
 
-This IP you've given me for DHCP will be configured as static.
+This IP given to me for DHCP will be configured as static.
 
-As for the local network of the new FortiNet, it will have the network 192.168.30.0:
+As for the local network of the new Fortinet, it will have the network 192.168.30.0:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240330231700.png)
 
@@ -50,11 +47,11 @@ Finally, in this the default route to the NAT cloud IP address will be set at 19
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240330235554.png)
 
-Once this is done we will see that we have connectivity between both firewalls, from FGT -- > FTG2:
+Once this is done we will see that we have connectivity between both firewalls, from FGT -> FTG2:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240330235822.png)
 
-And the reverse from FTG2 -- > FTG:
+And the reverse from FTG2 -> FTG:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240330235850.png)
 
@@ -77,7 +74,7 @@ We will get a panel with the different objects that will be created and we will 
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331000725.png)
 
-We will repeat the same process in the other Fortigate, create a tunnel site to site:
+We will repeat the same process in the other FortiGate, create a tunnel site to site:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331000751.png)
 
@@ -121,14 +118,13 @@ PING 192.168.30.2 (192.168.30.2) 56(84) bytes of data.
 rtt min/avg/max/mdev = 1.516/1.516/1.516/0.000 ms
 ```
 
-As we see we have connectivity between the 2 private networks through the VPN.
+As we see we have connectivity between the two private networks through the VPN.
 
 If we stop to see the objects that each tunnel has created for us, it has created a total of 4, which we will have to delete if we want to remove the tunnel:
 
-
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331012446.png)
 
-By default the policy that has created us allows ALL traffic in both directions, these 2 policies have created it in each firewall and by modifying these or adding new ones we can limit the traffic that passes through the VPN according to our needs.
+By default the policy that has created us allows ALL traffic in both directions, these two policies have created it in each firewall and by modifying these or adding new ones we can limit the traffic that passes through the VPN according to our needs.
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331012606.png)
 

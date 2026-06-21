@@ -30,13 +30,13 @@ Once the files are copied we will move to the directory to create the file prese
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.005.png)
 
-Within the same we will copy the bookwork template file provided by debian, you can find it on its official page → https: / / www.debian.org / releases / bookwork / example-presed.txt. I will put this file into the fjcd\ _ car folder.
+Within the same folder, we will copy the Bookworm template file provided by Debian; you can find it on its official page → https://www.debian.org/releases/bookworm/example-preseed.txt. I will put this file into the `fjcd_auto` folder.
 
 We will edit the template and select the different options:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.006.jpeg)
 
-Once the presede.cfg file is configured, we give permission to the install.amd directory and uncompress the initrd.gz:
+Once the `preseed.cfg` file is configured, we give permission to the `install.amd` directory and uncompress the `initrd.gz`:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.007.png)
 
@@ -48,7 +48,7 @@ We recompress the initrd file and remove the permissions given to the parent dir
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.009.png)
 
-Now we will add an input to this file so that when we start the iso we would have an input that will automatically perform the installation with our presed.cfg file:
+Now we will add an entry to this file so that when we start the ISO we will have an option that automatically performs the installation with our `preseed.cfg` file:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.010.jpeg)
 
@@ -74,7 +74,7 @@ Now we're going to prepare the PXE server to make a network installation, to set
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.015.png)
 
-For the change to be permanent I have installed and configured iptables-persistent, also remember to activate the bit of the forweding
+For the change to be permanent, I have installed and configured `iptables-persistent`; also remember to activate IP forwarding.
 
 Now we install we will install dnsmasq:
 
@@ -100,11 +100,11 @@ Once the file is uncompressed, we will create symbolic links to the following fi
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.021.png)
 
-Now we have to set up the web server to pass the file presed.cfg, I have put it in the document root of the virtual host by default:
+Now we have to set up the web server to serve the `preseed.cfg` file; I have put it in the `DocumentRoot` of the default virtual host:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.022.png)
 
-Finally we have left to configure the entry of the iso menu that we have downloaded, we indicate that the file presed.cfg is in the following url:
+Finally, we only need to configure the boot menu entry of the ISO we downloaded and indicate that the `preseed.cfg` file is in the following URL:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.023.jpeg)
 
@@ -112,7 +112,7 @@ Now we can start the machine by pxe:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.024.jpeg)
 
-And if we click on the custom input we just created, it will automatically be installed from the presed.cfg file:
+And if we click on the custom entry we just created, it will be installed automatically from the `preseed.cfg` file:
 
 ![](/sistemas/creacion_de_un_sistema_automatizado_de_instalacion/img/Aspose.Words.87912b93-5caf-4cac-995f-066fba11b8b6.025.jpeg)
 

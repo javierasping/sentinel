@@ -240,7 +240,7 @@ To do this we will have to generate a new service that is in port 2222:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322205327.png)
 
-Now we are going to modify our virtual IP by modifying the service by the new one we have created with the 2222 port and we will make a port forweding to the 22 port:
+Now we are going to modify our virtual IP by changing the service to the new one we have created with port 2222, and we will make a port forwarding to port 22:
 
 ![](/cortafuegos/fortinet_uno/img/Pastedimage20240322205425.png)
 

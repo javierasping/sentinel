@@ -6,18 +6,15 @@ tags: [VPN,LINUX,FORTINET]
 hero: /images/vpn/fortinet_site_to_site.png
 ---
 
-
-
-En este post voy a montar una VPN IPSEC usando cortafuegos Fortinet  , para ello los visualizaré en GNS3 .
-
+En este post voy a montar una VPN IPSEC usando cortafuegos Fortinet, para ello los visualizaré en GNS3.
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240330235321.png)
 
 ## Preparación del escenario 
 
-Para crear la VPN añadiré al escenario un nuevo Fortigate . 
+Para crear la VPN añadiré al escenario un nuevo FortiGate.
 
-Así que vamos a proceder a configurarlo , lo primero sera conocer la IP que le ha dado el DHCP :
+Así que vamos a proceder a configurarlo, lo primero será conocer la IP que le ha dado el DHCP:
 
 ```bash
 FortiGate-VM64-KVM login: admin
@@ -40,60 +37,60 @@ FortiGate-VM64-KVM # get system interface physical port1
 
 ```
 
-Esta IP que me ha dado por DHCP se la configurare como estática .
+Esta IP que me ha dado por DHCP se la configuraré como estática.
 
-En cuanto a la red local del nuevo FortiNet , va a tener la red 192.168.30.0 :
+En cuanto a la red local del nuevo Fortinet, va a tener la red 192.168.30.0:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240330231700.png)
 
-Por ultimo configurare en este la ruta por defecto hacia la dirección IP de de la nube NAT la 192.168.122.1/24 :
+Por último configuraré en este la ruta por defecto hacia la dirección IP de la nube NAT la 192.168.122.1/24:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240330235554.png)
 
-Una vez hecho esto vamos a ver que tenemos conectividad entre ambos cortafuegos , desde FGT --> FTG2 :
+Una vez hecho esto vamos a ver que tenemos conectividad entre ambos cortafuegos, desde FGT --> FTG2:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240330235822.png)
 
-Y al revés desde FTG2 --> FTG :
+Y al revés desde FTG2 --> FTG:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240330235850.png)
 
 
 ## VPN site to site
 
-Nos dirigimos primero al FortiGate FTG que es el que contiene los clientes de Odin,Loki,Thor y Hela . Y iremos a IPsec Wizard , le pondré un nombre significativo con el nombre de los hosts :
+Nos dirigimos primero al FortiGate FTG que es el que contiene los clientes de Odin, Loki, Thor y Hela. Y iremos a IPsec Wizard, le pondré un nombre significativo con el nombre de los hosts:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331000231.png)
 
-En el siguiente paso vamos a indicar la IP del FortiGate FTG2 , la interfaz por donde saldrá el trafico y por ultimo una "llave" compartida entre los dos extremos , esta ultima parte puede sustituirse por certificados :
+En el siguiente paso vamos a indicar la IP del FortiGate FTG2, la interfaz por donde saldrá el tráfico y por último una "llave" compartida entre los dos extremos, esta última parte puede sustituirse por certificados:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331000351.png)
 
-A continuación indicaremos las redes locales de ambos extremos donde queremos tener conectividad :
+A continuación indicaremos las redes locales de ambos extremos donde queremos tener conectividad:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331000638.png)
 
-Nos saldrá un panel con los distintos objetos que se van a crear y le daremos a crear :
+Nos saldrá un panel con los distintos objetos que se van a crear y le daremos a crear:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331000725.png)
 
-Repetiremos el mismo proceso en el otro Fortigate , crearemos un túnel site to site : 
+Repetiremos el mismo proceso en el otro FortiGate, crearemos un túnel site to site:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331000751.png)
 
-Le diremos la IP publica del otro extremo y pondremos la misma clave compartida :
+Le diremos la IP pública del otro extremo y pondremos la misma clave compartida:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331000810.png)
 
-Ahora le diremos cual es nuestra red local y la red remota :
+Ahora le diremos cuál es nuestra red local y la red remota:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331000833.png)
 
-Por ultimo nos dirá los objetos que se van a crear y le damos a crear :
+Por último nos dirá los objetos que se van a crear y le damos a crear:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331000845.png)
 
-Ahora si accedemos a los paneles de IPsec Tunnels veremos que en unos segundos ambos túneles se levantaran :
+Ahora si accedemos a los paneles de IPsec Tunnels veremos que en unos segundos ambos túneles se levantarán:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331012140.png)
 
@@ -101,7 +98,7 @@ Ahora si accedemos a los paneles de IPsec Tunnels veremos que en unos segundos a
 
 ### Comprobación de funcionamiento
 
-Una vez llegado a este punto veremos que la VPN esta funcionando .  Podemos hacer un ping en ambas direcciones :
+Una vez llegado a este punto veremos que la VPN está funcionando. Podemos hacer un ping en ambas direcciones:
 
 ```bash
 debian@cliente1:~$ ping 192.168.100.4 -c 1
@@ -121,17 +118,16 @@ PING 192.168.30.2 (192.168.30.2) 56(84) bytes of data.
 rtt min/avg/max/mdev = 1.516/1.516/1.516/0.000 ms
 ```
 
-Como vemos tenemos conectividad entre las 2 redes privadas a través de la VPN . 
+Como vemos tenemos conectividad entre las dos redes privadas a través de la VPN.
 
-Si nos paramos a ver los objetos que nos ha creado cada túnel , este nos ha creado un total de 4 , los cuales tendremos que borrar si deseamos eliminar el túnel :
-
+Si nos paramos a ver los objetos que nos ha creado cada túnel, este nos ha creado un total de 4, los cuales tendremos que borrar si deseamos eliminar el túnel:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331012446.png)
 
-Por defecto la política que nos ha creado permite TODO el trafico en ambas direcciones , estas 2 políticas la tenemos creada en cada cortafuegos y modificando estas o añadiendo nuevas podemos limitar el trafico que pasa por la VPN en función de nuestras necesidades .
+Por defecto la política que nos ha creado permite TODO el tráfico en ambas direcciones, estas dos políticas la tenemos creada en cada cortafuegos y modificando estas o añadiendo nuevas podemos limitar el tráfico que pasa por la VPN en función de nuestras necesidades.
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331012606.png)
 
-Ademas nos habrá creado una ruta para encaminar el trafico hacia la red privada del otro extremo :
+Además nos habrá creado una ruta para encaminar el tráfico hacia la red privada del otro extremo:
 
 ![](/vpn/site_to_site_fortinet/img/Pastedimage20240331012805.png)

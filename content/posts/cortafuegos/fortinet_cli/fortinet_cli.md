@@ -177,11 +177,11 @@ Esta es la sintaxis básica de cada regla. Como puedes observar, entre una regla
 Si queremos eliminar una regla, haremos lo siguiente:
 
 ```bash
-# Accedemos al modo de configuracion de las politicas de seguridad
+# Accedemos al modo de configuración de las políticas de seguridad
 FTG # config firewall policy
-# Borraremos la regla segun el id de la misma
+# Borraremos la regla según el id de la misma
 FTG (policy) # delete 2
-# Salimos de la configuracion
+# Salimos de la configuración
 FTG (policy) # end
 ```
 

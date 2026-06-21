@@ -14,7 +14,7 @@ StrongSwan is a VPN (Virtual Private Network) implementation based on IPsec, ope
 > [NOTE]
 > I will start from the VPN post remote access with OpenVPN, so you may refer to this during this article. If you want to have the same scenario go first to this.
 
-Remember that for the configuration we are going to do you have to activate the forwardbit in the Servidor1 and Servidor2 machines.
+Remember that for the configuration we are going to do, you have to activate the forwarding bit on servers 1 and 2.
 
 ![](/vpn/acceso_remoto_strongswang/img/Pastedimage20240128105821.png)
 
@@ -31,7 +31,7 @@ debian@servidor2:~$ sudo apt install strongswan -y
 ## StrongSwan configuration
 
 ## Server 1
-Next we will set up server 1, I will give you a comment so you know what each option means:
+Next we will set up server 1, and I will add a comment so you know what each option means:
 
 ```bash
 debian@servidor1:~$  sudo cat /etc/ipsec.conf
@@ -51,16 +51,16 @@ conn %default
        esp=aes256-sha1           # Configuración de algoritmos para la fase ESP.
 
 conn servidor2a1
-       left=90.0.0.2              # Dirección IP publica de la maquina (servidor1).
-       leftsubnet=192.168.0.0/24   # Subred privada de la maquina servidor 1.
-       right=100.0.0.2             # Dirección IP publica del otro extremo (servidor2).
+       left=90.0.0.2              # Public IP address of the machine (server 1).
+       leftsubnet=192.168.0.0/24   # Private subnet of server 1.
+       right=100.0.0.2             # Public IP address of the other endpoint (server 2).
        rightsubnet=192.168.1.0/24  # Subred privada del otro extremo (servidor 2).
        auto=start                  # Iniciar la conexión automáticamente al arrancar strongSwan.
 ```
 
 ## # Server 2
 
-Next we will set up server 2, I will put you a comment so you know what each option means:
+Next we will set up server 2, and I will add a comment so you know what each option means:
 
 ```bash
 debian@servidor2:~$ sudo cat /etc/ipsec.conf
@@ -80,9 +80,9 @@ conn %default
        esp=aes256-sha1           # Configuración de algoritmos para la fase ESP.
 
 conn servidor2a1
-       left=100.0.0.2            # Dirección IP publica de la maquina.
-       leftsubnet=192.168.1.0/24  # Subred privada de la maquina.
-       right=90.0.0.2            # Dirección IP publica del servidor1.
+       left=100.0.0.2            # Public IP address of the machine.
+       leftsubnet=192.168.1.0/24  # Private subnet of the machine.
+       right=90.0.0.2            # Public IP address of server 1.
        rightsubnet=192.168.0.0/24 # Subred privada del servidor 1.
        auto=start                # Iniciar la conexión automáticamente al arrancar strongSwan.
 ```
@@ -100,11 +100,11 @@ Now in the / etc / ipsec.secrets file we will configure the PSK key, which at bo
 
 ```bash
 debian@servidor1:~$ sudo cat /etc/ipsec.secrets 
-#Ip publica de la maquina servidor 1
+# Public IP address of server 1
 90.0.0.2 : PSK "cXPeOAcKIVszFHp68CcGX6dLXcWcbrIl"
 
 debian@servidor2:~$ sudo cat /etc/ipsec.secrets 
-#Ip publica de la maquina servidor 2
+# Public IP address of server 2
 100.0.0.2 : PSK "cXPeOAcKIVszFHp68CcGX6dLXcWcbrIl"
 ```
 
@@ -135,9 +135,9 @@ Security Associations (1 up, 0 connecting):
 
 It is true that, unlike OpenVPN and WireGuard, StrongSwan does not automatically create a virtual interface for the VPN connection. Instead, it uses the operating system routes to direct traffic through the IPSec tunnel.
 
-### Rupture tables
+### Routing tables
 
-We can see these routes as follows, these are stored in table 220:
+We can see these routes as follows. They are stored in table 220:
 
 ```bash
 debian@servidor1:~$ ip r show table 220
@@ -149,7 +149,7 @@ debian@servidor2:~$ ip route list table 220
 
 ### Connectivity check
 
-Once this has been done, we will check that the service machine 2 can reach the machines of the network 192.168.0.0 / 24:
+Once this has been done, we will check that server 2 can reach the machines in the 192.168.0.0/24 network:
 
 ```bash
 debian@servidor2:~$ ping -c 1 192.168.0.1
@@ -171,7 +171,7 @@ rtt min/avg/max/mdev = 11.485/11.485/11.485/0.000 ms
 
 ### Tunnel statistics
 
-If you want to see if the traffic has passed through the tunnel, you can make a statusol and see the statistics:
+If you want to see whether the traffic has passed through the tunnel, you can run `statusall` and see the statistics:
 
 ```bash
 debian@servidor1:~$ sudo ipsec statusall 
@@ -199,7 +199,7 @@ o), rekeying in 41 minutes
  servidor1a2{1}:   192.168.0.0/24 === 192.168.1.0/24
 ```
 
-## Catch with Wireshark
+## Capture with Wireshark
 
 You can also capture the traffic and make sure the messages are encrypted:
 
@@ -207,7 +207,7 @@ You can also capture the traffic and make sure the messages are encrypted:
 
 ### Traceroute check
 
-It is also curious because if you make a traceroute the first jump it gives is to the interface 192.168.0.1 of the service1:
+It is also interesting because if you run a traceroute, the first hop it gives is the interface 192.168.0.1 of server 1:
 
 ```bash
 debian@servidor2:~$ traceroute 192.168.0.2

@@ -884,7 +884,7 @@ Salidas completas de las reglas:
 	--key-name mykey
 ```
 
-Una vez acabe de crearse la instancia deberiamos ver algo asi :
+Una vez acabe de crearse la instancia deberíamos ver algo así:
 
 ```bash
 (kolla-venv) root@deployment:/home/vagrant# openstack server list
@@ -897,13 +897,13 @@ Una vez acabe de crearse la instancia deberiamos ver algo asi :
 
 ## 14. Validacion utilizando horizon
 
-Esto mismo que hemos realizado usando la CLI , podemos comproabarlo usando la interfaz grafica.
+Esto mismo que hemos realizado usando la CLI, podemos comprobarlo usando la interfaz gráfica.
 
-Lo primero es loguearnos , recuerda que en neuestro caso puedes sacar la contraseña y el usuario del fichero `/etc/kolla/admin-openrc.sh`.
+Lo primero es loguearnos; recuerda que en nuestro caso puedes sacar la contraseña y el usuario del fichero `/etc/kolla/admin-openrc.sh`.
 
 ![](/images/openstack/instalacion-manual/login_openstack.png)
 
-Una vez dentro , podemos ver una vista de los recursos de nuestro cluster de openstack que se estan utilizando:
+Una vez dentro, podemos ver una vista de los recursos de nuestro clúster de OpenStack que se están utilizando:
 
 ![](/images/openstack/instalacion-manual/general_vieuw.png) 
 
@@ -911,7 +911,7 @@ Podemos listar la instancia que hemos creado y ver su estado:
 
 ![](/images/openstack/instalacion-manual/instances.png)
 
-Por supuesto tambien podemos ver los servicios que hemos instalado:
+Por supuesto, también podemos ver los servicios que hemos instalado:
 
 ![](/images/openstack/instalacion-manual/services.png)
 
