@@ -1,7 +1,7 @@
 ---
 title: "Laboratorio: Instalación de Kong en Kubernetes (Modo Híbrido)"
 date: 2026-07-02T14:35:00+00:00
-description: Despliegue profesional de Kong Gateway en Kubernetes utilizando KinD y Helm Charts.
+description: "Despliegue profesional de Kong Gateway en Kubernetes utilizando KinD y Helm Charts."
 tags: [Kong, Kubernetes, Helm, KinD, Cloud Native]
 hero: images/kong/08-kubernetes/hero.png
 ---

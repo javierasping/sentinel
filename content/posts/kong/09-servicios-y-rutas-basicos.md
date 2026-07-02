@@ -1,7 +1,7 @@
 ---
 title: "Primeros Pasos: Servicios y Rutas en Kong"
 date: 2026-07-02T14:40:00+00:00
-description: Aprende a configurar la lógica de routing de Kong creando tus primeros Servicios y Rutas a través de la Admin API.
+description: "Aprende a configurar la lógica de routing de Kong creando tus primeros Servicios y Rutas a través de la Admin API."
 tags: [Kong, API Routing, Admin API, Microservicios]
 hero: images/kong/09-routing/hero.png
 ---

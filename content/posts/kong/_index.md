@@ -1,7 +1,7 @@
 ---
 title: "Guía Completa de Kong Gateway"
 date: 2026-07-02T15:00:00+00:00
-description: Serie didáctica sobre la instalación, configuración y despliegue profesional de Kong Gateway en entornos Docker y Kubernetes.
+description: "Serie didáctica sobre la instalación, configuración y despliegue profesional de Kong Gateway en entornos Docker y Kubernetes."
 tags: [Kong, API Gateway, DevOps, Kubernetes, Docker]
 hero: images/kong/index/hero.png
 ---

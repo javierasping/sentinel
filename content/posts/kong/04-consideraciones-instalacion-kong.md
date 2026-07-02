@@ -1,7 +1,7 @@
 ---
 title: "Guía de Planificación de la Instalación de Kong"
 date: 2026-07-02T14:15:00+00:00
-description: Factores críticos a considerar antes de instalar Kong Gateway: dimensionamiento de recursos, puertos, DNS y seguridad.
+description: "Factores críticos a considerar antes de instalar Kong Gateway: dimensionamiento de recursos, puertos, DNS y seguridad."
 tags: [Kong, Planificación, Infraestructura, Redes]
 hero: images/kong/04-consideraciones/hero.png
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Verificación y Pruebas del Gateway"
 date: 2026-07-02T14:45:00+00:00
-description: Metodologías para validar el correcto funcionamiento de Kong Gateway mediante la Admin API, el Kong Manager y pruebas de tráfico real.
+description: "Metodologías para validar el correcto funcionamiento de Kong Gateway mediante la Admin API, el Kong Manager y pruebas de tráfico real."
 tags: [Kong, Testing, Validación, API Gateway]
 hero: images/kong/10-verificacion/hero.png
 ---

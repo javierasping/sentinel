@@ -1,7 +1,7 @@
 ---
 title: "Topologías de Despliegue de Kong Gateway"
 date: 2026-07-02T14:10:00+00:00
-description: Comparativa de los modelos de despliegue de Kong: Traditional, DB-less, Hybrid y Kong Connect.
+description: "Comparativa de los modelos de despliegue de Kong: Traditional, DB-less, Hybrid y Kong Connect."
 tags: [Kong, Arquitectura, Despliegue, Topologías]
 hero: images/kong/03-topologias/hero.png
 ---

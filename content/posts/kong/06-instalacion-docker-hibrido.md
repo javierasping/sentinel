@@ -1,7 +1,7 @@
 ---
 title: "Laboratorio: Instalación de Kong con Docker (Modo Híbrido)"
 date: 2026-07-02T14:25:00+00:00
-description: Guía práctica paso a paso para desplegar Kong Gateway en modo híbrido utilizando Docker Compose.
+description: "Guía práctica paso a paso para desplegar Kong Gateway en modo híbrido utilizando Docker Compose."
 tags: [Kong, Docker, Docker Compose, Instalación]
 hero: images/kong/06-docker/hero.png
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Introducción a Kong Gateway"
 date: 2026-07-02T14:00:00+00:00
-description: Descubre qué es Kong Gateway, su funcionamiento como API Gateway y Reverse Proxy, y por qué es fundamental en arquitecturas cloud-native.
+description: "Descubre qué es Kong Gateway, su funcionamiento como API Gateway y Reverse Proxy, y por qué es fundamental en arquitecturas cloud-native."
 tags: [Kong, API Gateway, Reverse Proxy, Cloud Native]
 hero: images/kong/01-introduccion/hero.png
 ---

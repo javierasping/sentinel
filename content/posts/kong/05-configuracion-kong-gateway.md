@@ -1,7 +1,7 @@
 ---
 title: "Gestión de la Configuración de Kong Gateway"
 date: 2026-07-02T14:20:00+00:00
-description: Cómo gestionar los parámetros de configuración de Kong mediante archivos, variables de entorno y categorías de ajuste.
+description: "Cómo gestionar los parámetros de configuración de Kong mediante archivos, variables de entorno y categorías de ajuste."
 tags: [Kong, Configuración, DevOps, SysAdmin]
 hero: images/kong/05-configuracion/hero.png
 ---

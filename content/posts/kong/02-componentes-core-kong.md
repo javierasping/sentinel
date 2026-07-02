@@ -1,7 +1,7 @@
 ---
 title: "Arquitectura y Componentes Core de Kong Gateway"
 date: 2026-07-02T14:05:00+00:00
-description: Análisis de los pilares fundamentales de Kong: el Gateway, el Kong Manager y la base de datos PostgreSQL.
+description: "Análisis de los pilares fundamentales de Kong: el Gateway, el Kong Manager y la base de datos PostgreSQL."
 tags: [Kong, Arquitectura, PostgreSQL, Kong Manager]
 hero: images/kong/02-componentes-core/hero.png
 ---

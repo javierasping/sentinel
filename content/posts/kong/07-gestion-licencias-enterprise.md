@@ -1,7 +1,7 @@
 ---
 title: "Gestión de Licencias en Kong Enterprise"
 date: 2026-07-02T14:30:00+00:00
-description: Cómo aplicar y gestionar el archivo de licencia en Kong Gateway Enterprise para habilitar funciones avanzadas.
+description: "Cómo aplicar y gestionar el archivo de licencia en Kong Gateway Enterprise para habilitar funciones avanzadas."
 tags: [Kong, Enterprise, Licencias, Administración]
 hero: images/kong/07-licencias/hero.png
 ---
