@@ -32,7 +32,7 @@ Kong puede ejecutarse sin depender de una base de datos externa, utilizando úni
 Es una de las arquitecturas más potentes de Kong. Aquí, los nodos se dividen en dos roles claramente diferenciados:
 
 - **Control Plane (CP):** Es el cerebro. Aquí se gestiona la configuración, reside la API de Administración y el Kong Manager.
-- **Data Plane (DP):** Son los nodos que sirven el tráfico real. No tienen base de datos; en su lugar, mantienen una conexión en tiempo real con el Control Plane para recibir las actualizaciones de configuración.
+- **Data Plane (DP):** Son los nodos que sirven el tráfico real. No tienen base de datos. En su lugar, mantienen una conexión en tiempo real con el Control Plane para recibir las actualizaciones de configuración.
 
 Este modelo permite escalar los Data Planes horizontalmente de forma masiva sin saturar la base de datos central.
 

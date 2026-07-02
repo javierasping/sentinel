@@ -6,7 +6,7 @@ tags: [Kong, Testing, Validación, API Gateway]
 hero: images/kong/10-verificacion/hero.png
 ---
 
-El paso final tras cualquier instalación y configuración es la validación. No basta con que los contenedores estén en estado `Running`; debemos asegurar que el tráfico fluye correctamente y que el plano de control está sincronizado con el de datos.
+El paso final tras cualquier instalación y configuración es la validación. No basta con que los contenedores estén en estado `Running`. Debemos asegurar que el tráfico fluye correctamente y que el plano de control está sincronizado con el de datos.
 
 ## Métodos de Verificación
 

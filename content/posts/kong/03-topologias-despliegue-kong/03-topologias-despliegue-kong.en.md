@@ -32,7 +32,7 @@ Kong can run without depending on an external database, using only in-memory sto
 It is one of Kong's most powerful architectures. Here, nodes are divided into two clearly distinct roles:
 
 - **Control Plane (CP):** The brain. This is where configuration is managed, the Admin API resides, and the Kong Manager is hosted.
-- **Data Plane (DP):** The nodes that serve actual traffic. They have no database; instead, they maintain a real-time connection with the Control Plane to receive configuration updates.
+- **Data Plane (DP):** The nodes that serve actual traffic. They have no database. Instead, they maintain a real-time connection with the Control Plane to receive configuration updates.
 
 This model allows scaling Data Planes horizontally in a massive way without saturating the central database.
 

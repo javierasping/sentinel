@@ -6,7 +6,7 @@ tags: [Kong, Testing, Validation, API Gateway]
 hero: images/kong/10-verificacion/hero.png
 ---
 
-The final step after any installation and configuration is validation. It's not enough that containers are in `Running` state; we must ensure traffic flows correctly and the control plane is synchronized with the data plane.
+The final step after any installation and configuration is validation. It's not enough that containers are in `Running` state. We must ensure traffic flows correctly and the control plane is synchronized with the data plane.
 
 ## Verification Methods
 
