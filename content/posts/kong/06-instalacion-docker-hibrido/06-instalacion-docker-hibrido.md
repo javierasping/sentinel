@@ -18,22 +18,44 @@ Para este despliegue, utilizaremos una estructura de contenedores que incluye:
 
 ## Paso a Paso de la Instalación
 
-### 1. Preparación de la Red
-Primero, debemos asegurarnos de tener una red externa creada para que los contenedores se comuniquen entre sí:
+### 1. Preparación del Entorno
+Primero, crearemos el directorio de trabajo y la estructura de carpetas necesaria para la persistencia de datos y logs de Kong:
 
 ```bash
-docker network create kong-edu-net
+mkdir -p /home/javiercruces/kong/{config,data,logs,mocks,ssl}
+cd /home/javiercruces/kong
 ```
 
-### 2. Configuración de Certificados SSL
-En el modo híbrido, el CP y el DP deben comunicarse de forma segura mediante mTLS. Para ello, necesitamos generar certificados de cluster. 
+### 2. Variables de Entorno
+Creamos un archivo `.env` para centralizar las configuraciones críticas como contraseñas, versiones y el FQDN:
 
-Si no disponemos de ellos, el nodo `kong-cp` puede generarlos automáticamente al iniciar mediante el comando:
-`kong hybrid gen_cert /etc/kong/ssl/cluster.crt /etc/kong/ssl/cluster.key`
+```bash
+cat <<EOF > .env
+KONG_GW_VERSION=3.10
+POSTGRES_USER=kong
+POSTGRES_PASSWORD=kong_password_secure_123
+POSTGRES_DB=kong
+KONG_DATABASE=postgres
+KONG_PG_HOST=postgres
+KONG_PG_DATABASE=kong
+KONG_PG_USER=kong
+KONG_PG_PASSWORD=kong_password_secure_123
+KONG_PASSWORD=kong_password_secure_123
+FQDN=kong.javiercd.es
+KONG_ADMIN_GUI_URL=https://$FQDN:8445
+KONG_ADMIN_GUI_API_URL=https://$FQDN:8444
+EOF
+```
 
-### 3. Despliegue con Docker Compose
+### 3. Configuración de la Red y Certificados SSL
+Para el modo híbrido, Kong requiere mTLS entre el plano de control y el plano de datos. Generaremos los certificados necesarios para el cluster:
 
-Utilizaremos un archivo `docker-compose.yaml` para definir los servicios. A continuación, presentamos el contenido del fichero base necesario para este despliegue:
+```bash
+docker network create kong-edu-net || true
+```
+
+### 4. Despliegue con Docker Compose (Infraestructura Base)
+Creamos el archivo `docker-compose.yaml` principal para desplegar PostgreSQL y los nodos de Kong.
 
 ```yaml
 volumes:
@@ -61,14 +83,12 @@ services:
     tty: true
     volumes:
       - kong_data:/var/lib/postgresql/data
-    logging:
-      driver: "syslog"
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-kong}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kong}
-      POSTGRES_USER: ${POSTGRES_USER:-kong}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
   kong-migrations-bootstrap:
-    image: kong/kong-gateway:${KONG_GW_VERSION:-3.10}
+    image: kong/kong-gateway:${KONG_GW_VERSION}
     networks:
       - kong-edu-net
     container_name: kong-migrations-bootstrap
@@ -77,18 +97,16 @@ services:
         condition: service_healthy
     command: kong migrations bootstrap --vv
     restart: on-failure
-    logging:
-      driver: "syslog"
     environment:
-      KONG_DATABASE: ${KONG_DATABASE:-postgres}
-      KONG_PG_HOST: ${KONG_PG_HOST:-postgres}
-      KONG_PG_DATABASE: ${KONG_PG_DATABASE:-kong}
-      KONG_PG_USER: ${KONG_PG_USER:-kong}
-      KONG_PG_PASSWORD: ${KONG_PG_PASSWORD:-kong}
-      KONG_PASSWORD: ${KONG_PASSWORD:-kong}
+      KONG_DATABASE: ${KONG_DATABASE}
+      KONG_PG_HOST: ${KONG_PG_HOST}
+      KONG_PG_DATABASE: ${KONG_PG_DATABASE}
+      KONG_PG_USER: ${KONG_PG_USER}
+      KONG_PG_PASSWORD: ${KONG_PG_PASSWORD}
+      KONG_PASSWORD: ${KONG_PASSWORD}
       KONG_LOG_LEVEL: "warn"
   kong-cp:
-    image: kong/kong-gateway:${KONG_GW_VERSION:-3.10}
+    image: kong/kong-gateway:${KONG_GW_VERSION}
     networks:
       - kong-edu-net
     container_name: kong-cp
@@ -98,8 +116,8 @@ services:
       kong-migrations-bootstrap:
         condition: service_completed_successfully
     volumes:
-      - /etc/kong/ssl:/etc/kong/ssl
-      - /var/log/kong:/var/log/kong
+      - ./ssl:/etc/kong/ssl
+      - ./logs:/var/log/kong
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 12s
@@ -132,11 +150,11 @@ services:
       KONG_STATUS_LISTEN: "0.0.0.0:8100 ssl"
       KONG_CLUSTER_LISTEN: "0.0.0.0:8005"
       KONG_CLUSTER_TELEMETRY_LISTEN: "0.0.0.0:8006"
-      KONG_DATABASE: ${KONG_DATABASE:-postgres}
-      KONG_PG_HOST: ${KONG_PG_HOST:-postgres}
-      KONG_PG_DATABASE: ${KONG_PG_DATABASE:-kong}
-      KONG_PG_USER: ${KONG_PG_USER:-kong}
-      KONG_PG_PASSWORD: ${KONG_PG_PASSWORD:-kong}
+      KONG_DATABASE: ${KONG_DATABASE}
+      KONG_PG_HOST: ${KONG_PG_HOST}
+      KONG_PG_DATABASE: ${KONG_PG_DATABASE}
+      KONG_PG_USER: ${KONG_PG_USER}
+      KONG_PG_PASSWORD: ${KONG_PG_PASSWORD}
       KONG_PG_MAX_CONCURRENT_QUERIES: 5
       KONG_ADMIN_ACCESS_LOG: /var/log/kong/admin_access.log
       KONG_ADMIN_ERROR_LOG: /var/log/kong/admin_error.log
@@ -145,15 +163,13 @@ services:
       KONG_STATUS_ACCESS_LOG: /var/log/kong/status_access.log
       KONG_STATUS_ERROR_LOG: /var/log/kong/status_error.log
       KONG_AUDIT_LOG: "off"
-      KONG_STATUS_SSL_CERT_KEY: "/etc/kong/ssl/server.key"
-      KONG_STATUS_SSL_CERT: "/etc/kong/ssl/server.crt"
+      KONG_STATUS_SSL_CERT_KEY: "/etc/kong/ssl/cluster.key"
+      KONG_STATUS_SSL_CERT: "/etc/kong/ssl/cluster.crt"
       KONG_ANONYMOUS_REPORTS: "off"
-      KONG_ADMIN_SSL_CERT_KEY: "/etc/kong/ssl/server.key"
-      KONG_ADMIN_SSL_CERT: "/etc/kong/ssl/server.crt"
-      KONG_ADMIN_GUI_URL: ${KONG_ADMIN_GUI_URL-https://$FQDN:8445}
-      KONG_ADMIN_GUI_API_URL: ${KONG_ADMIN_GUI_API_URL:-https://$FQDN:8444}
-      KONG_ADMIN_GUI_SSL_CERT_KEY: "/etc/kong/ssl/server.key"
-      KONG_ADMIN_GUI_SSL_CERT: "/etc/kong/ssl/server.crt"
+      KONG_ADMIN_SSL_CERT_KEY: "/etc/kong/ssl/cluster.key"
+      KONG_ADMIN_SSL_CERT: "/etc/kong/ssl/cluster.crt"
+      KONG_ADMIN_GUI_URL: ${KONG_ADMIN_GUI_URL}
+      KONG_ADMIN_GUI_API_URL: ${KONG_ADMIN_GUI_API_URL}
       KONG_ADMIN_EMAILS_FROM: "kongtest@gmail.com"
       KONG_ADMIN_EMAILS_REPLY_TO: "kongtest@gmail.com"
       KONG_SMTP_MOCK: "on"
@@ -162,7 +178,7 @@ services:
       KONG_LOG_LEVEL: "info"
       KONG_ENFORCE_RBAC: off
   kong-dp:
-    image: kong/kong-gateway:${KONG_GW_VERSION:-3.10}
+    image: kong/kong-gateway:${KONG_GW_VERSION}
     networks:
       - kong-edu-net
     container_name: kong-dp
@@ -170,8 +186,8 @@ services:
     depends_on:
       - kong-cp
     volumes:
-      - /etc/kong/ssl:/etc/kong/ssl
-      - /var/log/kong:/var/log/kong
+      - ./ssl:/etc/kong/ssl
+      - ./logs:/var/log/kong
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 12s
@@ -201,60 +217,61 @@ services:
       KONG_PROXY_URI: ${KONG_PROXY_URI:-http://$FQDN:8000}
       KONG_PROXY_ACCESS_LOG: /var/log/kong/proxy_access.log
       KONG_PROXY_ERROR_LOG: /var/log/kong/proxy_error.log
-      KONG_PROXY_STREAM_ACCESS_LOG: /var/log/kong/proxystream_access.log basic
-      KONG_PROXY_STREAM_ERROR_LOG: /var/log/kong/proxystream_error.log
+      KONG_PROXY_STREAM_ACCESS_LOG: /var/log/kong/proxystream_access_log basic
+      KONG_PROXY_STREAM_ERROR_LOG: /var/log/kong/proxystream_error_log
       KONG_DATABASE: "off"
       KONG_ANONYMOUS_REPORTS: "on"
-      KONG_SSL_CERT_KEY: "/etc/kong/ssl/server.key"
-      KONG_SSL_CERT: "/etc/kong/ssl/server.crt"
+      KONG_SSL_CERT_KEY: "/etc/kong/ssl/cluster.key"
+      KONG_SSL_CERT: "/etc/kong/ssl/cluster.crt"
       KONG_NGINX_WORKER_PROCESSES: 1
       KONG_LOG_LEVEL: "info"
       KONG_ALLOW_DEBUG_HEADER: "on"
 ```
 
-Puntos clave de la configuración:
-
-
-- **Para el Control Plane (`kong-cp`):** 
-  - Definimos `KONG_ROLE: control_plane`.
-  - Configuramos los puertos de la Admin API (8001) y el Manager (8002).
-  - Vinculamos la base de datos PostgreSQL.
-
-- **Para el Data Plane (`kong-dp`):**
-  - Definimos `KONG_ROLE: data_plane`.
-  - Configuramos `KONG_DATABASE: off` (ya que el DP no accede a la BD).
-  - Definimos `KONG_CLUSTER_CONTROL_PLANE: kong-cp:8005` para que sepa dónde buscar la configuración.
-  - Abrimos el puerto del Proxy (8000).
-
-Para levantar la infraestructura:
+Para iniciar la infraestructura base:
 
 ```bash
 docker compose up -d
 ```
 
-### 4. Verificación del Despliegue
+### 5. Troubleshooting y Solución de Problemas (Troubleshooting & Issue Resolution)
 
-Una vez levantados los contenedores, podemos comprobar que el Gateway está operativo consultando la Admin API:
+Durante el despliegue, pueden surgir errores de permisos en los volúmenes montados por Docker. Si el contenedor `kong-cp` falla al iniciar debido a errores de escritura en `/var/log/kong` o `/etc/kong`, siga estos pasos:
 
-```bash
-curl -i http://localhost:8001/
-```
-
-Si recibimos un `200 OK`, el Control Plane está funcionando. Para verificar el Proxy (Data Plane), podemos intentar acceder al puerto 8000:
+**Corrección de Permisos (Permissions Fix):**
+Ajuste los permisos de las carpetas en el host para que el usuario de Kong pueda escribir en ellas:
 
 ```bash
-curl -i http://localhost:8000/
+sudo chown -R 1000:1000 /home/javiercruces/kong/logs
+sudo chmod -R 775 /home/javiercruces/kong/logs
+```
+*Nota: Si el error persiste, puede usar `KONG_USER=root` en el archivo `.env` como solución temporal rápida.*
+
+**Creación de Red Externa:**
+Asegúrese de que la red necesaria exista:
+
+```bash
+docker network create kong-edu-net || true
 ```
 
+**Error de Esquema en Consumidores (Consumer Schema Error):**
+Si al intentar crear un consumidor con campos `key` y `secret` recibe un error de "unknown field", es posible que la versión de Kong requiera el uso de `custom_id` para el identificador de la API Key:
 
+```bash
+# En lugar de "key", use "custom_id"
+curl -i -X POST http://localhost:8001 \
+  -d '{
+    "name": "test-user",
+    "custom_id": "secret-api-key-123"
+  }'
+```
 
-### 5. Despliegue de servicios de prueba (Mockbin)
+### 6. Despliegue del Echo Server y Mocks
+Creamos el directorio para los mocks y el archivo `docker-compose.yaml` específico para el Echo Server (Mockbin):
 
-Para verificar que el Gateway procesa el tráfico correctamente, desplegaremos un servicio de prueba llamado Mockbin. Este servicio actúa como un backend simple que devuelve la información de las peticiones recibidas.
-
-Utilizaremos el siguiente archivo `docker-compose.yaml` específico para Mockbin:
-
-```yaml
+```bash
+mkdir -p /home/javiercruces/kong/mocks
+cat <<EOF > /home/javiercruces/kong/mocks/docker-compose.yaml
 networks:
   kong-edu-net:
     name: kong-edu-net
@@ -276,15 +293,57 @@ services:
     restart: on-failure
     ports:
     - "8888:8080/tcp"
+EOF
+
+docker compose -f /home/javiercruces/kong/mocks/docker-compose.yaml up -d
 ```
 
-Para desplegarlo, ejecutamos:
+### 7. Configuración de Kong vía Admin API
+Configuraremos el Echo Server como un Servicio, crearemos una Ruta y configuraremos la autenticación mediante la API de administración de Kong.
 
+**Crear el Servicio (Echo Server):**
 ```bash
-docker compose -f mockbin/docker-compose.yaml up -d
+curl -i -X POST http://localhost:8001 \
+  -d '{
+    "name": "echo-server",
+    "protocol": "http",
+    "host": "mockbin.local",
+    "port": 8080
+  }'
 ```
 
----
+**Crear la Ruta:**
+```bash
+curl -i -X POST http://localhost:8001 \
+  -d '{
+    "plugins": ["key-auth"],
+    "routes": [{
+      "paths": ["/echo"],
+      "service": "echo-server"
+    }]
+  }'
+```
 
-**Artículo anterior:** [Gestión de la Configuración de Kong Gateway](/posts/kong/05-configuracion-kong-gateway)  
-**Siguiente artículo:** [Gestión de Licencias en Kong Enterprise](/posts/kong/07-gestion-licencias-enterprise)
+**Crear el Consumidor (User) para la API Key:**
+```bash
+curl -i -X POST http://localhost:8001 \
+  -d '{
+    "name": "test-user",
+    "custom_id": "secret-api-key-123"
+  }'
+```
+
+### 8. Validación del Funcionamiento
+Para validar que la configuración es correcta, realizaremos una petición sin llave (debería fallar con 401) y luego una con la llave correspondiente.
+
+**Petición fallida (Sin API Key):**
+```bash
+curl -i http://kong.javiercd.es/echo
+```
+*Salida esperada:* `401 Unauthorized`
+
+**Petición exitosa (Con API Key):**
+```bash
+curl -i -H "apikey: secret-api-key-123" http://kong.javiercd.es/echo
+```
+*Salida esperada:* `200 OK` con el cuerpo de respuesta del Mockbin.
