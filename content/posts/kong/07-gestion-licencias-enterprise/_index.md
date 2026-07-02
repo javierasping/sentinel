@@ -4,6 +4,6 @@ menu:
   sidebar:
     name: "07 - Gestión de Licencias en Kong Enterprise"
     identifier: 07-gestion-licencias-enterprise
-    parent: kong
+    parent: Kong
     weight: 70
 ---

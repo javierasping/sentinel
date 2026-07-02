@@ -4,6 +4,11 @@ date: 2026-07-02T15:00:00+00:00
 description: "Serie didáctica sobre la instalación, configuración y despliegue profesional de Kong Gateway en entornos Docker y Kubernetes."
 tags: [Kong, API Gateway, DevOps, Kubernetes, Docker]
 hero: images/kong/index/hero.png
+menu:
+  sidebar:
+    name: "Kong Gateway"
+    identifier: Kong
+    weight: 200
 ---
 
 Bienvenido a la guía completa de **Kong Gateway**. En esta serie de artículos, exploraremos desde los conceptos fundamentales hasta el despliegue de una arquitectura híbrida en entornos de producción.
