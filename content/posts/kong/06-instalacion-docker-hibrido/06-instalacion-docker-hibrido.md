@@ -238,7 +238,7 @@ Este certificado únicamente será utilizado para cifrar las conexiones HTTPS es
 
 ### Generación del certificado
 
-Vamos a generar el certificado para ello en la carpeta donde he creado los ficheros del escenario , creare un directorio ssl :
+Vamos a generar el certificado en la carpeta donde hemos creado los ficheros del escenario. Para ello, crearemos un directorio `ssl`:
 
 ```bash
 mkdir -p kong/ssl
@@ -326,9 +326,9 @@ KONG_USER=kong
 
 Docker Compose cargará automáticamente este archivo durante el despliegue, sustituyendo las referencias `${VARIABLE}` definidas en el `docker-compose.yaml`.
 
-### Creación del docker compose
+### Creación del Docker Compose
 
-Ahora en el directorio que hemos creado antes , crea este fichero docker-compose.yaml
+Ahora, en el directorio que hemos creado antes, crearemos este fichero `docker-compose.yaml`:
 
 ```yaml
 javiercruces@kong:~/kong$ cat docker-compose.yaml
@@ -606,7 +606,7 @@ networks:
 
 Como puede observarse, el contenedor se conecta a la misma red Docker (`kong-net`) utilizada por Kong Gateway.
 
-Esto permite que Docker proporcione resolución DNS automáticamente entre los contenedores pertenecientes a la misma red. Gracias a ello, Kong podrá acceder al backend utilizando simplemente el nombre del servicio ,sin necesidad de conocer su dirección IP.
+Esto permite que Docker proporcione resolución DNS automáticamente entre los contenedores pertenecientes a la misma red. Gracias a ello, Kong podrá acceder al backend utilizando simplemente el nombre del servicio, sin necesidad de conocer su dirección IP.
 
 > **Nota**
 >
@@ -830,7 +830,7 @@ javiercruces@openclaw:~$ curl \
 hello-world
 ```
 
-La petición será aceptada por Kong Gateway y reenviada automáticamente al Echo Server, que devolverá en nuestro caso un 'hello world'.
+La petición será aceptada por Kong Gateway y reenviada automáticamente al Echo Server, que devolverá en nuestro caso un `hello-world`.
 
 Con esto hemos publicado nuestra primera API en Kong Gateway utilizando una arquitectura Hybrid. El Control Plane ha almacenado toda la configuración y el Data Plane la ha recibido automáticamente mediante **mTLS**, siendo capaz de procesar las peticiones sin necesidad de acceder directamente a la base de datos.
 
@@ -876,7 +876,7 @@ En este ejemplo podemos observar cómo:
 
 - Se crea un nuevo **Service** mediante la Admin API.
 - El Control Plane genera una nueva configuración de **10.634 bytes**.
-- Finalmente, dicha configuración es enviada al Data Plane conectado. :contentReference[oaicite:0]{index=0}
+- Finalmente, dicha configuración es enviada al Data Plane conectado.
 
 ### Logs del Data Plane
 
@@ -905,7 +905,7 @@ En este caso podemos comprobar que:
 - El Data Plane recibe una orden de **reconfiguración** enviada por el Control Plane.
 - Reconstruye el router interno sin necesidad de reiniciar el proceso.
 - Limpia las cachés para que la nueva configuración entre en funcionamiento inmediatamente.
-- Finalmente envía un **ping** al Control Plane indicando el nuevo **hash** de configuración, confirmando que ambos nodos se encuentran sincronizados. :contentReference[oaicite:1]{index=1}
+- Finalmente envía un **ping** al Control Plane indicando el nuevo **hash** de configuración, confirmando que ambos nodos se encuentran sincronizados.
 
 Este mecanismo permite que cualquier cambio realizado en el Control Plane se propague automáticamente a todos los Data Planes conectados, sin interrumpir el tráfico que están procesando.
 
@@ -913,7 +913,7 @@ Este mecanismo permite que cualquier cambio realizado en el Control Plane se pro
 
 Y con esto llegamos al final del laboratorio.
 
-Como has podido comprobar, el objetivo no era montar un entorno de producción ni utilizar todas las funcionalidades que ofrece Kong Gateway. La idea era mucho más sencilla. Comprender cómo se despliega un entorno Hybrid y entender el papel que desempeña cada uno de sus componentes.
+Como has podido comprobar, el objetivo no era montar un entorno de producción ni utilizar todas las funcionalidades que ofrece Kong Gateway. La idea era mucho más sencilla: comprender cómo se despliega un entorno Hybrid y entender el papel que desempeña cada uno de sus componentes.
 
 Durante el laboratorio hemos desplegado un Control Plane, un Data Plane y una base de datos PostgreSQL. También hemos publicado una API muy sencilla, la hemos protegido mediante una API Key y hemos visto cómo cualquier cambio realizado en el Control Plane se sincroniza automáticamente con el Data Plane.
 
