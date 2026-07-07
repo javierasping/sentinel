@@ -17,24 +17,22 @@
 {{ end }}
 
 {{ if $footerEnabled }}
-  {{ $author:= site.Data.author }}
-  {{ if (index site.Data site.Language.Lang).author }}
-    {{ $author = (index site.Data site.Language.Lang).author }}
+  {{ $siteData := index hugo.Data site.Language.Name }}
+  {{ $author:= $siteData.author }}
+  {{ if $siteData.author }}
+    {{ $author = $siteData.author }}
   {{ end }}
 
-  {{ $sections:= site.Data.sections }}
-  {{ if (index site.Data site.Language.Lang).sections }}
-    {{ $sections = (index site.Data site.Language.Lang).sections }}
-  {{ end }}
+  {{ $sections:= $siteData.sections }}
 
   {{ $customMenus := site.Params.customMenus }}
-  {{ if (index site.Data site.Language.Lang).site.customMenus }}
-    {{ $customMenus = (index site.Data site.Language.Lang).site.customMenus }}
+  {{ if $siteData.site.customMenus }}
+    {{ $customMenus = $siteData.site.customMenus }}
   {{ end }}
 
   {{ $copyrightNotice := now.Format "2006" | printf "© %s Copyright."}}
-  {{ if (index site.Data site.Language.Lang).site }}
-    {{ $siteConfig := (index site.Data site.Language.Lang).site }}
+  {{ if $siteData.site }}
+    {{ $siteConfig := $siteData.site }}
     {{ if $siteConfig.copyright }}
       {{ $copyrightNotice = $siteConfig.copyright }}
     {{ end }}
@@ -42,7 +40,7 @@
 
 
   {{ $disclaimer := "" }}
-  {{ $siteConfig := (index site.Data site.Language.Lang).site }}
+  {{ $siteConfig := $siteData.site }}
   {{ if $siteConfig.disclaimer }}
     {{ $disclaimer = $siteConfig.disclaimer }}
   {{ end }}

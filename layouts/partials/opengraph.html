@@ -1,8 +1,9 @@
-{{ $title       :=  (index site.Data site.Language.Lang).site.openGraph.title | default site.Title }}
-{{ $type        :=  (index site.Data site.Language.Lang).site.openGraph.type | default "website" }}
-{{ $description :=  (index site.Data site.Language.Lang).site.openGraph.description | default  (index site.Data site.Language.Lang).site.description }}
-{{ $image       :=  (index site.Data site.Language.Lang).site.openGraph.image | default  (index site.Data site.Language.Lang).author.image }}
-{{ $url         :=  (index site.Data site.Language.Lang).site.openGraph.url | default site.BaseURL }}
+{{ $siteData    := index hugo.Data site.Language.Name }}
+{{ $title       :=  $siteData.site.openGraph.title | default site.Title }}
+{{ $type        :=  $siteData.site.openGraph.type | default "website" }}
+{{ $description :=  $siteData.site.openGraph.description | default $siteData.site.description }}
+{{ $image       :=  $siteData.site.openGraph.image | default $siteData.author.image }}
+{{ $url         :=  $siteData.site.openGraph.url | default site.BaseURL }}
 
 <!-- ============ open graph tags ========== -->
 <meta property="og:title" content="{{ $title }}"/>

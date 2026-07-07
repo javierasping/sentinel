@@ -56,17 +56,15 @@
   {{ $logo = $invertedLogo }}
 {{ end }}
 
+{{ $siteData := index hugo.Data site.Language.Name }}
 {{ $customMenus := site.Params.customMenus }}
-{{ if (index site.Data site.Language.Lang).site.customMenus }}
-  {{ $customMenus = (index site.Data site.Language.Lang).site.customMenus }}
+{{ if $siteData.site.customMenus }}
+  {{ $customMenus = $siteData.site.customMenus }}
 {{ end }}
 
-{{ $sections := site.Data.sections }}
-{{ if (index site.Data site.Language.Lang).sections }}
-  {{ $sections = (index site.Data site.Language.Lang).sections }}
-{{ end }}
+{{ $sections := $siteData.sections }}
 
-{{ $navBarTitle := (index site.Data site.Language.Lang).site.navBarTitle }}
+{{ $navBarTitle := $siteData.site.navBarTitle }}
 {{ if not $navBarTitle }}
   {{ $navBarTitle = site.Title }}
 {{ end }}

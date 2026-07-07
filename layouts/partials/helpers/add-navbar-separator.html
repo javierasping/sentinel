@@ -11,9 +11,10 @@
 {{ end }}
 
 {{/*  If site has custom menus, then add navbar separator  */}}
+{{ $siteData := index hugo.Data site.Language.Name }}
 {{ $customMenus := site.Params.customMenus }}
-{{ if (index site.Data site.Language.Lang).site.customMenus }}
-  {{ $customMenus = (index site.Data site.Language.Lang).site.customMenus }}
+{{ if $siteData.site.customMenus }}
+  {{ $customMenus = $siteData.site.customMenus }}
 {{ end }}
 
 {{ if $customMenus }}
