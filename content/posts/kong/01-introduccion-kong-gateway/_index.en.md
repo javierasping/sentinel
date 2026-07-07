@@ -1,8 +1,8 @@
 ---
-title: "01 - Introduction to Kong Gateway"
+title: "01 - Introduction, architecture and planning for Kong Gateway"
 menu:
   sidebar:
-    name: "01 - Introduction to Kong Gateway"
+    name: "01 - Introduction, architecture and planning for Kong Gateway"
     identifier: 01-introduccion-kong-gateway
     parent: Kong
     weight: 10

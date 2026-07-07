@@ -21,22 +21,18 @@ La serie está estructurada para llevarte de la mano, desde la teoría básica h
 
 ### 1. Fundamentos y Arquitectura
 En esta sección sentamos las bases teóricas necesarias para entender el funcionamiento interno del Gateway.
-- [Introducción a Kong Gateway](/posts/kong/01-introduccion-kong-gateway): Qué es y por qué es fundamental en arquitecturas cloud-native.
-- [Arquitectura y Componentes Core](/posts/kong/02-componentes-core-kong): El rol del Gateway, el Kong Manager y PostgreSQL.
-- [Topologías de Despliegue](/posts/kong/03-topologias-despliegue-kong): Comparativa entre modelos Tradicional, DB-less, Híbrido y Konnect.
+- [Introducción, arquitectura y planificación](/posts/kong/01-introduccion-kong-gateway): Qué es Kong Gateway, cómo se estructura y qué revisar antes de instalarlo.
 
-### 2. Planificación e Instalación
-Pasamos a la fase práctica, preparando la infraestructura y ejecutando la instalación.
-- [Guía de Planificación](/posts/kong/04-consideraciones-instalacion-kong): Sizing, puertos, DNS y seguridad.
-- [Gestión de la Configuración](/posts/kong/05-configuracion-kong-gateway): Uso de archivos `.conf`, variables de entorno y API.
-- [Instalación con Docker (Modo Híbrido)](/posts/kong/06-instalacion-docker-hibrido): Laboratorio práctico con Docker Compose y mTLS.
-- [Gestión de Licencias Enterprise](/posts/kong/07-gestion-licencias-enterprise): Cómo aplicar y validar licencias en entornos profesionales.
-- [Instalación en Kubernetes (Modo Híbrido)](/posts/kong/08-instalacion-kubernetes-hibrido): Despliegue avanzado utilizando KinD y Helm Charts.
-
-### 3. Configuración y Validación
-Finalmente, ponemos en marcha el tráfico y verificamos que todo funcione correctamente.
-- [Primeros Pasos: Servicios y Rutas](/posts/kong/09-servicios-y-rutas-basicos): Lógica de routing y configuración de backends.
-- [Verificación y Pruebas del Gateway](/posts/kong/10-verificacion-y-pruebas-gateway): Metodologías de testeo y checklist final de calidad.
+### 2. Instalaciones y Despliegues
+Pasamos a la fase práctica, preparando la configuración base y ejecutando cada modo de instalación.
+- [Instalación con Docker (Modo Híbrido)](/posts/kong/02-instalacion-docker-hibrido): Laboratorio práctico con Docker Compose y mTLS.
+- [Instalación en modo tradicional](/posts/kong/03-instalacion-tradicional): Despliegue database-backed con PostgreSQL, Admin API y Kong Manager.
+- [Instalación en modo DB-less](/posts/kong/04-instalacion-db-less): Despliegue declarativo sin base de datos.
+- [Instalación en Konnect](/posts/kong/05-instalacion-kong-connect): Control plane gestionado en SaaS y data planes conectados.
+- [Instalación de Kong Ingress Controller (KIC)](/posts/kong/06-instalacion-kic): Integración nativa con Kubernetes mediante Helm y CRDs.
+- [Instalación en Kubernetes (Modo Híbrido)](/posts/kong/07-instalacion-kubernetes-hibrido): Despliegue avanzado utilizando KinD y Helm Charts.
+- [Primeros Pasos: Servicios y Rutas](/posts/kong/08-servicios-y-rutas-basicos): Lógica de routing y configuración de backends.
+- [Verificación y Pruebas del Gateway](/posts/kong/09-verificacion-y-pruebas-gateway): Metodologías de testeo y checklist final de calidad.
 
 ---
 
