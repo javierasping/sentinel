@@ -1,9 +1,10 @@
 ---
-title: "Introduction, architecture and planning for Kong Gateway"
+title: "Introduction to Kong Gateway"
 date: 2026-07-02T14:00:00+00:00
 description: "A unified guide to what Kong Gateway is, its components, deployment topologies, and the planning work to do before installation."
 tags: [Kong, API Gateway, Architecture, Planning, Topologies]
 hero: images/kong/01-introduccion/hero.png
+weight: 1
 ---
 
 Kong Gateway is an **API Gateway** built on **NGINX** and developed in **Lua**. It acts as the entry point between API consumers and backend services, playing the role of an advanced **reverse proxy** with powerful capabilities for managing, securing, and observing traffic.

@@ -4,6 +4,7 @@ date: 2026-07-02T14:35:00+00:00
 description: "Despliegue profesional de Kong Gateway en Kubernetes utilizando KinD y Helm Charts."
 tags: [Kong, Kubernetes, Helm, KinD, Cloud Native]
 hero: images/kong/08-kubernetes/hero.png
+weight: 4
 ---
 
 Desplegar Kong en Kubernetes permite aprovechar la orquestación nativa para gestionar la alta disponibilidad y el escalado automático. En este artículo, utilizaremos **KinD (Kubernetes in Docker)** y **Helm** para implementar una arquitectura híbrida.

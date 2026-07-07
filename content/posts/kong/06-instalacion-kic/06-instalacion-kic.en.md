@@ -4,6 +4,7 @@ date: 2026-07-02T14:45:00+00:00
 description: "Methodologies for validating the correct operation of Kong Gateway through the Admin API, the Kong Manager, and real traffic tests."
 tags: [Kong, Testing, Validation, API Gateway]
 hero: images/kong/10-verificacion/hero.png
+weight: 6
 ---
 
 The final step after any installation and configuration is validation. It's not enough that containers are in `Running` state. We must ensure traffic flows correctly and the control plane is synchronized with the data plane.

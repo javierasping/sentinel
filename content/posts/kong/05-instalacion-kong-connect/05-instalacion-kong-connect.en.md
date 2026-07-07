@@ -4,6 +4,7 @@ date: 2026-07-02T14:40:00+00:00
 description: "Learn how to configure Kong's routing logic by creating your first Services and Routes through the Admin API."
 tags: [Kong, API Routing, Admin API, Microservices]
 hero: images/kong/09-routing/hero.png
+weight: 5
 ---
 
 Once the Gateway is installed and running, the next step is to make traffic reach your applications. To achieve this, Kong uses two fundamental concepts: **Services** and **Routes**.

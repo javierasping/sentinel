@@ -4,6 +4,7 @@ date: 2026-07-02T14:25:00+00:00
 description: "Technical, reproducible guide to install Kong Gateway in Hybrid mode with Docker Compose, bring up an echo server, and validate it with API key authentication."
 tags: [Kong, Docker, Docker Compose, Installation, API Key]
 hero: images/kong/06-docker/hero.png
+weight: 2
 ---
 
 ## Introduction

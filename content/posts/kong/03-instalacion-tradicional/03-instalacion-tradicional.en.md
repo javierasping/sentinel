@@ -4,6 +4,7 @@ date: 2026-07-02T14:30:00+00:00
 description: "How to apply and manage the license file in Kong Gateway Enterprise to enable advanced features."
 tags: [Kong, Enterprise, Licenses, Administration]
 hero: images/kong/07-licencias/hero.png
+weight: 3
 ---
 
 Kong Gateway Enterprise offers advanced security, governance, and support features that require the application of a valid license. There are several ways to introduce this license into the system, depending on the preferred agility and deployment method.
