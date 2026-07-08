@@ -1,5 +1,5 @@
 ---
-title: "Technical Lab: Installing Kong with Docker (Hybrid Mode)"
+title: "Lab: Installing Kong with Docker (Hybrid Mode)"
 date: 2026-07-02T14:25:00+00:00
 description: "Technical, reproducible guide to install Kong Gateway in Hybrid mode with Docker Compose, bring up an echo server, and validate it with API key authentication."
 tags: [Kong, Docker, Docker Compose, Installation, API Key]
@@ -9,7 +9,7 @@ weight: 2
 
 ## Introduction
 
-In this article we will deploy **Kong Gateway Enterprise** in **Hybrid mode** using Docker Compose. This architecture, based on the separation between the **Control Plane (CP)** and the **Data Plane (DP)**, is one of the deployment models recommended by Kong for enterprise environments because of its flexibility, scalability, and high availability.
+In this article we will deploy **Kong Gateway OSS 3.10** in **Hybrid mode** using Docker Compose. This architecture, based on the separation between the **Control Plane (CP)** and the **Data Plane (DP)**, is one of the deployment models recommended by Kong for API Gateway environments because of its flexibility, scalability, and high availability.
 
 In a Hybrid deployment, only the **Control Plane** maintains a direct connection to the database and is responsible for managing the full gateway configuration through the **Admin API** and **Kong Manager**. The **Data Planes**, on the other hand, run in *DB-less* mode and automatically receive configuration from the Control Plane through a secure channel protected by **mTLS**. This allows the Data Planes to keep processing traffic even if the Control Plane or the database becomes temporarily unavailable.
 
@@ -185,7 +185,7 @@ Before starting this lab, it is a good idea to have the following knowledge and 
 
 - Docker Engine 28 or later.
 - Docker Compose v2.
-- Kong Gateway Enterprise.
+- Kong Gateway OSS 3.10.
 - PostgreSQL.
 - Curl.
 - A web browser to access Kong Manager.
@@ -245,6 +245,15 @@ We will generate the certificate in the folder where I created the scenario file
 mkdir -p kong/ssl
 ```
 
+> Note: because the Kong container mounts `./ssl` into `/etc/kong/ssl` and runs as the `kong` user, the host directory must be writable by that user inside the container. If you see errors such as `Permission denied` or `No such file or directory` when generating `cluster.crt`/`cluster.key`, fix the permissions on the directory with:
+>
+> ```bash
+> sudo chown -R 1000:1000 kong/ssl
+> chmod 755 kong/ssl
+> ```
+>
+> This ensures the process inside the container can create and modify certificates in the mounted volume.
+
 We create the certificate and private key by running the following command:
 
 ```bash
@@ -295,7 +304,7 @@ This file will centralize the lab configuration, including:
 We create the `.env` file with the following content:
 
 ```python
-KONG_GW_VERSION=3.15.0.0
+KONG_GW_VERSION=3.10.0.0
 
 POSTGRES_USER=kong
 POSTGRES_PASSWORD=kong_password_secure_123
@@ -364,7 +373,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_USER: ${POSTGRES_USER:-kong}
   kong-migrations-bootstrap:
-    image: kong/kong-gateway:${KONG_GW_VERSION:-3.15.0.0}
+    image: kong/kong-gateway:${KONG_GW_VERSION:-3.10.0.0}
     networks:
       - kong-net
     container_name: kong-migrations-bootstrap
@@ -384,7 +393,7 @@ services:
       KONG_PASSWORD: ${KONG_PASSWORD}
       KONG_LOG_LEVEL: "warn"
   kong-cp:
-    image: kong/kong-gateway:${KONG_GW_VERSION:-3.15.0.0}
+    image: kong/kong-gateway:${KONG_GW_VERSION:-3.10.0.0}
     networks:
       - kong-net
     container_name: kong-cp
@@ -456,7 +465,7 @@ services:
       KONG_LOG_LEVEL: "info"
       KONG_ENFORCE_RBAC: off
   kong-dp:
-    image: kong/kong-gateway:${KONG_GW_VERSION:-3.15.0.0}
+    image: kong/kong-gateway:${KONG_GW_VERSION:-3.10.0.0}
     networks:
       - kong-net
     container_name: kong-dp
@@ -539,9 +548,9 @@ Next, we verify that all containers were deployed correctly:
 ```bash
 javiercruces@kong:~/kong$ docker ps -a
 CONTAINER ID   IMAGE                        COMMAND                  CREATED         STATUS                     PORTS                                                                                                     NAMES
-1a53c0c225a2   kong/kong-gateway:3.15.0.0   "/entrypoint.sh kong…"   2 minutes ago   Up 2 minutes (healthy)     8001-8004/tcp, 0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp, 8443-8447/tcp                                 kong-dp
-5ffe4b43af60   kong/kong-gateway:3.15.0.0   "/entrypoint.sh /bin…"   2 minutes ago   Up 2 minutes (healthy)     8000-8004/tcp, 8443/tcp, 8446-8447/tcp, 0.0.0.0:8444-8445->8444-8445/tcp, [::]:8444-8445->8444-8445/tcp   kong-cp
-705169cc65aa   kong/kong-gateway:3.15.0.0   "/entrypoint.sh kong…"   2 minutes ago   Exited (0) 2 minutes ago                                                                                                             kong-migrations-bootstrap
+1a53c0c225a2   kong/kong-gateway:3.10.0.0   "/entrypoint.sh kong…"   2 minutes ago   Up 2 minutes (healthy)     8001-8004/tcp, 0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp, 8443-8447/tcp                                 kong-dp
+5ffe4b43af60   kong/kong-gateway:3.10.0.0   "/entrypoint.sh /bin…"   2 minutes ago   Up 2 minutes (healthy)     8000-8004/tcp, 8443/tcp, 8446-8447/tcp, 0.0.0.0:8444-8445->8444-8445/tcp, [::]:8444-8445->8444-8445/tcp   kong-cp
+705169cc65aa   kong/kong-gateway:3.10.0.0   "/entrypoint.sh kong…"   2 minutes ago   Exited (0) 2 minutes ago                                                                                                             kong-migrations-bootstrap
 dce55af755c2   postgres:15                  "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes (healthy)     5432/tcp                                                                                                  postgres
 ```
 
@@ -942,4 +951,4 @@ I hope this lab helped you understand how Kong Gateway works internally and give
 ---
 
 **Previous article:** [Introduction, architecture and planning for Kong Gateway](/en/posts/kong/01-introduccion-kong-gateway/01-introduccion-kong-gateway/)  
-**Next article:** [Technical Lab: Installing Kong in Traditional Mode](/en/posts/kong/03-instalacion-tradicional/03-instalacion-tradicional/)
+**Next article:** [Lab: Installing Kong in Traditional Mode](/en/posts/kong/03-instalacion-tradicional/03-instalacion-tradicional/)

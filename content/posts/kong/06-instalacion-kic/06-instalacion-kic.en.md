@@ -1,5 +1,5 @@
 ---
-title: "Technical Lab: Installing Kong Ingress Controller (KIC)"
+title: "Lab: Installing Kong Ingress Controller (KIC)"
 date: 2026-07-02T14:45:00+00:00
 description: "Methodologies for validating the correct operation of Kong Gateway through the Admin API, the Kong Manager, and real traffic tests."
 tags: [Kong, Testing, Validation, API Gateway]
@@ -50,5 +50,5 @@ Before going to production, ensure these points are met:
 
 ---
 
-**Previous article:** [Technical Lab: Installing Kong in Konnect](/en/posts/kong/05-instalacion-kong-connect/05-instalacion-kong-connect/)  
+**Previous article:** [Lab: Installing Kong in Konnect](/en/posts/kong/05-instalacion-kong-connect/05-instalacion-kong-connect/)  
 **Next article:** [Lab: Installing Kong on Kubernetes (Hybrid Mode)](/en/posts/kong/07-instalacion-kubernetes-hibrido/07-instalacion-kubernetes-hibrido/)

@@ -1,5 +1,5 @@
 ---
-title: "Laboratorio técnico: instalación de Kong en modo tradicional"
+title: "Laboratorio: instalación de Kong en modo tradicional"
 date: 2026-07-02T14:30:00+00:00
 description: "Cómo aplicar y gestionar el archivo de licencia en Kong Gateway Enterprise para habilitar funciones avanzadas."
 tags: [Kong, Enterprise, Licencias, Administración]
@@ -46,5 +46,5 @@ Si prefieres una gestión visual, puedes abrir el **Kong Manager**, donde el avi
 
 ---
 
-**Artículo anterior:** [Laboratorio técnico: instalación de Kong con Docker (modo híbrido)](/posts/kong/02-instalacion-docker-hibrido/02-instalacion-docker-hibrido/)  
-**Siguiente artículo:** [Laboratorio técnico: instalación de Kong en modo DB-less](/posts/kong/04-instalacion-db-less/04-instalacion-db-less/)
+**Artículo anterior:** [Laboratorio: instalación de Kong con Docker (modo híbrido)](/posts/kong/02-instalacion-docker-hibrido/02-instalacion-docker-hibrido/)  
+**Siguiente artículo:** [Laboratorio: instalación de Kong en modo DB-less](/posts/kong/04-instalacion-db-less/04-instalacion-db-less/)

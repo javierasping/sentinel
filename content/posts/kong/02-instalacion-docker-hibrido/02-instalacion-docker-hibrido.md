@@ -1,5 +1,5 @@
 ---
-title: "Laboratorio técnico: instalación de Kong con Docker (modo híbrido)"
+title: "Laboratorio: instalación de Kong con Docker (modo híbrido)"
 date: 2026-07-02T14:25:00+00:00
 description: "Guía técnica y reproducible para instalar Kong Gateway en modo híbrido con Docker Compose, levantar un echo server y validarlo con autenticación por API key."
 tags: [Kong, Docker, Docker Compose, Instalación, API Key]
@@ -9,7 +9,7 @@ weight: 2
 
 ## Introducción
 
-En este artículo desplegaremos **Kong Gateway Enterprise** en **modo Hybrid** utilizando Docker Compose. Esta arquitectura, basada en la separación entre **Control Plane (CP)** y **Data Plane (DP)**, es una de las opciones recomendadas por Kong para entornos empresariales debido a su flexibilidad, escalabilidad y alta disponibilidad.
+En este artículo desplegaremos **Kong Gateway OSS 3.10** en **modo Hybrid** utilizando Docker Compose. Esta arquitectura, basada en la separación entre **Control Plane (CP)** y **Data Plane (DP)**, es una de las opciones recomendadas por Kong para entornos de API Gateway debido a su flexibilidad, escalabilidad y alta disponibilidad.
 
 En un despliegue Hybrid, únicamente el **Control Plane** mantiene una conexión directa con la base de datos y es responsable de gestionar toda la configuración del gateway mediante la **Admin API** y **Kong Manager**. Por su parte, los **Data Planes** funcionan en modo *DB-less* y reciben automáticamente la configuración desde el Control Plane a través de un canal seguro protegido mediante **mTLS**. Esto permite que los Data Planes continúen procesando tráfico incluso si el Control Plane o la base de datos dejan de estar disponibles temporalmente.
 
@@ -185,7 +185,7 @@ Antes de comenzar este laboratorio es recomendable disponer de los siguientes co
 
 - Docker Engine 28 o superior.
 - Docker Compose v2.
-- Kong Gateway Enterprise.
+- Kong Gateway OSS 3.10.
 - PostgreSQL.
 - Curl.
 - Un navegador web para acceder a Kong Manager.
@@ -245,6 +245,18 @@ Vamos a generar el certificado en la carpeta donde hemos creado los ficheros del
 mkdir -p kong/ssl
 ```
 
+> **Nota:** Los contenedores de Kong se ejecutan con el usuario `kong` (UID/GID `1001` en la imagen oficial `kong/kong-gateway:3.10`). Como el directorio `ssl` se monta como volumen dentro del contenedor, es necesario asignar la propiedad de los certificados a ese usuario para que Kong pueda leerlos y, si es necesario, generar o actualizar los certificados del clúster durante el arranque.
+>
+> ```bash
+> sudo chown -R 1001:1001 ssl
+> ```
+>
+> Si utilizas una versión diferente de la imagen de Kong, puedes comprobar el UID/GID del usuario `kong` con:
+>
+> ```bash
+> docker run --rm --entrypoint id kong/kong-gateway:<VERSION> kong
+> ```
+
 Creamos el certificado y la clave privada ejecutando el siguiente comando:
 
 ```bash
@@ -265,8 +277,8 @@ Una vez finalizado el proceso, se habrán generado los siguientes archivos:
 ```bash
 javiercruces@kong:~/kong$ ls -l ssl/
 total 8
--rw-rw-r-- 1 javiercruces javiercruces 2163 Jul  3 20:49 proxy.crt
--rw------- 1 javiercruces javiercruces 3272 Jul  3 20:49 proxy.key
+-rw-rw-r-- 1 1001 1001 2163 Jul  8 21:47 proxy.crt
+-rw------- 1 1001 1001 3268 Jul  8 21:47 proxy.key
 ```
 
 Posteriormente, configuraremos el Data Plane para utilizar estos certificados mediante las siguientes variables:
@@ -295,7 +307,7 @@ Este fichero centralizará la configuración del laboratorio, incluyendo:
 Creamos el archivo `.env` con el siguiente contenido:
 
 ```python
-KONG_GW_VERSION=3.15.0.0
+KONG_GW_VERSION=3.10
 
 POSTGRES_USER=kong
 POSTGRES_PASSWORD=kong_password_secure_123
@@ -364,7 +376,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_USER: ${POSTGRES_USER:-kong}
   kong-migrations-bootstrap:
-    image: kong/kong-gateway:${KONG_GW_VERSION:-3.15.0.0}
+    image: kong/kong-gateway:${KONG_GW_VERSION:-3.10}
     networks:
       - kong-net
     container_name: kong-migrations-bootstrap
@@ -384,7 +396,7 @@ services:
       KONG_PASSWORD: ${KONG_PASSWORD}
       KONG_LOG_LEVEL: "warn"
   kong-cp:
-    image: kong/kong-gateway:${KONG_GW_VERSION:-3.15.0.0}
+    image: kong/kong-gateway:${KONG_GW_VERSION:-3.10}
     networks:
       - kong-net
     container_name: kong-cp
@@ -452,11 +464,12 @@ services:
       KONG_ADMIN_EMAILS_REPLY_TO: "kongtest@gmail.com"
       KONG_SMTP_MOCK: "on"
       KONG_NGINX_WORKER_PROCESSES: 1
+      KONG_NGINX_EVENTS_WORKER_CONNECTIONS: 8192
       KONG_LUA_SSL_TRUSTED_CERTIFICATE: "/etc/kong/ssl/cluster.crt,system"
       KONG_LOG_LEVEL: "info"
       KONG_ENFORCE_RBAC: off
   kong-dp:
-    image: kong/kong-gateway:${KONG_GW_VERSION:-3.15.0.0}
+    image: kong/kong-gateway:${KONG_GW_VERSION:-3.10}
     networks:
       - kong-net
     container_name: kong-dp
@@ -502,6 +515,7 @@ services:
       KONG_NGINX_WORKER_PROCESSES: 1
       KONG_LOG_LEVEL: "info"
       KONG_ALLOW_DEBUG_HEADER: "on"
+      KONG_NGINX_EVENTS_WORKER_CONNECTIONS: 8192
 ```
 
 ## Despliegue de la infraestructura
@@ -539,9 +553,9 @@ A continuación, verificamos que todos los contenedores se han desplegado correc
 ```bash
 javiercruces@kong:~/kong$ docker ps -a
 CONTAINER ID   IMAGE                        COMMAND                  CREATED         STATUS                     PORTS                                                                                                     NAMES
-1a53c0c225a2   kong/kong-gateway:3.15.0.0   "/entrypoint.sh kong…"   2 minutes ago   Up 2 minutes (healthy)     8001-8004/tcp, 0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp, 8443-8447/tcp                                 kong-dp
-5ffe4b43af60   kong/kong-gateway:3.15.0.0   "/entrypoint.sh /bin…"   2 minutes ago   Up 2 minutes (healthy)     8000-8004/tcp, 8443/tcp, 8446-8447/tcp, 0.0.0.0:8444-8445->8444-8445/tcp, [::]:8444-8445->8444-8445/tcp   kong-cp
-705169cc65aa   kong/kong-gateway:3.15.0.0   "/entrypoint.sh kong…"   2 minutes ago   Exited (0) 2 minutes ago                                                                                                             kong-migrations-bootstrap
+1a53c0c225a2   kong/kong-gateway:3.10   "/entrypoint.sh kong…"   2 minutes ago   Up 2 minutes (healthy)     8001-8004/tcp, 0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp, 8443-8447/tcp                                 kong-dp
+5ffe4b43af60   kong/kong-gateway:3.10   "/entrypoint.sh /bin…"   2 minutes ago   Up 2 minutes (healthy)     8000-8004/tcp, 8443/tcp, 8446-8447/tcp, 0.0.0.0:8444-8445->8444-8445/tcp, [::]:8444-8445->8444-8445/tcp   kong-cp
+705169cc65aa   kong/kong-gateway:3.10   "/entrypoint.sh kong…"   2 minutes ago   Exited (0) 2 minutes ago                                                                                                             kong-migrations-bootstrap
 dce55af755c2   postgres:15                  "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes (healthy)     5432/tcp                                                                                                  postgres
 ```
 
@@ -629,8 +643,8 @@ Podemos comprobar que el contenedor se encuentra en ejecución mediante:
 javiercruces@openclaw:~/kong2/echo-server$ docker ps
 CONTAINER ID   IMAGE                        COMMAND                  CREATED              STATUS                    PORTS                                                                                                     NAMES
 6f4af4c19ed9   hashicorp/http-echo:latest   "/http-echo"             About a minute ago   Up About a minute         5678/tcp                                                                                                  echo-server
-1a53c0c225a2   kong/kong-gateway:3.15.0.0   "/entrypoint.sh kong…"   16 minutes ago       Up 16 minutes (healthy)   8001-8004/tcp, 0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp, 8443-8447/tcp                                 kong-dp
-5ffe4b43af60   kong/kong-gateway:3.15.0.0   "/entrypoint.sh /bin…"   16 minutes ago       Up 16 minutes (healthy)   8000-8004/tcp, 8443/tcp, 8446-8447/tcp, 0.0.0.0:8444-8445->8444-8445/tcp, [::]:8444-8445->8444-8445/tcp   kong-cp
+1a53c0c225a2   kong/kong-gateway:3.10   "/entrypoint.sh kong…"   16 minutes ago       Up 16 minutes (healthy)   8001-8004/tcp, 0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp, 8443-8447/tcp                                 kong-dp
+5ffe4b43af60   kong/kong-gateway:3.10   "/entrypoint.sh /bin…"   16 minutes ago       Up 16 minutes (healthy)   8000-8004/tcp, 8443/tcp, 8446-8447/tcp, 0.0.0.0:8444-8445->8444-8445/tcp, [::]:8444-8445->8444-8445/tcp   kong-cp
 dce55af755c2   postgres:15                  "docker-entrypoint.s…"   16 minutes ago       Up 16 minutes (healthy)   5432/tcp                                                                                                  postgres
 ```
 
@@ -942,4 +956,4 @@ Espero que este laboratorio te haya ayudado a entender cómo funciona Kong Gatew
 ---
 
 **Artículo anterior:** [Introducción, arquitectura y planificación de Kong Gateway](/posts/kong/01-introduccion-kong-gateway/01-introduccion-kong-gateway/)  
-**Siguiente artículo:** [Laboratorio técnico: instalación de Kong en modo tradicional](/posts/kong/03-instalacion-tradicional/03-instalacion-tradicional/)
+**Siguiente artículo:** [Laboratorio: instalación de Kong en modo tradicional](/posts/kong/03-instalacion-tradicional/03-instalacion-tradicional/)

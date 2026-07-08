@@ -299,5 +299,5 @@ Una vez que el despliegue esté listo, el tráfico podrá fluir a través del Da
 
 ---
 
-**Artículo anterior:** [Laboratorio técnico: instalación de Kong Ingress Controller (KIC)](/posts/kong/06-instalacion-kic/06-instalacion-kic/)  
+**Artículo anterior:** [Laboratorio: instalación de Kong Ingress Controller (KIC)](/posts/kong/06-instalacion-kic/06-instalacion-kic/)  
 **Siguiente artículo:** [Primeros Pasos: Servicios y Rutas](/posts/kong/08-servicios-y-rutas-basicos/08-servicios-y-rutas-basicos/)

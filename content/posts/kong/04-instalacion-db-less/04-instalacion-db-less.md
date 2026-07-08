@@ -1,5 +1,5 @@
 ---
-title: "Laboratorio técnico: instalación de Kong en modo DB-less"
+title: "Laboratorio: instalación de Kong en modo DB-less"
 date: 2026-07-02T14:35:00+00:00
 description: "Despliegue profesional de Kong Gateway en Kubernetes utilizando KinD y Helm Charts."
 tags: [Kong, Kubernetes, Helm, KinD, Cloud Native]
@@ -299,5 +299,5 @@ Una vez que el despliegue esté listo, el tráfico podrá fluir a través del Da
 
 ---
 
-**Artículo anterior:** [Laboratorio técnico: instalación de Kong en modo tradicional](/posts/kong/03-instalacion-tradicional/03-instalacion-tradicional/)  
-**Siguiente artículo:** [Laboratorio técnico: instalación de Kong en Konnect](/posts/kong/05-instalacion-kong-connect/05-instalacion-kong-connect/)
+**Artículo anterior:** [Laboratorio: instalación de Kong en modo tradicional](/posts/kong/03-instalacion-tradicional/03-instalacion-tradicional/)  
+**Siguiente artículo:** [Laboratorio: instalación de Kong en Konnect](/posts/kong/05-instalacion-kong-connect/05-instalacion-kong-connect/)

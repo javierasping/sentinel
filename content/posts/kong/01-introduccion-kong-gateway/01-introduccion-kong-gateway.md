@@ -108,4 +108,4 @@ En el siguiente artículo empezaremos con la parte práctica y veremos cómo des
 
 ---
 
-**Siguiente artículo:** [Laboratorio técnico: instalación de Kong con Docker (modo híbrido)](/posts/kong/02-instalacion-docker-hibrido/02-instalacion-docker-hibrido/)
+**Siguiente artículo:** [Laboratorio: instalación de Kong con Docker (modo híbrido)](/posts/kong/02-instalacion-docker-hibrido/02-instalacion-docker-hibrido/)

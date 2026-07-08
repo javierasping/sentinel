@@ -1,5 +1,5 @@
 ---
-title: "Technical Lab: Installing Kong in Traditional Mode"
+title: "Lab: Installing Kong in Traditional Mode"
 date: 2026-07-02T14:30:00+00:00
 description: "How to apply and manage the license file in Kong Gateway Enterprise to enable advanced features."
 tags: [Kong, Enterprise, Licenses, Administration]
@@ -46,5 +46,5 @@ If you prefer visual management, you can open the **Kong Manager**, where the 'L
 
 ---
 
-**Previous article:** [Technical Lab: Installing Kong with Docker (Hybrid Mode)](/en/posts/kong/02-instalacion-docker-hibrido/02-instalacion-docker-hibrido/)  
-**Next article:** [Technical Lab: Installing Kong in DB-less Mode](/en/posts/kong/04-instalacion-db-less/04-instalacion-db-less/)
+**Previous article:** [Lab: Installing Kong with Docker (Hybrid Mode)](/en/posts/kong/02-instalacion-docker-hibrido/02-instalacion-docker-hibrido/)  
+**Next article:** [Lab: Installing Kong in DB-less Mode](/en/posts/kong/04-instalacion-db-less/04-instalacion-db-less/)

@@ -299,5 +299,5 @@ Once the deployment is ready, the traffic can flow through the Data Plane to bac
 
 ---
 
-**Previous article:** [Technical Lab: Installing Kong Ingress Controller (KIC)](/en/posts/kong/06-instalacion-kic/06-instalacion-kic/)  
+**Previous article:** [Lab: Installing Kong Ingress Controller (KIC)](/en/posts/kong/06-instalacion-kic/06-instalacion-kic/)  
 **Next article:** [First Steps: Services and Routes in Kong](/en/posts/kong/08-servicios-y-rutas-basicos/08-servicios-y-rutas-basicos/)

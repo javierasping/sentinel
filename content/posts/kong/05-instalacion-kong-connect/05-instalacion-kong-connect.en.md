@@ -1,5 +1,5 @@
 ---
-title: "Technical Lab: Installing Kong in Konnect"
+title: "Lab: Installing Kong in Konnect"
 date: 2026-07-02T14:40:00+00:00
 description: "Learn how to configure Kong's routing logic by creating your first Services and Routes through the Admin API."
 tags: [Kong, API Routing, Admin API, Microservices]
@@ -62,5 +62,5 @@ With this configuration, any request sent to the Kong Proxy port on the `/mockbi
 
 ---
 
-**Previous article:** [Technical Lab: Installing Kong in DB-less Mode](/en/posts/kong/04-instalacion-db-less/04-instalacion-db-less/)  
-**Next article:** [Technical Lab: Installing Kong Ingress Controller (KIC)](/en/posts/kong/06-instalacion-kic/06-instalacion-kic/)
+**Previous article:** [Lab: Installing Kong in DB-less Mode](/en/posts/kong/04-instalacion-db-less/04-instalacion-db-less/)  
+**Next article:** [Lab: Installing Kong Ingress Controller (KIC)](/en/posts/kong/06-instalacion-kic/06-instalacion-kic/)

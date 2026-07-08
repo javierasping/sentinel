@@ -107,4 +107,4 @@ In the next article we will start with the practical part and see how to deploy 
 
 ---
 
-**Next article:** [Technical Lab: Installing Kong with Docker (Hybrid Mode)](/en/posts/kong/02-instalacion-docker-hibrido/02-instalacion-docker-hibrido/)
+**Next article:** [Lab: Installing Kong with Docker (Hybrid Mode)](/en/posts/kong/02-instalacion-docker-hibrido/02-instalacion-docker-hibrido/)
