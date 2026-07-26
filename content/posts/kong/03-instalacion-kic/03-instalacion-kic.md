@@ -17,7 +17,7 @@ También conviene dejar claro desde el principio que **KIC no es un gateway inde
 
 Una vez que nuestro clúster de Kubernetes está funcionando, el siguiente paso es instalar **Kong Ingress Controller (KIC)** junto con **Kong Gateway**.
 
-Kong ofrece un repositorio oficial de Helm desde el que podemos desplegar ambos componentes con un único chart. En este laboratorio fijaremos la versión de **Kong Gateway OSS 3.10** para trabajar con una versión conocida y reproducible.
+Kong ofrece un repositorio oficial de Helm desde el que podemos desplegar ambos componentes con un único chart. En este laboratorio fijaremos la versión de **Kong Gateway 3.10 open source** para trabajar con una versión conocida y reproducible.
 
 ### Añadir el repositorio de Helm
 
@@ -49,7 +49,7 @@ helm install kong kong/ingress \
 Con esta instalación estamos haciendo varias cosas al mismo tiempo:
 
 - Creamos el *namespace* `kong` si todavía no existe.
-- Desplegamos **Kong Gateway OSS 3.10**.
+- Desplegamos **Kong Gateway 3.10 open source**.
 - Desplegamos **Kong Ingress Controller**.
 - Creamos los *Deployments*, *Services*, *ConfigMaps*, *Roles* y demás recursos necesarios.
 - Registramos los **CRDs** que Kong utiliza para integrarse con Kubernetes.
@@ -57,7 +57,7 @@ Con esta instalación estamos haciendo varias cosas al mismo tiempo:
 Una vez finalizada la instalación, podemos comprobar que los pods están en ejecución:
 
 ```bash
-kubectl get pods -n kong
+sudo kubectl get pods -n kong
 ```
 
 ```text
@@ -69,7 +69,7 @@ kong-gateway-db57d88fc-h72wz       1/1     Running   0          5m53s
 También es buena idea inspeccionar qué recursos ha creado Helm en el *namespace* `kong`:
 
 ```bash
-kubectl get all -n kong
+sudo kubectl get all -n kong
 ```
 
 Si todo está correcto, veremos los pods del controlador y del gateway, los servicios asociados y sus correspondientes *Deployments*.
@@ -79,7 +79,7 @@ Si todo está correcto, veremos los pods del controlador y del gateway, los serv
 Como Kong se integra con Kubernetes mediante recursos personalizados, también conviene comprobar que los **CRDs** se han instalado correctamente:
 
 ```bash
-kubectl get crd | grep konghq
+sudo kubectl get crd | grep konghq
 ```
 
 ```text
@@ -104,7 +104,7 @@ Si los pods están en estado **Running** y los CRDs aparecen en la lista, ya ten
 Al revisar el servicio que expone el proxy de Kong veremos que su dirección **EXTERNAL-IP** aparece como `<pending>`.
 
 ```bash
-kubectl get svc -n kong
+sudo kubectl get svc -n kong
 ```
 
 ```text
@@ -123,13 +123,13 @@ Para cubrir esa función utilizaremos **MetalLB**, que actúa como balanceador d
 Comenzaremos aplicando los manifiestos oficiales de MetalLB:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.15.2/config/manifests/metallb-native.yaml
+sudo kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.15.2/config/manifests/metallb-native.yaml
 ```
 
 Cuando termine la instalación, comprobaremos que sus componentes principales están activos:
 
 ```bash
-kubectl get pods -n metallb-system
+sudo kubectl get pods -n metallb-system
 ```
 
 ```text
@@ -164,7 +164,7 @@ metadata:
 Aplicamos la configuración:
 
 ```bash
-kubectl apply -f metallb-config.yaml
+sudo kubectl apply -f metallb-config.yaml
 ```
 
 ## Comprobar el funcionamiento
@@ -174,7 +174,7 @@ A partir de este momento, MetalLB detectará que existe un servicio `LoadBalance
 Podemos comprobarlo con:
 
 ```bash
-kubectl get svc -n kong
+sudo kubectl get svc -n kong
 ```
 
 ```text
@@ -222,7 +222,7 @@ echo.javiercd.es
 Primero crearemos un *namespace* independiente para la aplicación de ejemplo. Así mantenemos separados los recursos de infraestructura y los recursos de la aplicación.
 
 ```bash
-kubectl create namespace javier
+sudo kubectl create namespace javier
 ```
 
 ### Desplegar la aplicación
@@ -271,13 +271,13 @@ spec:
 Aplicamos los recursos:
 
 ```bash
-kubectl apply -f echo.yaml
+sudo kubectl apply -f echo.yaml
 ```
 
 Y verificamos que el *Deployment* y el *Service* han quedado creados:
 
 ```bash
-kubectl get all -n javier
+sudo kubectl get all -n javier
 ```
 
 ### Crear el GatewayClass
@@ -302,13 +302,13 @@ spec:
 Aplicamos la configuración:
 
 ```bash
-kubectl apply -f gatewayclass.yaml
+sudo kubectl apply -f gatewayclass.yaml
 ```
 
 Comprobamos que se ha creado correctamente:
 
 ```bash
-kubectl get gatewayclass
+sudo kubectl get gatewayclass
 ```
 
 ```text
@@ -344,13 +344,13 @@ spec:
 Aplicamos el recurso:
 
 ```bash
-kubectl apply -f gateway.yaml
+sudo kubectl apply -f gateway.yaml
 ```
 
 Y verificamos su estado:
 
 ```bash
-kubectl get gateway -n kong
+sudo kubectl get gateway -n kong
 ```
 
 ```text
@@ -389,19 +389,30 @@ spec:
 Aplicamos la configuración:
 
 ```bash
-kubectl apply -f httproute.yaml
+sudo kubectl apply -f httproute.yaml
 ```
 
 Y comprobamos el estado del recurso:
 
 ```bash
-kubectl get httproute -n javier
+sudo kubectl get httproute -n javier
 ```
 
 ```text
 NAME   HOSTNAMES              AGE
 echo   ["echo.javiercd.es"]   15m
 ```
+
+### Cómo traduce KIC estos recursos a Kong
+
+KIC observa los recursos Kubernetes y mantiene la configuración equivalente dentro de Kong Gateway. En este ejemplo:
+
+- `GatewayClass` selecciona el controlador `konghq.com/kic-gateway-controller`.
+- `Gateway` define el punto de entrada HTTP que KIC asociará al proxy `kong-gateway-proxy`.
+- `Deployment` y `Service` `echo` forman el backend. KIC los representa como un Service de Kong y sus targets upstream.
+- `HTTPRoute` se convierte en una Route de Kong. `hostnames` y el prefijo `/echo` son sus criterios de coincidencia, y `backendRefs` indica el Service destino.
+
+En los siguientes laboratorios añadiremos `KongPlugin`, `KongConsumer` y `Secret`. KIC los convertirá respectivamente en plugins, Consumers y credenciales de Kong, y la anotación `konghq.com/plugins` asociará el plugin a la Route.
 
 ### Probar la aplicación
 
@@ -424,7 +435,7 @@ Aunque **Gateway API** es el modelo recomendado actualmente, Kong sigue ofrecien
 Para comparar ambos enfoques de forma limpia, eliminaremos primero el `HTTPRoute` anterior:
 
 ```bash
-kubectl delete httproute echo -n javier
+sudo kubectl delete httproute echo -n javier
 ```
 
 Ahora crearemos el fichero `ingress.yaml`:
@@ -453,13 +464,13 @@ spec:
 Aplicamos el recurso:
 
 ```bash
-kubectl apply -f ingress.yaml
+sudo kubectl apply -f ingress.yaml
 ```
 
 Y verificamos que ha quedado publicado:
 
 ```bash
-kubectl get ingress -n javier
+sudo kubectl get ingress -n javier
 ```
 
 ```text
@@ -467,7 +478,7 @@ NAME   CLASS   HOSTS              ADDRESS           PORTS   AGE
 echo   kong    echo.javiercd.es   192.168.121.200   80      2m25s
 ```
 
-Finalmente, probamos el acceso:
+Finalmente, probamos el acceso. Como el `Ingress` también define el prefijo `/echo`, la raíz del dominio no coincide y devuelve `no Route matched`. Es el comportamiento esperado:
 
 ```bash
 curl http://echo.javiercd.es
@@ -480,9 +491,13 @@ curl http://echo.javiercd.es
 }
 ```
 
+La petición válida debe conservar el prefijo:
+
 ```bash
 curl http://echo.javiercd.es/echo
+```
 
+```text
 Hola desde Kong Gateway
 ```
 

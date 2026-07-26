@@ -1,0 +1,9 @@
+---
+title: "Autenticación con LDAP en Kong Gateway"
+menu:
+  sidebar:
+    name: "LDAP Auth"
+    identifier: 18-autenticacion-ldap
+    parent: plugins-autenticacion
+    weight: 90
+---

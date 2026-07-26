@@ -1,5 +1,5 @@
 ---
-title: "Introduction Kong Gateway"
+title: "Introduction to Kong Gateway"
 menu:
   sidebar:
     name: "Introduction Kong Gateway"

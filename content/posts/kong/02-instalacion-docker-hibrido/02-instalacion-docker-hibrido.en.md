@@ -9,7 +9,7 @@ weight: 2
 
 ## Introduction
 
-In this article we will deploy **Kong Gateway OSS 3.10** in **Hybrid mode** using Docker Compose. This architecture, based on the separation between the **Control Plane (CP)** and the **Data Plane (DP)**, is one of the deployment models recommended by Kong for API Gateway environments because of its flexibility, scalability, and high availability.
+In this article we will deploy **Kong Gateway 3.10 open source** in **Hybrid mode** using Docker Compose. This architecture, based on the separation between the **Control Plane (CP)** and the **Data Plane (DP)**, is one of the deployment models recommended by Kong for API Gateway environments because of its flexibility, scalability, and high availability.
 
 In a Hybrid deployment, only the **Control Plane** maintains a direct connection to the database and is responsible for managing the full gateway configuration through the **Admin API** and **Kong Manager**. The **Data Planes**, on the other hand, run in *DB-less* mode and automatically receive configuration from the Control Plane through a secure channel protected by **mTLS**. This allows the Data Planes to keep processing traffic even if the Control Plane or the database becomes temporarily unavailable.
 
@@ -185,7 +185,7 @@ Before starting this lab, it is a good idea to have the following knowledge and 
 
 - Docker Engine 28 or later.
 - Docker Compose v2.
-- Kong Gateway OSS 3.10.
+- Kong Gateway 3.10 open source.
 - PostgreSQL.
 - Curl.
 - A web browser to access Kong Manager.
