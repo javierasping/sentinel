@@ -8,12 +8,12 @@ aliases:
 
 Basic Authentication suele parecer un mecanismo trivial porque solo utiliza un usuario y una contraseña. Sin embargo, para utilizarlo correctamente conviene separar tres ideas: el estándar HTTP, la validación que realiza Kong Gateway y la identidad que Kong asocia a unas credenciales válidas.
 
-En este artículo veremos esas tres capas y construiremos un laboratorio reproducible con Kong Ingress Controller, Gateway API y un `HTTPRoute`. El objetivo no es limitarse a copiar manifiestos. Primero entenderemos qué representa cada recurso, después lo aplicaremos y finalmente comprobaremos qué ocurre dentro de Kong.
+En este artículo veremos esas tres capas y construiremos un laboratorio reproducible con Kong Ingress Controller. El objetivo no es limitarse a copiar ficheros y aplicarlos sin cabeza. Primero entenderemos qué representa cada recurso, después lo aplicaremos y finalmente comprobaremos qué ocurre dentro de Kong.
 
 > [!NOTE]
 > Este laboratorio continúa exactamente desde el escenario creado en [Instalación de KIC](/posts/kong/03-instalacion-kic/03-instalacion-kic/). Reutiliza el `Gateway` `kong`, el servicio `echo` y la dirección `192.168.121.200` asignada por MetalLB a `kong-gateway-proxy`.
 >
-> Las pruebas de este artículo se han realizado con Kong Gateway `3.10.0.16` y Kong Ingress Controller `3.5`. La documentación oficial actual también describe funciones incorporadas posteriormente. Cuando una opción necesita Kong Gateway 3.13 o 3.15 se indica expresamente.
+> Las pruebas de este artículo se han realizado con Kong Gateway `3.10.0.16` y Kong Ingress Controller `3.5`
 
 ## 1. ¿Qué es Basic Authentication?
 
@@ -90,16 +90,7 @@ El comportamiento es el siguiente:
 - Si las credenciales son válidas, Kong identifica al consumidor (`Consumer`) y permite que la petición continúe.
 - Cuando Kong rechaza la autenticación, la petición no llega al upstream.
 
-En nuestra versión de laboratorio, tanto la ausencia de credenciales como una contraseña incorrecta producen esta respuesta:
-
-```http
-HTTP/1.1 401 Unauthorized
-Content-Type: application/json
-
-{"message":"Unauthorized"}
-```
-
-El plugin Basic Auth no decide por sí mismo a qué backend se envía una petición. La selección del backend sigue siendo responsabilidad de la `Route` y del `Service`. El plugin solo introduce una condición previa: la identidad debe autenticarse correctamente.
+El plugin Basic Auth no decide por sí mismo a qué backend se envía una petición. La selección del backend sigue siendo responsabilidad de la `Route` y del `Service`. El plugin solo introduce una condición previa, que el cliente debe autenticarse correctamente.
 
 ## 3. Consumidores y credenciales Basic Auth
 
@@ -126,30 +117,11 @@ Consumidor
 
 El consumidor (`Consumer`) aporta la identidad. La credencial aporta la prueba que permite demostrar esa identidad. Cuando la validación termina correctamente, Kong conoce tanto al consumidor autenticado como el identificador de la credencial utilizada.
 
-Un mismo consumidor (`Consumer`) puede tener varias credenciales. Esto permite, por ejemplo, realizar una rotación creando una credencial nueva antes de revocar la anterior.
+Un mismo consumidor (`Consumer`) puede tener varias credenciales. Pero lo normal es asignarle una sola credencial por consumidor y asi asegurarnos de controlar quien consume nuestras apis.
 
 ## 4. Configuración de Basic Auth en Kong con KIC
 
-Vamos a publicar el servicio `echo` mediante un `HTTPRoute` y proteger esa ruta con Basic Auth:
-
-```text
-Cliente
-   |
-   v
-Recurso HTTPRoute /basic-auth
-   |
-Plugin Basic Auth
-   |
-   v
-Servicio echo
-   |
-   v
-Servicio upstream
-
-Consumidor KongConsumer alice
-   |
-Credencial Basic Auth
-```
+Vamos a publicar el servicio `echo` mediante un `HTTPRoute` y proteger esa ruta con Basic Auth.
 
 El post de instalación de KIC ya creó estos recursos compartidos:
 
@@ -293,17 +265,7 @@ Vamos a probar la configuracion que hemos desplegado.
 
 ### 5.1. Petición sin credenciales
 
-```text
-Client
-   |
-   | No Authorization header
-   v
-Kong
-   |
-   +-- 401 Unauthorized
-```
-
-Ejecutamos:
+Realizamos la petición sin enviar credenciales:
 
 ```bash
 curl -i http://echo.javiercd.es/basic-auth
@@ -330,7 +292,7 @@ No aparece `X-Kong-Upstream-Latency` porque Kong ha generado la respuesta antes 
 
 ### 5.2. Credenciales incorrectas
 
-`curl -u` construye la cabecera `Authorization: Basic` por nosotros:
+Ahora enviaremos la petición utilizando unas credenciales incorrectas usando `curl -u` , que construye la cabecera `Authorization: Basic` por nosotros:
 
 ```bash
 curl -i -u alice:incorrecta \

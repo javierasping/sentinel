@@ -8,12 +8,12 @@ aliases:
 
 Basic Authentication may seem like a trivial mechanism because it only uses a username and a password. However, using it correctly means separating three ideas: the HTTP standard, the validation performed by Kong Gateway, and the identity that Kong associates with valid credentials.
 
-In this article we will look at those three layers and build a reproducible lab with Kong Ingress Controller, Gateway API, and an `HTTPRoute`. The goal is not simply to copy manifests. First we will understand what each resource represents, then we will apply it, and finally we will check what happens inside Kong.
+In this article we will look at those three layers and build a reproducible lab with Kong Ingress Controller. The goal is not simply to copy files and blindly apply them. First we will understand what each resource represents, then we will apply it, and finally we will check what happens inside Kong.
 
 > [!NOTE]
 > This lab continues exactly from the scenario created in the [KIC installation post](/posts/kong/03-instalacion-kic/03-instalacion-kic/). It reuses the `Gateway` `kong`, the `echo` Service, and the `192.168.121.200` address assigned by MetalLB to `kong-gateway-proxy`.
 >
-> The tests in this article were carried out with Kong Gateway `3.10.0.16` and Kong Ingress Controller `3.5`. The current official documentation also describes features added later. Whenever an option requires Kong Gateway 3.13 or 3.15, this is stated explicitly.
+> The tests in this article were carried out with Kong Gateway `3.10.0.16` and Kong Ingress Controller `3.5`.
 
 ## 1. What is Basic Authentication?
 
@@ -90,16 +90,7 @@ The behavior is as follows:
 - If the credentials are valid, Kong identifies the Consumer and allows the request to continue.
 - When Kong rejects authentication, the request does not reach the upstream.
 
-In the lab version, both missing credentials and an incorrect password produce this response:
-
-```http
-HTTP/1.1 401 Unauthorized
-Content-Type: application/json
-
-{"message":"Unauthorized"}
-```
-
-The Basic Auth plugin does not decide which backend receives a request. Backend selection remains the responsibility of the `Route` and the `Service`. The plugin only adds a prerequisite: the identity must be authenticated successfully.
+The Basic Auth plugin does not decide which backend receives a request. Backend selection remains the responsibility of the `Route` and the `Service`. The plugin only adds a prerequisite: the client must authenticate successfully.
 
 ## 3. Consumers and Basic Auth credentials
 
@@ -126,30 +117,11 @@ Consumer
 
 The Consumer provides the identity. The credential provides the proof used to demonstrate that identity. Once validation finishes successfully, Kong knows both the authenticated Consumer and the identifier of the credential that was used.
 
-A single Consumer can have several credentials. This makes it possible, for example, to rotate credentials by creating a new credential before revoking the previous one.
+A single Consumer can have several credentials. However, it is usually better to assign one credential per Consumer so that we can control who consumes our APIs.
 
 ## 4. Configuring Basic Auth in Kong with KIC
 
-We will publish the `echo` Service through an `HTTPRoute` and protect that route with Basic Auth:
-
-```text
-Client
-   |
-   v
-HTTPRoute /basic-auth
-   |
-Basic Auth plugin
-   |
-   v
-echo Service
-   |
-   v
-Upstream service
-
-KongConsumer alice
-   |
-Basic Auth credential
-```
+We will publish the `echo` Service through an `HTTPRoute` and protect that route with Basic Auth.
 
 The KIC installation post already created these shared resources:
 
@@ -293,17 +265,7 @@ Now we will test the configuration we have deployed.
 
 ### 5.1. Request without credentials
 
-```text
-Client
-   |
-   | No Authorization header
-   v
-Kong
-   |
-   +-- 401 Unauthorized
-```
-
-Run:
+Make the request without sending credentials:
 
 ```bash
 curl -i http://echo.javiercd.es/basic-auth
@@ -329,7 +291,7 @@ X-Kong-Request-Id: 1f06711dd1f40a26aaa91059dea08d07
 
 ### 5.2. Incorrect credentials
 
-`curl -u` builds the `Authorization: Basic` header for us:
+Now we will send the request using incorrect credentials with `curl -u`, which builds the `Authorization: Basic` header for us:
 
 ```bash
 curl -i -u alice:incorrecta \
