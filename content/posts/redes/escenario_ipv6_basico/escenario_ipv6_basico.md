@@ -187,9 +187,8 @@ Es decir hemos configurado la segunda opción  de la siguiente imagen :
 ![](/redes/escenario_ipv6_basico/img/Aspose.Words.e7f0d3c3-3d56-4aa1-a556-ca7031f37ba4.029.jpeg)
 
 
-{{< alert type="info" >}}
-Las capturas que verás a continuación NO están recortadas debido a que se ven pixeladas. Los mensajes de la comunicación están en orden.
-{{< /alert >}}
+> [!NOTE]
+> Las capturas que verás a continuación NO están recortadas debido a que se ven pixeladas. Los mensajes de la comunicación están en orden.
 
 Si observamos la captura de Wireshark y la comparamos con la configuración única de SLAAC :
 

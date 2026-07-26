@@ -3,9 +3,10 @@
   {{ $sectionID = .section.id }}
 {{ end }}
 
-{{ $author:= site.Data.author }}
-{{ if (index site.Data site.Language.Lang).author }}
-  {{ $author = (index site.Data site.Language.Lang).author }}
+{{ $siteData := index hugo.Data site.Language.Name }}
+{{ $author:= $siteData.author }}
+{{ if $siteData.author }}
+  {{ $author = $siteData.author }}
 {{ end }}
 
 <div class="container anchor p-lg-5 about-section" id="{{ $sectionID }}">

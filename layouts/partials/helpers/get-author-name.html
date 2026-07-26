@@ -2,8 +2,9 @@
 {{ $authorName:= site.Params.author.name }}
 
 {{/*  Overrides with the locale specific author if provided  */}}
-{{ if (index site.Data site.Language.Lang).author }}
-  {{ $authorName = (index site.Data site.Language.Lang).author.name }}
+{{ $siteData := index hugo.Data site.Language.Name }}
+{{ if $siteData.author }}
+  {{ $authorName = $siteData.author.name }}
 {{ end }}
 
 {{/*  Lastly, overrides with the post specific author if provided  */}}

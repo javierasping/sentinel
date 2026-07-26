@@ -1,0 +1,33 @@
+{{- $types := dict
+  "note" "info"
+  "tip" "success"
+  "important" "primary"
+  "warning" "warning"
+  "caution" "danger"
+  "success" "success"
+  "danger" "danger"
+  "info" "info"
+  "dark" "dark"
+  "primary" "primary"
+  "secondary" "secondary"
+-}}
+
+{{- $icons := dict
+  "success" "check-circle"
+  "warning" "alert-triangle"
+  "danger" "alert-octagon"
+  "info" "info"
+-}}
+
+{{- if eq .Type "alert" -}}
+  {{- $type := index $types .AlertType | default "info" -}}
+  {{- $icon := index $icons $type | default "alert-circle" -}}
+  <div class="alert {{ $type }}">
+    <span><i data-feather="{{ $icon }}"></i></span>
+    <span><strong>{{ with .AlertTitle }}{{ . }}{{ end }}{{ .Text }}</strong></span>
+  </div>
+{{- else -}}
+  <blockquote>
+    {{ .Text }}
+  </blockquote>
+{{- end -}}

@@ -5,7 +5,7 @@ date: 2025-05-10T10:00:00+00:00
 description: Aprende a configurar un servidor DNS esclavo con BIND9 en Debian, sincronizado con un servidor maestro.
 tags: [DNS,BIND9,SMR,ASIR]
 hero: images/servicios/dns/dns_esclavo.png
--------------------------------------------
+---
 
 En esta guía aprenderás a configurar un servidor DNS esclavo usando BIND9 en Debian. Este servidor se sincronizará con el servidor maestro (`dns1.javiercruces.org`) y permitirá distribuir la carga de resolución de nombres en tu red local. Además, se te guiará para verificar que la transferencia de zonas se realiza correctamente.
 
