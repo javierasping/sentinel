@@ -1,68 +1,121 @@
 ---
 title: "LDAP Auth in Kong"
-description: "Validate username and password against LDAP from a KIC HTTPRoute."
+date: 2026-07-26T00:00:00+02:00
+description: "How to validate a username and password against an LDAP directory from an HTTPRoute managed by Kong Gateway and KIC."
+tags: [Kong, Authentication, LDAP, Directory Services, KIC]
 weight: 18
+hero: images/kong/ldap-auth.png
 ---
 
-This open source lab publishes `echo.javiercd.es/ldap-auth`. Replace the LDAP host, base DN, attribute, and TLS settings in `18-ldap-plugin.yaml`. The HTTPRoute is defined separately in `18-ldap-httproute.yaml`:
+LDAP Authentication lets Kong validate a username and password directly against a corporate directory. The backend does not receive those credentials and does not need to implement LDAP.
 
-```bash
-sudo sed -i '/[[:space:]]echo\.javiercd\.es$/d' /etc/hosts
-echo '192.168.121.200 echo.javiercd.es' | sudo tee -a /etc/hosts
-vagrant ssh
-cd ~/kic-auth
-sudo kubectl get gateway kong -n kong
-sudo kubectl get svc echo -n javier
-sudo kubectl apply -f 18-ldap-plugin.yaml
-sudo kubectl apply -f 18-ldap-httproute.yaml
-exit
-LDAP_AUTH="$(printf '%s' 'riemann:password' | base64 -w0)"
-curl -i -H "Authorization: ldap ${LDAP_AUTH}" http://echo.javiercd.es/ldap-auth
-```
-
-LDAP Auth does not use Basic Auth syntax. Use `Authorization: ldap <base64(username:password)>`. The Forumsys lab account `riemann:password` works with this manifest. Replace it with your own directory credentials. Use `verify_ldap_host: true` and a trusted CA in production. See the [official LDAP Authentication documentation](https://developer.konghq.com/plugins/ldap-auth/).
+This article explains how the authentication header is built, how Kong locates the user in the directory, and how to protect `/ldap-auth` through Kong Ingress Controller.
 
 > [!NOTE]
-> These posts are built on the KIC installation scenario. They reuse the same `kong` Gateway, `echo` Service, and the MetalLB address assigned to `kong-gateway-proxy`: `192.168.121.200`.
+> This lab continues from [Installing KIC](/posts/kong/03-instalacion-kic/03-instalacion-kic/). It reuses the `kong` Gateway, the `echo` Service, and the `192.168.121.200` address assigned by MetalLB to `kong-gateway-proxy`.
 >
-> Because this is a local lab, first prepare the domain from the host:
->
-> ```bash
-> sudo sed -i '/[[:space:]]echo\.javiercd\.es$/d' /etc/hosts
-> echo '192.168.121.200 echo.javiercd.es' | sudo tee -a /etc/hosts
-> ```
->
-> Then enter the VM and verify the resources created by the KIC installation post:
->
-> ```bash
-> vagrant ssh
-> cd ~/kic-auth
-> sudo kubectl get gateway kong -n kong
-> sudo kubectl get svc echo -n javier
-> ```
->
-> The KIC installation post already created these shared resources, so this authentication lab only adds its own files.
->
-> If MetalLB assigned a different address in your cluster, replace `192.168.121.200` in this notice, in `/etc/hosts`, and in the tests. See also the [**Dominio y preparación**](http://localhost:1313/posts/kong/10-autenticacion-basic-auth/10-autenticacion-basic-auth/#dominio-y-preparaci%C3%B3n) section.
+> The tests use Kong Gateway `3.10.0.16`, KIC `3.5`, and Forum Systems' public LDAP server. That external service may be unavailable and uses LDAP without TLS, so it must be used only as a demonstration.
 
-## How Kubernetes relates to Kong
+## 1. What is LDAP Authentication?
 
-KIC watches these Kubernetes resources and translates them into Kong configuration:
+LDAP, or *Lightweight Directory Access Protocol*, allows applications to query and authenticate identities stored in a directory service.
 
-| File | Kubernetes resource | Kong translation |
-| --- | --- | --- |
-| `18-ldap-plugin.yaml` | `KongPlugin` | plugin configuration |
-| `18-ldap-httproute.yaml` | `HTTPRoute` | Kong Route and backend association |
+Each entry is identified by a Distinguished Name, or DN. In the lab directory, user `riemann` is located at:
 
-The `kong` Gateway and the `echo` Service already existed because they were created in the KIC installation post. Each `HTTPRoute` reuses that shared Gateway and Service.
+```text
+uid=riemann,dc=example,dc=com
+```
 
-## Lab files, step by step
+The plugin configuration tells Kong how to build that lookup:
 
-### 1. `18-ldap-plugin.yaml`
+- `base_dn: dc=example,dc=com` sets the starting point.
+- `attribute: uid` identifies the username attribute.
+- `ldap_host` and `ldap_port` identify the server.
 
-This file creates a `KongPlugin`. The `plugin` field selects the plugin Kong will run and `config` contains its options. KIC translates this resource into a Kong plugin configuration. In a database-backed deployment it is represented in the `plugins` table, including its configuration and its Route or Consumer associations.
+The client combines the username and password:
 
-Definition of the `KongPlugin` resource:
+```text
+riemann:password
+```
+
+It Base64-encodes the string and sends it with the configured scheme:
+
+```http
+Authorization: ldap cmllbWFubjpwYXNzd29yZA==
+```
+
+LDAP Auth does not automatically use the Basic syntax generated by `curl -u`. Although the encoded content also has `username:password` form, this lab uses the `ldap` scheme, not `Basic`.
+
+Base64 does not encrypt credentials. In a real environment, clients must reach Kong over HTTPS and Kong must connect to the directory through LDAPS or StartTLS.
+
+## 2. How does LDAP Auth work in Kong Gateway?
+
+Kong implements this mechanism through the official [`ldap-auth`](https://developer.konghq.com/plugins/ldap-auth/) plugin. It supports traditional, hybrid, and DB-less topologies.
+
+This lab applies it only to `/ldap-auth`.
+
+When a request matches the Route, Kong:
+
+1. Looks for credentials first in `Proxy-Authorization` and then in `Authorization`.
+2. Checks that the header uses the scheme configured in `header_type`.
+3. Decodes the username and password.
+4. Builds the DN from `attribute` and `base_dn`.
+5. Attempts to authenticate that user against LDAP.
+6. Temporarily caches the result.
+7. On success, removes the credential and forwards the request upstream.
+
+The following diagram shows that the password is not checked against a local Kong credential. The plugin builds the DN and binds against the LDAP directory. Only a successful bind allows the request to continue.
+
+![LDAP Auth flow in Kong Gateway](/kong/plugins-autenticacion/18-autenticacion-ldap/img/ldap-auth-flow-en.svg)
+
+The resulting behavior is:
+
+- A missing header returns `401 Unauthorized`.
+- An unknown user or incorrect password returns `401 Unauthorized`.
+- An unreachable directory prevents authentication.
+- Valid credentials allow the request to continue upstream.
+- Rejected requests never reach `echo`.
+
+The plugin's default cache TTL is 60 seconds. This reduces directory load but can delay the effect of some credential changes for that period.
+
+## 3. LDAP identity and Kong Consumers
+
+In this lab, identity lives in LDAP. We do not create a password Secret or one `KongConsumer` per user.
+
+The minimal relationship is:
+
+```text
+Client
+    |
+    +-- username and password
+            |
+            v
+          Kong
+            |
+            +-- LDAP bind
+                    |
+                    v
+              LDAP directory
+```
+
+This differs from Basic Auth, Key Auth, or JWT, where lab credentials are declared as Kubernetes resources and attached to local Consumers.
+
+For advanced identity features, group authorization, or custom mappings, consider LDAP Authentication Advanced or another identity integration.
+
+## 4. Configuring LDAP Auth with KIC
+
+We protect `/ldap-auth` on the `echo` Service. Only a `KongPlugin` and an `HTTPRoute` are required.
+
+### 4.1. Relationship between Kubernetes and Kong resources
+
+| Kubernetes resource | Internal Kong resource |
+| --- | --- |
+| `KongPlugin` | `plugins` |
+| `HTTPRoute` | `routes`, `services`, `upstreams`, and `targets` |
+
+The LDAP directory remains outside Kubernetes and must be reachable from the Kong pods.
+
+### 4.2. Create the ldap-auth plugin
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
@@ -79,14 +132,24 @@ config:
   base_dn: dc=example,dc=com
   attribute: uid
   header_type: ldap
+  hide_credentials: true
   verify_ldap_host: false
 ```
 
-### 2. `18-ldap-httproute.yaml`
+This configuration reproduces the public example but is not secure for production:
 
-This `HTTPRoute` publishes the endpoint. `parentRefs` attaches it to the `kong` Gateway, `hostnames` limits the domain, and `PathPrefix` defines the path. `backendRefs` points to the existing `echo` Service from the KIC scenario. KIC primarily translates it into a Kong Route and a Service association, internally represented through Service, Upstream, and Targets. The `konghq.com/plugins` annotation links the plugin to the Route.
+- `ldap_port: 389` uses the conventional LDAP port.
+- `start_tls: false` and `ldaps: false` leave the connection unencrypted.
+- `verify_ldap_host: false` does not verify the server identity.
 
-Definition of the `HTTPRoute` resource:
+Production must use one of:
+
+- LDAPS with `ldaps: true`, port `636`, and `start_tls: false`.
+- StartTLS with `start_tls: true`, port `389`, and `ldaps: false`.
+
+Both require `verify_ldap_host: true` and the CA that signed the directory certificate to be configured in Kong.
+
+### 4.3. Create the `HTTPRoute`
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
@@ -94,11 +157,152 @@ kind: HTTPRoute
 metadata:
   name: ldap-auth
   namespace: javier
-  annotations: {konghq.com/plugins: ldap-auth}
+  annotations:
+    konghq.com/plugins: ldap-auth
 spec:
-  parentRefs: [{name: kong, namespace: kong}]
-  hostnames: [echo.javiercd.es]
+  parentRefs:
+    - name: kong
+      namespace: kong
+  hostnames:
+    - echo.javiercd.es
   rules:
-    - matches: [{path: {type: PathPrefix, value: /ldap-auth}}]
-      backendRefs: [{name: echo, port: 80}]
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /ldap-auth
+      backendRefs:
+        - name: echo
+          port: 80
 ```
+
+### 4.4. Apply the manifests
+
+```bash
+sudo kubectl apply -f 18-ldap-plugin.yaml
+sudo kubectl apply -f 18-ldap-httproute.yaml
+```
+
+Check their status:
+
+```bash
+sudo kubectl get kongplugin ldap-auth -n javier
+sudo kubectl get httproute ldap-auth -n javier
+sudo kubectl describe httproute ldap-auth -n javier
+```
+
+## 5. Testing LDAP Authentication
+
+The following responses were captured directly against the public directory configured in the manifest.
+
+### 5.1. Request without credentials
+
+```bash
+curl -i http://echo.javiercd.es/ldap-auth
+```
+
+Kong responds before contacting the upstream:
+
+```http
+HTTP/1.1 401 Unauthorized
+Date: Sun, 26 Jul 2026 09:02:10 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+WWW-Authenticate: LDAP
+Content-Length: 81
+X-Kong-Response-Latency: 0
+Server: kong/3.10.0.16-enterprise-edition
+X-Kong-Request-Id: 3769cd619434626c22b565380a256e2d
+
+{
+  "message":"Unauthorized",
+  "request_id":"3769cd619434626c22b565380a256e2d"
+}
+```
+
+### 5.2. Incorrect credentials
+
+Encode an invalid password:
+
+```bash
+LDAP_AUTH="$(echo -n 'riemann:incorrecta' | base64 -w0)"
+
+curl -i \
+  -H "Authorization: ldap ${LDAP_AUTH}" \
+  http://echo.javiercd.es/ldap-auth
+```
+
+The LDAP bind fails and Kong returns:
+
+```http
+HTTP/1.1 401 Unauthorized
+Date: Sun, 26 Jul 2026 09:02:10 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+WWW-Authenticate: LDAP
+Content-Length: 81
+X-Kong-Response-Latency: 237
+Server: kong/3.10.0.16-enterprise-edition
+X-Kong-Request-Id: f33c617286ceea737759642809623960
+
+{
+  "message":"Unauthorized",
+  "request_id":"f33c617286ceea737759642809623960"
+}
+```
+
+### 5.3. Correct credentials
+
+Forum Systems' public accounts use password `password`:
+
+```bash
+LDAP_AUTH="$(echo -n 'riemann:password' | base64 -w0)"
+
+curl -i \
+  -H "Authorization: ldap ${LDAP_AUTH}" \
+  http://echo.javiercd.es/ldap-auth
+```
+
+If the public server is available, Kong validates the user and reaches the upstream:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Content-Length: 28
+Connection: keep-alive
+X-App-Name: http-echo
+X-App-Version: 1.0.0
+Date: Sun, 26 Jul 2026 09:02:10 GMT
+Server: kong/3.10.0.16-enterprise-edition
+X-Kong-Upstream-Latency: 1
+X-Kong-Proxy-Latency: 119
+Via: 1.1 kong/3.10.0.16-enterprise-edition
+X-Kong-Request-Id: 18e15316718e36359b76c9698390f16f
+
+Hola desde Kong Gateway KIC
+```
+
+### 5.4. Diagnose the LDAP connection
+
+If valid credentials fail, inspect Kong's logs:
+
+```bash
+sudo kubectl logs -n kong deployment/kong-gateway --tail=100
+```
+
+Common causes include:
+
+- The LDAP host does not resolve from the pod.
+- The port is blocked.
+- `base_dn` or `attribute` does not match the directory.
+- LDAPS and StartTLS were enabled at the same time.
+- Kong cannot validate the certificate with its configured CAs.
+
+These errors occur between Kong and LDAP and do not appear in `echo`.
+
+## Official sources
+
+- [LDAP Authentication plugin](https://developer.konghq.com/plugins/ldap-auth/)
+- [LDAP Authentication configuration reference](https://developer.konghq.com/plugins/ldap-auth/reference/)
+- [LDAP Authentication changelog](https://developer.konghq.com/plugins/ldap-auth/changelog/)
+- [LDAP Authentication Advanced](https://developer.konghq.com/plugins/ldap-auth-advanced/)
+- [Forum Systems LDAP test server](https://www.forumsys.com/category/tutorials/integration-how-to/)

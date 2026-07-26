@@ -1,7 +1,10 @@
 ---
 title: "Basic Auth en kong"
+date: 2026-07-26T00:00:00+02:00
 description: "Cómo funciona HTTP Basic Authentication y cómo proteger un recurso HTTPRoute con el plugin Basic Auth de Kong Gateway y KIC."
+tags: [Kong, Autenticación, Basic Auth, KIC, Gateway API]
 weight: 10
+hero: images/kong/basic-auth.png
 aliases:
   - /posts/kong/10-autenticacion-basic-auth/10-autenticacion-basic-auth/
 ---
@@ -146,7 +149,7 @@ En modo DB-less estas traducciones forman parte de la configuración en memoria 
 
 Este fichero declara el plugin que realizará la validación.
 
-`hide_credentials: true` indica que Kong debe retirar la cabecera utilizada para autenticarse antes de enviar la petición al upstream.
+`hide_credentials: true` indica que Kong debe retirar la cabecera utilizada para autenticarse antes de enviar la petición al upstream. `realm` define el ámbito que Kong anuncia mediante `WWW-Authenticate` cuando rechaza la autenticación.
 
 El `KongPlugin` todavía no protege ninguna ruta por sí solo. Quedará asociado cuando añadamos su nombre a la anotación del `HTTPRoute`.
 
@@ -159,6 +162,7 @@ metadata:
 plugin: basic-auth
 config:
   hide_credentials: true
+  realm: javier-basic-auth
 ```
 
 En una instalación con base de datos, esta configuración se traduciría a una entidad de `plugins`. Al asociarla con la `Route`, la entidad tendría una referencia a esa `Route`.
@@ -261,7 +265,7 @@ El `HTTPRoute` debe aparecer aceptado por el `Gateway`.
 
 ## 5. Probando Basic Authentication
 
-Vamos a probar la configuracion que hemos desplegado.
+Vamos a probar la configuración que hemos desplegado. Las respuestas mostradas a continuación se han capturado directamente en la VM del laboratorio.
 
 ### 5.1. Petición sin credenciales
 
@@ -275,24 +279,23 @@ La respuesta observada en el laboratorio es:
 
 ```http
 HTTP/1.1 401 Unauthorized
-Date: Sun, 26 Jul 2026 00:51:58 GMT
+Date: Sun, 26 Jul 2026 09:01:38 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Basic realm="javier-basic-auth"
 Content-Length: 26
 X-Kong-Response-Latency: 0
 Server: kong/3.10.0.16-enterprise-edition
-X-Kong-Request-Id: 1f06711dd1f40a26aaa91059dea08d07
+X-Kong-Request-Id: da02e8552baa4a0f020f5761b6401524
 
 {"message":"Unauthorized"}
-
 ```
 
 No aparece `X-Kong-Upstream-Latency` porque Kong ha generado la respuesta antes de contactar con `echo`.
 
 ### 5.2. Credenciales incorrectas
 
-Ahora enviaremos la petición utilizando unas credenciales incorrectas usando `curl -u` , que construye la cabecera `Authorization: Basic` por nosotros:
+Ahora enviaremos la petición utilizando unas credenciales incorrectas mediante `curl -u`, que construye la cabecera `Authorization: Basic` por nosotros:
 
 ```bash
 curl -i -u alice:incorrecta \
@@ -303,14 +306,14 @@ La respuesta vuelve a ser:
 
 ```http
 HTTP/1.1 401 Unauthorized
-Date: Sun, 26 Jul 2026 00:52:33 GMT
+Date: Sun, 26 Jul 2026 09:01:38 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Basic realm="javier-basic-auth"
 Content-Length: 26
-X-Kong-Response-Latency: 1
+X-Kong-Response-Latency: 0
 Server: kong/3.10.0.16-enterprise-edition
-X-Kong-Request-Id: 27065c1c980b170d78dc2f58adf26a6e
+X-Kong-Request-Id: baf09c5e879385768ab2480cf3c5bc3f
 
 {"message":"Unauthorized"}
 ```
@@ -333,12 +336,12 @@ Content-Length: 28
 Connection: keep-alive
 X-App-Name: http-echo
 X-App-Version: 1.0.0
-Date: Sun, 26 Jul 2026 00:52:54 GMT
+Date: Sun, 26 Jul 2026 09:01:38 GMT
 Server: kong/3.10.0.16-enterprise-edition
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 0
+X-Kong-Upstream-Latency: 0
+X-Kong-Proxy-Latency: 1
 Via: 1.1 kong/3.10.0.16-enterprise-edition
-X-Kong-Request-Id: 7f7c177c2462212be44bd8068f016b44
+X-Kong-Request-Id: 229ad4616bfa4a0c334d112502217437
 
 Hola desde Kong Gateway KIC
 ```

@@ -1,7 +1,10 @@
 ---
 title: "Basic Auth in Kong"
+date: 2026-07-26T00:00:00+02:00
 description: "How HTTP Basic Authentication works and how to protect an HTTPRoute resource with Kong Gateway's Basic Auth plugin and KIC."
+tags: [Kong, Authentication, Basic Auth, KIC, Gateway API]
 weight: 10
+hero: images/kong/basic-auth.png
 aliases:
   - /posts/kong/10-autenticacion-basic-auth/10-autenticacion-basic-auth/
 ---
@@ -146,7 +149,7 @@ In DB-less mode, these translations are part of Kong's in-memory configuration. 
 
 This file declares the plugin that will perform the validation.
 
-`hide_credentials: true` tells Kong to remove the header used for authentication before sending the request to the upstream.
+`hide_credentials: true` tells Kong to remove the header used for authentication before sending the request to the upstream. `realm` defines the authentication scope that Kong advertises through `WWW-Authenticate` when it rejects the request.
 
 The `KongPlugin` does not protect any route by itself. It becomes associated with a route when we add its name to the `HTTPRoute` annotation.
 
@@ -159,6 +162,7 @@ metadata:
 plugin: basic-auth
 config:
   hide_credentials: true
+  realm: javier-basic-auth
 ```
 
 In a database-backed installation, this configuration would become a `plugins` entity. When associated with the `Route`, the entity would contain a reference to that `Route`.
@@ -275,14 +279,14 @@ The response observed in the lab is:
 
 ```http
 HTTP/1.1 401 Unauthorized
-Date: Sun, 26 Jul 2026 00:51:58 GMT
+Date: Sun, 26 Jul 2026 09:01:38 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Basic realm="javier-basic-auth"
 Content-Length: 26
 X-Kong-Response-Latency: 0
 Server: kong/3.10.0.16-enterprise-edition
-X-Kong-Request-Id: 1f06711dd1f40a26aaa91059dea08d07
+X-Kong-Request-Id: da02e8552baa4a0f020f5761b6401524
 
 {"message":"Unauthorized"}
 ```
@@ -302,14 +306,14 @@ The response is again:
 
 ```http
 HTTP/1.1 401 Unauthorized
-Date: Sun, 26 Jul 2026 00:52:33 GMT
+Date: Sun, 26 Jul 2026 09:01:38 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Basic realm="javier-basic-auth"
 Content-Length: 26
-X-Kong-Response-Latency: 1
+X-Kong-Response-Latency: 0
 Server: kong/3.10.0.16-enterprise-edition
-X-Kong-Request-Id: 27065c1c980b170d78dc2f58adf26a6e
+X-Kong-Request-Id: baf09c5e879385768ab2480cf3c5bc3f
 
 {"message":"Unauthorized"}
 ```
@@ -332,12 +336,12 @@ Content-Length: 28
 Connection: keep-alive
 X-App-Name: http-echo
 X-App-Version: 1.0.0
-Date: Sun, 26 Jul 2026 00:52:54 GMT
+Date: Sun, 26 Jul 2026 09:01:38 GMT
 Server: kong/3.10.0.16-enterprise-edition
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 0
+X-Kong-Upstream-Latency: 0
+X-Kong-Proxy-Latency: 1
 Via: 1.1 kong/3.10.0.16-enterprise-edition
-X-Kong-Request-Id: 7f7c177c2462212be44bd8068f016b44
+X-Kong-Request-Id: 229ad4616bfa4a0c334d112502217437
 
 Hola desde Kong Gateway KIC
 ```

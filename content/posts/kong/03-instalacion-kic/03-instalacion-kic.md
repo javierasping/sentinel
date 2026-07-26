@@ -1,9 +1,9 @@
 ---
 title: "Instalación de Kong Ingress Controller (KIC)"
-date: 2026-07-02T14:45:00+00:00
+date: 2026-07-26T00:00:00+02:00
 description: "Guía paso a paso para instalar Kong Gateway y Kong Ingress Controller en Kubernetes, validar el despliegue y exponer el proxy con MetalLB."
 tags: [Kong, Testing, Validación, API Gateway]
-hero: images/kong/10-verificacion/hero.png
+hero: images/kong/kic.png
 weight: 3
 ---
 
@@ -164,8 +164,20 @@ metadata:
 Aplicamos la configuración:
 
 ```bash
+sudo kubectl patch service traefik \
+  --namespace kube-system \
+  --type merge \
+  --patch '{"spec":{"loadBalancerIP":"192.168.121.202"}}'
+
+sudo kubectl patch service kong-gateway-proxy \
+  --namespace kong \
+  --type merge \
+  --patch '{"spec":{"loadBalancerIP":"192.168.121.200"}}'
+
 sudo kubectl apply -f metallb-config.yaml
 ```
+
+Fijamos las direcciones antes de activar el pool porque k3s instala Traefik como otro servicio `LoadBalancer`. Si dejamos que MetalLB reparta las IP por orden de llegada, Traefik puede recibir `.200` y Kong `.201`. Con estos dos parches el resto de la serie puede utilizar siempre `192.168.121.200` para acceder al proxy de Kong.
 
 ## Comprobar el funcionamiento
 

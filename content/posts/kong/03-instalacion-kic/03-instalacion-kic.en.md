@@ -1,9 +1,9 @@
 ---
 title: "Installing Kong Ingress Controller (KIC)"
-date: 2026-07-02T14:45:00+00:00
+date: 2026-07-26T00:00:00+02:00
 description: "Step-by-step guide to install Kong Gateway and Kong Ingress Controller on Kubernetes, validate the deployment, and expose the proxy with MetalLB."
 tags: [Kong, Testing, Validation, API Gateway]
-hero: images/kong/10-verificacion/hero.png
+hero: images/kong/kic.png
 weight: 3
 ---
 

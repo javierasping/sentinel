@@ -1,9 +1,9 @@
 ---
 title: "Introducción a Kong Gateway"
-date: 2026-07-02T14:00:00+00:00
+date: 2026-07-26T00:00:00+02:00
 description: "Guía unificada sobre qué es Kong Gateway, sus componentes, topologías de despliegue y la planificación previa a la instalación."
 tags: [Kong, API Gateway, Architecture, Planning, Topologies]
-hero: images/kong/01-introduccion/hero.png
+hero: images/kong/introduction.png
 weight: 1
 ---
 
