@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="940" viewBox="0 0 1200 940" role="img" aria-labelledby="title desc">
+  <title id="title">Flujo SAML mediante Keycloak y Kong</title>
+  <desc id="desc">Kong inicia OIDC con el broker. El broker autentica al usuario mediante SAML, entrega un código a Kong y este crea la sesión antes de llegar al upstream.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1 1 L11 6 L1 11" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="940" fill="#fffdf8"/>
+  <g font-family="Comic Sans MS, Segoe Print, cursive" fill="#1e293b" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M285 75 L355 75" fill="none" stroke="#1e293b" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M625 75 L695 75" fill="none" stroke="#1e293b" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M925 120 L925 260" fill="none" stroke="#c2410c" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M925 365 L925 480" fill="none" stroke="#c2410c" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M695 535 L505 645" fill="none" stroke="#15803d" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M500 750 L500 810" fill="none" stroke="#1e293b" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="40" y="35" width="240" height="80" rx="16" fill="#e0f2fe" stroke="#1e293b" stroke-width="3"/>
+    <text x="160" y="84.18" text-anchor="middle" font-size="27" font-weight="600" fill="#1e293b" stroke="none">Navegador</text>
+    <rect x="360" y="35" width="260" height="80" rx="16" fill="#dbeafe" stroke="#1e293b" stroke-width="3"/>
+    <text x="490" y="84.18" text-anchor="middle" font-size="27" font-weight="600" fill="#1e293b" stroke="none">Kong + OIDC</text>
+    <rect x="700" y="35" width="450" height="80" rx="16" fill="#ffedd5" stroke="#c2410c" stroke-width="3"/>
+    <text x="925" y="83.16" text-anchor="middle" font-size="24" font-weight="600" fill="#c2410c" stroke="none">Keycloak · kong-saml-broker</text>
+    <rect x="700" y="265" width="450" height="95" rx="16" fill="#ffedd5" stroke="#c2410c" stroke-width="3"/>
+    <text x="925" y="305.66" text-anchor="middle" font-size="24" font-weight="600" fill="#c2410c" stroke="none">Keycloak · saml-idp</text>
+    <text x="925" y="335.66" text-anchor="middle" font-size="24" font-weight="600" fill="#c2410c" stroke="none">login de alice</text>
+    <rect x="700" y="485" width="450" height="95" rx="16" fill="#fef3c7" stroke="#c2410c" stroke-width="3"/>
+    <text x="925" y="525.945" text-anchor="middle" font-size="23" font-weight="600" fill="#c2410c" stroke="none">Broker valida SAMLResponse</text>
+    <text x="925" y="554.695" text-anchor="middle" font-size="23" font-weight="600" fill="#c2410c" stroke="none">y emite code OIDC</text>
+    <rect x="320" y="650" width="360" height="95" rx="16" fill="#dcfce7" stroke="#15803d" stroke-width="3"/>
+    <text x="500" y="690.66" text-anchor="middle" font-size="24" font-weight="600" fill="#15803d" stroke="none">Kong valida OIDC</text>
+    <text x="500" y="720.66" text-anchor="middle" font-size="24" font-weight="600" fill="#15803d" stroke="none">y crea la sesión</text>
+    <rect x="320" y="815" width="360" height="85" rx="16" fill="#ede9fe" stroke="#6d28d9" stroke-width="3"/>
+    <text x="500" y="866.68" text-anchor="middle" font-size="27" font-weight="600" fill="#6d28d9" stroke="none">Servicio echo</text>
+    <text x="285" y="20" font-size="20" fill="#1e293b" stroke="none">1  GET</text>
+    <text x="625" y="20" font-size="20" fill="#1e293b" stroke="none">2  authorize</text>
+    <text x="950" y="180" font-size="20" fill="#c2410c" stroke="none">3  SAML AuthnRequest</text>
+    <text x="950" y="415" font-size="20" fill="#c2410c" stroke="none">4  SAMLResponse firmada</text>
+    <text x="520" y="555" font-size="20" fill="#15803d" stroke="none">5  callback + code</text>
+    <text x="525" y="775" font-size="20" fill="#1e293b" stroke="none">6</text>
+  </g>
+</svg>

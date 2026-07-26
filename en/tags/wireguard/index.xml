@@ -3,14 +3,12 @@
 &lt;blockquote&gt;
 &lt;p&gt;[NOTE]
 The comparative part of the posts in this section in which we mount each type of VPN.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="speed-without-vpn"&gt;Speed without VPN&lt;/h2&gt;
+&lt;/blockquote&gt;&lt;h2 id="speed-without-vpn"&gt;Speed without VPN&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;m gonna start by comparing the speeds of these 2 systems, using iperf3. For this I have removed the cisco router as I had it configured with FastEthernet interfaces and changed it to a Linux router with GigabitEthernet interfaces.&lt;/p&gt;</description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;[!NOTE]
-I will start from the VPN post remote access with Wireguard, so you may refer to this one during this article.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="key-generation"&gt;Key generation&lt;/h2&gt;
+&lt;div class="alert info"&gt;
+&lt;span&gt;&lt;i data-feather="info"&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;span&gt;&lt;strong&gt;&lt;p&gt;I will start from the VPN post remote access with Wireguard, so you may refer to this one during this article.&lt;/p&gt;&lt;/strong&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;h2 id="key-generation"&gt;Key generation&lt;/h2&gt;
 &lt;p&gt;The first thing we will do is to install both the Wireguard package in both machines:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;root@servidor1:~# sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;debian@servidor2:~$ sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard

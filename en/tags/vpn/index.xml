@@ -3,8 +3,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;[NOTE]
 The comparative part of the posts in this section in which we mount each type of VPN.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="speed-without-vpn"&gt;Speed without VPN&lt;/h2&gt;
+&lt;/blockquote&gt;&lt;h2 id="speed-without-vpn"&gt;Speed without VPN&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;m gonna start by comparing the speeds of these 2 systems, using iperf3. For this I have removed the cisco router as I had it configured with FastEthernet interfaces and changed it to a Linux router with GigabitEthernet interfaces.&lt;/p&gt;</description></item><item><title>Remote access VPN with Ipsec StrongSwan</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_strongswang/strongswang/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_strongswang/strongswang/</guid><description>&lt;p&gt;StrongSwan is a VPN (Virtual Private Network) implementation based on IPsec, open source, multiplatform, complete and widely used. It works on operating systems such as Linux, FreeBSD, OS X, Windows, Android and iOS. Mainly, it is a key exchange demon that supports Internet Key Exchange protocols (IKEv1 and IKEv2) to establish security associations (SA) between two pairs.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;[NOTE]
@@ -17,21 +16,19 @@ I will start from the VPN post remote access with OpenVPN, so you may refer to t
 &lt;/ul&gt;
 &lt;h3 id="riding-the-stage"&gt;Riding the stage&lt;/h3&gt;
 &lt;p&gt;To perform this exercise I have mounted the following scenario on GNS3:&lt;/p&gt;</description></item><item><title>VPN site to site Wireguard</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_wireguard/site_to_site_wireguard/</guid><description>&lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_wireguard/img/Pastedimage20240114150833.png" alt=""&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;[!NOTE]
-I will start from the VPN post remote access with Wireguard, so you may refer to this one during this article.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="key-generation"&gt;Key generation&lt;/h2&gt;
+&lt;div class="alert info"&gt;
+&lt;span&gt;&lt;i data-feather="info"&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;span&gt;&lt;strong&gt;&lt;p&gt;I will start from the VPN post remote access with Wireguard, so you may refer to this one during this article.&lt;/p&gt;&lt;/strong&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;h2 id="key-generation"&gt;Key generation&lt;/h2&gt;
 &lt;p&gt;The first thing we will do is to install both the Wireguard package in both machines:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;root@servidor1:~# sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;debian@servidor2:~$ sudo apt update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install wireguard
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s generate the pairs of keys that will be used to encrypt the connection. We will need a key for the server and a couple of additional keys for each client.&lt;/p&gt;</description></item><item><title>VPN site to site with IPsec Cisco</title><link>https://www.javiercd.es/en/posts/vpn/ipsec_cisco/ipsec_cisco/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/ipsec_cisco/ipsec_cisco/</guid><description>&lt;p&gt;In this post I&amp;rsquo;m going to mount an IPSEC VPN using swan routers.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/ipsec_cisco/img/Pastedimage20240128120659.png" alt=""&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;[!NOTE]
-This post details the configuration of R2 and R3 routers, however R1 is explained in the post of &amp;ldquo;VPN OpenVPN remote access.&amp;rdquo; If you want to see the configuration of the latter, look at the section preparing the stage.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="-stage-configuration"&gt;# Stage configuration&lt;/h2&gt;
+&lt;div class="alert info"&gt;
+&lt;span&gt;&lt;i data-feather="info"&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;span&gt;&lt;strong&gt;&lt;p&gt;This post details the configuration of R2 and R3 routers, however R1 is explained in the post of &amp;ldquo;VPN OpenVPN remote access.&amp;rdquo; If you want to see the configuration of the latter, look at the section preparing the stage.&lt;/p&gt;&lt;/strong&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;h2 id="-stage-configuration"&gt;# Stage configuration&lt;/h2&gt;
 &lt;p&gt;As I have changed stage, the 2 new routers have to be set up on the R2 and R3 network.&lt;/p&gt;</description></item><item><title>VPN site to site with IPsec Fortinet</title><link>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/site_to_site_fortinet/site_to_site_fortinet/</guid><description>&lt;p&gt;In this post I will mount an IPSEC VPN using Fortinet firewalls, for which I will visualize them on GNS3.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.javiercd.es/vpn/site_to_site_fortinet/img/Pastedimage20240330235321.png" alt=""&gt;&lt;/p&gt;
 &lt;h3 id="stage-preparation"&gt;Stage preparation&lt;/h3&gt;

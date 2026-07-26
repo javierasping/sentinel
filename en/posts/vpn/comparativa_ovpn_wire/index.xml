@@ -3,6 +3,5 @@
 &lt;blockquote&gt;
 &lt;p&gt;[NOTE]
 The comparative part of the posts in this section in which we mount each type of VPN.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="speed-without-vpn"&gt;Speed without VPN&lt;/h2&gt;
+&lt;/blockquote&gt;&lt;h2 id="speed-without-vpn"&gt;Speed without VPN&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;m gonna start by comparing the speeds of these 2 systems, using iperf3. For this I have removed the cisco router as I had it configured with FastEthernet interfaces and changed it to a Linux router with GigabitEthernet interfaces.&lt;/p&gt;</description></item></channel></rss>

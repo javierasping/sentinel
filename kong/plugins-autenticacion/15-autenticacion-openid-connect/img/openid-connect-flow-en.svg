@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="940" viewBox="0 0 1200 940" role="img" aria-labelledby="title desc">
+  <title id="title">OpenID Connect Authorization Code flow in Kong</title>
+  <desc id="desc">The browser reaches Kong, is redirected to Keycloak, signs in, and returns with a code. Kong exchanges the code, creates a session, and proxies the request upstream.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1 1 L11 6 L1 11" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="940" fill="#fffdf8"/>
+  <g font-family="Comic Sans MS, Segoe Print, cursive" fill="#1e293b" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M315 88 L460 88" fill="none" stroke="#1e293b" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M740 88 L885 88" fill="none" stroke="#1e293b" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M1025 135 L1025 265" fill="none" stroke="#c2410c" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M860 320 L605 460" fill="none" stroke="#c2410c" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M600 575 L600 645" fill="none" stroke="#15803d" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M600 750 L600 815" fill="none" stroke="#1e293b" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="40" y="45" width="270" height="85" rx="16" fill="#e0f2fe" stroke="#1e293b" stroke-width="3"/>
+    <text x="175" y="96.68" text-anchor="middle" font-size="27" font-weight="600" fill="#1e293b" stroke="none">Browser</text>
+    <rect x="465" y="45" width="270" height="85" rx="16" fill="#dbeafe" stroke="#1e293b" stroke-width="3"/>
+    <text x="600" y="96.68" text-anchor="middle" font-size="27" font-weight="600" fill="#1e293b" stroke="none">Kong + OIDC</text>
+    <rect x="890" y="45" width="270" height="85" rx="16" fill="#ffedd5" stroke="#c2410c" stroke-width="3"/>
+    <text x="1025" y="96.68" text-anchor="middle" font-size="27" font-weight="600" fill="#c2410c" stroke="none">Keycloak</text>
+    <rect x="865" y="270" width="320" height="95" rx="16" fill="#ffedd5" stroke="#c2410c" stroke-width="3"/>
+    <text x="1025" y="309.805" text-anchor="middle" font-size="27" font-weight="600" fill="#c2410c" stroke="none">alice login</text>
+    <text x="1025" y="343.555" text-anchor="middle" font-size="27" font-weight="600" fill="#c2410c" stroke="none">and consent</text>
+    <rect x="400" y="465" width="400" height="105" rx="16" fill="#fef3c7" stroke="#1e293b" stroke-width="3"/>
+    <text x="600" y="509.805" text-anchor="middle" font-size="27" font-weight="600" fill="#1e293b" stroke="none">Callback at Kong</text>
+    <text x="600" y="543.5550000000001" text-anchor="middle" font-size="27" font-weight="600" fill="#1e293b" stroke="none">code exchange</text>
+    <rect x="400" y="650" width="400" height="95" rx="16" fill="#dcfce7" stroke="#15803d" stroke-width="3"/>
+    <text x="600" y="706.68" text-anchor="middle" font-size="27" font-weight="600" fill="#15803d" stroke="none">Encrypted session created</text>
+    <rect x="400" y="820" width="400" height="90" rx="16" fill="#ede9fe" stroke="#6d28d9" stroke-width="3"/>
+    <text x="600" y="874.18" text-anchor="middle" font-size="27" font-weight="600" fill="#6d28d9" stroke="none">echo service</text>
+    <text x="340" y="25" font-size="20" fill="#1e293b" stroke="none">1  GET /oidc</text>
+    <text x="755" y="25" font-size="20" fill="#1e293b" stroke="none">2  302 authorize</text>
+    <text x="1045" y="190" font-size="20" fill="#c2410c" stroke="none">3</text>
+    <text x="655" y="350" font-size="20" fill="#c2410c" stroke="none">4  callback + code</text>
+    <text x="625" y="600" font-size="20" fill="#15803d" stroke="none">5  valid tokens</text>
+    <text x="625" y="775" font-size="20" fill="#1e293b" stroke="none">6  authenticated request</text>
+  </g>
+</svg>

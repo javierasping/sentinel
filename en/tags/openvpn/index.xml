@@ -3,8 +3,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;[NOTE]
 The comparative part of the posts in this section in which we mount each type of VPN.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="speed-without-vpn"&gt;Speed without VPN&lt;/h2&gt;
+&lt;/blockquote&gt;&lt;h2 id="speed-without-vpn"&gt;Speed without VPN&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;m gonna start by comparing the speeds of these 2 systems, using iperf3. For this I have removed the cisco router as I had it configured with FastEthernet interfaces and changed it to a Linux router with GigabitEthernet interfaces.&lt;/p&gt;</description></item><item><title>Remote access VPN with OpenVPN and x509 certificates</title><link>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</link><pubDate>Thu, 28 Mar 2024 10:00:00 +0000</pubDate><guid>https://www.javiercd.es/en/posts/vpn/acceso_remoto_openvpn/accesoremoto_openvpn/</guid><description>&lt;ul&gt;
 &lt;li&gt;One of the two teams (which will act as a server) will be connected to two networks&lt;/li&gt;
 &lt;li&gt;For endpoint authentication, digital certificates shall be used. They will be generated using openssl and stored in the /etc/openvpn directory, together with the Diffie-Hellman parameters and the certificate of the Certification Authority itself.&lt;/li&gt;
